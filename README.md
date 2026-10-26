@@ -10,6 +10,8 @@ Componentes de interface do OTServ **Poke World Universe**, feitos como Web Comp
 | Icon | `<pw-icon>` |
 | Element Item | `<pw-element-item>` |
 
+Tipografia: **Spectral** para títulos e **Inter** para labels e textos (`--pw-font-title`, `--pw-font-body`, escala `--pw-text-*` e classes `.pw-text-*`).
+
 Temas: **Poke World** (padrão, dourado + azul), **Mewtwo** (roxo) e um tema para cada um dos **18 tipos** (`fogo`, `agua`, `planta`…).
 
 ## Instalação

@@ -1,7 +1,7 @@
 <title>Poke World Card System</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: storybook HUD — sticky section nav on top, stacked "stories" below, single dark game-night theme */
 :root{
@@ -13,6 +13,36 @@
   --f-mono:"IBM Plex Mono", ui-monospace, monospace;
 
   /* @pwds-tokens-start */
+  /* ===== TIPOGRAFIA =====
+     Spectral: títulos. Inter: labels, textos complementares e informações maiores. */
+  --pw-font-title:"Spectral", Georgia, "Times New Roman", serif;
+  --pw-font-body:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --pw-text-title-xl-size:32px; --pw-text-title-xl-line:40px; --pw-text-title-xl-weight:700; --pw-text-title-xl-tracking:0;
+  --pw-text-title-xl:var(--pw-text-title-xl-weight) var(--pw-text-title-xl-size)/var(--pw-text-title-xl-line) var(--pw-font-title);
+  --pw-text-title-lg-size:24px; --pw-text-title-lg-line:32px; --pw-text-title-lg-weight:700; --pw-text-title-lg-tracking:0;
+  --pw-text-title-lg:var(--pw-text-title-lg-weight) var(--pw-text-title-lg-size)/var(--pw-text-title-lg-line) var(--pw-font-title);
+  --pw-text-title-md-size:20px; --pw-text-title-md-line:28px; --pw-text-title-md-weight:600; --pw-text-title-md-tracking:0;
+  --pw-text-title-md:var(--pw-text-title-md-weight) var(--pw-text-title-md-size)/var(--pw-text-title-md-line) var(--pw-font-title);
+  --pw-text-title-sm-size:16px; --pw-text-title-sm-line:22px; --pw-text-title-sm-weight:600; --pw-text-title-sm-tracking:0;
+  --pw-text-title-sm:var(--pw-text-title-sm-weight) var(--pw-text-title-sm-size)/var(--pw-text-title-sm-line) var(--pw-font-title);
+  --pw-text-title-caps-size:20px; --pw-text-title-caps-line:24px; --pw-text-title-caps-weight:700; --pw-text-title-caps-tracking:.06em;
+  --pw-text-title-caps:var(--pw-text-title-caps-weight) var(--pw-text-title-caps-size)/var(--pw-text-title-caps-line) var(--pw-font-title);
+  --pw-text-body-lg-size:16px; --pw-text-body-lg-line:24px; --pw-text-body-lg-weight:400; --pw-text-body-lg-tracking:0;
+  --pw-text-body-lg:var(--pw-text-body-lg-weight) var(--pw-text-body-lg-size)/var(--pw-text-body-lg-line) var(--pw-font-body);
+  --pw-text-body-md-size:14px; --pw-text-body-md-line:20px; --pw-text-body-md-weight:400; --pw-text-body-md-tracking:0;
+  --pw-text-body-md:var(--pw-text-body-md-weight) var(--pw-text-body-md-size)/var(--pw-text-body-md-line) var(--pw-font-body);
+  --pw-text-body-sm-size:12px; --pw-text-body-sm-line:16px; --pw-text-body-sm-weight:400; --pw-text-body-sm-tracking:0;
+  --pw-text-body-sm:var(--pw-text-body-sm-weight) var(--pw-text-body-sm-size)/var(--pw-text-body-sm-line) var(--pw-font-body);
+  --pw-text-label-lg-size:14px; --pw-text-label-lg-line:16px; --pw-text-label-lg-weight:500; --pw-text-label-lg-tracking:0;
+  --pw-text-label-lg:var(--pw-text-label-lg-weight) var(--pw-text-label-lg-size)/var(--pw-text-label-lg-line) var(--pw-font-body);
+  --pw-text-label-md-size:12px; --pw-text-label-md-line:16px; --pw-text-label-md-weight:400; --pw-text-label-md-tracking:0;
+  --pw-text-label-md:var(--pw-text-label-md-weight) var(--pw-text-label-md-size)/var(--pw-text-label-md-line) var(--pw-font-body);
+  --pw-text-label-sm-size:10px; --pw-text-label-sm-line:12px; --pw-text-label-sm-weight:400; --pw-text-label-sm-tracking:.01em;
+  --pw-text-label-sm:var(--pw-text-label-sm-weight) var(--pw-text-label-sm-size)/var(--pw-text-label-sm-line) var(--pw-font-body);
+  --pw-text-caption-size:11px; --pw-text-caption-line:14px; --pw-text-caption-weight:400; --pw-text-caption-tracking:.01em;
+  --pw-text-caption:var(--pw-text-caption-weight) var(--pw-text-caption-size)/var(--pw-text-caption-line) var(--pw-font-body);
+  --pw-text-overline-size:11px; --pw-text-overline-line:14px; --pw-text-overline-weight:600; --pw-text-overline-tracking:.12em;
+  --pw-text-overline:var(--pw-text-overline-weight) var(--pw-text-overline-size)/var(--pw-text-overline-line) var(--pw-font-body);
   /* ===== TEMA GLOBAL (compartilhado por todos os componentes) =====
      tema padrão = Poke World (dourado + azul). Outros temas redefinem só estes tokens. */
   --pw-metal-0:#FFE0A3;   /* 0%   */
@@ -32,7 +62,7 @@
   --pw-tab-stroke-a:#9DF0FF; --pw-tab-stroke-b:#D5F8FF;
   --pw-tab-drop:#9DEFFF; --pw-tab-inner:var(--pw-tab-drop);
   --pw-tab-text:#FFFFFF; --pw-tab-text-idle:#FFFFFF;
-  --f-tab:"Inter", system-ui, sans-serif;
+  --f-tab:var(--pw-font-body);
   --pw-bg-solid:#071C41;  /* background.solid.blue (estimado) */
 
   /* ===== CARD TOKENS ===== */
@@ -110,6 +140,20 @@ ul.rules{margin:0;padding-left:18px;display:grid;gap:6px;max-width:75ch}
 .flag.ok{background:#0e3322;color:#8ee6b2}
 
 /* @pwds-css-start */
+/* tipografia: classes utilitárias (usam os tokens --pw-text-*) */
+.pw-text-title-xl{font:var(--pw-text-title-xl);letter-spacing:var(--pw-text-title-xl-tracking);text-transform:none}
+.pw-text-title-lg{font:var(--pw-text-title-lg);letter-spacing:var(--pw-text-title-lg-tracking);text-transform:none}
+.pw-text-title-md{font:var(--pw-text-title-md);letter-spacing:var(--pw-text-title-md-tracking);text-transform:none}
+.pw-text-title-sm{font:var(--pw-text-title-sm);letter-spacing:var(--pw-text-title-sm-tracking);text-transform:none}
+.pw-text-title-caps{font:var(--pw-text-title-caps);letter-spacing:var(--pw-text-title-caps-tracking);text-transform:uppercase}
+.pw-text-body-lg{font:var(--pw-text-body-lg);letter-spacing:var(--pw-text-body-lg-tracking);text-transform:none}
+.pw-text-body-md{font:var(--pw-text-body-md);letter-spacing:var(--pw-text-body-md-tracking);text-transform:none}
+.pw-text-body-sm{font:var(--pw-text-body-sm);letter-spacing:var(--pw-text-body-sm-tracking);text-transform:none}
+.pw-text-label-lg{font:var(--pw-text-label-lg);letter-spacing:var(--pw-text-label-lg-tracking);text-transform:none}
+.pw-text-label-md{font:var(--pw-text-label-md);letter-spacing:var(--pw-text-label-md-tracking);text-transform:none}
+.pw-text-label-sm{font:var(--pw-text-label-sm);letter-spacing:var(--pw-text-label-sm-tracking);text-transform:none}
+.pw-text-caption{font:var(--pw-text-caption);letter-spacing:var(--pw-text-caption-tracking);text-transform:none}
+.pw-text-overline{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase}
 /* ===================== COMPONENT: pw-card ===================== */
 /* temas: em qualquer ancestral (data-pw-theme) ou no próprio card (theme) */
 [data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"]{
@@ -168,7 +212,7 @@ pw-card[disabled] .l-art,pw-card[state="disabled"] .l-art{filter:grayscale(.9) b
 pw-card[disabled] .pwc-content,pw-card[state="disabled"] .pwc-content{opacity:.5}
 /* ===================== COMPONENT: pw-card-header ===================== */
 pw-card-header{display:inline-flex;position:relative;height:58px;box-sizing:border-box;align-items:center;justify-content:center;justify-self:start;
-  --hdr-tip:22px;padding:0 calc(var(--hdr-tip) + 16px);color:#FFF8EC;font-family:var(--f-display);font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+  --hdr-tip:22px;padding:0 calc(var(--hdr-tip) + 16px);color:#FFF8EC;font:var(--pw-text-title-caps);line-height:1;letter-spacing:var(--pw-text-title-caps-tracking);text-transform:uppercase;white-space:nowrap}
 pw-card-header .pwh-frame{position:absolute;inset:0;overflow:visible;pointer-events:none}
 pw-card-header .pwh-label{position:relative;display:flex;align-items:center;gap:14px}
 pw-card-header .pwh-label::before,pw-card-header .pwh-label::after{content:var(--hdr-icon,"\2726");font-size:.8em;color:#FFF8EC;text-shadow:0 0 8px var(--pw-glow)}
@@ -267,15 +311,15 @@ pw-element-item>pw-card[variant]{width:100%;height:auto;min-width:0}
 pw-element-item>pw-card[variant]>.pwc-content{padding:var(--pwe-py) var(--pwe-px);flex-direction:row;align-items:center;justify-content:flex-start;gap:var(--pwe-gap)}
 pw-element-item .pwe-icon{width:var(--pwe-ic);height:var(--pwe-ic);flex:none;transition:transform var(--card-dur) var(--card-ease)}
 pw-element-item .pwe-text{display:flex;flex-direction:column;justify-content:center;gap:2px;flex:none;text-align:left}
-pw-element-item .pwe-name{font-family:var(--f-tab);font-size:var(--pwe-fs);font-weight:500;color:#fff;line-height:1.2;white-space:nowrap}
-pw-element-item .pwe-meta{font-family:var(--f-tab);font-size:calc(var(--pwe-fs) - 2px);color:color-mix(in srgb,var(--pw-filament) 70%,#fff);line-height:1.2;white-space:nowrap}
+pw-element-item .pwe-name{font-family:var(--pw-font-body);font-size:var(--pwe-fs);font-weight:500;color:#fff;line-height:1.2;white-space:nowrap}
+pw-element-item .pwe-meta{font-family:var(--pw-font-body);font-size:calc(var(--pwe-fs) - 2px);color:color-mix(in srgb,var(--pw-filament) 70%,#fff);line-height:1.2;white-space:nowrap}
 pw-element-item .pwe-meta:empty{display:none}
 pw-element-item:not([disabled])>pw-card:hover .pwe-icon,pw-element-item[state="hover"] .pwe-icon{transform:scale(1.08)}
 pw-element-item[selected] .pwe-icon,pw-element-item[state="selected"] .pwe-icon{transform:scale(1.08);filter:drop-shadow(0 0 6px var(--pw-glow))}
 /* @pwds-css-end */
 /* demo content inside cards */
 .k-eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--card-filament)}
-.k-title{font-family:var(--f-display);font-size:22px;line-height:1.2;color:var(--card-text);margin:0}
+.k-title{font-family:var(--pw-font-title);font-size:22px;line-height:1.2;color:var(--card-text);margin:0}
 .k-body{font-size:14px;color:var(--card-text-muted);margin:0}
 .k-meta{margin-top:auto;display:flex;gap:16px;font-family:var(--f-mono);font-size:12px;color:var(--card-text-muted);font-variant-numeric:tabular-nums}
 .k-meta b{color:var(--card-text);font-weight:500}
@@ -285,7 +329,12 @@ pw-element-item[selected] .pwe-icon,pw-element-item[state="selected"] .pwe-icon{
 <div class="layout">
 <aside class="side" aria-label="Componentes">
   <div class="brand"><span class="eyebrow">Poke World Universe</span><b>Design System</b><span class="ver">v0.1</span></div>
-  <div class="grp">Componentes</div>
+  <div class="grp">Fundamentos</div>
+  <button type="button" class="comp-btn" data-comp="type" aria-controls="main">Tipografia</button>
+  <nav class="sub" data-for="type">
+    <a href="#type">Famílias</a><a href="#type-escala">Escala</a><a href="#type-uso">Uso</a>
+  </nav>
+  <div class="grp" style="margin-top:10px">Componentes</div>
   <button type="button" class="comp-btn" data-comp="card" aria-controls="main">Card</button>
   <nav class="sub" data-for="card">
     <a href="#referencia">Referência</a><a href="#playground">Playground</a><a href="#tertiary">Tertiary</a><a href="#temas">Temas</a><a href="#tons">Tons semânticos</a><a href="#outline">Outline</a><a href="#estados">Estados</a><a href="#anatomia">Anatomia</a><a href="#tokens">Tokens</a><a href="#uso">Regras de uso</a><a href="#pendencias">Pendências</a>
@@ -314,6 +363,35 @@ pw-element-item[selected] .pwe-icon,pw-element-item[state="selected"] .pwe-icon{
   <p class="lede" id="compLede"></p>
 </header>
 
+<section class="story" id="type" data-c="type">
+  <h2>Famílias</h2>
+  <div class="canvas" style="display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+    <div style="display:grid;gap:8px"><span class="cap" style="margin:0">--pw-font-title · Spectral</span><span style="font:600 44px/1.1 var(--pw-font-title);color:#F2E8D2">Aa Máquina do Mewtwo</span><span class="lede">Títulos de tela, janela, card e faixas. Pesos 400, 500, 600 e 700.</span></div>
+    <div style="display:grid;gap:8px"><span class="cap" style="margin:0">--pw-font-body · Inter</span><span style="font:500 40px/1.1 var(--pw-font-body);color:#F2E8D2">Aa Pedra de Fogo +12</span><span class="lede">Labels, textos complementares e informações maiores. Pesos 400, 500 e 600.</span></div>
+  </div>
+</section>
+<section class="story" id="type-escala" data-c="type">
+  <h2>Escala</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Exemplo</th><th>Classe · token</th><th>Fonte</th><th>Tamanho / linha (px)</th><th>Espaçamento</th><th>Uso</th></tr></thead>
+    <tbody><tr><td><span class="pw-text-title-xl" style="color:#F2E8D2">Ascensão Estelar</span></td><td><code>.pw-text-title-xl</code><br><code>--pw-text-title-xl</code></td><td>Spectral 700</td><td>32 / 40</td><td>—</td><td>Título de tela, resultado de evento</td></tr><tr><td><span class="pw-text-title-lg" style="color:#F2E8D2">Ascensão Estelar</span></td><td><code>.pw-text-title-lg</code><br><code>--pw-text-title-lg</code></td><td>Spectral 700</td><td>24 / 32</td><td>—</td><td>Título de janela ou painel grande</td></tr><tr><td><span class="pw-text-title-md" style="color:#F2E8D2">Ascensão Estelar</span></td><td><code>.pw-text-title-md</code><br><code>--pw-text-title-md</code></td><td>Spectral 600</td><td>20 / 28</td><td>—</td><td>Título de card</td></tr><tr><td><span class="pw-text-title-sm" style="color:#F2E8D2">Ascensão Estelar</span></td><td><code>.pw-text-title-sm</code><br><code>--pw-text-title-sm</code></td><td>Spectral 600</td><td>16 / 22</td><td>—</td><td>Título de seção dentro de painel</td></tr><tr><td><span class="pw-text-title-caps" style="color:#F2E8D2">Ascensão Estelar</span></td><td><code>.pw-text-title-caps</code><br><code>--pw-text-title-caps</code></td><td>Spectral 700</td><td>20 / 24</td><td>.06em · caixa alta</td><td>Card Header e faixas de título</td></tr><tr><td><span class="pw-text-body-lg" style="color:#F2E8D2">Pode criar 4 pedras de Fogo</span></td><td><code>.pw-text-body-lg</code><br><code>--pw-text-body-lg</code></td><td>Inter 400</td><td>16 / 24</td><td>—</td><td>Textos maiores, descrições e informações longas</td></tr><tr><td><span class="pw-text-body-md" style="color:#F2E8D2">Pode criar 4 pedras de Fogo</span></td><td><code>.pw-text-body-md</code><br><code>--pw-text-body-md</code></td><td>Inter 400</td><td>14 / 20</td><td>—</td><td>Texto complementar padrão</td></tr><tr><td><span class="pw-text-body-sm" style="color:#F2E8D2">Pode criar 4 pedras de Fogo</span></td><td><code>.pw-text-body-sm</code><br><code>--pw-text-body-sm</code></td><td>Inter 400</td><td>12 / 16</td><td>—</td><td>Texto complementar em espaço curto</td></tr><tr><td><span class="pw-text-label-lg" style="color:#F2E8D2">Visão geral</span></td><td><code>.pw-text-label-lg</code><br><code>--pw-text-label-lg</code></td><td>Inter 500</td><td>14 / 16</td><td>—</td><td>Rótulos de destaque, nome no Element Item</td></tr><tr><td><span class="pw-text-label-md" style="color:#F2E8D2">Visão geral</span></td><td><code>.pw-text-label-md</code><br><code>--pw-text-label-md</code></td><td>Inter 400</td><td>12 / 16</td><td>—</td><td>Rótulos padrão, Tabs md</td></tr><tr><td><span class="pw-text-label-sm" style="color:#F2E8D2">Visão geral</span></td><td><code>.pw-text-label-sm</code><br><code>--pw-text-label-sm</code></td><td>Inter 400</td><td>10 / 12</td><td>.01em</td><td>Rótulos pequenos, Tabs sm</td></tr><tr><td><span class="pw-text-caption" style="color:#F2E8D2">Pode criar 4 pedras de Fogo</span></td><td><code>.pw-text-caption</code><br><code>--pw-text-caption</code></td><td>Inter 400</td><td>11 / 14</td><td>.01em</td><td>Legendas, texto secundário (meta)</td></tr><tr><td><span class="pw-text-overline" style="color:#F2E8D2">Pode criar 4 pedras de Fogo</span></td><td><code>.pw-text-overline</code><br><code>--pw-text-overline</code></td><td>Inter 600</td><td>11 / 14</td><td>.12em · caixa alta</td><td>Sobretítulos e grupos</td></tr></tbody>
+  </table></div>
+</section>
+<section class="story" id="type-uso" data-c="type">
+  <h2>Uso</h2>
+  <pre class="code">/* classe pronta */
+&lt;h2 class="pw-text-title-lg"&gt;Máquina do Mewtwo&lt;/h2&gt;
+&lt;p class="pw-text-body-md"&gt;Se falhar, a pedra se desfaz.&lt;/p&gt;
+
+/* ou no seu CSS */
+.janela h2{ font: var(--pw-text-title-lg); letter-spacing: var(--pw-text-title-lg-tracking); }
+.legenda{ font-family: var(--pw-font-body); font-size: var(--pw-text-caption-size); }</pre>
+  <ul class="rules">
+    <li>Cada estilo tem um atalho <code>--pw-text-NOME</code> (peso, tamanho, altura de linha e família, para usar em <code>font:</code>) e os valores separados: <code>-size</code>, <code>-line</code>, <code>-weight</code>, <code>-tracking</code>.</li>
+    <li>Spectral só em títulos. Números, quantidades e textos de interface ficam em Inter.</li>
+    <li>Os componentes já usam os tokens: Card Header usa <code>title-caps</code>; Tabs e Element Item usam a família <code>--pw-font-body</code>.</li>
+  </ul>
+</section>
 <section class="story" id="referencia">
   <h2>Referência</h2>
   <p class="lede">Tamanho real do Figma. <code>card.primary</code> 514 × 376 com cantos Epic e fundo radial; <code>card.secondary</code> 265 × 374 com cantos Common, fundo sólido e filete interno.</p>
@@ -764,6 +842,7 @@ pw-element-item[selected] .pwe-icon,pw-element-item[state="selected"] .pwe-icon{
 (function(){
   var INFO={
     card:['Card','Componente base das janelas, painéis e itens do HUD. O card primário do Figma é a fonte de verdade; todas as variações reutilizam a mesma moldura e trocam só tokens.'],
+    type:['Tipografia','Tokens de texto do sistema: Spectral para títulos, Inter para labels, textos complementares e informações maiores.'],
     element:['Element Item','Item de controle para escolher um elemento: card tertiary interativo com o ícone do tipo e o nome. Cada elemento tem um tema próprio, criado a partir dos fundos da roda de tipos.'],
     icon:['Icon','Ícones de jogo em silhueta sólida, desenhados em SVG numa grade de 24 × 24. Herdam a cor do texto e escalam sem perder leitura.'],
     tabs:['Tabs','Navegação entre seções de um mesmo painel (inventário, Pokédex, missões). Comportamento baseado no padrão Tabs do WAI-ARIA (W3C), com o visual de vidro iluminado do HUD.'],

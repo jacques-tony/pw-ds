@@ -13,7 +13,7 @@ def between(a, b):
 STORY_ONLY = ('.icon-lib', '.icon-tile', '#hpStage', '.tabpanel')
 tokens_body = between('/* @pwds-tokens-start */', '/* @pwds-tokens-end */')
 comp = '\n'.join(l for l in between('/* @pwds-css-start */', '/* @pwds-css-end */').split('\n') if not l.startswith(STORY_ONLY))
-fonts = '@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap");'
+fonts = '@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");'
 tokens = f':root{{\n  --f-display:"Cinzel", "Trajan Pro", Georgia, serif;\n{tokens_body}\n}}'
 js_body = between('/* @pwds-js-start */', '/* @pwds-js-end */')
 css_all = tokens + '\n' + comp

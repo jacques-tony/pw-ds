@@ -1,4 +1,18 @@
-/*! Poke World Design System v0.5.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.6.0 — https://github.com/jacques-tony/pw-ds */
+/* tipografia: classes utilitárias (usam os tokens --pw-text-*) */
+.pw-text-title-xl{font:var(--pw-text-title-xl);letter-spacing:var(--pw-text-title-xl-tracking);text-transform:none}
+.pw-text-title-lg{font:var(--pw-text-title-lg);letter-spacing:var(--pw-text-title-lg-tracking);text-transform:none}
+.pw-text-title-md{font:var(--pw-text-title-md);letter-spacing:var(--pw-text-title-md-tracking);text-transform:none}
+.pw-text-title-sm{font:var(--pw-text-title-sm);letter-spacing:var(--pw-text-title-sm-tracking);text-transform:none}
+.pw-text-title-caps{font:var(--pw-text-title-caps);letter-spacing:var(--pw-text-title-caps-tracking);text-transform:uppercase}
+.pw-text-body-lg{font:var(--pw-text-body-lg);letter-spacing:var(--pw-text-body-lg-tracking);text-transform:none}
+.pw-text-body-md{font:var(--pw-text-body-md);letter-spacing:var(--pw-text-body-md-tracking);text-transform:none}
+.pw-text-body-sm{font:var(--pw-text-body-sm);letter-spacing:var(--pw-text-body-sm-tracking);text-transform:none}
+.pw-text-label-lg{font:var(--pw-text-label-lg);letter-spacing:var(--pw-text-label-lg-tracking);text-transform:none}
+.pw-text-label-md{font:var(--pw-text-label-md);letter-spacing:var(--pw-text-label-md-tracking);text-transform:none}
+.pw-text-label-sm{font:var(--pw-text-label-sm);letter-spacing:var(--pw-text-label-sm-tracking);text-transform:none}
+.pw-text-caption{font:var(--pw-text-caption);letter-spacing:var(--pw-text-caption-tracking);text-transform:none}
+.pw-text-overline{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase}
 /* ===================== COMPONENT: pw-card ===================== */
 /* temas: em qualquer ancestral (data-pw-theme) ou no próprio card (theme) */
 [data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"]{
@@ -57,7 +71,7 @@ pw-card[disabled] .l-art,pw-card[state="disabled"] .l-art{filter:grayscale(.9) b
 pw-card[disabled] .pwc-content,pw-card[state="disabled"] .pwc-content{opacity:.5}
 /* ===================== COMPONENT: pw-card-header ===================== */
 pw-card-header{display:inline-flex;position:relative;height:58px;box-sizing:border-box;align-items:center;justify-content:center;justify-self:start;
-  --hdr-tip:22px;padding:0 calc(var(--hdr-tip) + 16px);color:#FFF8EC;font-family:var(--f-display);font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+  --hdr-tip:22px;padding:0 calc(var(--hdr-tip) + 16px);color:#FFF8EC;font:var(--pw-text-title-caps);line-height:1;letter-spacing:var(--pw-text-title-caps-tracking);text-transform:uppercase;white-space:nowrap}
 pw-card-header .pwh-frame{position:absolute;inset:0;overflow:visible;pointer-events:none}
 pw-card-header .pwh-label{position:relative;display:flex;align-items:center;gap:14px}
 pw-card-header .pwh-label::before,pw-card-header .pwh-label::after{content:var(--hdr-icon,"\2726");font-size:.8em;color:#FFF8EC;text-shadow:0 0 8px var(--pw-glow)}
@@ -151,8 +165,8 @@ pw-element-item>pw-card[variant]{width:100%;height:auto;min-width:0}
 pw-element-item>pw-card[variant]>.pwc-content{padding:var(--pwe-py) var(--pwe-px);flex-direction:row;align-items:center;justify-content:flex-start;gap:var(--pwe-gap)}
 pw-element-item .pwe-icon{width:var(--pwe-ic);height:var(--pwe-ic);flex:none;transition:transform var(--card-dur) var(--card-ease)}
 pw-element-item .pwe-text{display:flex;flex-direction:column;justify-content:center;gap:2px;flex:none;text-align:left}
-pw-element-item .pwe-name{font-family:var(--f-tab);font-size:var(--pwe-fs);font-weight:500;color:#fff;line-height:1.2;white-space:nowrap}
-pw-element-item .pwe-meta{font-family:var(--f-tab);font-size:calc(var(--pwe-fs) - 2px);color:color-mix(in srgb,var(--pw-filament) 70%,#fff);line-height:1.2;white-space:nowrap}
+pw-element-item .pwe-name{font-family:var(--pw-font-body);font-size:var(--pwe-fs);font-weight:500;color:#fff;line-height:1.2;white-space:nowrap}
+pw-element-item .pwe-meta{font-family:var(--pw-font-body);font-size:calc(var(--pwe-fs) - 2px);color:color-mix(in srgb,var(--pw-filament) 70%,#fff);line-height:1.2;white-space:nowrap}
 pw-element-item .pwe-meta:empty{display:none}
 pw-element-item:not([disabled])>pw-card:hover .pwe-icon,pw-element-item[state="hover"] .pwe-icon{transform:scale(1.08)}
 pw-element-item[selected] .pwe-icon,pw-element-item[state="selected"] .pwe-icon{transform:scale(1.08);filter:drop-shadow(0 0 6px var(--pw-glow))}

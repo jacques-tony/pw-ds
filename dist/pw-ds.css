@@ -1,7 +1,37 @@
-/*! Poke World Design System v0.5.1 — https://github.com/jacques-tony/pw-ds */
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap");
+/*! Poke World Design System v0.6.0 — https://github.com/jacques-tony/pw-ds */
+@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
+  /* ===== TIPOGRAFIA =====
+     Spectral: títulos. Inter: labels, textos complementares e informações maiores. */
+  --pw-font-title:"Spectral", Georgia, "Times New Roman", serif;
+  --pw-font-body:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --pw-text-title-xl-size:32px; --pw-text-title-xl-line:40px; --pw-text-title-xl-weight:700; --pw-text-title-xl-tracking:0;
+  --pw-text-title-xl:var(--pw-text-title-xl-weight) var(--pw-text-title-xl-size)/var(--pw-text-title-xl-line) var(--pw-font-title);
+  --pw-text-title-lg-size:24px; --pw-text-title-lg-line:32px; --pw-text-title-lg-weight:700; --pw-text-title-lg-tracking:0;
+  --pw-text-title-lg:var(--pw-text-title-lg-weight) var(--pw-text-title-lg-size)/var(--pw-text-title-lg-line) var(--pw-font-title);
+  --pw-text-title-md-size:20px; --pw-text-title-md-line:28px; --pw-text-title-md-weight:600; --pw-text-title-md-tracking:0;
+  --pw-text-title-md:var(--pw-text-title-md-weight) var(--pw-text-title-md-size)/var(--pw-text-title-md-line) var(--pw-font-title);
+  --pw-text-title-sm-size:16px; --pw-text-title-sm-line:22px; --pw-text-title-sm-weight:600; --pw-text-title-sm-tracking:0;
+  --pw-text-title-sm:var(--pw-text-title-sm-weight) var(--pw-text-title-sm-size)/var(--pw-text-title-sm-line) var(--pw-font-title);
+  --pw-text-title-caps-size:20px; --pw-text-title-caps-line:24px; --pw-text-title-caps-weight:700; --pw-text-title-caps-tracking:.06em;
+  --pw-text-title-caps:var(--pw-text-title-caps-weight) var(--pw-text-title-caps-size)/var(--pw-text-title-caps-line) var(--pw-font-title);
+  --pw-text-body-lg-size:16px; --pw-text-body-lg-line:24px; --pw-text-body-lg-weight:400; --pw-text-body-lg-tracking:0;
+  --pw-text-body-lg:var(--pw-text-body-lg-weight) var(--pw-text-body-lg-size)/var(--pw-text-body-lg-line) var(--pw-font-body);
+  --pw-text-body-md-size:14px; --pw-text-body-md-line:20px; --pw-text-body-md-weight:400; --pw-text-body-md-tracking:0;
+  --pw-text-body-md:var(--pw-text-body-md-weight) var(--pw-text-body-md-size)/var(--pw-text-body-md-line) var(--pw-font-body);
+  --pw-text-body-sm-size:12px; --pw-text-body-sm-line:16px; --pw-text-body-sm-weight:400; --pw-text-body-sm-tracking:0;
+  --pw-text-body-sm:var(--pw-text-body-sm-weight) var(--pw-text-body-sm-size)/var(--pw-text-body-sm-line) var(--pw-font-body);
+  --pw-text-label-lg-size:14px; --pw-text-label-lg-line:16px; --pw-text-label-lg-weight:500; --pw-text-label-lg-tracking:0;
+  --pw-text-label-lg:var(--pw-text-label-lg-weight) var(--pw-text-label-lg-size)/var(--pw-text-label-lg-line) var(--pw-font-body);
+  --pw-text-label-md-size:12px; --pw-text-label-md-line:16px; --pw-text-label-md-weight:400; --pw-text-label-md-tracking:0;
+  --pw-text-label-md:var(--pw-text-label-md-weight) var(--pw-text-label-md-size)/var(--pw-text-label-md-line) var(--pw-font-body);
+  --pw-text-label-sm-size:10px; --pw-text-label-sm-line:12px; --pw-text-label-sm-weight:400; --pw-text-label-sm-tracking:.01em;
+  --pw-text-label-sm:var(--pw-text-label-sm-weight) var(--pw-text-label-sm-size)/var(--pw-text-label-sm-line) var(--pw-font-body);
+  --pw-text-caption-size:11px; --pw-text-caption-line:14px; --pw-text-caption-weight:400; --pw-text-caption-tracking:.01em;
+  --pw-text-caption:var(--pw-text-caption-weight) var(--pw-text-caption-size)/var(--pw-text-caption-line) var(--pw-font-body);
+  --pw-text-overline-size:11px; --pw-text-overline-line:14px; --pw-text-overline-weight:600; --pw-text-overline-tracking:.12em;
+  --pw-text-overline:var(--pw-text-overline-weight) var(--pw-text-overline-size)/var(--pw-text-overline-line) var(--pw-font-body);
   /* ===== TEMA GLOBAL (compartilhado por todos os componentes) =====
      tema padrão = Poke World (dourado + azul). Outros temas redefinem só estes tokens. */
   --pw-metal-0:#FFE0A3;   /* 0%   */
@@ -21,7 +51,7 @@
   --pw-tab-stroke-a:#9DF0FF; --pw-tab-stroke-b:#D5F8FF;
   --pw-tab-drop:#9DEFFF; --pw-tab-inner:var(--pw-tab-drop);
   --pw-tab-text:#FFFFFF; --pw-tab-text-idle:#FFFFFF;
-  --f-tab:"Inter", system-ui, sans-serif;
+  --f-tab:var(--pw-font-body);
   --pw-bg-solid:#071C41;  /* background.solid.blue (estimado) */
 
   /* ===== CARD TOKENS ===== */
@@ -34,6 +64,20 @@
   --card-dur:160ms; --card-ease:cubic-bezier(.2,.7,.3,1);
   
 }
+/* tipografia: classes utilitárias (usam os tokens --pw-text-*) */
+.pw-text-title-xl{font:var(--pw-text-title-xl);letter-spacing:var(--pw-text-title-xl-tracking);text-transform:none}
+.pw-text-title-lg{font:var(--pw-text-title-lg);letter-spacing:var(--pw-text-title-lg-tracking);text-transform:none}
+.pw-text-title-md{font:var(--pw-text-title-md);letter-spacing:var(--pw-text-title-md-tracking);text-transform:none}
+.pw-text-title-sm{font:var(--pw-text-title-sm);letter-spacing:var(--pw-text-title-sm-tracking);text-transform:none}
+.pw-text-title-caps{font:var(--pw-text-title-caps);letter-spacing:var(--pw-text-title-caps-tracking);text-transform:uppercase}
+.pw-text-body-lg{font:var(--pw-text-body-lg);letter-spacing:var(--pw-text-body-lg-tracking);text-transform:none}
+.pw-text-body-md{font:var(--pw-text-body-md);letter-spacing:var(--pw-text-body-md-tracking);text-transform:none}
+.pw-text-body-sm{font:var(--pw-text-body-sm);letter-spacing:var(--pw-text-body-sm-tracking);text-transform:none}
+.pw-text-label-lg{font:var(--pw-text-label-lg);letter-spacing:var(--pw-text-label-lg-tracking);text-transform:none}
+.pw-text-label-md{font:var(--pw-text-label-md);letter-spacing:var(--pw-text-label-md-tracking);text-transform:none}
+.pw-text-label-sm{font:var(--pw-text-label-sm);letter-spacing:var(--pw-text-label-sm-tracking);text-transform:none}
+.pw-text-caption{font:var(--pw-text-caption);letter-spacing:var(--pw-text-caption-tracking);text-transform:none}
+.pw-text-overline{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase}
 /* ===================== COMPONENT: pw-card ===================== */
 /* temas: em qualquer ancestral (data-pw-theme) ou no próprio card (theme) */
 [data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"]{
@@ -92,7 +136,7 @@ pw-card[disabled] .l-art,pw-card[state="disabled"] .l-art{filter:grayscale(.9) b
 pw-card[disabled] .pwc-content,pw-card[state="disabled"] .pwc-content{opacity:.5}
 /* ===================== COMPONENT: pw-card-header ===================== */
 pw-card-header{display:inline-flex;position:relative;height:58px;box-sizing:border-box;align-items:center;justify-content:center;justify-self:start;
-  --hdr-tip:22px;padding:0 calc(var(--hdr-tip) + 16px);color:#FFF8EC;font-family:var(--f-display);font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+  --hdr-tip:22px;padding:0 calc(var(--hdr-tip) + 16px);color:#FFF8EC;font:var(--pw-text-title-caps);line-height:1;letter-spacing:var(--pw-text-title-caps-tracking);text-transform:uppercase;white-space:nowrap}
 pw-card-header .pwh-frame{position:absolute;inset:0;overflow:visible;pointer-events:none}
 pw-card-header .pwh-label{position:relative;display:flex;align-items:center;gap:14px}
 pw-card-header .pwh-label::before,pw-card-header .pwh-label::after{content:var(--hdr-icon,"\2726");font-size:.8em;color:#FFF8EC;text-shadow:0 0 8px var(--pw-glow)}
@@ -186,8 +230,8 @@ pw-element-item>pw-card[variant]{width:100%;height:auto;min-width:0}
 pw-element-item>pw-card[variant]>.pwc-content{padding:var(--pwe-py) var(--pwe-px);flex-direction:row;align-items:center;justify-content:flex-start;gap:var(--pwe-gap)}
 pw-element-item .pwe-icon{width:var(--pwe-ic);height:var(--pwe-ic);flex:none;transition:transform var(--card-dur) var(--card-ease)}
 pw-element-item .pwe-text{display:flex;flex-direction:column;justify-content:center;gap:2px;flex:none;text-align:left}
-pw-element-item .pwe-name{font-family:var(--f-tab);font-size:var(--pwe-fs);font-weight:500;color:#fff;line-height:1.2;white-space:nowrap}
-pw-element-item .pwe-meta{font-family:var(--f-tab);font-size:calc(var(--pwe-fs) - 2px);color:color-mix(in srgb,var(--pw-filament) 70%,#fff);line-height:1.2;white-space:nowrap}
+pw-element-item .pwe-name{font-family:var(--pw-font-body);font-size:var(--pwe-fs);font-weight:500;color:#fff;line-height:1.2;white-space:nowrap}
+pw-element-item .pwe-meta{font-family:var(--pw-font-body);font-size:calc(var(--pwe-fs) - 2px);color:color-mix(in srgb,var(--pw-filament) 70%,#fff);line-height:1.2;white-space:nowrap}
 pw-element-item .pwe-meta:empty{display:none}
 pw-element-item:not([disabled])>pw-card:hover .pwe-icon,pw-element-item[state="hover"] .pwe-icon{transform:scale(1.08)}
 pw-element-item[selected] .pwe-icon,pw-element-item[state="selected"] .pwe-icon{transform:scale(1.08);filter:drop-shadow(0 0 6px var(--pw-glow))}

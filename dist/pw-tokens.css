@@ -1,7 +1,37 @@
-/*! Poke World Design System v0.5.1 — https://github.com/jacques-tony/pw-ds */
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap");
+/*! Poke World Design System v0.6.0 — https://github.com/jacques-tony/pw-ds */
+@import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
+  /* ===== TIPOGRAFIA =====
+     Spectral: títulos. Inter: labels, textos complementares e informações maiores. */
+  --pw-font-title:"Spectral", Georgia, "Times New Roman", serif;
+  --pw-font-body:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --pw-text-title-xl-size:32px; --pw-text-title-xl-line:40px; --pw-text-title-xl-weight:700; --pw-text-title-xl-tracking:0;
+  --pw-text-title-xl:var(--pw-text-title-xl-weight) var(--pw-text-title-xl-size)/var(--pw-text-title-xl-line) var(--pw-font-title);
+  --pw-text-title-lg-size:24px; --pw-text-title-lg-line:32px; --pw-text-title-lg-weight:700; --pw-text-title-lg-tracking:0;
+  --pw-text-title-lg:var(--pw-text-title-lg-weight) var(--pw-text-title-lg-size)/var(--pw-text-title-lg-line) var(--pw-font-title);
+  --pw-text-title-md-size:20px; --pw-text-title-md-line:28px; --pw-text-title-md-weight:600; --pw-text-title-md-tracking:0;
+  --pw-text-title-md:var(--pw-text-title-md-weight) var(--pw-text-title-md-size)/var(--pw-text-title-md-line) var(--pw-font-title);
+  --pw-text-title-sm-size:16px; --pw-text-title-sm-line:22px; --pw-text-title-sm-weight:600; --pw-text-title-sm-tracking:0;
+  --pw-text-title-sm:var(--pw-text-title-sm-weight) var(--pw-text-title-sm-size)/var(--pw-text-title-sm-line) var(--pw-font-title);
+  --pw-text-title-caps-size:20px; --pw-text-title-caps-line:24px; --pw-text-title-caps-weight:700; --pw-text-title-caps-tracking:.06em;
+  --pw-text-title-caps:var(--pw-text-title-caps-weight) var(--pw-text-title-caps-size)/var(--pw-text-title-caps-line) var(--pw-font-title);
+  --pw-text-body-lg-size:16px; --pw-text-body-lg-line:24px; --pw-text-body-lg-weight:400; --pw-text-body-lg-tracking:0;
+  --pw-text-body-lg:var(--pw-text-body-lg-weight) var(--pw-text-body-lg-size)/var(--pw-text-body-lg-line) var(--pw-font-body);
+  --pw-text-body-md-size:14px; --pw-text-body-md-line:20px; --pw-text-body-md-weight:400; --pw-text-body-md-tracking:0;
+  --pw-text-body-md:var(--pw-text-body-md-weight) var(--pw-text-body-md-size)/var(--pw-text-body-md-line) var(--pw-font-body);
+  --pw-text-body-sm-size:12px; --pw-text-body-sm-line:16px; --pw-text-body-sm-weight:400; --pw-text-body-sm-tracking:0;
+  --pw-text-body-sm:var(--pw-text-body-sm-weight) var(--pw-text-body-sm-size)/var(--pw-text-body-sm-line) var(--pw-font-body);
+  --pw-text-label-lg-size:14px; --pw-text-label-lg-line:16px; --pw-text-label-lg-weight:500; --pw-text-label-lg-tracking:0;
+  --pw-text-label-lg:var(--pw-text-label-lg-weight) var(--pw-text-label-lg-size)/var(--pw-text-label-lg-line) var(--pw-font-body);
+  --pw-text-label-md-size:12px; --pw-text-label-md-line:16px; --pw-text-label-md-weight:400; --pw-text-label-md-tracking:0;
+  --pw-text-label-md:var(--pw-text-label-md-weight) var(--pw-text-label-md-size)/var(--pw-text-label-md-line) var(--pw-font-body);
+  --pw-text-label-sm-size:10px; --pw-text-label-sm-line:12px; --pw-text-label-sm-weight:400; --pw-text-label-sm-tracking:.01em;
+  --pw-text-label-sm:var(--pw-text-label-sm-weight) var(--pw-text-label-sm-size)/var(--pw-text-label-sm-line) var(--pw-font-body);
+  --pw-text-caption-size:11px; --pw-text-caption-line:14px; --pw-text-caption-weight:400; --pw-text-caption-tracking:.01em;
+  --pw-text-caption:var(--pw-text-caption-weight) var(--pw-text-caption-size)/var(--pw-text-caption-line) var(--pw-font-body);
+  --pw-text-overline-size:11px; --pw-text-overline-line:14px; --pw-text-overline-weight:600; --pw-text-overline-tracking:.12em;
+  --pw-text-overline:var(--pw-text-overline-weight) var(--pw-text-overline-size)/var(--pw-text-overline-line) var(--pw-font-body);
   /* ===== TEMA GLOBAL (compartilhado por todos os componentes) =====
      tema padrão = Poke World (dourado + azul). Outros temas redefinem só estes tokens. */
   --pw-metal-0:#FFE0A3;   /* 0%   */
@@ -21,7 +51,7 @@
   --pw-tab-stroke-a:#9DF0FF; --pw-tab-stroke-b:#D5F8FF;
   --pw-tab-drop:#9DEFFF; --pw-tab-inner:var(--pw-tab-drop);
   --pw-tab-text:#FFFFFF; --pw-tab-text-idle:#FFFFFF;
-  --f-tab:"Inter", system-ui, sans-serif;
+  --f-tab:var(--pw-font-body);
   --pw-bg-solid:#071C41;  /* background.solid.blue (estimado) */
 
   /* ===== CARD TOKENS ===== */
