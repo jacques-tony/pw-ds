@@ -1,9 +1,15 @@
 {
   "name": "@jacques-tony/pw-ds",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Poke World Design System — Web Components para o OTServ Poke World Universe",
   "main": "dist/pw-ds.js",
   "style": "dist/pw-ds.css",
-  "files": ["dist", "icons"],
-  "repository": { "type": "git", "url": "https://github.com/jacques-tony/pw-ds.git" }
+  "files": [
+    "dist",
+    "icons"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jacques-tony/pw-ds.git"
+  }
 }

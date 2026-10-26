@@ -1,8 +1,20 @@
-/*! Poke World Design System — components v0.1.0 */
+/*! Poke World Design System v0.2.0 — https://github.com/jacques-tony/pw-ds */
+/* ===================== COMPONENT: pw-card ===================== */
+/* temas: em qualquer ancestral (data-pw-theme) ou no próprio card (theme) */
+[data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"]{
+  --pw-metal-0:#E5A3FF;--pw-metal-1:#AA46D1;--pw-metal-2:#A638BC;--pw-metal-3:#EA83FA;
+  --pw-filament:#FDA3FF;--pw-glow:#FDA3FF;
+  --pw-bg-center:#540061;--pw-bg-edge:#2F0539;--pw-bg-solid:#2F0539;
+  --pw-ter-bg-center:#32003E;--pw-ter-bg-edge:#250023;
+  --pw-ter-stroke-0:#3C003D;--pw-ter-stroke-1:#970A99;--pw-ter-stroke-2:#69036B;
+  --pw-ter-stroke-3:#C40DB8;--pw-ter-stroke-4:#720563;--pw-ter-stroke-5:#BF15AE;
+  --pw-tab-fill-bottom:#9300B0;--pw-tab-fill-top:#001938;
+  --pw-tab-stroke-a:#FD9DFF;--pw-tab-stroke-b:#F7D5FF;
+  --pw-tab-drop:#F29DFF;--pw-tab-inner:#F29DFF;--pw-tab-text-idle:#FFFFFF}
 pw-card{--card-metal-0:var(--pw-metal-0);--card-metal-1:var(--pw-metal-1);--card-metal-2:var(--pw-metal-2);--card-metal-3:var(--pw-metal-3);
   --card-filament:var(--pw-filament);--card-glow:var(--pw-glow);
   --card-bg-center:var(--pw-bg-center);--card-bg-edge:var(--pw-bg-edge);--card-bg-solid:var(--pw-bg-solid)}
-pw-card{display:block;position:relative;box-sizing:border-box;color:var(--card-text);font-family:var(--f-body);
+pw-card{display:block;position:relative;box-sizing:border-box;color:var(--card-text);
   --lift:0px; --press:1; --glow-op:.6; --dot-op:.5; --ring-op:0; --bg-bright:1;
   transform:translateY(var(--lift)) scale(var(--press));transition:transform var(--card-dur) var(--card-ease)}
 pw-card[variant="primary"],pw-card:not([variant]){width:514px;height:376px}
@@ -105,4 +117,3 @@ pw-tab[disabled],pw-tab[state="disabled"]{opacity:.38;cursor:not-allowed;--drop-
 .pw-titled{position:relative;display:inline-block;width:fit-content;justify-self:start;padding-top:26px}
 .pw-titled>pw-card-header{position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:2}
 @media (prefers-reduced-motion:reduce){pw-card,pw-card *{transition:none!important}pw-card{--lift:0px!important}}
-

@@ -1,0 +1,1004 @@
+<title>Poke World Card System</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: storybook HUD — sticky section nav on top, stacked "stories" below, single dark game-night theme */
+:root{
+  color-scheme: dark;
+  /* storybook chrome */
+  --sb-bg:#060d1f; --sb-panel:#0b1630; --sb-line:#1d2c52; --sb-fg:#e9e3d3; --sb-muted:#93a0bf; --sb-accent:#FFE0A3;
+  --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
+  --f-body:"IBM Plex Sans", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, monospace;
+
+  /* @pwds-tokens-start */
+  /* ===== TEMA GLOBAL (compartilhado por todos os componentes) =====
+     tema padrão = Poke World (dourado + azul). Outros temas redefinem só estes tokens. */
+  --pw-metal-0:#FFE0A3;   /* 0%   */
+  --pw-metal-1:#D19B46;   /* 40%  */
+  --pw-metal-2:#BC8738;   /* 80%  */
+  --pw-metal-3:#FAD183;   /* 100% */
+  --pw-filament:#FFE0A3;  /* border.solid.secondary — traçado central 1px */
+  --pw-glow:#FFE0A3;      /* pontos de luz (estimado) */
+  --pw-bg-center:#0E3370; /* background.gradient.blue 0% */
+  --pw-bg-edge:#051839;   /* 100% */
+  /* tertiary */
+  --pw-ter-bg-center:#001D3E; --pw-ter-bg-edge:#001225; --pw-ter-bg-op:.75;
+  --pw-ter-stroke-0:#001F3D; --pw-ter-stroke-1:#0A6999; --pw-ter-stroke-2:#03406B;
+  --pw-ter-stroke-3:#0D9BC4; --pw-ter-stroke-4:#054672; --pw-ter-stroke-5:#1556BF;
+  /* tab (selected) */
+  --pw-tab-fill-bottom:#0050B0; --pw-tab-fill-top:#001938;
+  --pw-tab-stroke-a:#9DF0FF; --pw-tab-stroke-b:#D5F8FF;
+  --pw-tab-drop:#9DEFFF; --pw-tab-inner:var(--pw-tab-drop);
+  --pw-tab-text:#FFFFFF; --pw-tab-text-idle:#FFFFFF;
+  --f-tab:"Inter", system-ui, sans-serif;
+  --pw-bg-solid:#071C41;  /* background.solid.blue (estimado) */
+
+  /* ===== CARD TOKENS ===== */
+  --card-glass:#D9D9D9;     /* cópia vidro, luz suave */
+  --card-text:#F2E8D2;
+  --card-text-muted:#B9C3DA;
+  --card-stroke:3px; --card-filament-w:1px;
+  --card-blur:4; --card-tex-size:16.5; --card-tex-radius:5;
+  --card-pad-primary:34px; --card-pad-secondary:30px;
+  --card-dur:160ms; --card-ease:cubic-bezier(.2,.7,.3,1);
+  /* @pwds-tokens-end */
+}
+body{background:var(--sb-bg);color:var(--sb-fg);font-family:var(--f-body);font-size:15px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sb-bg)}
+.wrap{max-width:1180px;margin:0 auto}
+header.top{padding-block:40px 20px;display:grid;gap:8px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sb-muted)}
+h1{font-family:var(--f-display);font-size:clamp(28px,4.4vw,44px);margin:0;color:var(--sb-accent);letter-spacing:.02em;text-wrap:balance}
+h2{font-family:var(--f-display);font-size:24px;margin:0 0 6px;color:var(--sb-accent);text-wrap:balance}
+h3{font-size:15px;margin:0;font-weight:600}
+p{margin:0;max-width:68ch}
+.lede{color:var(--sb-muted)}
+[hidden]{display:none!important}
+.layout{display:grid;grid-template-columns:232px minmax(0,1fr);gap:36px;max-width:1440px;margin:0 auto}
+.side{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;max-height:100vh;overflow-y:auto;padding-block:32px;display:grid;gap:4px;align-content:start}
+.side .brand{display:grid;gap:2px;padding:0 10px 20px;border-bottom:1px solid var(--sb-line);margin-bottom:14px}
+.side .brand b{font-family:var(--f-display);color:var(--sb-accent);font-size:18px}
+.side .ver{font-family:var(--f-mono);font-size:11px;color:var(--sb-muted)}
+.side .grp{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--sb-muted);padding:0 10px 6px}
+.comp-btn{font:inherit;font-size:14.5px;font-weight:600;text-align:left;color:var(--sb-fg);background:none;border:1px solid transparent;border-radius:8px;padding:8px 10px;cursor:pointer}
+.comp-btn:hover{background:var(--sb-panel)}
+.comp-btn[aria-current="page"]{background:var(--sb-panel);border-color:var(--sb-line);color:var(--sb-accent)}
+.comp-btn:focus-visible,.side .sub a:focus-visible{outline:2px solid var(--sb-accent);outline-offset:1px}
+.side .sub{display:grid;gap:1px;padding:4px 0 10px 12px;margin-left:10px;border-left:1px solid var(--sb-line)}
+.side .sub a{color:var(--sb-muted);text-decoration:none;font-size:13px;padding:5px 10px;border-radius:6px}
+.side .sub a:hover{color:var(--sb-fg);background:var(--sb-panel)}
+.side .sub a[aria-current]{color:var(--sb-fg)}
+section.story{scroll-margin-top:16px}
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr);gap:0}
+  .side{position:static;max-height:none;padding-block:20px 8px;border-bottom:1px solid var(--sb-line)}
+  .side .sub{display:flex;flex-wrap:wrap;border-left:0;margin-left:0;padding-left:0}
+  .side .sub[hidden]{display:none}
+}
+nav.sb{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--sb-bg) 92%,transparent);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--sb-line);display:flex;gap:4px;overflow-x:auto;padding-block:10px}
+nav.sb a{color:var(--sb-muted);text-decoration:none;font-size:13px;padding:6px 10px;border-radius:6px;white-space:nowrap}
+nav.sb a:hover,nav.sb a:focus-visible{color:var(--sb-fg);background:var(--sb-panel);outline:none}
+section.story{padding-block:44px 8px;display:grid;gap:18px;border-bottom:1px solid var(--sb-line)}
+.canvas{background:radial-gradient(circle at 50% 40%,#0e1c3d,#070f24);border:1px solid var(--sb-line);border-radius:10px;padding:40px 28px;overflow-x:auto}
+.row{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start}
+.cap{font-family:var(--f-mono);font-size:12px;color:var(--sb-muted);margin-top:12px}
+.grid{display:grid;gap:30px 26px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.cell{display:grid;gap:10px;justify-items:start;min-width:0}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--sb-line);vertical-align:top}
+th{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--sb-muted);font-weight:500}
+td code,p code,li code{font-family:var(--f-mono);font-size:12.5px;color:var(--sb-accent)}
+.tbl{overflow-x:auto}
+.sw{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;margin-right:6px;border:1px solid #fff3}
+.pg{display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px}
+@media (max-width:820px){.pg{grid-template-columns:minmax(0,1fr)}}
+.ctrls{display:grid;gap:14px;align-content:start;background:var(--sb-panel);border:1px solid var(--sb-line);border-radius:10px;padding:18px}
+.ctrls label{display:grid;gap:5px;font-size:12px;color:var(--sb-muted);font-family:var(--f-mono);letter-spacing:.05em}
+input[type=text]{font:inherit;font-family:var(--f-body);font-size:14px;color:var(--sb-fg);background:var(--sb-bg);border:1px solid var(--sb-line);border-radius:6px;padding:7px 8px}
+input[type=text]:focus-visible{outline:2px solid var(--sb-accent);outline-offset:2px}
+select{font:inherit;font-family:var(--f-body);font-size:14px;color:var(--sb-fg);background:var(--sb-bg);border:1px solid var(--sb-line);border-radius:6px;padding:7px 8px}
+select:focus-visible,button:focus-visible{outline:2px solid var(--sb-accent);outline-offset:2px}
+.check{display:flex!important;align-items:center;gap:8px;font-size:13px!important}
+pre.code{font-family:var(--f-mono);font-size:12.5px;background:var(--sb-panel);border:1px solid var(--sb-line);border-radius:8px;padding:14px;overflow-x:auto;margin:0;color:#cfd8ee;white-space:pre}
+.btn{font:inherit;font-size:13px;color:var(--sb-bg);background:var(--sb-accent);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;justify-self:start}
+ul.rules{margin:0;padding-left:18px;display:grid;gap:6px;max-width:75ch}
+.flag{display:inline-block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border-radius:4px;background:#3a2a0b;color:#ffcf7a}
+.flag.ok{background:#0e3322;color:#8ee6b2}
+
+/* @pwds-css-start */
+/* ===================== COMPONENT: pw-card ===================== */
+/* temas: em qualquer ancestral (data-pw-theme) ou no próprio card (theme) */
+[data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"]{
+  --pw-metal-0:#E5A3FF;--pw-metal-1:#AA46D1;--pw-metal-2:#A638BC;--pw-metal-3:#EA83FA;
+  --pw-filament:#FDA3FF;--pw-glow:#FDA3FF;
+  --pw-bg-center:#540061;--pw-bg-edge:#2F0539;--pw-bg-solid:#2F0539;
+  --pw-ter-bg-center:#32003E;--pw-ter-bg-edge:#250023;
+  --pw-ter-stroke-0:#3C003D;--pw-ter-stroke-1:#970A99;--pw-ter-stroke-2:#69036B;
+  --pw-ter-stroke-3:#C40DB8;--pw-ter-stroke-4:#720563;--pw-ter-stroke-5:#BF15AE;
+  --pw-tab-fill-bottom:#9300B0;--pw-tab-fill-top:#001938;
+  --pw-tab-stroke-a:#FD9DFF;--pw-tab-stroke-b:#F7D5FF;
+  --pw-tab-drop:#F29DFF;--pw-tab-inner:#F29DFF;--pw-tab-text-idle:#FFFFFF}
+pw-card{--card-metal-0:var(--pw-metal-0);--card-metal-1:var(--pw-metal-1);--card-metal-2:var(--pw-metal-2);--card-metal-3:var(--pw-metal-3);
+  --card-filament:var(--pw-filament);--card-glow:var(--pw-glow);
+  --card-bg-center:var(--pw-bg-center);--card-bg-edge:var(--pw-bg-edge);--card-bg-solid:var(--pw-bg-solid)}
+pw-card{display:block;position:relative;box-sizing:border-box;color:var(--card-text);
+  --lift:0px; --press:1; --glow-op:.6; --dot-op:.5; --ring-op:0; --bg-bright:1;
+  transform:translateY(var(--lift)) scale(var(--press));transition:transform var(--card-dur) var(--card-ease)}
+pw-card[variant="primary"],pw-card:not([variant]){width:514px;height:376px}
+pw-card[variant="secondary"]{width:265px;height:374px}
+pw-card[variant="tertiary"]{width:320px;height:200px}
+pw-card[variant="tertiary"] .pwc-content{padding:20px}
+pw-card[variant="tertiary"][interactive][selected],pw-card[variant="tertiary"][state="selected"]{--bg-bright:1.35}
+pw-card[variant="tertiary"][interactive]:not([disabled]):hover,pw-card[variant="tertiary"][state="hover"]{--bg-bright:1.15}
+pw-card[variant="tertiary"][selected] .l-tstroke,pw-card[variant="tertiary"][state="selected"] .l-tstroke{filter:brightness(1.6)}
+pw-card .pwc-frame{position:absolute;inset:0;overflow:visible;pointer-events:none}
+pw-card .pwc-content{position:relative;height:100%;box-sizing:border-box;padding:var(--card-pad-primary);display:flex;flex-direction:column;gap:10px;transition:opacity var(--card-dur)}
+pw-card[variant="secondary"] .pwc-content{padding:var(--card-pad-secondary)}
+pw-card .l-glow,pw-card .l-dots,pw-card .l-ring,pw-card .l-bg{transition:opacity var(--card-dur),filter var(--card-dur)}
+pw-card .l-glow{opacity:var(--glow-op)}
+pw-card .l-dots{opacity:var(--dot-op)}
+pw-card .l-ring{opacity:var(--ring-op)}
+pw-card .l-bg{filter:brightness(var(--bg-bright))}
+pw-card .l-glass{mix-blend-mode:soft-light}
+
+/* tones (só o metal / brilho mudam; fundo azul permanece) */
+pw-card[tone="info"]   {--card-metal-0:#CDF2FF;--card-metal-1:#4FB0D8;--card-metal-2:#3A8EBC;--card-metal-3:#A7E3F8;--card-filament:#D9F5FF;--card-glow:#9FE2FF}
+pw-card[tone="success"]{--card-metal-0:#CFF7D9;--card-metal-1:#4DB873;--card-metal-2:#39985A;--card-metal-3:#A6E8B9;--card-filament:#DDFBE5;--card-glow:#9BF0B6}
+pw-card[tone="warning"]{--card-metal-0:#FFD6B0;--card-metal-1:#E8823A;--card-metal-2:#C8672A;--card-metal-3:#FFB57A;--card-filament:#FFE4CC;--card-glow:#FFB070}
+pw-card[tone="error"]  {--card-metal-0:#FFC2C2;--card-metal-1:#D64848;--card-metal-2:#AE3333;--card-metal-3:#F48E8E;--card-filament:#FFD6D6;--card-glow:#FF8A8A}
+pw-card[tone="new"]    {--card-metal-0:#EBD3FF;--card-metal-1:#A86BE0;--card-metal-2:#8A4FC4;--card-metal-3:#D5ABF8;--card-filament:#F2E2FF;--card-glow:#D3A6FF}
+pw-card[tone="brand"]  {--card-metal-0:#FFF0C4;--card-metal-1:#E6AE48;--card-metal-2:#CF9131;--card-metal-3:#FFDF8C;--card-filament:#FFF0C4;--card-glow:#FFD27A;--glow-op:.85;--dot-op:.7}
+
+/* appearance outline: só moldura, sem preenchimento */
+pw-card[appearance="outline"] .l-bg{display:none}
+
+/* estados — só quando interactive */
+pw-card[interactive]{cursor:pointer;outline:none}
+pw-card[interactive]:not([disabled]):hover,pw-card[state="hover"]{--lift:-2px;--glow-op:1;--dot-op:.85}
+pw-card[interactive]:not([disabled]):active,pw-card[state="pressed"]{--lift:0px;--press:.985;--glow-op:.4;--dot-op:.35;--bg-bright:.92}
+pw-card[interactive][selected],pw-card[state="selected"]{--glow-op:1;--dot-op:1}
+pw-card[interactive]:focus-visible .l-ring{opacity:1;stroke-dasharray:6 5}
+pw-card[interactive][selected]:focus-visible .l-ring{stroke-dasharray:none}
+pw-card[disabled],pw-card[state="disabled"]{cursor:not-allowed;--glow-op:0;--dot-op:0;--ring-op:0;--lift:0px;--press:1}
+pw-card[disabled] .l-art,pw-card[state="disabled"] .l-art{filter:grayscale(.9) brightness(.75)}
+pw-card[disabled] .pwc-content,pw-card[state="disabled"] .pwc-content{opacity:.5}
+/* ===================== COMPONENT: pw-card-header ===================== */
+pw-card-header{display:inline-flex;position:relative;height:58px;box-sizing:border-box;align-items:center;justify-content:center;justify-self:start;
+  --hdr-tip:22px;padding:0 calc(var(--hdr-tip) + 16px);color:#FFF8EC;font-family:var(--f-display);font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+pw-card-header .pwh-frame{position:absolute;inset:0;overflow:visible;pointer-events:none}
+pw-card-header .pwh-label{position:relative;display:flex;align-items:center;gap:14px}
+pw-card-header .pwh-label::before,pw-card-header .pwh-label::after{content:var(--hdr-icon,"\2726");font-size:.8em;color:#FFF8EC;text-shadow:0 0 8px var(--pw-glow)}
+pw-card-header[decor="none"] .pwh-label::before,pw-card-header[decor="none"] .pwh-label::after,
+pw-card-header[show-icon="false"] .pwh-label::before,pw-card-header[show-icon="false"] .pwh-label::after{content:none}
+pw-card-header .pwh-label:empty{display:none}
+.icon-lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px}
+.icon-tile{display:grid;justify-items:center;gap:10px;padding:22px 10px 14px;border:1px solid var(--sb-line);border-radius:8px;background:var(--sb-panel)}
+.icon-tile b{font-size:13px;font-weight:500}.icon-tile code{font-family:var(--f-mono);font-size:11.5px;color:var(--sb-muted)}
+pw-icon{display:inline-flex;width:1em;height:1em;flex:none;color:inherit}pw-icon svg{width:100%;height:100%;display:block}
+#hpStage pw-card-header{justify-self:center}
+
+/* ===================== COMPONENT: pw-tabs / pw-tab ===================== */
+pw-tabs{position:relative;display:inline-flex;flex-wrap:wrap;gap:6px;align-items:center;
+  --tab-pad:8px;--tab-gap:4px;--tab-fs:12px;--tab-ic:14px}
+pw-tabs[size="sm"]{--tab-fs:10px;--tab-ic:12px;gap:4px}
+pw-tabs[size="lg"]{--tab-fs:14px;--tab-ic:16px;gap:8px}
+pw-tab{--fill-op:0;--stroke-op:0;--drop-op:0;--shine:0;--sw:.5px;
+  position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:var(--tab-gap);padding:var(--tab-pad);
+  border-radius:4px;box-sizing:border-box;font-family:var(--f-tab);font-size:var(--tab-fs);font-weight:400;line-height:1;white-space:nowrap;
+  color:var(--pw-tab-text-idle);cursor:pointer;user-select:none;outline:none;
+  box-shadow:0 0 7px -2px color-mix(in srgb,var(--pw-tab-drop) calc(75% * var(--drop-op)),transparent);
+  transition:color var(--card-dur),box-shadow var(--card-dur)}
+/* preenchimento: linear vertical + losango branco 50% (aprox. radial) + sombra interna */
+pw-tab::after{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;opacity:var(--fill-op);
+  background:linear-gradient(to top,var(--pw-tab-fill-bottom),var(--pw-tab-fill-top));
+  box-shadow:inset 0 0 6.5px 0 color-mix(in srgb,var(--pw-tab-inner) 75%,transparent);transition:opacity var(--card-dur)}
+/* losango branco 50%: da borda inferior até ~metade da altura — hover do selected */
+pw-tab .pwt-shine{position:absolute;inset:0;border-radius:inherit;z-index:0;pointer-events:none;mix-blend-mode:lighten;opacity:var(--shine);transition:opacity var(--card-dur);
+  background:radial-gradient(70% 90% at 50% 100%,#fff 0%,rgb(255 255 255 / .9) 35%,rgb(255 255 255 / .55) 100%);
+  -webkit-mask:linear-gradient(to right,transparent 0%,#000 50%,transparent 100%),linear-gradient(to top,#000 0%,transparent 65%);-webkit-mask-composite:source-in;
+  mask:linear-gradient(to right,transparent 0%,#000 50%,transparent 100%),linear-gradient(to top,#000 0%,transparent 65%);mask-composite:intersect}
+pw-tab .pwt-icon,pw-tab .pwt-label{position:relative;z-index:1}
+/* traçado interno 0.5px, gradiente diagonal 5 interrupções */
+pw-tab::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:var(--sw);z-index:2;pointer-events:none;opacity:var(--stroke-op);
+  background:linear-gradient(135deg,var(--pw-tab-stroke-a) 0%,var(--pw-tab-stroke-b) 25%,var(--pw-tab-stroke-a) 50%,var(--pw-tab-stroke-b) 75%,var(--pw-tab-stroke-a) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  transition:opacity var(--card-dur)}
+pw-tab .pwt-icon{display:inline-flex;width:var(--tab-ic);height:var(--tab-ic);flex:none}
+pw-tab .pwt-icon svg{width:100%;height:100%}
+pw-tab[show-icon="false"] .pwt-icon{display:none}
+pw-tab:not([disabled]):hover,pw-tab[state="hover"]{--fill-op:.35;--stroke-op:.55;color:var(--pw-tab-text)}
+pw-tab:not([disabled]):active{--fill-op:.55}
+pw-tab[selected],pw-tab[state="selected"]{--fill-op:1;--stroke-op:1;--drop-op:1;color:var(--pw-tab-text)}
+pw-tab[selected]:not([disabled]):hover,pw-tab[state="selected-hover"]{--shine:1}
+/* em telas 1x, 0,5px vira meia linha translúcida e some na base escura: arredonda para 1px físico */
+@media (max-resolution:1.5dppx){pw-tab{--sw:1px}}
+pw-tab:focus-visible{outline:1.5px solid var(--pw-tab-stroke-a);outline-offset:2px}
+/* transição entre abas: um "fantasma" com o visual do selected desliza da aba antiga para a nova */
+pw-tabs .pwt-ghost{position:absolute;left:0;top:0;border-radius:4px;pointer-events:none;z-index:0;isolation:isolate;
+  background:linear-gradient(to top,var(--pw-tab-fill-bottom),var(--pw-tab-fill-top));
+  box-shadow:0 0 7px -2px color-mix(in srgb,var(--pw-tab-drop) 75%,transparent),inset 0 0 6.5px 0 color-mix(in srgb,var(--pw-tab-inner) 75%,transparent)}
+pw-tabs .pwt-ghost::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:.5px;
+  background:linear-gradient(135deg,var(--pw-tab-stroke-a) 0%,var(--pw-tab-stroke-b) 25%,var(--pw-tab-stroke-a) 50%,var(--pw-tab-stroke-b) 75%,var(--pw-tab-stroke-a) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+@media (max-resolution:1.5dppx){pw-tabs .pwt-ghost::before{padding:1px}}
+pw-tab[data-arriving]{--fill-op:0!important;--stroke-op:0!important;--drop-op:0!important;transition:none}
+pw-tab[data-arriving]::before,pw-tab[data-arriving]::after{transition:none}
+pw-tab[disabled],pw-tab[state="disabled"]{opacity:.38;cursor:not-allowed;--drop-op:0}
+.tabpanel{font-size:14px;color:var(--sb-muted);padding-top:14px;max-width:60ch}
+@media (prefers-reduced-motion:reduce){pw-tab,pw-tab::before,pw-tab::after{transition:none}}
+.pw-titled{position:relative;display:inline-block;width:fit-content;justify-self:start;padding-top:26px}
+.pw-titled>pw-card-header{position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:2}
+@media (prefers-reduced-motion:reduce){pw-card,pw-card *{transition:none!important}pw-card{--lift:0px!important}}
+
+/* @pwds-css-end */
+/* demo content inside cards */
+.k-eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--card-filament)}
+.k-title{font-family:var(--f-display);font-size:22px;line-height:1.2;color:var(--card-text);margin:0}
+.k-body{font-size:14px;color:var(--card-text-muted);margin:0}
+.k-meta{margin-top:auto;display:flex;gap:16px;font-family:var(--f-mono);font-size:12px;color:var(--card-text-muted);font-variant-numeric:tabular-nums}
+.k-meta b{color:var(--card-text);font-weight:500}
+.small .k-title{font-size:16px}.small .k-body{font-size:12.5px}
+</style>
+
+<div class="layout">
+<aside class="side" aria-label="Componentes">
+  <div class="brand"><span class="eyebrow">Poke World Universe</span><b>Design System</b><span class="ver">v0.1</span></div>
+  <div class="grp">Componentes</div>
+  <button type="button" class="comp-btn" data-comp="card" aria-controls="main">Card</button>
+  <nav class="sub" data-for="card">
+    <a href="#referencia">Referência</a><a href="#playground">Playground</a><a href="#tertiary">Tertiary</a><a href="#temas">Temas</a><a href="#tons">Tons semânticos</a><a href="#outline">Outline</a><a href="#estados">Estados</a><a href="#anatomia">Anatomia</a><a href="#tokens">Tokens</a><a href="#uso">Regras de uso</a><a href="#pendencias">Pendências</a>
+  </nav>
+  <button type="button" class="comp-btn" data-comp="header" aria-controls="main">Card Header</button>
+  <nav class="sub" data-for="header">
+    <a href="#header">Visão geral</a><a href="#header-playground">Playground</a><a href="#header-composicao">Composição com o card</a>
+  </nav>
+  <button type="button" class="comp-btn" data-comp="tabs" aria-controls="main">Tabs</button>
+  <nav class="sub" data-for="tabs">
+    <a href="#tabs">Visão geral</a><a href="#tabs-playground">Playground</a><a href="#tabs-tamanhos">Tamanhos</a><a href="#tabs-estados">Estados</a><a href="#tabs-tokens">Tokens</a><a href="#tabs-a11y">Acessibilidade</a>
+  </nav>
+  <button type="button" class="comp-btn" data-comp="icon" aria-controls="main">Icon</button>
+  <nav class="sub" data-for="icon">
+    <a href="#icon">Biblioteca</a><a href="#icon-escala">Escala</a><a href="#icon-padrao">Padrão de criação</a>
+  </nav>
+</aside>
+<main class="wrap" id="main">
+<header class="top">
+  <span class="eyebrow" id="compEyebrow">Componente</span>
+  <h1 id="compTitle">Card</h1>
+  <p class="lede" id="compLede"></p>
+</header>
+
+<section class="story" id="referencia">
+  <h2>Referência</h2>
+  <p class="lede">Tamanho real do Figma. <code>card.primary</code> 514 × 376 com cantos Epic e fundo radial; <code>card.secondary</code> 265 × 374 com cantos Common, fundo sólido e filete interno.</p>
+  <div class="canvas"><div class="row">
+    <div><pw-card variant="primary"></pw-card><div class="cap">variant="primary" · tone="neutral"</div></div>
+    <div><pw-card variant="secondary"></pw-card><div class="cap">variant="secondary" · tone="neutral"</div></div>
+  </div></div>
+</section>
+
+<section class="story" id="playground">
+  <h2>Playground</h2>
+  <p class="lede">Combine as propriedades. Com <code>interactive</code> ligado, passe o mouse, clique para selecionar e use Tab para ver o foco.</p>
+  <div class="pg">
+    <form class="ctrls" id="pgForm" onsubmit="return false">
+      <label for="pgVariant">variant<select id="pgVariant"><option>primary</option><option>secondary</option><option>tertiary</option></select></label>
+      <label for="pgTone">tone<select id="pgTone"><option>neutral</option><option>info</option><option>success</option><option>warning</option><option>error</option><option>new</option><option>brand</option></select></label>
+      <label for="pgTheme">theme<select id="pgTheme"><option value="">poke world (padrão)</option><option>mewtwo</option></select></label>
+      <label for="pgAppearance">appearance<select id="pgAppearance"><option>filled</option><option>outline</option></select></label>
+      <label for="pgState">state (forçado)<select id="pgState"><option value="">auto (interação real)</option><option>hover</option><option>pressed</option><option>selected</option><option>disabled</option></select></label>
+      <label class="check" for="pgInteractive"><input type="checkbox" id="pgInteractive" checked> interactive</label>
+      <label class="check" for="pgContent"><input type="checkbox" id="pgContent" checked> conteúdo de exemplo</label>
+    </form>
+    <div style="display:grid;gap:14px;min-width:0">
+      <div class="canvas" id="pgStage" style="min-height:460px;display:grid;place-items:center"></div>
+      <pre class="code" id="pgCode"></pre>
+      <button class="btn" type="button" id="pgCopy">Copiar HTML</button>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="tons">
+  <h2>Tons semânticos</h2>
+  <p class="lede">O tom muda o metal da moldura (4 interrupções do degradê), o traçado central e a cor do brilho. Fundo, geometria, espessuras e efeitos são idênticos em todos.</p>
+  <div class="canvas"><div class="grid" id="toneGrid"></div></div>
+</section>
+
+<section class="story" id="header">
+  <h2>Card Header</h2>
+  <p class="lede">Faixa de título com pontas nas extremidades. Usa exatamente as camadas e tokens de borda do primary (metal 3px, traçado central 1px, cópia com textura e desfoque, reflexo vidro) e o mesmo fundo radial. A largura acompanha o texto; as pontas mantêm o ângulo em qualquer tamanho.</p>
+  <div class="canvas" style="display:grid;gap:28px">
+    <pw-card-header>Ascensão Estelar</pw-card-header>
+    <pw-card-header style="width:100%;max-width:580px;height:96px" decor="none"></pw-card-header>
+  </div>
+  <div class="canvas" data-pw-theme="mewtwo" style="display:grid;gap:28px">
+    <pw-card-header>Máquina do Mewtwo</pw-card-header>
+    <pw-card-header style="width:100%;max-width:580px;height:96px" decor="none"></pw-card-header>
+  </div>
+  <h3 id="header-playground" style="scroll-margin-top:24px">Playground</h3>
+  <div class="pg">
+    <form class="ctrls" id="hpForm" onsubmit="return false">
+      <label for="hpText">texto<input id="hpText" type="text" value="Ascensão Estelar" maxlength="40" autocomplete="off"></label>
+      <label for="hpTheme">theme<select id="hpTheme"><option value="">poke world (padrão)</option><option>mewtwo</option></select></label>
+      <label class="check" for="hpShowIcon"><input type="checkbox" id="hpShowIcon" checked> show-icon</label>
+      <label for="hpIcon">icon<select id="hpIcon"><option>sparkle</option><option>star</option><option>diamond</option><option>bolt</option></select></label>
+      <p class="cap" style="margin:0">Lista provisória. Quando o componente Icon existir, este seletor vai listar os ícones dele.</p>
+    </form>
+    <div style="display:grid;gap:14px;min-width:0">
+      <div class="canvas" id="hpStage" style="min-height:160px;display:grid;place-items:center"></div>
+      <pre class="code" id="hpCode"></pre>
+      <button class="btn" type="button" id="hpCopy">Copiar HTML</button>
+    </div>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Propriedade</th><th>Valores</th><th>Padrão</th><th>Descrição</th></tr></thead>
+    <tbody>
+      <tr><td><code>conteúdo</code></td><td>texto</td><td>—</td><td>Título exibido. Caixa alta automática.</td></tr>
+      <tr><td><code>show-icon</code></td><td><code>true</code> · <code>false</code></td><td><code>true</code></td><td>Mostra o ícone dos dois lados do texto.</td></tr>
+      <tr><td><code>icon</code></td><td>nome de um ícone</td><td><code>sparkle</code></td><td>Ligado ao futuro componente Icon.</td></tr>
+      <tr><td><code>theme</code></td><td><code>mewtwo</code></td><td>herdado</td><td>Igual ao card. Também herda de <code>data-pw-theme</code>.</td></tr>
+    </tbody>
+  </table></div>
+  <h3 id="header-composicao" style="scroll-margin-top:24px">Composição com o card</h3>
+  <p class="lede">O header é um componente independente. Para usar como título de janela, envolva os dois em <code>.pw-titled</code>: o header fica centralizado sobre a borda superior e cobre a linha do card.</p>
+  <div class="canvas"><div class="row">
+    <div class="pw-titled"><pw-card-header>Ascensão Estelar</pw-card-header><pw-card variant="primary"></pw-card></div>
+    <div class="pw-titled" data-pw-theme="mewtwo"><pw-card-header>Máquina do Mewtwo</pw-card-header><pw-card variant="primary"></pw-card></div>
+  </div></div>
+  <pre class="code">&lt;div class="pw-titled"&gt;
+  &lt;pw-card-header&gt;Ascensão Estelar&lt;/pw-card-header&gt;
+  &lt;pw-card variant="primary"&gt;…&lt;/pw-card&gt;
+&lt;/div&gt;</pre>
+</section>
+
+<section class="story" id="tertiary">
+  <h2>Tertiary</h2>
+  <p class="lede">Card leve para listas e conteúdo denso: retângulo com raio 8, fundo radial a 75% e traçado interno de 1px em degradê linear de 6 interrupções. Sem ornamentos, sem efeitos de brilho. Hover clareia o fundo; selected clareia fundo e traçado.</p>
+  <div class="canvas"><div class="grid" id="terGrid"></div></div>
+  <div class="canvas" data-pw-theme="mewtwo"><div class="grid" id="terGridM"></div></div>
+</section>
+
+<section class="story" id="temas">
+  <h2>Temas</h2>
+  <p class="lede">Tema é global: troca só cores (metal da borda, traçado, brilho e fundo) e vale para qualquer componente futuro. Aplique em um ancestral com <code>data-pw-theme="mewtwo"</code> para pintar uma tela inteira, ou em um card isolado com <code>theme="mewtwo"</code>. Os tons semânticos continuam vencendo o metal da borda.</p>
+  <div class="canvas" data-pw-theme="mewtwo"><div class="row">
+    <div><pw-card variant="primary"></pw-card><div class="cap">data-pw-theme="mewtwo" · primary</div></div>
+    <div><pw-card variant="secondary"></pw-card><div class="cap">data-pw-theme="mewtwo" · secondary</div></div>
+    <div><pw-card variant="tertiary"><span class="k-eyebrow">Golpe</span><h3 class="k-title">Psychic</h3><p class="k-body">Psíquico · Poder 90 · PP 10/10</p></pw-card><div class="cap">data-pw-theme="mewtwo" · tertiary</div></div>
+    <div><pw-card variant="secondary" appearance="outline"></pw-card><div class="cap">mewtwo · outline</div></div>
+  </div></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Token global</th><th>Poke World</th><th>Mewtwo</th></tr></thead>
+    <tbody>
+      <tr><td><code>--pw-metal-0…3</code></td><td>FFE0A3 · D19B46 · BC8738 · FAD183</td><td><span class="sw" style="background:#E5A3FF"></span>E5A3FF · <span class="sw" style="background:#AA46D1"></span>AA46D1 · <span class="sw" style="background:#A638BC"></span>A638BC · <span class="sw" style="background:#EA83FA"></span>EA83FA</td></tr>
+      <tr><td><code>--pw-filament</code></td><td>FFE0A3</td><td><span class="sw" style="background:#FDA3FF"></span>FDA3FF</td></tr>
+      <tr><td><code>--pw-glow</code></td><td>FFE0A3</td><td><span class="sw" style="background:#FDA3FF"></span>FDA3FF <span class="flag">estimado</span></td></tr>
+      <tr><td><code>--pw-bg-center / -edge</code></td><td>0E3370 → 051839</td><td><span class="sw" style="background:#540061"></span>540061 → <span class="sw" style="background:#2F0539"></span>2F0539</td></tr>
+      <tr><td><code>--pw-bg-solid</code></td><td>071C41</td><td><span class="sw" style="background:#2F0539"></span>2F0539 <span class="flag">estimado</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="story" id="outline">
+  <h2>Outline</h2>
+  <p class="lede"><code>appearance="outline"</code> remove só o preenchimento azul. Serve para agrupar conteúdo sobre um painel que já tem fundo, sem empilhar dois azuis.</p>
+  <div class="canvas"><div class="grid" id="outlineGrid"></div></div>
+</section>
+
+<section class="story" id="estados">
+  <h2>Estados</h2>
+  <p class="lede">Só cards com <code>interactive</code> exibem hover, pressed e selected. Cards de apresentação ficam sempre em default.</p>
+  <div class="canvas"><div class="grid" id="stateGrid"></div></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Estado</th><th>Moldura / brilho</th><th>Fundo</th><th>Movimento</th><th>Outros</th></tr></thead>
+    <tbody>
+      <tr><td>Default</td><td>Cópia desfocada a 60%, pontos de luz a 50%</td><td>100%</td><td>—</td><td>Idêntico ao Figma</td></tr>
+      <tr><td>Hover</td><td>Cópia desfocada 100%, pontos 85%</td><td>100%</td><td>Sobe 2px · 160ms</td><td>cursor pointer</td></tr>
+      <tr><td>Pressed</td><td>Cópia 40%, pontos 35%</td><td>Brilho 92%</td><td>Volta ao lugar, escala 0,985</td><td>—</td></tr>
+      <tr><td>Selected</td><td>Cópia desfocada e pontos de luz a 100%, fixos (sem depender do mouse)</td><td>100%</td><td>—</td><td><code>aria-pressed="true"</code> · o conteúdo deve indicar a seleção</td></tr>
+      <tr><td>Disabled</td><td>Moldura dessaturada (cinza 90%), sem brilho</td><td>Escurecido junto</td><td>Nenhum</td><td>Conteúdo 50% · cursor not-allowed · fora do Tab</td></tr>
+      <tr><td>Focus (teclado)</td><td>Anel externo tracejado</td><td>—</td><td>—</td><td>Só com <code>:focus-visible</code></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="story" id="anatomia">
+  <h2>Anatomia</h2>
+  <p class="lede">Camadas do SVG da moldura, de baixo para cima. A moldura é gerada a partir dos cantos exportados e se recalcula a cada redimensionamento: cantos fixos, retas esticam.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>#</th><th>Camada</th><th>Construção</th><th>Origem</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Fundo</td><td>Forma fechada seguindo o contorno dos 4 cantos. Primary: degradê radial. Secondary: sólido.</td><td>Figma <span class="flag">cor estimada</span></td></tr>
+      <tr><td>2</td><td>Filete interno</td><td>Só secondary. Paralelo à borda: 6px do centro da borda principal ao centro do filete em todo o contorno, inclusive nos chanfros a 45°. 1px no traçado.</td><td>Spec do autor <span class="flag ok">fiel</span></td></tr>
+      <tr><td>3</td><td>Cópia desfocada</td><td>Cópia de toda a borda com textura (X/Y 16,5, raio 5) e desfoque de camada uniforme 4.</td><td>Spec do autor <span class="flag ok">fiel</span></td></tr>
+      <tr><td>4</td><td>Borda</td><td>Linha de 3px com degradê linear diagonal (0% FFE0A3, 40% D19B46, 80% BC8738, 100% FAD183) e traçado central de 1px #FFE0A3.</td><td>SVGs + spec <span class="flag ok">fiel</span></td></tr>
+      <tr><td>5</td><td>Reflexo vidro</td><td>Cópia da borda em #D9D9D9, modo luz suave, realce de luz a −45° / 80%.</td><td>Spec do autor <span class="flag">aproximado</span></td></tr>
+      <tr><td>6</td><td>Pontos de luz</td><td>4 círculos de 14px nos cantos, desfocados.</td><td>Figma <span class="flag">cor e desfoque estimados</span></td></tr>
+      <tr><td>7</td><td>Anel de foco</td><td>Mesmo contorno, 4px para fora, tracejado. Só aparece com foco de teclado.</td><td>Extensão do sistema</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="story" id="tokens">
+  <h2>Tokens</h2>
+  <div class="tbl"><table id="tokTable">
+    <thead><tr><th>Token</th><th>Valor</th><th>Uso</th></tr></thead>
+    <tbody>
+      <tr><td><code>--card-metal-0…3</code></td><td><span class="sw" style="background:#FFE0A3"></span>FFE0A3 · <span class="sw" style="background:#D19B46"></span>D19B46 · <span class="sw" style="background:#BC8738"></span>BC8738 · <span class="sw" style="background:#FAD183"></span>FAD183</td><td>Interrupções 0 / 40 / 80 / 100% do degradê diagonal da borda (<code>border.gradient.gold</code>)</td></tr>
+      <tr><td><code>--card-filament</code></td><td><span class="sw" style="background:#FFE0A3"></span>FFE0A3</td><td>Traçado central 1px, filete interno, anel de seleção (<code>border.solid.secondary</code>)</td></tr>
+      <tr><td><code>--card-glass</code></td><td><span class="sw" style="background:#D9D9D9"></span>D9D9D9</td><td>Cópia de reflexo em luz suave</td></tr>
+      <tr><td><code>--card-glow</code></td><td><span class="sw" style="background:#FFE0A3"></span>FFE0A3</td><td>Pontos de luz dos cantos</td></tr>
+      <tr><td><code>--card-bg-center / -edge</code></td><td><span class="sw" style="background:#0E3370"></span>0E3370 → <span class="sw" style="background:#051839"></span>051839</td><td>Fundo radial do primary (<code>background.gradient.blue</code>)</td></tr>
+      <tr><td><code>--card-bg-solid</code></td><td><span class="sw" style="background:#071C41"></span>071C41</td><td>Fundo do secondary (<code>background.solid.blue</code>)</td></tr>
+      <tr><td><code>--card-stroke</code></td><td>3px</td><td>Espessura da linha da borda</td></tr>
+      <tr><td><code>--card-filament-w</code></td><td>1px, centralizado</td><td>Traçado da borda</td></tr>
+      <tr><td><code>--card-blur</code></td><td>4</td><td>Desfoque de camada da cópia</td></tr>
+      <tr><td><code>--card-tex-size / -radius</code></td><td>16,5 / 5</td><td>Textura da cópia desfocada</td></tr>
+      <tr><td><code>--card-pad-primary / -secondary</code></td><td>34px / 30px</td><td>Área útil livre dos ornamentos</td></tr>
+      <tr><td><code>--card-dur / --card-ease</code></td><td>160ms · cubic-bezier(.2,.7,.3,1)</td><td>Transições de estado</td></tr>
+      <tr><td>Corner box</td><td>30 × 30, linha 3px</td><td>Cantos exportados; espelhados para TR, BR, BL</td></tr>
+    </tbody>
+  </table></div>
+  <p class="lede">Cada tom redefine apenas <code>--card-metal-*</code>, <code>--card-filament</code> e <code>--card-glow</code>. Para criar um tom novo, copie o bloco de um tom existente.</p>
+</section>
+
+<section class="story" id="uso">
+  <h2>Regras de uso</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Tom</th><th>Quando usar</th><th>Exemplo no jogo</th></tr></thead>
+    <tbody>
+      <tr><td>neutral</td><td>Padrão. Qualquer conteúdo sem significado especial.</td><td>Ficha de Pokémon, slot de inventário</td></tr>
+      <tr><td>info</td><td>Orientação, dicas, explicações.</td><td>Dica de tutorial, descrição de golpe</td></tr>
+      <tr><td>success</td><td>Confirmação ou resultado positivo.</td><td>Missão concluída, captura feita</td></tr>
+      <tr><td>warning</td><td>Exige atenção antes de agir.</td><td>Mochila quase cheia, PP baixo</td></tr>
+      <tr><td>error</td><td>Falha ou situação crítica.</td><td>Pokémon desmaiado, troca recusada</td></tr>
+      <tr><td>new</td><td>Conteúdo recém-adicionado.</td><td>Evento novo, item novo na loja</td></tr>
+      <tr><td>brand</td><td>Destaque de identidade do servidor. Use no máximo um por tela.</td><td>Banner de temporada, recompensa VIP</td></tr>
+    </tbody>
+  </table></div>
+  <ul class="rules">
+    <li>O tom nunca é a única pista: o título ou um rótulo do conteúdo também diz o significado (“Missão concluída”, “Atenção”).</li>
+    <li><code>interactive</code> não muda a aparência em repouso. A diferença só aparece nos estados.</li>
+    <li><code>state</code> forçado existe para documentação e testes. Em produção, use <code>selected</code> e <code>disabled</code>; hover e pressed vêm do mouse.</li>
+    <li>Não aninhe dois cards filled. Dentro de um painel, use <code>appearance="outline"</code>.</li>
+    <li>Tamanho mínimo recomendado: 120 × 100, para os cantos de 30px não encostarem.</li>
+    <li>Não adicione ornamentos, ícones ou efeitos à moldura. Conteúdo vai dentro de <code>.pwc-content</code>.</li>
+  </ul>
+  <pre class="code">&lt;pw-card variant="secondary" tone="success" interactive selected&gt;
+  &lt;span class="k-eyebrow"&gt;Missão&lt;/span&gt;
+  &lt;h3 class="k-title"&gt;Missão concluída&lt;/h3&gt;
+&lt;/pw-card&gt;</pre>
+</section>
+
+<section class="story" id="pendencias">
+  <h2>Pendências</h2>
+  <p class="lede">Valores que não vieram do Figma e foram estimados a partir da captura. Confirmar antes de congelar a v1.</p>
+  <ul class="rules">
+    <li><b>Fundo sólido do secondary</b> (071C41) ainda estimado.</li>
+    <li><b>Tertiary:</b> tamanho padrão (320 × 200), tratamento de hover/selected são meus. Tons semânticos ainda não se aplicam ao tertiary.</li>
+    <li><b>Efeito vidro.</b> CSS e SVG não têm refração real. Reproduzi com cópia #D9D9D9 em luz suave e realce a −45° / 80%. Refração, profundidade e dispersão não têm equivalente.</li>
+    <li><b>Pontos de luz.</b> Cor, opacidade e desfoque estimados.</li>
+    <li><b>Neutral = card original</b> e <b>brand = dourado intensificado</b>: decisão minha, aguardando sua validação.</li>
+    <li><b>Mewtwo:</b> cor dos pontos de luz (usei FDA3FF) e fundo sólido do secondary (usei 2F0539, a ponta do radial) não foram definidos.</li>
+    <li><b>Rarity Rare e Mythic</b> não foram exportadas; só existem os cantos Epic (primary) e Common (secondary).</li>
+    <li><b>Fonte do jogo.</b> Os exemplos usam Cinzel e IBM Plex só para demonstração.</li>
+  </ul>
+</section>
+<section class="story" id="tabs" data-c="tabs">
+  <h2>Visão geral</h2>
+  <p class="lede">Grupo de abas (<code>pw-tabs</code>) com itens <code>pw-tab</code>. Apenas uma aba fica selecionada por vez; as outras ficam transparentes até receber hover. Estrutura e teclado seguem o <a href="https://www.w3.org/WAI/ARIA/apg/patterns/tabs/" style="color:var(--sb-accent)">Tabs Pattern do WAI-ARIA</a>, a referência usada por Material, Carbon e Atlassian.</p>
+  <div class="canvas">
+    <pw-tabs id="tabsDemo" aria-label="Pokédex">
+      <pw-tab icon="grid" selected aria-controls="pnl-1">Visão geral</pw-tab>
+      <pw-tab icon="star" aria-controls="pnl-2">Status</pw-tab>
+      <pw-tab icon="bolt" aria-controls="pnl-3">Golpes</pw-tab>
+      <pw-tab icon="map" aria-controls="pnl-4">Habitat</pw-tab>
+      <pw-tab icon="bag" disabled>Evoluções</pw-tab>
+    </pw-tabs>
+    <div class="tabpanel" role="tabpanel" id="pnl-1" tabindex="0">Charizard · Pokémon Chama. Voa atrás de oponentes fortes e cospe fogo capaz de derreter rochas.</div>
+    <div class="tabpanel" role="tabpanel" id="pnl-2" tabindex="0" hidden>HP 78 · Ataque 84 · Defesa 78 · Atq. Esp. 109 · Def. Esp. 85 · Velocidade 100</div>
+    <div class="tabpanel" role="tabpanel" id="pnl-3" tabindex="0" hidden>Lança-chamas · Asa de Aço · Golpe de Ar · Garra de Dragão</div>
+    <div class="tabpanel" role="tabpanel" id="pnl-4" tabindex="0" hidden>Montanhas e vulcões da região de Kanto.</div>
+  </div>
+  <div class="canvas" data-pw-theme="mewtwo">
+    <pw-tabs aria-label="Máquina do Mewtwo">
+      <pw-tab icon="grid" selected>Visão geral</pw-tab><pw-tab icon="star">Status</pw-tab><pw-tab icon="bolt">Golpes</pw-tab><pw-tab icon="bag" disabled>Evoluções</pw-tab>
+    </pw-tabs>
+  </div>
+</section>
+
+<section class="story" id="tabs-playground" data-c="tabs">
+  <h2>Playground</h2>
+  <div class="pg">
+    <form class="ctrls" id="tpForm" onsubmit="return false">
+      <label for="tpText">texto da aba<input id="tpText" type="text" value="Visão geral" maxlength="30" autocomplete="off"></label>
+      <label for="tpSize">size<select id="tpSize"><option>sm</option><option selected>md</option><option>lg</option></select></label>
+      <label for="tpState">state<select id="tpState"><option>unselected</option><option>hover</option><option selected>selected</option><option value="selected-hover">selected + hover</option><option>disabled</option></select></label>
+      <label for="tpTheme">theme<select id="tpTheme"><option value="">poke world (padrão)</option><option>mewtwo</option></select></label>
+      <label class="check" for="tpShowIcon"><input type="checkbox" id="tpShowIcon" checked> show-icon</label>
+      <label for="tpIcon">icon<select id="tpIcon"><option>craft</option><option>boost</option><option>limit-break</option><option>close</option><option>grid</option><option>star</option><option>bolt</option><option>map</option><option>bag</option></select></label>
+      <p class="cap" style="margin:0">craft, boost, limit-break e close vêm do componente Icon. Os demais ainda são provisórios.</p>
+    </form>
+    <div style="display:grid;gap:14px;min-width:0">
+      <div class="canvas" id="tpStage" style="min-height:140px;display:grid;place-items:center"></div>
+      <pre class="code" id="tpCode"></pre>
+      <button class="btn" type="button" id="tpCopy">Copiar HTML</button>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="tabs-tamanhos" data-c="tabs">
+  <h2>Tamanhos</h2>
+  <p class="lede">O md (31px) é o tamanho do Figma. sm e lg são derivações proporcionais.</p>
+  <div class="canvas" id="tabsSizes" style="display:grid;gap:22px"></div>
+  <div class="tbl"><table>
+    <thead><tr><th>size</th><th>Altura</th><th>Padding (todas as bordas)</th><th>Gap</th><th>Fonte</th><th>Ícone</th><th>Uso</th></tr></thead>
+    <tbody>
+      <tr><td><code>sm</code></td><td>auto (~28px)</td><td>8px</td><td>4px</td><td>Inter Regular 10px</td><td>12px</td><td>Sub-abas, janelas pequenas</td></tr>
+      <tr><td><code>md</code></td><td>auto (~30px)</td><td>8px</td><td>4px</td><td>Inter Regular 12px</td><td>14px</td><td>Padrão</td></tr>
+      <tr><td><code>lg</code></td><td>auto (~32px)</td><td>8px</td><td>4px</td><td>Inter Regular 14px</td><td>16px</td><td>Navegação principal de tela cheia</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="story" id="tabs-estados" data-c="tabs">
+  <h2>Estados</h2>
+  <div class="canvas" id="tabsStates" style="display:grid;gap:22px"></div>
+  <div class="canvas" data-pw-theme="mewtwo" id="tabsStatesM" style="display:grid;gap:22px"></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Estado</th><th>Preenchimento</th><th>Traçado 0,5px</th><th>Sombra projetada</th><th>Texto</th><th>Origem</th></tr></thead>
+    <tbody>
+      <tr><td>Unselected</td><td>0%</td><td>0%</td><td>—</td><td>Branco #FFFFFF</td><td><span class="flag">derivado</span></td></tr>
+      <tr><td>Hover</td><td>35%</td><td>55%</td><td>—</td><td>Branco</td><td><span class="flag">derivado</span></td></tr>
+      <tr><td>Pressed</td><td>55%</td><td>55%</td><td>—</td><td>Branco</td><td><span class="flag">derivado</span></td></tr>
+      <tr><td>Selected</td><td>Linear 100% + sombra interna 6,5</td><td>100%</td><td>Desfoque 7 · 75%</td><td>Branco</td><td><span class="flag ok">Figma</span></td></tr>
+      <tr><td>Selected + hover</td><td>+ losango branco 50%, da base até a metade</td><td>100%</td><td>Igual</td><td>Branco</td><td><span class="flag ok">Figma</span></td></tr>
+      <tr><td>Disabled</td><td>Mantém o estado de seleção</td><td>—</td><td>Removida</td><td>Opacidade 38%</td><td><span class="flag">derivado</span></td></tr>
+      <tr><td>Focus</td><td>—</td><td>Contorno 1,5px a 2px</td><td>—</td><td>—</td><td>Acessibilidade</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="story" id="tabs-tokens" data-c="tabs">
+  <h2>Tokens</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Token</th><th>Poke World</th><th>Mewtwo</th><th>Uso</th></tr></thead>
+    <tbody>
+      <tr><td><code>--pw-tab-fill-bottom / -top</code></td><td><span class="sw" style="background:#0050B0"></span>0050B0 → <span class="sw" style="background:#001938"></span>001938</td><td><span class="sw" style="background:#9300B0"></span>9300B0 → <span class="sw" style="background:#001938"></span>001938</td><td>Linear vertical, base clara</td></tr>
+      <tr><td>Losango</td><td colspan="2">FFFFFF · 50%</td><td>Losango da base até a metade da altura, modo de mesclagem Mais leve (lighten); só no hover do selected</td></tr>
+      <tr><td><code>--pw-tab-stroke-a / -b</code></td><td><span class="sw" style="background:#9DF0FF"></span>9DF0FF · <span class="sw" style="background:#D5F8FF"></span>D5F8FF</td><td><span class="sw" style="background:#FD9DFF"></span>FD9DFF · <span class="sw" style="background:#F7D5FF"></span>F7D5FF</td><td>Traçado interno 0,5px, diagonal, a/b/a/b/a em 0/25/50/75/100%</td></tr>
+      <tr><td><code>--pw-tab-drop</code></td><td><span class="sw" style="background:#9DEFFF"></span>9DEFFF 75%</td><td><span class="sw" style="background:#F29DFF"></span>F29DFF 75%</td><td>Sombra projetada X0 Y0 desfoque 7</td></tr>
+      <tr><td><code>--pw-tab-inner</code></td><td>= drop (9DEFFF 75%)</td><td>= drop (F29DFF 75%)</td><td>Sombra interna X0 Y0 desfoque 6,5</td></tr>
+      <tr><td>Raio · padding · gap</td><td colspan="2">4px · 8px · 4px</td><td>Todos os tamanhos e temas</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="story" id="tabs-a11y" data-c="tabs">
+  <h2>Acessibilidade</h2>
+  <ul class="rules">
+    <li><code>pw-tabs</code> recebe <code>role="tablist"</code>; cada <code>pw-tab</code> recebe <code>role="tab"</code> e <code>aria-selected</code>.</li>
+    <li>Só a aba selecionada entra no Tab do teclado. Setas esquerda/direita movem entre abas, Home e End vão para a primeira e a última. Abas desativadas são puladas.</li>
+    <li>A seleção acompanha o foco (ativação automática), como recomendado quando o painel aparece sem atraso.</li>
+    <li>Ao trocar de aba, o destaque desliza da aba antiga para a nova em 280ms. Com “reduzir movimento” ativado no sistema, a troca é instantânea.</li>
+    <li>Use <code>aria-controls</code> apontando para um elemento <code>role="tabpanel"</code>. O componente mostra o painel da aba ativa e esconde os outros.</li>
+    <li>Dê um nome ao grupo com <code>aria-label</code>. Se a aba tiver só ícone, coloque <code>aria-label</code> nela.</li>
+  </ul>
+</section>
+<section class="story" id="icon" data-c="icon">
+  <h2>Biblioteca</h2>
+  <p class="lede">Uso: <code>&lt;pw-icon name="craft"&gt;&lt;/pw-icon&gt;</code>. O tamanho segue <code>size</code> (px) ou o tamanho da fonte; a cor segue <code>color</code>.</p>
+  <div class="canvas"><div class="icon-lib" id="iconLib"></div></div>
+</section>
+<section class="story" id="icon-escala" data-c="icon">
+  <h2>Escala</h2>
+  <p class="lede">Os mesmos SVGs de 12 a 96px, sobre o fundo do card e dentro das Tabs nos dois temas.</p>
+  <div class="canvas"><div id="iconScale" style="display:grid;gap:18px"></div></div>
+  <div class="canvas" style="display:grid;gap:18px">
+    <pw-tabs aria-label="Ações"><pw-tab icon="craft" selected>Craft</pw-tab><pw-tab icon="boost">Boost</pw-tab><pw-tab icon="limit-break">Limit Break</pw-tab><pw-tab icon="close">Fechar</pw-tab></pw-tabs>
+    <div data-pw-theme="mewtwo"><pw-tabs aria-label="Ações"><pw-tab icon="craft" selected>Craft</pw-tab><pw-tab icon="boost">Boost</pw-tab><pw-tab icon="limit-break">Limit Break</pw-tab><pw-tab icon="close">Fechar</pw-tab></pw-tabs></div>
+  </div>
+</section>
+<section class="story" id="icon-padrao" data-c="icon">
+  <h2>Padrão de criação</h2>
+  <p class="lede">Regras para todo ícone novo do sistema, baseadas nas referências enviadas (silhuetas brancas sólidas de RPG) e em boas práticas de ícones de jogo: silhueta legível, forma simples e teste em tamanho pequeno.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Regra</th><th>Especificação</th></tr></thead>
+    <tbody>
+      <tr><td>Grade</td><td>viewBox 0 0 24 24, área viva de 1,5 a 22,5 (margem 1,5px)</td></tr>
+      <tr><td>Estilo</td><td>Silhueta sólida, uma cor (<code>fill="currentColor"</code>). Sem contorno, sem gradiente, sem sombra dentro do ícone</td></tr>
+      <tr><td>Detalhe interno</td><td>Por recorte (espaço negativo, <code>fill-rule="evenodd"</code>), nunca por linha desenhada</td></tr>
+      <tr><td>Espessura mínima</td><td>Partes cheias e vãos de pelo menos 1,6px na grade de 24, para sobreviver a 12–16px</td></tr>
+      <tr><td>Forma</td><td>Cantos vivos e cortes em diagonal (~40–45°), pontas afinadas tipo lâmina. Sem cantos arredondados grandes</td></tr>
+      <tr><td>Energia</td><td>Composição levemente dinâmica: diagonais, faíscas e estilhaços em triângulos simples</td></tr>
+      <tr><td>Texto</td><td>Proibido. Nenhuma letra, número ou palavra dentro do ícone</td></tr>
+      <tr><td>Peso visual</td><td>Silhueta ocupa ~70–85% da área viva; ícones lado a lado devem ter massa parecida</td></tr>
+      <tr><td>Teste</td><td>Conferir em 16, 24 e 48px antes de aprovar; a ideia precisa ser reconhecível só pela silhueta</td></tr>
+      <tr><td>Nome</td><td>kebab-case em inglês, igual à ação: <code>craft</code>, <code>limit-break</code></td></tr>
+    </tbody>
+  </table></div>
+</section>
+</main>
+</div>
+
+<script>
+(function(){
+  var INFO={
+    card:['Card','Componente base das janelas, painéis e itens do HUD. O card primário do Figma é a fonte de verdade; todas as variações reutilizam a mesma moldura e trocam só tokens.'],
+    icon:['Icon','Ícones de jogo em silhueta sólida, desenhados em SVG numa grade de 24 × 24. Herdam a cor do texto e escalam sem perder leitura.'],
+    tabs:['Tabs','Navegação entre seções de um mesmo painel (inventário, Pokédex, missões). Comportamento baseado no padrão Tabs do WAI-ARIA (W3C), com o visual de vidro iluminado do HUD.'],
+    header:['Card Header','Faixa de título com pontas laterais. Compartilha os tokens de borda e fundo do card primary e acompanha o tema.']
+  };
+  var secs=[].slice.call(document.querySelectorAll('section.story'));
+  secs.forEach(function(s){s.dataset.comp=s.getAttribute('data-c')||((s.id==='header')?'header':'card')});
+  var btns=[].slice.call(document.querySelectorAll('.comp-btn'));
+  function show(c,scrollTo){
+    secs.forEach(function(s){s.hidden=s.dataset.comp!==c});
+    btns.forEach(function(b){b.setAttribute('aria-current',b.dataset.comp===c?'page':'false')});
+    document.querySelectorAll('.side .sub').forEach(function(n){n.hidden=n.dataset.for!==c});
+    document.getElementById('compTitle').textContent=INFO[c][0];
+    document.getElementById('compLede').textContent=INFO[c][1];
+    document.getElementById('header').querySelector('h2').hidden=true;
+    if(scrollTo){var t=document.getElementById(scrollTo);if(t)t.scrollIntoView({block:'start'})}else window.scrollTo(0,0);
+    window.dispatchEvent(new Event('resize'));
+  }
+  function compOf(id){var el=document.getElementById(id);var s=el&&el.closest('section.story');return s?s.dataset.comp:'card'}
+  btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.comp)})});
+  document.querySelectorAll('.side .sub a').forEach(function(a){a.addEventListener('click',function(e){
+    var id=a.getAttribute('href').slice(1);e.preventDefault();show(compOf(id),id);
+    document.querySelectorAll('.side .sub a').forEach(function(x){x.removeAttribute('aria-current')});a.setAttribute('aria-current','true');
+  })});
+  var h=(location.hash||'').slice(1);
+  show(h?compOf(h):'card',h||null);
+})();
+</script>
+<script>
+(function(){
+/* @pwds-js-start */
+/* ---------- geometria dos cantos (SVGs exportados, caixa 30x30, linha 3px) ---------- */
+// cada canto: caminho principal do lado esquerdo até o topo (TL); os demais são espelhos x→W-x / y→H-y
+var CORNERS={
+  primary:{ // Rarity=Epic
+    main:[['M',[1.5,29.5]],['L',[1.5,24.9853]],['C',[1.5,23.394],[2.13214,21.8679],[3.25736,20.7426]],['L',[5,19]],['L',[8.5,15.5]],
+      ['C',[5.73512,11.8135],[3.83092,7.55459],[2.92718,3.03594]],['L',[2.9,2.9]],['L',[3.02607,2.92516]],
+      ['C',[7.54851,3.82762],[11.811,5.73262],[15.5,8.5]],['L',[19,5]],['L',[20.7426,3.25736]],['C',[21.8679,2.13214],[23.394,1.5],[24.9853,1.5]],['L',[29.5,1.5]]],
+    curl:[['M',[5,19]],['C',[6.933,20.933],[10.067,20.933],[12,19]],['L',[19,12]],['C',[20.933,10.067],[20.933,6.933],[19,5]]]
+  },
+  secondary:{ // Rarity=Common
+    main:[['M',[1.5,29.5]],['L',[1.5,24.9853]],['C',[1.5,23.394],[2.13214,21.8679],[3.25736,20.7426]],['L',[8.5,15.5]],['L',[15.5,8.5]],['L',[20.7426,3.25736]],['C',[21.8679,2.13214],[23.394,1.5],[24.9853,1.5]],['L',[29.5,1.5]]],
+    curl:null
+  }
+};
+function endOf(s){return s[s.length-1]}
+function reverse(segs){
+  var out=[['M',endOf(segs[segs.length-1])]];
+  for(var i=segs.length-1;i>0;i--){var s=segs[i],start=endOf(segs[i-1]);
+    out.push(s[0]==='C'?['C',s[2],s[1],start]:['L',start]);}
+  return out;
+}
+function map(segs,f){return segs.map(function(s){return [s[0]].concat(s.slice(1).map(f))})}
+function r(n){return Math.round(n*1000)/1000}
+function d(segs,cont){return segs.map(function(s,i){var t=(i===0&&cont)?'L':s[0];return t+s.slice(1).map(function(p){return r(p[0])+' '+r(p[1])}).join(' ')}).join(' ')}
+function outline(W,H,c,off){ // contorno fechado; off desloca para fora (anel)
+  off=off||0;var w=W+2*off,h=H+2*off;
+  var t=function(p){return [p[0]-off,p[1]-off]};
+  var fX=function(p){return t([w-p[0],p[1]])},fY=function(p){return t([p[0],h-p[1]])},fXY=function(p){return t([w-p[0],h-p[1]])};
+  return d(map(c.main,t))+' '+d(map(reverse(c.main),fX),true)+' '+d(map(c.main,fXY),true)+' '+d(map(reverse(c.main),fY),true)+' Z';
+}
+function curls(W,H,c){
+  if(!c.curl)return '';
+  var fs=[function(p){return p},function(p){return [W-p[0],p[1]]},function(p){return [W-p[0],H-p[1]]},function(p){return [p[0],H-p[1]]}];
+  return fs.map(function(f){return d(map(c.curl,f))}).join(' ');
+}
+function chamfer(W,H,i,c){
+  return 'M'+(i+c)+' '+i+' L'+(W-i-c)+' '+i+' L'+(W-i)+' '+(i+c)+' L'+(W-i)+' '+(H-i-c)+' L'+(W-i-c)+' '+(H-i)+' L'+(i+c)+' '+(H-i)+' L'+i+' '+(H-i-c)+' L'+i+' '+(i+c)+' Z';
+}
+var uidN=0;
+
+class PWCard extends HTMLElement{
+  static get observedAttributes(){return ['variant','interactive','disabled','selected']}
+  connectedCallback(){
+    if(!this._init){
+      this._init=true;this._uid='pwc'+(++uidN);
+      var content=document.createElement('div');content.className='pwc-content';
+      while(this.firstChild)content.appendChild(this.firstChild);
+      this._svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+      this._svg.setAttribute('class','pwc-frame');this._svg.setAttribute('aria-hidden','true');
+      this.appendChild(this._svg);this.appendChild(content);
+      this._ro=new ResizeObserver(()=>this.render());this._ro.observe(this);
+      this.addEventListener('click',()=>{
+        if(this.hasAttribute('interactive')&&!this.hasAttribute('disabled')&&!this.hasAttribute('state'))this.toggleAttribute('selected');
+      });
+      this.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&this.hasAttribute('interactive')){e.preventDefault();this.click()}});
+    }else this._ro.observe(this);
+    this.sync();this.render();
+  }
+  /* páginas que recriam o HTML a cada clique: solta o observador quando o card sai da página */
+  disconnectedCallback(){if(this._ro)this._ro.disconnect()}
+  attributeChangedCallback(){if(this._init){this.sync();this.render()}}
+  sync(){
+    var inter=this.hasAttribute('interactive'),dis=this.hasAttribute('disabled');
+    if(inter){this.setAttribute('role','button');this.setAttribute('tabindex',dis?'-1':'0');
+      this.setAttribute('aria-pressed',this.hasAttribute('selected')?'true':'false');
+      dis?this.setAttribute('aria-disabled','true'):this.removeAttribute('aria-disabled');}
+    else{['role','tabindex','aria-pressed','aria-disabled'].forEach(a=>this.removeAttribute(a))}
+  }
+  render(){
+    var W=Math.round(this.offsetWidth),H=Math.round(this.offsetHeight);
+    if(!W||!H||(W===this._w&&H===this._h&&this.getAttribute('variant')===this._v))return;
+    this._w=W;this._h=H;this._v=this.getAttribute('variant');
+    var v=this._v==='secondary'?'secondary':'primary',c=CORNERS[v],u=this._uid;
+    var shape=outline(W,H,c),all=shape+' '+curls(W,H,c),ring=outline(W,H,c,4);
+    var bgFill=v==='primary'?'url(#'+u+'-bg)':'var(--card-bg-solid)';
+    var border='<path d="'+all+'" fill="none" stroke="var(--card-filament)" stroke-width="4"/>'+
+               '<path d="'+all+'" fill="none" stroke="url(#'+u+'-metal)" stroke-width="2"/>';
+    this._svg.setAttribute('width',W);this._svg.setAttribute('height',H);this._svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    if(this._v==='tertiary'){
+      var rr=function(o){return '<rect x="'+(0.5-o)+'" y="'+(0.5-o)+'" width="'+(W-1+2*o)+'" height="'+(H-1+2*o)+'" rx="'+(7.5+o)+'"'};
+      this._svg.innerHTML='<defs>'+
+        '<radialGradient id="'+u+'-tbg" cx=".5" cy=".5" r=".7"><stop offset="0" style="stop-color:var(--pw-ter-bg-center)"/><stop offset="1" style="stop-color:var(--pw-ter-bg-edge)"/></radialGradient>'+
+        '<linearGradient id="'+u+'-tst" x1="0" y1="0" x2="1" y2="1">'+[0,.21,.43,.61,.82,1].map((o,i)=>'<stop offset="'+o+'" style="stop-color:var(--pw-ter-stroke-'+i+')"/>').join('')+'</linearGradient></defs>'+
+        '<g class="l-art">'+rr(0)+' class="l-bg" fill="url(#'+u+'-tbg)" style="fill-opacity:var(--pw-ter-bg-op)"/>'+
+        rr(0)+' class="l-tstroke" fill="none" stroke="url(#'+u+'-tst)" stroke-width="1"/></g>'+
+        rr(4)+' class="l-ring" fill="none" stroke="var(--pw-ter-stroke-3)" stroke-width="1.5"/>';
+      return;
+    }
+    this._svg.innerHTML=
+     '<defs>'+
+      '<linearGradient id="'+u+'-metal" x1="0" y1="0" x2="1" y2="1">'+
+        '<stop offset="0" style="stop-color:var(--card-metal-0)"/><stop offset=".4" style="stop-color:var(--card-metal-1)"/>'+
+        '<stop offset=".8" style="stop-color:var(--card-metal-2)"/><stop offset="1" style="stop-color:var(--card-metal-3)"/></linearGradient>'+
+      '<linearGradient id="'+u+'-glass" x1="0" y1="0" x2="1" y2="1">'+
+        '<stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset=".45" style="stop-color:var(--card-glass)"/><stop offset="1" style="stop-color:var(--card-glass)" stop-opacity=".55"/></linearGradient>'+
+      '<radialGradient id="'+u+'-bg" cx=".5" cy=".5" r=".62"><stop offset="0" style="stop-color:var(--card-bg-center)"/><stop offset="1" style="stop-color:var(--card-bg-edge)"/></radialGradient>'+
+      '<filter id="'+u+'-tex" x="-10%" y="-10%" width="120%" height="120%">'+
+        '<feTurbulence type="fractalNoise" baseFrequency="'+(1/16.5).toFixed(4)+'" numOctaves="1" seed="7" result="n"/>'+
+        '<feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G" result="t"/>'+
+        '<feGaussianBlur in="t" stdDeviation="2"/></filter>'+
+      '<filter id="'+u+'-dot" x="-300%" y="-300%" width="700%" height="700%"><feGaussianBlur stdDeviation="9"/></filter>'+
+     '</defs>'+
+     '<g class="l-art">'+
+      '<path class="l-bg" d="'+shape+'" fill="'+bgFill+'"/>'+
+      (v==='secondary'?'<path d="'+chamfer(W,H,7.5,17.485)+'" fill="none" stroke="var(--card-filament)" stroke-width="1"/>':'')+
+      '<g class="l-glow" filter="url(#'+u+'-tex)">'+border+'</g>'+
+      border+
+      '<path class="l-glass" d="'+all+'" fill="none" stroke="url(#'+u+'-glass)" stroke-width="3"/>'+
+      '<g class="l-dots" filter="url(#'+u+'-dot)">'+
+        [[7,7],[W-7,7],[W-7,H-7],[7,H-7]].map(p=>'<circle cx="'+p[0]+'" cy="'+p[1]+'" r="7" fill="var(--card-glow)"/>').join('')+'</g>'+
+     '</g>'+
+     '<path class="l-ring" d="'+ring+'" fill="none" stroke="var(--card-filament)" stroke-width="1.5"/>';
+  }
+}
+customElements.define('pw-card',PWCard);
+
+/* ---------- pw-card-header: mesma borda do primary, pontas laterais ---------- */
+var PW_ICONS={ /* provisório: será substituído pelo componente Icon */
+  sparkle:'"\\2726"', star:'"\\2605"', diamond:'"\\25C6"', bolt:'"\\26A1\\FE0E"' };
+class PWCardHeader extends HTMLElement{
+  static get observedAttributes(){return ['icon']}
+  attributeChangedCallback(){var i=PW_ICONS[this.getAttribute('icon')];i?this.style.setProperty('--hdr-icon',i):this.style.removeProperty('--hdr-icon')}
+  connectedCallback(){
+    this.attributeChangedCallback();
+    if(this._init){this._ro.observe(this);return}this._init=true;this._uid='pwh'+(++uidN);
+    var lab=document.createElement('span');lab.className='pwh-label';
+    while(this.firstChild)lab.appendChild(this.firstChild);
+    this._svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    this._svg.setAttribute('class','pwh-frame');this._svg.setAttribute('aria-hidden','true');
+    this.appendChild(this._svg);this.appendChild(lab);
+    if(!this.hasAttribute('role'))this.setAttribute('role','heading');
+    if(!this.hasAttribute('aria-level'))this.setAttribute('aria-level','2');
+    this._ro=new ResizeObserver(()=>this.render());this._ro.observe(this);this.render();
+  }
+  disconnectedCallback(){if(this._ro)this._ro.disconnect()}
+  render(){
+    var W=Math.round(this.offsetWidth),H=Math.round(this.offsetHeight);
+    if(!W||!H||(W===this._w&&H===this._h))return;this._w=W;this._h=H;
+    var u=this._uid,s=1.5,tip=Math.round(H*0.38),m=H/2;
+    var shape='M'+tip+' '+s+' L'+(W-tip)+' '+s+' L'+(W-s)+' '+m+' L'+(W-tip)+' '+(H-s)+' L'+tip+' '+(H-s)+' L'+s+' '+m+' Z';
+    this.style.setProperty('--hdr-tip',tip+'px');
+    var border='<path d="'+shape+'" fill="none" stroke="var(--pw-filament)" stroke-width="4"/>'+
+               '<path d="'+shape+'" fill="none" stroke="url(#'+u+'-metal)" stroke-width="2"/>';
+    this._svg.setAttribute('width',W);this._svg.setAttribute('height',H);this._svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    this._svg.innerHTML='<defs>'+
+      '<linearGradient id="'+u+'-metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pw-metal-0)"/><stop offset=".4" style="stop-color:var(--pw-metal-1)"/><stop offset=".8" style="stop-color:var(--pw-metal-2)"/><stop offset="1" style="stop-color:var(--pw-metal-3)"/></linearGradient>'+
+      '<linearGradient id="'+u+'-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset=".45" style="stop-color:var(--card-glass)"/><stop offset="1" style="stop-color:var(--card-glass)" stop-opacity=".55"/></linearGradient>'+
+      '<radialGradient id="'+u+'-bg" cx=".5" cy=".5" r=".6"><stop offset="0" style="stop-color:var(--pw-bg-center)"/><stop offset="1" style="stop-color:var(--pw-bg-edge)"/></radialGradient>'+
+      '<filter id="'+u+'-tex" x="-10%" y="-30%" width="120%" height="160%"><feTurbulence type="fractalNoise" baseFrequency="'+(1/16.5).toFixed(4)+'" numOctaves="1" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="5" xChannelSelector="R" yChannelSelector="G" result="t"/><feGaussianBlur in="t" stdDeviation="2"/></filter>'+
+      '</defs>'+
+      '<path d="'+shape+'" fill="url(#'+u+'-bg)"/>'+
+      '<g filter="url(#'+u+'-tex)" opacity=".6">'+border+'</g>'+border+
+      '<path d="'+shape+'" fill="none" stroke="url(#'+u+'-glass)" stroke-width="3" style="mix-blend-mode:soft-light"/>';
+  }
+}
+customElements.define('pw-card-header',PWCardHeader);
+
+/* ---------- pw-tabs / pw-tab ---------- */
+var PW_SVG={ /* provisório: será substituído pelo componente Icon */
+  grid:'<rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/>',
+  star:'<path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.8l-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/>',
+  bolt:'<path d="M13 3L5 13.5h6L10 21l8-10.5h-6z"/>',
+  map:'<path d="M9 4.5L3.5 6.5v13L9 17.5l6 2 5.5-2v-13L15 6.5z"/><path d="M9 4.5v13M15 6.5v13"/>',
+  bag:'<rect x="4" y="8" width="16" height="12" rx="2.5"/><path d="M9 8V6.5a3 3 0 016 0V8M4 13h16"/>'
+};
+var PW_FILL={"close": "M7.22 4.54 L19.46 16.78 L21.00 21.00 L16.78 19.46 L4.54 7.22 L3.00 3.00 Z M19.46 7.22 L7.22 19.46 L3.00 21.00 L4.54 16.78 L16.78 4.54 L21.00 3.00 Z", "boost": "M12.00 2.00 L21.50 11.50 L15.80 11.50 L12.00 7.70 L8.20 11.50 L2.50 11.50 Z M12.00 11.50 L21.50 21.00 L15.80 21.00 L12.00 17.20 L8.20 21.00 L2.50 21.00 Z", "limit-break": "M12.98 0.84 L13.98 5.91 L18.10 2.61 L17.18 8.24 L22.91 9.48 L18.40 12.00 L22.82 14.90 L17.18 15.76 L17.77 21.60 L13.98 18.09 L12.59 23.18 L10.02 18.09 L4.65 20.45 L6.82 15.76 L1.54 16.01 L5.60 12.00 L1.69 7.62 L6.82 8.24 L4.95 3.30 L10.02 5.91 Z M13.40 4.40 L9.20 11.40 L12.40 11.60 L10.20 19.80 L15.20 10.20 L12.00 10.00 L14.80 4.40 Z", "craft": "M1.50 11.60 L19.50 11.60 L19.50 13.90 L15.80 14.80 L14.60 17.40 L17.40 18.80 L17.40 21.20 L5.60 21.20 L5.60 18.80 L8.40 17.40 L7.40 14.80 L5.60 14.20 L3.40 12.90 Z M14.67 -0.69 L21.92 4.98 L19.33 8.29 L12.08 2.62 Z M15.00 4.90 L16.42 6.01 L12.29 11.29 L10.87 10.18 Z M3.60 8.20 L6.20 10.60 L3.20 10.20 Z M7.00 4.80 L8.80 9.60 L6.60 8.80 Z"};
+var PW_FILL_RULE={'limit-break':'evenodd'};
+function pwFillSvg(n){return '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="'+(PW_FILL_RULE[n]||'nonzero')+'" d="'+PW_FILL[n]+'"/></svg>'}
+class PWIcon extends HTMLElement{
+  static get observedAttributes(){return ['name','size','label']}
+  connectedCallback(){this.attributeChangedCallback()}
+  attributeChangedCallback(){
+    var n=this.getAttribute('name');this.innerHTML=PW_FILL[n]?pwFillSvg(n):'';
+    var s=this.getAttribute('size');if(s){this.style.width=this.style.height=s+'px'}
+    var l=this.getAttribute('label');if(l){this.setAttribute('role','img');this.setAttribute('aria-label',l)}else{this.setAttribute('aria-hidden','true')}
+  }
+}
+customElements.define('pw-icon',PWIcon);
+function pwIcon(n){if(PW_FILL[n])return pwFillSvg(n);return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">'+(PW_SVG[n]||PW_SVG.grid)+'</svg>'}
+class PWTab extends HTMLElement{
+  static get observedAttributes(){return ['icon','selected','disabled']}
+  connectedCallback(){
+    if(!this._init){this._init=true;
+      var lab=document.createElement('span');lab.className='pwt-label';while(this.firstChild)lab.appendChild(this.firstChild);
+      this._ic=document.createElement('span');this._ic.className='pwt-icon';
+      var sh=document.createElement('span');sh.className='pwt-shine';sh.setAttribute('aria-hidden','true');
+      this.appendChild(sh);this.appendChild(this._ic);this.appendChild(lab);
+      this.setAttribute('role','tab');
+      this.addEventListener('click',()=>{if(!this.hasAttribute('disabled')&&!this.hasAttribute('state'))this.parentElement.select&&this.parentElement.select(this)});
+    }
+    this.attributeChangedCallback();
+  }
+  attributeChangedCallback(){
+    if(!this._init)return;
+    this._ic.innerHTML=pwIcon(this.getAttribute('icon')||'grid');
+    var sel=this.hasAttribute('selected');
+    this.setAttribute('aria-selected',sel?'true':'false');
+    this.hasAttribute('disabled')?this.setAttribute('aria-disabled','true'):this.removeAttribute('aria-disabled');
+    this.setAttribute('tabindex',sel&&!this.hasAttribute('disabled')?'0':'-1');
+    var p=this.getAttribute('aria-controls')&&document.getElementById(this.getAttribute('aria-controls'));if(p)p.hidden=!sel;
+  }
+}
+class PWTabs extends HTMLElement{
+  connectedCallback(){
+    if(this._init)return;this._init=true;this.setAttribute('role','tablist');
+    this.addEventListener('keydown',e=>{
+      var tabs=[].slice.call(this.querySelectorAll('pw-tab:not([disabled])'));var i=tabs.indexOf(document.activeElement);if(i<0)return;
+      var n={ArrowRight:i+1,ArrowLeft:i-1,Home:0,End:tabs.length-1}[e.key];if(n===undefined)return;
+      e.preventDefault();n=(n+tabs.length)%tabs.length;this.select(tabs[n]);tabs[n].focus();
+    });
+  }
+  select(t){
+    var old=this.querySelector('pw-tab[selected]');
+    if(old&&old!==t&&!matchMedia('(prefers-reduced-motion: reduce)').matches)this.slide(old,t);
+    this.querySelectorAll('pw-tab').forEach(x=>x.toggleAttribute('selected',x===t));this.dispatchEvent(new CustomEvent('change',{detail:{tab:t}}))}
+}
+PWTabs.prototype.slide=function(from,to){
+  var base=this.getBoundingClientRect(),a=from.getBoundingClientRect(),b=to.getBoundingClientRect();
+  if(this._ghost){this._ghost.remove();this._arr&&this._arr.removeAttribute('data-arriving')}
+  var g=document.createElement('span');g.className='pwt-ghost';g.setAttribute('aria-hidden','true');
+  g.style.width=b.width+'px';g.style.height=b.height+'px';
+  this.prepend(g);this._ghost=g;this._arr=to;to.setAttribute('data-arriving','');
+  var x0=a.left-base.left,y0=a.top-base.top,x1=b.left-base.left,y1=b.top-base.top;
+  var anim=g.animate([
+    {transform:'translate('+x0+'px,'+y0+'px)',width:a.width+'px',height:a.height+'px'},
+    {transform:'translate('+x1+'px,'+y1+'px)',width:b.width+'px',height:b.height+'px'}
+  ],{duration:280,easing:'cubic-bezier(.3,.8,.25,1)',fill:'forwards'});
+  anim.onfinish=()=>{to.removeAttribute('data-arriving');if(this._ghost===g){this._ghost=null}
+    g.animate([{opacity:1},{opacity:0}],{duration:90,fill:'forwards'}).onfinish=()=>g.remove();};
+};
+customElements.define('pw-tab',PWTab);customElements.define('pw-tabs',PWTabs);
+/* @pwds-js-end */
+(function(){
+  var NAMES={craft:'Craft',boost:'Boost','limit-break':'Limit Break',close:'Fechar'};
+  var lib=document.getElementById('iconLib');
+  Object.keys(NAMES).forEach(function(k){lib.insertAdjacentHTML('beforeend','<div class="icon-tile"><pw-icon name="'+k+'" size="40" style="color:#fff"></pw-icon><b>'+NAMES[k]+'</b><code>'+k+'</code></div>')});
+  var sc=document.getElementById('iconScale');
+  [12,16,24,32,48,96].forEach(function(sz){sc.insertAdjacentHTML('beforeend','<div style="display:flex;align-items:center;gap:24px;color:#fff"><span class="cap" style="margin:0;width:48px">'+sz+'px</span>'+Object.keys(NAMES).map(k=>'<pw-icon name="'+k+'" size="'+sz+'"></pw-icon>').join('')+'</div>')});
+})();
+
+(function(){
+  var g=id=>document.getElementById(id);
+  var L=['Visão geral','Status','Golpes','Habitat'],I=['grid','star','bolt','map'];
+  function row(attrs,states){var h='<pw-tabs '+attrs+' aria-label="Exemplo">';states.forEach((s,k)=>{h+='<pw-tab icon="'+I[k%4]+'" '+s+'>'+L[k%4]+'</pw-tab>'});return h+'</pw-tabs>'}
+  g('tabsSizes').innerHTML=['sm','md','lg'].map(s=>'<div><div class="cap" style="margin:0 0 8px">size="'+s+'"</div>'+row('size="'+s+'"',['selected','','',''])+'</div>').join('');
+  var ST=[['unselected',''],['hover','state="hover"'],['selected','selected state="selected"'],['selected + hover','selected state="selected-hover"'],['disabled','disabled'],['disabled + selected','disabled selected']];
+  ['tabsStates','tabsStatesM'].forEach(id=>{g(id).innerHTML=ST.map(s=>'<div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap"><span class="cap" style="margin:0;width:150px">'+s[0]+'</span><pw-tabs aria-label="'+s[0]+'"><pw-tab icon="grid" '+s[1]+'>Visão geral</pw-tab><pw-tab icon="grid" show-icon="false" '+s[1]+'>Sem ícone</pw-tab></pw-tabs></div>').join('')});
+  function tp(){
+    var t=g('tpText').value,sz=g('tpSize').value,st=g('tpState').value,th=g('tpTheme').value,sh=g('tpShowIcon').checked,ic=g('tpIcon').value;
+    g('tpIcon').disabled=!sh;
+    var a=[];if(sz!=='md')a.push('size="'+sz+'"');if(th)a.push('theme="'+th+'"');
+    var ta=['icon="'+ic+'"'];if(!sh)ta=['show-icon="false"'];
+    if(st==='selected'||st==='selected-hover')ta.push('selected');if(st==='disabled')ta.push('disabled');
+    var forced=st==='hover'?' state="hover"':st==='selected-hover'?' state="selected-hover"':'';
+    g('tpStage').innerHTML='';var wrap=document.createElement('div');
+    wrap.innerHTML='<pw-tabs '+a.join(' ')+' aria-label="Playground"><pw-tab '+ta.join(' ')+forced+'></pw-tab></pw-tabs>';
+    wrap.querySelector('pw-tab').textContent=t;g('tpStage').appendChild(wrap.firstChild);
+    g('tpCode').textContent='<pw-tabs'+(a.length?' '+a.join(' '):'')+' aria-label="…">\n  <pw-tab '+ta.join(' ')+'>'+t+'</pw-tab>\n</pw-tabs>';
+  }
+  ['tpText','tpSize','tpState','tpTheme','tpShowIcon','tpIcon'].forEach(id=>g(id).addEventListener(id==='tpText'?'input':'change',tp));
+  g('tpCopy').addEventListener('click',function(){var b=this;navigator.clipboard.writeText(g('tpCode').textContent).then(()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar HTML',1400)}).catch(()=>{var r=document.createRange();r.selectNodeContents(g('tpCode'));var s=getSelection();s.removeAllRanges();s.addRange(r)})});
+  tp();
+})();
+
+(function(){
+  var g=id=>document.getElementById(id);
+  function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+  function hp(){
+    var txt=g('hpText').value,th=g('hpTheme').value,show=g('hpShowIcon').checked,ic=g('hpIcon').value;
+    g('hpIcon').disabled=!show;
+    var el=document.createElement('pw-card-header');
+    if(th)el.setAttribute('theme',th);
+    if(!show)el.setAttribute('show-icon','false');else if(ic!=='sparkle')el.setAttribute('icon',ic);
+    el.textContent=txt;
+    var st=g('hpStage');st.innerHTML='';st.appendChild(el);
+    var a=[];if(th)a.push('theme="'+th+'"');if(!show)a.push('show-icon="false"');else if(ic!=='sparkle')a.push('icon="'+ic+'"');
+    g('hpCode').textContent='<pw-card-header'+(a.length?' '+a.join(' '):'')+'>'+txt+'</pw-card-header>';
+  }
+  ['hpText','hpTheme','hpShowIcon','hpIcon'].forEach(id=>g(id).addEventListener(id==='hpText'?'input':'change',hp));
+  g('hpCopy').addEventListener('click',function(){var b=this;navigator.clipboard.writeText(g('hpCode').textContent).then(()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar HTML',1400)}).catch(()=>{var r=document.createRange();r.selectNodeContents(g('hpCode'));var s=getSelection();s.removeAllRanges();s.addRange(r)})});
+  hp();
+})();
+
+/* ---------- conteúdo de exemplo ---------- */
+var TONES=[
+ ['neutral','Pokémon','Charizard','Nv. 64 · Fogo / Voador','HP 182/182','XP 78%'],
+ ['info','Dica','Golpes de status','Golpes de status não causam dano, mas podem virar a batalha.','Tutorial','2/6'],
+ ['success','Missão','Missão concluída','O professor recebeu os dados da Pokédex de Viridian.','+1.200 XP','+3 Pokébolas'],
+ ['warning','Atenção','Mochila quase cheia','Restam 2 espaços. Itens novos serão descartados.','38/40','—'],
+ ['error','Batalha','Pokémon desmaiado','Gengar não pode lutar. Leve-o a um Centro Pokémon.','HP 0/141','—'],
+ ['new','Novidade','Evento de Halloween','Pokémon fantasma aparecem em dobro na Torre de Lavender.','Até 02/11','Novo'],
+ ['brand','Poke World','Temporada 3','Nova região, novas insígnias e o ranking da liga.','Liga aberta','VIP']
+];
+function fill(card,t,small){
+  card.innerHTML='<span class="k-eyebrow">'+t[1]+'</span><h3 class="k-title">'+t[2]+'</h3><p class="k-body">'+t[3]+'</p><div class="k-meta"><span><b>'+t[4]+'</b></span><span>'+t[5]+'</span></div>';
+  if(small)card.classList.add('small');
+}
+function mk(attrs,t,style,small){
+  var el=document.createElement('pw-card');
+  Object.keys(attrs).forEach(k=>{if(attrs[k]!==false&&attrs[k]!=null)el.setAttribute(k,attrs[k]===true?'':attrs[k])});
+  if(style)el.setAttribute('style',style);
+  if(t)fill(el,t,small);
+  return el;
+}
+function cell(grid,el,cap){var c=document.createElement('div');c.className='cell';c.appendChild(el);var p=document.createElement('div');p.className='cap';p.textContent=cap;c.appendChild(p);grid.appendChild(c)}
+
+var SM='width:230px;height:250px';
+var tg=document.getElementById('toneGrid');
+TONES.forEach(t=>cell(tg,mk({variant:'secondary',tone:t[0]},t,SM,true),'tone="'+t[0]+'"'));
+var og=document.getElementById('outlineGrid');
+TONES.forEach(t=>cell(og,mk({variant:'secondary',tone:t[0],appearance:'outline'},t,SM,true),'tone="'+t[0]+'" · outline'));
+var TER=['Golpe','Psychic','Psíquico · Poder 90 · Precisão 100','PP 10/10','Especial'];
+['terGrid','terGridM'].forEach(function(g){var el=document.getElementById(g);
+  [['default',{}],['hover',{interactive:true,state:'hover'}],['selected',{interactive:true,state:'selected'}],['disabled',{interactive:true,disabled:true,state:'disabled'}]].forEach(function(s){
+    cell(el,mk(Object.assign({variant:'tertiary'},s[1]),[null].concat(TER),'width:240px;height:150px',true),'tertiary · '+s[0]);});});
+var sg=document.getElementById('stateGrid');
+cell(sg,mk({variant:'secondary',tone:'neutral'},TONES[0],SM,true),'interactive=false (apresentação)');
+['default','hover','pressed','selected','disabled'].forEach(s=>{
+  cell(sg,mk({variant:'secondary',tone:'neutral',interactive:true,state:s==='default'?null:s,disabled:s==='disabled'},TONES[0],SM,true),'interactive · state="'+s+'"');
+});
+
+/* ---------- playground ---------- */
+var $=id=>document.getElementById(id);
+function pg(){
+  var th=$('pgTheme').value,v=$('pgVariant').value,tn=$('pgTone').value,ap=$('pgAppearance').value,st=$('pgState').value,inter=$('pgInteractive').checked;
+  if(!inter)$('pgState').value=st='';
+  $('pgState').disabled=!inter;
+  var t=TONES.find(x=>x[0]===tn);
+  var el=mk({theme:th||null,variant:v,tone:tn==='neutral'?null:tn,appearance:ap==='outline'?'outline':null,interactive:inter,state:st&&st!=='disabled'?st:null,disabled:st==='disabled',selected:st==='selected'},$('pgContent').checked?t:null);
+  var stage=$('pgStage');stage.innerHTML='';stage.appendChild(el);
+  var attrs=['variant="'+v+'"'];if(th)attrs.push('theme="'+th+'"');if(tn!=='neutral')attrs.push('tone="'+tn+'"');if(ap==='outline')attrs.push('appearance="outline"');
+  if(inter)attrs.push('interactive');if(st==='selected')attrs.push('selected');if(st==='disabled')attrs.push('disabled');
+  $('pgCode').textContent='<pw-card '+attrs.join(' ')+'>\n  <!-- conteúdo -->\n</pw-card>';
+}
+['pgTheme','pgVariant','pgTone','pgAppearance','pgState','pgInteractive','pgContent'].forEach(id=>$(id).addEventListener('change',pg));
+$('pgCopy').addEventListener('click',function(){
+  var txt=$('pgCode').textContent,b=this;
+  navigator.clipboard.writeText(txt).then(()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar HTML',1400)}).catch(()=>{
+    var r=document.createRange();r.selectNodeContents($('pgCode'));var s=getSelection();s.removeAllRanges();s.addRange(r);});
+});
+pg();
+})();
+</script>

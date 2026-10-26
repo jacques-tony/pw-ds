@@ -13,12 +13,19 @@ Temas: **Poke World** (padrão, dourado + azul) e **Mewtwo** (roxo).
 
 ## Instalação
 
-Adicione no `<head>` do projeto:
+Uma linha no `<head>` do projeto (os estilos vêm dentro do script):
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/jacques-tony/pw-ds@0/dist/pw-ds.js" defer></script>
+```
+
+Se preferir carregar o CSS separado (por exemplo, para evitar o "piscar" antes do script rodar), adicione também:
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jacques-tony/pw-ds@0/dist/pw-ds.css">
-<script src="https://cdn.jsdelivr.net/gh/jacques-tony/pw-ds@0/dist/pw-ds.js" defer></script>
 ```
+
+> **Artifacts do Claude** só aceitam scripts do jsDelivr no caminho `/npm/`. Enquanto a biblioteca não estiver no npm, o artifact recebe uma cópia embutida do `pw-ds.js` (marcada com a versão) e é atualizado a cada release.
 
 ### Escolhendo como receber atualizações
 
@@ -93,13 +100,15 @@ Cada versão é uma tag git (`v0.1.0`) e está descrita no [CHANGELOG](CHANGELOG
 
 ### Publicar uma versão nova
 
+O `storybook/index.html` é a fonte. Os componentes ficam entre os marcadores `@pwds-tokens`, `@pwds-css` e `@pwds-js`; o resto é a documentação.
+
 ```bash
-# 1. editar dist/ e anotar no CHANGELOG.md
-# 2. atualizar "version" no package.json e PWDS.version em dist/pw-ds.js
-git commit -am "release: v0.2.0"
-git tag v0.2.0
-git push && git push --tags
+python3 scripts/build.py 0.3.0   # gera dist/ e atualiza package.json
+# anotar a versão no CHANGELOG.md
+git commit -am "release: v0.3.0" && git push
 ```
+
+Depois, crie a release `v0.3.0` no GitHub (Releases → Draft a new release).
 
 ## Arquivos
 
