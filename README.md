@@ -8,8 +8,9 @@ Componentes de interface do OTServ **Poke World Universe**, feitos como Web Comp
 | Card Header | `<pw-card-header>` |
 | Tabs | `<pw-tabs>` + `<pw-tab>` |
 | Icon | `<pw-icon>` |
+| Element Item | `<pw-element-item>` |
 
-Temas: **Poke World** (padrão, dourado + azul) e **Mewtwo** (roxo).
+Temas: **Poke World** (padrão, dourado + azul), **Mewtwo** (roxo) e um tema para cada um dos **18 tipos** (`fogo`, `agua`, `planta`…).
 
 ## Instalação
 
@@ -79,6 +80,8 @@ Recomendado em produção: travar na versão principal (`@1`) depois que a 1.0 s
 **pw-tab** — `icon`, `show-icon="false"`, `selected`, `disabled`, `aria-controls`.
 
 **pw-icon** — `name` (craft · boost · limit-break · close) ou `type` (os 18 tipos: aco, agua, dragao, eletrico, fada, fantasma, fogo, gelo, inseto, lutador, normal, pedra, planta, psiquico, sombrio, terrestre, veneno, voador); `size` xs · sm · md · lg · xl ou px; `label` para leitores de tela.
+
+**pw-element-item** — `element` (um dos 18 tipos), `theme` (`auto` = tema do elemento), `size` (sm · md · lg), `meta`, `selected`, `disabled`, `block`. Evento `change` com `detail.element`.
 
 ### Ícones novos
 
