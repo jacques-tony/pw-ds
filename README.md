@@ -81,7 +81,7 @@ Recomendado em produção: travar na versão principal (`@1`) depois que a 1.0 s
 **pw-tabs** — `size` (sm · md · lg), `theme`. Evento `change` com `detail.tab`.
 **pw-tab** — `icon`, `show-icon="false"`, `selected`, `disabled`, `aria-controls`.
 
-**pw-icon** — `name` (craft · boost · limit-break · close) ou `type` (os 18 tipos: aco, agua, dragao, eletrico, fada, fantasma, fogo, gelo, inseto, lutador, normal, pedra, planta, psiquico, sombrio, terrestre, veneno, voador); `size` xs · sm · md · lg · xl ou px; `label` para leitores de tela.
+**pw-icon** — `name` (craft · boost · limit-break · close · check · warning) ou `type` (os 18 tipos: aco, agua, dragao, eletrico, fada, fantasma, fogo, gelo, inseto, lutador, normal, pedra, planta, psiquico, sombrio, terrestre, veneno, voador); `size` xs · sm · md · lg · xl ou px; `label` para leitores de tela.
 
 **pw-element-item** — `element` (um dos 18 tipos), `theme` (`auto` = tema do elemento), `size` (sm · md · lg), `meta`, `width` (largura mínima em px), `selected`, `disabled`, `block`. O texto nunca quebra linha: o card cresce. Evento `change` com `detail.element`.
 

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.7.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.8.0 — https://github.com/jacques-tony/pw-ds */
 /* tipografia: classes utilitárias (usam os tokens --pw-text-*) */
 .pw-text-title-xl{font:var(--pw-text-title-xl);letter-spacing:var(--pw-text-title-xl-tracking);text-transform:none}
 .pw-text-title-lg{font:var(--pw-text-title-lg);letter-spacing:var(--pw-text-title-lg-tracking);text-transform:none}
