@@ -260,13 +260,15 @@ pw-tab[disabled],pw-tab[state="disabled"]{opacity:.38;cursor:not-allowed;--drop-
 pw-element-item{display:inline-block;--pwe-ic:32px;--pwe-fs:13px;--pwe-py:4px;--pwe-px:4px;--pwe-gap:4px}
 pw-element-item[size="sm"]{--pwe-ic:24px;--pwe-fs:12px}
 pw-element-item[size="lg"]{--pwe-ic:48px;--pwe-fs:15px}
-pw-element-item[block]{display:block}
-pw-element-item>pw-card[variant]{width:auto;height:auto;min-width:0}
-pw-element-item>pw-card>.pwc-content{padding:var(--pwe-py) var(--pwe-px);flex-direction:row;align-items:center;gap:var(--pwe-gap)}
+/* largura: cresce com o texto (nunca quebra linha); width/block só aumentam a partir disso */
+pw-element-item{min-width:var(--pwe-w,0px);vertical-align:top}
+pw-element-item[block]{display:block;width:max-content;min-width:max(100%,var(--pwe-w,0px))}
+pw-element-item>pw-card[variant]{width:100%;height:auto;min-width:0}
+pw-element-item>pw-card[variant]>.pwc-content{padding:var(--pwe-py) var(--pwe-px);flex-direction:row;align-items:center;justify-content:flex-start;gap:var(--pwe-gap)}
 pw-element-item .pwe-icon{width:var(--pwe-ic);height:var(--pwe-ic);flex:none;transition:transform var(--card-dur) var(--card-ease)}
-pw-element-item .pwe-text{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+pw-element-item .pwe-text{display:flex;flex-direction:column;justify-content:center;gap:2px;flex:none;text-align:left}
 pw-element-item .pwe-name{font-family:var(--f-tab);font-size:var(--pwe-fs);font-weight:500;color:#fff;line-height:1.2;white-space:nowrap}
-pw-element-item .pwe-meta{font-family:var(--f-tab);font-size:calc(var(--pwe-fs) - 2px);color:color-mix(in srgb,var(--pw-filament) 70%,#fff);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+pw-element-item .pwe-meta{font-family:var(--f-tab);font-size:calc(var(--pwe-fs) - 2px);color:color-mix(in srgb,var(--pw-filament) 70%,#fff);line-height:1.2;white-space:nowrap}
 pw-element-item .pwe-meta:empty{display:none}
 pw-element-item:not([disabled])>pw-card:hover .pwe-icon,pw-element-item[state="hover"] .pwe-icon{transform:scale(1.08)}
 pw-element-item[selected] .pwe-icon,pw-element-item[state="selected"] .pwe-icon{transform:scale(1.08);filter:drop-shadow(0 0 6px var(--pw-glow))}
@@ -645,10 +647,12 @@ pw-element-item[selected] .pwe-icon,pw-element-item[state="selected"] .pwe-icon{
       <label for="epTheme">theme<select id="epTheme"></select></label>
       <label for="epSize">size<select id="epSize"><option>sm</option><option selected>md</option><option>lg</option></select></label>
       <label for="epState">state<select id="epState"><option>default</option><option>hover</option><option>selected</option><option>disabled</option></select></label>
-      <label for="epMeta">meta (texto secundário)<input id="epMeta" type="text" value="Pode criar 4" maxlength="30" autocomplete="off"></label>
+      <label for="epW">width (px, 0 = automático)<input id="epW" type="number" min="0" step="8" value="0"></label>
+      <label class="check" for="epBlock"><input type="checkbox" id="epBlock"> block (largura do container)</label>
+      <label for="epMeta">meta (texto secundário)<input id="epMeta" type="text" value="Pode criar 4" maxlength="80" autocomplete="off"></label>
     </form>
     <div style="display:grid;gap:14px;min-width:0">
-      <div class="canvas" id="epStage" style="min-height:160px;display:grid;place-items:center"></div>
+      <div class="canvas" id="epStage" style="min-height:160px;display:grid;align-content:center;justify-items:center"></div>
       <pre class="code" id="epCode"></pre>
       <button class="btn" type="button" id="epCopy">Copiar HTML</button>
     </div>
@@ -690,11 +694,13 @@ pw-element-item[selected] .pwe-icon,pw-element-item[state="selected"] .pwe-icon{
       <tr><td><code>size</code></td><td><code>sm</code> · <code>md</code> · <code>lg</code></td><td>Ícone 24 / 32 / 48px · padding 4px e 4px entre ícone e texto em todos</td></tr>
       <tr><td><code>meta</code></td><td>texto</td><td>Linha secundária opcional (quantidade, status)</td></tr>
       <tr><td><code>selected</code> · <code>disabled</code></td><td>booleanos</td><td>Clique alterna <code>selected</code> e dispara o evento <code>change</code> com <code>detail.element</code></td></tr>
-      <tr><td><code>block</code></td><td>booleano</td><td>Ocupa a largura toda (listas verticais)</td></tr>
+      <tr><td><code>width</code></td><td>número (px)</td><td>Largura mínima. O card nunca fica menor que o conteúdo: texto longo aumenta o card, sem quebrar linha</td></tr>
+      <tr><td><code>block</code></td><td>booleano</td><td>Ocupa a largura do container (listas verticais); cresce se o texto for maior</td></tr>
     </tbody>
   </table></div>
   <ul class="rules">
     <li>O item é um botão (<code>role="button"</code> com <code>aria-pressed</code>), acessível por Tab, Enter e Espaço. O nome lido é o nome do elemento mais o texto de <code>meta</code>.</li>
+    <li>Ícone e texto ficam alinhados à esquerda e centralizados na vertical. O texto nunca quebra linha.</li>
     <li>Para escolha única (um elemento por vez), a tela desmarca os outros no evento <code>change</code>.</li>
   </ul>
 </section>
@@ -1032,7 +1038,7 @@ customElements.define('pw-tab',PWTab);customElements.define('pw-tabs',PWTabs);
 
 /* ---------- pw-element-item: card tertiary interativo + ícone de tipo ---------- */
 class PWElementItem extends HTMLElement{
-  static get observedAttributes(){return ['element','theme','selected','disabled','state','meta','label','size']}
+  static get observedAttributes(){return ['element','theme','selected','disabled','state','meta','label','size','width']}
   connectedCallback(){
     if(!this._init){this._init=true;
       this._card=document.createElement('pw-card');this._card.setAttribute('variant','tertiary');this._card.setAttribute('interactive','');
@@ -1055,6 +1061,7 @@ class PWElementItem extends HTMLElement{
     var th=this.getAttribute('theme');th?c.setAttribute('theme',th==='auto'?el:th):c.removeAttribute('theme');
     ['selected','disabled'].forEach(a=>c.toggleAttribute(a,this.hasAttribute(a)));
     var st=this.getAttribute('state');st?c.setAttribute('state',st):c.removeAttribute('state');
+    var w=parseFloat(this.getAttribute('width'));w>0?this.style.setProperty('--pwe-w',w+'px'):this.style.removeProperty('--pwe-w');
   }
 }
 customElements.define('pw-element-item',PWElementItem);
@@ -1073,15 +1080,15 @@ window.PW_EL_PAL={"inseto": {"dark": "#5A7D2B", "mid": "#7EAB33", "light": "#97C
   /* temas elementais também nos playgrounds de card, header e tabs */
   ['pgTheme','hpTheme','tpTheme'].forEach(function(id){var s=g(id);if(s)s.insertAdjacentHTML('beforeend','<optgroup label="Elementos">'+EL.map(k=>'<option value="'+k+'">'+PW_TYPE_LABEL[k]+'</option>').join('')+'</optgroup>')});
   function ep(){
-    var el=g('epEl').value,th=g('epTheme').value,sz=g('epSize').value,st=g('epState').value,mt=g('epMeta').value;
-    var a=['element="'+el+'"'];if(th)a.push('theme="'+th+'"');if(sz!=='md')a.push('size="'+sz+'"');
+    var el=g('epEl').value,th=g('epTheme').value,sz=g('epSize').value,st=g('epState').value,mt=g('epMeta').value,w=+g('epW').value||0,bl=g('epBlock').checked;
+    var a=['element="'+el+'"'];if(w>0)a.push('width="'+w+'"');if(bl)a.push('block');if(th)a.push('theme="'+th+'"');if(sz!=='md')a.push('size="'+sz+'"');
     if(st==='selected')a.push('selected');if(st==='disabled')a.push('disabled');
     var forced=st==='hover'?' state="hover"':'';
     g('epStage').innerHTML='<pw-element-item '+a.join(' ')+forced+'></pw-element-item>';
     var it=g('epStage').firstChild;if(mt)it.setAttribute('meta',mt);
     g('epCode').textContent='<pw-element-item '+a.join(' ')+(mt?' meta="'+mt.replace(/"/g,'&quot;')+'"':'')+'></pw-element-item>';
   }
-  ['epEl','epTheme','epSize','epState','epMeta'].forEach(id=>g(id).addEventListener(id==='epMeta'?'input':'change',ep));
+  ['epEl','epTheme','epSize','epState','epMeta','epW','epBlock'].forEach(id=>g(id).addEventListener(id==='epMeta'||id==='epW'?'input':'change',ep));
   g('epCopy').addEventListener('click',function(){var b=this;navigator.clipboard.writeText(g('epCode').textContent).then(()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar HTML',1400)}).catch(()=>{var r=document.createRange();r.selectNodeContents(g('epCode'));var s=getSelection();s.removeAllRanges();s.addRange(r)})});
   ep();
   /* prévia e tabela dos temas */

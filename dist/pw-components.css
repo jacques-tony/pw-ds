@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.4.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.5.0 — https://github.com/jacques-tony/pw-ds */
 /* ===================== COMPONENT: pw-card ===================== */
 /* temas: em qualquer ancestral (data-pw-theme) ou no próprio card (theme) */
 [data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"]{
@@ -144,13 +144,15 @@ pw-tab[disabled],pw-tab[state="disabled"]{opacity:.38;cursor:not-allowed;--drop-
 pw-element-item{display:inline-block;--pwe-ic:32px;--pwe-fs:13px;--pwe-py:4px;--pwe-px:4px;--pwe-gap:4px}
 pw-element-item[size="sm"]{--pwe-ic:24px;--pwe-fs:12px}
 pw-element-item[size="lg"]{--pwe-ic:48px;--pwe-fs:15px}
-pw-element-item[block]{display:block}
-pw-element-item>pw-card[variant]{width:auto;height:auto;min-width:0}
-pw-element-item>pw-card>.pwc-content{padding:var(--pwe-py) var(--pwe-px);flex-direction:row;align-items:center;gap:var(--pwe-gap)}
+/* largura: cresce com o texto (nunca quebra linha); width/block só aumentam a partir disso */
+pw-element-item{min-width:var(--pwe-w,0px);vertical-align:top}
+pw-element-item[block]{display:block;width:max-content;min-width:max(100%,var(--pwe-w,0px))}
+pw-element-item>pw-card[variant]{width:100%;height:auto;min-width:0}
+pw-element-item>pw-card[variant]>.pwc-content{padding:var(--pwe-py) var(--pwe-px);flex-direction:row;align-items:center;justify-content:flex-start;gap:var(--pwe-gap)}
 pw-element-item .pwe-icon{width:var(--pwe-ic);height:var(--pwe-ic);flex:none;transition:transform var(--card-dur) var(--card-ease)}
-pw-element-item .pwe-text{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+pw-element-item .pwe-text{display:flex;flex-direction:column;justify-content:center;gap:2px;flex:none;text-align:left}
 pw-element-item .pwe-name{font-family:var(--f-tab);font-size:var(--pwe-fs);font-weight:500;color:#fff;line-height:1.2;white-space:nowrap}
-pw-element-item .pwe-meta{font-family:var(--f-tab);font-size:calc(var(--pwe-fs) - 2px);color:color-mix(in srgb,var(--pw-filament) 70%,#fff);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+pw-element-item .pwe-meta{font-family:var(--f-tab);font-size:calc(var(--pwe-fs) - 2px);color:color-mix(in srgb,var(--pw-filament) 70%,#fff);line-height:1.2;white-space:nowrap}
 pw-element-item .pwe-meta:empty{display:none}
 pw-element-item:not([disabled])>pw-card:hover .pwe-icon,pw-element-item[state="hover"] .pwe-icon{transform:scale(1.08)}
 pw-element-item[selected] .pwe-icon,pw-element-item[state="selected"] .pwe-icon{transform:scale(1.08);filter:drop-shadow(0 0 6px var(--pw-glow))}

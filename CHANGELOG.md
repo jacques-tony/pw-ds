@@ -2,6 +2,17 @@
 
 Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/), versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.5.0] — 2026-10-26
+
+### Adicionado
+- **pw-element-item**: propriedade `width` (largura mínima em px). O card nunca fica menor que o conteúdo.
+
+### Alterado
+- **pw-element-item**: ícone e texto alinhados à esquerda e centralizados na vertical; o texto nunca quebra linha e o card cresce para caber (`block` também cresce além do container se preciso).
+
+### Corrigido
+- **pw-element-item**: o padding de 4px não era aplicado (o padding de 20px do tertiary tinha prioridade).
+
 ## [0.4.2] — 2026-10-26
 
 ### Alterado
