@@ -1,6 +1,6 @@
 {
   "name": "@jacques-tony/pw-ds",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Poke World Design System — Web Components para o OTServ Poke World Universe",
   "main": "dist/pw-ds.js",
   "style": "dist/pw-ds.css",
