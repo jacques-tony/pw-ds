@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.4.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.4.1 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -176,9 +176,9 @@ pw-tab[disabled],pw-tab[state="disabled"]{opacity:.38;cursor:not-allowed;--drop-
 
 /* ===================== COMPONENT: pw-element-item ===================== */
 /* item de controle elemental: card tertiary interativo + ícone de tipo + nome */
-pw-element-item{display:inline-block;--pwe-ic:32px;--pwe-fs:13px;--pwe-py:10px;--pwe-px:14px;--pwe-gap:10px}
-pw-element-item[size="sm"]{--pwe-ic:24px;--pwe-fs:12px;--pwe-py:6px;--pwe-px:10px;--pwe-gap:8px}
-pw-element-item[size="lg"]{--pwe-ic:48px;--pwe-fs:15px;--pwe-py:12px;--pwe-px:18px;--pwe-gap:12px}
+pw-element-item{display:inline-block;--pwe-ic:32px;--pwe-fs:13px;--pwe-py:8px;--pwe-px:8px;--pwe-gap:4px}
+pw-element-item[size="sm"]{--pwe-ic:24px;--pwe-fs:12px}
+pw-element-item[size="lg"]{--pwe-ic:48px;--pwe-fs:15px}
 pw-element-item[block]{display:block}
 pw-element-item>pw-card[variant]{width:auto;height:auto;min-width:0}
 pw-element-item>pw-card>.pwc-content{padding:var(--pwe-py) var(--pwe-px);flex-direction:row;align-items:center;gap:var(--pwe-gap)}
