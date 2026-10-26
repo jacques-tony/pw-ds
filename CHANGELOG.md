@@ -2,6 +2,11 @@
 
 Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/), versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.4.2] — 2026-10-26
+
+### Alterado
+- **pw-element-item**: padding 4px em todos os lados.
+
 ## [0.4.1] — 2026-10-26
 
 ### Alterado

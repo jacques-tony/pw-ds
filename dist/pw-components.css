@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.4.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.4.2 — https://github.com/jacques-tony/pw-ds */
 /* ===================== COMPONENT: pw-card ===================== */
 /* temas: em qualquer ancestral (data-pw-theme) ou no próprio card (theme) */
 [data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"]{
@@ -141,7 +141,7 @@ pw-tab[disabled],pw-tab[state="disabled"]{opacity:.38;cursor:not-allowed;--drop-
 
 /* ===================== COMPONENT: pw-element-item ===================== */
 /* item de controle elemental: card tertiary interativo + ícone de tipo + nome */
-pw-element-item{display:inline-block;--pwe-ic:32px;--pwe-fs:13px;--pwe-py:8px;--pwe-px:8px;--pwe-gap:4px}
+pw-element-item{display:inline-block;--pwe-ic:32px;--pwe-fs:13px;--pwe-py:4px;--pwe-px:4px;--pwe-gap:4px}
 pw-element-item[size="sm"]{--pwe-ic:24px;--pwe-fs:12px}
 pw-element-item[size="lg"]{--pwe-ic:48px;--pwe-fs:15px}
 pw-element-item[block]{display:block}
