@@ -2,6 +2,13 @@
 
 Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/), versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.3.0] — 2026-10-26
+
+### Adicionado
+- **Ícones de tipo elemental**: os 18 tipos (`<pw-icon type="fogo">`), com a arte fornecida, sem redesenho. Leitor de tela anuncia o nome do tipo. Originais em `icons/types/`.
+- Tamanhos nomeados em `pw-icon`: `xs` 16, `sm` 20, `md` 24, `lg` 32, `xl` 48 (número em px continua valendo).
+- `pw-tab icon="fogo"` aceita ícones de tipo.
+
 ## [0.2.0] — 2026-10-26
 
 ### Adicionado

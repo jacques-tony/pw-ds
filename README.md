@@ -78,7 +78,7 @@ Recomendado em produção: travar na versão principal (`@1`) depois que a 1.0 s
 **pw-tabs** — `size` (sm · md · lg), `theme`. Evento `change` com `detail.tab`.
 **pw-tab** — `icon`, `show-icon="false"`, `selected`, `disabled`, `aria-controls`.
 
-**pw-icon** — `name` (craft · boost · limit-break · close), `size` em px, `label` para leitores de tela.
+**pw-icon** — `name` (craft · boost · limit-break · close) ou `type` (os 18 tipos: aco, agua, dragao, eletrico, fada, fantasma, fogo, gelo, inseto, lutador, normal, pedra, planta, psiquico, sombrio, terrestre, veneno, voador); `size` xs · sm · md · lg · xl ou px; `label` para leitores de tela.
 
 ### Ícones novos
 

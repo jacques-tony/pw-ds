@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.2.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.3.0 — https://github.com/jacques-tony/pw-ds */
 /* ===================== COMPONENT: pw-card ===================== */
 /* temas: em qualquer ancestral (data-pw-theme) ou no próprio card (theme) */
 [data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"]{
@@ -64,7 +64,8 @@ pw-card-header .pwh-label::before,pw-card-header .pwh-label::after{content:var(-
 pw-card-header[decor="none"] .pwh-label::before,pw-card-header[decor="none"] .pwh-label::after,
 pw-card-header[show-icon="false"] .pwh-label::before,pw-card-header[show-icon="false"] .pwh-label::after{content:none}
 pw-card-header .pwh-label:empty{display:none}
-pw-icon{display:inline-flex;width:1em;height:1em;flex:none;color:inherit}pw-icon svg{width:100%;height:100%;display:block}
+pw-icon{display:inline-flex;width:1em;height:1em;flex:none;color:inherit}pw-icon svg,pw-icon img{width:100%;height:100%;display:block}
+pw-icon img{object-fit:contain}
 
 /* ===================== COMPONENT: pw-tabs / pw-tab ===================== */
 pw-tabs{position:relative;display:inline-flex;flex-wrap:wrap;gap:6px;align-items:center;
