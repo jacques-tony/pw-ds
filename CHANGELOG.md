@@ -2,6 +2,11 @@
 
 Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/), versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.5.1] — 2026-10-26
+
+### Alterado
+- **pw-element-item**: padding 8px em todos os lados (gap entre ícone e texto continua 4px).
+
 ## [0.5.0] — 2026-10-26
 
 ### Adicionado

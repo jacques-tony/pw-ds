@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.5.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.5.1 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -176,7 +176,7 @@ pw-tab[disabled],pw-tab[state="disabled"]{opacity:.38;cursor:not-allowed;--drop-
 
 /* ===================== COMPONENT: pw-element-item ===================== */
 /* item de controle elemental: card tertiary interativo + ícone de tipo + nome */
-pw-element-item{display:inline-block;--pwe-ic:32px;--pwe-fs:13px;--pwe-py:4px;--pwe-px:4px;--pwe-gap:4px}
+pw-element-item{display:inline-block;--pwe-ic:32px;--pwe-fs:13px;--pwe-py:8px;--pwe-px:8px;--pwe-gap:4px}
 pw-element-item[size="sm"]{--pwe-ic:24px;--pwe-fs:12px}
 pw-element-item[size="lg"]{--pwe-ic:48px;--pwe-fs:15px}
 /* largura: cresce com o texto (nunca quebra linha); width/block só aumentam a partir disso */

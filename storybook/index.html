@@ -257,7 +257,7 @@ pw-tab[disabled],pw-tab[state="disabled"]{opacity:.38;cursor:not-allowed;--drop-
 
 /* ===================== COMPONENT: pw-element-item ===================== */
 /* item de controle elemental: card tertiary interativo + ícone de tipo + nome */
-pw-element-item{display:inline-block;--pwe-ic:32px;--pwe-fs:13px;--pwe-py:4px;--pwe-px:4px;--pwe-gap:4px}
+pw-element-item{display:inline-block;--pwe-ic:32px;--pwe-fs:13px;--pwe-py:8px;--pwe-px:8px;--pwe-gap:4px}
 pw-element-item[size="sm"]{--pwe-ic:24px;--pwe-fs:12px}
 pw-element-item[size="lg"]{--pwe-ic:48px;--pwe-fs:15px}
 /* largura: cresce com o texto (nunca quebra linha); width/block só aumentam a partir disso */
@@ -691,7 +691,7 @@ pw-element-item[selected] .pwe-icon,pw-element-item[state="selected"] .pwe-icon{
     <tbody>
       <tr><td><code>element</code></td><td>os 18 tipos</td><td>Ícone e nome do item</td></tr>
       <tr><td><code>theme</code></td><td><code>auto</code> · <code>mewtwo</code> · um tipo · vazio</td><td><code>auto</code> usa o tema do próprio elemento; vazio herda da tela</td></tr>
-      <tr><td><code>size</code></td><td><code>sm</code> · <code>md</code> · <code>lg</code></td><td>Ícone 24 / 32 / 48px · padding 4px e 4px entre ícone e texto em todos</td></tr>
+      <tr><td><code>size</code></td><td><code>sm</code> · <code>md</code> · <code>lg</code></td><td>Ícone 24 / 32 / 48px · padding 8px e 4px entre ícone e texto em todos</td></tr>
       <tr><td><code>meta</code></td><td>texto</td><td>Linha secundária opcional (quantidade, status)</td></tr>
       <tr><td><code>selected</code> · <code>disabled</code></td><td>booleanos</td><td>Clique alterna <code>selected</code> e dispara o evento <code>change</code> com <code>detail.element</code></td></tr>
       <tr><td><code>width</code></td><td>número (px)</td><td>Largura mínima. O card nunca fica menor que o conteúdo: texto longo aumenta o card, sem quebrar linha</td></tr>
