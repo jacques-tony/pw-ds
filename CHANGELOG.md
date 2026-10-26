@@ -2,6 +2,11 @@
 
 Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/), versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.13.0] — 2026-10-26
+
+### Adicionado
+- **pw-number** (input number): `value`, `min`, `max`, `step`, `precision`; `layout` split · joined · compact; `size` sm · md · lg; botão de máximo (`show-max`, `max-label`); `label`, `help`, `prefix`, `suffix`; estados `invalid`, `disabled`, `readonly`; `block`, `theme`. Teclado (setas, Shift, Page Up/Down, Home/End), segurar para repetir, evento `change` com `detail.value`. Papel acessível `spinbutton`.
+
 ## [0.12.0] — 2026-10-26
 
 ### Adicionado

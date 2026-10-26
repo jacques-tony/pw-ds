@@ -156,7 +156,7 @@ ul.rules{margin:0;padding-left:18px;display:grid;gap:6px;max-width:75ch}
 .pw-text-overline{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase}
 /* ===================== COMPONENT: pw-card ===================== */
 /* temas: em qualquer ancestral (data-pw-theme) ou no próprio card (theme) */
-[data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"],pw-badge[theme="mewtwo"],pw-button[theme="mewtwo"]{
+[data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"],pw-badge[theme="mewtwo"],pw-button[theme="mewtwo"],pw-number[theme="mewtwo"]{
   --pw-metal-0:#E5A3FF;--pw-metal-1:#AA46D1;--pw-metal-2:#A638BC;--pw-metal-3:#EA83FA;
   --pw-filament:#FDA3FF;--pw-glow:#FDA3FF;
   --pw-bg-center:#540061;--pw-bg-edge:#2F0539;--pw-bg-solid:#2F0539;
@@ -280,24 +280,24 @@ pw-tab[disabled],pw-tab[state="disabled"]{opacity:.38;cursor:not-allowed;--drop-
 @media (prefers-reduced-motion:reduce){pw-card,pw-card *{transition:none!important}pw-card{--lift:0px!important}}
 
 /* ===== temas elementais (gerados a partir dos fundos da roda de tipos: escuro, médio e claro de cada pétala) ===== */
-[data-pw-theme="aco"],pw-card[theme="aco"],pw-card-header[theme="aco"],pw-tabs[theme="aco"],pw-badge[theme="aco"],pw-button[theme="aco"]{--pw-metal-0:#B4CACC;--pw-metal-1:#557F89;--pw-metal-2:#40626E;--pw-metal-3:#95B4B8;--pw-filament:#C3D4D7;--pw-glow:#ACC4C7;--pw-bg-center:#2A4048;--pw-bg-edge:#121B1F;--pw-bg-solid:#141F23;--pw-ter-bg-center:#1D2C31;--pw-ter-bg-edge:#0D1416;--pw-ter-stroke-0:#203137;--pw-ter-stroke-1:#68949A;--pw-ter-stroke-2:#40626E;--pw-ter-stroke-3:#9DB9BD;--pw-ter-stroke-4:#334E58;--pw-ter-stroke-5:#557F89;--pw-tab-fill-bottom:#557F89;--pw-tab-fill-top:#10181C;--pw-tab-stroke-a:#B4CACC;--pw-tab-stroke-b:#E1EAEB;--pw-tab-drop:#A4BFC2;--pw-tab-inner:#A4BFC2}
-[data-pw-theme="agua"],pw-card[theme="agua"],pw-card-header[theme="agua"],pw-tabs[theme="agua"],pw-badge[theme="agua"],pw-button[theme="agua"]{--pw-metal-0:#A3BEF2;--pw-metal-1:#336BD4;--pw-metal-2:#2751A2;--pw-metal-3:#7EA5ED;--pw-filament:#B5CBF5;--pw-glow:#9AB8F1;--pw-bg-center:#193569;--pw-bg-edge:#0B172D;--pw-bg-solid:#0C1A34;--pw-ter-bg-center:#122449;--pw-ter-bg-edge:#081020;--pw-ter-stroke-0:#142851;--pw-ter-stroke-1:#477EE5;--pw-ter-stroke-2:#2751A2;--pw-ter-stroke-3:#87ABEE;--pw-ter-stroke-4:#1F4182;--pw-ter-stroke-5:#336BD4;--pw-tab-fill-bottom:#336BD4;--pw-tab-fill-top:#0A1428;--pw-tab-stroke-a:#A3BEF2;--pw-tab-stroke-b:#DAE5FA;--pw-tab-drop:#91B2EF;--pw-tab-inner:#91B2EF}
-[data-pw-theme="dragao"],pw-card[theme="dragao"],pw-card-header[theme="dragao"],pw-tabs[theme="dragao"],pw-badge[theme="dragao"],pw-button[theme="dragao"]{--pw-metal-0:#9EB2E0;--pw-metal-1:#2F57B9;--pw-metal-2:#21418C;--pw-metal-3:#7893D4;--pw-filament:#B2C1E6;--pw-glow:#95AADD;--pw-bg-center:#152A5B;--pw-bg-edge:#091227;--pw-bg-solid:#0B152D;--pw-ter-bg-center:#0F1D3F;--pw-ter-bg-edge:#070D1C;--pw-ter-stroke-0:#102046;--pw-ter-stroke-1:#3E65C1;--pw-ter-stroke-2:#21418C;--pw-ter-stroke-3:#829BD7;--pw-ter-stroke-4:#1A3470;--pw-ter-stroke-5:#2F57B9;--pw-tab-fill-bottom:#2F57B9;--pw-tab-fill-top:#081023;--pw-tab-stroke-a:#9EB2E0;--pw-tab-stroke-b:#D8E0F3;--pw-tab-drop:#8BA3DA;--pw-tab-inner:#8BA3DA}
-[data-pw-theme="eletrico"],pw-card[theme="eletrico"],pw-card-header[theme="eletrico"],pw-tabs[theme="eletrico"],pw-badge[theme="eletrico"],pw-button[theme="eletrico"]{--pw-metal-0:#F6DE92;--pw-metal-1:#D1A71C;--pw-metal-2:#977C1D;--pw-metal-3:#F2D066;--pw-filament:#F7E4A7;--pw-glow:#F5DA87;--pw-bg-center:#625113;--pw-bg-edge:#2A2308;--pw-bg-solid:#302809;--pw-ter-bg-center:#44380D;--pw-ter-bg-edge:#1E1906;--pw-ter-stroke-0:#4C3E0E;--pw-ter-stroke-1:#ECBC24;--pw-ter-stroke-2:#977C1D;--pw-ter-stroke-3:#F3D371;--pw-ter-stroke-4:#796317;--pw-ter-stroke-5:#D1A71C;--pw-tab-fill-bottom:#D1A71C;--pw-tab-fill-top:#261F07;--pw-tab-stroke-a:#F6DE92;--pw-tab-stroke-b:#FBF2D3;--pw-tab-drop:#F4D77C;--pw-tab-inner:#F4D77C}
-[data-pw-theme="fada"],pw-card[theme="fada"],pw-card-header[theme="fada"],pw-tabs[theme="fada"],pw-badge[theme="fada"],pw-button[theme="fada"]{--pw-metal-0:#F3CADC;--pw-metal-1:#CF7DA3;--pw-metal-2:#955D7D;--pw-metal-3:#EEB6CE;--pw-filament:#F5D5E3;--pw-glow:#F2C5D8;--pw-bg-center:#613C51;--pw-bg-edge:#2A1A23;--pw-bg-solid:#301E28;--pw-ter-bg-center:#432A38;--pw-ter-bg-edge:#1E1319;--pw-ter-stroke-0:#4A2E3E;--pw-ter-stroke-1:#E796B9;--pw-ter-stroke-2:#955D7D;--pw-ter-stroke-3:#EFBBD2;--pw-ter-stroke-4:#774A64;--pw-ter-stroke-5:#CF7DA3;--pw-tab-fill-bottom:#CF7DA3;--pw-tab-fill-top:#25171F;--pw-tab-stroke-a:#F3CADC;--pw-tab-stroke-b:#FAEAF1;--pw-tab-drop:#F1C0D5;--pw-tab-inner:#F1C0D5}
-[data-pw-theme="fantasma"],pw-card[theme="fantasma"],pw-card-header[theme="fantasma"],pw-tabs[theme="fantasma"],pw-badge[theme="fantasma"],pw-button[theme="fantasma"]{--pw-metal-0:#C1AFD9;--pw-metal-1:#6B49A1;--pw-metal-2:#4F397D;--pw-metal-3:#A88FCA;--pw-filament:#CDBFE1;--pw-glow:#BBA7D5;--pw-bg-center:#332551;--pw-bg-edge:#161023;--pw-bg-solid:#191228;--pw-ter-bg-center:#241A38;--pw-ter-bg-edge:#100B19;--pw-ter-stroke-0:#281C3E;--pw-ter-stroke-1:#835FB3;--pw-ter-stroke-2:#4F397D;--pw-ter-stroke-3:#AE97CE;--pw-ter-stroke-4:#3F2E64;--pw-ter-stroke-5:#6B49A1;--pw-tab-fill-bottom:#6B49A1;--pw-tab-fill-top:#140E1F;--pw-tab-stroke-a:#C1AFD9;--pw-tab-stroke-b:#E6DFF0;--pw-tab-drop:#B59FD1;--pw-tab-inner:#B59FD1}
-[data-pw-theme="fogo"],pw-card[theme="fogo"],pw-card-header[theme="fogo"],pw-tabs[theme="fogo"],pw-badge[theme="fogo"],pw-button[theme="fogo"]{--pw-metal-0:#F6BEA2;--pw-metal-1:#D56932;--pw-metal-2:#9B512D;--pw-metal-3:#F2A57C;--pw-filament:#F8CBB4;--pw-glow:#F5B898;--pw-bg-center:#65351D;--pw-bg-edge:#2B170D;--pw-bg-solid:#321A0E;--pw-ter-bg-center:#462414;--pw-ter-bg-edge:#1F1009;--pw-ter-stroke-0:#4E2816;--pw-ter-stroke-1:#ED7E44;--pw-ter-stroke-2:#9B512D;--pw-ter-stroke-3:#F3AB85;--pw-ter-stroke-4:#7C4124;--pw-ter-stroke-5:#D56932;--pw-tab-fill-bottom:#D56932;--pw-tab-fill-top:#27140B;--pw-tab-stroke-a:#F6BEA2;--pw-tab-stroke-b:#FBE5DA;--pw-tab-drop:#F4B28F;--pw-tab-inner:#F4B28F}
-[data-pw-theme="gelo"],pw-card[theme="gelo"],pw-card-header[theme="gelo"],pw-tabs[theme="gelo"],pw-badge[theme="gelo"],pw-button[theme="gelo"]{--pw-metal-0:#A2E3EE;--pw-metal-1:#33B2CA;--pw-metal-2:#25849A;--pw-metal-3:#7ED8E6;--pw-filament:#B5E9F1;--pw-glow:#99E0EC;--pw-bg-center:#185664;--pw-bg-edge:#0A252B;--pw-bg-solid:#0C2A31;--pw-ter-bg-center:#113B45;--pw-ter-bg-edge:#071A1F;--pw-ter-stroke-0:#12424D;--pw-ter-stroke-1:#46C7DC;--pw-ter-stroke-2:#25849A;--pw-ter-stroke-3:#87DBE8;--pw-ter-stroke-4:#1E6A7B;--pw-ter-stroke-5:#33B2CA;--pw-tab-fill-bottom:#33B2CA;--pw-tab-fill-top:#092126;--pw-tab-stroke-a:#A2E3EE;--pw-tab-stroke-b:#DAF4F8;--pw-tab-drop:#90DDEA;--pw-tab-inner:#90DDEA}
-[data-pw-theme="inseto"],pw-card[theme="inseto"],pw-card-header[theme="inseto"],pw-tabs[theme="inseto"],pw-badge[theme="inseto"],pw-button[theme="inseto"]{--pw-metal-0:#CBE1A1;--pw-metal-1:#7EAB33;--pw-metal-2:#5A7D2B;--pw-metal-3:#B6D57B;--pw-filament:#D5E7B4;--pw-glow:#C6DE98;--pw-bg-center:#3A511C;--pw-bg-edge:#19230C;--pw-bg-solid:#1D280E;--pw-ter-bg-center:#283813;--pw-ter-bg-edge:#121909;--pw-ter-stroke-0:#2D3E16;--pw-ter-stroke-1:#97C343;--pw-ter-stroke-2:#5A7D2B;--pw-ter-stroke-3:#BBD885;--pw-ter-stroke-4:#486422;--pw-ter-stroke-5:#7EAB33;--pw-tab-fill-bottom:#7EAB33;--pw-tab-fill-top:#161F0B;--pw-tab-stroke-a:#CBE1A1;--pw-tab-stroke-b:#EAF3D9;--pw-tab-drop:#C1DB8E;--pw-tab-inner:#C1DB8E}
-[data-pw-theme="lutador"],pw-card[theme="lutador"],pw-card-header[theme="lutador"],pw-tabs[theme="lutador"],pw-badge[theme="lutador"],pw-button[theme="lutador"]{--pw-metal-0:#E2A7AC;--pw-metal-1:#B73946;--pw-metal-2:#872D3C;--pw-metal-3:#D6848C;--pw-filament:#E7B9BD;--pw-glow:#DF9EA4;--pw-bg-center:#581D27;--pw-bg-edge:#260D11;--pw-bg-solid:#2B0E13;--pw-ter-bg-center:#3D141B;--pw-ter-bg-edge:#1B090C;--pw-ter-stroke-0:#44161E;--pw-ter-stroke-1:#C44F5A;--pw-ter-stroke-2:#872D3C;--pw-ter-stroke-3:#D98D94;--pw-ter-stroke-4:#6C2430;--pw-ter-stroke-5:#B73946;--pw-tab-fill-bottom:#B73946;--pw-tab-fill-top:#220B0F;--pw-tab-stroke-a:#E2A7AC;--pw-tab-stroke-b:#F3DCDE;--pw-tab-drop:#DC959C;--pw-tab-inner:#DC959C}
-[data-pw-theme="normal"],pw-card[theme="normal"],pw-card-header[theme="normal"],pw-tabs[theme="normal"],pw-badge[theme="normal"],pw-button[theme="normal"]{--pw-metal-0:#DBDAD1;--pw-metal-1:#A0A194;--pw-metal-2:#757773;--pw-metal-3:#CDCBBF;--pw-filament:#E2E1DA;--pw-glow:#D7D6CC;--pw-bg-center:#4C4D4B;--pw-bg-edge:#212120;--pw-bg-solid:#252625;--pw-ter-bg-center:#353634;--pw-ter-bg-edge:#171817;--pw-ter-stroke-0:#3A3C3A;--pw-ter-stroke-1:#B7B5A3;--pw-ter-stroke-2:#757773;--pw-ter-stroke-3:#D0CFC3;--pw-ter-stroke-4:#5E5F5C;--pw-ter-stroke-5:#A0A194;--pw-tab-fill-bottom:#A0A194;--pw-tab-fill-top:#1D1E1D;--pw-tab-stroke-a:#DBDAD1;--pw-tab-stroke-b:#F1F0ED;--pw-tab-drop:#D4D3C8;--pw-tab-inner:#D4D3C8}
-[data-pw-theme="pedra"],pw-card[theme="pedra"],pw-card-header[theme="pedra"],pw-tabs[theme="pedra"],pw-badge[theme="pedra"],pw-button[theme="pedra"]{--pw-metal-0:#C7B8AA;--pw-metal-1:#785E47;--pw-metal-2:#59493D;--pw-metal-3:#B19C87;--pw-filament:#D2C6BB;--pw-glow:#C1B1A1;--pw-bg-center:#3A2F28;--pw-bg-edge:#191411;--pw-bg-solid:#1C1714;--pw-ter-bg-center:#28211B;--pw-ter-bg-edge:#120F0C;--pw-ter-stroke-0:#2C241E;--pw-ter-stroke-1:#8F7154;--pw-ter-stroke-2:#59493D;--pw-ter-stroke-3:#B6A390;--pw-ter-stroke-4:#473A31;--pw-ter-stroke-5:#785E47;--pw-tab-fill-bottom:#785E47;--pw-tab-fill-top:#16120F;--pw-tab-stroke-a:#C7B8AA;--pw-tab-stroke-b:#E9E3DD;--pw-tab-drop:#BCAA98;--pw-tab-inner:#BCAA98}
-[data-pw-theme="planta"],pw-card[theme="planta"],pw-card-header[theme="planta"],pw-tabs[theme="planta"],pw-badge[theme="planta"],pw-button[theme="planta"]{--pw-metal-0:#A0D8AE;--pw-metal-1:#329D51;--pw-metal-2:#227540;--pw-metal-3:#7BC98E;--pw-filament:#B3E0BF;--pw-glow:#97D5A6;--pw-bg-center:#164C2A;--pw-bg-edge:#0A2112;--pw-bg-solid:#0B2514;--pw-ter-bg-center:#0F351D;--pw-ter-bg-edge:#07170D;--pw-ter-stroke-0:#113A20;--pw-ter-stroke-1:#42B25E;--pw-ter-stroke-2:#227540;--pw-ter-stroke-3:#84CD96;--pw-ter-stroke-4:#1B5E33;--pw-ter-stroke-5:#329D51;--pw-tab-fill-bottom:#329D51;--pw-tab-fill-top:#081D10;--pw-tab-stroke-a:#A0D8AE;--pw-tab-stroke-b:#D9F0DF;--pw-tab-drop:#8ED19E;--pw-tab-inner:#8ED19E}
-[data-pw-theme="psiquico"],pw-card[theme="psiquico"],pw-card-header[theme="psiquico"],pw-tabs[theme="psiquico"],pw-badge[theme="psiquico"],pw-button[theme="psiquico"]{--pw-metal-0:#F2ACC7;--pw-metal-1:#D04C82;--pw-metal-2:#943865;--pw-metal-3:#EE8AB1;--pw-filament:#F5BCD2;--pw-glow:#F1A3C1;--pw-bg-center:#602442;--pw-bg-edge:#29101C;--pw-bg-solid:#2F1220;--pw-ter-bg-center:#43192D;--pw-ter-bg-edge:#1E0B14;--pw-ter-stroke-0:#4A1C32;--pw-ter-stroke-1:#E6588F;--pw-ter-stroke-2:#943865;--pw-ter-stroke-3:#EF92B6;--pw-ter-stroke-4:#762D51;--pw-ter-stroke-5:#D04C82;--pw-tab-fill-bottom:#D04C82;--pw-tab-fill-top:#250E19;--pw-tab-stroke-a:#F2ACC7;--pw-tab-stroke-b:#FADEE9;--pw-tab-drop:#F09BBC;--pw-tab-inner:#F09BBC}
-[data-pw-theme="sombrio"],pw-card[theme="sombrio"],pw-card-header[theme="sombrio"],pw-tabs[theme="sombrio"],pw-badge[theme="sombrio"],pw-button[theme="sombrio"]{--pw-metal-0:#ABAEBA;--pw-metal-1:#424865;--pw-metal-2:#313952;--pw-metal-3:#898D9E;--pw-filament:#BCBEC8;--pw-glow:#A3A5B3;--pw-bg-center:#202535;--pw-bg-edge:#0E1017;--pw-bg-solid:#10121A;--pw-ter-bg-center:#161A25;--pw-ter-bg-edge:#0A0B10;--pw-ter-stroke-0:#181C29;--pw-ter-stroke-1:#575C75;--pw-ter-stroke-2:#313952;--pw-ter-stroke-3:#9295A5;--pw-ter-stroke-4:#272E42;--pw-ter-stroke-5:#424865;--pw-tab-fill-bottom:#424865;--pw-tab-fill-top:#0C0E14;--pw-tab-stroke-a:#ABAEBA;--pw-tab-stroke-b:#DDDEE3;--pw-tab-drop:#9A9DAC;--pw-tab-inner:#9A9DAC}
-[data-pw-theme="terrestre"],pw-card[theme="terrestre"],pw-card-header[theme="terrestre"],pw-tabs[theme="terrestre"],pw-badge[theme="terrestre"],pw-button[theme="terrestre"]{--pw-metal-0:#E8D0B2;--pw-metal-1:#B68C5A;--pw-metal-2:#856846;--pw-metal-3:#E0BD93;--pw-filament:#EDD9C1;--pw-glow:#E6CBAA;--pw-bg-center:#56442E;--pw-bg-edge:#251D14;--pw-bg-solid:#2B2116;--pw-ter-bg-center:#3C2F1F;--pw-ter-bg-edge:#1B150E;--pw-ter-stroke-0:#423423;--pw-ter-stroke-1:#D2A165;--pw-ter-stroke-2:#856846;--pw-ter-stroke-3:#E2C29B;--pw-ter-stroke-4:#6A5338;--pw-ter-stroke-5:#B68C5A;--pw-tab-fill-bottom:#B68C5A;--pw-tab-fill-top:#211A12;--pw-tab-stroke-a:#E8D0B2;--pw-tab-stroke-b:#F6ECE0;--pw-tab-drop:#E4C7A3;--pw-tab-inner:#E4C7A3}
-[data-pw-theme="veneno"],pw-card[theme="veneno"],pw-card-header[theme="veneno"],pw-tabs[theme="veneno"],pw-badge[theme="veneno"],pw-button[theme="veneno"]{--pw-metal-0:#D6AAE0;--pw-metal-1:#9C3CB6;--pw-metal-2:#702F8B;--pw-metal-3:#C589D4;--pw-filament:#DEBBE6;--pw-glow:#D1A2DD;--pw-bg-center:#491F5A;--pw-bg-edge:#1F0D27;--pw-bg-solid:#240F2C;--pw-ter-bg-center:#32153F;--pw-ter-bg-edge:#16091C;--pw-ter-stroke-0:#381846;--pw-ter-stroke-1:#AC56C1;--pw-ter-stroke-2:#702F8B;--pw-ter-stroke-3:#C991D7;--pw-ter-stroke-4:#5A266F;--pw-ter-stroke-5:#9C3CB6;--pw-tab-fill-bottom:#9C3CB6;--pw-tab-fill-top:#1C0C23;--pw-tab-stroke-a:#D6AAE0;--pw-tab-stroke-b:#EEDDF3;--pw-tab-drop:#CD9ADA;--pw-tab-inner:#CD9ADA}
-[data-pw-theme="voador"],pw-card[theme="voador"],pw-card-header[theme="voador"],pw-tabs[theme="voador"],pw-badge[theme="voador"],pw-button[theme="voador"]{--pw-metal-0:#D2CCF2;--pw-metal-1:#9084D6;--pw-metal-2:#645EA0;--pw-metal-3:#C1B8EE;--pw-filament:#DBD6F5;--pw-glow:#CEC7F1;--pw-bg-center:#413D68;--pw-bg-edge:#1C1A2D;--pw-bg-solid:#201E33;--pw-ter-bg-center:#2D2A48;--pw-ter-bg-edge:#141320;--pw-ter-stroke-0:#322F50;--pw-ter-stroke-1:#A699E6;--pw-ter-stroke-2:#645EA0;--pw-ter-stroke-3:#C5BDEF;--pw-ter-stroke-4:#504B80;--pw-ter-stroke-5:#9084D6;--pw-tab-fill-bottom:#9084D6;--pw-tab-fill-top:#191828;--pw-tab-stroke-a:#D2CCF2;--pw-tab-stroke-b:#EDEBFA;--pw-tab-drop:#CAC2F0;--pw-tab-inner:#CAC2F0}
+[data-pw-theme="aco"],pw-card[theme="aco"],pw-card-header[theme="aco"],pw-tabs[theme="aco"],pw-badge[theme="aco"],pw-button[theme="aco"],pw-number[theme="aco"]{--pw-metal-0:#B4CACC;--pw-metal-1:#557F89;--pw-metal-2:#40626E;--pw-metal-3:#95B4B8;--pw-filament:#C3D4D7;--pw-glow:#ACC4C7;--pw-bg-center:#2A4048;--pw-bg-edge:#121B1F;--pw-bg-solid:#141F23;--pw-ter-bg-center:#1D2C31;--pw-ter-bg-edge:#0D1416;--pw-ter-stroke-0:#203137;--pw-ter-stroke-1:#68949A;--pw-ter-stroke-2:#40626E;--pw-ter-stroke-3:#9DB9BD;--pw-ter-stroke-4:#334E58;--pw-ter-stroke-5:#557F89;--pw-tab-fill-bottom:#557F89;--pw-tab-fill-top:#10181C;--pw-tab-stroke-a:#B4CACC;--pw-tab-stroke-b:#E1EAEB;--pw-tab-drop:#A4BFC2;--pw-tab-inner:#A4BFC2}
+[data-pw-theme="agua"],pw-card[theme="agua"],pw-card-header[theme="agua"],pw-tabs[theme="agua"],pw-badge[theme="agua"],pw-button[theme="agua"],pw-number[theme="agua"]{--pw-metal-0:#A3BEF2;--pw-metal-1:#336BD4;--pw-metal-2:#2751A2;--pw-metal-3:#7EA5ED;--pw-filament:#B5CBF5;--pw-glow:#9AB8F1;--pw-bg-center:#193569;--pw-bg-edge:#0B172D;--pw-bg-solid:#0C1A34;--pw-ter-bg-center:#122449;--pw-ter-bg-edge:#081020;--pw-ter-stroke-0:#142851;--pw-ter-stroke-1:#477EE5;--pw-ter-stroke-2:#2751A2;--pw-ter-stroke-3:#87ABEE;--pw-ter-stroke-4:#1F4182;--pw-ter-stroke-5:#336BD4;--pw-tab-fill-bottom:#336BD4;--pw-tab-fill-top:#0A1428;--pw-tab-stroke-a:#A3BEF2;--pw-tab-stroke-b:#DAE5FA;--pw-tab-drop:#91B2EF;--pw-tab-inner:#91B2EF}
+[data-pw-theme="dragao"],pw-card[theme="dragao"],pw-card-header[theme="dragao"],pw-tabs[theme="dragao"],pw-badge[theme="dragao"],pw-button[theme="dragao"],pw-number[theme="dragao"]{--pw-metal-0:#9EB2E0;--pw-metal-1:#2F57B9;--pw-metal-2:#21418C;--pw-metal-3:#7893D4;--pw-filament:#B2C1E6;--pw-glow:#95AADD;--pw-bg-center:#152A5B;--pw-bg-edge:#091227;--pw-bg-solid:#0B152D;--pw-ter-bg-center:#0F1D3F;--pw-ter-bg-edge:#070D1C;--pw-ter-stroke-0:#102046;--pw-ter-stroke-1:#3E65C1;--pw-ter-stroke-2:#21418C;--pw-ter-stroke-3:#829BD7;--pw-ter-stroke-4:#1A3470;--pw-ter-stroke-5:#2F57B9;--pw-tab-fill-bottom:#2F57B9;--pw-tab-fill-top:#081023;--pw-tab-stroke-a:#9EB2E0;--pw-tab-stroke-b:#D8E0F3;--pw-tab-drop:#8BA3DA;--pw-tab-inner:#8BA3DA}
+[data-pw-theme="eletrico"],pw-card[theme="eletrico"],pw-card-header[theme="eletrico"],pw-tabs[theme="eletrico"],pw-badge[theme="eletrico"],pw-button[theme="eletrico"],pw-number[theme="eletrico"]{--pw-metal-0:#F6DE92;--pw-metal-1:#D1A71C;--pw-metal-2:#977C1D;--pw-metal-3:#F2D066;--pw-filament:#F7E4A7;--pw-glow:#F5DA87;--pw-bg-center:#625113;--pw-bg-edge:#2A2308;--pw-bg-solid:#302809;--pw-ter-bg-center:#44380D;--pw-ter-bg-edge:#1E1906;--pw-ter-stroke-0:#4C3E0E;--pw-ter-stroke-1:#ECBC24;--pw-ter-stroke-2:#977C1D;--pw-ter-stroke-3:#F3D371;--pw-ter-stroke-4:#796317;--pw-ter-stroke-5:#D1A71C;--pw-tab-fill-bottom:#D1A71C;--pw-tab-fill-top:#261F07;--pw-tab-stroke-a:#F6DE92;--pw-tab-stroke-b:#FBF2D3;--pw-tab-drop:#F4D77C;--pw-tab-inner:#F4D77C}
+[data-pw-theme="fada"],pw-card[theme="fada"],pw-card-header[theme="fada"],pw-tabs[theme="fada"],pw-badge[theme="fada"],pw-button[theme="fada"],pw-number[theme="fada"]{--pw-metal-0:#F3CADC;--pw-metal-1:#CF7DA3;--pw-metal-2:#955D7D;--pw-metal-3:#EEB6CE;--pw-filament:#F5D5E3;--pw-glow:#F2C5D8;--pw-bg-center:#613C51;--pw-bg-edge:#2A1A23;--pw-bg-solid:#301E28;--pw-ter-bg-center:#432A38;--pw-ter-bg-edge:#1E1319;--pw-ter-stroke-0:#4A2E3E;--pw-ter-stroke-1:#E796B9;--pw-ter-stroke-2:#955D7D;--pw-ter-stroke-3:#EFBBD2;--pw-ter-stroke-4:#774A64;--pw-ter-stroke-5:#CF7DA3;--pw-tab-fill-bottom:#CF7DA3;--pw-tab-fill-top:#25171F;--pw-tab-stroke-a:#F3CADC;--pw-tab-stroke-b:#FAEAF1;--pw-tab-drop:#F1C0D5;--pw-tab-inner:#F1C0D5}
+[data-pw-theme="fantasma"],pw-card[theme="fantasma"],pw-card-header[theme="fantasma"],pw-tabs[theme="fantasma"],pw-badge[theme="fantasma"],pw-button[theme="fantasma"],pw-number[theme="fantasma"]{--pw-metal-0:#C1AFD9;--pw-metal-1:#6B49A1;--pw-metal-2:#4F397D;--pw-metal-3:#A88FCA;--pw-filament:#CDBFE1;--pw-glow:#BBA7D5;--pw-bg-center:#332551;--pw-bg-edge:#161023;--pw-bg-solid:#191228;--pw-ter-bg-center:#241A38;--pw-ter-bg-edge:#100B19;--pw-ter-stroke-0:#281C3E;--pw-ter-stroke-1:#835FB3;--pw-ter-stroke-2:#4F397D;--pw-ter-stroke-3:#AE97CE;--pw-ter-stroke-4:#3F2E64;--pw-ter-stroke-5:#6B49A1;--pw-tab-fill-bottom:#6B49A1;--pw-tab-fill-top:#140E1F;--pw-tab-stroke-a:#C1AFD9;--pw-tab-stroke-b:#E6DFF0;--pw-tab-drop:#B59FD1;--pw-tab-inner:#B59FD1}
+[data-pw-theme="fogo"],pw-card[theme="fogo"],pw-card-header[theme="fogo"],pw-tabs[theme="fogo"],pw-badge[theme="fogo"],pw-button[theme="fogo"],pw-number[theme="fogo"]{--pw-metal-0:#F6BEA2;--pw-metal-1:#D56932;--pw-metal-2:#9B512D;--pw-metal-3:#F2A57C;--pw-filament:#F8CBB4;--pw-glow:#F5B898;--pw-bg-center:#65351D;--pw-bg-edge:#2B170D;--pw-bg-solid:#321A0E;--pw-ter-bg-center:#462414;--pw-ter-bg-edge:#1F1009;--pw-ter-stroke-0:#4E2816;--pw-ter-stroke-1:#ED7E44;--pw-ter-stroke-2:#9B512D;--pw-ter-stroke-3:#F3AB85;--pw-ter-stroke-4:#7C4124;--pw-ter-stroke-5:#D56932;--pw-tab-fill-bottom:#D56932;--pw-tab-fill-top:#27140B;--pw-tab-stroke-a:#F6BEA2;--pw-tab-stroke-b:#FBE5DA;--pw-tab-drop:#F4B28F;--pw-tab-inner:#F4B28F}
+[data-pw-theme="gelo"],pw-card[theme="gelo"],pw-card-header[theme="gelo"],pw-tabs[theme="gelo"],pw-badge[theme="gelo"],pw-button[theme="gelo"],pw-number[theme="gelo"]{--pw-metal-0:#A2E3EE;--pw-metal-1:#33B2CA;--pw-metal-2:#25849A;--pw-metal-3:#7ED8E6;--pw-filament:#B5E9F1;--pw-glow:#99E0EC;--pw-bg-center:#185664;--pw-bg-edge:#0A252B;--pw-bg-solid:#0C2A31;--pw-ter-bg-center:#113B45;--pw-ter-bg-edge:#071A1F;--pw-ter-stroke-0:#12424D;--pw-ter-stroke-1:#46C7DC;--pw-ter-stroke-2:#25849A;--pw-ter-stroke-3:#87DBE8;--pw-ter-stroke-4:#1E6A7B;--pw-ter-stroke-5:#33B2CA;--pw-tab-fill-bottom:#33B2CA;--pw-tab-fill-top:#092126;--pw-tab-stroke-a:#A2E3EE;--pw-tab-stroke-b:#DAF4F8;--pw-tab-drop:#90DDEA;--pw-tab-inner:#90DDEA}
+[data-pw-theme="inseto"],pw-card[theme="inseto"],pw-card-header[theme="inseto"],pw-tabs[theme="inseto"],pw-badge[theme="inseto"],pw-button[theme="inseto"],pw-number[theme="inseto"]{--pw-metal-0:#CBE1A1;--pw-metal-1:#7EAB33;--pw-metal-2:#5A7D2B;--pw-metal-3:#B6D57B;--pw-filament:#D5E7B4;--pw-glow:#C6DE98;--pw-bg-center:#3A511C;--pw-bg-edge:#19230C;--pw-bg-solid:#1D280E;--pw-ter-bg-center:#283813;--pw-ter-bg-edge:#121909;--pw-ter-stroke-0:#2D3E16;--pw-ter-stroke-1:#97C343;--pw-ter-stroke-2:#5A7D2B;--pw-ter-stroke-3:#BBD885;--pw-ter-stroke-4:#486422;--pw-ter-stroke-5:#7EAB33;--pw-tab-fill-bottom:#7EAB33;--pw-tab-fill-top:#161F0B;--pw-tab-stroke-a:#CBE1A1;--pw-tab-stroke-b:#EAF3D9;--pw-tab-drop:#C1DB8E;--pw-tab-inner:#C1DB8E}
+[data-pw-theme="lutador"],pw-card[theme="lutador"],pw-card-header[theme="lutador"],pw-tabs[theme="lutador"],pw-badge[theme="lutador"],pw-button[theme="lutador"],pw-number[theme="lutador"]{--pw-metal-0:#E2A7AC;--pw-metal-1:#B73946;--pw-metal-2:#872D3C;--pw-metal-3:#D6848C;--pw-filament:#E7B9BD;--pw-glow:#DF9EA4;--pw-bg-center:#581D27;--pw-bg-edge:#260D11;--pw-bg-solid:#2B0E13;--pw-ter-bg-center:#3D141B;--pw-ter-bg-edge:#1B090C;--pw-ter-stroke-0:#44161E;--pw-ter-stroke-1:#C44F5A;--pw-ter-stroke-2:#872D3C;--pw-ter-stroke-3:#D98D94;--pw-ter-stroke-4:#6C2430;--pw-ter-stroke-5:#B73946;--pw-tab-fill-bottom:#B73946;--pw-tab-fill-top:#220B0F;--pw-tab-stroke-a:#E2A7AC;--pw-tab-stroke-b:#F3DCDE;--pw-tab-drop:#DC959C;--pw-tab-inner:#DC959C}
+[data-pw-theme="normal"],pw-card[theme="normal"],pw-card-header[theme="normal"],pw-tabs[theme="normal"],pw-badge[theme="normal"],pw-button[theme="normal"],pw-number[theme="normal"]{--pw-metal-0:#DBDAD1;--pw-metal-1:#A0A194;--pw-metal-2:#757773;--pw-metal-3:#CDCBBF;--pw-filament:#E2E1DA;--pw-glow:#D7D6CC;--pw-bg-center:#4C4D4B;--pw-bg-edge:#212120;--pw-bg-solid:#252625;--pw-ter-bg-center:#353634;--pw-ter-bg-edge:#171817;--pw-ter-stroke-0:#3A3C3A;--pw-ter-stroke-1:#B7B5A3;--pw-ter-stroke-2:#757773;--pw-ter-stroke-3:#D0CFC3;--pw-ter-stroke-4:#5E5F5C;--pw-ter-stroke-5:#A0A194;--pw-tab-fill-bottom:#A0A194;--pw-tab-fill-top:#1D1E1D;--pw-tab-stroke-a:#DBDAD1;--pw-tab-stroke-b:#F1F0ED;--pw-tab-drop:#D4D3C8;--pw-tab-inner:#D4D3C8}
+[data-pw-theme="pedra"],pw-card[theme="pedra"],pw-card-header[theme="pedra"],pw-tabs[theme="pedra"],pw-badge[theme="pedra"],pw-button[theme="pedra"],pw-number[theme="pedra"]{--pw-metal-0:#C7B8AA;--pw-metal-1:#785E47;--pw-metal-2:#59493D;--pw-metal-3:#B19C87;--pw-filament:#D2C6BB;--pw-glow:#C1B1A1;--pw-bg-center:#3A2F28;--pw-bg-edge:#191411;--pw-bg-solid:#1C1714;--pw-ter-bg-center:#28211B;--pw-ter-bg-edge:#120F0C;--pw-ter-stroke-0:#2C241E;--pw-ter-stroke-1:#8F7154;--pw-ter-stroke-2:#59493D;--pw-ter-stroke-3:#B6A390;--pw-ter-stroke-4:#473A31;--pw-ter-stroke-5:#785E47;--pw-tab-fill-bottom:#785E47;--pw-tab-fill-top:#16120F;--pw-tab-stroke-a:#C7B8AA;--pw-tab-stroke-b:#E9E3DD;--pw-tab-drop:#BCAA98;--pw-tab-inner:#BCAA98}
+[data-pw-theme="planta"],pw-card[theme="planta"],pw-card-header[theme="planta"],pw-tabs[theme="planta"],pw-badge[theme="planta"],pw-button[theme="planta"],pw-number[theme="planta"]{--pw-metal-0:#A0D8AE;--pw-metal-1:#329D51;--pw-metal-2:#227540;--pw-metal-3:#7BC98E;--pw-filament:#B3E0BF;--pw-glow:#97D5A6;--pw-bg-center:#164C2A;--pw-bg-edge:#0A2112;--pw-bg-solid:#0B2514;--pw-ter-bg-center:#0F351D;--pw-ter-bg-edge:#07170D;--pw-ter-stroke-0:#113A20;--pw-ter-stroke-1:#42B25E;--pw-ter-stroke-2:#227540;--pw-ter-stroke-3:#84CD96;--pw-ter-stroke-4:#1B5E33;--pw-ter-stroke-5:#329D51;--pw-tab-fill-bottom:#329D51;--pw-tab-fill-top:#081D10;--pw-tab-stroke-a:#A0D8AE;--pw-tab-stroke-b:#D9F0DF;--pw-tab-drop:#8ED19E;--pw-tab-inner:#8ED19E}
+[data-pw-theme="psiquico"],pw-card[theme="psiquico"],pw-card-header[theme="psiquico"],pw-tabs[theme="psiquico"],pw-badge[theme="psiquico"],pw-button[theme="psiquico"],pw-number[theme="psiquico"]{--pw-metal-0:#F2ACC7;--pw-metal-1:#D04C82;--pw-metal-2:#943865;--pw-metal-3:#EE8AB1;--pw-filament:#F5BCD2;--pw-glow:#F1A3C1;--pw-bg-center:#602442;--pw-bg-edge:#29101C;--pw-bg-solid:#2F1220;--pw-ter-bg-center:#43192D;--pw-ter-bg-edge:#1E0B14;--pw-ter-stroke-0:#4A1C32;--pw-ter-stroke-1:#E6588F;--pw-ter-stroke-2:#943865;--pw-ter-stroke-3:#EF92B6;--pw-ter-stroke-4:#762D51;--pw-ter-stroke-5:#D04C82;--pw-tab-fill-bottom:#D04C82;--pw-tab-fill-top:#250E19;--pw-tab-stroke-a:#F2ACC7;--pw-tab-stroke-b:#FADEE9;--pw-tab-drop:#F09BBC;--pw-tab-inner:#F09BBC}
+[data-pw-theme="sombrio"],pw-card[theme="sombrio"],pw-card-header[theme="sombrio"],pw-tabs[theme="sombrio"],pw-badge[theme="sombrio"],pw-button[theme="sombrio"],pw-number[theme="sombrio"]{--pw-metal-0:#ABAEBA;--pw-metal-1:#424865;--pw-metal-2:#313952;--pw-metal-3:#898D9E;--pw-filament:#BCBEC8;--pw-glow:#A3A5B3;--pw-bg-center:#202535;--pw-bg-edge:#0E1017;--pw-bg-solid:#10121A;--pw-ter-bg-center:#161A25;--pw-ter-bg-edge:#0A0B10;--pw-ter-stroke-0:#181C29;--pw-ter-stroke-1:#575C75;--pw-ter-stroke-2:#313952;--pw-ter-stroke-3:#9295A5;--pw-ter-stroke-4:#272E42;--pw-ter-stroke-5:#424865;--pw-tab-fill-bottom:#424865;--pw-tab-fill-top:#0C0E14;--pw-tab-stroke-a:#ABAEBA;--pw-tab-stroke-b:#DDDEE3;--pw-tab-drop:#9A9DAC;--pw-tab-inner:#9A9DAC}
+[data-pw-theme="terrestre"],pw-card[theme="terrestre"],pw-card-header[theme="terrestre"],pw-tabs[theme="terrestre"],pw-badge[theme="terrestre"],pw-button[theme="terrestre"],pw-number[theme="terrestre"]{--pw-metal-0:#E8D0B2;--pw-metal-1:#B68C5A;--pw-metal-2:#856846;--pw-metal-3:#E0BD93;--pw-filament:#EDD9C1;--pw-glow:#E6CBAA;--pw-bg-center:#56442E;--pw-bg-edge:#251D14;--pw-bg-solid:#2B2116;--pw-ter-bg-center:#3C2F1F;--pw-ter-bg-edge:#1B150E;--pw-ter-stroke-0:#423423;--pw-ter-stroke-1:#D2A165;--pw-ter-stroke-2:#856846;--pw-ter-stroke-3:#E2C29B;--pw-ter-stroke-4:#6A5338;--pw-ter-stroke-5:#B68C5A;--pw-tab-fill-bottom:#B68C5A;--pw-tab-fill-top:#211A12;--pw-tab-stroke-a:#E8D0B2;--pw-tab-stroke-b:#F6ECE0;--pw-tab-drop:#E4C7A3;--pw-tab-inner:#E4C7A3}
+[data-pw-theme="veneno"],pw-card[theme="veneno"],pw-card-header[theme="veneno"],pw-tabs[theme="veneno"],pw-badge[theme="veneno"],pw-button[theme="veneno"],pw-number[theme="veneno"]{--pw-metal-0:#D6AAE0;--pw-metal-1:#9C3CB6;--pw-metal-2:#702F8B;--pw-metal-3:#C589D4;--pw-filament:#DEBBE6;--pw-glow:#D1A2DD;--pw-bg-center:#491F5A;--pw-bg-edge:#1F0D27;--pw-bg-solid:#240F2C;--pw-ter-bg-center:#32153F;--pw-ter-bg-edge:#16091C;--pw-ter-stroke-0:#381846;--pw-ter-stroke-1:#AC56C1;--pw-ter-stroke-2:#702F8B;--pw-ter-stroke-3:#C991D7;--pw-ter-stroke-4:#5A266F;--pw-ter-stroke-5:#9C3CB6;--pw-tab-fill-bottom:#9C3CB6;--pw-tab-fill-top:#1C0C23;--pw-tab-stroke-a:#D6AAE0;--pw-tab-stroke-b:#EEDDF3;--pw-tab-drop:#CD9ADA;--pw-tab-inner:#CD9ADA}
+[data-pw-theme="voador"],pw-card[theme="voador"],pw-card-header[theme="voador"],pw-tabs[theme="voador"],pw-badge[theme="voador"],pw-button[theme="voador"],pw-number[theme="voador"]{--pw-metal-0:#D2CCF2;--pw-metal-1:#9084D6;--pw-metal-2:#645EA0;--pw-metal-3:#C1B8EE;--pw-filament:#DBD6F5;--pw-glow:#CEC7F1;--pw-bg-center:#413D68;--pw-bg-edge:#1C1A2D;--pw-bg-solid:#201E33;--pw-ter-bg-center:#2D2A48;--pw-ter-bg-edge:#141320;--pw-ter-stroke-0:#322F50;--pw-ter-stroke-1:#A699E6;--pw-ter-stroke-2:#645EA0;--pw-ter-stroke-3:#C5BDEF;--pw-ter-stroke-4:#504B80;--pw-ter-stroke-5:#9084D6;--pw-tab-fill-bottom:#9084D6;--pw-tab-fill-top:#191828;--pw-tab-stroke-a:#D2CCF2;--pw-tab-stroke-b:#EDEBFA;--pw-tab-drop:#CAC2F0;--pw-tab-inner:#CAC2F0}
 
 /* ===================== COMPONENT: pw-element-item ===================== */
 /* item de controle elemental: card tertiary interativo + ícone de tipo + nome */
@@ -486,6 +486,68 @@ pw-button[fx="particles"] :is(.pwbt-ring,.pwbt-sweep){display:none}
 pw-button>button:active{transform:translateY(1px) scale(.99)!important}
 @media (prefers-reduced-motion:reduce){pw-button .pwbt-parts{display:none}pw-button .pwbt-ring{animation:none!important}pw-button .pwbt-sweep::before{animation:none!important}pw-button>button:hover{transform:none!important}}
 @media (prefers-reduced-motion:reduce){pw-button>button{transition:none}pw-button .pwbt-spin{animation-duration:2.4s}}
+
+/* ===================== COMPONENT: pw-number ===================== */
+/* campo numérico com stepper (−/+), botão de máximo opcional; mesmas superfícies do button secondary */
+pw-number{--nh:32px;--nfs:14px;--nw:56px;--ngap:6px;--nrad:6px;--nbtn:var(--nh);
+  display:inline-grid;gap:4px;vertical-align:middle;font-family:var(--pw-font-body)}
+pw-number[size="sm"]{--nh:26px;--nfs:12px;--nw:44px;--ngap:4px;--nrad:5px}
+pw-number[size="lg"]{--nh:40px;--nfs:16px;--nw:68px;--ngap:8px;--nrad:7px}
+pw-number[block]{display:grid}
+pw-number .pwn-label{font-size:12px;font-weight:500;color:color-mix(in srgb,var(--pw-filament) 70%,#fff)}
+pw-number .pwn-label:empty,pw-number .pwn-help:empty{display:none}
+pw-number .pwn-row{display:flex;align-items:center;gap:var(--ngap)}
+pw-number[block] .pwn-field{flex:1;width:auto}
+pw-number .pwn-field{position:relative;display:flex;width:var(--nw);align-items:center;height:var(--nh);min-width:var(--nw);box-sizing:border-box;
+  border-radius:var(--nrad);background:color-mix(in srgb,var(--pw-ter-bg-edge) 85%,#000);
+  border:1px solid color-mix(in srgb,var(--pw-metal-1) 45%,transparent);box-shadow:inset 0 2px 4px rgb(0 0 0 / .4);transition:border-color var(--card-dur),box-shadow var(--card-dur)}
+pw-number .pwn-field:hover{border-color:color-mix(in srgb,var(--pw-metal-1) 70%,transparent)}
+pw-number .pwn-field:focus-within{border-color:var(--pw-filament);box-shadow:inset 0 2px 4px rgb(0 0 0 / .4),0 0 0 2px color-mix(in srgb,var(--pw-filament) 35%,transparent)}
+pw-number .pwn-field input[type]{background:none;border:0;border-radius:0;outline:none}
+pw-number input{all:unset;box-sizing:border-box;width:100%;height:100%;padding:0 8px;text-align:center;font:inherit;font-size:var(--nfs);font-weight:700;
+  color:#fff;font-variant-numeric:tabular-nums;-moz-appearance:textfield;appearance:textfield}
+pw-number[align="start"] input{text-align:left}
+pw-number input::-webkit-outer-spin-button,pw-number input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+pw-number .pwn-affix{flex:none;padding:0 8px;font-size:calc(var(--nfs) - 2px);color:color-mix(in srgb,var(--pw-filament) 65%,#fff);white-space:nowrap}
+pw-number .pwn-affix:empty{display:none}
+pw-number .pwn-affix.pre{padding-right:0}pw-number .pwn-affix.suf{padding-left:0}
+pw-number .pwn-btn{all:unset;box-sizing:border-box;flex:none;display:inline-flex;align-items:center;justify-content:center;height:var(--nh);min-width:var(--nbtn);padding:0 10px;
+  border-radius:var(--nrad);cursor:pointer;user-select:none;font-size:var(--nfs);font-weight:600;line-height:1;white-space:nowrap;
+  color:color-mix(in srgb,var(--pw-filament) 85%,#fff);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--pw-ter-bg-center) 85%,#fff 6%),var(--pw-ter-bg-edge));
+  border:1px solid color-mix(in srgb,var(--pw-metal-1) 55%,transparent);box-shadow:inset 0 1px 0 color-mix(in srgb,var(--pw-filament) 25%,transparent);
+  transition:filter var(--card-dur),transform var(--card-dur)}
+pw-number .pwn-btn.step{padding:0;width:var(--nbtn);font-size:calc(var(--nfs) + 4px);font-weight:500}
+pw-number .pwn-btn:hover{filter:brightness(1.2);border-color:var(--pw-metal-1)}
+pw-number .pwn-btn:active{transform:translateY(1px);filter:brightness(.95)}
+pw-number .pwn-btn:focus-visible{outline:2px solid var(--pw-filament);outline-offset:2px}
+pw-number .pwn-btn[disabled]{opacity:.35;cursor:not-allowed;filter:none;transform:none}
+pw-number .pwn-btn.max[aria-pressed="true"]{border-color:var(--pw-filament);color:#fff}
+pw-number:not([show-max]) .pwn-btn.max{display:none}
+/* layout joined: stepper colado ao campo (um bloco só) */
+pw-number[layout="joined"] .pwn-row{gap:0}
+pw-number[layout="joined"] .pwn-btn.dec{border-radius:var(--nrad) 0 0 var(--nrad);border-right:0}
+pw-number[layout="joined"] .pwn-btn.inc{border-radius:0 var(--nrad) var(--nrad) 0;border-left:0}
+pw-number[layout="joined"] .pwn-field{border-radius:0}
+pw-number[layout="joined"] .pwn-btn.max{margin-left:var(--ngap)}
+/* layout compact: setas empilhadas dentro do campo, à direita */
+pw-number .pwn-arrows{display:none}
+pw-number[layout="compact"] .pwn-btn.step{display:none}
+pw-number[layout="compact"] .pwn-arrows{display:flex;flex-direction:column;align-self:stretch;flex:none;border-left:1px solid color-mix(in srgb,var(--pw-metal-1) 40%,transparent)}
+pw-number[layout="compact"] .pwn-arrows button{all:unset;flex:1;width:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:color-mix(in srgb,var(--pw-filament) 80%,#fff);font-size:8px}
+pw-number[layout="compact"] .pwn-arrows button:hover{background:color-mix(in srgb,var(--pw-filament) 15%,transparent)}
+pw-number[layout="compact"] .pwn-arrows button[disabled]{opacity:.3;cursor:not-allowed}
+pw-number[layout="compact"] .pwn-arrows button+button{border-top:1px solid color-mix(in srgb,var(--pw-metal-1) 40%,transparent)}
+pw-number[layout="compact"] input{padding-left:10px}
+pw-number[layout="compact"] .pwn-field{width:calc(var(--nw) + 18px)}
+pw-number[block][layout="compact"] .pwn-field{width:auto}
+/* estados */
+pw-number[invalid] .pwn-field{border-color:#E25A5A;box-shadow:inset 0 2px 4px rgb(0 0 0 / .4),0 0 0 2px rgb(226 90 90 / .3)}
+pw-number .pwn-help{font-size:11px;color:color-mix(in srgb,var(--pw-filament) 55%,#9aa)}
+pw-number[invalid] .pwn-help{color:#FF9C9C}
+pw-number[disabled]{opacity:.45;pointer-events:none;filter:grayscale(.6)}
+pw-number[readonly] .pwn-btn,pw-number[readonly] .pwn-arrows{display:none}
+pw-number[readonly] .pwn-field{background:transparent;box-shadow:none;border-style:dashed}
 /* @pwds-css-end */
 /* demo content inside cards */
 .k-eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--card-filament)}
@@ -520,6 +582,10 @@ pw-button>button:active{transform:translateY(1px) scale(.99)!important}
   <button type="button" class="comp-btn" data-comp="button" aria-controls="main">Button</button>
   <nav class="sub" data-for="button">
     <a href="#button">Visão geral</a><a href="#button-playground">Playground</a><a href="#button-variantes">Variantes</a><a href="#button-estados">Estados</a><a href="#button-tamanhos">Tamanhos e ícones</a><a href="#button-efeito">Efeito de hover</a><a href="#button-uso">Uso</a>
+  </nav>
+  <button type="button" class="comp-btn" data-comp="number" aria-controls="main">Input Number</button>
+  <nav class="sub" data-for="number">
+    <a href="#number">Visão geral</a><a href="#number-playground">Playground</a><a href="#number-variantes">Variantes</a><a href="#number-uso">Uso</a>
   </nav>
   <button type="button" class="comp-btn" data-comp="badge" aria-controls="main">Badge</button>
   <nav class="sub" data-for="badge">
@@ -1027,6 +1093,79 @@ pw-button>button:active{transform:translateY(1px) scale(.99)!important}
   </ul>
 </section>
 
+<section class="story" id="number" data-c="number">
+  <h2>Visão geral</h2>
+  <div class="canvas"><div class="row" style="gap:28px;align-items:flex-end"><pw-number value="3" min="1" max="7" show-max></pw-number><pw-number value="1" min="1" max="99" layout="joined" label="Quantidade"></pw-number><pw-number value="250000" min="0" step="5000" suffix="SC" label="Preço" layout="compact" style="--nw:140px"></pw-number></div></div>
+  <div class="canvas" data-pw-theme="mewtwo"><div class="row" style="gap:28px;align-items:flex-end"><pw-number value="3" min="1" max="7" show-max></pw-number><pw-number value="1" min="1" max="99" layout="joined" label="Quantidade"></pw-number><pw-number value="250000" min="0" step="5000" suffix="SC" label="Preço" layout="compact" style="--nw:140px"></pw-number></div></div>
+  <div class="canvas" data-pw-theme="mewtwo"><pw-card variant="tertiary" style="width:340px;height:auto"><span class="pw-text-title-sm">Criar Pedra de Fogo Antiga</span><p class="pw-text-body-sm" style="margin:6px 0 14px;color:var(--card-text-muted)">Você tem material para 7.</p><div style="display:grid;gap:10px"><pw-number id="nDemo" value="3" min="1" max="7" show-max block></pw-number><pw-button block icon="craft" id="nDemoBtn">Criar 3 pedras</pw-button></div></pw-card></div>
+</section>
+
+<section class="story" id="number-playground" data-c="number">
+  <h2>Playground</h2>
+  <div class="pg">
+    <form class="ctrls" onsubmit="return false">
+      <label for="npLayout">layout<select id="npLayout"><option>split</option><option>joined</option><option>compact</option></select></label>
+      <label for="npSize">size<select id="npSize"><option>sm</option><option selected>md</option><option>lg</option></select></label>
+      <label for="npVal">value<input id="npVal" type="number" value="3"></label>
+      <label for="npMin">min<input id="npMin" type="number" value="1"></label>
+      <label for="npMax">max (vazio = sem limite)<input id="npMax" type="number" value="7"></label>
+      <label for="npStep">step<input id="npStep" type="number" value="1" min="0.01" step="any"></label>
+      <label class="check" for="npShowMax"><input type="checkbox" id="npShowMax" checked> show-max</label>
+      <label for="npMaxLabel">max-label<input id="npMaxLabel" type="text" value="Máx." maxlength="12"></label>
+      <label for="npLabel">label<input id="npLabel" type="text" value="" maxlength="30"></label>
+      <label for="npHelp">help<input id="npHelp" type="text" value="" maxlength="60"></label>
+      <label for="npPre">prefix<input id="npPre" type="text" value="" maxlength="6"></label>
+      <label for="npSuf">suffix<input id="npSuf" type="text" value="" maxlength="6"></label>
+      <label for="npState">state<select id="npState"><option>default</option><option>invalid</option><option>disabled</option><option>readonly</option></select></label>
+      <label class="check" for="npBlock"><input type="checkbox" id="npBlock"> block</label>
+      <label for="npTheme">theme<select id="npTheme"><option value="">poke world (padrão)</option><option>mewtwo</option></select></label>
+    </form>
+    <div style="display:grid;gap:14px;min-width:0">
+      <div class="canvas" id="npStage" style="min-height:160px;display:grid;place-items:center"></div>
+      <p class="cap" id="npEv" style="margin:0">Evento change: —</p>
+      <pre class="code" id="npCode"></pre>
+      <button class="btn" type="button" id="npCopy">Copiar HTML</button>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="number-variantes" data-c="number">
+  <h2>Variantes</h2>
+  <div class="canvas"><div class="tbl" id="nvT"></div></div>
+  <div class="canvas" data-pw-theme="mewtwo"><div class="tbl" id="nvTM"></div></div>
+</section>
+
+<section class="story" id="number-uso" data-c="number">
+  <h2>Uso</h2>
+  <pre class="code">&lt;pw-number value="3" min="1" max="7" show-max&gt;&lt;/pw-number&gt;
+&lt;pw-number label="Preço" value="250000" min="0" step="5000" suffix="SC" layout="compact"&gt;&lt;/pw-number&gt;
+
+const q = document.querySelector('pw-number');
+q.addEventListener('change', e =&gt; console.log(e.detail.value));
+q.value = 5;</pre>
+  <div class="tbl"><table>
+    <thead><tr><th>Propriedade</th><th>Valores</th><th>Descrição</th></tr></thead>
+    <tbody>
+      <tr><td><code>value</code> · <code>min</code> · <code>max</code> · <code>step</code></td><td>números</td><td>O valor é sempre arredondado ao passo e mantido entre os limites</td></tr>
+      <tr><td><code>layout</code></td><td>split · joined · compact</td><td>Botões separados (como no jogo), colados ao campo, ou setas pequenas dentro do campo</td></tr>
+      <tr><td><code>size</code></td><td>sm · md · lg</td><td>26 / 32 / 40px de altura</td></tr>
+      <tr><td><code>show-max</code> · <code>max-label</code></td><td>booleano · texto</td><td>Botão que preenche o máximo, mostrando o valor: "Máx. (7)"</td></tr>
+      <tr><td><code>label</code> · <code>help</code></td><td>texto</td><td>Rótulo acima e texto de ajuda ou erro abaixo</td></tr>
+      <tr><td><code>prefix</code> · <code>suffix</code></td><td>texto curto</td><td>Unidade dentro do campo: "×", "SC", "%"</td></tr>
+      <tr><td><code>precision</code></td><td>número</td><td>Casas decimais (padrão: as do <code>step</code>)</td></tr>
+      <tr><td><code>invalid</code> · <code>disabled</code> · <code>readonly</code></td><td>booleanos</td><td>Erro (use com <code>help</code>), desativado, só leitura</td></tr>
+      <tr><td><code>block</code> · <code>theme</code></td><td>booleano · tema</td><td>Largura total · tema próprio (vazio herda da tela)</td></tr>
+      <tr><td><code>--nw</code></td><td>px</td><td>Largura mínima do campo</td></tr>
+    </tbody>
+  </table></div>
+  <ul class="rules">
+    <li>Teclado: setas ↑ ↓ mudam um passo, Shift + seta muda dez, Page Up/Down mudam dez, Home e End vão ao mínimo e ao máximo. O campo é um <code>spinbutton</code> acessível.</li>
+    <li>Segurar − ou + repete o passo. Shift + clique muda dez de uma vez.</li>
+    <li>Os botões ficam desativados ao chegar no limite. Digitar fora do limite corrige ao sair do campo.</li>
+    <li>Use <code>split</code> em telas do jogo com espaço; <code>joined</code> em formulários; <code>compact</code> em tabelas e listas densas.</li>
+  </ul>
+</section>
+
 <section class="story" id="badge" data-c="badge">
   <h2>Visão geral</h2>
   <div class="canvas" style="display:grid;gap:18px">
@@ -1226,6 +1365,7 @@ pw-button>button:active{transform:translateY(1px) scale(.99)!important}
     card:['Card','Componente base das janelas, painéis e itens do HUD. O card primário do Figma é a fonte de verdade; todas as variações reutilizam a mesma moldura e trocam só tokens.'],
     type:['Tipografia','Tokens de texto do sistema: Spectral para títulos, Inter para labels, textos complementares e informações maiores.'],
     button:['Button','Botão de ação. O primary usa o metal do tema: dourado no Poke World, rosa e roxo no Mewtwo, o mesmo de-para das bordas. Variantes, estados e tamanhos seguem o Adobe Spectrum.'],
+    number:['Input Number','Campo de quantidade com botões − e +, botão de máximo opcional, limites, passo e unidade. Para craft, compra, venda e troca.'],
     badge:['Badge','Rótulo curto de status ou categoria. Filled ou outline, sete tons, três tamanhos e ícone pequeno opcional à direita. Segue o tema Poke World ou Mewtwo.'],
     element:['Element Item','Item de controle para escolher um elemento: card tertiary interativo com o ícone do tipo e o nome. Cada elemento tem um tema próprio, criado a partir dos fundos da roda de tipos.'],
     icon:['Icon','Ícones de jogo em silhueta sólida, desenhados em SVG numa grade de 24 × 24. Herdam a cor do texto e escalam sem perder leitura.'],
@@ -1586,7 +1726,91 @@ class PWButton extends HTMLElement{
   }
 }
 customElements.define('pw-button',PWButton);
+
+/* ---------- pw-number ---------- */
+class PWNumber extends HTMLElement{
+  static get observedAttributes(){return ['value','min','max','step','label','help','prefix','suffix','disabled','readonly','invalid','max-label','precision']}
+  connectedCallback(){
+    if(!this._init){this._init=true;
+      var id='pwn'+(++uidN);
+      this.innerHTML='<label class="pwn-label" for="'+id+'"></label><div class="pwn-row">'+
+        '<button type="button" class="pwn-btn step dec" tabindex="-1" aria-label="Diminuir">−</button>'+
+        '<span class="pwn-field"><span class="pwn-affix pre"></span><input id="'+id+'" type="text" inputmode="decimal" role="spinbutton" autocomplete="off"><span class="pwn-affix suf"></span>'+
+        '<span class="pwn-arrows"><button type="button" tabindex="-1" class="up" aria-label="Aumentar">▲</button><button type="button" tabindex="-1" class="down" aria-label="Diminuir">▼</button></span></span>'+
+        '<button type="button" class="pwn-btn step inc" tabindex="-1" aria-label="Aumentar">+</button>'+
+        '<button type="button" class="pwn-btn max"></button></div><span class="pwn-help" id="'+id+'-h"></span>';
+      var q=c=>this.querySelector(c);this._in=q('input');this._in.setAttribute('aria-describedby',id+'-h');
+      var hold=(btn,dir)=>{var t,iv;btn.addEventListener('pointerdown',e=>{if(btn.disabled)return;e.preventDefault();this._in.focus();this.stepBy(dir*(e.shiftKey?10:1));
+        t=setTimeout(()=>{iv=setInterval(()=>this.stepBy(dir),60)},400)});
+        ['pointerup','pointerleave','pointercancel'].forEach(ev=>btn.addEventListener(ev,()=>{clearTimeout(t);clearInterval(iv)}))};
+      hold(q('.dec'),-1);hold(q('.inc'),1);hold(q('.pwn-arrows .down'),-1);hold(q('.pwn-arrows .up'),1);
+      q('.max').addEventListener('click',()=>{var m=this._num('max');if(m!=null)this.set(m,true)});
+      this._in.addEventListener('keydown',e=>{var k={ArrowUp:1,ArrowDown:-1,PageUp:10,PageDown:-10}[e.key];
+        if(k){e.preventDefault();this.stepBy(k*(e.shiftKey&&Math.abs(k)===1?10:1))}
+        else if(e.key==='Home'&&this._num('min')!=null){e.preventDefault();this.set(this._num('min'),true)}
+        else if(e.key==='End'&&this._num('max')!=null){e.preventDefault();this.set(this._num('max'),true)}
+        else if(e.key==='Enter'){this._commit()}});
+      this._in.addEventListener('input',()=>{this._in.value=this._in.value.replace(/[^0-9.,\-]/g,'')});
+      this._in.addEventListener('blur',()=>this._commit());
+    }
+    this.attributeChangedCallback();
+  }
+  _num(a){var v=parseFloat(this.getAttribute(a));return isNaN(v)?null:v}
+  get value(){var v=parseFloat(this.getAttribute('value'));return isNaN(v)?(this._num('min')||0):v}
+  set value(v){this.set(v,false)}
+  _clamp(v){var mn=this._num('min'),mx=this._num('max'),st=this._num('step')||1;
+    v=Math.round(v/st)*st;if(mn!=null)v=Math.max(mn,v);if(mx!=null)v=Math.min(mx,v);
+    var p=this._num('precision');if(p==null){p=(String(st).split('.')[1]||'').length}return +v.toFixed(p)}
+  set(v,emit){var nv=this._clamp(v),old=this.value;this.setAttribute('value',nv);
+    if(emit&&nv!==old){this.dispatchEvent(new Event('input',{bubbles:true}));this.dispatchEvent(new CustomEvent('change',{bubbles:true,detail:{value:nv}}))}}
+  stepBy(n){if(this.hasAttribute('disabled')||this.hasAttribute('readonly'))return;this.set(this.value+n*(this._num('step')||1),true)}
+  _commit(){var v=parseFloat(this._in.value.replace(',','.'));if(isNaN(v))v=this.value;this.set(v,true);this._sync()}
+  attributeChangedCallback(){if(this._init)this._sync()}
+  _sync(){
+    var q=c=>this.querySelector(c),v=this.value,mn=this._num('min'),mx=this._num('max');
+    if(document.activeElement!==this._in||this._in.value==='')this._in.value=v;
+    q('.pwn-label').textContent=this.getAttribute('label')||'';q('.pwn-help').textContent=this.getAttribute('help')||'';
+    q('.pre').textContent=this.getAttribute('prefix')||'';q('.suf').textContent=this.getAttribute('suffix')||'';
+    var ml=this.getAttribute('max-label');q('.max').textContent=(ml||'Máx.')+(mx!=null?' ('+mx+')':'');
+    q('.max').setAttribute('aria-pressed',mx!=null&&v>=mx?'true':'false');
+    var dis=this.hasAttribute('disabled'),ro=this.hasAttribute('readonly');
+    this._in.disabled=dis;this._in.readOnly=ro;
+    q('.dec').disabled=q('.pwn-arrows .down').disabled=dis||(mn!=null&&v<=mn);
+    q('.inc').disabled=q('.pwn-arrows .up').disabled=q('.max').disabled=dis||(mx!=null&&v>=mx);
+    this._in.setAttribute('aria-valuenow',v);mn!=null?this._in.setAttribute('aria-valuemin',mn):this._in.removeAttribute('aria-valuemin');
+    mx!=null?this._in.setAttribute('aria-valuemax',mx):this._in.removeAttribute('aria-valuemax');
+    this.hasAttribute('invalid')?this._in.setAttribute('aria-invalid','true'):this._in.removeAttribute('aria-invalid');
+    if(!this.getAttribute('label'))this._in.setAttribute('aria-label',this.getAttribute('aria-label')||'Quantidade');else this._in.removeAttribute('aria-label');
+  }
+}
+customElements.define('pw-number',PWNumber);
 /* @pwds-js-end */
+(function(){
+  var g=id=>document.getElementById(id);
+  var nd=g('nDemo');nd.addEventListener('change',function(){var v=nd.value;g('nDemoBtn').querySelector('.pwbt-label').textContent='Criar '+v+(v>1?' pedras':' pedra')});
+  var IDS=['npLayout','npSize','npVal','npMin','npMax','npStep','npShowMax','npMaxLabel','npLabel','npHelp','npPre','npSuf','npState','npBlock','npTheme'];
+  function np(){
+    var lay=g('npLayout').value,sz=g('npSize').value,st=g('npState').value,a=[];
+    a.push('value="'+g('npVal').value+'"');if(g('npMin').value!=='')a.push('min="'+g('npMin').value+'"');if(g('npMax').value!=='')a.push('max="'+g('npMax').value+'"');
+    if(g('npStep').value&&+g('npStep').value!==1)a.push('step="'+g('npStep').value+'"');
+    if(lay!=='split')a.push('layout="'+lay+'"');if(sz!=='md')a.push('size="'+sz+'"');
+    if(g('npShowMax').checked)a.push('show-max');if(g('npMaxLabel').value&&g('npMaxLabel').value!=='Máx.')a.push('max-label="'+g('npMaxLabel').value+'"');
+    ['npLabel:label','npHelp:help','npPre:prefix','npSuf:suffix'].forEach(x=>{var p=x.split(':'),v=g(p[0]).value;if(v)a.push(p[1]+'="'+v.replace(/"/g,'&quot;')+'"')});
+    if(st==='invalid'&&!g('npHelp').value)a.push('help="Você só tem material para 7"');
+    if(st!=='default')a.push(st);if(g('npBlock').checked)a.push('block');if(g('npTheme').value)a.push('theme="'+g('npTheme').value+'"');
+    g('npStage').innerHTML='<pw-number '+a.join(' ')+'></pw-number>';g('npStage').style.justifyItems=g('npBlock').checked?'stretch':'center';
+    g('npStage').firstChild.addEventListener('change',e=>{g('npEv').textContent='Evento change: value = '+e.detail.value;g('npVal').value=e.detail.value});
+    g('npCode').textContent='<pw-number '+a.join(' ')+'></pw-number>';
+  }
+  IDS.forEach(id=>g(id).addEventListener(g(id).tagName==='SELECT'||g(id).type==='checkbox'?'change':'input',np));
+  g('npCopy').addEventListener('click',function(){var b=this;navigator.clipboard.writeText(g('npCode').textContent).then(()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar HTML',1400)}).catch(()=>{var r=document.createRange();r.selectNodeContents(g('npCode'));var s=getSelection();s.removeAllRanges();s.addRange(r)})});
+  np();
+  var R=[['split','value="3" min="1" max="7" show-max'],['joined','layout="joined" value="3" min="1" max="7" show-max'],['compact','layout="compact" value="3" min="1" max="7"'],
+   ['com label e unidade','layout="joined" label="Quantidade" suffix="×" value="3" min="1" max="7"'],['invalid','value="9" min="1" max="99" invalid help="Você só tem material para 7"'],
+   ['no limite (máx.)','value="7" min="1" max="7" show-max'],['disabled','value="3" min="1" max="7" show-max disabled'],['readonly','value="3" readonly suffix="×"']];
+  function t(title){return '<table><thead><tr><th>'+title+'</th><th>sm</th><th>md</th><th>lg</th></tr></thead><tbody>'+R.map(r=>'<tr><td><code>'+r[0]+'</code></td>'+['sm','md','lg'].map(z=>'<td><pw-number size="'+z+'" '+r[1]+'></pw-number></td>').join('')+'</tr>').join('')+'</tbody></table>'}
+  g('nvT').innerHTML=t('Poke World');g('nvTM').innerHTML=t('Mewtwo');
+})();
 (function(){
   var g=id=>document.getElementById(id);
   var IC=['','boost','craft','limit-break','check','close','warning'].concat(Object.keys(PW_TYPE_LABEL));
