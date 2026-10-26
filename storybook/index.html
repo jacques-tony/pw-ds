@@ -156,13 +156,13 @@ ul.rules{margin:0;padding-left:18px;display:grid;gap:6px;max-width:75ch}
 .pw-text-overline{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase}
 /* ===================== COMPONENT: pw-card ===================== */
 /* temas: em qualquer ancestral (data-pw-theme) ou no próprio card (theme) */
-[data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"]{
+[data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"],pw-badge[theme="mewtwo"]{
   --pw-metal-0:#E5A3FF;--pw-metal-1:#AA46D1;--pw-metal-2:#A638BC;--pw-metal-3:#EA83FA;
   --pw-filament:#FDA3FF;--pw-glow:#FDA3FF;
   --pw-bg-center:#540061;--pw-bg-edge:#2F0539;--pw-bg-solid:#2F0539;
   --pw-ter-bg-center:#32003E;--pw-ter-bg-edge:#250023;
   --pw-ter-stroke-0:#3C003D;--pw-ter-stroke-1:#970A99;--pw-ter-stroke-2:#69036B;
-  --pw-ter-stroke-3:#C40DB8;--pw-ter-stroke-4:#720563;--pw-ter-stroke-5:#BF15AE;
+  --pw-ter-stroke-3:#C40DB8;--pw-ter-stroke-4:#720563;--pw-ter-stroke-5:#BF15AE;--pw-on-metal:#FFFFFF;
   --pw-tab-fill-bottom:#9300B0;--pw-tab-fill-top:#001938;
   --pw-tab-stroke-a:#FD9DFF;--pw-tab-stroke-b:#F7D5FF;
   --pw-tab-drop:#F29DFF;--pw-tab-inner:#F29DFF;--pw-tab-text-idle:#FFFFFF}
@@ -280,24 +280,24 @@ pw-tab[disabled],pw-tab[state="disabled"]{opacity:.38;cursor:not-allowed;--drop-
 @media (prefers-reduced-motion:reduce){pw-card,pw-card *{transition:none!important}pw-card{--lift:0px!important}}
 
 /* ===== temas elementais (gerados a partir dos fundos da roda de tipos: escuro, médio e claro de cada pétala) ===== */
-[data-pw-theme="aco"],pw-card[theme="aco"],pw-card-header[theme="aco"],pw-tabs[theme="aco"],pw-element-item[theme="aco"]{--pw-metal-0:#B4CACC;--pw-metal-1:#557F89;--pw-metal-2:#40626E;--pw-metal-3:#95B4B8;--pw-filament:#C3D4D7;--pw-glow:#ACC4C7;--pw-bg-center:#2A4048;--pw-bg-edge:#121B1F;--pw-bg-solid:#141F23;--pw-ter-bg-center:#1D2C31;--pw-ter-bg-edge:#0D1416;--pw-ter-stroke-0:#203137;--pw-ter-stroke-1:#68949A;--pw-ter-stroke-2:#40626E;--pw-ter-stroke-3:#9DB9BD;--pw-ter-stroke-4:#334E58;--pw-ter-stroke-5:#557F89;--pw-tab-fill-bottom:#557F89;--pw-tab-fill-top:#10181C;--pw-tab-stroke-a:#B4CACC;--pw-tab-stroke-b:#E1EAEB;--pw-tab-drop:#A4BFC2;--pw-tab-inner:#A4BFC2}
-[data-pw-theme="agua"],pw-card[theme="agua"],pw-card-header[theme="agua"],pw-tabs[theme="agua"],pw-element-item[theme="agua"]{--pw-metal-0:#A3BEF2;--pw-metal-1:#336BD4;--pw-metal-2:#2751A2;--pw-metal-3:#7EA5ED;--pw-filament:#B5CBF5;--pw-glow:#9AB8F1;--pw-bg-center:#193569;--pw-bg-edge:#0B172D;--pw-bg-solid:#0C1A34;--pw-ter-bg-center:#122449;--pw-ter-bg-edge:#081020;--pw-ter-stroke-0:#142851;--pw-ter-stroke-1:#477EE5;--pw-ter-stroke-2:#2751A2;--pw-ter-stroke-3:#87ABEE;--pw-ter-stroke-4:#1F4182;--pw-ter-stroke-5:#336BD4;--pw-tab-fill-bottom:#336BD4;--pw-tab-fill-top:#0A1428;--pw-tab-stroke-a:#A3BEF2;--pw-tab-stroke-b:#DAE5FA;--pw-tab-drop:#91B2EF;--pw-tab-inner:#91B2EF}
-[data-pw-theme="dragao"],pw-card[theme="dragao"],pw-card-header[theme="dragao"],pw-tabs[theme="dragao"],pw-element-item[theme="dragao"]{--pw-metal-0:#9EB2E0;--pw-metal-1:#2F57B9;--pw-metal-2:#21418C;--pw-metal-3:#7893D4;--pw-filament:#B2C1E6;--pw-glow:#95AADD;--pw-bg-center:#152A5B;--pw-bg-edge:#091227;--pw-bg-solid:#0B152D;--pw-ter-bg-center:#0F1D3F;--pw-ter-bg-edge:#070D1C;--pw-ter-stroke-0:#102046;--pw-ter-stroke-1:#3E65C1;--pw-ter-stroke-2:#21418C;--pw-ter-stroke-3:#829BD7;--pw-ter-stroke-4:#1A3470;--pw-ter-stroke-5:#2F57B9;--pw-tab-fill-bottom:#2F57B9;--pw-tab-fill-top:#081023;--pw-tab-stroke-a:#9EB2E0;--pw-tab-stroke-b:#D8E0F3;--pw-tab-drop:#8BA3DA;--pw-tab-inner:#8BA3DA}
-[data-pw-theme="eletrico"],pw-card[theme="eletrico"],pw-card-header[theme="eletrico"],pw-tabs[theme="eletrico"],pw-element-item[theme="eletrico"]{--pw-metal-0:#F6DE92;--pw-metal-1:#D1A71C;--pw-metal-2:#977C1D;--pw-metal-3:#F2D066;--pw-filament:#F7E4A7;--pw-glow:#F5DA87;--pw-bg-center:#625113;--pw-bg-edge:#2A2308;--pw-bg-solid:#302809;--pw-ter-bg-center:#44380D;--pw-ter-bg-edge:#1E1906;--pw-ter-stroke-0:#4C3E0E;--pw-ter-stroke-1:#ECBC24;--pw-ter-stroke-2:#977C1D;--pw-ter-stroke-3:#F3D371;--pw-ter-stroke-4:#796317;--pw-ter-stroke-5:#D1A71C;--pw-tab-fill-bottom:#D1A71C;--pw-tab-fill-top:#261F07;--pw-tab-stroke-a:#F6DE92;--pw-tab-stroke-b:#FBF2D3;--pw-tab-drop:#F4D77C;--pw-tab-inner:#F4D77C}
-[data-pw-theme="fada"],pw-card[theme="fada"],pw-card-header[theme="fada"],pw-tabs[theme="fada"],pw-element-item[theme="fada"]{--pw-metal-0:#F3CADC;--pw-metal-1:#CF7DA3;--pw-metal-2:#955D7D;--pw-metal-3:#EEB6CE;--pw-filament:#F5D5E3;--pw-glow:#F2C5D8;--pw-bg-center:#613C51;--pw-bg-edge:#2A1A23;--pw-bg-solid:#301E28;--pw-ter-bg-center:#432A38;--pw-ter-bg-edge:#1E1319;--pw-ter-stroke-0:#4A2E3E;--pw-ter-stroke-1:#E796B9;--pw-ter-stroke-2:#955D7D;--pw-ter-stroke-3:#EFBBD2;--pw-ter-stroke-4:#774A64;--pw-ter-stroke-5:#CF7DA3;--pw-tab-fill-bottom:#CF7DA3;--pw-tab-fill-top:#25171F;--pw-tab-stroke-a:#F3CADC;--pw-tab-stroke-b:#FAEAF1;--pw-tab-drop:#F1C0D5;--pw-tab-inner:#F1C0D5}
-[data-pw-theme="fantasma"],pw-card[theme="fantasma"],pw-card-header[theme="fantasma"],pw-tabs[theme="fantasma"],pw-element-item[theme="fantasma"]{--pw-metal-0:#C1AFD9;--pw-metal-1:#6B49A1;--pw-metal-2:#4F397D;--pw-metal-3:#A88FCA;--pw-filament:#CDBFE1;--pw-glow:#BBA7D5;--pw-bg-center:#332551;--pw-bg-edge:#161023;--pw-bg-solid:#191228;--pw-ter-bg-center:#241A38;--pw-ter-bg-edge:#100B19;--pw-ter-stroke-0:#281C3E;--pw-ter-stroke-1:#835FB3;--pw-ter-stroke-2:#4F397D;--pw-ter-stroke-3:#AE97CE;--pw-ter-stroke-4:#3F2E64;--pw-ter-stroke-5:#6B49A1;--pw-tab-fill-bottom:#6B49A1;--pw-tab-fill-top:#140E1F;--pw-tab-stroke-a:#C1AFD9;--pw-tab-stroke-b:#E6DFF0;--pw-tab-drop:#B59FD1;--pw-tab-inner:#B59FD1}
-[data-pw-theme="fogo"],pw-card[theme="fogo"],pw-card-header[theme="fogo"],pw-tabs[theme="fogo"],pw-element-item[theme="fogo"]{--pw-metal-0:#F6BEA2;--pw-metal-1:#D56932;--pw-metal-2:#9B512D;--pw-metal-3:#F2A57C;--pw-filament:#F8CBB4;--pw-glow:#F5B898;--pw-bg-center:#65351D;--pw-bg-edge:#2B170D;--pw-bg-solid:#321A0E;--pw-ter-bg-center:#462414;--pw-ter-bg-edge:#1F1009;--pw-ter-stroke-0:#4E2816;--pw-ter-stroke-1:#ED7E44;--pw-ter-stroke-2:#9B512D;--pw-ter-stroke-3:#F3AB85;--pw-ter-stroke-4:#7C4124;--pw-ter-stroke-5:#D56932;--pw-tab-fill-bottom:#D56932;--pw-tab-fill-top:#27140B;--pw-tab-stroke-a:#F6BEA2;--pw-tab-stroke-b:#FBE5DA;--pw-tab-drop:#F4B28F;--pw-tab-inner:#F4B28F}
-[data-pw-theme="gelo"],pw-card[theme="gelo"],pw-card-header[theme="gelo"],pw-tabs[theme="gelo"],pw-element-item[theme="gelo"]{--pw-metal-0:#A2E3EE;--pw-metal-1:#33B2CA;--pw-metal-2:#25849A;--pw-metal-3:#7ED8E6;--pw-filament:#B5E9F1;--pw-glow:#99E0EC;--pw-bg-center:#185664;--pw-bg-edge:#0A252B;--pw-bg-solid:#0C2A31;--pw-ter-bg-center:#113B45;--pw-ter-bg-edge:#071A1F;--pw-ter-stroke-0:#12424D;--pw-ter-stroke-1:#46C7DC;--pw-ter-stroke-2:#25849A;--pw-ter-stroke-3:#87DBE8;--pw-ter-stroke-4:#1E6A7B;--pw-ter-stroke-5:#33B2CA;--pw-tab-fill-bottom:#33B2CA;--pw-tab-fill-top:#092126;--pw-tab-stroke-a:#A2E3EE;--pw-tab-stroke-b:#DAF4F8;--pw-tab-drop:#90DDEA;--pw-tab-inner:#90DDEA}
-[data-pw-theme="inseto"],pw-card[theme="inseto"],pw-card-header[theme="inseto"],pw-tabs[theme="inseto"],pw-element-item[theme="inseto"]{--pw-metal-0:#CBE1A1;--pw-metal-1:#7EAB33;--pw-metal-2:#5A7D2B;--pw-metal-3:#B6D57B;--pw-filament:#D5E7B4;--pw-glow:#C6DE98;--pw-bg-center:#3A511C;--pw-bg-edge:#19230C;--pw-bg-solid:#1D280E;--pw-ter-bg-center:#283813;--pw-ter-bg-edge:#121909;--pw-ter-stroke-0:#2D3E16;--pw-ter-stroke-1:#97C343;--pw-ter-stroke-2:#5A7D2B;--pw-ter-stroke-3:#BBD885;--pw-ter-stroke-4:#486422;--pw-ter-stroke-5:#7EAB33;--pw-tab-fill-bottom:#7EAB33;--pw-tab-fill-top:#161F0B;--pw-tab-stroke-a:#CBE1A1;--pw-tab-stroke-b:#EAF3D9;--pw-tab-drop:#C1DB8E;--pw-tab-inner:#C1DB8E}
-[data-pw-theme="lutador"],pw-card[theme="lutador"],pw-card-header[theme="lutador"],pw-tabs[theme="lutador"],pw-element-item[theme="lutador"]{--pw-metal-0:#E2A7AC;--pw-metal-1:#B73946;--pw-metal-2:#872D3C;--pw-metal-3:#D6848C;--pw-filament:#E7B9BD;--pw-glow:#DF9EA4;--pw-bg-center:#581D27;--pw-bg-edge:#260D11;--pw-bg-solid:#2B0E13;--pw-ter-bg-center:#3D141B;--pw-ter-bg-edge:#1B090C;--pw-ter-stroke-0:#44161E;--pw-ter-stroke-1:#C44F5A;--pw-ter-stroke-2:#872D3C;--pw-ter-stroke-3:#D98D94;--pw-ter-stroke-4:#6C2430;--pw-ter-stroke-5:#B73946;--pw-tab-fill-bottom:#B73946;--pw-tab-fill-top:#220B0F;--pw-tab-stroke-a:#E2A7AC;--pw-tab-stroke-b:#F3DCDE;--pw-tab-drop:#DC959C;--pw-tab-inner:#DC959C}
-[data-pw-theme="normal"],pw-card[theme="normal"],pw-card-header[theme="normal"],pw-tabs[theme="normal"],pw-element-item[theme="normal"]{--pw-metal-0:#DBDAD1;--pw-metal-1:#A0A194;--pw-metal-2:#757773;--pw-metal-3:#CDCBBF;--pw-filament:#E2E1DA;--pw-glow:#D7D6CC;--pw-bg-center:#4C4D4B;--pw-bg-edge:#212120;--pw-bg-solid:#252625;--pw-ter-bg-center:#353634;--pw-ter-bg-edge:#171817;--pw-ter-stroke-0:#3A3C3A;--pw-ter-stroke-1:#B7B5A3;--pw-ter-stroke-2:#757773;--pw-ter-stroke-3:#D0CFC3;--pw-ter-stroke-4:#5E5F5C;--pw-ter-stroke-5:#A0A194;--pw-tab-fill-bottom:#A0A194;--pw-tab-fill-top:#1D1E1D;--pw-tab-stroke-a:#DBDAD1;--pw-tab-stroke-b:#F1F0ED;--pw-tab-drop:#D4D3C8;--pw-tab-inner:#D4D3C8}
-[data-pw-theme="pedra"],pw-card[theme="pedra"],pw-card-header[theme="pedra"],pw-tabs[theme="pedra"],pw-element-item[theme="pedra"]{--pw-metal-0:#C7B8AA;--pw-metal-1:#785E47;--pw-metal-2:#59493D;--pw-metal-3:#B19C87;--pw-filament:#D2C6BB;--pw-glow:#C1B1A1;--pw-bg-center:#3A2F28;--pw-bg-edge:#191411;--pw-bg-solid:#1C1714;--pw-ter-bg-center:#28211B;--pw-ter-bg-edge:#120F0C;--pw-ter-stroke-0:#2C241E;--pw-ter-stroke-1:#8F7154;--pw-ter-stroke-2:#59493D;--pw-ter-stroke-3:#B6A390;--pw-ter-stroke-4:#473A31;--pw-ter-stroke-5:#785E47;--pw-tab-fill-bottom:#785E47;--pw-tab-fill-top:#16120F;--pw-tab-stroke-a:#C7B8AA;--pw-tab-stroke-b:#E9E3DD;--pw-tab-drop:#BCAA98;--pw-tab-inner:#BCAA98}
-[data-pw-theme="planta"],pw-card[theme="planta"],pw-card-header[theme="planta"],pw-tabs[theme="planta"],pw-element-item[theme="planta"]{--pw-metal-0:#A0D8AE;--pw-metal-1:#329D51;--pw-metal-2:#227540;--pw-metal-3:#7BC98E;--pw-filament:#B3E0BF;--pw-glow:#97D5A6;--pw-bg-center:#164C2A;--pw-bg-edge:#0A2112;--pw-bg-solid:#0B2514;--pw-ter-bg-center:#0F351D;--pw-ter-bg-edge:#07170D;--pw-ter-stroke-0:#113A20;--pw-ter-stroke-1:#42B25E;--pw-ter-stroke-2:#227540;--pw-ter-stroke-3:#84CD96;--pw-ter-stroke-4:#1B5E33;--pw-ter-stroke-5:#329D51;--pw-tab-fill-bottom:#329D51;--pw-tab-fill-top:#081D10;--pw-tab-stroke-a:#A0D8AE;--pw-tab-stroke-b:#D9F0DF;--pw-tab-drop:#8ED19E;--pw-tab-inner:#8ED19E}
-[data-pw-theme="psiquico"],pw-card[theme="psiquico"],pw-card-header[theme="psiquico"],pw-tabs[theme="psiquico"],pw-element-item[theme="psiquico"]{--pw-metal-0:#F2ACC7;--pw-metal-1:#D04C82;--pw-metal-2:#943865;--pw-metal-3:#EE8AB1;--pw-filament:#F5BCD2;--pw-glow:#F1A3C1;--pw-bg-center:#602442;--pw-bg-edge:#29101C;--pw-bg-solid:#2F1220;--pw-ter-bg-center:#43192D;--pw-ter-bg-edge:#1E0B14;--pw-ter-stroke-0:#4A1C32;--pw-ter-stroke-1:#E6588F;--pw-ter-stroke-2:#943865;--pw-ter-stroke-3:#EF92B6;--pw-ter-stroke-4:#762D51;--pw-ter-stroke-5:#D04C82;--pw-tab-fill-bottom:#D04C82;--pw-tab-fill-top:#250E19;--pw-tab-stroke-a:#F2ACC7;--pw-tab-stroke-b:#FADEE9;--pw-tab-drop:#F09BBC;--pw-tab-inner:#F09BBC}
-[data-pw-theme="sombrio"],pw-card[theme="sombrio"],pw-card-header[theme="sombrio"],pw-tabs[theme="sombrio"],pw-element-item[theme="sombrio"]{--pw-metal-0:#ABAEBA;--pw-metal-1:#424865;--pw-metal-2:#313952;--pw-metal-3:#898D9E;--pw-filament:#BCBEC8;--pw-glow:#A3A5B3;--pw-bg-center:#202535;--pw-bg-edge:#0E1017;--pw-bg-solid:#10121A;--pw-ter-bg-center:#161A25;--pw-ter-bg-edge:#0A0B10;--pw-ter-stroke-0:#181C29;--pw-ter-stroke-1:#575C75;--pw-ter-stroke-2:#313952;--pw-ter-stroke-3:#9295A5;--pw-ter-stroke-4:#272E42;--pw-ter-stroke-5:#424865;--pw-tab-fill-bottom:#424865;--pw-tab-fill-top:#0C0E14;--pw-tab-stroke-a:#ABAEBA;--pw-tab-stroke-b:#DDDEE3;--pw-tab-drop:#9A9DAC;--pw-tab-inner:#9A9DAC}
-[data-pw-theme="terrestre"],pw-card[theme="terrestre"],pw-card-header[theme="terrestre"],pw-tabs[theme="terrestre"],pw-element-item[theme="terrestre"]{--pw-metal-0:#E8D0B2;--pw-metal-1:#B68C5A;--pw-metal-2:#856846;--pw-metal-3:#E0BD93;--pw-filament:#EDD9C1;--pw-glow:#E6CBAA;--pw-bg-center:#56442E;--pw-bg-edge:#251D14;--pw-bg-solid:#2B2116;--pw-ter-bg-center:#3C2F1F;--pw-ter-bg-edge:#1B150E;--pw-ter-stroke-0:#423423;--pw-ter-stroke-1:#D2A165;--pw-ter-stroke-2:#856846;--pw-ter-stroke-3:#E2C29B;--pw-ter-stroke-4:#6A5338;--pw-ter-stroke-5:#B68C5A;--pw-tab-fill-bottom:#B68C5A;--pw-tab-fill-top:#211A12;--pw-tab-stroke-a:#E8D0B2;--pw-tab-stroke-b:#F6ECE0;--pw-tab-drop:#E4C7A3;--pw-tab-inner:#E4C7A3}
-[data-pw-theme="veneno"],pw-card[theme="veneno"],pw-card-header[theme="veneno"],pw-tabs[theme="veneno"],pw-element-item[theme="veneno"]{--pw-metal-0:#D6AAE0;--pw-metal-1:#9C3CB6;--pw-metal-2:#702F8B;--pw-metal-3:#C589D4;--pw-filament:#DEBBE6;--pw-glow:#D1A2DD;--pw-bg-center:#491F5A;--pw-bg-edge:#1F0D27;--pw-bg-solid:#240F2C;--pw-ter-bg-center:#32153F;--pw-ter-bg-edge:#16091C;--pw-ter-stroke-0:#381846;--pw-ter-stroke-1:#AC56C1;--pw-ter-stroke-2:#702F8B;--pw-ter-stroke-3:#C991D7;--pw-ter-stroke-4:#5A266F;--pw-ter-stroke-5:#9C3CB6;--pw-tab-fill-bottom:#9C3CB6;--pw-tab-fill-top:#1C0C23;--pw-tab-stroke-a:#D6AAE0;--pw-tab-stroke-b:#EEDDF3;--pw-tab-drop:#CD9ADA;--pw-tab-inner:#CD9ADA}
-[data-pw-theme="voador"],pw-card[theme="voador"],pw-card-header[theme="voador"],pw-tabs[theme="voador"],pw-element-item[theme="voador"]{--pw-metal-0:#D2CCF2;--pw-metal-1:#9084D6;--pw-metal-2:#645EA0;--pw-metal-3:#C1B8EE;--pw-filament:#DBD6F5;--pw-glow:#CEC7F1;--pw-bg-center:#413D68;--pw-bg-edge:#1C1A2D;--pw-bg-solid:#201E33;--pw-ter-bg-center:#2D2A48;--pw-ter-bg-edge:#141320;--pw-ter-stroke-0:#322F50;--pw-ter-stroke-1:#A699E6;--pw-ter-stroke-2:#645EA0;--pw-ter-stroke-3:#C5BDEF;--pw-ter-stroke-4:#504B80;--pw-ter-stroke-5:#9084D6;--pw-tab-fill-bottom:#9084D6;--pw-tab-fill-top:#191828;--pw-tab-stroke-a:#D2CCF2;--pw-tab-stroke-b:#EDEBFA;--pw-tab-drop:#CAC2F0;--pw-tab-inner:#CAC2F0}
+[data-pw-theme="aco"],pw-card[theme="aco"],pw-card-header[theme="aco"],pw-tabs[theme="aco"],pw-badge[theme="aco"]{--pw-metal-0:#B4CACC;--pw-metal-1:#557F89;--pw-metal-2:#40626E;--pw-metal-3:#95B4B8;--pw-filament:#C3D4D7;--pw-glow:#ACC4C7;--pw-bg-center:#2A4048;--pw-bg-edge:#121B1F;--pw-bg-solid:#141F23;--pw-ter-bg-center:#1D2C31;--pw-ter-bg-edge:#0D1416;--pw-ter-stroke-0:#203137;--pw-ter-stroke-1:#68949A;--pw-ter-stroke-2:#40626E;--pw-ter-stroke-3:#9DB9BD;--pw-ter-stroke-4:#334E58;--pw-ter-stroke-5:#557F89;--pw-tab-fill-bottom:#557F89;--pw-tab-fill-top:#10181C;--pw-tab-stroke-a:#B4CACC;--pw-tab-stroke-b:#E1EAEB;--pw-tab-drop:#A4BFC2;--pw-tab-inner:#A4BFC2}
+[data-pw-theme="agua"],pw-card[theme="agua"],pw-card-header[theme="agua"],pw-tabs[theme="agua"],pw-badge[theme="agua"]{--pw-metal-0:#A3BEF2;--pw-metal-1:#336BD4;--pw-metal-2:#2751A2;--pw-metal-3:#7EA5ED;--pw-filament:#B5CBF5;--pw-glow:#9AB8F1;--pw-bg-center:#193569;--pw-bg-edge:#0B172D;--pw-bg-solid:#0C1A34;--pw-ter-bg-center:#122449;--pw-ter-bg-edge:#081020;--pw-ter-stroke-0:#142851;--pw-ter-stroke-1:#477EE5;--pw-ter-stroke-2:#2751A2;--pw-ter-stroke-3:#87ABEE;--pw-ter-stroke-4:#1F4182;--pw-ter-stroke-5:#336BD4;--pw-tab-fill-bottom:#336BD4;--pw-tab-fill-top:#0A1428;--pw-tab-stroke-a:#A3BEF2;--pw-tab-stroke-b:#DAE5FA;--pw-tab-drop:#91B2EF;--pw-tab-inner:#91B2EF}
+[data-pw-theme="dragao"],pw-card[theme="dragao"],pw-card-header[theme="dragao"],pw-tabs[theme="dragao"],pw-badge[theme="dragao"]{--pw-metal-0:#9EB2E0;--pw-metal-1:#2F57B9;--pw-metal-2:#21418C;--pw-metal-3:#7893D4;--pw-filament:#B2C1E6;--pw-glow:#95AADD;--pw-bg-center:#152A5B;--pw-bg-edge:#091227;--pw-bg-solid:#0B152D;--pw-ter-bg-center:#0F1D3F;--pw-ter-bg-edge:#070D1C;--pw-ter-stroke-0:#102046;--pw-ter-stroke-1:#3E65C1;--pw-ter-stroke-2:#21418C;--pw-ter-stroke-3:#829BD7;--pw-ter-stroke-4:#1A3470;--pw-ter-stroke-5:#2F57B9;--pw-tab-fill-bottom:#2F57B9;--pw-tab-fill-top:#081023;--pw-tab-stroke-a:#9EB2E0;--pw-tab-stroke-b:#D8E0F3;--pw-tab-drop:#8BA3DA;--pw-tab-inner:#8BA3DA}
+[data-pw-theme="eletrico"],pw-card[theme="eletrico"],pw-card-header[theme="eletrico"],pw-tabs[theme="eletrico"],pw-badge[theme="eletrico"]{--pw-metal-0:#F6DE92;--pw-metal-1:#D1A71C;--pw-metal-2:#977C1D;--pw-metal-3:#F2D066;--pw-filament:#F7E4A7;--pw-glow:#F5DA87;--pw-bg-center:#625113;--pw-bg-edge:#2A2308;--pw-bg-solid:#302809;--pw-ter-bg-center:#44380D;--pw-ter-bg-edge:#1E1906;--pw-ter-stroke-0:#4C3E0E;--pw-ter-stroke-1:#ECBC24;--pw-ter-stroke-2:#977C1D;--pw-ter-stroke-3:#F3D371;--pw-ter-stroke-4:#796317;--pw-ter-stroke-5:#D1A71C;--pw-tab-fill-bottom:#D1A71C;--pw-tab-fill-top:#261F07;--pw-tab-stroke-a:#F6DE92;--pw-tab-stroke-b:#FBF2D3;--pw-tab-drop:#F4D77C;--pw-tab-inner:#F4D77C}
+[data-pw-theme="fada"],pw-card[theme="fada"],pw-card-header[theme="fada"],pw-tabs[theme="fada"],pw-badge[theme="fada"]{--pw-metal-0:#F3CADC;--pw-metal-1:#CF7DA3;--pw-metal-2:#955D7D;--pw-metal-3:#EEB6CE;--pw-filament:#F5D5E3;--pw-glow:#F2C5D8;--pw-bg-center:#613C51;--pw-bg-edge:#2A1A23;--pw-bg-solid:#301E28;--pw-ter-bg-center:#432A38;--pw-ter-bg-edge:#1E1319;--pw-ter-stroke-0:#4A2E3E;--pw-ter-stroke-1:#E796B9;--pw-ter-stroke-2:#955D7D;--pw-ter-stroke-3:#EFBBD2;--pw-ter-stroke-4:#774A64;--pw-ter-stroke-5:#CF7DA3;--pw-tab-fill-bottom:#CF7DA3;--pw-tab-fill-top:#25171F;--pw-tab-stroke-a:#F3CADC;--pw-tab-stroke-b:#FAEAF1;--pw-tab-drop:#F1C0D5;--pw-tab-inner:#F1C0D5}
+[data-pw-theme="fantasma"],pw-card[theme="fantasma"],pw-card-header[theme="fantasma"],pw-tabs[theme="fantasma"],pw-badge[theme="fantasma"]{--pw-metal-0:#C1AFD9;--pw-metal-1:#6B49A1;--pw-metal-2:#4F397D;--pw-metal-3:#A88FCA;--pw-filament:#CDBFE1;--pw-glow:#BBA7D5;--pw-bg-center:#332551;--pw-bg-edge:#161023;--pw-bg-solid:#191228;--pw-ter-bg-center:#241A38;--pw-ter-bg-edge:#100B19;--pw-ter-stroke-0:#281C3E;--pw-ter-stroke-1:#835FB3;--pw-ter-stroke-2:#4F397D;--pw-ter-stroke-3:#AE97CE;--pw-ter-stroke-4:#3F2E64;--pw-ter-stroke-5:#6B49A1;--pw-tab-fill-bottom:#6B49A1;--pw-tab-fill-top:#140E1F;--pw-tab-stroke-a:#C1AFD9;--pw-tab-stroke-b:#E6DFF0;--pw-tab-drop:#B59FD1;--pw-tab-inner:#B59FD1}
+[data-pw-theme="fogo"],pw-card[theme="fogo"],pw-card-header[theme="fogo"],pw-tabs[theme="fogo"],pw-badge[theme="fogo"]{--pw-metal-0:#F6BEA2;--pw-metal-1:#D56932;--pw-metal-2:#9B512D;--pw-metal-3:#F2A57C;--pw-filament:#F8CBB4;--pw-glow:#F5B898;--pw-bg-center:#65351D;--pw-bg-edge:#2B170D;--pw-bg-solid:#321A0E;--pw-ter-bg-center:#462414;--pw-ter-bg-edge:#1F1009;--pw-ter-stroke-0:#4E2816;--pw-ter-stroke-1:#ED7E44;--pw-ter-stroke-2:#9B512D;--pw-ter-stroke-3:#F3AB85;--pw-ter-stroke-4:#7C4124;--pw-ter-stroke-5:#D56932;--pw-tab-fill-bottom:#D56932;--pw-tab-fill-top:#27140B;--pw-tab-stroke-a:#F6BEA2;--pw-tab-stroke-b:#FBE5DA;--pw-tab-drop:#F4B28F;--pw-tab-inner:#F4B28F}
+[data-pw-theme="gelo"],pw-card[theme="gelo"],pw-card-header[theme="gelo"],pw-tabs[theme="gelo"],pw-badge[theme="gelo"]{--pw-metal-0:#A2E3EE;--pw-metal-1:#33B2CA;--pw-metal-2:#25849A;--pw-metal-3:#7ED8E6;--pw-filament:#B5E9F1;--pw-glow:#99E0EC;--pw-bg-center:#185664;--pw-bg-edge:#0A252B;--pw-bg-solid:#0C2A31;--pw-ter-bg-center:#113B45;--pw-ter-bg-edge:#071A1F;--pw-ter-stroke-0:#12424D;--pw-ter-stroke-1:#46C7DC;--pw-ter-stroke-2:#25849A;--pw-ter-stroke-3:#87DBE8;--pw-ter-stroke-4:#1E6A7B;--pw-ter-stroke-5:#33B2CA;--pw-tab-fill-bottom:#33B2CA;--pw-tab-fill-top:#092126;--pw-tab-stroke-a:#A2E3EE;--pw-tab-stroke-b:#DAF4F8;--pw-tab-drop:#90DDEA;--pw-tab-inner:#90DDEA}
+[data-pw-theme="inseto"],pw-card[theme="inseto"],pw-card-header[theme="inseto"],pw-tabs[theme="inseto"],pw-badge[theme="inseto"]{--pw-metal-0:#CBE1A1;--pw-metal-1:#7EAB33;--pw-metal-2:#5A7D2B;--pw-metal-3:#B6D57B;--pw-filament:#D5E7B4;--pw-glow:#C6DE98;--pw-bg-center:#3A511C;--pw-bg-edge:#19230C;--pw-bg-solid:#1D280E;--pw-ter-bg-center:#283813;--pw-ter-bg-edge:#121909;--pw-ter-stroke-0:#2D3E16;--pw-ter-stroke-1:#97C343;--pw-ter-stroke-2:#5A7D2B;--pw-ter-stroke-3:#BBD885;--pw-ter-stroke-4:#486422;--pw-ter-stroke-5:#7EAB33;--pw-tab-fill-bottom:#7EAB33;--pw-tab-fill-top:#161F0B;--pw-tab-stroke-a:#CBE1A1;--pw-tab-stroke-b:#EAF3D9;--pw-tab-drop:#C1DB8E;--pw-tab-inner:#C1DB8E}
+[data-pw-theme="lutador"],pw-card[theme="lutador"],pw-card-header[theme="lutador"],pw-tabs[theme="lutador"],pw-badge[theme="lutador"]{--pw-metal-0:#E2A7AC;--pw-metal-1:#B73946;--pw-metal-2:#872D3C;--pw-metal-3:#D6848C;--pw-filament:#E7B9BD;--pw-glow:#DF9EA4;--pw-bg-center:#581D27;--pw-bg-edge:#260D11;--pw-bg-solid:#2B0E13;--pw-ter-bg-center:#3D141B;--pw-ter-bg-edge:#1B090C;--pw-ter-stroke-0:#44161E;--pw-ter-stroke-1:#C44F5A;--pw-ter-stroke-2:#872D3C;--pw-ter-stroke-3:#D98D94;--pw-ter-stroke-4:#6C2430;--pw-ter-stroke-5:#B73946;--pw-tab-fill-bottom:#B73946;--pw-tab-fill-top:#220B0F;--pw-tab-stroke-a:#E2A7AC;--pw-tab-stroke-b:#F3DCDE;--pw-tab-drop:#DC959C;--pw-tab-inner:#DC959C}
+[data-pw-theme="normal"],pw-card[theme="normal"],pw-card-header[theme="normal"],pw-tabs[theme="normal"],pw-badge[theme="normal"]{--pw-metal-0:#DBDAD1;--pw-metal-1:#A0A194;--pw-metal-2:#757773;--pw-metal-3:#CDCBBF;--pw-filament:#E2E1DA;--pw-glow:#D7D6CC;--pw-bg-center:#4C4D4B;--pw-bg-edge:#212120;--pw-bg-solid:#252625;--pw-ter-bg-center:#353634;--pw-ter-bg-edge:#171817;--pw-ter-stroke-0:#3A3C3A;--pw-ter-stroke-1:#B7B5A3;--pw-ter-stroke-2:#757773;--pw-ter-stroke-3:#D0CFC3;--pw-ter-stroke-4:#5E5F5C;--pw-ter-stroke-5:#A0A194;--pw-tab-fill-bottom:#A0A194;--pw-tab-fill-top:#1D1E1D;--pw-tab-stroke-a:#DBDAD1;--pw-tab-stroke-b:#F1F0ED;--pw-tab-drop:#D4D3C8;--pw-tab-inner:#D4D3C8}
+[data-pw-theme="pedra"],pw-card[theme="pedra"],pw-card-header[theme="pedra"],pw-tabs[theme="pedra"],pw-badge[theme="pedra"]{--pw-metal-0:#C7B8AA;--pw-metal-1:#785E47;--pw-metal-2:#59493D;--pw-metal-3:#B19C87;--pw-filament:#D2C6BB;--pw-glow:#C1B1A1;--pw-bg-center:#3A2F28;--pw-bg-edge:#191411;--pw-bg-solid:#1C1714;--pw-ter-bg-center:#28211B;--pw-ter-bg-edge:#120F0C;--pw-ter-stroke-0:#2C241E;--pw-ter-stroke-1:#8F7154;--pw-ter-stroke-2:#59493D;--pw-ter-stroke-3:#B6A390;--pw-ter-stroke-4:#473A31;--pw-ter-stroke-5:#785E47;--pw-tab-fill-bottom:#785E47;--pw-tab-fill-top:#16120F;--pw-tab-stroke-a:#C7B8AA;--pw-tab-stroke-b:#E9E3DD;--pw-tab-drop:#BCAA98;--pw-tab-inner:#BCAA98}
+[data-pw-theme="planta"],pw-card[theme="planta"],pw-card-header[theme="planta"],pw-tabs[theme="planta"],pw-badge[theme="planta"]{--pw-metal-0:#A0D8AE;--pw-metal-1:#329D51;--pw-metal-2:#227540;--pw-metal-3:#7BC98E;--pw-filament:#B3E0BF;--pw-glow:#97D5A6;--pw-bg-center:#164C2A;--pw-bg-edge:#0A2112;--pw-bg-solid:#0B2514;--pw-ter-bg-center:#0F351D;--pw-ter-bg-edge:#07170D;--pw-ter-stroke-0:#113A20;--pw-ter-stroke-1:#42B25E;--pw-ter-stroke-2:#227540;--pw-ter-stroke-3:#84CD96;--pw-ter-stroke-4:#1B5E33;--pw-ter-stroke-5:#329D51;--pw-tab-fill-bottom:#329D51;--pw-tab-fill-top:#081D10;--pw-tab-stroke-a:#A0D8AE;--pw-tab-stroke-b:#D9F0DF;--pw-tab-drop:#8ED19E;--pw-tab-inner:#8ED19E}
+[data-pw-theme="psiquico"],pw-card[theme="psiquico"],pw-card-header[theme="psiquico"],pw-tabs[theme="psiquico"],pw-badge[theme="psiquico"]{--pw-metal-0:#F2ACC7;--pw-metal-1:#D04C82;--pw-metal-2:#943865;--pw-metal-3:#EE8AB1;--pw-filament:#F5BCD2;--pw-glow:#F1A3C1;--pw-bg-center:#602442;--pw-bg-edge:#29101C;--pw-bg-solid:#2F1220;--pw-ter-bg-center:#43192D;--pw-ter-bg-edge:#1E0B14;--pw-ter-stroke-0:#4A1C32;--pw-ter-stroke-1:#E6588F;--pw-ter-stroke-2:#943865;--pw-ter-stroke-3:#EF92B6;--pw-ter-stroke-4:#762D51;--pw-ter-stroke-5:#D04C82;--pw-tab-fill-bottom:#D04C82;--pw-tab-fill-top:#250E19;--pw-tab-stroke-a:#F2ACC7;--pw-tab-stroke-b:#FADEE9;--pw-tab-drop:#F09BBC;--pw-tab-inner:#F09BBC}
+[data-pw-theme="sombrio"],pw-card[theme="sombrio"],pw-card-header[theme="sombrio"],pw-tabs[theme="sombrio"],pw-badge[theme="sombrio"]{--pw-metal-0:#ABAEBA;--pw-metal-1:#424865;--pw-metal-2:#313952;--pw-metal-3:#898D9E;--pw-filament:#BCBEC8;--pw-glow:#A3A5B3;--pw-bg-center:#202535;--pw-bg-edge:#0E1017;--pw-bg-solid:#10121A;--pw-ter-bg-center:#161A25;--pw-ter-bg-edge:#0A0B10;--pw-ter-stroke-0:#181C29;--pw-ter-stroke-1:#575C75;--pw-ter-stroke-2:#313952;--pw-ter-stroke-3:#9295A5;--pw-ter-stroke-4:#272E42;--pw-ter-stroke-5:#424865;--pw-tab-fill-bottom:#424865;--pw-tab-fill-top:#0C0E14;--pw-tab-stroke-a:#ABAEBA;--pw-tab-stroke-b:#DDDEE3;--pw-tab-drop:#9A9DAC;--pw-tab-inner:#9A9DAC}
+[data-pw-theme="terrestre"],pw-card[theme="terrestre"],pw-card-header[theme="terrestre"],pw-tabs[theme="terrestre"],pw-badge[theme="terrestre"]{--pw-metal-0:#E8D0B2;--pw-metal-1:#B68C5A;--pw-metal-2:#856846;--pw-metal-3:#E0BD93;--pw-filament:#EDD9C1;--pw-glow:#E6CBAA;--pw-bg-center:#56442E;--pw-bg-edge:#251D14;--pw-bg-solid:#2B2116;--pw-ter-bg-center:#3C2F1F;--pw-ter-bg-edge:#1B150E;--pw-ter-stroke-0:#423423;--pw-ter-stroke-1:#D2A165;--pw-ter-stroke-2:#856846;--pw-ter-stroke-3:#E2C29B;--pw-ter-stroke-4:#6A5338;--pw-ter-stroke-5:#B68C5A;--pw-tab-fill-bottom:#B68C5A;--pw-tab-fill-top:#211A12;--pw-tab-stroke-a:#E8D0B2;--pw-tab-stroke-b:#F6ECE0;--pw-tab-drop:#E4C7A3;--pw-tab-inner:#E4C7A3}
+[data-pw-theme="veneno"],pw-card[theme="veneno"],pw-card-header[theme="veneno"],pw-tabs[theme="veneno"],pw-badge[theme="veneno"]{--pw-metal-0:#D6AAE0;--pw-metal-1:#9C3CB6;--pw-metal-2:#702F8B;--pw-metal-3:#C589D4;--pw-filament:#DEBBE6;--pw-glow:#D1A2DD;--pw-bg-center:#491F5A;--pw-bg-edge:#1F0D27;--pw-bg-solid:#240F2C;--pw-ter-bg-center:#32153F;--pw-ter-bg-edge:#16091C;--pw-ter-stroke-0:#381846;--pw-ter-stroke-1:#AC56C1;--pw-ter-stroke-2:#702F8B;--pw-ter-stroke-3:#C991D7;--pw-ter-stroke-4:#5A266F;--pw-ter-stroke-5:#9C3CB6;--pw-tab-fill-bottom:#9C3CB6;--pw-tab-fill-top:#1C0C23;--pw-tab-stroke-a:#D6AAE0;--pw-tab-stroke-b:#EEDDF3;--pw-tab-drop:#CD9ADA;--pw-tab-inner:#CD9ADA}
+[data-pw-theme="voador"],pw-card[theme="voador"],pw-card-header[theme="voador"],pw-tabs[theme="voador"],pw-badge[theme="voador"]{--pw-metal-0:#D2CCF2;--pw-metal-1:#9084D6;--pw-metal-2:#645EA0;--pw-metal-3:#C1B8EE;--pw-filament:#DBD6F5;--pw-glow:#CEC7F1;--pw-bg-center:#413D68;--pw-bg-edge:#1C1A2D;--pw-bg-solid:#201E33;--pw-ter-bg-center:#2D2A48;--pw-ter-bg-edge:#141320;--pw-ter-stroke-0:#322F50;--pw-ter-stroke-1:#A699E6;--pw-ter-stroke-2:#645EA0;--pw-ter-stroke-3:#C5BDEF;--pw-ter-stroke-4:#504B80;--pw-ter-stroke-5:#9084D6;--pw-tab-fill-bottom:#9084D6;--pw-tab-fill-top:#191828;--pw-tab-stroke-a:#D2CCF2;--pw-tab-stroke-b:#EDEBFA;--pw-tab-drop:#CAC2F0;--pw-tab-inner:#CAC2F0}
 
 /* ===================== COMPONENT: pw-element-item ===================== */
 /* item de controle elemental: card tertiary interativo + ícone de tipo + nome */
@@ -340,6 +340,35 @@ pw-element-item[element="fada"] .pwe-bg{background:url("data:image/svg+xml,%3Csv
 pw-element-item[element="normal"] .pwe-bg{background:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2244%22 height=%2244%22 viewBox=%220 0 44 44%22%3E%3Cstyle%3E%2A%7Bfill:none;stroke:%23DFDED6;stroke-opacity:.38;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round%7D.f%7Bfill:%23DFDED6;fill-opacity:.45;stroke:none%7D%3C/style%3E%3Ccircle cx=%2222%22 cy=%2222%22 r=%2214%22/%3E%3Ccircle cx=%2222%22 cy=%2222%22 r=%229%22/%3E%3Ccircle cx=%2222%22 cy=%225%22 r=%221%22 class=%22f%22/%3E%3Ccircle cx=%2239%22 cy=%2222%22 r=%221%22 class=%22f%22/%3E%3Ccircle cx=%2222%22 cy=%2239%22 r=%221%22 class=%22f%22/%3E%3Ccircle cx=%225%22 cy=%2222%22 r=%221%22 class=%22f%22/%3E%3C/svg%3E") 0 0/33.0px 33.0px repeat,radial-gradient(90% 70% at 50% 115%,#C9C8BA99,transparent 70%),linear-gradient(170deg,#585956,#A0A194)}
 pw-element-item:not([disabled])>pw-card:hover .pwe-icon,pw-element-item[state="hover"] .pwe-icon{transform:scale(1.08)}
 pw-element-item[selected] .pwe-icon,pw-element-item[state="selected"] .pwe-icon{transform:scale(1.08);filter:drop-shadow(0 0 6px var(--pw-glow))}
+
+/* ===================== COMPONENT: pw-badge ===================== */
+/* rótulo curto de status/categoria; filled ou outline; ícone pequeno opcional à direita */
+pw-badge{--b-light:#E9E3D3;--b-base:var(--pw-ter-stroke-1);--b-dark:var(--pw-ter-bg-center);--b-text:#fff;
+  --bh:22px;--bpx:8px;--bfs:12px;--bic:14px;
+  display:inline-flex;align-items:center;gap:4px;height:var(--bh);padding:0 var(--bpx);box-sizing:border-box;border-radius:4px;vertical-align:middle;
+  font-family:var(--pw-font-body);font-size:var(--bfs);font-weight:500;line-height:1;white-space:nowrap;letter-spacing:.01em;
+  color:var(--b-text);border:1px solid color-mix(in srgb,var(--b-light) 55%,transparent);
+  background:linear-gradient(180deg,var(--b-base),var(--b-dark));text-shadow:0 1px 1px rgb(0 0 0 / .35);
+  box-shadow:inset 0 1px 0 color-mix(in srgb,var(--b-light) 35%,transparent)}
+pw-badge[size="sm"]{--bh:18px;--bpx:6px;--bfs:10px;--bic:12px}
+pw-badge[size="lg"]{--bh:26px;--bpx:10px;--bfs:14px;--bic:16px}
+pw-badge .pwb-icon{display:inline-flex;width:var(--bic);height:var(--bic);flex:none;margin-right:-2px}
+pw-badge .pwb-icon:empty{display:none}
+pw-badge .pwb-icon svg,pw-badge .pwb-icon img{width:100%;height:100%;display:block}
+pw-badge .pwb-label:empty{display:none}
+pw-badge[icon-only]{width:var(--bh);padding:0;justify-content:center}
+pw-badge[icon-only] .pwb-icon{margin:0}
+pw-badge[appearance="outline"]{background:color-mix(in srgb,var(--b-base) 14%,transparent);color:var(--b-light);text-shadow:none;
+  border-color:color-mix(in srgb,var(--b-base) 60%,var(--b-light));box-shadow:none}
+/* neutral e brand seguem o tema (Poke World / Mewtwo / elementos); os semânticos têm cor fixa */
+pw-badge[tone="neutral"],pw-badge:not([tone]){--b-light:color-mix(in srgb,var(--pw-ter-stroke-3) 60%,#fff);--b-base:color-mix(in srgb,var(--pw-ter-bg-center) 70%,var(--pw-ter-stroke-1));--b-dark:var(--pw-ter-bg-edge)}
+pw-badge[tone="brand"]{--b-light:var(--pw-metal-0);--b-base:var(--pw-metal-1);--b-dark:var(--pw-metal-2);--b-text:var(--pw-on-metal,#2A1A04);text-shadow:none}
+pw-badge[tone="brand"][appearance="outline"]{color:var(--pw-metal-0)}
+pw-badge[tone="info"]   {--b-light:#CDF2FF;--b-base:#2F8FC0;--b-dark:#14476A}
+pw-badge[tone="success"]{--b-light:#CFF7D9;--b-base:#36A260;--b-dark:#165A31}
+pw-badge[tone="warning"]{--b-light:#FFD6B0;--b-base:#D9732B;--b-dark:#7E3A0E}
+pw-badge[tone="error"]  {--b-light:#FFC2C2;--b-base:#C83C3C;--b-dark:#6E1A1A}
+pw-badge[tone="new"]    {--b-light:#EBD3FF;--b-base:#9858D6;--b-dark:#4A2180}
 /* @pwds-css-end */
 /* demo content inside cards */
 .k-eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--card-filament)}
@@ -370,6 +399,10 @@ pw-element-item[selected] .pwe-icon,pw-element-item[state="selected"] .pwe-icon{
   <button type="button" class="comp-btn" data-comp="tabs" aria-controls="main">Tabs</button>
   <nav class="sub" data-for="tabs">
     <a href="#tabs">Visão geral</a><a href="#tabs-playground">Playground</a><a href="#tabs-tamanhos">Tamanhos</a><a href="#tabs-estados">Estados</a><a href="#tabs-tokens">Tokens</a><a href="#tabs-a11y">Acessibilidade</a>
+  </nav>
+  <button type="button" class="comp-btn" data-comp="badge" aria-controls="main">Badge</button>
+  <nav class="sub" data-for="badge">
+    <a href="#badge">Visão geral</a><a href="#badge-playground">Playground</a><a href="#badge-variantes">Variantes</a><a href="#badge-uso">Uso</a>
   </nav>
   <button type="button" class="comp-btn" data-comp="element" aria-controls="main">Element Item</button>
   <nav class="sub" data-for="element">
@@ -733,6 +766,70 @@ pw-element-item[selected] .pwe-icon,pw-element-item[state="selected"] .pwe-icon{
     <li>Dê um nome ao grupo com <code>aria-label</code>. Se a aba tiver só ícone, coloque <code>aria-label</code> nela.</li>
   </ul>
 </section>
+<section class="story" id="badge" data-c="badge">
+  <h2>Visão geral</h2>
+  <div class="canvas" style="display:grid;gap:18px">
+    <div class="row" style="gap:10px"><pw-badge tone="success" icon="check">Concluída</pw-badge><pw-badge tone="warning" icon="warning">PP baixo</pw-badge><pw-badge tone="error">Desmaiado</pw-badge><pw-badge tone="new">Novo</pw-badge><pw-badge tone="brand" icon="boost">+12</pw-badge><pw-badge tone="info">Tutorial</pw-badge><pw-badge>Comum</pw-badge><pw-badge tone="neutral" icon="fogo">Fogo</pw-badge></div>
+    <div class="row" style="gap:10px"><pw-badge appearance="outline" tone="success" icon="check">Concluída</pw-badge><pw-badge appearance="outline" tone="warning" icon="warning">PP baixo</pw-badge><pw-badge appearance="outline" tone="error">Desmaiado</pw-badge><pw-badge appearance="outline" tone="new">Novo</pw-badge><pw-badge appearance="outline" tone="brand" icon="boost">+12</pw-badge><pw-badge appearance="outline" tone="info">Tutorial</pw-badge><pw-badge appearance="outline">Comum</pw-badge><pw-badge appearance="outline" icon="fogo">Fogo</pw-badge></div>
+  </div>
+  <div class="canvas" data-pw-theme="mewtwo" style="display:grid;gap:18px">
+    <div class="row" style="gap:10px"><pw-badge tone="brand" icon="limit-break">Limit Break</pw-badge><pw-badge>Neutro</pw-badge><pw-badge tone="success" icon="check">Sucesso</pw-badge><pw-badge tone="error" icon="close">Falhou</pw-badge></div>
+    <div class="row" style="gap:10px"><pw-badge appearance="outline" tone="brand" icon="limit-break">Limit Break</pw-badge><pw-badge appearance="outline">Neutro</pw-badge><pw-badge appearance="outline" tone="success" icon="check">Sucesso</pw-badge><pw-badge appearance="outline" tone="error" icon="close">Falhou</pw-badge></div>
+  </div>
+  <div class="canvas"><pw-card variant="tertiary" style="width:320px;height:auto"><div style="display:flex;justify-content:space-between;align-items:center"><span class="pw-text-title-sm">Charizard +12</span><pw-badge tone="brand" size="sm">Marco +50</pw-badge></div><p class="pw-text-body-sm" style="margin:6px 0 10px;color:var(--card-text-muted)">Fogo / Voador · Nv. 64</p><div style="display:flex;gap:6px"><pw-badge size="sm" appearance="outline" icon="fogo">Fogo</pw-badge><pw-badge size="sm" appearance="outline" icon="voador">Voador</pw-badge><pw-badge size="sm" tone="warning" icon="warning">Energia 80%</pw-badge></div></pw-card></div>
+</section>
+
+<section class="story" id="badge-playground" data-c="badge">
+  <h2>Playground</h2>
+  <div class="pg">
+    <form class="ctrls" onsubmit="return false">
+      <label for="bpText">texto<input id="bpText" type="text" value="Concluída" maxlength="30" autocomplete="off"></label>
+      <label for="bpTone">tone<select id="bpTone"><option>neutral</option><option>info</option><option selected>success</option><option>warning</option><option>error</option><option>new</option><option>brand</option></select></label>
+      <label for="bpApp">appearance<select id="bpApp"><option>filled</option><option>outline</option></select></label>
+      <label for="bpSize">size<select id="bpSize"><option>sm</option><option selected>md</option><option>lg</option></select></label>
+      <label for="bpIcon">icon (à direita)<select id="bpIcon"></select></label>
+      <label for="bpTheme">theme<select id="bpTheme"><option value="">poke world (padrão)</option><option>mewtwo</option></select></label>
+    </form>
+    <div style="display:grid;gap:14px;min-width:0">
+      <div class="canvas" id="bpStage" style="min-height:140px;display:grid;place-items:center"></div>
+      <pre class="code" id="bpCode"></pre>
+      <button class="btn" type="button" id="bpCopy">Copiar HTML</button>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="badge-variantes" data-c="badge">
+  <h2>Variantes</h2>
+  <div class="canvas"><div class="tbl" id="bvTable"></div></div>
+  <div class="canvas" data-pw-theme="mewtwo"><div class="tbl" id="bvTableM"></div></div>
+  <h3>Tamanhos</h3>
+  <div class="canvas"><div class="row" style="gap:14px;align-items:center"><pw-badge size="sm" tone="success" icon="check">sm · 18px</pw-badge><pw-badge size="md" tone="success" icon="check">md · 22px</pw-badge><pw-badge size="lg" tone="success" icon="check">lg · 26px</pw-badge><pw-badge size="sm" tone="error" icon="close" label="Falhou"></pw-badge><pw-badge tone="error" icon="close" label="Falhou"></pw-badge><pw-badge size="lg" tone="error" icon="close" label="Falhou"></pw-badge></div></div>
+</section>
+
+<section class="story" id="badge-uso" data-c="badge">
+  <h2>Uso</h2>
+  <pre class="code">&lt;pw-badge tone="warning" appearance="outline" icon="warning"&gt;PP baixo&lt;/pw-badge&gt;
+&lt;pw-badge tone="error" icon="close" label="Falhou"&gt;&lt;/pw-badge&gt;   &lt;!-- só ícone --&gt;</pre>
+  <div class="tbl"><table>
+    <thead><tr><th>Propriedade</th><th>Valores</th><th>Descrição</th></tr></thead>
+    <tbody>
+      <tr><td><code>tone</code></td><td>neutral · info · success · warning · error · new · brand</td><td>Neutral e brand seguem o tema; os outros têm cor fixa de status</td></tr>
+      <tr><td><code>appearance</code></td><td>filled · outline</td><td>Filled para o status mais importante; outline para categorias e informação secundária</td></tr>
+      <tr><td><code>size</code></td><td>sm · md · lg</td><td>18 / 22 / 26px de altura; texto Inter 10 / 12 / 14</td></tr>
+      <tr><td><code>icon</code></td><td>ícone de interface ou de tipo</td><td>Sempre à direita do texto (12 / 14 / 16px)</td></tr>
+      <tr><td><code>label</code></td><td>texto</td><td>Obrigatório quando o badge é só ícone: vira nome acessível e dica ao passar o mouse</td></tr>
+      <tr><td><code>theme</code></td><td>mewtwo · um tipo · vazio</td><td>Vazio herda o tema da tela</td></tr>
+    </tbody>
+  </table></div>
+  <ul class="rules">
+    <li>Badge não é botão: não tem hover nem clique. Para algo clicável, use Tabs ou um card interativo.</li>
+    <li>Texto curto, de uma a duas palavras ou um número. Não quebra linha.</li>
+    <li>Um badge de status por item. Se precisar de mais informação, use texto de apoio.</li>
+    <li>Cores semânticas só para status (sucesso, aviso, erro). Para categorias, use neutral, brand ou o ícone de tipo.</li>
+    <li>A cor nunca é a única pista: o texto (ou o <code>label</code>, no badge só de ícone) diz o significado.</li>
+  </ul>
+</section>
+
 <section class="story" id="element" data-c="element">
   <h2>Visão geral</h2>
   <p class="lede">Os 18 itens, cada um no tema do próprio elemento (<code>theme="auto"</code>). Clique para selecionar.</p>
@@ -867,6 +964,7 @@ pw-element-item[selected] .pwe-icon,pw-element-item[state="selected"] .pwe-icon{
   var INFO={
     card:['Card','Componente base das janelas, painéis e itens do HUD. O card primário do Figma é a fonte de verdade; todas as variações reutilizam a mesma moldura e trocam só tokens.'],
     type:['Tipografia','Tokens de texto do sistema: Spectral para títulos, Inter para labels, textos complementares e informações maiores.'],
+    badge:['Badge','Rótulo curto de status ou categoria. Filled ou outline, sete tons, três tamanhos e ícone pequeno opcional à direita. Segue o tema Poke World ou Mewtwo.'],
     element:['Element Item','Item de controle para escolher um elemento: card tertiary interativo com o ícone do tipo e o nome. Cada elemento tem um tema próprio, criado a partir dos fundos da roda de tipos.'],
     icon:['Icon','Ícones de jogo em silhueta sólida, desenhados em SVG numa grade de 24 × 24. Herdam a cor do texto e escalam sem perder leitura.'],
     tabs:['Tabs','Navegação entre seções de um mesmo painel (inventário, Pokédex, missões). Comportamento baseado no padrão Tabs do WAI-ARIA (W3C), com o visual de vidro iluminado do HUD.'],
@@ -1170,7 +1268,47 @@ class PWElementItem extends HTMLElement{
   }
 }
 customElements.define('pw-element-item',PWElementItem);
+
+/* ---------- pw-badge ---------- */
+class PWBadge extends HTMLElement{
+  static get observedAttributes(){return ['icon','label']}
+  connectedCallback(){
+    if(!this._init){this._init=true;
+      var l=document.createElement('span');l.className='pwb-label';while(this.firstChild)l.appendChild(this.firstChild);
+      this._ic=document.createElement('span');this._ic.className='pwb-icon';this._ic.setAttribute('aria-hidden','true');
+      this.appendChild(l);this.appendChild(this._ic);this._lab=l;}
+    this.attributeChangedCallback();
+  }
+  attributeChangedCallback(){
+    if(!this._init)return;var ic=this.getAttribute('icon');
+    this._ic.innerHTML=ic?pwIcon(ic):'';
+    var only=!this._lab.textContent.trim()&&!!ic;this.toggleAttribute('icon-only',only);
+    var l=this.getAttribute('label');
+    if(only&&l){this.setAttribute('role','img');this.setAttribute('aria-label',l);this.setAttribute('title',l)}
+    else{this.removeAttribute('role');this.removeAttribute('aria-label');if(!l)this.removeAttribute('title')}
+  }
+}
+customElements.define('pw-badge',PWBadge);
 /* @pwds-js-end */
+(function(){
+  var g=id=>document.getElementById(id);
+  var ICONS=['','check','warning','close','boost','limit-break','craft'].concat(Object.keys(PW_TYPE_LABEL));
+  g('bpIcon').innerHTML=ICONS.map(k=>'<option value="'+k+'"'+(k==='check'?' selected':'')+'>'+(k||'nenhum')+'</option>').join('');
+  function bp(){
+    var t=g('bpText').value,tn=g('bpTone').value,ap=g('bpApp').value,sz=g('bpSize').value,ic=g('bpIcon').value,th=g('bpTheme').value;
+    var a=[];if(tn!=='neutral')a.push('tone="'+tn+'"');if(ap!=='filled')a.push('appearance="'+ap+'"');if(sz!=='md')a.push('size="'+sz+'"');if(ic)a.push('icon="'+ic+'"');if(th)a.push('theme="'+th+'"');
+    if(!t&&ic)a.push('label="Descreva o status"');
+    var w=document.createElement('div');w.innerHTML='<pw-badge '+a.join(' ')+'></pw-badge>';var b=w.firstChild;b.textContent=t;
+    g('bpStage').innerHTML='';g('bpStage').appendChild(b);
+    g('bpCode').textContent='<pw-badge'+(a.length?' '+a.join(' '):'')+'>'+t+'</pw-badge>';
+  }
+  ['bpText','bpTone','bpApp','bpSize','bpIcon','bpTheme'].forEach(id=>g(id).addEventListener(id==='bpText'?'input':'change',bp));
+  g('bpCopy').addEventListener('click',function(){var b=this;navigator.clipboard.writeText(g('bpCode').textContent).then(()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar HTML',1400)}).catch(()=>{var r=document.createRange();r.selectNodeContents(g('bpCode'));var s=getSelection();s.removeAllRanges();s.addRange(r)})});
+  bp();
+  var T=[['neutral','Neutro',''],['info','Info',''],['success','Sucesso','check'],['warning','Atenção','warning'],['error','Erro','close'],['new','Novo',''],['brand','Destaque','boost']];
+  function tbl(title){return '<table><thead><tr><th>'+title+'</th><th>filled</th><th>filled + ícone</th><th>outline</th><th>outline + ícone</th></tr></thead><tbody>'+T.map(t=>'<tr><td><code>'+t[0]+'</code></td><td><pw-badge tone="'+t[0]+'">'+t[1]+'</pw-badge></td><td><pw-badge tone="'+t[0]+'" icon="'+(t[2]||'check')+'">'+t[1]+'</pw-badge></td><td><pw-badge appearance="outline" tone="'+t[0]+'">'+t[1]+'</pw-badge></td><td><pw-badge appearance="outline" tone="'+t[0]+'" icon="'+(t[2]||'check')+'">'+t[1]+'</pw-badge></td></tr>').join('')+'</tbody></table>'}
+  g('bvTable').innerHTML=tbl('Poke World');g('bvTableM').innerHTML=tbl('Mewtwo');
+})();
 window.PW_EL_PAL={"inseto": {"dark": "#5A7D2B", "mid": "#7EAB33", "light": "#97C343", "m0": "#CBE1A1", "m1": "#7EAB33", "m2": "#5A7D2B", "m3": "#B6D57B", "fil": "#D5E7B4", "bgc": "#3A511C", "bge": "#19230C"}, "sombrio": {"dark": "#313952", "mid": "#424865", "light": "#575C75", "m0": "#ABAEBA", "m1": "#424865", "m2": "#313952", "m3": "#898D9E", "fil": "#BCBEC8", "bgc": "#202535", "bge": "#0E1017"}, "dragao": {"dark": "#21418C", "mid": "#2F57B9", "light": "#3E65C1", "m0": "#9EB2E0", "m1": "#2F57B9", "m2": "#21418C", "m3": "#7893D4", "fil": "#B2C1E6", "bgc": "#152A5B", "bge": "#091227"}, "eletrico": {"dark": "#977C1D", "mid": "#D1A71C", "light": "#ECBC24", "m0": "#F6DE92", "m1": "#D1A71C", "m2": "#977C1D", "m3": "#F2D066", "fil": "#F7E4A7", "bgc": "#625113", "bge": "#2A2308"}, "fada": {"dark": "#955D7D", "mid": "#CF7DA3", "light": "#E796B9", "m0": "#F3CADC", "m1": "#CF7DA3", "m2": "#955D7D", "m3": "#EEB6CE", "fil": "#F5D5E3", "bgc": "#613C51", "bge": "#2A1A23"}, "lutador": {"dark": "#872D3C", "mid": "#B73946", "light": "#C44F5A", "m0": "#E2A7AC", "m1": "#B73946", "m2": "#872D3C", "m3": "#D6848C", "fil": "#E7B9BD", "bgc": "#581D27", "bge": "#260D11"}, "fogo": {"dark": "#9B512D", "mid": "#D56932", "light": "#ED7E44", "m0": "#F6BEA2", "m1": "#D56932", "m2": "#9B512D", "m3": "#F2A57C", "fil": "#F8CBB4", "bgc": "#65351D", "bge": "#2B170D"}, "voador": {"dark": "#645EA0", "mid": "#9084D6", "light": "#A699E6", "m0": "#D2CCF2", "m1": "#9084D6", "m2": "#645EA0", "m3": "#C1B8EE", "fil": "#DBD6F5", "bgc": "#413D68", "bge": "#1C1A2D"}, "fantasma": {"dark": "#4F397D", "mid": "#6B49A1", "light": "#835FB3", "m0": "#C1AFD9", "m1": "#6B49A1", "m2": "#4F397D", "m3": "#A88FCA", "fil": "#CDBFE1", "bgc": "#332551", "bge": "#161023"}, "planta": {"dark": "#227540", "mid": "#329D51", "light": "#42B25E", "m0": "#A0D8AE", "m1": "#329D51", "m2": "#227540", "m3": "#7BC98E", "fil": "#B3E0BF", "bgc": "#164C2A", "bge": "#0A2112"}, "terrestre": {"dark": "#856846", "mid": "#B68C5A", "light": "#D2A165", "m0": "#E8D0B2", "m1": "#B68C5A", "m2": "#856846", "m3": "#E0BD93", "fil": "#EDD9C1", "bgc": "#56442E", "bge": "#251D14"}, "gelo": {"dark": "#25849A", "mid": "#33B2CA", "light": "#46C7DC", "m0": "#A2E3EE", "m1": "#33B2CA", "m2": "#25849A", "m3": "#7ED8E6", "fil": "#B5E9F1", "bgc": "#185664", "bge": "#0A252B"}, "normal": {"dark": "#757773", "mid": "#A0A194", "light": "#B7B5A3", "m0": "#DBDAD1", "m1": "#A0A194", "m2": "#757773", "m3": "#CDCBBF", "fil": "#E2E1DA", "bgc": "#4C4D4B", "bge": "#212120"}, "veneno": {"dark": "#702F8B", "mid": "#9C3CB6", "light": "#AC56C1", "m0": "#D6AAE0", "m1": "#9C3CB6", "m2": "#702F8B", "m3": "#C589D4", "fil": "#DEBBE6", "bgc": "#491F5A", "bge": "#1F0D27"}, "psiquico": {"dark": "#943865", "mid": "#D04C82", "light": "#E6588F", "m0": "#F2ACC7", "m1": "#D04C82", "m2": "#943865", "m3": "#EE8AB1", "fil": "#F5BCD2", "bgc": "#602442", "bge": "#29101C"}, "pedra": {"dark": "#59493D", "mid": "#785E47", "light": "#8F7154", "m0": "#C7B8AA", "m1": "#785E47", "m2": "#59493D", "m3": "#B19C87", "fil": "#D2C6BB", "bgc": "#3A2F28", "bge": "#191411"}, "aco": {"dark": "#40626E", "mid": "#557F89", "light": "#68949A", "m0": "#B4CACC", "m1": "#557F89", "m2": "#40626E", "m3": "#95B4B8", "fil": "#C3D4D7", "bgc": "#2A4048", "bge": "#121B1F"}, "agua": {"dark": "#2751A2", "mid": "#336BD4", "light": "#477EE5", "m0": "#A3BEF2", "m1": "#336BD4", "m2": "#2751A2", "m3": "#7EA5ED", "fil": "#B5CBF5", "bgc": "#193569", "bge": "#0B172D"}};
 (function(){
   var g=id=>document.getElementById(id),EL=Object.keys(PW_TYPE_LABEL);
