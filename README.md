@@ -10,6 +10,7 @@ Componentes de interface do OTServ **Poke World Universe**, feitos como Web Comp
 | Icon | `<pw-icon>` |
 | Element Item | `<pw-element-item>` |
 | Badge | `<pw-badge>` |
+| Button | `<pw-button>` |
 
 Tipografia: **Spectral** para títulos e **Inter** para labels e textos (`--pw-font-title`, `--pw-font-body`, escala `--pw-text-*` e classes `.pw-text-*`).
 
@@ -87,6 +88,8 @@ Recomendado em produção: travar na versão principal (`@1`) depois que a 1.0 s
 **pw-element-item** — `element` (um dos 18 tipos), `theme` (`auto` = tema do elemento), `size` (sm · md · lg), `meta`, `width` (largura mínima em px), `selected`, `disabled`, `block`. O texto nunca quebra linha: o card cresce. Evento `change` com `detail.element`.
 
 **pw-badge** — texto como conteúdo; `tone` (neutral · info · success · warning · error · new · brand), `appearance` (filled · outline), `size` (sm · md · lg), `icon` (à direita), `label` (obrigatório se só ícone), `theme`.
+
+**pw-button** — texto como conteúdo; `variant` (primary · secondary · ghost · danger · success), `appearance` (fill · outline), `size` (sm · md · lg · xl), `icon`, `icon-end`, `label` (obrigatório se só ícone), `disabled`, `loading`, `block`, `type`, `theme`.
 
 ### Ícones novos
 

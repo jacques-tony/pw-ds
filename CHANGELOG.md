@@ -2,6 +2,12 @@
 
 Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/), versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.11.0] — 2026-10-26
+
+### Adicionado
+- **pw-button**: `variant` primary · secondary · ghost · danger · success; `appearance` fill · outline; `size` sm · md · lg · xl (28/36/44/52px); `icon` e `icon-end`; botão só de ícone com `label`; `disabled`, `loading`, `block`, `type`. Estados hover, pressed e foco visível.
+- Primary usa o metal do tema: dourado no Poke World, rosa/roxo no Mewtwo (mesmo de-para das bordas). Referência: Adobe Spectrum.
+
 ## [0.10.0] — 2026-10-26
 
 ### Adicionado
