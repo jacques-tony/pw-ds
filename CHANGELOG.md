@@ -2,6 +2,12 @@
 
 Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/), versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.12.0] — 2026-10-26
+
+### Adicionado
+- **pw-button**: efeito de hover "sparkle" (adaptado do Button Hover Animation de Aaron Iker): botão sobe e brilha, anel de luz girando na borda, faixa de luz e partículas/estrelas subindo. Cores do tema.
+- Configuração: `fx` (sparkle · glow · particles · none), `particles` (0–40) e as variáveis `--fx-color`, `--fx-particle-color`, `--fx-glow`, `--fx-glow-opacity`, `--fx-ring-width`, `--fx-ring-speed`, `--fx-sweep-opacity`, `--fx-sweep-speed`, `--fx-lift`, `--fx-scale`, `--fx-particle-size`, `--fx-particle-rise`, `--fx-particle-speed`, `--fx-duration`.
+
 ## [0.11.0] — 2026-10-26
 
 ### Adicionado

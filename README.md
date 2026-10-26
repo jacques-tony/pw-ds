@@ -89,7 +89,7 @@ Recomendado em produção: travar na versão principal (`@1`) depois que a 1.0 s
 
 **pw-badge** — texto como conteúdo; `tone` (neutral · info · success · warning · error · new · brand), `appearance` (filled · outline), `size` (sm · md · lg), `icon` (à direita), `label` (obrigatório se só ícone), `theme`.
 
-**pw-button** — texto como conteúdo; `variant` (primary · secondary · ghost · danger · success), `appearance` (fill · outline), `size` (sm · md · lg · xl), `icon`, `icon-end`, `label` (obrigatório se só ícone), `disabled`, `loading`, `block`, `type`, `theme`.
+**pw-button** — texto como conteúdo; `variant` (primary · secondary · ghost · danger · success), `appearance` (fill · outline), `size` (sm · md · lg · xl), `icon`, `icon-end`, `label` (obrigatório se só ícone), `disabled`, `loading`, `block`, `type`, `theme`; efeito de hover com `fx` (sparkle · glow · particles · none), `particles` e variáveis `--fx-*`.
 
 ### Ícones novos
 

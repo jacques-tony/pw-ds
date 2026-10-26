@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.11.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.12.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -351,4 +351,57 @@ pw-button .pwbt-spin{display:none;position:absolute;left:50%;top:50%;width:var(-
   border:2px solid currentColor;border-right-color:transparent;animation:pwbt-spin .8s linear infinite}
 pw-button[loading] .pwbt-spin{display:block}
 @keyframes pwbt-spin{to{transform:rotate(360deg)}}
+
+/* ---- efeito de hover "sparkle" (adaptado do Button Hover Animation de Aaron Iker) ----
+   tudo configurável por CSS custom properties no próprio pw-button ou em qualquer ancestral */
+pw-button{
+  --fx-color:var(--pw-filament);            /* cor do brilho e do anel */
+  --fx-particle-color:color-mix(in srgb,var(--pw-metal-0) 45%,#fff); /* cor das partículas */
+  --fx-glow:14px;                            /* tamanho do brilho externo */
+  --fx-glow-opacity:.85;
+  --fx-ring-width:2px;                     /* espessura do anel que gira na borda */
+  --fx-ring-speed:2.4s;                      /* uma volta do anel */
+  --fx-sweep-opacity:.55;                    /* faixa de luz que atravessa o botão */
+  --fx-sweep-speed:.9s;
+  --fx-lift:-2px;                            /* quanto o botão sobe no hover */
+  --fx-scale:1.02;
+  --fx-particle-size:4px;                    /* tamanho base (varia ±50%) */
+  --fx-particle-rise:34px;                   /* altura que a partícula sobe */
+  --fx-particle-speed:1.4s;
+  --fx-duration:.25s}
+pw-button[variant="danger"]{--fx-color:#FFB3B3;--fx-particle-color:#FFD0D0}
+pw-button[variant="success"]{--fx-color:#BDF5D0;--fx-particle-color:#DFFBE8}
+pw-button[variant="secondary"],pw-button[variant="ghost"]{--fx-glow-opacity:.5;--fx-sweep-opacity:.25}
+pw-button .pwbt-fx{position:absolute;inset:0;border-radius:inherit;pointer-events:none;overflow:visible;z-index:2}
+pw-button .pwbt-ring,pw-button .pwbt-sweep,pw-button .pwbt-parts{position:absolute;pointer-events:none;opacity:0;transition:opacity var(--fx-duration)}
+/* anel: gradiente cônico girando, recortado só na borda */
+pw-button .pwbt-ring{inset:calc(var(--fx-ring-width) * -1);border-radius:calc(var(--brad) + var(--fx-ring-width));padding:var(--fx-ring-width);
+  background:conic-gradient(from var(--fx-a,0deg),transparent 0 55%,var(--fx-color) 75%,#fff 80%,var(--fx-color) 85%,transparent 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+@property --fx-a{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes pwfx-ring{to{--fx-a:360deg}}
+/* faixa de luz diagonal */
+pw-button .pwbt-sweep{inset:0;border-radius:inherit;overflow:hidden;z-index:1}
+pw-button .pwbt-sweep::before{content:"";position:absolute;top:-50%;bottom:-50%;width:35%;left:-60%;transform:skewX(-20deg);
+  background:linear-gradient(90deg,transparent,rgb(255 255 255 / var(--fx-sweep-opacity)),transparent)}
+@keyframes pwfx-sweep{to{left:130%}}
+/* partículas */
+pw-button .pwbt-parts{inset:0}
+pw-button .pwbt-parts i{position:absolute;bottom:10%;left:var(--x);width:calc(var(--fx-particle-size) * var(--s));height:calc(var(--fx-particle-size) * var(--s));
+  border-radius:50%;background:var(--fx-particle-color);box-shadow:0 0 4px #fff,0 0 8px var(--fx-color);opacity:0}
+pw-button .pwbt-parts i.st{border-radius:0;background:none;box-shadow:none;width:calc(var(--fx-particle-size) * var(--s) * 2.4);height:calc(var(--fx-particle-size) * var(--s) * 2.4);
+  background:var(--fx-particle-color);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);filter:drop-shadow(0 0 3px var(--fx-color))}
+@keyframes pwfx-part{0%{transform:translate(0,0) scale(.4);opacity:0}15%{opacity:1}100%{transform:translate(var(--dx),calc(var(--fx-particle-rise) * -1 * var(--r))) scale(1);opacity:0}}
+/* ativa no hover / foco / estado forçado */
+pw-button:not([fx="none"]):not([disabled]):not([loading])>button:hover,pw-button:not([fx="none"])[state="hover"]>button{transform:translateY(var(--fx-lift)) scale(var(--fx-scale));
+  box-shadow:var(--b-sh,0 0 0 transparent),0 0 var(--fx-glow) color-mix(in srgb,var(--fx-color) calc(var(--fx-glow-opacity) * 100%),transparent)}
+pw-button:not([fx="none"]):not([disabled]):not([loading])>button:is(:hover,:focus-visible) :is(.pwbt-ring,.pwbt-sweep,.pwbt-parts),
+pw-button:not([fx="none"])[state="hover"] :is(.pwbt-ring,.pwbt-sweep,.pwbt-parts){opacity:1}
+pw-button:not([fx="none"]):not([disabled]):not([loading])>button:is(:hover,:focus-visible) .pwbt-ring,pw-button:not([fx="none"])[state="hover"] .pwbt-ring{animation:pwfx-ring var(--fx-ring-speed) linear infinite}
+pw-button:not([fx="none"]):not([disabled]):not([loading])>button:is(:hover,:focus-visible) .pwbt-sweep::before,pw-button:not([fx="none"])[state="hover"] .pwbt-sweep::before{animation:pwfx-sweep var(--fx-sweep-speed) ease-out 1 forwards}
+pw-button:not([fx="none"]):not([disabled]):not([loading])>button:is(:hover,:focus-visible) .pwbt-parts i,pw-button:not([fx="none"])[state="hover"] .pwbt-parts i{animation:pwfx-part var(--fx-particle-speed) ease-out var(--d) infinite}
+pw-button[fx="glow"] :is(.pwbt-parts,.pwbt-sweep){display:none}
+pw-button[fx="particles"] :is(.pwbt-ring,.pwbt-sweep){display:none}
+pw-button>button:active{transform:translateY(1px) scale(.99)!important}
+@media (prefers-reduced-motion:reduce){pw-button .pwbt-parts{display:none}pw-button .pwbt-ring{animation:none!important}pw-button .pwbt-sweep::before{animation:none!important}pw-button>button:hover{transform:none!important}}
 @media (prefers-reduced-motion:reduce){pw-button>button{transition:none}pw-button .pwbt-spin{animation-duration:2.4s}}
