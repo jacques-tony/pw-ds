@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>pw-ds — exemplo</title>
+<link rel="stylesheet" href="../dist/pw-ds.css">
+<script src="../dist/pw-ds.js" defer></script>
+<style>body{margin:0;padding:40px;background:#060d1f;color:#fff;font-family:Inter,system-ui,sans-serif;display:grid;gap:40px}</style>
+</head>
+<body>
+  <pw-tabs aria-label="Ações">
+    <pw-tab icon="craft" selected>Craft</pw-tab>
+    <pw-tab icon="boost">Boost</pw-tab>
+    <pw-tab icon="limit-break">Limit Break</pw-tab>
+    <pw-tab icon="close">Fechar</pw-tab>
+  </pw-tabs>
+
+  <div class="pw-titled">
+    <pw-card-header>Ascensão Estelar</pw-card-header>
+    <pw-card variant="primary"></pw-card>
+  </div>
+
+  <div data-pw-theme="mewtwo" style="display:flex;gap:32px;flex-wrap:wrap">
+    <pw-card variant="secondary" interactive></pw-card>
+    <pw-card variant="tertiary"><pw-icon name="limit-break" size="32"></pw-icon></pw-card>
+  </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+/*! Poke World Design System — tokens v0.1.0 */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
+:root{
+  --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
+  --f-body:"IBM Plex Sans", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, monospace;
+
+  /* ===== TEMA GLOBAL (compartilhado por todos os componentes) =====
+     tema padrão = Poke World (dourado + azul). Outros temas redefinem só estes tokens. */
+  --pw-metal-0:#FFE0A3;   /* 0%   */
+  --pw-metal-1:#D19B46;   /* 40%  */
+  --pw-metal-2:#BC8738;   /* 80%  */
+  --pw-metal-3:#FAD183;   /* 100% */
+  --pw-filament:#FFE0A3;  /* border.solid.secondary — traçado central 1px */
+  --pw-glow:#FFE0A3;      /* pontos de luz (estimado) */
+  --pw-bg-center:#0E3370; /* background.gradient.blue 0% */
+  --pw-bg-edge:#051839;   /* 100% */
+  /* tertiary */
+  --pw-ter-bg-center:#001D3E; --pw-ter-bg-edge:#001225; --pw-ter-bg-op:.75;
+  --pw-ter-stroke-0:#001F3D; --pw-ter-stroke-1:#0A6999; --pw-ter-stroke-2:#03406B;
+  --pw-ter-stroke-3:#0D9BC4; --pw-ter-stroke-4:#054672; --pw-ter-stroke-5:#1556BF;
+  /* tab (selected) */
+  --pw-tab-fill-bottom:#0050B0; --pw-tab-fill-top:#001938;
+  --pw-tab-stroke-a:#9DF0FF; --pw-tab-stroke-b:#D5F8FF;
+  --pw-tab-drop:#9DEFFF; --pw-tab-inner:var(--pw-tab-drop);
+  --pw-tab-text:#FFFFFF; --pw-tab-text-idle:#FFFFFF;
+  --f-tab:"Inter", system-ui, sans-serif;
+  --pw-bg-solid:#071C41;  /* background.solid.blue (estimado) */
+
+  /* ===== CARD TOKENS ===== */
+  --card-glass:#D9D9D9;     /* cópia vidro, luz suave */
+  --card-text:#F2E8D2;
+  --card-text-muted:#B9C3DA;
+  --card-stroke:3px; --card-filament-w:1px;
+  --card-blur:4; --card-tex-size:16.5; --card-tex-radius:5;
+  --card-pad-primary:34px; --card-pad-secondary:30px;
+  --card-dur:160ms; --card-ease:cubic-bezier(.2,.7,.3,1);
+}
+
+/* ===== TEMA MEWTWO =====
+   Aplique em qualquer ancestral (data-pw-theme="mewtwo") ou no componente (theme="mewtwo"). */
+[data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"]{
+  --pw-metal-0:#E5A3FF;--pw-metal-1:#AA46D1;--pw-metal-2:#A638BC;--pw-metal-3:#EA83FA;
+  --pw-filament:#FDA3FF;--pw-glow:#FDA3FF;
+  --pw-bg-center:#540061;--pw-bg-edge:#2F0539;--pw-bg-solid:#2F0539;
+  --pw-ter-bg-center:#32003E;--pw-ter-bg-edge:#250023;
+  --pw-ter-stroke-0:#3C003D;--pw-ter-stroke-1:#970A99;--pw-ter-stroke-2:#69036B;
+  --pw-ter-stroke-3:#C40DB8;--pw-ter-stroke-4:#720563;--pw-ter-stroke-5:#BF15AE;
+  --pw-tab-fill-bottom:#9300B0;--pw-tab-fill-top:#001938;
+  --pw-tab-stroke-a:#FD9DFF;--pw-tab-stroke-b:#F7D5FF;
+  --pw-tab-drop:#F29DFF;--pw-tab-inner:#F29DFF;--pw-tab-text-idle:#FFFFFF}

@@ -1,0 +1,159 @@
+/*! Poke World Design System — tokens v0.1.0 */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
+:root{
+  --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
+  --f-body:"IBM Plex Sans", system-ui, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, monospace;
+
+  /* ===== TEMA GLOBAL (compartilhado por todos os componentes) =====
+     tema padrão = Poke World (dourado + azul). Outros temas redefinem só estes tokens. */
+  --pw-metal-0:#FFE0A3;   /* 0%   */
+  --pw-metal-1:#D19B46;   /* 40%  */
+  --pw-metal-2:#BC8738;   /* 80%  */
+  --pw-metal-3:#FAD183;   /* 100% */
+  --pw-filament:#FFE0A3;  /* border.solid.secondary — traçado central 1px */
+  --pw-glow:#FFE0A3;      /* pontos de luz (estimado) */
+  --pw-bg-center:#0E3370; /* background.gradient.blue 0% */
+  --pw-bg-edge:#051839;   /* 100% */
+  /* tertiary */
+  --pw-ter-bg-center:#001D3E; --pw-ter-bg-edge:#001225; --pw-ter-bg-op:.75;
+  --pw-ter-stroke-0:#001F3D; --pw-ter-stroke-1:#0A6999; --pw-ter-stroke-2:#03406B;
+  --pw-ter-stroke-3:#0D9BC4; --pw-ter-stroke-4:#054672; --pw-ter-stroke-5:#1556BF;
+  /* tab (selected) */
+  --pw-tab-fill-bottom:#0050B0; --pw-tab-fill-top:#001938;
+  --pw-tab-stroke-a:#9DF0FF; --pw-tab-stroke-b:#D5F8FF;
+  --pw-tab-drop:#9DEFFF; --pw-tab-inner:var(--pw-tab-drop);
+  --pw-tab-text:#FFFFFF; --pw-tab-text-idle:#FFFFFF;
+  --f-tab:"Inter", system-ui, sans-serif;
+  --pw-bg-solid:#071C41;  /* background.solid.blue (estimado) */
+
+  /* ===== CARD TOKENS ===== */
+  --card-glass:#D9D9D9;     /* cópia vidro, luz suave */
+  --card-text:#F2E8D2;
+  --card-text-muted:#B9C3DA;
+  --card-stroke:3px; --card-filament-w:1px;
+  --card-blur:4; --card-tex-size:16.5; --card-tex-radius:5;
+  --card-pad-primary:34px; --card-pad-secondary:30px;
+  --card-dur:160ms; --card-ease:cubic-bezier(.2,.7,.3,1);
+}
+
+/* ===== TEMA MEWTWO =====
+   Aplique em qualquer ancestral (data-pw-theme="mewtwo") ou no componente (theme="mewtwo"). */
+[data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"]{
+  --pw-metal-0:#E5A3FF;--pw-metal-1:#AA46D1;--pw-metal-2:#A638BC;--pw-metal-3:#EA83FA;
+  --pw-filament:#FDA3FF;--pw-glow:#FDA3FF;
+  --pw-bg-center:#540061;--pw-bg-edge:#2F0539;--pw-bg-solid:#2F0539;
+  --pw-ter-bg-center:#32003E;--pw-ter-bg-edge:#250023;
+  --pw-ter-stroke-0:#3C003D;--pw-ter-stroke-1:#970A99;--pw-ter-stroke-2:#69036B;
+  --pw-ter-stroke-3:#C40DB8;--pw-ter-stroke-4:#720563;--pw-ter-stroke-5:#BF15AE;
+  --pw-tab-fill-bottom:#9300B0;--pw-tab-fill-top:#001938;
+  --pw-tab-stroke-a:#FD9DFF;--pw-tab-stroke-b:#F7D5FF;
+  --pw-tab-drop:#F29DFF;--pw-tab-inner:#F29DFF;--pw-tab-text-idle:#FFFFFF}
+/*! Poke World Design System — components v0.1.0 */
+pw-card{--card-metal-0:var(--pw-metal-0);--card-metal-1:var(--pw-metal-1);--card-metal-2:var(--pw-metal-2);--card-metal-3:var(--pw-metal-3);
+  --card-filament:var(--pw-filament);--card-glow:var(--pw-glow);
+  --card-bg-center:var(--pw-bg-center);--card-bg-edge:var(--pw-bg-edge);--card-bg-solid:var(--pw-bg-solid)}
+pw-card{display:block;position:relative;box-sizing:border-box;color:var(--card-text);font-family:var(--f-body);
+  --lift:0px; --press:1; --glow-op:.6; --dot-op:.5; --ring-op:0; --bg-bright:1;
+  transform:translateY(var(--lift)) scale(var(--press));transition:transform var(--card-dur) var(--card-ease)}
+pw-card[variant="primary"],pw-card:not([variant]){width:514px;height:376px}
+pw-card[variant="secondary"]{width:265px;height:374px}
+pw-card[variant="tertiary"]{width:320px;height:200px}
+pw-card[variant="tertiary"] .pwc-content{padding:20px}
+pw-card[variant="tertiary"][interactive][selected],pw-card[variant="tertiary"][state="selected"]{--bg-bright:1.35}
+pw-card[variant="tertiary"][interactive]:not([disabled]):hover,pw-card[variant="tertiary"][state="hover"]{--bg-bright:1.15}
+pw-card[variant="tertiary"][selected] .l-tstroke,pw-card[variant="tertiary"][state="selected"] .l-tstroke{filter:brightness(1.6)}
+pw-card .pwc-frame{position:absolute;inset:0;overflow:visible;pointer-events:none}
+pw-card .pwc-content{position:relative;height:100%;box-sizing:border-box;padding:var(--card-pad-primary);display:flex;flex-direction:column;gap:10px;transition:opacity var(--card-dur)}
+pw-card[variant="secondary"] .pwc-content{padding:var(--card-pad-secondary)}
+pw-card .l-glow,pw-card .l-dots,pw-card .l-ring,pw-card .l-bg{transition:opacity var(--card-dur),filter var(--card-dur)}
+pw-card .l-glow{opacity:var(--glow-op)}
+pw-card .l-dots{opacity:var(--dot-op)}
+pw-card .l-ring{opacity:var(--ring-op)}
+pw-card .l-bg{filter:brightness(var(--bg-bright))}
+pw-card .l-glass{mix-blend-mode:soft-light}
+
+/* tones (só o metal / brilho mudam; fundo azul permanece) */
+pw-card[tone="info"]   {--card-metal-0:#CDF2FF;--card-metal-1:#4FB0D8;--card-metal-2:#3A8EBC;--card-metal-3:#A7E3F8;--card-filament:#D9F5FF;--card-glow:#9FE2FF}
+pw-card[tone="success"]{--card-metal-0:#CFF7D9;--card-metal-1:#4DB873;--card-metal-2:#39985A;--card-metal-3:#A6E8B9;--card-filament:#DDFBE5;--card-glow:#9BF0B6}
+pw-card[tone="warning"]{--card-metal-0:#FFD6B0;--card-metal-1:#E8823A;--card-metal-2:#C8672A;--card-metal-3:#FFB57A;--card-filament:#FFE4CC;--card-glow:#FFB070}
+pw-card[tone="error"]  {--card-metal-0:#FFC2C2;--card-metal-1:#D64848;--card-metal-2:#AE3333;--card-metal-3:#F48E8E;--card-filament:#FFD6D6;--card-glow:#FF8A8A}
+pw-card[tone="new"]    {--card-metal-0:#EBD3FF;--card-metal-1:#A86BE0;--card-metal-2:#8A4FC4;--card-metal-3:#D5ABF8;--card-filament:#F2E2FF;--card-glow:#D3A6FF}
+pw-card[tone="brand"]  {--card-metal-0:#FFF0C4;--card-metal-1:#E6AE48;--card-metal-2:#CF9131;--card-metal-3:#FFDF8C;--card-filament:#FFF0C4;--card-glow:#FFD27A;--glow-op:.85;--dot-op:.7}
+
+/* appearance outline: só moldura, sem preenchimento */
+pw-card[appearance="outline"] .l-bg{display:none}
+
+/* estados — só quando interactive */
+pw-card[interactive]{cursor:pointer;outline:none}
+pw-card[interactive]:not([disabled]):hover,pw-card[state="hover"]{--lift:-2px;--glow-op:1;--dot-op:.85}
+pw-card[interactive]:not([disabled]):active,pw-card[state="pressed"]{--lift:0px;--press:.985;--glow-op:.4;--dot-op:.35;--bg-bright:.92}
+pw-card[interactive][selected],pw-card[state="selected"]{--glow-op:1;--dot-op:1}
+pw-card[interactive]:focus-visible .l-ring{opacity:1;stroke-dasharray:6 5}
+pw-card[interactive][selected]:focus-visible .l-ring{stroke-dasharray:none}
+pw-card[disabled],pw-card[state="disabled"]{cursor:not-allowed;--glow-op:0;--dot-op:0;--ring-op:0;--lift:0px;--press:1}
+pw-card[disabled] .l-art,pw-card[state="disabled"] .l-art{filter:grayscale(.9) brightness(.75)}
+pw-card[disabled] .pwc-content,pw-card[state="disabled"] .pwc-content{opacity:.5}
+/* ===================== COMPONENT: pw-card-header ===================== */
+pw-card-header{display:inline-flex;position:relative;height:58px;box-sizing:border-box;align-items:center;justify-content:center;justify-self:start;
+  --hdr-tip:22px;padding:0 calc(var(--hdr-tip) + 16px);color:#FFF8EC;font-family:var(--f-display);font-weight:700;font-size:20px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+pw-card-header .pwh-frame{position:absolute;inset:0;overflow:visible;pointer-events:none}
+pw-card-header .pwh-label{position:relative;display:flex;align-items:center;gap:14px}
+pw-card-header .pwh-label::before,pw-card-header .pwh-label::after{content:var(--hdr-icon,"\2726");font-size:.8em;color:#FFF8EC;text-shadow:0 0 8px var(--pw-glow)}
+pw-card-header[decor="none"] .pwh-label::before,pw-card-header[decor="none"] .pwh-label::after,
+pw-card-header[show-icon="false"] .pwh-label::before,pw-card-header[show-icon="false"] .pwh-label::after{content:none}
+pw-card-header .pwh-label:empty{display:none}
+pw-icon{display:inline-flex;width:1em;height:1em;flex:none;color:inherit}pw-icon svg{width:100%;height:100%;display:block}
+
+/* ===================== COMPONENT: pw-tabs / pw-tab ===================== */
+pw-tabs{position:relative;display:inline-flex;flex-wrap:wrap;gap:6px;align-items:center;
+  --tab-pad:8px;--tab-gap:4px;--tab-fs:12px;--tab-ic:14px}
+pw-tabs[size="sm"]{--tab-fs:10px;--tab-ic:12px;gap:4px}
+pw-tabs[size="lg"]{--tab-fs:14px;--tab-ic:16px;gap:8px}
+pw-tab{--fill-op:0;--stroke-op:0;--drop-op:0;--shine:0;--sw:.5px;
+  position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:var(--tab-gap);padding:var(--tab-pad);
+  border-radius:4px;box-sizing:border-box;font-family:var(--f-tab);font-size:var(--tab-fs);font-weight:400;line-height:1;white-space:nowrap;
+  color:var(--pw-tab-text-idle);cursor:pointer;user-select:none;outline:none;
+  box-shadow:0 0 7px -2px color-mix(in srgb,var(--pw-tab-drop) calc(75% * var(--drop-op)),transparent);
+  transition:color var(--card-dur),box-shadow var(--card-dur)}
+/* preenchimento: linear vertical + losango branco 50% (aprox. radial) + sombra interna */
+pw-tab::after{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;opacity:var(--fill-op);
+  background:linear-gradient(to top,var(--pw-tab-fill-bottom),var(--pw-tab-fill-top));
+  box-shadow:inset 0 0 6.5px 0 color-mix(in srgb,var(--pw-tab-inner) 75%,transparent);transition:opacity var(--card-dur)}
+/* losango branco 50%: da borda inferior até ~metade da altura — hover do selected */
+pw-tab .pwt-shine{position:absolute;inset:0;border-radius:inherit;z-index:0;pointer-events:none;mix-blend-mode:lighten;opacity:var(--shine);transition:opacity var(--card-dur);
+  background:radial-gradient(70% 90% at 50% 100%,#fff 0%,rgb(255 255 255 / .9) 35%,rgb(255 255 255 / .55) 100%);
+  -webkit-mask:linear-gradient(to right,transparent 0%,#000 50%,transparent 100%),linear-gradient(to top,#000 0%,transparent 65%);-webkit-mask-composite:source-in;
+  mask:linear-gradient(to right,transparent 0%,#000 50%,transparent 100%),linear-gradient(to top,#000 0%,transparent 65%);mask-composite:intersect}
+pw-tab .pwt-icon,pw-tab .pwt-label{position:relative;z-index:1}
+/* traçado interno 0.5px, gradiente diagonal 5 interrupções */
+pw-tab::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:var(--sw);z-index:2;pointer-events:none;opacity:var(--stroke-op);
+  background:linear-gradient(135deg,var(--pw-tab-stroke-a) 0%,var(--pw-tab-stroke-b) 25%,var(--pw-tab-stroke-a) 50%,var(--pw-tab-stroke-b) 75%,var(--pw-tab-stroke-a) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);
+  transition:opacity var(--card-dur)}
+pw-tab .pwt-icon{display:inline-flex;width:var(--tab-ic);height:var(--tab-ic);flex:none}
+pw-tab .pwt-icon svg{width:100%;height:100%}
+pw-tab[show-icon="false"] .pwt-icon{display:none}
+pw-tab:not([disabled]):hover,pw-tab[state="hover"]{--fill-op:.35;--stroke-op:.55;color:var(--pw-tab-text)}
+pw-tab:not([disabled]):active{--fill-op:.55}
+pw-tab[selected],pw-tab[state="selected"]{--fill-op:1;--stroke-op:1;--drop-op:1;color:var(--pw-tab-text)}
+pw-tab[selected]:not([disabled]):hover,pw-tab[state="selected-hover"]{--shine:1}
+/* em telas 1x, 0,5px vira meia linha translúcida e some na base escura: arredonda para 1px físico */
+@media (max-resolution:1.5dppx){pw-tab{--sw:1px}}
+pw-tab:focus-visible{outline:1.5px solid var(--pw-tab-stroke-a);outline-offset:2px}
+/* transição entre abas: um "fantasma" com o visual do selected desliza da aba antiga para a nova */
+pw-tabs .pwt-ghost{position:absolute;left:0;top:0;border-radius:4px;pointer-events:none;z-index:0;isolation:isolate;
+  background:linear-gradient(to top,var(--pw-tab-fill-bottom),var(--pw-tab-fill-top));
+  box-shadow:0 0 7px -2px color-mix(in srgb,var(--pw-tab-drop) 75%,transparent),inset 0 0 6.5px 0 color-mix(in srgb,var(--pw-tab-inner) 75%,transparent)}
+pw-tabs .pwt-ghost::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:.5px;
+  background:linear-gradient(135deg,var(--pw-tab-stroke-a) 0%,var(--pw-tab-stroke-b) 25%,var(--pw-tab-stroke-a) 50%,var(--pw-tab-stroke-b) 75%,var(--pw-tab-stroke-a) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+@media (max-resolution:1.5dppx){pw-tabs .pwt-ghost::before{padding:1px}}
+pw-tab[data-arriving]{--fill-op:0!important;--stroke-op:0!important;--drop-op:0!important;transition:none}
+pw-tab[data-arriving]::before,pw-tab[data-arriving]::after{transition:none}
+pw-tab[disabled],pw-tab[state="disabled"]{opacity:.38;cursor:not-allowed;--drop-op:0}
+@media (prefers-reduced-motion:reduce){pw-tab,pw-tab::before,pw-tab::after{transition:none}}
+.pw-titled{position:relative;display:inline-block;width:fit-content;justify-self:start;padding-top:26px}
+.pw-titled>pw-card-header{position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:2}
+@media (prefers-reduced-motion:reduce){pw-card,pw-card *{transition:none!important}pw-card{--lift:0px!important}}
+
