@@ -2,6 +2,11 @@
 
 Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/), versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.15.0] — 2026-10-27
+
+### Adicionado
+- **Scroll bar**: `<pw-scroll>` ou classe `.pw-scroll`. Barra de 2px, cantos arredondados, cor do metal do tema (acende no traçado ao passar o mouse). `axis` x · y, `track="none"`, `theme` e variáveis `--pw-scroll-size`, `--pw-scroll-radius`, `--pw-scroll-thumb`, `--pw-scroll-thumb-hover`, `--pw-scroll-track`. Funciona em todos os temas.
+
 ## [0.14.0] — 2026-10-27
 
 ### Alterado

@@ -12,6 +12,7 @@ Componentes de interface do OTServ **Poke World Universe**, feitos como Web Comp
 | Badge | `<pw-badge>` |
 | Button | `<pw-button>` |
 | Input Number | `<pw-number>` |
+| Scroll Bar | `<pw-scroll>` ou `.pw-scroll` |
 
 Tipografia: **Spectral** para títulos e **Inter** para labels e textos (`--pw-font-title`, `--pw-font-body`, escala `--pw-text-*` e classes `.pw-text-*`).
 
@@ -93,6 +94,8 @@ Recomendado em produção: travar na versão principal (`@1`) depois que a 1.0 s
 **pw-button** — texto como conteúdo; `variant` (primary · secondary · ghost · danger · success), `appearance` (fill · outline), `size` (sm · md · lg · xl), `icon`, `icon-end`, `label` (obrigatório se só ícone), `disabled`, `loading`, `block`, `type`, `theme`; efeito de hover com `fx` (sparkle · glow · particles · none), `particles` e variáveis `--fx-*`.
 
 **pw-number** — `value`, `min`, `max`, `step`, `precision`, `layout` (split · joined · compact), `size` (sm · md · lg), `show-max`, `max-label`, `label`, `help`, `prefix`, `suffix`, `invalid`, `disabled`, `readonly`, `block`, `theme`. Evento `change` com `detail.value`; propriedade `.value`.
+
+**pw-scroll** — área com rolagem e barra de 2px; `axis` (x · y), `track="none"`, `theme`; variáveis `--pw-scroll-*`. A classe `.pw-scroll` aplica a mesma barra em qualquer elemento.
 
 ### Ícones novos
 
