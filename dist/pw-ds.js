@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.15.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.16.0 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -47,7 +47,7 @@ function chamfer(W,H,i,c){
 var uidN=0;
 
 class PWCard extends HTMLElement{
-  static get observedAttributes(){return ['variant','interactive','disabled','selected']}
+  static get observedAttributes(){return ['variant','interactive','disabled','selected','frame']}
   connectedCallback(){
     if(!this._init){
       this._init=true;this._uid='pwc'+(++uidN);
@@ -78,7 +78,7 @@ class PWCard extends HTMLElement{
   }
   render(){
     var W=Math.round(this.offsetWidth),H=Math.round(this.offsetHeight);
-    if(!W||!H||(W===this._w&&H===this._h&&this.getAttribute('variant')===this._v))return;
+    if(!W||!H||(W===this._w&&H===this._h&&this.getAttribute('variant')===this._v&&this.getAttribute('frame')===this._fr))return;this._fr=this.getAttribute('frame');
     this._w=W;this._h=H;this._v=this.getAttribute('variant');
     var v=this._v==='secondary'?'secondary':'primary',c=CORNERS[v],u=this._uid;
     var shape=outline(W,H,c),all=shape+' '+curls(W,H,c),ring=outline(W,H,c,4);
@@ -86,6 +86,43 @@ class PWCard extends HTMLElement{
     var border='<path d="'+all+'" fill="none" stroke="var(--card-filament)" stroke-width="4"/>'+
                '<path d="'+all+'" fill="none" stroke="url(#'+u+'-metal)" stroke-width="2"/>';
     this._svg.setAttribute('width',W);this._svg.setAttribute('height',H);this._svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    if((this._v==='primary'||!this._v)&&this._fr==='tech'){
+      /* moldura "tech" (Máquina do Mewtwo): cantos chanfrados, linha dupla, faixas nos cantos, gemas e filetes de luz; cores dos tokens */
+      var C=Math.min(26,W*.08,H*.08),o=1.5,i2=9;
+      var oct=function(a,c){return 'M'+(a+c)+' '+a+' L'+(W-a-c)+' '+a+' L'+(W-a)+' '+(a+c)+' L'+(W-a)+' '+(H-a-c)+' L'+(W-a-c)+' '+(H-a)+' L'+(a+c)+' '+(H-a)+' L'+a+' '+(H-a-c)+' L'+a+' '+(a+c)+' Z'};
+      var outer=oct(o,C),inner=oct(i2,C-4),ring=oct(o-4,C+2);
+      /* faixas diagonais nos 4 cantos (entre a linha externa e a interna) */
+      var band=function(sx,sy){var X=function(x){return sx<0?W-x:x},Y=function(y){return sy<0?H-y:y};
+        return 'M'+X(o)+' '+Y(o+C)+' L'+X(o+C)+' '+Y(o)+' L'+X(o+C+16)+' '+Y(o)+' L'+X(o+C+10)+' '+Y(i2)+' L'+X(i2+C-4)+' '+Y(i2)+' L'+X(i2)+' '+Y(i2+C-4)+' L'+X(i2)+' '+Y(i2+C+10)+' L'+X(o)+' '+Y(o+C+16)+' Z'};
+      var bands=[[1,1],[-1,1],[-1,-1],[1,-1]].map(function(d){return band(d[0],d[1])}).join(' ');
+      /* risquinhos "///" ao lado das faixas superiores */
+      var hatch='';for(var k=0;k<3;k++){var x=o+C+22+k*7;hatch+='M'+x+' '+(o+.5)+' L'+(x+5)+' '+(o+.5)+' L'+(x+1)+' '+(i2-1)+' L'+(x-4)+' '+(i2-1)+' Z ';var xr=W-x;hatch+='M'+xr+' '+(H-o-.5)+' L'+(xr-5)+' '+(H-o-.5)+' L'+(xr-1)+' '+(H-i2+1)+' L'+(xr+4)+' '+(H-i2+1)+' Z '}
+      /* gemas: losangos nos cantos superior direito e inferior esquerdo, sobre o chanfro */
+      var gem=function(cx,cy,r){return 'M'+cx+' '+(cy-r)+' L'+(cx+r)+' '+cy+' L'+cx+' '+(cy+r)+' L'+(cx-r)+' '+cy+' Z'};
+      var g1=W-o-C*.5,g2=o+C*.5;var gems=gem(g1,g2,6)+' '+gem(g2,H-g2,6);
+      /* filetes de luz no centro da base e do topo */
+      var mid=W/2,bars='<rect x="'+(mid-34)+'" y="'+(H-o-3.5)+'" width="68" height="3" rx="1.5"/><rect x="'+(mid-20)+'" y="'+(H-i2+3)+'" width="40" height="2" rx="1"/><rect x="'+(mid-24)+'" y="'+(o+.5)+'" width="48" height="2.5" rx="1.25"/>';
+      this._svg.innerHTML='<defs>'+
+        '<linearGradient id="'+u+'-metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--card-metal-0)"/><stop offset=".4" style="stop-color:var(--card-metal-1)"/><stop offset=".8" style="stop-color:var(--card-metal-2)"/><stop offset="1" style="stop-color:var(--card-metal-3)"/></linearGradient>'+
+        '<linearGradient id="'+u+'-band" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--card-metal-1)"/><stop offset="1" style="stop-color:var(--card-metal-2)"/></linearGradient>'+
+        '<radialGradient id="'+u+'-bg" cx=".5" cy=".45" r=".7"><stop offset="0" style="stop-color:var(--card-bg-center)"/><stop offset="1" style="stop-color:var(--card-bg-edge)"/></radialGradient>'+
+        '<filter id="'+u+'-glow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="4"/></filter>'+
+        '<filter id="'+u+'-soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.5"/></filter></defs>'+
+        '<g class="l-art">'+
+        '<path class="l-bg" d="'+outer+'" fill="url(#'+u+'-bg)"/>'+
+        '<path d="'+inner+'" fill="none" stroke="var(--card-filament)" stroke-opacity=".18" stroke-width="10" filter="url(#'+u+'-glow)"/>'+
+        '<g class="l-glow"><path d="'+outer+'" fill="none" stroke="var(--card-glow)" stroke-width="5" filter="url(#'+u+'-glow)"/></g>'+
+        '<path d="'+inner+'" fill="none" stroke="var(--card-filament)" stroke-opacity=".55" stroke-width="1"/>'+
+        '<path d="'+bands+'" fill="url(#'+u+'-band)" fill-opacity=".9" stroke="var(--card-filament)" stroke-opacity=".6" stroke-width=".75"/>'+
+        '<path d="'+hatch+'" fill="var(--card-metal-0)" fill-opacity=".75"/>'+
+        '<path d="'+outer+'" fill="none" stroke="var(--card-filament)" stroke-width="3.5"/>'+
+        '<path d="'+outer+'" fill="none" stroke="url(#'+u+'-metal)" stroke-width="2"/>'+
+        '<g class="l-dots"><g filter="url(#'+u+'-soft)" fill="var(--card-glow)">'+bars+'</g><g fill="var(--card-metal-0)">'+bars+'</g></g>'+
+        '<path d="'+gems+'" fill="url(#'+u+'-metal)" stroke="var(--card-filament)" stroke-width="1"/>'+
+        '</g>'+
+        '<path class="l-ring" d="'+ring+'" fill="none" stroke="var(--card-filament)" stroke-width="1.5"/>';
+      return;
+    }
     if(this._v==='tertiary'){
       var rr=function(o){return '<rect x="'+(0.5-o)+'" y="'+(0.5-o)+'" width="'+(W-1+2*o)+'" height="'+(H-1+2*o)+'" rx="'+(7.5+o)+'"'};
       this._svg.innerHTML='<defs>'+
@@ -392,7 +429,7 @@ class PWNumber extends HTMLElement{
   }
 }
 customElements.define('pw-number',PWNumber);
-window.PWDS={version:"0.15.0",
+window.PWDS={version:"0.16.0",
   icons:PW_FILL,
   registerIcon:function(name,d,rule){PW_FILL[name]=d;if(rule)PW_FILL_RULE[name]=rule;}};
 })();

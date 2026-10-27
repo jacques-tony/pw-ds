@@ -2,6 +2,11 @@
 
 Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/), versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.16.0] — 2026-10-27
+
+### Adicionado
+- **pw-card** primary: `frame="tech"`, moldura no estilo da Máquina do Mewtwo (cantos chanfrados, linha dupla com brilho interno, faixas diagonais nos cantos, gemas em losango, filetes de luz no topo e na base). Feita para o tema Mewtwo, com cores 100% dos tokens. Estados hover, selected e disabled iguais ao primary.
+
 ## [0.15.0] — 2026-10-27
 
 ### Adicionado

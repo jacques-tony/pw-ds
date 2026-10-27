@@ -78,7 +78,7 @@ Recomendado em produção: travar na versão principal (`@1`) depois que a 1.0 s
 
 ### Propriedades
 
-**pw-card** — `variant` (primary · secondary · tertiary), `tone` (neutral · info · success · warning · error · new · brand), `appearance` (filled · outline), `theme`, `interactive`, `selected`, `disabled`; no tertiary, `element` (um dos 18 tipos) aplica o fundo elemental quando selecionado.
+**pw-card** — `variant` (primary · secondary · tertiary), `tone` (neutral · info · success · warning · error · new · brand), `appearance` (filled · outline), `theme`, `interactive`, `selected`, `disabled`; no primary, `frame="tech"` (moldura da Máquina do Mewtwo, para o tema Mewtwo); no tertiary, `element` (um dos 18 tipos) aplica o fundo elemental quando selecionado.
 
 **pw-card-header** — texto como conteúdo, `show-icon="false"`, `icon`, `theme`.
 
