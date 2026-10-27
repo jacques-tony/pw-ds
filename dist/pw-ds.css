@@ -470,7 +470,7 @@ pw-number[readonly] .pwn-field{background:transparent;box-shadow:none;border-sty
 
 /* ===================== COMPONENT: scroll bar ===================== */
 /* barra minimalista: 2px, cantos arredondados, cor do metal do tema. Use <pw-scroll> ou a classe .pw-scroll em qualquer área com rolagem */
-pw-scroll{display:block;overflow:auto}
+pw-scroll{display:block;overflow:auto;min-width:0;max-width:100%}
 pw-scroll[axis="x"]{overflow-x:auto;overflow-y:hidden}
 pw-scroll[axis="y"]{overflow-y:auto;overflow-x:hidden}
 pw-scroll,.pw-scroll{
