@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.13.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.14.0 — https://github.com/jacques-tony/pw-ds */
 /* tipografia: classes utilitárias (usam os tokens --pw-text-*) */
 .pw-text-title-xl{font:var(--pw-text-title-xl);letter-spacing:var(--pw-text-title-xl-tracking);text-transform:none}
 .pw-text-title-lg{font:var(--pw-text-title-lg);letter-spacing:var(--pw-text-title-lg-tracking);text-transform:none}
@@ -16,15 +16,15 @@
 /* ===================== COMPONENT: pw-card ===================== */
 /* temas: em qualquer ancestral (data-pw-theme) ou no próprio card (theme) */
 [data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"],pw-badge[theme="mewtwo"],pw-button[theme="mewtwo"],pw-number[theme="mewtwo"]{
-  --pw-metal-0:#E5A3FF;--pw-metal-1:#AA46D1;--pw-metal-2:#A638BC;--pw-metal-3:#EA83FA;
-  --pw-filament:#FDA3FF;--pw-glow:#FDA3FF;
-  --pw-bg-center:#540061;--pw-bg-edge:#2F0539;--pw-bg-solid:#2F0539;
-  --pw-ter-bg-center:#32003E;--pw-ter-bg-edge:#250023;
-  --pw-ter-stroke-0:#3C003D;--pw-ter-stroke-1:#970A99;--pw-ter-stroke-2:#69036B;
-  --pw-ter-stroke-3:#C40DB8;--pw-ter-stroke-4:#720563;--pw-ter-stroke-5:#BF15AE;--pw-on-metal:#FFFFFF;
-  --pw-tab-fill-bottom:#9300B0;--pw-tab-fill-top:#001938;
-  --pw-tab-stroke-a:#FD9DFF;--pw-tab-stroke-b:#F7D5FF;
-  --pw-tab-drop:#F29DFF;--pw-tab-inner:#F29DFF;--pw-tab-text-idle:#FFFFFF}
+  --pw-metal-0:#E3C8FF;--pw-metal-1:#9B5CF0;--pw-metal-2:#6A35C8;--pw-metal-3:#C79BFF;
+  --pw-filament:#D9B8FF;--pw-glow:#B98BFF;
+  --pw-bg-center:#2A1468;--pw-bg-edge:#0D063A;--pw-bg-solid:#17104B;
+  --pw-ter-bg-center:#1E1252;--pw-ter-bg-edge:#0F0838;
+  --pw-ter-stroke-0:#1B0D50;--pw-ter-stroke-1:#7B4CCD;--pw-ter-stroke-2:#3F176B;
+  --pw-ter-stroke-3:#B855F1;--pw-ter-stroke-4:#3F1187;--pw-ter-stroke-5:#8C5CF0;--pw-on-metal:#FFFFFF;
+  --pw-tab-fill-bottom:#8934DB;--pw-tab-fill-top:#120934;
+  --pw-tab-stroke-a:#D9B8FF;--pw-tab-stroke-b:#F1E4FF;
+  --pw-tab-drop:#B98BFF;--pw-tab-inner:#B98BFF;--pw-tab-text-idle:#FFFFFF}
 pw-card{--card-metal-0:var(--pw-metal-0);--card-metal-1:var(--pw-metal-1);--card-metal-2:var(--pw-metal-2);--card-metal-3:var(--pw-metal-3);
   --card-filament:var(--pw-filament);--card-glow:var(--pw-glow);
   --card-bg-center:var(--pw-bg-center);--card-bg-edge:var(--pw-bg-edge);--card-bg-solid:var(--pw-bg-solid)}

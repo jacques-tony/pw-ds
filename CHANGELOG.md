@@ -2,6 +2,11 @@
 
 Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/), versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.14.0] — 2026-10-27
+
+### Alterado
+- **Tema Mewtwo** passa do roxo-magenta para o violeta da arte da Máquina do Mewtwo: metal E3C8FF → 9B5CF0 → 6A35C8 → C79BFF, traçado D9B8FF, brilho B98BFF, fundo 2A1468 → 0D063A, tertiary 1E1252 → 0F0838 com traçado 1B0D50 · 7B4CCD · 3F176B · B855F1 · 3F1187 · 8C5CF0, Tabs 8934DB → 120934. Vale para todos os componentes no tema.
+
 ## [0.13.0] — 2026-10-26
 
 ### Adicionado

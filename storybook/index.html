@@ -157,15 +157,15 @@ ul.rules{margin:0;padding-left:18px;display:grid;gap:6px;max-width:75ch}
 /* ===================== COMPONENT: pw-card ===================== */
 /* temas: em qualquer ancestral (data-pw-theme) ou no próprio card (theme) */
 [data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"],pw-badge[theme="mewtwo"],pw-button[theme="mewtwo"],pw-number[theme="mewtwo"]{
-  --pw-metal-0:#E5A3FF;--pw-metal-1:#AA46D1;--pw-metal-2:#A638BC;--pw-metal-3:#EA83FA;
-  --pw-filament:#FDA3FF;--pw-glow:#FDA3FF;
-  --pw-bg-center:#540061;--pw-bg-edge:#2F0539;--pw-bg-solid:#2F0539;
-  --pw-ter-bg-center:#32003E;--pw-ter-bg-edge:#250023;
-  --pw-ter-stroke-0:#3C003D;--pw-ter-stroke-1:#970A99;--pw-ter-stroke-2:#69036B;
-  --pw-ter-stroke-3:#C40DB8;--pw-ter-stroke-4:#720563;--pw-ter-stroke-5:#BF15AE;--pw-on-metal:#FFFFFF;
-  --pw-tab-fill-bottom:#9300B0;--pw-tab-fill-top:#001938;
-  --pw-tab-stroke-a:#FD9DFF;--pw-tab-stroke-b:#F7D5FF;
-  --pw-tab-drop:#F29DFF;--pw-tab-inner:#F29DFF;--pw-tab-text-idle:#FFFFFF}
+  --pw-metal-0:#E3C8FF;--pw-metal-1:#9B5CF0;--pw-metal-2:#6A35C8;--pw-metal-3:#C79BFF;
+  --pw-filament:#D9B8FF;--pw-glow:#B98BFF;
+  --pw-bg-center:#2A1468;--pw-bg-edge:#0D063A;--pw-bg-solid:#17104B;
+  --pw-ter-bg-center:#1E1252;--pw-ter-bg-edge:#0F0838;
+  --pw-ter-stroke-0:#1B0D50;--pw-ter-stroke-1:#7B4CCD;--pw-ter-stroke-2:#3F176B;
+  --pw-ter-stroke-3:#B855F1;--pw-ter-stroke-4:#3F1187;--pw-ter-stroke-5:#8C5CF0;--pw-on-metal:#FFFFFF;
+  --pw-tab-fill-bottom:#8934DB;--pw-tab-fill-top:#120934;
+  --pw-tab-stroke-a:#D9B8FF;--pw-tab-stroke-b:#F1E4FF;
+  --pw-tab-drop:#B98BFF;--pw-tab-inner:#B98BFF;--pw-tab-text-idle:#FFFFFF}
 pw-card{--card-metal-0:var(--pw-metal-0);--card-metal-1:var(--pw-metal-1);--card-metal-2:var(--pw-metal-2);--card-metal-3:var(--pw-metal-3);
   --card-filament:var(--pw-filament);--card-glow:var(--pw-glow);
   --card-bg-center:var(--pw-bg-center);--card-bg-edge:var(--pw-bg-edge);--card-bg-solid:var(--pw-bg-solid)}
@@ -743,11 +743,11 @@ pw-number[readonly] .pwn-field{background:transparent;box-shadow:none;border-sty
   <div class="tbl"><table>
     <thead><tr><th>Token global</th><th>Poke World</th><th>Mewtwo</th></tr></thead>
     <tbody>
-      <tr><td><code>--pw-metal-0…3</code></td><td>FFE0A3 · D19B46 · BC8738 · FAD183</td><td><span class="sw" style="background:#E5A3FF"></span>E5A3FF · <span class="sw" style="background:#AA46D1"></span>AA46D1 · <span class="sw" style="background:#A638BC"></span>A638BC · <span class="sw" style="background:#EA83FA"></span>EA83FA</td></tr>
-      <tr><td><code>--pw-filament</code></td><td>FFE0A3</td><td><span class="sw" style="background:#FDA3FF"></span>FDA3FF</td></tr>
-      <tr><td><code>--pw-glow</code></td><td>FFE0A3</td><td><span class="sw" style="background:#FDA3FF"></span>FDA3FF <span class="flag">estimado</span></td></tr>
-      <tr><td><code>--pw-bg-center / -edge</code></td><td>0E3370 → 051839</td><td><span class="sw" style="background:#540061"></span>540061 → <span class="sw" style="background:#2F0539"></span>2F0539</td></tr>
-      <tr><td><code>--pw-bg-solid</code></td><td>071C41</td><td><span class="sw" style="background:#2F0539"></span>2F0539 <span class="flag">estimado</span></td></tr>
+      <tr><td><code>--pw-metal-0…3</code></td><td>FFE0A3 · D19B46 · BC8738 · FAD183</td><td><span class="sw" style="background:#E3C8FF"></span>E3C8FF · <span class="sw" style="background:#9B5CF0"></span>9B5CF0 · <span class="sw" style="background:#6A35C8"></span>6A35C8 · <span class="sw" style="background:#C79BFF"></span>C79BFF</td></tr>
+      <tr><td><code>--pw-filament</code></td><td>FFE0A3</td><td><span class="sw" style="background:#D9B8FF"></span>D9B8FF</td></tr>
+      <tr><td><code>--pw-glow</code></td><td>FFE0A3</td><td><span class="sw" style="background:#D9B8FF"></span>D9B8FF <span class="flag">estimado</span></td></tr>
+      <tr><td><code>--pw-bg-center / -edge</code></td><td>0E3370 → 051839</td><td><span class="sw" style="background:#2A1468"></span>2A1468 → <span class="sw" style="background:#0D063A"></span>0D063A</td></tr>
+      <tr><td><code>--pw-bg-solid</code></td><td>071C41</td><td><span class="sw" style="background:#0D063A"></span>0D063A <span class="flag">estimado</span></td></tr>
     </tbody>
   </table></div>
 </section>
@@ -937,11 +937,11 @@ pw-number[readonly] .pwn-field{background:transparent;box-shadow:none;border-sty
   <div class="tbl"><table>
     <thead><tr><th>Token</th><th>Poke World</th><th>Mewtwo</th><th>Uso</th></tr></thead>
     <tbody>
-      <tr><td><code>--pw-tab-fill-bottom / -top</code></td><td><span class="sw" style="background:#0050B0"></span>0050B0 → <span class="sw" style="background:#001938"></span>001938</td><td><span class="sw" style="background:#9300B0"></span>9300B0 → <span class="sw" style="background:#001938"></span>001938</td><td>Linear vertical, base clara</td></tr>
+      <tr><td><code>--pw-tab-fill-bottom / -top</code></td><td><span class="sw" style="background:#0050B0"></span>0050B0 → <span class="sw" style="background:#001938"></span>001938</td><td><span class="sw" style="background:#8934DB"></span>8934DB → <span class="sw" style="background:#001938"></span>001938</td><td>Linear vertical, base clara</td></tr>
       <tr><td>Losango</td><td colspan="2">FFFFFF · 50%</td><td>Losango da base até a metade da altura, modo de mesclagem Mais leve (lighten); só no hover do selected</td></tr>
-      <tr><td><code>--pw-tab-stroke-a / -b</code></td><td><span class="sw" style="background:#9DF0FF"></span>9DF0FF · <span class="sw" style="background:#D5F8FF"></span>D5F8FF</td><td><span class="sw" style="background:#FD9DFF"></span>FD9DFF · <span class="sw" style="background:#F7D5FF"></span>F7D5FF</td><td>Traçado interno 0,5px, diagonal, a/b/a/b/a em 0/25/50/75/100%</td></tr>
-      <tr><td><code>--pw-tab-drop</code></td><td><span class="sw" style="background:#9DEFFF"></span>9DEFFF 75%</td><td><span class="sw" style="background:#F29DFF"></span>F29DFF 75%</td><td>Sombra projetada X0 Y0 desfoque 7</td></tr>
-      <tr><td><code>--pw-tab-inner</code></td><td>= drop (9DEFFF 75%)</td><td>= drop (F29DFF 75%)</td><td>Sombra interna X0 Y0 desfoque 6,5</td></tr>
+      <tr><td><code>--pw-tab-stroke-a / -b</code></td><td><span class="sw" style="background:#9DF0FF"></span>9DF0FF · <span class="sw" style="background:#D5F8FF"></span>D5F8FF</td><td><span class="sw" style="background:#D9B8FF"></span>D9B8FF · <span class="sw" style="background:#F1E4FF"></span>F1E4FF</td><td>Traçado interno 0,5px, diagonal, a/b/a/b/a em 0/25/50/75/100%</td></tr>
+      <tr><td><code>--pw-tab-drop</code></td><td><span class="sw" style="background:#9DEFFF"></span>9DEFFF 75%</td><td><span class="sw" style="background:#B98BFF"></span>B98BFF 75%</td><td>Sombra projetada X0 Y0 desfoque 7</td></tr>
+      <tr><td><code>--pw-tab-inner</code></td><td>= drop (9DEFFF 75%)</td><td>= drop (B98BFF 75%)</td><td>Sombra interna X0 Y0 desfoque 6,5</td></tr>
       <tr><td>Raio · padding · gap</td><td colspan="2">4px · 8px · 4px</td><td>Todos os tamanhos e temas</td></tr>
     </tbody>
   </table></div>
