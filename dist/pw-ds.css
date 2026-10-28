@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.20.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.21.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -108,6 +108,14 @@ pw-card{display:block;position:relative;box-sizing:border-box;color:var(--card-t
 pw-card[variant="primary"],pw-card:not([variant]){width:514px;height:376px}
 pw-card[variant="secondary"]{width:265px;height:374px}
 pw-card[variant="tertiary"]{width:320px;height:200px}
+/* quaternary: mais escuro e opaco que o tertiary, para ficar em destaque dentro dele. Deriva do tema (vale para os 18 tipos) */
+pw-card{--pw-qua-bg-center:color-mix(in srgb,var(--pw-ter-bg-center) 45%,#000);--pw-qua-bg-edge:color-mix(in srgb,var(--pw-ter-bg-edge) 30%,#000);--pw-qua-bg-op:.96;
+  --pw-qua-stroke-top:var(--pw-ter-stroke-3);--pw-qua-stroke-mid:color-mix(in srgb,var(--pw-ter-stroke-1) 55%,transparent);--pw-qua-stroke-bottom:color-mix(in srgb,var(--pw-ter-stroke-0) 60%,transparent)}
+pw-card[variant="quaternary"]{width:240px;height:120px;border-radius:6px;box-shadow:0 3px 10px rgb(0 0 0 / .45),0 1px 0 rgb(255 255 255 / .04)}
+pw-card[variant="quaternary"] .pwc-content{padding:12px 14px}
+pw-card[variant="quaternary"][interactive][selected],pw-card[variant="quaternary"][state="selected"]{--bg-bright:1.6}
+pw-card[variant="quaternary"][interactive]:not([disabled]):hover,pw-card[variant="quaternary"][state="hover"]{--bg-bright:1.3}
+pw-card[variant="quaternary"][selected] .l-tstroke,pw-card[variant="quaternary"][state="selected"] .l-tstroke{filter:brightness(1.8)}
 pw-card[variant="tertiary"] .pwc-content{padding:20px}
 pw-card[variant="tertiary"][interactive][selected],pw-card[variant="tertiary"][state="selected"]{--bg-bright:1.35}
 pw-card[variant="tertiary"][interactive]:not([disabled]):hover,pw-card[variant="tertiary"][state="hover"]{--bg-bright:1.15}

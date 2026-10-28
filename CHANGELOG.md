@@ -4,6 +4,13 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.21.0
+
+- **pw-card**: nova variante `quaternary`, para blocos dentro de um tertiary. Tem fundo mais escuro e quase opaco, sombra interna no topo, traçado vertical aceso em cima e sombra externa. As cores derivam dos tokens do tertiary, então funciona em todos os temas.
+- Estados: hover, selected e disabled.
+- Novos tokens: `--pw-qua-bg-center`, `--pw-qua-bg-edge`, `--pw-qua-bg-op` e `--pw-qua-stroke-top/mid/bottom`.
+
 ## 0.20.0
 
 - **pw-card-header**: os raios agora deslizam devagar e em velocidade constante pela borda (sem piscar), e o zigue-zague muda de forma suave, com as pontas esmaecidas.
