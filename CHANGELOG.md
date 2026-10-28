@@ -19,7 +19,7 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 - Ajustes à escala:
   - Element Item: texto md 13→14 e lg 15→16; meta segue a escala (10, 12 e 14).
   - Button e Input Number: raio sm 5→4 e lg 7→8.
-  - Input Number: sufixo e prefixo seguem a escala; os botões − e + do lg passam de 20 para 20px (sem mudança), e o sm de 16 para 16px.
+  - Input Number: sufixo e prefixo seguem a escala (10, 12 e 14).
 
 ## 0.22.0
 
