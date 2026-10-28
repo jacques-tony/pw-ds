@@ -6,6 +6,21 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.23.0
+
+- **pw-card quaternary**: o estado selected ficou bem evidente. O fundo é mais claro, na cor do traçado do tema, com borda acesa, brilho externo e luz interna.
+- **Tipografia**: nova escala base, usada dentro dos componentes:
+  - `--pw-font-size-3xs` a `--pw-font-size-4xl` (8 a 32px);
+  - `--pw-font-weight-regular`, `-medium`, `-semibold` e `-bold`;
+  - `--pw-line-height-none`, `-tight` e `-normal`;
+  - `--pw-tracking-none` e `-wide`.
+- Revisão de tokens em Card Header, Tabs, Button, Input Number, Scroll Bar, Badge e Element Item: tamanhos de fonte, pesos, altura de linha, raios e espaçamentos restantes agora usam tokens.
+- Ajustes à escala:
+  - Element Item: texto md 13→14 e lg 15→16; meta segue a escala (10, 12 e 14).
+  - Button e Input Number: raio sm 5→4 e lg 7→8.
+  - Input Number: sufixo e prefixo seguem a escala; os botões − e + do lg passam de 20 para 20px (sem mudança), e o sm de 16 para 16px.
+
 ## 0.22.0
 
 - **Cores**: o sistema de tokens agora está completo, em três camadas.

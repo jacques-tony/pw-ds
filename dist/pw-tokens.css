@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.22.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.23.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -103,6 +103,12 @@
   --pw-tone-new-light:var(--pw-purple-100); --pw-tone-new-filament:var(--pw-purple-50); --pw-tone-new-metal-1:#A86BE0; --pw-tone-new-metal-2:#8A4FC4; --pw-tone-new-metal-3:#D5ABF8; --pw-tone-new-glow:#D3A6FF;
   --pw-tone-new-base:var(--pw-purple-500); --pw-tone-new-dark:var(--pw-purple-900); --pw-tone-new-text:var(--pw-rose-300);
   --pw-tone-brand-light:var(--pw-gold-50); --pw-tone-brand-filament:var(--pw-gold-50); --pw-tone-brand-metal-1:#E6AE48; --pw-tone-brand-metal-2:#CF9131; --pw-tone-brand-metal-3:#FFDF8C; --pw-tone-brand-glow:#FFD27A;
+  /* ===== TIPOGRAFIA · escala de tamanho, peso e altura de linha (usada dentro dos componentes) ===== */
+  --pw-font-size-3xs:8px; --pw-font-size-2xs:10px; --pw-font-size-xs:11px; --pw-font-size-sm:12px; --pw-font-size-md:14px;
+  --pw-font-size-lg:16px; --pw-font-size-xl:18px; --pw-font-size-2xl:20px; --pw-font-size-3xl:24px; --pw-font-size-4xl:32px;
+  --pw-font-weight-regular:400; --pw-font-weight-medium:500; --pw-font-weight-semibold:600; --pw-font-weight-bold:700;
+  --pw-line-height-none:1; --pw-line-height-tight:1.2; --pw-line-height-normal:1.5;
+  --pw-tracking-none:0; --pw-tracking-wide:.01em;
   /* ===== CORES FIXAS (iguais em todos os temas; um significado por cor) ===== */
   --pw-color-highlight:var(--pw-gold-300); /* dourado: destaque e ênfase (›››, "O boost nunca cai.", tag PROPOSTA) */
   --pw-color-next:var(--pw-teal-300);      /* verde-água: progressão, o valor seguinte ("Próximo nível") */
