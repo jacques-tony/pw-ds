@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.19.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.20.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -157,7 +157,7 @@ pw-icon img{object-fit:contain}
 
 
 /* ---- pw-card-header: animações (animate="intro" · "ambient" · "both"/vazio · "none") ---- */
-pw-card-header{--hdr-intro:.9s;--hdr-ambient:1.6s;--hdr-bolt:4;--hdr-light:var(--pw-filament);--hdr-light-glow:var(--pw-glow);--hdr-shimmer:0}
+pw-card-header{--hdr-intro:.9s;--hdr-ambient:9s;--hdr-bolt:2.5;--hdr-bolts:2;--hdr-particles:16;--hdr-inner:1;--hdr-light:var(--pw-filament);--hdr-light-glow:var(--pw-glow);--hdr-shimmer:0}
 pw-card-header .pwh-fx{opacity:0;transition:opacity .4s}
 pw-card-header:is([animate=""],[animate="both"],[animate="ambient"]) .pwh-fx{opacity:1}
 pw-card-header .pwh-shim{animation:pwh-shim 6s ease-in-out infinite;animation-play-state:paused}
@@ -166,6 +166,9 @@ pw-card-header:is([animate=""],[animate="both"],[animate="ambient"]) .pwh-shim{a
 /* raios elétricos: os caminhos são redesenhados por script em rajadas curtas */
 pw-card-header .pwh-bolts{pointer-events:none}
 pw-card-header>svg{overflow:visible}
+pw-card-header .pwh-neb{opacity:var(--hdr-inner);mix-blend-mode:screen}
+pw-card-header .pwh-sparks{filter:drop-shadow(0 0 2.5px var(--hdr-light-glow));opacity:0;transition:opacity .6s}
+pw-card-header:is([animate=""],[animate="both"],[animate="ambient"]) .pwh-sparks{opacity:1}
 pw-card-header[data-opening] .pwh-bolts,pw-card-header:is([animate=""],[animate="both"],[animate="ambient"]) .pwh-bolts{opacity:1}
 pw-card-header .pwh-trace{opacity:0;stroke-dasharray:100 100;stroke-dashoffset:100}
 pw-card-header[data-opening] .pwh-trace{animation:pwh-trace var(--hdr-intro) cubic-bezier(.5,0,.3,1) both}
@@ -178,7 +181,7 @@ pw-card-header .pwh-flash{opacity:0}
 @keyframes pwh-open{0%{clip-path:inset(0 50% 0 50%);opacity:.2}60%{opacity:1}100%{clip-path:inset(-20% -10% -20% -10%);opacity:1}}
 @keyframes pwh-label{from{opacity:0;transform:scale(1.08);filter:blur(3px)}to{opacity:1;transform:none;filter:blur(0)}}
 @keyframes pwh-flash{0%{opacity:0}35%{opacity:1}100%{opacity:0}}
-@media (prefers-reduced-motion:reduce){pw-card-header .pwh-bolts{display:none}pw-card-header :is(.pwh-shim,.pwh-trace){animation:none!important}pw-card-header[data-opening] :is(.pwh-frame,.pwh-label,.pwh-flash){animation-duration:.01s!important;animation-delay:0s!important}}
+@media (prefers-reduced-motion:reduce){pw-card-header :is(.pwh-bolts,.pwh-sparks,.pwh-motes){display:none}pw-card-header :is(.pwh-shim,.pwh-trace){animation:none!important}pw-card-header[data-opening] :is(.pwh-frame,.pwh-label,.pwh-flash){animation-duration:.01s!important;animation-delay:0s!important}}
 /* ===================== COMPONENT: pw-tabs / pw-tab ===================== */
 pw-tabs{position:relative;display:inline-flex;flex-wrap:wrap;gap:6px;align-items:center;
   --tab-pad:8px;--tab-gap:4px;--tab-fs:12px;--tab-ic:14px}

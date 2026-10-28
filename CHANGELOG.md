@@ -3,6 +3,15 @@
 Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/), versões em [SemVer](https://semver.org/lang/pt-BR/).
 
 
+
+## 0.20.0
+
+- **pw-card-header**: os raios agora deslizam devagar e em velocidade constante pela borda (sem piscar), e o zigue-zague muda de forma suave, com as pontas esmaecidas.
+- Fagulhas (estilhaços e pontos) saem da borda, se afastam do header girando e somem aos poucos.
+- Interior com nebulosa: um núcleo de luz passeia pela faixa com partículas orbitando, nas cores do tema.
+- A animação pausa quando o header sai da tela ou a aba fica oculta.
+- Variáveis: `--hdr-ambient` passa a ser o tempo de uma volta (padrão 9s), `--hdr-bolt` agora tem padrão 2.5, e há três novas: `--hdr-bolts` (2), `--hdr-particles` (16) e `--hdr-inner` (1).
+
 ## 0.19.0
 
 - **pw-card-header**: as "luzes" da animação ambiente foram trocadas por raios elétricos. Eles estalam em rajadas curtas pela borda, com núcleo branco, cor e halo do tema e pequenos galhos para fora.

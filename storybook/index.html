@@ -237,7 +237,7 @@ pw-icon img{object-fit:contain}
 
 
 /* ---- pw-card-header: animações (animate="intro" · "ambient" · "both"/vazio · "none") ---- */
-pw-card-header{--hdr-intro:.9s;--hdr-ambient:1.6s;--hdr-bolt:4;--hdr-light:var(--pw-filament);--hdr-light-glow:var(--pw-glow);--hdr-shimmer:0}
+pw-card-header{--hdr-intro:.9s;--hdr-ambient:9s;--hdr-bolt:2.5;--hdr-bolts:2;--hdr-particles:16;--hdr-inner:1;--hdr-light:var(--pw-filament);--hdr-light-glow:var(--pw-glow);--hdr-shimmer:0}
 pw-card-header .pwh-fx{opacity:0;transition:opacity .4s}
 pw-card-header:is([animate=""],[animate="both"],[animate="ambient"]) .pwh-fx{opacity:1}
 pw-card-header .pwh-shim{animation:pwh-shim 6s ease-in-out infinite;animation-play-state:paused}
@@ -246,6 +246,9 @@ pw-card-header:is([animate=""],[animate="both"],[animate="ambient"]) .pwh-shim{a
 /* raios elétricos: os caminhos são redesenhados por script em rajadas curtas */
 pw-card-header .pwh-bolts{pointer-events:none}
 pw-card-header>svg{overflow:visible}
+pw-card-header .pwh-neb{opacity:var(--hdr-inner);mix-blend-mode:screen}
+pw-card-header .pwh-sparks{filter:drop-shadow(0 0 2.5px var(--hdr-light-glow));opacity:0;transition:opacity .6s}
+pw-card-header:is([animate=""],[animate="both"],[animate="ambient"]) .pwh-sparks{opacity:1}
 pw-card-header[data-opening] .pwh-bolts,pw-card-header:is([animate=""],[animate="both"],[animate="ambient"]) .pwh-bolts{opacity:1}
 pw-card-header .pwh-trace{opacity:0;stroke-dasharray:100 100;stroke-dashoffset:100}
 pw-card-header[data-opening] .pwh-trace{animation:pwh-trace var(--hdr-intro) cubic-bezier(.5,0,.3,1) both}
@@ -258,7 +261,7 @@ pw-card-header .pwh-flash{opacity:0}
 @keyframes pwh-open{0%{clip-path:inset(0 50% 0 50%);opacity:.2}60%{opacity:1}100%{clip-path:inset(-20% -10% -20% -10%);opacity:1}}
 @keyframes pwh-label{from{opacity:0;transform:scale(1.08);filter:blur(3px)}to{opacity:1;transform:none;filter:blur(0)}}
 @keyframes pwh-flash{0%{opacity:0}35%{opacity:1}100%{opacity:0}}
-@media (prefers-reduced-motion:reduce){pw-card-header .pwh-bolts{display:none}pw-card-header :is(.pwh-shim,.pwh-trace){animation:none!important}pw-card-header[data-opening] :is(.pwh-frame,.pwh-label,.pwh-flash){animation-duration:.01s!important;animation-delay:0s!important}}
+@media (prefers-reduced-motion:reduce){pw-card-header :is(.pwh-bolts,.pwh-sparks,.pwh-motes){display:none}pw-card-header :is(.pwh-shim,.pwh-trace){animation:none!important}pw-card-header[data-opening] :is(.pwh-frame,.pwh-label,.pwh-flash){animation-duration:.01s!important;animation-delay:0s!important}}
 /* ===================== COMPONENT: pw-tabs / pw-tab ===================== */
 pw-tabs{position:relative;display:inline-flex;flex-wrap:wrap;gap:6px;align-items:center;
   --tab-pad:8px;--tab-gap:4px;--tab-fs:12px;--tab-ic:14px}
@@ -780,7 +783,7 @@ pw-scroll[track="none"],.pw-scroll[data-track="none"]{--pw-scroll-track:transpar
       <label class="check" for="hpShowIcon"><input type="checkbox" id="hpShowIcon" checked> show-icon</label>
       <label for="hpIcon">icon<select id="hpIcon"><option>sparkle</option><option>star</option><option>diamond</option><option>bolt</option></select></label>
       <label for="hpAnim">animate<select id="hpAnim"><option value="">nenhuma</option><option value="both" selected>both (abertura + raios)</option><option value="intro">intro (só abertura)</option><option value="ambient">ambient (só raios)</option></select></label>
-      <label for="hpSpeed">--hdr-ambient (s entre rajadas)<input id="hpSpeed" type="number" min="0.4" max="10" step="0.2" value="1.6"></label>
+      <label for="hpSpeed">--hdr-ambient (s por volta)<input id="hpSpeed" type="number" min="3" max="30" step="1" value="9"></label>
       <button class="btn" type="button" id="hpReplay">Repetir abertura</button>
     </form>
     <div style="display:grid;gap:14px;min-width:0">
@@ -799,7 +802,7 @@ pw-scroll[track="none"],.pw-scroll[data-track="none"]{--pw-scroll-track:transpar
     </tbody>
   </table></div>
   <h3 id="header-animacao" style="scroll-margin-top:24px">Animação</h3>
-  <p class="lede">Com <code>animate</code>, a borda é desenhada a partir da ponta esquerda, a faixa abre do centro, um raio percorre a moldura e o título entra. Depois, raios elétricos curtos estalam pela borda em rajadas, em momentos e pontos aleatórios. As cores vêm do tema (traçado e brilho).</p>
+  <p class="lede">Com <code>animate</code>, a borda é desenhada a partir da ponta esquerda, a faixa abre do centro, um raio percorre a moldura e o título entra. Depois, dois raios deslizam devagar e em velocidade constante pela borda, soltando fagulhas que se afastam do header e somem. Por dentro, um núcleo de luz passeia com partículas orbitando, como uma nebulosa. Tudo usa as cores do tema (traçado e brilho) e pausa quando o header sai da tela.</p>
   <div class="canvas" style="display:grid;gap:22px;justify-items:start">
     <pw-card-header animate>Poke World</pw-card-header>
     <div data-pw-theme="mewtwo"><pw-card-header animate>Máquina do Mewtwo</pw-card-header></div>
@@ -812,8 +815,11 @@ pw-scroll[track="none"],.pw-scroll[data-track="none"]{--pw-scroll-track:transpar
       <tr><td><code>animate</code></td><td>sem animação</td><td>vazio ou <code>both</code>: abertura + raios · <code>intro</code>: só abertura · <code>ambient</code>: só raios · <code>none</code></td></tr>
       <tr><td><code>.play()</code></td><td>—</td><td>Repete a abertura (ex.: ao abrir a janela de novo)</td></tr>
       <tr><td><code>--hdr-intro</code></td><td>.9s</td><td>Duração da abertura</td></tr>
-      <tr><td><code>--hdr-ambient</code></td><td>1.6s</td><td>Intervalo médio entre rajadas de raios (varia de 0,5× a 1,5×)</td></tr>
-      <tr><td><code>--hdr-bolt</code></td><td>4</td><td>Amplitude do zigue-zague dos raios, em px</td></tr>
+      <tr><td><code>--hdr-ambient</code></td><td>9s</td><td>Tempo de uma volta dos raios na borda</td></tr>
+      <tr><td><code>--hdr-bolt</code></td><td>2.5</td><td>Amplitude do zigue-zague dos raios, em px</td></tr>
+      <tr><td><code>--hdr-bolts</code></td><td>2</td><td>Quantidade de raios na borda (0 a 4)</td></tr>
+      <tr><td><code>--hdr-particles</code></td><td>16</td><td>Quantidade de fagulhas que saem do header (0 desliga)</td></tr>
+      <tr><td><code>--hdr-inner</code></td><td>1</td><td>Intensidade da nebulosa interna (0 desliga)</td></tr>
       <tr><td><code>--hdr-light</code> · <code>--hdr-light-glow</code></td><td>traçado · brilho do tema</td><td>Cor do raio e do halo (o núcleo é branco)</td></tr>
       <tr><td><code>--hdr-shimmer</code></td><td>0</td><td>Reflexo opcional que atravessa o fundo (ex.: .16)</td></tr>
     </tbody>
@@ -1732,35 +1738,49 @@ class PWCardHeader extends HTMLElement{
   attributeChangedCallback(n,o,v){var i=PW_ICONS[this.getAttribute('icon')];i?this.style.setProperty('--hdr-icon',i):this.style.removeProperty('--hdr-icon');
     if(n==='animate'&&this._init&&o!==v)this.play()}
   /* toca a animação de abertura (se animate permitir); pode ser chamada de novo para repetir */
-  play(){var a=this.getAttribute('animate');this._loop();if(a===null||a==='none'||a==='ambient')return;
+  play(){var a=this.getAttribute('animate');this._cfg();this._start();if(a===null||a==='none'||a==='ambient')return;
     this.removeAttribute('data-opening');void this.offsetWidth;this.setAttribute('data-opening','');
-    clearTimeout(this._ot);this._ot=setTimeout(()=>this.removeAttribute('data-opening'),2600);
-    var d=parseFloat(getComputedStyle(this).getPropertyValue('--hdr-intro'))||.9;setTimeout(()=>this._burst(520,3),d*600)}
+    clearTimeout(this._ot);this._ot=setTimeout(()=>this.removeAttribute('data-opening'),2600)}
   _ambient(){var a=this.getAttribute('animate');return a===''||a==='both'||a==='ambient'}
+  /* lê as variáveis --hdr-* (uma vez por play/resize, não a cada quadro) */
+  _cfg(){var cs=getComputedStyle(this),n=(k,d)=>{var v=parseFloat(cs.getPropertyValue(k));return isNaN(v)?d:v};
+    this._c={lap:Math.max(1,n('--hdr-ambient',9)),amp:n('--hdr-bolt',2.5),bolts:Math.round(n('--hdr-bolts',2)),parts:Math.round(n('--hdr-particles',16)),inner:n('--hdr-inner',1)}}
   /* ponto no perímetro (t de 0 a 1) e a normal para fora */
-  _at(t){var P=this._poly,L=[],tot=0;for(var i=0;i<P.length;i++){var A=P[i],B=P[(i+1)%P.length],l=Math.hypot(B[0]-A[0],B[1]-A[1]);L.push(l);tot+=l}
-    var d=((t%1)+1)%1*tot;for(i=0;i<P.length;i++){if(d<=L[i]){var A=P[i],B=P[(i+1)%P.length],f=d/L[i],nx=(B[1]-A[1])/L[i],ny=-(B[0]-A[0])/L[i];return [A[0]+(B[0]-A[0])*f,A[1]+(B[1]-A[1])*f,nx,ny,tot]}d-=L[i]}return [P[0][0],P[0][1],0,-1,tot]}
-  _bolt(t0,len,amp){var s0=this._at(t0),tot=s0[4],n=Math.max(6,Math.round(len*tot/7)),pts=[];
-    for(var k=0;k<=n;k++){var t=t0+len*k/n,p=this._at(t),e=(k===0||k===n)?0:(Math.random()*2-1)*amp*Math.sin(Math.PI*k/n);pts.push((p[0]+p[2]*e).toFixed(1)+' '+(p[1]+p[3]*e).toFixed(1))}
-    var d='M'+pts.join(' L');
-    /* galho: um pequeno raio saindo para fora no meio */
-    if(Math.random()<.6){var mid=this._at(t0+len*(.3+Math.random()*.4)),bx=mid[0],by=mid[1],q='M'+bx.toFixed(1)+' '+by.toFixed(1);
-      for(k=1;k<=3;k++){bx+=mid[2]*amp*1.2+(Math.random()-.5)*amp*1.6;by+=mid[3]*amp*1.2+(Math.random()-.5)*amp*1.6;q+=' L'+bx.toFixed(1)+' '+by.toFixed(1)}d+=' '+q}
-    return d}
-  _frame(count){if(!this._poly||!this._svg)return;var g=this._svg.querySelector('.pwh-bolts');if(!g)return;
-    var amp=parseFloat(getComputedStyle(this).getPropertyValue('--hdr-bolt'))||4,d='';
-    for(var i=0;i<count;i++){d+=this._bolt(this._seed[i]+(Math.random()-.5)*.02,.12+Math.random()*.18,amp)+' '}
-    g.querySelectorAll('path').forEach(p=>p.setAttribute('d',d))}
-  _clear(){var g=this._svg&&this._svg.querySelector('.pwh-bolts');if(g)g.querySelectorAll('path').forEach(p=>p.setAttribute('d',''))}
-  _burst(ms,count){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;count=count||1+Math.round(Math.random());
-    this._seed=Array.from({length:count},()=>Math.random());var end=performance.now()+ms;clearInterval(this._bi);
-    this._bi=setInterval(()=>{if(performance.now()>end){clearInterval(this._bi);this._clear();return}this._frame(count)},55)}
-  _loop(){clearTimeout(this._lt);if(!this.isConnected||!this._ambient())return;
-    var gap=(parseFloat(getComputedStyle(this).getPropertyValue('--hdr-ambient'))||1.6)*1000;
-    this._lt=setTimeout(()=>{if(!document.hidden)this._burst(180+Math.random()*320);this._loop()},gap*(.5+Math.random()))}
+  _at(t){var P=this._poly,L=this._len,tot=this._tot,d=((t%1)+1)%1*tot;
+    for(var i=0;i<P.length;i++){if(d<=L[i]||i===P.length-1){var A=P[i],B=P[(i+1)%P.length],f=Math.min(1,d/L[i]);return [A[0]+(B[0]-A[0])*f,A[1]+(B[1]-A[1])*f,(B[1]-A[1])/L[i],-(B[0]-A[0])/L[i]]}d-=L[i]}}
+  _start(){if(this._raf||!this._svg||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var last=performance.now(),step=now=>{this._raf=0;if(!this.isConnected||!this._ambient())return;
+      var dt=Math.min(.05,(now-last)/1000);last=now;if(this._vis!==false&&!document.hidden)this._tick(now/1000,dt);this._raf=requestAnimationFrame(step)};
+    this._raf=requestAnimationFrame(step)}
+  _tick(T,dt){var c=this._c,P=this._parts,f=v=>v.toFixed(1);if(!this._poly||!this._bl)return;
+    /* raios: deslizam devagar e em velocidade constante pela borda; o zigue-zague muda suave, sem piscar */
+    var head=(T/c.lap)%1,len=.16,seg=this._bl.length?this._bl[0].length:0;
+    this._bl.forEach((chunks,b)=>{if(b>=c.bolts){chunks.forEach(ch=>ch.forEach(p=>p.setAttribute('d','')));return}
+      var t0=head+b/c.bolts,n=Math.max(12,Math.round(len*this._tot/5)),pts=[];
+      for(var k=0;k<=n;k++){var t=t0+len*k/n,p=this._at(t),u=t*this._tot,w=Math.sin(Math.PI*k/n),
+        e=c.amp*w*(Math.sin(u*.55+T*3.1)*.55+Math.sin(u*1.37-T*4.3)*.35+Math.sin(u*2.9+T*6.7)*.25);pts.push([p[0]+p[2]*e,p[1]+p[3]*e])}
+      for(var j=0;j<seg;j++){var a=Math.floor(n*j/seg),z=Math.floor(n*(j+1)/seg),d='M'+f(pts[a][0])+' '+f(pts[a][1]);
+        for(k=a+1;k<=z;k++)d+=' L'+f(pts[k][0])+' '+f(pts[k][1]);chunks[j].forEach(p=>p.setAttribute('d',d))}
+      /* a ponta do raio solta fagulhas para fora */
+      if(Math.random()<dt*c.parts*.18)this._spawn(t0+len*(.6+Math.random()*.4),1)});
+    if(Math.random()<dt*c.parts*.12)this._spawn(Math.random(),.7);
+    /* fagulhas: saem da borda e se afastam devagar, girando e sumindo */
+    P.forEach(q=>{if(!q.life){q.el.setAttribute('opacity',0);return}q.age+=dt;var k=q.age/q.life;if(k>=1){q.life=0;q.el.setAttribute('opacity',0);return}
+      q.x+=q.vx*dt;q.y+=q.vy*dt;q.r+=q.vr*dt;q.vx*=.995;q.vy*=.995;
+      q.el.setAttribute('opacity',(Math.sin(Math.PI*Math.min(1,k*1.4))*q.o).toFixed(2));
+      q.el.setAttribute('transform','translate('+f(q.x)+' '+f(q.y)+') rotate('+q.r.toFixed(0)+') scale('+(q.s*(1-k*.4)).toFixed(2)+')')});
+    /* interior: núcleo de luz que passeia e partículas orbitando, como uma nebulosa */
+    var W=this._w,H=this._h,ox=W/2+Math.sin(T*.23)*W*.3+Math.sin(T*.57)*W*.06,oy=H/2+Math.sin(T*.71)*H*.12;
+    this._orb.setAttribute('transform','translate('+f(ox)+' '+f(oy)+')');
+    this._orb2.setAttribute('transform','translate('+f(W-ox*.8)+' '+f(H/2-Math.sin(T*.5)*H*.15)+')');
+    this._motes.forEach(m=>{var a=m.a+T*m.w,x=ox+Math.cos(a)*m.rx,y=oy+Math.sin(a)*m.ry;
+      m.el.setAttribute('cx',f(x));m.el.setAttribute('cy',f(y));m.el.setAttribute('opacity',(m.o*(.55+.45*Math.sin(T*m.tw+m.a))).toFixed(2))})}
+  _spawn(t,force){var q=this._parts.find(q=>!q.life);if(!q)return;var p=this._at(t),sp=(6+Math.random()*16)*force;
+    Object.assign(q,{x:p[0],y:p[1],vx:p[2]*sp+(Math.random()-.5)*8,vy:p[3]*sp+(Math.random()-.5)*4,r:Math.random()*360,vr:(Math.random()-.5)*120,
+      s:.5+Math.random()*.9,o:.5+Math.random()*.5,age:0,life:1.4+Math.random()*1.6})}
   connectedCallback(){
     this.attributeChangedCallback();
-    if(this._init){this._ro.observe(this);this._loop();return}this._init=true;this._uid='pwh'+(++uidN);
+    if(this._init){this._ro.observe(this);this._io.observe(this);this._start();return}this._init=true;this._uid='pwh'+(++uidN);
     var lab=document.createElement('span');lab.className='pwh-label';
     while(this.firstChild)lab.appendChild(this.firstChild);
     this._svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
@@ -1768,9 +1788,10 @@ class PWCardHeader extends HTMLElement{
     this.appendChild(this._svg);this.appendChild(lab);
     if(!this.hasAttribute('role'))this.setAttribute('role','heading');
     if(!this.hasAttribute('aria-level'))this.setAttribute('aria-level','2');
-    this._ro=new ResizeObserver(()=>this.render());this._ro.observe(this);this.render();this.play();
+    this._ro=new ResizeObserver(()=>this.render());this._ro.observe(this);
+    this._io=new IntersectionObserver(e=>{this._vis=e[e.length-1].isIntersecting});this._io.observe(this);this.render();this.play();
   }
-  disconnectedCallback(){if(this._ro)this._ro.disconnect();clearTimeout(this._lt);clearInterval(this._bi)}
+  disconnectedCallback(){if(this._ro)this._ro.disconnect();if(this._io)this._io.disconnect();cancelAnimationFrame(this._raf);this._raf=0}
   render(){
     var W=Math.round(this.offsetWidth),H=Math.round(this.offsetHeight);
     if(!W||!H||(W===this._w&&H===this._h))return;this._w=W;this._h=H;
@@ -1780,6 +1801,7 @@ class PWCardHeader extends HTMLElement{
     var border='<path d="'+shape+'" fill="none" stroke="var(--pw-filament)" stroke-width="4"/>'+
                '<path d="'+shape+'" fill="none" stroke="url(#'+u+'-metal)" stroke-width="2"/>';
     this._poly=[[tip,s],[W-tip,s],[W-s,m],[W-tip,H-s],[tip,H-s],[s,m]];
+    this._len=this._poly.map((A,i)=>{var B=this._poly[(i+1)%6];return Math.hypot(B[0]-A[0],B[1]-A[1])});this._tot=this._len.reduce((a,b)=>a+b,0);
     this._svg.setAttribute('width',W);this._svg.setAttribute('height',H);this._svg.setAttribute('viewBox','0 0 '+W+' '+H);
     this._svg.innerHTML='<defs>'+
       '<linearGradient id="'+u+'-metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pw-metal-0)"/><stop offset=".4" style="stop-color:var(--pw-metal-1)"/><stop offset=".8" style="stop-color:var(--pw-metal-2)"/><stop offset="1" style="stop-color:var(--pw-metal-3)"/></linearGradient>'+
@@ -1792,15 +1814,32 @@ class PWCardHeader extends HTMLElement{
       '<path d="'+shape+'" fill="none" stroke="url(#'+u+'-glass)" stroke-width="3" style="mix-blend-mode:soft-light"/>'+
       /* luzes que correm pela borda + reflexo que atravessa o fundo (animate ambient) */
       '<defs><clipPath id="'+u+'-clip"><path d="'+shape+'"/></clipPath><filter id="'+u+'-rg" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="3"/></filter>'+
+      '<radialGradient id="'+u+'-orb"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".18" style="stop-color:var(--hdr-light)" stop-opacity=".45"/><stop offset=".5" style="stop-color:var(--hdr-light-glow)" stop-opacity=".16"/><stop offset="1" style="stop-color:var(--hdr-light-glow)" stop-opacity="0"/></radialGradient>'+
       '<linearGradient id="'+u+'-shg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" style="stop-color:var(--hdr-light)" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>'+
-      '<g class="pwh-fx"><g clip-path="url(#'+u+'-clip)"><rect class="pwh-shim" x="0" y="0" width="'+Math.round(W*.35)+'" height="'+H+'" fill="url(#'+u+'-shg)" style="opacity:var(--hdr-shimmer);transform-box:view-box"/></g>'+
+      '<g class="pwh-fx"><g clip-path="url(#'+u+'-clip)"><g class="pwh-neb">'+
+        '<circle class="pwh-orb" r="'+Math.round(H*.95)+'" fill="url(#'+u+'-orb)"/><circle class="pwh-orb2" r="'+Math.round(H*.7)+'" fill="url(#'+u+'-orb)" opacity=".55"/>'+
+        '<g class="pwh-motes"></g></g><rect class="pwh-shim" x="0" y="0" width="'+Math.round(W*.35)+'" height="'+H+'" fill="url(#'+u+'-shg)" style="opacity:var(--hdr-shimmer);transform-box:view-box"/></g>'+
       '</g>'+
       /* traço que desenha a borda na abertura, saindo da ponta esquerda pelos dois lados */
       ['M'+s+' '+m+' L'+tip+' '+s+' L'+(W-tip)+' '+s+' L'+(W-s)+' '+m,'M'+s+' '+m+' L'+tip+' '+(H-s)+' L'+(W-tip)+' '+(H-s)+' L'+(W-s)+' '+m].map(function(d){
         return '<path class="pwh-trace" d="'+d+'" pathLength="100" fill="none" stroke="var(--hdr-light)" stroke-width="2.5" stroke-linecap="round" filter="url(#'+u+'-rg)"/><path class="pwh-trace" d="'+d+'" pathLength="100" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>'}).join('')+
-      '<g class="pwh-bolts" opacity="0"><path class="pwh-bg" fill="none" stroke="var(--hdr-light-glow)" stroke-width="5" stroke-linejoin="round" filter="url(#'+u+'-rg)" opacity=".9"/><path class="pwh-bc" fill="none" stroke="var(--hdr-light)" stroke-width="1.6" stroke-linejoin="round"/><path class="pwh-bw" fill="none" stroke="#fff" stroke-width=".7" stroke-linejoin="round" opacity=".9"/></g>'+
+      '<g class="pwh-sparks"></g><g class="pwh-bolts" opacity="0"></g>'+
       /* flash da abertura: o traço inteiro acende uma vez */
       '<path class="pwh-flash" d="'+shape+'" fill="none" stroke="var(--hdr-light)" stroke-width="3" filter="url(#'+u+'-rg)"/>';
+    var NS='http://www.w3.org/2000/svg',mk=(t,a,par)=>{var e=document.createElementNS(NS,t);for(var x in a)e.setAttribute(x,a[x]);par.appendChild(e);return e};
+    var bg=this._svg.querySelector('.pwh-bolts'),SEG=8;
+    this._bl=[0,1,2,3].map(()=>Array.from({length:SEG},(_,j)=>{var o=Math.sin(Math.PI*(j+.5)/SEG);
+      return [mk('path',{fill:'none',stroke:'var(--hdr-light-glow)','stroke-width':5,'stroke-linecap':'round','stroke-linejoin':'round',filter:'url(#'+u+'-rg)',opacity:(o*.9).toFixed(2)},bg),
+              mk('path',{fill:'none',stroke:'var(--hdr-light)','stroke-width':1.5,'stroke-linecap':'round','stroke-linejoin':'round',opacity:o.toFixed(2)},bg),
+              mk('path',{fill:'none',stroke:'#fff','stroke-width':.7,'stroke-linecap':'round','stroke-linejoin':'round',opacity:(o*o*.95).toFixed(2)},bg)]}));
+    var sg=this._svg.querySelector('.pwh-sparks');
+    this._parts=Array.from({length:24},(_,i)=>({life:0,el:mk('path',{d:i%3?'M0 -3 L2.2 2 L-2.2 2 Z':'M0 -1.6 A1.6 1.6 0 1 1 0 1.6 A1.6 1.6 0 1 1 0 -1.6',fill:i%4?'var(--hdr-light)':'#fff',opacity:0},sg)}));
+    var mg=this._svg.querySelector('.pwh-motes');
+    this._motes=Array.from({length:18},(_,i)=>({a:Math.random()*6.28,w:(.25+Math.random()*.5)*(i%2?1:-1),rx:H*(.35+Math.random()*1.6),ry:H*(.15+Math.random()*.35),
+      o:.35+Math.random()*.6,tw:.6+Math.random()*1.4,el:mk('circle',{r:(.6+Math.random()*1.4).toFixed(1),fill:i%3?'var(--hdr-light)':'#fff'},mg)}));
+    this._orb=this._svg.querySelector('.pwh-orb');this._orb2=this._svg.querySelector('.pwh-orb2');
+    this._orb.setAttribute('transform','translate('+W/2+' '+m+')');this._orb2.setAttribute('transform','translate('+W*.3+' '+m+')');
+    this._cfg();
   }
 }
 customElements.define('pw-card-header',PWCardHeader);
@@ -2190,11 +2229,11 @@ window.PW_EL_PAL={"inseto": {"dark": "#5A7D2B", "mid": "#7EAB33", "light": "#97C
     var txt=g('hpText').value,th=g('hpTheme').value,show=g('hpShowIcon').checked,ic=g('hpIcon').value,an=g('hpAnim').value,sp=+g('hpSpeed').value;
     g('hpIcon').disabled=!show;
     var el=document.createElement('pw-card-header');
-    if(th)el.setAttribute('theme',th);if(an)el.setAttribute('animate',an);if(an&&sp!==1.6)el.style.setProperty('--hdr-ambient',sp+'s');
+    if(th)el.setAttribute('theme',th);if(an)el.setAttribute('animate',an);if(an&&sp!==9)el.style.setProperty('--hdr-ambient',sp+'s');
     if(!show)el.setAttribute('show-icon','false');else if(ic!=='sparkle')el.setAttribute('icon',ic);
     el.textContent=txt;
     var st=g('hpStage');st.innerHTML='';st.appendChild(el);
-    var a=[];if(th)a.push('theme="'+th+'"');if(an)a.push('animate="'+an+'"');if(an&&sp!==1.6)a.push('style="--hdr-ambient:'+sp+'s"');if(!show)a.push('show-icon="false"');else if(ic!=='sparkle')a.push('icon="'+ic+'"');
+    var a=[];if(th)a.push('theme="'+th+'"');if(an)a.push('animate="'+an+'"');if(an&&sp!==9)a.push('style="--hdr-ambient:'+sp+'s"');if(!show)a.push('show-icon="false"');else if(ic!=='sparkle')a.push('icon="'+ic+'"');
     g('hpCode').textContent='<pw-card-header'+(a.length?' '+a.join(' '):'')+'>'+txt+'</pw-card-header>';
   }
   ['hpText','hpTheme','hpShowIcon','hpIcon','hpAnim','hpSpeed'].forEach(id=>g(id).addEventListener(id==='hpText'||id==='hpSpeed'?'input':'change',hp));
