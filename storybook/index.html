@@ -235,6 +235,26 @@ pw-icon{display:inline-flex;width:1em;height:1em;flex:none;color:inherit}pw-icon
 pw-icon img{object-fit:contain}
 #hpStage pw-card-header{justify-self:center}
 
+
+/* ---- pw-card-header: animações (animate="intro" · "ambient" · "both"/vazio · "none") ---- */
+pw-card-header{--hdr-intro:.9s;--hdr-ambient:5s;--hdr-light:var(--pw-filament);--hdr-light-glow:var(--pw-glow);--hdr-shimmer:.16}
+pw-card-header .pwh-fx{opacity:0;transition:opacity .4s}
+pw-card-header:is([animate=""],[animate="both"],[animate="ambient"]) .pwh-fx{opacity:1}
+pw-card-header .pwh-run{animation:pwh-run var(--hdr-ambient) linear infinite;animation-play-state:paused}
+pw-card-header .pwh-run.b{animation-delay:calc(var(--hdr-ambient) / -2)}
+pw-card-header .pwh-shim{animation:pwh-shim calc(var(--hdr-ambient) * 1.2) ease-in-out infinite;animation-play-state:paused}
+pw-card-header:is([animate=""],[animate="both"],[animate="ambient"]) :is(.pwh-run,.pwh-shim){animation-play-state:running}
+@keyframes pwh-run{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@keyframes pwh-shim{0%,15%{transform:translateX(-60%)}65%,100%{transform:translateX(160%)}}
+/* abertura: a faixa se abre do centro, o traço acende e o texto entra */
+pw-card-header[data-opening] .pwh-frame{animation:pwh-open var(--hdr-intro) cubic-bezier(.2,.8,.2,1) both}
+pw-card-header[data-opening] .pwh-label{animation:pwh-label calc(var(--hdr-intro) * .8) ease-out calc(var(--hdr-intro) * .45) both}
+pw-card-header[data-opening] .pwh-flash{animation:pwh-flash calc(var(--hdr-intro) * 1.1) ease-out both}
+pw-card-header .pwh-flash{opacity:0}
+@keyframes pwh-open{0%{clip-path:inset(0 50% 0 50%);opacity:.2}60%{opacity:1}100%{clip-path:inset(-20% -10% -20% -10%);opacity:1}}
+@keyframes pwh-label{from{opacity:0;transform:scale(1.08);filter:blur(3px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes pwh-flash{0%{opacity:0}35%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){pw-card-header :is(.pwh-run,.pwh-shim){animation:none!important}pw-card-header[data-opening] :is(.pwh-frame,.pwh-label,.pwh-flash){animation-duration:.01s!important;animation-delay:0s!important}}
 /* ===================== COMPONENT: pw-tabs / pw-tab ===================== */
 pw-tabs{position:relative;display:inline-flex;flex-wrap:wrap;gap:6px;align-items:center;
   --tab-pad:8px;--tab-gap:4px;--tab-fs:12px;--tab-ic:14px}
@@ -603,7 +623,7 @@ pw-scroll[track="none"],.pw-scroll[data-track="none"]{--pw-scroll-track:transpar
   </nav>
   <button type="button" class="comp-btn" data-comp="header" aria-controls="main">Card Header</button>
   <nav class="sub" data-for="header">
-    <a href="#header">Visão geral</a><a href="#header-playground">Playground</a><a href="#header-composicao">Composição com o card</a>
+    <a href="#header">Visão geral</a><a href="#header-playground">Playground</a><a href="#header-animacao">Animação</a><a href="#header-composicao">Composição com o card</a>
   </nav>
   <button type="button" class="comp-btn" data-comp="tabs" aria-controls="main">Tabs</button>
   <nav class="sub" data-for="tabs">
@@ -755,7 +775,9 @@ pw-scroll[track="none"],.pw-scroll[data-track="none"]{--pw-scroll-track:transpar
       <label for="hpTheme">theme<select id="hpTheme"><option value="">poke world (padrão)</option><option>mewtwo</option></select></label>
       <label class="check" for="hpShowIcon"><input type="checkbox" id="hpShowIcon" checked> show-icon</label>
       <label for="hpIcon">icon<select id="hpIcon"><option>sparkle</option><option>star</option><option>diamond</option><option>bolt</option></select></label>
-      <p class="cap" style="margin:0">Lista provisória. Quando o componente Icon existir, este seletor vai listar os ícones dele.</p>
+      <label for="hpAnim">animate<select id="hpAnim"><option value="">nenhuma</option><option value="both" selected>both (abertura + luzes)</option><option value="intro">intro (só abertura)</option><option value="ambient">ambient (só luzes)</option></select></label>
+      <label for="hpSpeed">--hdr-ambient (s)<input id="hpSpeed" type="number" min="2" max="20" step="0.5" value="5"></label>
+      <button class="btn" type="button" id="hpReplay">Repetir abertura</button>
     </form>
     <div style="display:grid;gap:14px;min-width:0">
       <div class="canvas" id="hpStage" style="min-height:160px;display:grid;place-items:center"></div>
@@ -772,6 +794,29 @@ pw-scroll[track="none"],.pw-scroll[data-track="none"]{--pw-scroll-track:transpar
       <tr><td><code>theme</code></td><td><code>mewtwo</code></td><td>herdado</td><td>Igual ao card. Também herda de <code>data-pw-theme</code>.</td></tr>
     </tbody>
   </table></div>
+  <h3 id="header-animacao" style="scroll-margin-top:24px">Animação</h3>
+  <p class="lede">Com <code>animate</code>, o header abre do centro para as pontas, o traço acende e o título entra; depois, duas luzes correm devagar pela borda e um reflexo atravessa o fundo. As cores vêm do tema (traçado e brilho).</p>
+  <div class="canvas" style="display:grid;gap:22px;justify-items:start">
+    <pw-card-header animate>Poke World</pw-card-header>
+    <div data-pw-theme="mewtwo"><pw-card-header animate>Máquina do Mewtwo</pw-card-header></div>
+    <div class="row" style="gap:18px"><pw-card-header animate theme="fogo" icon="star">Fogo</pw-card-header><pw-card-header animate theme="agua" icon="star">Água</pw-card-header><pw-card-header animate theme="planta" icon="star">Planta</pw-card-header></div>
+    <button class="btn" type="button" id="hdrReplayAll">Repetir abertura</button>
+  </div>
+  <div class="tbl"><table>
+    <thead><tr><th>Configuração</th><th>Padrão</th><th>Descrição</th></tr></thead>
+    <tbody>
+      <tr><td><code>animate</code></td><td>sem animação</td><td>vazio ou <code>both</code>: abertura + luzes · <code>intro</code>: só abertura · <code>ambient</code>: só luzes · <code>none</code></td></tr>
+      <tr><td><code>.play()</code></td><td>—</td><td>Repete a abertura (ex.: ao abrir a janela de novo)</td></tr>
+      <tr><td><code>--hdr-intro</code></td><td>.9s</td><td>Duração da abertura</td></tr>
+      <tr><td><code>--hdr-ambient</code></td><td>5s</td><td>Tempo de uma volta das luzes na borda</td></tr>
+      <tr><td><code>--hdr-light</code> · <code>--hdr-light-glow</code></td><td>traçado · brilho do tema</td><td>Cor da luz e do halo</td></tr>
+      <tr><td><code>--hdr-shimmer</code></td><td>.16</td><td>Força do reflexo no fundo (0 desliga)</td></tr>
+    </tbody>
+  </table></div>
+  <pre class="code">&lt;pw-card-header animate&gt;Máquina do Mewtwo&lt;/pw-card-header&gt;
+&lt;pw-card-header animate="intro" style="--hdr-intro:1.2s"&gt;Ascensão Estelar&lt;/pw-card-header&gt;
+
+document.querySelector('pw-card-header').play(); // repete a abertura</pre>
   <h3 id="header-composicao" style="scroll-margin-top:24px">Composição com o card</h3>
   <p class="lede">O header é um componente independente. Para usar como título de janela, envolva os dois em <code>.pw-titled</code>: o header fica centralizado sobre a borda superior e cobre a linha do card.</p>
   <div class="canvas"><div class="row">
@@ -1678,8 +1723,13 @@ customElements.define('pw-card',PWCard);
 var PW_ICONS={ /* provisório: será substituído pelo componente Icon */
   sparkle:'"\\2726"', star:'"\\2605"', diamond:'"\\25C6"', bolt:'"\\26A1\\FE0E"' };
 class PWCardHeader extends HTMLElement{
-  static get observedAttributes(){return ['icon']}
-  attributeChangedCallback(){var i=PW_ICONS[this.getAttribute('icon')];i?this.style.setProperty('--hdr-icon',i):this.style.removeProperty('--hdr-icon')}
+  static get observedAttributes(){return ['icon','animate']}
+  attributeChangedCallback(n,o,v){var i=PW_ICONS[this.getAttribute('icon')];i?this.style.setProperty('--hdr-icon',i):this.style.removeProperty('--hdr-icon');
+    if(n==='animate'&&this._init&&o!==v)this.play()}
+  /* toca a animação de abertura (se animate permitir); pode ser chamada de novo para repetir */
+  play(){var a=this.getAttribute('animate');if(a===null||a==='none'||a==='ambient')return;
+    this.removeAttribute('data-opening');void this.offsetWidth;this.setAttribute('data-opening','');
+    clearTimeout(this._ot);this._ot=setTimeout(()=>this.removeAttribute('data-opening'),2600)}
   connectedCallback(){
     this.attributeChangedCallback();
     if(this._init){this._ro.observe(this);return}this._init=true;this._uid='pwh'+(++uidN);
@@ -1690,7 +1740,7 @@ class PWCardHeader extends HTMLElement{
     this.appendChild(this._svg);this.appendChild(lab);
     if(!this.hasAttribute('role'))this.setAttribute('role','heading');
     if(!this.hasAttribute('aria-level'))this.setAttribute('aria-level','2');
-    this._ro=new ResizeObserver(()=>this.render());this._ro.observe(this);this.render();
+    this._ro=new ResizeObserver(()=>this.render());this._ro.observe(this);this.render();this.play();
   }
   disconnectedCallback(){if(this._ro)this._ro.disconnect()}
   render(){
@@ -1710,7 +1760,15 @@ class PWCardHeader extends HTMLElement{
       '</defs>'+
       '<path d="'+shape+'" fill="url(#'+u+'-bg)"/>'+
       '<g filter="url(#'+u+'-tex)" opacity=".6">'+border+'</g>'+border+
-      '<path d="'+shape+'" fill="none" stroke="url(#'+u+'-glass)" stroke-width="3" style="mix-blend-mode:soft-light"/>';
+      '<path d="'+shape+'" fill="none" stroke="url(#'+u+'-glass)" stroke-width="3" style="mix-blend-mode:soft-light"/>'+
+      /* luzes que correm pela borda + reflexo que atravessa o fundo (animate ambient) */
+      '<defs><clipPath id="'+u+'-clip"><path d="'+shape+'"/></clipPath><filter id="'+u+'-rg" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="3"/></filter>'+
+      '<linearGradient id="'+u+'-shg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" style="stop-color:var(--hdr-light)" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>'+
+      '<g class="pwh-fx"><g clip-path="url(#'+u+'-clip)"><rect class="pwh-shim" x="0" y="0" width="'+Math.round(W*.35)+'" height="'+H+'" fill="url(#'+u+'-shg)" style="opacity:var(--hdr-shimmer);transform-box:view-box"/></g>'+
+      ['a','b'].map(function(k){return '<path class="pwh-run '+k+'" d="'+shape+'" pathLength="100" fill="none" stroke="var(--hdr-light-glow)" stroke-width="6" stroke-linecap="round" stroke-dasharray="9 91" filter="url(#'+u+'-rg)" opacity=".9"/>'+
+        '<path class="pwh-run '+k+'" d="'+shape+'" pathLength="100" fill="none" stroke="var(--hdr-light)" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 94"/>'}).join('')+'</g>'+
+      /* flash da abertura: o traço inteiro acende uma vez */
+      '<path class="pwh-flash" d="'+shape+'" fill="none" stroke="var(--hdr-light)" stroke-width="3" filter="url(#'+u+'-rg)"/>';
   }
 }
 customElements.define('pw-card-header',PWCardHeader);
@@ -2097,19 +2155,21 @@ window.PW_EL_PAL={"inseto": {"dark": "#5A7D2B", "mid": "#7EAB33", "light": "#97C
   var g=id=>document.getElementById(id);
   function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
   function hp(){
-    var txt=g('hpText').value,th=g('hpTheme').value,show=g('hpShowIcon').checked,ic=g('hpIcon').value;
+    var txt=g('hpText').value,th=g('hpTheme').value,show=g('hpShowIcon').checked,ic=g('hpIcon').value,an=g('hpAnim').value,sp=+g('hpSpeed').value;
     g('hpIcon').disabled=!show;
     var el=document.createElement('pw-card-header');
-    if(th)el.setAttribute('theme',th);
+    if(th)el.setAttribute('theme',th);if(an)el.setAttribute('animate',an);if(an&&sp!==5)el.style.setProperty('--hdr-ambient',sp+'s');
     if(!show)el.setAttribute('show-icon','false');else if(ic!=='sparkle')el.setAttribute('icon',ic);
     el.textContent=txt;
     var st=g('hpStage');st.innerHTML='';st.appendChild(el);
-    var a=[];if(th)a.push('theme="'+th+'"');if(!show)a.push('show-icon="false"');else if(ic!=='sparkle')a.push('icon="'+ic+'"');
+    var a=[];if(th)a.push('theme="'+th+'"');if(an)a.push('animate="'+an+'"');if(an&&sp!==5)a.push('style="--hdr-ambient:'+sp+'s"');if(!show)a.push('show-icon="false"');else if(ic!=='sparkle')a.push('icon="'+ic+'"');
     g('hpCode').textContent='<pw-card-header'+(a.length?' '+a.join(' '):'')+'>'+txt+'</pw-card-header>';
   }
-  ['hpText','hpTheme','hpShowIcon','hpIcon'].forEach(id=>g(id).addEventListener(id==='hpText'?'input':'change',hp));
+  ['hpText','hpTheme','hpShowIcon','hpIcon','hpAnim','hpSpeed'].forEach(id=>g(id).addEventListener(id==='hpText'||id==='hpSpeed'?'input':'change',hp));
+  g('hpReplay').addEventListener('click',function(){var h=g('hpStage').querySelector('pw-card-header');if(h)h.play()});
   g('hpCopy').addEventListener('click',function(){var b=this;navigator.clipboard.writeText(g('hpCode').textContent).then(()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar HTML',1400)}).catch(()=>{var r=document.createRange();r.selectNodeContents(g('hpCode'));var s=getSelection();s.removeAllRanges();s.addRange(r)})});
   hp();
+  g('hdrReplayAll').addEventListener('click',function(){document.querySelectorAll('#header pw-card-header[animate]').forEach(h=>h.play())});
 })();
 
 /* ---------- conteúdo de exemplo ---------- */

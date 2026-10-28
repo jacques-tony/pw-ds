@@ -2,6 +2,11 @@
 
 Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/), versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.18.0] — 2026-10-28
+
+### Adicionado
+- **pw-card-header**: propriedade `animate` (vazio/`both` · `intro` · `ambient` · `none`). Abertura: a faixa abre do centro, o traço acende e o título entra. Ambiente: duas luzes correm pela borda e um reflexo atravessa o fundo. Cores do tema (traçado e brilho). Método `.play()` repete a abertura. Variáveis `--hdr-intro`, `--hdr-ambient`, `--hdr-light`, `--hdr-light-glow`, `--hdr-shimmer`. Respeita "reduzir movimento".
+
 ## [0.17.0] — 2026-10-28
 
 ### Adicionado
