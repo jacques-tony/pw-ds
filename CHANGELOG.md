@@ -5,6 +5,26 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.22.0
+
+- **Cores**: o sistema de tokens agora está completo, em três camadas.
+  - **Primitivas**: rampas neutral, gold, blue, violet, teal, rose, orange, green, red, cyan e purple, mais preto e branco com alfa.
+  - **Semânticas fixas**: `--pw-text-*`, `--pw-shadow-*`, `--pw-overlay` e os tons completos `--pw-tone-<tom>-<camada>`.
+  - **Do tema (derivadas)**: `--pw-accent`, `--pw-text-accent*`, `--pw-text-help`, `--pw-border-*`, `--pw-surface-*`, `--pw-highlight-inset`, `--pw-focus-*` e `--pw-glow-soft`.
+- **Espaçamento**: escala em múltiplos de 4px, de `--pw-space-0` a `--pw-space-32`, mais `-px` (1px) e `-0-5` (2px). Apelidos semânticos `--pw-gap-*`, `--pw-inset-*` e `--pw-stack-*`.
+- **Raios**: `--pw-radius-none`, `-xs`, `-sm`, `-md`, `-lg`, `-xl` e `-full`.
+- **Ícones**: 33 ícones de navegação (home, menu, search, settings, user, more-*, plus, minus, filter, sort, refresh, bell, chat, mail, map, bag, shop, trophy, star, heart, info, help, lock, unlock, login, logout, external, eye, calendar, grid, list e sliders).
+- Todos os componentes passam a usar os tokens no lugar de cores e espaçamentos fixos. As cores ficaram idênticas (comparação pixel a pixel).
+- Espaçamentos ajustados à escala de 4:
+  - Card: padding do primary 34→32, do secondary 30→28 e gap do conteúdo 10→12; quaternary 12/14→12/16.
+  - Card Header: distância dos ícones 14→16.
+  - Tabs: gap 6→8 e, no lg, 8→12.
+  - Badge: padding sm 6→4 e lg 10→12.
+  - Button: gap md 6→8 e xl 8→12.
+  - Input Number: gap 6→8 e, no lg, 8→12; botões 10→12.
+- Storybook: novas páginas Cores (primitivas, texto e sombras, tema, tons) e Espaçamento.
+
 ## 0.21.0
 
 - **pw-card**: nova variante `quaternary`, para blocos dentro de um tertiary. Tem fundo mais escuro e quase opaco, sombra interna no topo, traçado vertical aceso em cima e sombra externa. As cores derivam dos tokens do tertiary, então funciona em todos os temas.

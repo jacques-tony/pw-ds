@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.21.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.22.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -32,42 +32,134 @@
   --pw-text-caption:var(--pw-text-caption-weight) var(--pw-text-caption-size)/var(--pw-text-caption-line) var(--pw-font-body);
   --pw-text-overline-size:11px; --pw-text-overline-line:14px; --pw-text-overline-weight:600; --pw-text-overline-tracking:.12em;
   --pw-text-overline:var(--pw-text-overline-weight) var(--pw-text-overline-size)/var(--pw-text-overline-line) var(--pw-font-body);
+  /* ===== ESPAÇAMENTO (base 4px: cada passo = n × 4) ===== */
+  --pw-space-unit:4px;
+  --pw-space-0:0px; --pw-space-px:1px; --pw-space-0-5:2px;
+  --pw-space-1:4px; --pw-space-2:8px; --pw-space-3:12px; --pw-space-4:16px; --pw-space-5:20px; --pw-space-6:24px;
+  --pw-space-7:28px; --pw-space-8:32px; --pw-space-9:36px; --pw-space-10:40px; --pw-space-11:44px; --pw-space-12:48px;
+  --pw-space-14:56px; --pw-space-16:64px; --pw-space-20:80px; --pw-space-24:96px; --pw-space-32:128px;
+  /* apelidos semânticos: gap entre itens · padding interno · distância entre blocos */
+  --pw-gap-2xs:var(--pw-space-0-5); --pw-gap-xs:var(--pw-space-1); --pw-gap-sm:var(--pw-space-2); --pw-gap-md:var(--pw-space-3); --pw-gap-lg:var(--pw-space-4); --pw-gap-xl:var(--pw-space-6);
+  --pw-inset-xs:var(--pw-space-1); --pw-inset-sm:var(--pw-space-2); --pw-inset-md:var(--pw-space-3); --pw-inset-lg:var(--pw-space-4); --pw-inset-xl:var(--pw-space-6); --pw-inset-2xl:var(--pw-space-8);
+  --pw-stack-xs:var(--pw-space-2); --pw-stack-sm:var(--pw-space-4); --pw-stack-md:var(--pw-space-6); --pw-stack-lg:var(--pw-space-8); --pw-stack-xl:var(--pw-space-12);
+  /* raios */
+  --pw-radius-none:0px; --pw-radius-xs:4px; --pw-radius-sm:6px; --pw-radius-md:8px; --pw-radius-lg:12px; --pw-radius-xl:16px; --pw-radius-full:999px;
+
+  /* ===== CORES · 1. PRIMITIVAS (paleta crua; não use direto nos componentes, use os semânticos) ===== */
+  --pw-white:#FFFFFF; --pw-black:#000000;
+  --pw-neutral-50:#FFF8EC; --pw-neutral-100:#F2E8D2; --pw-neutral-200:#E9E3D3; --pw-neutral-300:#D9D9D9; --pw-neutral-400:#B9C3DA;
+  --pw-neutral-500:#99AAAA; --pw-neutral-600:#5E6985; --pw-neutral-700:#363F5A; --pw-neutral-800:#1C2338; --pw-neutral-900:#0B0F1C;
+  --pw-black-a10:rgb(0 0 0 / .1); --pw-black-a18:rgb(0 0 0 / .18); --pw-black-a20:rgb(0 0 0 / .2); --pw-black-a35:rgb(0 0 0 / .35);
+  --pw-black-a40:rgb(0 0 0 / .4); --pw-black-a45:rgb(0 0 0 / .45); --pw-black-a55:rgb(0 0 0 / .55); --pw-black-a75:rgb(0 0 0 / .75);
+  --pw-white-a04:rgb(255 255 255 / .04); --pw-white-a12:rgb(255 255 255 / .12); --pw-white-a25:rgb(255 255 255 / .25);
+  --pw-white-a55:rgb(255 255 255 / .55); --pw-white-a90:rgb(255 255 255 / .9);
+  /* dourado (metal Poke World) */
+  --pw-gold-50:#FFF0C4; --pw-gold-100:#FFE0A3; --pw-gold-200:#FAD183; --pw-gold-300:#E2B866; --pw-gold-400:#D19B46;
+  --pw-gold-500:#BC8738; --pw-gold-600:#8F6327; --pw-gold-700:#5E3F15; --pw-gold-800:#3D2809; --pw-gold-900:#2A1A04;
+  /* azul (fundo Poke World) */
+  --pw-blue-50:#D5F8FF; --pw-blue-100:#9DF0FF; --pw-blue-200:#5FC6E6; --pw-blue-300:#0D9BC4; --pw-blue-400:#1556BF;
+  --pw-blue-500:#0A6999; --pw-blue-600:#0050B0; --pw-blue-700:#0E3370; --pw-blue-800:#071C41; --pw-blue-900:#051839; --pw-blue-950:#001225;
+  /* violeta (Mewtwo) */
+  --pw-violet-50:#F1E4FF; --pw-violet-100:#E3C8FF; --pw-violet-200:#D9B8FF; --pw-violet-300:#C79BFF; --pw-violet-400:#B98BFF;
+  --pw-violet-500:#9B5CF0; --pw-violet-600:#6A35C8; --pw-violet-700:#3F176B; --pw-violet-800:#2A1468; --pw-violet-900:#17104B; --pw-violet-950:#0D063A;
+  /* cores das cores fixas */
+  --pw-teal-100:#C9FBEB; --pw-teal-300:#7CF3D0; --pw-teal-500:#2FBF98; --pw-teal-700:#13664F;
+  --pw-rose-100:#FBE0FE; --pw-rose-300:#F0ABFC; --pw-rose-500:#C65BD6; --pw-rose-700:#6E2479;
+  --pw-orange-100:#FFE4CC; --pw-orange-200:#FFD6B0; --pw-orange-300:#FFC27A; --pw-orange-400:#FFB070; --pw-orange-500:#E8823A; --pw-orange-600:#D9732B; --pw-orange-700:#C8672A; --pw-orange-900:#7E3A0E;
+  --pw-green-50:#DFFBE8; --pw-green-100:#CFF7D9; --pw-green-200:#BDF5D0; --pw-green-300:#8FE6B2; --pw-green-400:#4CC07A; --pw-green-500:#3FAE6A; --pw-green-600:#36A260; --pw-green-700:#227A45; --pw-green-900:#165A31;
+  --pw-red-50:#FFD6D6; --pw-red-100:#FFD0D0; --pw-red-200:#FFB3B3; --pw-red-300:#FF9C9C; --pw-red-400:#E25A5A; --pw-red-500:#D24B4B; --pw-red-600:#C83C3C; --pw-red-700:#A62C2C; --pw-red-900:#6E1A1A;
+  --pw-cyan-50:#D9F5FF; --pw-cyan-100:#CDF2FF; --pw-cyan-300:#9FD8F5; --pw-cyan-500:#2F8FC0; --pw-cyan-900:#14476A;
+  --pw-purple-50:#F2E2FF; --pw-purple-100:#EBD3FF; --pw-purple-500:#9858D6; --pw-purple-900:#4A2180;
+
+  /* ===== CORES · 2. SEMÂNTICAS FIXAS (iguais em todos os temas) ===== */
+  /* texto */
+  --pw-text-primary:var(--pw-white);       /* números, nomes, texto sobre fundo escuro */
+  --pw-text-title:var(--pw-neutral-50);    /* títulos do card header */
+  --pw-text-body:var(--pw-neutral-100);    /* texto corrido dos cards */
+  --pw-text-muted:var(--pw-neutral-400);   /* texto secundário */
+  --pw-text-hint:var(--pw-neutral-500);    /* ajuda e placeholders (mistura com o traçado do tema) */
+  --pw-text-inverse:var(--pw-gold-900);    /* texto sobre metal claro */
+  --pw-on-metal:var(--pw-text-inverse);    /* o tema Mewtwo troca para branco */
+  /* sombras e sobreposição */
+  --pw-shadow-text:0 1px 1px var(--pw-black-a35);
+  --pw-shadow-text-strong:0 1px 2px var(--pw-black-a55);
+  --pw-shadow-sm:0 3px 10px var(--pw-black-a45);
+  --pw-shadow-inset-field:inset 0 2px 4px var(--pw-black-a40);
+  --pw-shadow-inset-bevel:inset 0 -2px 0 var(--pw-black-a18);
+  --pw-overlay:var(--pw-black-a75);
+  /* tons semânticos completos: cada tom tem as camadas usadas por card (metal), badge (base/escuro) e botão (sólido) */
+  --pw-tone-info-light:var(--pw-cyan-100); --pw-tone-info-filament:var(--pw-cyan-50); --pw-tone-info-metal-1:#4FB0D8; --pw-tone-info-metal-2:#3A8EBC; --pw-tone-info-metal-3:#A7E3F8; --pw-tone-info-glow:#9FE2FF;
+  --pw-tone-info-base:var(--pw-cyan-500); --pw-tone-info-dark:var(--pw-cyan-900); --pw-tone-info-text:var(--pw-cyan-300);
+  --pw-tone-success-light:var(--pw-green-100); --pw-tone-success-filament:#DDFBE5; --pw-tone-success-metal-1:#4DB873; --pw-tone-success-metal-2:#39985A; --pw-tone-success-metal-3:#A6E8B9; --pw-tone-success-glow:#9BF0B6;
+  --pw-tone-success-base:var(--pw-green-600); --pw-tone-success-dark:var(--pw-green-900); --pw-tone-success-text:var(--pw-green-300);
+  --pw-tone-success-solid-top:var(--pw-green-400); --pw-tone-success-solid-bottom:var(--pw-green-700); --pw-tone-success-border-soft:var(--pw-green-200); --pw-tone-success-border:var(--pw-green-500);
+  --pw-tone-success-particle:var(--pw-green-50); --pw-tone-success-halo:rgb(90 220 140 / .5); --pw-tone-success-tint:rgb(76 192 122 / .1);
+  --pw-tone-warning-light:var(--pw-orange-200); --pw-tone-warning-filament:var(--pw-orange-100); --pw-tone-warning-metal-1:var(--pw-orange-500); --pw-tone-warning-metal-2:var(--pw-orange-700); --pw-tone-warning-metal-3:#FFB57A; --pw-tone-warning-glow:var(--pw-orange-400);
+  --pw-tone-warning-base:var(--pw-orange-600); --pw-tone-warning-dark:var(--pw-orange-900); --pw-tone-warning-text:var(--pw-orange-300);
+  --pw-tone-error-light:#FFC2C2; --pw-tone-error-filament:var(--pw-red-50); --pw-tone-error-metal-1:#D64848; --pw-tone-error-metal-2:#AE3333; --pw-tone-error-metal-3:#F48E8E; --pw-tone-error-glow:#FF8A8A;
+  --pw-tone-error-base:var(--pw-red-600); --pw-tone-error-dark:var(--pw-red-900); --pw-tone-error-text:var(--pw-red-300);
+  --pw-tone-error-solid-top:var(--pw-red-400); --pw-tone-error-solid-bottom:var(--pw-red-700); --pw-tone-error-border-soft:var(--pw-red-200); --pw-tone-error-border:var(--pw-red-500);
+  --pw-tone-error-particle:var(--pw-red-100); --pw-tone-error-halo:rgb(255 100 100 / .55); --pw-tone-error-tint:rgb(226 90 90 / .1);
+  --pw-tone-new-light:var(--pw-purple-100); --pw-tone-new-filament:var(--pw-purple-50); --pw-tone-new-metal-1:#A86BE0; --pw-tone-new-metal-2:#8A4FC4; --pw-tone-new-metal-3:#D5ABF8; --pw-tone-new-glow:#D3A6FF;
+  --pw-tone-new-base:var(--pw-purple-500); --pw-tone-new-dark:var(--pw-purple-900); --pw-tone-new-text:var(--pw-rose-300);
+  --pw-tone-brand-light:var(--pw-gold-50); --pw-tone-brand-filament:var(--pw-gold-50); --pw-tone-brand-metal-1:#E6AE48; --pw-tone-brand-metal-2:#CF9131; --pw-tone-brand-metal-3:#FFDF8C; --pw-tone-brand-glow:#FFD27A;
   /* ===== CORES FIXAS (iguais em todos os temas; um significado por cor) ===== */
-  --pw-color-highlight:#E2B866; /* dourado: destaque e ênfase (›››, "O boost nunca cai.", tag PROPOSTA) */
-  --pw-color-next:#7CF3D0;      /* verde-água: progressão, o valor seguinte ("Próximo nível") */
-  --pw-color-aura:#F0ABFC;      /* rosa antigo: boost do Pokémon (+12) e aura */
-  --pw-color-alert:#FFC27A;     /* laranja: falta de item, alerta leve (= texto do status warning) */
+  --pw-color-highlight:var(--pw-gold-300); /* dourado: destaque e ênfase (›››, "O boost nunca cai.", tag PROPOSTA) */
+  --pw-color-next:var(--pw-teal-300);      /* verde-água: progressão, o valor seguinte ("Próximo nível") */
+  --pw-color-aura:var(--pw-rose-300);      /* rosa antigo: boost do Pokémon (+12) e aura */
+  --pw-color-alert:var(--pw-orange-300);     /* laranja: falta de item, alerta leve (= texto do status warning) */
   /* status semânticos (texto e ícone sobre fundo escuro) */
-  --pw-status-success:#8FE6B2; --pw-status-warning:var(--pw-color-alert); --pw-status-error:#FF9C9C; --pw-status-info:#9FD8F5;
+  --pw-status-success:var(--pw-green-300); --pw-status-warning:var(--pw-color-alert); --pw-status-error:var(--pw-red-300); --pw-status-info:var(--pw-cyan-300);
   /* ===== TEMA GLOBAL (compartilhado por todos os componentes) =====
      tema padrão = Poke World (dourado + azul). Outros temas redefinem só estes tokens. */
-  --pw-metal-0:#FFE0A3;   /* 0%   */
-  --pw-metal-1:#D19B46;   /* 40%  */
-  --pw-metal-2:#BC8738;   /* 80%  */
-  --pw-metal-3:#FAD183;   /* 100% */
-  --pw-filament:#FFE0A3;  /* border.solid.secondary — traçado central 1px */
-  --pw-glow:#FFE0A3;      /* pontos de luz (estimado) */
-  --pw-bg-center:#0E3370; /* background.gradient.blue 0% */
-  --pw-bg-edge:#051839;   /* 100% */
+  --pw-metal-0:var(--pw-gold-100);   /* 0%   */
+  --pw-metal-1:var(--pw-gold-400);   /* 40%  */
+  --pw-metal-2:var(--pw-gold-500);   /* 80%  */
+  --pw-metal-3:var(--pw-gold-200);   /* 100% */
+  --pw-filament:var(--pw-gold-100);  /* border.solid.secondary — traçado central 1px */
+  --pw-glow:var(--pw-gold-100);      /* pontos de luz (estimado) */
+  --pw-bg-center:var(--pw-blue-700); /* background.gradient.blue 0% */
+  --pw-bg-edge:var(--pw-blue-900);   /* 100% */
   /* tertiary */
-  --pw-ter-bg-center:#001D3E; --pw-ter-bg-edge:#001225; --pw-ter-bg-op:.75;
-  --pw-ter-stroke-0:#001F3D; --pw-ter-stroke-1:#0A6999; --pw-ter-stroke-2:#03406B;
-  --pw-ter-stroke-3:#0D9BC4; --pw-ter-stroke-4:#054672; --pw-ter-stroke-5:#1556BF;
+  --pw-ter-bg-center:#001D3E; --pw-ter-bg-edge:var(--pw-blue-950); --pw-ter-bg-op:.75;
+  --pw-ter-stroke-0:#001F3D; --pw-ter-stroke-1:var(--pw-blue-500); --pw-ter-stroke-2:#03406B;
+  --pw-ter-stroke-3:var(--pw-blue-300); --pw-ter-stroke-4:#054672; --pw-ter-stroke-5:var(--pw-blue-400);
   /* tab (selected) */
-  --pw-tab-fill-bottom:#0050B0; --pw-tab-fill-top:#001938;
-  --pw-tab-stroke-a:#9DF0FF; --pw-tab-stroke-b:#D5F8FF;
+  --pw-tab-fill-bottom:var(--pw-blue-600); --pw-tab-fill-top:#001938;
+  --pw-tab-stroke-a:var(--pw-blue-100); --pw-tab-stroke-b:var(--pw-blue-50);
   --pw-tab-drop:#9DEFFF; --pw-tab-inner:var(--pw-tab-drop);
-  --pw-tab-text:#FFFFFF; --pw-tab-text-idle:#FFFFFF;
+  --pw-tab-text:var(--pw-text-primary); --pw-tab-text-idle:var(--pw-text-primary);
   --f-tab:var(--pw-font-body);
-  --pw-bg-solid:#071C41;  /* background.solid.blue (estimado) */
+  --pw-bg-solid:var(--pw-blue-800);  /* background.solid.blue (estimado) */
 
   /* ===== CARD TOKENS ===== */
-  --card-glass:#D9D9D9;     /* cópia vidro, luz suave */
-  --card-text:#F2E8D2;
-  --card-text-muted:#B9C3DA;
+  --card-glass:var(--pw-neutral-300);     /* cópia vidro, luz suave */
+  --card-text:var(--pw-text-body);
+  --card-text-muted:var(--pw-text-muted);
   --card-stroke:3px; --card-filament-w:1px;
   --card-blur:4; --card-tex-size:16.5; --card-tex-radius:5;
-  --card-pad-primary:34px; --card-pad-secondary:30px;
+  --card-pad-primary:var(--pw-space-8); --card-pad-secondary:var(--pw-space-7);
   --card-dur:160ms; --card-ease:cubic-bezier(.2,.7,.3,1);
   
+}
+/* ===== CORES · 3. SEMÂNTICAS DO TEMA (derivadas; recalculadas em cada componente e área com tema) ===== */
+:root,[data-pw-theme],pw-card,pw-card-header,pw-tabs,pw-tab,pw-icon,pw-element-item,pw-badge,pw-button,pw-number,pw-scroll,.pw-scroll{
+  --pw-accent:var(--pw-filament);
+  --pw-text-accent:color-mix(in srgb,var(--pw-filament) 80%,var(--pw-white));        /* texto de botão secundário, setas */
+  --pw-text-accent-strong:color-mix(in srgb,var(--pw-filament) 85%,var(--pw-white)); /* botões − + */
+  --pw-text-accent-soft:color-mix(in srgb,var(--pw-filament) 70%,var(--pw-white));   /* labels, meta */
+  --pw-text-accent-subtle:color-mix(in srgb,var(--pw-filament) 65%,var(--pw-white)); /* prefixo e sufixo */
+  --pw-text-help:color-mix(in srgb,var(--pw-filament) 55%,var(--pw-text-hint));      /* texto de ajuda */
+  --pw-border-subtle:color-mix(in srgb,var(--pw-metal-1) 40%,transparent);
+  --pw-border-default:color-mix(in srgb,var(--pw-metal-1) 45%,transparent);
+  --pw-border-strong:color-mix(in srgb,var(--pw-metal-1) 55%,transparent);
+  --pw-border-emphasis:color-mix(in srgb,var(--pw-metal-1) 75%,transparent);
+  --pw-surface-base:var(--pw-bg-solid);
+  --pw-surface-field:color-mix(in srgb,var(--pw-ter-bg-edge) 85%,var(--pw-black));
+  --pw-surface-raised-top:color-mix(in srgb,var(--pw-ter-bg-center) 85%,var(--pw-white) 6%);
+  --pw-surface-raised-bottom:var(--pw-ter-bg-edge);
+  --pw-highlight-inset:color-mix(in srgb,var(--pw-filament) 25%,transparent);
+  --pw-focus-ring:var(--pw-filament);
+  --pw-focus-halo:color-mix(in srgb,var(--pw-filament) 35%,transparent);
+  --pw-glow-soft:color-mix(in srgb,var(--pw-glow) 70%,transparent);
 }

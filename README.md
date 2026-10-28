@@ -16,6 +16,8 @@ Componentes de interface do OTServ **Poke World Universe**, feitos como Web Comp
 
 Tipografia: **Spectral** para títulos e **Inter** para labels e textos (`--pw-font-title`, `--pw-font-body`, escala `--pw-text-*` e classes `.pw-text-*`).
 
+Tokens: cores em três camadas (primitivas `--pw-<cor>-<50…950>`, semânticas fixas `--pw-text-*`/`--pw-tone-*`/`--pw-shadow-*` e derivadas do tema `--pw-border-*`/`--pw-surface-*`/`--pw-text-accent*`), espaçamento base 4 (`--pw-space-n` = n×4px, `--pw-gap-*`, `--pw-inset-*`, `--pw-stack-*`) e raios `--pw-radius-*`.
+
 Cores fixas (fora do tema): `--pw-color-highlight`, `--pw-color-next`, `--pw-color-aura`, `--pw-color-alert` e status `--pw-status-success/warning/error/info`, com classes `.pw-c-*`.
 
 Temas: **Poke World** (padrão, dourado + azul), **Mewtwo** (roxo) e um tema para cada um dos **18 tipos** (`fogo`, `agua`, `planta`…).
@@ -87,7 +89,7 @@ Recomendado em produção: travar na versão principal (`@1`) depois que a 1.0 s
 **pw-tabs** — `size` (sm · md · lg), `theme`. Evento `change` com `detail.tab`.
 **pw-tab** — `icon`, `show-icon="false"`, `selected`, `disabled`, `aria-controls`.
 
-**pw-icon** — `name` (craft · boost · limit-break · close · check · warning · check-circle · warning-circle · arrow-* · chevron-* · chevrons-*, com * = up/down/left/right) ou `type` (os 18 tipos: aco, agua, dragao, eletrico, fada, fantasma, fogo, gelo, inseto, lutador, normal, pedra, planta, psiquico, sombrio, terrestre, veneno, voador); `size` xs · sm · md · lg · xl ou px; `label` para leitores de tela.
+**pw-icon** — `name` (craft · boost · limit-break · close · check · warning · check-circle · warning-circle · navegação: home · menu · search · settings · user · more-horizontal · more-vertical · plus · minus · filter · sort · refresh · bell · chat · mail · map · bag · shop · trophy · star · heart · info · help · lock · unlock · login · logout · external · eye · calendar · grid · list · sliders · arrow-* · chevron-* · chevrons-*, com * = up/down/left/right) ou `type` (os 18 tipos: aco, agua, dragao, eletrico, fada, fantasma, fogo, gelo, inseto, lutador, normal, pedra, planta, psiquico, sombrio, terrestre, veneno, voador); `size` xs · sm · md · lg · xl ou px; `label` para leitores de tela.
 
 **pw-element-item** — `element` (um dos 18 tipos), `theme` (`auto` = tema do elemento), `size` (sm · md · lg), `meta`, `width` (largura mínima em px), `selected`, `disabled`, `block`. O texto nunca quebra linha: o card cresce. Evento `change` com `detail.element`.
 
