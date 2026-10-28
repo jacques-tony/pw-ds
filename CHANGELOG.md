@@ -2,6 +2,14 @@
 
 Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/), versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+## [0.17.0] — 2026-10-28
+
+### Adicionado
+- Ícones `check-circle` e `warning-circle` (anel com o símbolo recortado).
+- Setas em 4 direções: `arrow-*`, `chevron-*` e `chevrons-*` (›››), com `*` = up · down · left · right.
+- **Cores fixas** (iguais em todos os temas, um significado cada): `--pw-color-highlight` #E2B866 (destaque/ênfase), `--pw-color-next` #7CF3D0 (progressão, valor seguinte), `--pw-color-aura` #F0ABFC (boost e aura), `--pw-color-alert` #FFC27A (falta de item = warning).
+- **Status**: `--pw-status-success` #8FE6B2, `--pw-status-warning`, `--pw-status-error` #FF9C9C, `--pw-status-info` #9FD8F5. Classes `.pw-c-*` para cada cor.
+
 ## [0.16.0] — 2026-10-27
 
 ### Adicionado

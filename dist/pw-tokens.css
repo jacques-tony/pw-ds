@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.16.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.17.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -32,6 +32,13 @@
   --pw-text-caption:var(--pw-text-caption-weight) var(--pw-text-caption-size)/var(--pw-text-caption-line) var(--pw-font-body);
   --pw-text-overline-size:11px; --pw-text-overline-line:14px; --pw-text-overline-weight:600; --pw-text-overline-tracking:.12em;
   --pw-text-overline:var(--pw-text-overline-weight) var(--pw-text-overline-size)/var(--pw-text-overline-line) var(--pw-font-body);
+  /* ===== CORES FIXAS (iguais em todos os temas; um significado por cor) ===== */
+  --pw-color-highlight:#E2B866; /* dourado: destaque e ênfase (›››, "O boost nunca cai.", tag PROPOSTA) */
+  --pw-color-next:#7CF3D0;      /* verde-água: progressão, o valor seguinte ("Próximo nível") */
+  --pw-color-aura:#F0ABFC;      /* rosa antigo: boost do Pokémon (+12) e aura */
+  --pw-color-alert:#FFC27A;     /* laranja: falta de item, alerta leve (= texto do status warning) */
+  /* status semânticos (texto e ícone sobre fundo escuro) */
+  --pw-status-success:#8FE6B2; --pw-status-warning:var(--pw-color-alert); --pw-status-error:#FF9C9C; --pw-status-info:#9FD8F5;
   /* ===== TEMA GLOBAL (compartilhado por todos os componentes) =====
      tema padrão = Poke World (dourado + azul). Outros temas redefinem só estes tokens. */
   --pw-metal-0:#FFE0A3;   /* 0%   */
