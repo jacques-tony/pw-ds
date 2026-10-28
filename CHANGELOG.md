@@ -2,6 +2,13 @@
 
 Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachangelog.com/pt-BR/), versões em [SemVer](https://semver.org/lang/pt-BR/).
 
+
+## 0.19.0
+
+- **pw-card-header**: as "luzes" da animação ambiente foram trocadas por raios elétricos. Eles estalam em rajadas curtas pela borda, com núcleo branco, cor e halo do tema e pequenos galhos para fora.
+- Na abertura, a borda é desenhada a partir da ponta esquerda e um raio percorre a moldura.
+- Novas variáveis: `--hdr-bolt` (amplitude, padrão 4px). O valor padrão de `--hdr-ambient` passou a ser 1.6s (intervalo entre rajadas), e o reflexo `--hdr-shimmer` agora vem desligado (0).
+
 ## [0.18.0] — 2026-10-28
 
 ### Adicionado

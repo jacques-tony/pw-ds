@@ -237,15 +237,19 @@ pw-icon img{object-fit:contain}
 
 
 /* ---- pw-card-header: animações (animate="intro" · "ambient" · "both"/vazio · "none") ---- */
-pw-card-header{--hdr-intro:.9s;--hdr-ambient:5s;--hdr-light:var(--pw-filament);--hdr-light-glow:var(--pw-glow);--hdr-shimmer:.16}
+pw-card-header{--hdr-intro:.9s;--hdr-ambient:1.6s;--hdr-bolt:4;--hdr-light:var(--pw-filament);--hdr-light-glow:var(--pw-glow);--hdr-shimmer:0}
 pw-card-header .pwh-fx{opacity:0;transition:opacity .4s}
 pw-card-header:is([animate=""],[animate="both"],[animate="ambient"]) .pwh-fx{opacity:1}
-pw-card-header .pwh-run{animation:pwh-run var(--hdr-ambient) linear infinite;animation-play-state:paused}
-pw-card-header .pwh-run.b{animation-delay:calc(var(--hdr-ambient) / -2)}
-pw-card-header .pwh-shim{animation:pwh-shim calc(var(--hdr-ambient) * 1.2) ease-in-out infinite;animation-play-state:paused}
-pw-card-header:is([animate=""],[animate="both"],[animate="ambient"]) :is(.pwh-run,.pwh-shim){animation-play-state:running}
-@keyframes pwh-run{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+pw-card-header .pwh-shim{animation:pwh-shim 6s ease-in-out infinite;animation-play-state:paused}
+pw-card-header:is([animate=""],[animate="both"],[animate="ambient"]) .pwh-shim{animation-play-state:running}
 @keyframes pwh-shim{0%,15%{transform:translateX(-60%)}65%,100%{transform:translateX(160%)}}
+/* raios elétricos: os caminhos são redesenhados por script em rajadas curtas */
+pw-card-header .pwh-bolts{pointer-events:none}
+pw-card-header>svg{overflow:visible}
+pw-card-header[data-opening] .pwh-bolts,pw-card-header:is([animate=""],[animate="both"],[animate="ambient"]) .pwh-bolts{opacity:1}
+pw-card-header .pwh-trace{opacity:0;stroke-dasharray:100 100;stroke-dashoffset:100}
+pw-card-header[data-opening] .pwh-trace{animation:pwh-trace var(--hdr-intro) cubic-bezier(.5,0,.3,1) both}
+@keyframes pwh-trace{0%{opacity:1;stroke-dashoffset:100}80%{opacity:1;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:0}}
 /* abertura: a faixa se abre do centro, o traço acende e o texto entra */
 pw-card-header[data-opening] .pwh-frame{animation:pwh-open var(--hdr-intro) cubic-bezier(.2,.8,.2,1) both}
 pw-card-header[data-opening] .pwh-label{animation:pwh-label calc(var(--hdr-intro) * .8) ease-out calc(var(--hdr-intro) * .45) both}
@@ -254,7 +258,7 @@ pw-card-header .pwh-flash{opacity:0}
 @keyframes pwh-open{0%{clip-path:inset(0 50% 0 50%);opacity:.2}60%{opacity:1}100%{clip-path:inset(-20% -10% -20% -10%);opacity:1}}
 @keyframes pwh-label{from{opacity:0;transform:scale(1.08);filter:blur(3px)}to{opacity:1;transform:none;filter:blur(0)}}
 @keyframes pwh-flash{0%{opacity:0}35%{opacity:1}100%{opacity:0}}
-@media (prefers-reduced-motion:reduce){pw-card-header :is(.pwh-run,.pwh-shim){animation:none!important}pw-card-header[data-opening] :is(.pwh-frame,.pwh-label,.pwh-flash){animation-duration:.01s!important;animation-delay:0s!important}}
+@media (prefers-reduced-motion:reduce){pw-card-header .pwh-bolts{display:none}pw-card-header :is(.pwh-shim,.pwh-trace){animation:none!important}pw-card-header[data-opening] :is(.pwh-frame,.pwh-label,.pwh-flash){animation-duration:.01s!important;animation-delay:0s!important}}
 /* ===================== COMPONENT: pw-tabs / pw-tab ===================== */
 pw-tabs{position:relative;display:inline-flex;flex-wrap:wrap;gap:6px;align-items:center;
   --tab-pad:8px;--tab-gap:4px;--tab-fs:12px;--tab-ic:14px}
@@ -775,8 +779,8 @@ pw-scroll[track="none"],.pw-scroll[data-track="none"]{--pw-scroll-track:transpar
       <label for="hpTheme">theme<select id="hpTheme"><option value="">poke world (padrão)</option><option>mewtwo</option></select></label>
       <label class="check" for="hpShowIcon"><input type="checkbox" id="hpShowIcon" checked> show-icon</label>
       <label for="hpIcon">icon<select id="hpIcon"><option>sparkle</option><option>star</option><option>diamond</option><option>bolt</option></select></label>
-      <label for="hpAnim">animate<select id="hpAnim"><option value="">nenhuma</option><option value="both" selected>both (abertura + luzes)</option><option value="intro">intro (só abertura)</option><option value="ambient">ambient (só luzes)</option></select></label>
-      <label for="hpSpeed">--hdr-ambient (s)<input id="hpSpeed" type="number" min="2" max="20" step="0.5" value="5"></label>
+      <label for="hpAnim">animate<select id="hpAnim"><option value="">nenhuma</option><option value="both" selected>both (abertura + raios)</option><option value="intro">intro (só abertura)</option><option value="ambient">ambient (só raios)</option></select></label>
+      <label for="hpSpeed">--hdr-ambient (s entre rajadas)<input id="hpSpeed" type="number" min="0.4" max="10" step="0.2" value="1.6"></label>
       <button class="btn" type="button" id="hpReplay">Repetir abertura</button>
     </form>
     <div style="display:grid;gap:14px;min-width:0">
@@ -795,7 +799,7 @@ pw-scroll[track="none"],.pw-scroll[data-track="none"]{--pw-scroll-track:transpar
     </tbody>
   </table></div>
   <h3 id="header-animacao" style="scroll-margin-top:24px">Animação</h3>
-  <p class="lede">Com <code>animate</code>, o header abre do centro para as pontas, o traço acende e o título entra; depois, duas luzes correm devagar pela borda e um reflexo atravessa o fundo. As cores vêm do tema (traçado e brilho).</p>
+  <p class="lede">Com <code>animate</code>, a borda é desenhada a partir da ponta esquerda, a faixa abre do centro, um raio percorre a moldura e o título entra. Depois, raios elétricos curtos estalam pela borda em rajadas, em momentos e pontos aleatórios. As cores vêm do tema (traçado e brilho).</p>
   <div class="canvas" style="display:grid;gap:22px;justify-items:start">
     <pw-card-header animate>Poke World</pw-card-header>
     <div data-pw-theme="mewtwo"><pw-card-header animate>Máquina do Mewtwo</pw-card-header></div>
@@ -805,12 +809,13 @@ pw-scroll[track="none"],.pw-scroll[data-track="none"]{--pw-scroll-track:transpar
   <div class="tbl"><table>
     <thead><tr><th>Configuração</th><th>Padrão</th><th>Descrição</th></tr></thead>
     <tbody>
-      <tr><td><code>animate</code></td><td>sem animação</td><td>vazio ou <code>both</code>: abertura + luzes · <code>intro</code>: só abertura · <code>ambient</code>: só luzes · <code>none</code></td></tr>
+      <tr><td><code>animate</code></td><td>sem animação</td><td>vazio ou <code>both</code>: abertura + raios · <code>intro</code>: só abertura · <code>ambient</code>: só raios · <code>none</code></td></tr>
       <tr><td><code>.play()</code></td><td>—</td><td>Repete a abertura (ex.: ao abrir a janela de novo)</td></tr>
       <tr><td><code>--hdr-intro</code></td><td>.9s</td><td>Duração da abertura</td></tr>
-      <tr><td><code>--hdr-ambient</code></td><td>5s</td><td>Tempo de uma volta das luzes na borda</td></tr>
-      <tr><td><code>--hdr-light</code> · <code>--hdr-light-glow</code></td><td>traçado · brilho do tema</td><td>Cor da luz e do halo</td></tr>
-      <tr><td><code>--hdr-shimmer</code></td><td>.16</td><td>Força do reflexo no fundo (0 desliga)</td></tr>
+      <tr><td><code>--hdr-ambient</code></td><td>1.6s</td><td>Intervalo médio entre rajadas de raios (varia de 0,5× a 1,5×)</td></tr>
+      <tr><td><code>--hdr-bolt</code></td><td>4</td><td>Amplitude do zigue-zague dos raios, em px</td></tr>
+      <tr><td><code>--hdr-light</code> · <code>--hdr-light-glow</code></td><td>traçado · brilho do tema</td><td>Cor do raio e do halo (o núcleo é branco)</td></tr>
+      <tr><td><code>--hdr-shimmer</code></td><td>0</td><td>Reflexo opcional que atravessa o fundo (ex.: .16)</td></tr>
     </tbody>
   </table></div>
   <pre class="code">&lt;pw-card-header animate&gt;Máquina do Mewtwo&lt;/pw-card-header&gt;
@@ -1727,12 +1732,35 @@ class PWCardHeader extends HTMLElement{
   attributeChangedCallback(n,o,v){var i=PW_ICONS[this.getAttribute('icon')];i?this.style.setProperty('--hdr-icon',i):this.style.removeProperty('--hdr-icon');
     if(n==='animate'&&this._init&&o!==v)this.play()}
   /* toca a animação de abertura (se animate permitir); pode ser chamada de novo para repetir */
-  play(){var a=this.getAttribute('animate');if(a===null||a==='none'||a==='ambient')return;
+  play(){var a=this.getAttribute('animate');this._loop();if(a===null||a==='none'||a==='ambient')return;
     this.removeAttribute('data-opening');void this.offsetWidth;this.setAttribute('data-opening','');
-    clearTimeout(this._ot);this._ot=setTimeout(()=>this.removeAttribute('data-opening'),2600)}
+    clearTimeout(this._ot);this._ot=setTimeout(()=>this.removeAttribute('data-opening'),2600);
+    var d=parseFloat(getComputedStyle(this).getPropertyValue('--hdr-intro'))||.9;setTimeout(()=>this._burst(520,3),d*600)}
+  _ambient(){var a=this.getAttribute('animate');return a===''||a==='both'||a==='ambient'}
+  /* ponto no perímetro (t de 0 a 1) e a normal para fora */
+  _at(t){var P=this._poly,L=[],tot=0;for(var i=0;i<P.length;i++){var A=P[i],B=P[(i+1)%P.length],l=Math.hypot(B[0]-A[0],B[1]-A[1]);L.push(l);tot+=l}
+    var d=((t%1)+1)%1*tot;for(i=0;i<P.length;i++){if(d<=L[i]){var A=P[i],B=P[(i+1)%P.length],f=d/L[i],nx=(B[1]-A[1])/L[i],ny=-(B[0]-A[0])/L[i];return [A[0]+(B[0]-A[0])*f,A[1]+(B[1]-A[1])*f,nx,ny,tot]}d-=L[i]}return [P[0][0],P[0][1],0,-1,tot]}
+  _bolt(t0,len,amp){var s0=this._at(t0),tot=s0[4],n=Math.max(6,Math.round(len*tot/7)),pts=[];
+    for(var k=0;k<=n;k++){var t=t0+len*k/n,p=this._at(t),e=(k===0||k===n)?0:(Math.random()*2-1)*amp*Math.sin(Math.PI*k/n);pts.push((p[0]+p[2]*e).toFixed(1)+' '+(p[1]+p[3]*e).toFixed(1))}
+    var d='M'+pts.join(' L');
+    /* galho: um pequeno raio saindo para fora no meio */
+    if(Math.random()<.6){var mid=this._at(t0+len*(.3+Math.random()*.4)),bx=mid[0],by=mid[1],q='M'+bx.toFixed(1)+' '+by.toFixed(1);
+      for(k=1;k<=3;k++){bx+=mid[2]*amp*1.2+(Math.random()-.5)*amp*1.6;by+=mid[3]*amp*1.2+(Math.random()-.5)*amp*1.6;q+=' L'+bx.toFixed(1)+' '+by.toFixed(1)}d+=' '+q}
+    return d}
+  _frame(count){if(!this._poly||!this._svg)return;var g=this._svg.querySelector('.pwh-bolts');if(!g)return;
+    var amp=parseFloat(getComputedStyle(this).getPropertyValue('--hdr-bolt'))||4,d='';
+    for(var i=0;i<count;i++){d+=this._bolt(this._seed[i]+(Math.random()-.5)*.02,.12+Math.random()*.18,amp)+' '}
+    g.querySelectorAll('path').forEach(p=>p.setAttribute('d',d))}
+  _clear(){var g=this._svg&&this._svg.querySelector('.pwh-bolts');if(g)g.querySelectorAll('path').forEach(p=>p.setAttribute('d',''))}
+  _burst(ms,count){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;count=count||1+Math.round(Math.random());
+    this._seed=Array.from({length:count},()=>Math.random());var end=performance.now()+ms;clearInterval(this._bi);
+    this._bi=setInterval(()=>{if(performance.now()>end){clearInterval(this._bi);this._clear();return}this._frame(count)},55)}
+  _loop(){clearTimeout(this._lt);if(!this.isConnected||!this._ambient())return;
+    var gap=(parseFloat(getComputedStyle(this).getPropertyValue('--hdr-ambient'))||1.6)*1000;
+    this._lt=setTimeout(()=>{if(!document.hidden)this._burst(180+Math.random()*320);this._loop()},gap*(.5+Math.random()))}
   connectedCallback(){
     this.attributeChangedCallback();
-    if(this._init){this._ro.observe(this);return}this._init=true;this._uid='pwh'+(++uidN);
+    if(this._init){this._ro.observe(this);this._loop();return}this._init=true;this._uid='pwh'+(++uidN);
     var lab=document.createElement('span');lab.className='pwh-label';
     while(this.firstChild)lab.appendChild(this.firstChild);
     this._svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
@@ -1742,7 +1770,7 @@ class PWCardHeader extends HTMLElement{
     if(!this.hasAttribute('aria-level'))this.setAttribute('aria-level','2');
     this._ro=new ResizeObserver(()=>this.render());this._ro.observe(this);this.render();this.play();
   }
-  disconnectedCallback(){if(this._ro)this._ro.disconnect()}
+  disconnectedCallback(){if(this._ro)this._ro.disconnect();clearTimeout(this._lt);clearInterval(this._bi)}
   render(){
     var W=Math.round(this.offsetWidth),H=Math.round(this.offsetHeight);
     if(!W||!H||(W===this._w&&H===this._h))return;this._w=W;this._h=H;
@@ -1751,6 +1779,7 @@ class PWCardHeader extends HTMLElement{
     this.style.setProperty('--hdr-tip',tip+'px');
     var border='<path d="'+shape+'" fill="none" stroke="var(--pw-filament)" stroke-width="4"/>'+
                '<path d="'+shape+'" fill="none" stroke="url(#'+u+'-metal)" stroke-width="2"/>';
+    this._poly=[[tip,s],[W-tip,s],[W-s,m],[W-tip,H-s],[tip,H-s],[s,m]];
     this._svg.setAttribute('width',W);this._svg.setAttribute('height',H);this._svg.setAttribute('viewBox','0 0 '+W+' '+H);
     this._svg.innerHTML='<defs>'+
       '<linearGradient id="'+u+'-metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pw-metal-0)"/><stop offset=".4" style="stop-color:var(--pw-metal-1)"/><stop offset=".8" style="stop-color:var(--pw-metal-2)"/><stop offset="1" style="stop-color:var(--pw-metal-3)"/></linearGradient>'+
@@ -1765,8 +1794,11 @@ class PWCardHeader extends HTMLElement{
       '<defs><clipPath id="'+u+'-clip"><path d="'+shape+'"/></clipPath><filter id="'+u+'-rg" x="-20%" y="-60%" width="140%" height="220%"><feGaussianBlur stdDeviation="3"/></filter>'+
       '<linearGradient id="'+u+'-shg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" style="stop-color:var(--hdr-light)" stop-opacity="1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>'+
       '<g class="pwh-fx"><g clip-path="url(#'+u+'-clip)"><rect class="pwh-shim" x="0" y="0" width="'+Math.round(W*.35)+'" height="'+H+'" fill="url(#'+u+'-shg)" style="opacity:var(--hdr-shimmer);transform-box:view-box"/></g>'+
-      ['a','b'].map(function(k){return '<path class="pwh-run '+k+'" d="'+shape+'" pathLength="100" fill="none" stroke="var(--hdr-light-glow)" stroke-width="6" stroke-linecap="round" stroke-dasharray="9 91" filter="url(#'+u+'-rg)" opacity=".9"/>'+
-        '<path class="pwh-run '+k+'" d="'+shape+'" pathLength="100" fill="none" stroke="var(--hdr-light)" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 94"/>'}).join('')+'</g>'+
+      '</g>'+
+      /* traço que desenha a borda na abertura, saindo da ponta esquerda pelos dois lados */
+      ['M'+s+' '+m+' L'+tip+' '+s+' L'+(W-tip)+' '+s+' L'+(W-s)+' '+m,'M'+s+' '+m+' L'+tip+' '+(H-s)+' L'+(W-tip)+' '+(H-s)+' L'+(W-s)+' '+m].map(function(d){
+        return '<path class="pwh-trace" d="'+d+'" pathLength="100" fill="none" stroke="var(--hdr-light)" stroke-width="2.5" stroke-linecap="round" filter="url(#'+u+'-rg)"/><path class="pwh-trace" d="'+d+'" pathLength="100" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round"/>'}).join('')+
+      '<g class="pwh-bolts" opacity="0"><path class="pwh-bg" fill="none" stroke="var(--hdr-light-glow)" stroke-width="5" stroke-linejoin="round" filter="url(#'+u+'-rg)" opacity=".9"/><path class="pwh-bc" fill="none" stroke="var(--hdr-light)" stroke-width="1.6" stroke-linejoin="round"/><path class="pwh-bw" fill="none" stroke="#fff" stroke-width=".7" stroke-linejoin="round" opacity=".9"/></g>'+
       /* flash da abertura: o traço inteiro acende uma vez */
       '<path class="pwh-flash" d="'+shape+'" fill="none" stroke="var(--hdr-light)" stroke-width="3" filter="url(#'+u+'-rg)"/>';
   }
@@ -2158,11 +2190,11 @@ window.PW_EL_PAL={"inseto": {"dark": "#5A7D2B", "mid": "#7EAB33", "light": "#97C
     var txt=g('hpText').value,th=g('hpTheme').value,show=g('hpShowIcon').checked,ic=g('hpIcon').value,an=g('hpAnim').value,sp=+g('hpSpeed').value;
     g('hpIcon').disabled=!show;
     var el=document.createElement('pw-card-header');
-    if(th)el.setAttribute('theme',th);if(an)el.setAttribute('animate',an);if(an&&sp!==5)el.style.setProperty('--hdr-ambient',sp+'s');
+    if(th)el.setAttribute('theme',th);if(an)el.setAttribute('animate',an);if(an&&sp!==1.6)el.style.setProperty('--hdr-ambient',sp+'s');
     if(!show)el.setAttribute('show-icon','false');else if(ic!=='sparkle')el.setAttribute('icon',ic);
     el.textContent=txt;
     var st=g('hpStage');st.innerHTML='';st.appendChild(el);
-    var a=[];if(th)a.push('theme="'+th+'"');if(an)a.push('animate="'+an+'"');if(an&&sp!==5)a.push('style="--hdr-ambient:'+sp+'s"');if(!show)a.push('show-icon="false"');else if(ic!=='sparkle')a.push('icon="'+ic+'"');
+    var a=[];if(th)a.push('theme="'+th+'"');if(an)a.push('animate="'+an+'"');if(an&&sp!==1.6)a.push('style="--hdr-ambient:'+sp+'s"');if(!show)a.push('show-icon="false"');else if(ic!=='sparkle')a.push('icon="'+ic+'"');
     g('hpCode').textContent='<pw-card-header'+(a.length?' '+a.join(' '):'')+'>'+txt+'</pw-card-header>';
   }
   ['hpText','hpTheme','hpShowIcon','hpIcon','hpAnim','hpSpeed'].forEach(id=>g(id).addEventListener(id==='hpText'||id==='hpSpeed'?'input':'change',hp));
