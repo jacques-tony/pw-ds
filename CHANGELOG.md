@@ -9,6 +9,24 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.26.0
+
+- **pw-checkbox e pw-radio** refeitos com base em Carbon, Material 3, Atlassian, Polaris e WAI-ARIA APG:
+  - label (conteúdo ou `label`) e `description`, ligada por `aria-describedby`;
+  - área de toque de 24px com halo no hover e no pressionar;
+  - estados: marcado, indeterminado, desabilitado, somente leitura (tracejado e focável), erro (`invalid`) e aviso (`warning`);
+  - `size` sm, md e lg; `label-position="start"`; `required`;
+  - `variant="card"` (opção em cartão) com `meta`.
+- Novo **pw-choice-group**:
+  - legenda, ajuda, `required` e mensagem de `error` ou `warning`;
+  - `orientation` vertical ou horizontal;
+  - `name` e `value` para radios; repassa `variant`, `disabled` e `readonly` aos itens;
+  - `select-all` cria um checkbox pai que fica indeterminado;
+  - `role="group"` ou `radiogroup`; evento `groupchange`.
+- O evento `change` dos controles não dispara mais duas vezes.
+- Storybook: nova página **Checkbox e Radio** (visão geral, anatomia, estados, opção em cartão, playgrounds, uso e regras).
+
 ## 0.25.0
 
 - **pw-card primary**: passa a usar a mesma borda e os mesmos efeitos do secondary (cantos, filete interno, brilho, textura e reflexo). O fundo radial do primary continua igual.

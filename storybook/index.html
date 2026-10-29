@@ -234,7 +234,7 @@ ul.rules{margin:0;padding-left:18px;display:grid;gap:6px;max-width:75ch}
 /* @pwds-css-start */
 /* @pwds-derived-start */
 /* ===== CORES · 3. SEMÂNTICAS DO TEMA (derivadas; recalculadas em cada componente e área com tema) ===== */
-:root,[data-pw-theme],pw-card,pw-card-header,pw-tabs,pw-tab,pw-icon,pw-element-item,pw-badge,pw-button,pw-number,pw-scroll,.pw-scroll,pw-progress,pw-pips,pw-segments,pw-steps,pw-ring,pw-dialog,pw-drawer,pw-toast,pw-pagination,pw-empty,pw-list,pw-list-item,pw-avatar,pw-input,pw-textarea,pw-checkbox,pw-radio{
+:root,[data-pw-theme],pw-card,pw-card-header,pw-tabs,pw-tab,pw-icon,pw-element-item,pw-badge,pw-button,pw-number,pw-scroll,.pw-scroll,pw-progress,pw-pips,pw-segments,pw-steps,pw-ring,pw-dialog,pw-drawer,pw-toast,pw-pagination,pw-empty,pw-list,pw-list-item,pw-avatar,pw-input,pw-textarea,pw-checkbox,pw-radio,pw-choice-group{
   --pw-accent:var(--pw-filament);
   --pw-text-accent:color-mix(in srgb,var(--pw-filament) 80%,var(--pw-white));        /* texto de botão secundário, setas */
   --pw-text-accent-strong:color-mix(in srgb,var(--pw-filament) 85%,var(--pw-white)); /* botões − + */
@@ -273,7 +273,7 @@ ul.rules{margin:0;padding-left:18px;display:grid;gap:6px;max-width:75ch}
 .pw-text-overline{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase}
 /* ===================== COMPONENT: pw-card ===================== */
 /* temas: em qualquer ancestral (data-pw-theme) ou no próprio card (theme) */
-[data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"],pw-badge[theme="mewtwo"],pw-button[theme="mewtwo"],pw-number[theme="mewtwo"],pw-scroll[theme="mewtwo"],pw-progress[theme="mewtwo"],pw-pips[theme="mewtwo"],pw-segments[theme="mewtwo"],pw-steps[theme="mewtwo"],pw-ring[theme="mewtwo"],pw-dialog[theme="mewtwo"],pw-drawer[theme="mewtwo"],pw-toast[theme="mewtwo"],pw-pagination[theme="mewtwo"],pw-empty[theme="mewtwo"],pw-list[theme="mewtwo"],pw-list-item[theme="mewtwo"],pw-avatar[theme="mewtwo"],pw-input[theme="mewtwo"],pw-textarea[theme="mewtwo"],pw-checkbox[theme="mewtwo"],pw-radio[theme="mewtwo"]{
+[data-pw-theme="mewtwo"],pw-card[theme="mewtwo"],pw-card-header[theme="mewtwo"],pw-tabs[theme="mewtwo"],pw-badge[theme="mewtwo"],pw-button[theme="mewtwo"],pw-number[theme="mewtwo"],pw-scroll[theme="mewtwo"],pw-progress[theme="mewtwo"],pw-pips[theme="mewtwo"],pw-segments[theme="mewtwo"],pw-steps[theme="mewtwo"],pw-ring[theme="mewtwo"],pw-dialog[theme="mewtwo"],pw-drawer[theme="mewtwo"],pw-toast[theme="mewtwo"],pw-pagination[theme="mewtwo"],pw-empty[theme="mewtwo"],pw-list[theme="mewtwo"],pw-list-item[theme="mewtwo"],pw-avatar[theme="mewtwo"],pw-input[theme="mewtwo"],pw-textarea[theme="mewtwo"],pw-checkbox[theme="mewtwo"],pw-radio[theme="mewtwo"],pw-choice-group[theme="mewtwo"]{
   --pw-metal-0:var(--pw-violet-100);--pw-metal-1:var(--pw-violet-500);--pw-metal-2:var(--pw-violet-600);--pw-metal-3:var(--pw-violet-300);
   --pw-filament:var(--pw-violet-200);--pw-glow:var(--pw-violet-400);
   --pw-bg-center:var(--pw-violet-800);--pw-bg-edge:var(--pw-violet-950);--pw-bg-solid:var(--pw-violet-900);
@@ -436,24 +436,24 @@ pw-tab[disabled],pw-tab[state="disabled"]{opacity:.38;cursor:not-allowed;--drop-
 @media (prefers-reduced-motion:reduce){pw-card,pw-card *{transition:none!important}pw-card{--lift:0px!important}}
 
 /* ===== temas elementais (gerados a partir dos fundos da roda de tipos: escuro, médio e claro de cada pétala) ===== */
-[data-pw-theme="aco"],pw-card[theme="aco"],pw-card-header[theme="aco"],pw-tabs[theme="aco"],pw-badge[theme="aco"],pw-button[theme="aco"],pw-number[theme="aco"],pw-scroll[theme="aco"],pw-progress[theme="aco"],pw-pips[theme="aco"],pw-segments[theme="aco"],pw-steps[theme="aco"],pw-ring[theme="aco"],pw-dialog[theme="aco"],pw-drawer[theme="aco"],pw-toast[theme="aco"],pw-pagination[theme="aco"],pw-empty[theme="aco"],pw-list[theme="aco"],pw-list-item[theme="aco"],pw-avatar[theme="aco"],pw-input[theme="aco"],pw-textarea[theme="aco"],pw-checkbox[theme="aco"],pw-radio[theme="aco"]{--pw-metal-0:#B4CACC;--pw-metal-1:#557F89;--pw-metal-2:#40626E;--pw-metal-3:#95B4B8;--pw-filament:#C3D4D7;--pw-glow:#ACC4C7;--pw-bg-center:#2A4048;--pw-bg-edge:#121B1F;--pw-bg-solid:#141F23;--pw-ter-bg-center:#1D2C31;--pw-ter-bg-edge:#0D1416;--pw-ter-stroke-0:#203137;--pw-ter-stroke-1:#68949A;--pw-ter-stroke-2:#40626E;--pw-ter-stroke-3:#9DB9BD;--pw-ter-stroke-4:#334E58;--pw-ter-stroke-5:#557F89;--pw-tab-fill-bottom:#557F89;--pw-tab-fill-top:#10181C;--pw-tab-stroke-a:#B4CACC;--pw-tab-stroke-b:#E1EAEB;--pw-tab-drop:#A4BFC2;--pw-tab-inner:#A4BFC2}
-[data-pw-theme="agua"],pw-card[theme="agua"],pw-card-header[theme="agua"],pw-tabs[theme="agua"],pw-badge[theme="agua"],pw-button[theme="agua"],pw-number[theme="agua"],pw-scroll[theme="agua"],pw-progress[theme="agua"],pw-pips[theme="agua"],pw-segments[theme="agua"],pw-steps[theme="agua"],pw-ring[theme="agua"],pw-dialog[theme="agua"],pw-drawer[theme="agua"],pw-toast[theme="agua"],pw-pagination[theme="agua"],pw-empty[theme="agua"],pw-list[theme="agua"],pw-list-item[theme="agua"],pw-avatar[theme="agua"],pw-input[theme="agua"],pw-textarea[theme="agua"],pw-checkbox[theme="agua"],pw-radio[theme="agua"]{--pw-metal-0:#A3BEF2;--pw-metal-1:#336BD4;--pw-metal-2:#2751A2;--pw-metal-3:#7EA5ED;--pw-filament:#B5CBF5;--pw-glow:#9AB8F1;--pw-bg-center:#193569;--pw-bg-edge:#0B172D;--pw-bg-solid:#0C1A34;--pw-ter-bg-center:#122449;--pw-ter-bg-edge:#081020;--pw-ter-stroke-0:#142851;--pw-ter-stroke-1:#477EE5;--pw-ter-stroke-2:#2751A2;--pw-ter-stroke-3:#87ABEE;--pw-ter-stroke-4:#1F4182;--pw-ter-stroke-5:#336BD4;--pw-tab-fill-bottom:#336BD4;--pw-tab-fill-top:#0A1428;--pw-tab-stroke-a:#A3BEF2;--pw-tab-stroke-b:#DAE5FA;--pw-tab-drop:#91B2EF;--pw-tab-inner:#91B2EF}
-[data-pw-theme="dragao"],pw-card[theme="dragao"],pw-card-header[theme="dragao"],pw-tabs[theme="dragao"],pw-badge[theme="dragao"],pw-button[theme="dragao"],pw-number[theme="dragao"],pw-scroll[theme="dragao"],pw-progress[theme="dragao"],pw-pips[theme="dragao"],pw-segments[theme="dragao"],pw-steps[theme="dragao"],pw-ring[theme="dragao"],pw-dialog[theme="dragao"],pw-drawer[theme="dragao"],pw-toast[theme="dragao"],pw-pagination[theme="dragao"],pw-empty[theme="dragao"],pw-list[theme="dragao"],pw-list-item[theme="dragao"],pw-avatar[theme="dragao"],pw-input[theme="dragao"],pw-textarea[theme="dragao"],pw-checkbox[theme="dragao"],pw-radio[theme="dragao"]{--pw-metal-0:#9EB2E0;--pw-metal-1:#2F57B9;--pw-metal-2:#21418C;--pw-metal-3:#7893D4;--pw-filament:#B2C1E6;--pw-glow:#95AADD;--pw-bg-center:#152A5B;--pw-bg-edge:#091227;--pw-bg-solid:#0B152D;--pw-ter-bg-center:#0F1D3F;--pw-ter-bg-edge:#070D1C;--pw-ter-stroke-0:#102046;--pw-ter-stroke-1:#3E65C1;--pw-ter-stroke-2:#21418C;--pw-ter-stroke-3:#829BD7;--pw-ter-stroke-4:#1A3470;--pw-ter-stroke-5:#2F57B9;--pw-tab-fill-bottom:#2F57B9;--pw-tab-fill-top:#081023;--pw-tab-stroke-a:#9EB2E0;--pw-tab-stroke-b:#D8E0F3;--pw-tab-drop:#8BA3DA;--pw-tab-inner:#8BA3DA}
-[data-pw-theme="eletrico"],pw-card[theme="eletrico"],pw-card-header[theme="eletrico"],pw-tabs[theme="eletrico"],pw-badge[theme="eletrico"],pw-button[theme="eletrico"],pw-number[theme="eletrico"],pw-scroll[theme="eletrico"],pw-progress[theme="eletrico"],pw-pips[theme="eletrico"],pw-segments[theme="eletrico"],pw-steps[theme="eletrico"],pw-ring[theme="eletrico"],pw-dialog[theme="eletrico"],pw-drawer[theme="eletrico"],pw-toast[theme="eletrico"],pw-pagination[theme="eletrico"],pw-empty[theme="eletrico"],pw-list[theme="eletrico"],pw-list-item[theme="eletrico"],pw-avatar[theme="eletrico"],pw-input[theme="eletrico"],pw-textarea[theme="eletrico"],pw-checkbox[theme="eletrico"],pw-radio[theme="eletrico"]{--pw-metal-0:#F6DE92;--pw-metal-1:#D1A71C;--pw-metal-2:#977C1D;--pw-metal-3:#F2D066;--pw-filament:#F7E4A7;--pw-glow:#F5DA87;--pw-bg-center:#625113;--pw-bg-edge:#2A2308;--pw-bg-solid:#302809;--pw-ter-bg-center:#44380D;--pw-ter-bg-edge:#1E1906;--pw-ter-stroke-0:#4C3E0E;--pw-ter-stroke-1:#ECBC24;--pw-ter-stroke-2:#977C1D;--pw-ter-stroke-3:#F3D371;--pw-ter-stroke-4:#796317;--pw-ter-stroke-5:#D1A71C;--pw-tab-fill-bottom:#D1A71C;--pw-tab-fill-top:#261F07;--pw-tab-stroke-a:#F6DE92;--pw-tab-stroke-b:#FBF2D3;--pw-tab-drop:#F4D77C;--pw-tab-inner:#F4D77C}
-[data-pw-theme="fada"],pw-card[theme="fada"],pw-card-header[theme="fada"],pw-tabs[theme="fada"],pw-badge[theme="fada"],pw-button[theme="fada"],pw-number[theme="fada"],pw-scroll[theme="fada"],pw-progress[theme="fada"],pw-pips[theme="fada"],pw-segments[theme="fada"],pw-steps[theme="fada"],pw-ring[theme="fada"],pw-dialog[theme="fada"],pw-drawer[theme="fada"],pw-toast[theme="fada"],pw-pagination[theme="fada"],pw-empty[theme="fada"],pw-list[theme="fada"],pw-list-item[theme="fada"],pw-avatar[theme="fada"],pw-input[theme="fada"],pw-textarea[theme="fada"],pw-checkbox[theme="fada"],pw-radio[theme="fada"]{--pw-metal-0:#F3CADC;--pw-metal-1:#CF7DA3;--pw-metal-2:#955D7D;--pw-metal-3:#EEB6CE;--pw-filament:#F5D5E3;--pw-glow:#F2C5D8;--pw-bg-center:#613C51;--pw-bg-edge:#2A1A23;--pw-bg-solid:#301E28;--pw-ter-bg-center:#432A38;--pw-ter-bg-edge:#1E1319;--pw-ter-stroke-0:#4A2E3E;--pw-ter-stroke-1:#E796B9;--pw-ter-stroke-2:#955D7D;--pw-ter-stroke-3:#EFBBD2;--pw-ter-stroke-4:#774A64;--pw-ter-stroke-5:#CF7DA3;--pw-tab-fill-bottom:#CF7DA3;--pw-tab-fill-top:#25171F;--pw-tab-stroke-a:#F3CADC;--pw-tab-stroke-b:#FAEAF1;--pw-tab-drop:#F1C0D5;--pw-tab-inner:#F1C0D5}
-[data-pw-theme="fantasma"],pw-card[theme="fantasma"],pw-card-header[theme="fantasma"],pw-tabs[theme="fantasma"],pw-badge[theme="fantasma"],pw-button[theme="fantasma"],pw-number[theme="fantasma"],pw-scroll[theme="fantasma"],pw-progress[theme="fantasma"],pw-pips[theme="fantasma"],pw-segments[theme="fantasma"],pw-steps[theme="fantasma"],pw-ring[theme="fantasma"],pw-dialog[theme="fantasma"],pw-drawer[theme="fantasma"],pw-toast[theme="fantasma"],pw-pagination[theme="fantasma"],pw-empty[theme="fantasma"],pw-list[theme="fantasma"],pw-list-item[theme="fantasma"],pw-avatar[theme="fantasma"],pw-input[theme="fantasma"],pw-textarea[theme="fantasma"],pw-checkbox[theme="fantasma"],pw-radio[theme="fantasma"]{--pw-metal-0:#C1AFD9;--pw-metal-1:#6B49A1;--pw-metal-2:#4F397D;--pw-metal-3:#A88FCA;--pw-filament:#CDBFE1;--pw-glow:#BBA7D5;--pw-bg-center:#332551;--pw-bg-edge:#161023;--pw-bg-solid:#191228;--pw-ter-bg-center:#241A38;--pw-ter-bg-edge:#100B19;--pw-ter-stroke-0:#281C3E;--pw-ter-stroke-1:#835FB3;--pw-ter-stroke-2:#4F397D;--pw-ter-stroke-3:#AE97CE;--pw-ter-stroke-4:#3F2E64;--pw-ter-stroke-5:#6B49A1;--pw-tab-fill-bottom:#6B49A1;--pw-tab-fill-top:#140E1F;--pw-tab-stroke-a:#C1AFD9;--pw-tab-stroke-b:#E6DFF0;--pw-tab-drop:#B59FD1;--pw-tab-inner:#B59FD1}
-[data-pw-theme="fogo"],pw-card[theme="fogo"],pw-card-header[theme="fogo"],pw-tabs[theme="fogo"],pw-badge[theme="fogo"],pw-button[theme="fogo"],pw-number[theme="fogo"],pw-scroll[theme="fogo"],pw-progress[theme="fogo"],pw-pips[theme="fogo"],pw-segments[theme="fogo"],pw-steps[theme="fogo"],pw-ring[theme="fogo"],pw-dialog[theme="fogo"],pw-drawer[theme="fogo"],pw-toast[theme="fogo"],pw-pagination[theme="fogo"],pw-empty[theme="fogo"],pw-list[theme="fogo"],pw-list-item[theme="fogo"],pw-avatar[theme="fogo"],pw-input[theme="fogo"],pw-textarea[theme="fogo"],pw-checkbox[theme="fogo"],pw-radio[theme="fogo"]{--pw-metal-0:#F6BEA2;--pw-metal-1:#D56932;--pw-metal-2:#9B512D;--pw-metal-3:#F2A57C;--pw-filament:#F8CBB4;--pw-glow:#F5B898;--pw-bg-center:#65351D;--pw-bg-edge:#2B170D;--pw-bg-solid:#321A0E;--pw-ter-bg-center:#462414;--pw-ter-bg-edge:#1F1009;--pw-ter-stroke-0:#4E2816;--pw-ter-stroke-1:#ED7E44;--pw-ter-stroke-2:#9B512D;--pw-ter-stroke-3:#F3AB85;--pw-ter-stroke-4:#7C4124;--pw-ter-stroke-5:#D56932;--pw-tab-fill-bottom:#D56932;--pw-tab-fill-top:#27140B;--pw-tab-stroke-a:#F6BEA2;--pw-tab-stroke-b:#FBE5DA;--pw-tab-drop:#F4B28F;--pw-tab-inner:#F4B28F}
-[data-pw-theme="gelo"],pw-card[theme="gelo"],pw-card-header[theme="gelo"],pw-tabs[theme="gelo"],pw-badge[theme="gelo"],pw-button[theme="gelo"],pw-number[theme="gelo"],pw-scroll[theme="gelo"],pw-progress[theme="gelo"],pw-pips[theme="gelo"],pw-segments[theme="gelo"],pw-steps[theme="gelo"],pw-ring[theme="gelo"],pw-dialog[theme="gelo"],pw-drawer[theme="gelo"],pw-toast[theme="gelo"],pw-pagination[theme="gelo"],pw-empty[theme="gelo"],pw-list[theme="gelo"],pw-list-item[theme="gelo"],pw-avatar[theme="gelo"],pw-input[theme="gelo"],pw-textarea[theme="gelo"],pw-checkbox[theme="gelo"],pw-radio[theme="gelo"]{--pw-metal-0:#A2E3EE;--pw-metal-1:#33B2CA;--pw-metal-2:#25849A;--pw-metal-3:#7ED8E6;--pw-filament:#B5E9F1;--pw-glow:#99E0EC;--pw-bg-center:#185664;--pw-bg-edge:#0A252B;--pw-bg-solid:#0C2A31;--pw-ter-bg-center:#113B45;--pw-ter-bg-edge:#071A1F;--pw-ter-stroke-0:#12424D;--pw-ter-stroke-1:#46C7DC;--pw-ter-stroke-2:#25849A;--pw-ter-stroke-3:#87DBE8;--pw-ter-stroke-4:#1E6A7B;--pw-ter-stroke-5:#33B2CA;--pw-tab-fill-bottom:#33B2CA;--pw-tab-fill-top:#092126;--pw-tab-stroke-a:#A2E3EE;--pw-tab-stroke-b:#DAF4F8;--pw-tab-drop:#90DDEA;--pw-tab-inner:#90DDEA}
-[data-pw-theme="inseto"],pw-card[theme="inseto"],pw-card-header[theme="inseto"],pw-tabs[theme="inseto"],pw-badge[theme="inseto"],pw-button[theme="inseto"],pw-number[theme="inseto"],pw-scroll[theme="inseto"],pw-progress[theme="inseto"],pw-pips[theme="inseto"],pw-segments[theme="inseto"],pw-steps[theme="inseto"],pw-ring[theme="inseto"],pw-dialog[theme="inseto"],pw-drawer[theme="inseto"],pw-toast[theme="inseto"],pw-pagination[theme="inseto"],pw-empty[theme="inseto"],pw-list[theme="inseto"],pw-list-item[theme="inseto"],pw-avatar[theme="inseto"],pw-input[theme="inseto"],pw-textarea[theme="inseto"],pw-checkbox[theme="inseto"],pw-radio[theme="inseto"]{--pw-metal-0:#CBE1A1;--pw-metal-1:#7EAB33;--pw-metal-2:#5A7D2B;--pw-metal-3:#B6D57B;--pw-filament:#D5E7B4;--pw-glow:#C6DE98;--pw-bg-center:#3A511C;--pw-bg-edge:#19230C;--pw-bg-solid:#1D280E;--pw-ter-bg-center:#283813;--pw-ter-bg-edge:#121909;--pw-ter-stroke-0:#2D3E16;--pw-ter-stroke-1:#97C343;--pw-ter-stroke-2:#5A7D2B;--pw-ter-stroke-3:#BBD885;--pw-ter-stroke-4:#486422;--pw-ter-stroke-5:#7EAB33;--pw-tab-fill-bottom:#7EAB33;--pw-tab-fill-top:#161F0B;--pw-tab-stroke-a:#CBE1A1;--pw-tab-stroke-b:#EAF3D9;--pw-tab-drop:#C1DB8E;--pw-tab-inner:#C1DB8E}
-[data-pw-theme="lutador"],pw-card[theme="lutador"],pw-card-header[theme="lutador"],pw-tabs[theme="lutador"],pw-badge[theme="lutador"],pw-button[theme="lutador"],pw-number[theme="lutador"],pw-scroll[theme="lutador"],pw-progress[theme="lutador"],pw-pips[theme="lutador"],pw-segments[theme="lutador"],pw-steps[theme="lutador"],pw-ring[theme="lutador"],pw-dialog[theme="lutador"],pw-drawer[theme="lutador"],pw-toast[theme="lutador"],pw-pagination[theme="lutador"],pw-empty[theme="lutador"],pw-list[theme="lutador"],pw-list-item[theme="lutador"],pw-avatar[theme="lutador"],pw-input[theme="lutador"],pw-textarea[theme="lutador"],pw-checkbox[theme="lutador"],pw-radio[theme="lutador"]{--pw-metal-0:#E2A7AC;--pw-metal-1:#B73946;--pw-metal-2:#872D3C;--pw-metal-3:#D6848C;--pw-filament:#E7B9BD;--pw-glow:#DF9EA4;--pw-bg-center:#581D27;--pw-bg-edge:#260D11;--pw-bg-solid:#2B0E13;--pw-ter-bg-center:#3D141B;--pw-ter-bg-edge:#1B090C;--pw-ter-stroke-0:#44161E;--pw-ter-stroke-1:#C44F5A;--pw-ter-stroke-2:#872D3C;--pw-ter-stroke-3:#D98D94;--pw-ter-stroke-4:#6C2430;--pw-ter-stroke-5:#B73946;--pw-tab-fill-bottom:#B73946;--pw-tab-fill-top:#220B0F;--pw-tab-stroke-a:#E2A7AC;--pw-tab-stroke-b:#F3DCDE;--pw-tab-drop:#DC959C;--pw-tab-inner:#DC959C}
-[data-pw-theme="normal"],pw-card[theme="normal"],pw-card-header[theme="normal"],pw-tabs[theme="normal"],pw-badge[theme="normal"],pw-button[theme="normal"],pw-number[theme="normal"],pw-scroll[theme="normal"],pw-progress[theme="normal"],pw-pips[theme="normal"],pw-segments[theme="normal"],pw-steps[theme="normal"],pw-ring[theme="normal"],pw-dialog[theme="normal"],pw-drawer[theme="normal"],pw-toast[theme="normal"],pw-pagination[theme="normal"],pw-empty[theme="normal"],pw-list[theme="normal"],pw-list-item[theme="normal"],pw-avatar[theme="normal"],pw-input[theme="normal"],pw-textarea[theme="normal"],pw-checkbox[theme="normal"],pw-radio[theme="normal"]{--pw-metal-0:#DBDAD1;--pw-metal-1:#A0A194;--pw-metal-2:#757773;--pw-metal-3:#CDCBBF;--pw-filament:#E2E1DA;--pw-glow:#D7D6CC;--pw-bg-center:#4C4D4B;--pw-bg-edge:#212120;--pw-bg-solid:#252625;--pw-ter-bg-center:#353634;--pw-ter-bg-edge:#171817;--pw-ter-stroke-0:#3A3C3A;--pw-ter-stroke-1:#B7B5A3;--pw-ter-stroke-2:#757773;--pw-ter-stroke-3:#D0CFC3;--pw-ter-stroke-4:#5E5F5C;--pw-ter-stroke-5:#A0A194;--pw-tab-fill-bottom:#A0A194;--pw-tab-fill-top:#1D1E1D;--pw-tab-stroke-a:#DBDAD1;--pw-tab-stroke-b:#F1F0ED;--pw-tab-drop:#D4D3C8;--pw-tab-inner:#D4D3C8}
-[data-pw-theme="pedra"],pw-card[theme="pedra"],pw-card-header[theme="pedra"],pw-tabs[theme="pedra"],pw-badge[theme="pedra"],pw-button[theme="pedra"],pw-number[theme="pedra"],pw-scroll[theme="pedra"],pw-progress[theme="pedra"],pw-pips[theme="pedra"],pw-segments[theme="pedra"],pw-steps[theme="pedra"],pw-ring[theme="pedra"],pw-dialog[theme="pedra"],pw-drawer[theme="pedra"],pw-toast[theme="pedra"],pw-pagination[theme="pedra"],pw-empty[theme="pedra"],pw-list[theme="pedra"],pw-list-item[theme="pedra"],pw-avatar[theme="pedra"],pw-input[theme="pedra"],pw-textarea[theme="pedra"],pw-checkbox[theme="pedra"],pw-radio[theme="pedra"]{--pw-metal-0:#C7B8AA;--pw-metal-1:#785E47;--pw-metal-2:#59493D;--pw-metal-3:#B19C87;--pw-filament:#D2C6BB;--pw-glow:#C1B1A1;--pw-bg-center:#3A2F28;--pw-bg-edge:#191411;--pw-bg-solid:#1C1714;--pw-ter-bg-center:#28211B;--pw-ter-bg-edge:#120F0C;--pw-ter-stroke-0:#2C241E;--pw-ter-stroke-1:#8F7154;--pw-ter-stroke-2:#59493D;--pw-ter-stroke-3:#B6A390;--pw-ter-stroke-4:#473A31;--pw-ter-stroke-5:#785E47;--pw-tab-fill-bottom:#785E47;--pw-tab-fill-top:#16120F;--pw-tab-stroke-a:#C7B8AA;--pw-tab-stroke-b:#E9E3DD;--pw-tab-drop:#BCAA98;--pw-tab-inner:#BCAA98}
-[data-pw-theme="planta"],pw-card[theme="planta"],pw-card-header[theme="planta"],pw-tabs[theme="planta"],pw-badge[theme="planta"],pw-button[theme="planta"],pw-number[theme="planta"],pw-scroll[theme="planta"],pw-progress[theme="planta"],pw-pips[theme="planta"],pw-segments[theme="planta"],pw-steps[theme="planta"],pw-ring[theme="planta"],pw-dialog[theme="planta"],pw-drawer[theme="planta"],pw-toast[theme="planta"],pw-pagination[theme="planta"],pw-empty[theme="planta"],pw-list[theme="planta"],pw-list-item[theme="planta"],pw-avatar[theme="planta"],pw-input[theme="planta"],pw-textarea[theme="planta"],pw-checkbox[theme="planta"],pw-radio[theme="planta"]{--pw-metal-0:#A0D8AE;--pw-metal-1:#329D51;--pw-metal-2:#227540;--pw-metal-3:#7BC98E;--pw-filament:#B3E0BF;--pw-glow:#97D5A6;--pw-bg-center:#164C2A;--pw-bg-edge:#0A2112;--pw-bg-solid:#0B2514;--pw-ter-bg-center:#0F351D;--pw-ter-bg-edge:#07170D;--pw-ter-stroke-0:#113A20;--pw-ter-stroke-1:#42B25E;--pw-ter-stroke-2:#227540;--pw-ter-stroke-3:#84CD96;--pw-ter-stroke-4:#1B5E33;--pw-ter-stroke-5:#329D51;--pw-tab-fill-bottom:#329D51;--pw-tab-fill-top:#081D10;--pw-tab-stroke-a:#A0D8AE;--pw-tab-stroke-b:#D9F0DF;--pw-tab-drop:#8ED19E;--pw-tab-inner:#8ED19E}
-[data-pw-theme="psiquico"],pw-card[theme="psiquico"],pw-card-header[theme="psiquico"],pw-tabs[theme="psiquico"],pw-badge[theme="psiquico"],pw-button[theme="psiquico"],pw-number[theme="psiquico"],pw-scroll[theme="psiquico"],pw-progress[theme="psiquico"],pw-pips[theme="psiquico"],pw-segments[theme="psiquico"],pw-steps[theme="psiquico"],pw-ring[theme="psiquico"],pw-dialog[theme="psiquico"],pw-drawer[theme="psiquico"],pw-toast[theme="psiquico"],pw-pagination[theme="psiquico"],pw-empty[theme="psiquico"],pw-list[theme="psiquico"],pw-list-item[theme="psiquico"],pw-avatar[theme="psiquico"],pw-input[theme="psiquico"],pw-textarea[theme="psiquico"],pw-checkbox[theme="psiquico"],pw-radio[theme="psiquico"]{--pw-metal-0:#F2ACC7;--pw-metal-1:#D04C82;--pw-metal-2:#943865;--pw-metal-3:#EE8AB1;--pw-filament:#F5BCD2;--pw-glow:#F1A3C1;--pw-bg-center:#602442;--pw-bg-edge:#29101C;--pw-bg-solid:#2F1220;--pw-ter-bg-center:#43192D;--pw-ter-bg-edge:#1E0B14;--pw-ter-stroke-0:#4A1C32;--pw-ter-stroke-1:#E6588F;--pw-ter-stroke-2:#943865;--pw-ter-stroke-3:#EF92B6;--pw-ter-stroke-4:#762D51;--pw-ter-stroke-5:#D04C82;--pw-tab-fill-bottom:#D04C82;--pw-tab-fill-top:#250E19;--pw-tab-stroke-a:#F2ACC7;--pw-tab-stroke-b:#FADEE9;--pw-tab-drop:#F09BBC;--pw-tab-inner:#F09BBC}
-[data-pw-theme="sombrio"],pw-card[theme="sombrio"],pw-card-header[theme="sombrio"],pw-tabs[theme="sombrio"],pw-badge[theme="sombrio"],pw-button[theme="sombrio"],pw-number[theme="sombrio"],pw-scroll[theme="sombrio"],pw-progress[theme="sombrio"],pw-pips[theme="sombrio"],pw-segments[theme="sombrio"],pw-steps[theme="sombrio"],pw-ring[theme="sombrio"],pw-dialog[theme="sombrio"],pw-drawer[theme="sombrio"],pw-toast[theme="sombrio"],pw-pagination[theme="sombrio"],pw-empty[theme="sombrio"],pw-list[theme="sombrio"],pw-list-item[theme="sombrio"],pw-avatar[theme="sombrio"],pw-input[theme="sombrio"],pw-textarea[theme="sombrio"],pw-checkbox[theme="sombrio"],pw-radio[theme="sombrio"]{--pw-metal-0:#ABAEBA;--pw-metal-1:#424865;--pw-metal-2:#313952;--pw-metal-3:#898D9E;--pw-filament:#BCBEC8;--pw-glow:#A3A5B3;--pw-bg-center:#202535;--pw-bg-edge:#0E1017;--pw-bg-solid:#10121A;--pw-ter-bg-center:#161A25;--pw-ter-bg-edge:#0A0B10;--pw-ter-stroke-0:#181C29;--pw-ter-stroke-1:#575C75;--pw-ter-stroke-2:#313952;--pw-ter-stroke-3:#9295A5;--pw-ter-stroke-4:#272E42;--pw-ter-stroke-5:#424865;--pw-tab-fill-bottom:#424865;--pw-tab-fill-top:#0C0E14;--pw-tab-stroke-a:#ABAEBA;--pw-tab-stroke-b:#DDDEE3;--pw-tab-drop:#9A9DAC;--pw-tab-inner:#9A9DAC}
-[data-pw-theme="terrestre"],pw-card[theme="terrestre"],pw-card-header[theme="terrestre"],pw-tabs[theme="terrestre"],pw-badge[theme="terrestre"],pw-button[theme="terrestre"],pw-number[theme="terrestre"],pw-scroll[theme="terrestre"],pw-progress[theme="terrestre"],pw-pips[theme="terrestre"],pw-segments[theme="terrestre"],pw-steps[theme="terrestre"],pw-ring[theme="terrestre"],pw-dialog[theme="terrestre"],pw-drawer[theme="terrestre"],pw-toast[theme="terrestre"],pw-pagination[theme="terrestre"],pw-empty[theme="terrestre"],pw-list[theme="terrestre"],pw-list-item[theme="terrestre"],pw-avatar[theme="terrestre"],pw-input[theme="terrestre"],pw-textarea[theme="terrestre"],pw-checkbox[theme="terrestre"],pw-radio[theme="terrestre"]{--pw-metal-0:#E8D0B2;--pw-metal-1:#B68C5A;--pw-metal-2:#856846;--pw-metal-3:#E0BD93;--pw-filament:#EDD9C1;--pw-glow:#E6CBAA;--pw-bg-center:#56442E;--pw-bg-edge:#251D14;--pw-bg-solid:#2B2116;--pw-ter-bg-center:#3C2F1F;--pw-ter-bg-edge:#1B150E;--pw-ter-stroke-0:#423423;--pw-ter-stroke-1:#D2A165;--pw-ter-stroke-2:#856846;--pw-ter-stroke-3:#E2C29B;--pw-ter-stroke-4:#6A5338;--pw-ter-stroke-5:#B68C5A;--pw-tab-fill-bottom:#B68C5A;--pw-tab-fill-top:#211A12;--pw-tab-stroke-a:#E8D0B2;--pw-tab-stroke-b:#F6ECE0;--pw-tab-drop:#E4C7A3;--pw-tab-inner:#E4C7A3}
-[data-pw-theme="veneno"],pw-card[theme="veneno"],pw-card-header[theme="veneno"],pw-tabs[theme="veneno"],pw-badge[theme="veneno"],pw-button[theme="veneno"],pw-number[theme="veneno"],pw-scroll[theme="veneno"],pw-progress[theme="veneno"],pw-pips[theme="veneno"],pw-segments[theme="veneno"],pw-steps[theme="veneno"],pw-ring[theme="veneno"],pw-dialog[theme="veneno"],pw-drawer[theme="veneno"],pw-toast[theme="veneno"],pw-pagination[theme="veneno"],pw-empty[theme="veneno"],pw-list[theme="veneno"],pw-list-item[theme="veneno"],pw-avatar[theme="veneno"],pw-input[theme="veneno"],pw-textarea[theme="veneno"],pw-checkbox[theme="veneno"],pw-radio[theme="veneno"]{--pw-metal-0:#D6AAE0;--pw-metal-1:#9C3CB6;--pw-metal-2:#702F8B;--pw-metal-3:#C589D4;--pw-filament:#DEBBE6;--pw-glow:#D1A2DD;--pw-bg-center:#491F5A;--pw-bg-edge:#1F0D27;--pw-bg-solid:#240F2C;--pw-ter-bg-center:#32153F;--pw-ter-bg-edge:#16091C;--pw-ter-stroke-0:#381846;--pw-ter-stroke-1:#AC56C1;--pw-ter-stroke-2:#702F8B;--pw-ter-stroke-3:#C991D7;--pw-ter-stroke-4:#5A266F;--pw-ter-stroke-5:#9C3CB6;--pw-tab-fill-bottom:#9C3CB6;--pw-tab-fill-top:#1C0C23;--pw-tab-stroke-a:#D6AAE0;--pw-tab-stroke-b:#EEDDF3;--pw-tab-drop:#CD9ADA;--pw-tab-inner:#CD9ADA}
-[data-pw-theme="voador"],pw-card[theme="voador"],pw-card-header[theme="voador"],pw-tabs[theme="voador"],pw-badge[theme="voador"],pw-button[theme="voador"],pw-number[theme="voador"],pw-scroll[theme="voador"],pw-progress[theme="voador"],pw-pips[theme="voador"],pw-segments[theme="voador"],pw-steps[theme="voador"],pw-ring[theme="voador"],pw-dialog[theme="voador"],pw-drawer[theme="voador"],pw-toast[theme="voador"],pw-pagination[theme="voador"],pw-empty[theme="voador"],pw-list[theme="voador"],pw-list-item[theme="voador"],pw-avatar[theme="voador"],pw-input[theme="voador"],pw-textarea[theme="voador"],pw-checkbox[theme="voador"],pw-radio[theme="voador"]{--pw-metal-0:#D2CCF2;--pw-metal-1:#9084D6;--pw-metal-2:#645EA0;--pw-metal-3:#C1B8EE;--pw-filament:#DBD6F5;--pw-glow:#CEC7F1;--pw-bg-center:#413D68;--pw-bg-edge:#1C1A2D;--pw-bg-solid:#201E33;--pw-ter-bg-center:#2D2A48;--pw-ter-bg-edge:#141320;--pw-ter-stroke-0:#322F50;--pw-ter-stroke-1:#A699E6;--pw-ter-stroke-2:#645EA0;--pw-ter-stroke-3:#C5BDEF;--pw-ter-stroke-4:#504B80;--pw-ter-stroke-5:#9084D6;--pw-tab-fill-bottom:#9084D6;--pw-tab-fill-top:#191828;--pw-tab-stroke-a:#D2CCF2;--pw-tab-stroke-b:#EDEBFA;--pw-tab-drop:#CAC2F0;--pw-tab-inner:#CAC2F0}
+[data-pw-theme="aco"],pw-card[theme="aco"],pw-card-header[theme="aco"],pw-tabs[theme="aco"],pw-badge[theme="aco"],pw-button[theme="aco"],pw-number[theme="aco"],pw-scroll[theme="aco"],pw-progress[theme="aco"],pw-pips[theme="aco"],pw-segments[theme="aco"],pw-steps[theme="aco"],pw-ring[theme="aco"],pw-dialog[theme="aco"],pw-drawer[theme="aco"],pw-toast[theme="aco"],pw-pagination[theme="aco"],pw-empty[theme="aco"],pw-list[theme="aco"],pw-list-item[theme="aco"],pw-avatar[theme="aco"],pw-input[theme="aco"],pw-textarea[theme="aco"],pw-checkbox[theme="aco"],pw-radio[theme="aco"],pw-choice-group[theme="aco"]{--pw-metal-0:#B4CACC;--pw-metal-1:#557F89;--pw-metal-2:#40626E;--pw-metal-3:#95B4B8;--pw-filament:#C3D4D7;--pw-glow:#ACC4C7;--pw-bg-center:#2A4048;--pw-bg-edge:#121B1F;--pw-bg-solid:#141F23;--pw-ter-bg-center:#1D2C31;--pw-ter-bg-edge:#0D1416;--pw-ter-stroke-0:#203137;--pw-ter-stroke-1:#68949A;--pw-ter-stroke-2:#40626E;--pw-ter-stroke-3:#9DB9BD;--pw-ter-stroke-4:#334E58;--pw-ter-stroke-5:#557F89;--pw-tab-fill-bottom:#557F89;--pw-tab-fill-top:#10181C;--pw-tab-stroke-a:#B4CACC;--pw-tab-stroke-b:#E1EAEB;--pw-tab-drop:#A4BFC2;--pw-tab-inner:#A4BFC2}
+[data-pw-theme="agua"],pw-card[theme="agua"],pw-card-header[theme="agua"],pw-tabs[theme="agua"],pw-badge[theme="agua"],pw-button[theme="agua"],pw-number[theme="agua"],pw-scroll[theme="agua"],pw-progress[theme="agua"],pw-pips[theme="agua"],pw-segments[theme="agua"],pw-steps[theme="agua"],pw-ring[theme="agua"],pw-dialog[theme="agua"],pw-drawer[theme="agua"],pw-toast[theme="agua"],pw-pagination[theme="agua"],pw-empty[theme="agua"],pw-list[theme="agua"],pw-list-item[theme="agua"],pw-avatar[theme="agua"],pw-input[theme="agua"],pw-textarea[theme="agua"],pw-checkbox[theme="agua"],pw-radio[theme="agua"],pw-choice-group[theme="agua"]{--pw-metal-0:#A3BEF2;--pw-metal-1:#336BD4;--pw-metal-2:#2751A2;--pw-metal-3:#7EA5ED;--pw-filament:#B5CBF5;--pw-glow:#9AB8F1;--pw-bg-center:#193569;--pw-bg-edge:#0B172D;--pw-bg-solid:#0C1A34;--pw-ter-bg-center:#122449;--pw-ter-bg-edge:#081020;--pw-ter-stroke-0:#142851;--pw-ter-stroke-1:#477EE5;--pw-ter-stroke-2:#2751A2;--pw-ter-stroke-3:#87ABEE;--pw-ter-stroke-4:#1F4182;--pw-ter-stroke-5:#336BD4;--pw-tab-fill-bottom:#336BD4;--pw-tab-fill-top:#0A1428;--pw-tab-stroke-a:#A3BEF2;--pw-tab-stroke-b:#DAE5FA;--pw-tab-drop:#91B2EF;--pw-tab-inner:#91B2EF}
+[data-pw-theme="dragao"],pw-card[theme="dragao"],pw-card-header[theme="dragao"],pw-tabs[theme="dragao"],pw-badge[theme="dragao"],pw-button[theme="dragao"],pw-number[theme="dragao"],pw-scroll[theme="dragao"],pw-progress[theme="dragao"],pw-pips[theme="dragao"],pw-segments[theme="dragao"],pw-steps[theme="dragao"],pw-ring[theme="dragao"],pw-dialog[theme="dragao"],pw-drawer[theme="dragao"],pw-toast[theme="dragao"],pw-pagination[theme="dragao"],pw-empty[theme="dragao"],pw-list[theme="dragao"],pw-list-item[theme="dragao"],pw-avatar[theme="dragao"],pw-input[theme="dragao"],pw-textarea[theme="dragao"],pw-checkbox[theme="dragao"],pw-radio[theme="dragao"],pw-choice-group[theme="dragao"]{--pw-metal-0:#9EB2E0;--pw-metal-1:#2F57B9;--pw-metal-2:#21418C;--pw-metal-3:#7893D4;--pw-filament:#B2C1E6;--pw-glow:#95AADD;--pw-bg-center:#152A5B;--pw-bg-edge:#091227;--pw-bg-solid:#0B152D;--pw-ter-bg-center:#0F1D3F;--pw-ter-bg-edge:#070D1C;--pw-ter-stroke-0:#102046;--pw-ter-stroke-1:#3E65C1;--pw-ter-stroke-2:#21418C;--pw-ter-stroke-3:#829BD7;--pw-ter-stroke-4:#1A3470;--pw-ter-stroke-5:#2F57B9;--pw-tab-fill-bottom:#2F57B9;--pw-tab-fill-top:#081023;--pw-tab-stroke-a:#9EB2E0;--pw-tab-stroke-b:#D8E0F3;--pw-tab-drop:#8BA3DA;--pw-tab-inner:#8BA3DA}
+[data-pw-theme="eletrico"],pw-card[theme="eletrico"],pw-card-header[theme="eletrico"],pw-tabs[theme="eletrico"],pw-badge[theme="eletrico"],pw-button[theme="eletrico"],pw-number[theme="eletrico"],pw-scroll[theme="eletrico"],pw-progress[theme="eletrico"],pw-pips[theme="eletrico"],pw-segments[theme="eletrico"],pw-steps[theme="eletrico"],pw-ring[theme="eletrico"],pw-dialog[theme="eletrico"],pw-drawer[theme="eletrico"],pw-toast[theme="eletrico"],pw-pagination[theme="eletrico"],pw-empty[theme="eletrico"],pw-list[theme="eletrico"],pw-list-item[theme="eletrico"],pw-avatar[theme="eletrico"],pw-input[theme="eletrico"],pw-textarea[theme="eletrico"],pw-checkbox[theme="eletrico"],pw-radio[theme="eletrico"],pw-choice-group[theme="eletrico"]{--pw-metal-0:#F6DE92;--pw-metal-1:#D1A71C;--pw-metal-2:#977C1D;--pw-metal-3:#F2D066;--pw-filament:#F7E4A7;--pw-glow:#F5DA87;--pw-bg-center:#625113;--pw-bg-edge:#2A2308;--pw-bg-solid:#302809;--pw-ter-bg-center:#44380D;--pw-ter-bg-edge:#1E1906;--pw-ter-stroke-0:#4C3E0E;--pw-ter-stroke-1:#ECBC24;--pw-ter-stroke-2:#977C1D;--pw-ter-stroke-3:#F3D371;--pw-ter-stroke-4:#796317;--pw-ter-stroke-5:#D1A71C;--pw-tab-fill-bottom:#D1A71C;--pw-tab-fill-top:#261F07;--pw-tab-stroke-a:#F6DE92;--pw-tab-stroke-b:#FBF2D3;--pw-tab-drop:#F4D77C;--pw-tab-inner:#F4D77C}
+[data-pw-theme="fada"],pw-card[theme="fada"],pw-card-header[theme="fada"],pw-tabs[theme="fada"],pw-badge[theme="fada"],pw-button[theme="fada"],pw-number[theme="fada"],pw-scroll[theme="fada"],pw-progress[theme="fada"],pw-pips[theme="fada"],pw-segments[theme="fada"],pw-steps[theme="fada"],pw-ring[theme="fada"],pw-dialog[theme="fada"],pw-drawer[theme="fada"],pw-toast[theme="fada"],pw-pagination[theme="fada"],pw-empty[theme="fada"],pw-list[theme="fada"],pw-list-item[theme="fada"],pw-avatar[theme="fada"],pw-input[theme="fada"],pw-textarea[theme="fada"],pw-checkbox[theme="fada"],pw-radio[theme="fada"],pw-choice-group[theme="fada"]{--pw-metal-0:#F3CADC;--pw-metal-1:#CF7DA3;--pw-metal-2:#955D7D;--pw-metal-3:#EEB6CE;--pw-filament:#F5D5E3;--pw-glow:#F2C5D8;--pw-bg-center:#613C51;--pw-bg-edge:#2A1A23;--pw-bg-solid:#301E28;--pw-ter-bg-center:#432A38;--pw-ter-bg-edge:#1E1319;--pw-ter-stroke-0:#4A2E3E;--pw-ter-stroke-1:#E796B9;--pw-ter-stroke-2:#955D7D;--pw-ter-stroke-3:#EFBBD2;--pw-ter-stroke-4:#774A64;--pw-ter-stroke-5:#CF7DA3;--pw-tab-fill-bottom:#CF7DA3;--pw-tab-fill-top:#25171F;--pw-tab-stroke-a:#F3CADC;--pw-tab-stroke-b:#FAEAF1;--pw-tab-drop:#F1C0D5;--pw-tab-inner:#F1C0D5}
+[data-pw-theme="fantasma"],pw-card[theme="fantasma"],pw-card-header[theme="fantasma"],pw-tabs[theme="fantasma"],pw-badge[theme="fantasma"],pw-button[theme="fantasma"],pw-number[theme="fantasma"],pw-scroll[theme="fantasma"],pw-progress[theme="fantasma"],pw-pips[theme="fantasma"],pw-segments[theme="fantasma"],pw-steps[theme="fantasma"],pw-ring[theme="fantasma"],pw-dialog[theme="fantasma"],pw-drawer[theme="fantasma"],pw-toast[theme="fantasma"],pw-pagination[theme="fantasma"],pw-empty[theme="fantasma"],pw-list[theme="fantasma"],pw-list-item[theme="fantasma"],pw-avatar[theme="fantasma"],pw-input[theme="fantasma"],pw-textarea[theme="fantasma"],pw-checkbox[theme="fantasma"],pw-radio[theme="fantasma"],pw-choice-group[theme="fantasma"]{--pw-metal-0:#C1AFD9;--pw-metal-1:#6B49A1;--pw-metal-2:#4F397D;--pw-metal-3:#A88FCA;--pw-filament:#CDBFE1;--pw-glow:#BBA7D5;--pw-bg-center:#332551;--pw-bg-edge:#161023;--pw-bg-solid:#191228;--pw-ter-bg-center:#241A38;--pw-ter-bg-edge:#100B19;--pw-ter-stroke-0:#281C3E;--pw-ter-stroke-1:#835FB3;--pw-ter-stroke-2:#4F397D;--pw-ter-stroke-3:#AE97CE;--pw-ter-stroke-4:#3F2E64;--pw-ter-stroke-5:#6B49A1;--pw-tab-fill-bottom:#6B49A1;--pw-tab-fill-top:#140E1F;--pw-tab-stroke-a:#C1AFD9;--pw-tab-stroke-b:#E6DFF0;--pw-tab-drop:#B59FD1;--pw-tab-inner:#B59FD1}
+[data-pw-theme="fogo"],pw-card[theme="fogo"],pw-card-header[theme="fogo"],pw-tabs[theme="fogo"],pw-badge[theme="fogo"],pw-button[theme="fogo"],pw-number[theme="fogo"],pw-scroll[theme="fogo"],pw-progress[theme="fogo"],pw-pips[theme="fogo"],pw-segments[theme="fogo"],pw-steps[theme="fogo"],pw-ring[theme="fogo"],pw-dialog[theme="fogo"],pw-drawer[theme="fogo"],pw-toast[theme="fogo"],pw-pagination[theme="fogo"],pw-empty[theme="fogo"],pw-list[theme="fogo"],pw-list-item[theme="fogo"],pw-avatar[theme="fogo"],pw-input[theme="fogo"],pw-textarea[theme="fogo"],pw-checkbox[theme="fogo"],pw-radio[theme="fogo"],pw-choice-group[theme="fogo"]{--pw-metal-0:#F6BEA2;--pw-metal-1:#D56932;--pw-metal-2:#9B512D;--pw-metal-3:#F2A57C;--pw-filament:#F8CBB4;--pw-glow:#F5B898;--pw-bg-center:#65351D;--pw-bg-edge:#2B170D;--pw-bg-solid:#321A0E;--pw-ter-bg-center:#462414;--pw-ter-bg-edge:#1F1009;--pw-ter-stroke-0:#4E2816;--pw-ter-stroke-1:#ED7E44;--pw-ter-stroke-2:#9B512D;--pw-ter-stroke-3:#F3AB85;--pw-ter-stroke-4:#7C4124;--pw-ter-stroke-5:#D56932;--pw-tab-fill-bottom:#D56932;--pw-tab-fill-top:#27140B;--pw-tab-stroke-a:#F6BEA2;--pw-tab-stroke-b:#FBE5DA;--pw-tab-drop:#F4B28F;--pw-tab-inner:#F4B28F}
+[data-pw-theme="gelo"],pw-card[theme="gelo"],pw-card-header[theme="gelo"],pw-tabs[theme="gelo"],pw-badge[theme="gelo"],pw-button[theme="gelo"],pw-number[theme="gelo"],pw-scroll[theme="gelo"],pw-progress[theme="gelo"],pw-pips[theme="gelo"],pw-segments[theme="gelo"],pw-steps[theme="gelo"],pw-ring[theme="gelo"],pw-dialog[theme="gelo"],pw-drawer[theme="gelo"],pw-toast[theme="gelo"],pw-pagination[theme="gelo"],pw-empty[theme="gelo"],pw-list[theme="gelo"],pw-list-item[theme="gelo"],pw-avatar[theme="gelo"],pw-input[theme="gelo"],pw-textarea[theme="gelo"],pw-checkbox[theme="gelo"],pw-radio[theme="gelo"],pw-choice-group[theme="gelo"]{--pw-metal-0:#A2E3EE;--pw-metal-1:#33B2CA;--pw-metal-2:#25849A;--pw-metal-3:#7ED8E6;--pw-filament:#B5E9F1;--pw-glow:#99E0EC;--pw-bg-center:#185664;--pw-bg-edge:#0A252B;--pw-bg-solid:#0C2A31;--pw-ter-bg-center:#113B45;--pw-ter-bg-edge:#071A1F;--pw-ter-stroke-0:#12424D;--pw-ter-stroke-1:#46C7DC;--pw-ter-stroke-2:#25849A;--pw-ter-stroke-3:#87DBE8;--pw-ter-stroke-4:#1E6A7B;--pw-ter-stroke-5:#33B2CA;--pw-tab-fill-bottom:#33B2CA;--pw-tab-fill-top:#092126;--pw-tab-stroke-a:#A2E3EE;--pw-tab-stroke-b:#DAF4F8;--pw-tab-drop:#90DDEA;--pw-tab-inner:#90DDEA}
+[data-pw-theme="inseto"],pw-card[theme="inseto"],pw-card-header[theme="inseto"],pw-tabs[theme="inseto"],pw-badge[theme="inseto"],pw-button[theme="inseto"],pw-number[theme="inseto"],pw-scroll[theme="inseto"],pw-progress[theme="inseto"],pw-pips[theme="inseto"],pw-segments[theme="inseto"],pw-steps[theme="inseto"],pw-ring[theme="inseto"],pw-dialog[theme="inseto"],pw-drawer[theme="inseto"],pw-toast[theme="inseto"],pw-pagination[theme="inseto"],pw-empty[theme="inseto"],pw-list[theme="inseto"],pw-list-item[theme="inseto"],pw-avatar[theme="inseto"],pw-input[theme="inseto"],pw-textarea[theme="inseto"],pw-checkbox[theme="inseto"],pw-radio[theme="inseto"],pw-choice-group[theme="inseto"]{--pw-metal-0:#CBE1A1;--pw-metal-1:#7EAB33;--pw-metal-2:#5A7D2B;--pw-metal-3:#B6D57B;--pw-filament:#D5E7B4;--pw-glow:#C6DE98;--pw-bg-center:#3A511C;--pw-bg-edge:#19230C;--pw-bg-solid:#1D280E;--pw-ter-bg-center:#283813;--pw-ter-bg-edge:#121909;--pw-ter-stroke-0:#2D3E16;--pw-ter-stroke-1:#97C343;--pw-ter-stroke-2:#5A7D2B;--pw-ter-stroke-3:#BBD885;--pw-ter-stroke-4:#486422;--pw-ter-stroke-5:#7EAB33;--pw-tab-fill-bottom:#7EAB33;--pw-tab-fill-top:#161F0B;--pw-tab-stroke-a:#CBE1A1;--pw-tab-stroke-b:#EAF3D9;--pw-tab-drop:#C1DB8E;--pw-tab-inner:#C1DB8E}
+[data-pw-theme="lutador"],pw-card[theme="lutador"],pw-card-header[theme="lutador"],pw-tabs[theme="lutador"],pw-badge[theme="lutador"],pw-button[theme="lutador"],pw-number[theme="lutador"],pw-scroll[theme="lutador"],pw-progress[theme="lutador"],pw-pips[theme="lutador"],pw-segments[theme="lutador"],pw-steps[theme="lutador"],pw-ring[theme="lutador"],pw-dialog[theme="lutador"],pw-drawer[theme="lutador"],pw-toast[theme="lutador"],pw-pagination[theme="lutador"],pw-empty[theme="lutador"],pw-list[theme="lutador"],pw-list-item[theme="lutador"],pw-avatar[theme="lutador"],pw-input[theme="lutador"],pw-textarea[theme="lutador"],pw-checkbox[theme="lutador"],pw-radio[theme="lutador"],pw-choice-group[theme="lutador"]{--pw-metal-0:#E2A7AC;--pw-metal-1:#B73946;--pw-metal-2:#872D3C;--pw-metal-3:#D6848C;--pw-filament:#E7B9BD;--pw-glow:#DF9EA4;--pw-bg-center:#581D27;--pw-bg-edge:#260D11;--pw-bg-solid:#2B0E13;--pw-ter-bg-center:#3D141B;--pw-ter-bg-edge:#1B090C;--pw-ter-stroke-0:#44161E;--pw-ter-stroke-1:#C44F5A;--pw-ter-stroke-2:#872D3C;--pw-ter-stroke-3:#D98D94;--pw-ter-stroke-4:#6C2430;--pw-ter-stroke-5:#B73946;--pw-tab-fill-bottom:#B73946;--pw-tab-fill-top:#220B0F;--pw-tab-stroke-a:#E2A7AC;--pw-tab-stroke-b:#F3DCDE;--pw-tab-drop:#DC959C;--pw-tab-inner:#DC959C}
+[data-pw-theme="normal"],pw-card[theme="normal"],pw-card-header[theme="normal"],pw-tabs[theme="normal"],pw-badge[theme="normal"],pw-button[theme="normal"],pw-number[theme="normal"],pw-scroll[theme="normal"],pw-progress[theme="normal"],pw-pips[theme="normal"],pw-segments[theme="normal"],pw-steps[theme="normal"],pw-ring[theme="normal"],pw-dialog[theme="normal"],pw-drawer[theme="normal"],pw-toast[theme="normal"],pw-pagination[theme="normal"],pw-empty[theme="normal"],pw-list[theme="normal"],pw-list-item[theme="normal"],pw-avatar[theme="normal"],pw-input[theme="normal"],pw-textarea[theme="normal"],pw-checkbox[theme="normal"],pw-radio[theme="normal"],pw-choice-group[theme="normal"]{--pw-metal-0:#DBDAD1;--pw-metal-1:#A0A194;--pw-metal-2:#757773;--pw-metal-3:#CDCBBF;--pw-filament:#E2E1DA;--pw-glow:#D7D6CC;--pw-bg-center:#4C4D4B;--pw-bg-edge:#212120;--pw-bg-solid:#252625;--pw-ter-bg-center:#353634;--pw-ter-bg-edge:#171817;--pw-ter-stroke-0:#3A3C3A;--pw-ter-stroke-1:#B7B5A3;--pw-ter-stroke-2:#757773;--pw-ter-stroke-3:#D0CFC3;--pw-ter-stroke-4:#5E5F5C;--pw-ter-stroke-5:#A0A194;--pw-tab-fill-bottom:#A0A194;--pw-tab-fill-top:#1D1E1D;--pw-tab-stroke-a:#DBDAD1;--pw-tab-stroke-b:#F1F0ED;--pw-tab-drop:#D4D3C8;--pw-tab-inner:#D4D3C8}
+[data-pw-theme="pedra"],pw-card[theme="pedra"],pw-card-header[theme="pedra"],pw-tabs[theme="pedra"],pw-badge[theme="pedra"],pw-button[theme="pedra"],pw-number[theme="pedra"],pw-scroll[theme="pedra"],pw-progress[theme="pedra"],pw-pips[theme="pedra"],pw-segments[theme="pedra"],pw-steps[theme="pedra"],pw-ring[theme="pedra"],pw-dialog[theme="pedra"],pw-drawer[theme="pedra"],pw-toast[theme="pedra"],pw-pagination[theme="pedra"],pw-empty[theme="pedra"],pw-list[theme="pedra"],pw-list-item[theme="pedra"],pw-avatar[theme="pedra"],pw-input[theme="pedra"],pw-textarea[theme="pedra"],pw-checkbox[theme="pedra"],pw-radio[theme="pedra"],pw-choice-group[theme="pedra"]{--pw-metal-0:#C7B8AA;--pw-metal-1:#785E47;--pw-metal-2:#59493D;--pw-metal-3:#B19C87;--pw-filament:#D2C6BB;--pw-glow:#C1B1A1;--pw-bg-center:#3A2F28;--pw-bg-edge:#191411;--pw-bg-solid:#1C1714;--pw-ter-bg-center:#28211B;--pw-ter-bg-edge:#120F0C;--pw-ter-stroke-0:#2C241E;--pw-ter-stroke-1:#8F7154;--pw-ter-stroke-2:#59493D;--pw-ter-stroke-3:#B6A390;--pw-ter-stroke-4:#473A31;--pw-ter-stroke-5:#785E47;--pw-tab-fill-bottom:#785E47;--pw-tab-fill-top:#16120F;--pw-tab-stroke-a:#C7B8AA;--pw-tab-stroke-b:#E9E3DD;--pw-tab-drop:#BCAA98;--pw-tab-inner:#BCAA98}
+[data-pw-theme="planta"],pw-card[theme="planta"],pw-card-header[theme="planta"],pw-tabs[theme="planta"],pw-badge[theme="planta"],pw-button[theme="planta"],pw-number[theme="planta"],pw-scroll[theme="planta"],pw-progress[theme="planta"],pw-pips[theme="planta"],pw-segments[theme="planta"],pw-steps[theme="planta"],pw-ring[theme="planta"],pw-dialog[theme="planta"],pw-drawer[theme="planta"],pw-toast[theme="planta"],pw-pagination[theme="planta"],pw-empty[theme="planta"],pw-list[theme="planta"],pw-list-item[theme="planta"],pw-avatar[theme="planta"],pw-input[theme="planta"],pw-textarea[theme="planta"],pw-checkbox[theme="planta"],pw-radio[theme="planta"],pw-choice-group[theme="planta"]{--pw-metal-0:#A0D8AE;--pw-metal-1:#329D51;--pw-metal-2:#227540;--pw-metal-3:#7BC98E;--pw-filament:#B3E0BF;--pw-glow:#97D5A6;--pw-bg-center:#164C2A;--pw-bg-edge:#0A2112;--pw-bg-solid:#0B2514;--pw-ter-bg-center:#0F351D;--pw-ter-bg-edge:#07170D;--pw-ter-stroke-0:#113A20;--pw-ter-stroke-1:#42B25E;--pw-ter-stroke-2:#227540;--pw-ter-stroke-3:#84CD96;--pw-ter-stroke-4:#1B5E33;--pw-ter-stroke-5:#329D51;--pw-tab-fill-bottom:#329D51;--pw-tab-fill-top:#081D10;--pw-tab-stroke-a:#A0D8AE;--pw-tab-stroke-b:#D9F0DF;--pw-tab-drop:#8ED19E;--pw-tab-inner:#8ED19E}
+[data-pw-theme="psiquico"],pw-card[theme="psiquico"],pw-card-header[theme="psiquico"],pw-tabs[theme="psiquico"],pw-badge[theme="psiquico"],pw-button[theme="psiquico"],pw-number[theme="psiquico"],pw-scroll[theme="psiquico"],pw-progress[theme="psiquico"],pw-pips[theme="psiquico"],pw-segments[theme="psiquico"],pw-steps[theme="psiquico"],pw-ring[theme="psiquico"],pw-dialog[theme="psiquico"],pw-drawer[theme="psiquico"],pw-toast[theme="psiquico"],pw-pagination[theme="psiquico"],pw-empty[theme="psiquico"],pw-list[theme="psiquico"],pw-list-item[theme="psiquico"],pw-avatar[theme="psiquico"],pw-input[theme="psiquico"],pw-textarea[theme="psiquico"],pw-checkbox[theme="psiquico"],pw-radio[theme="psiquico"],pw-choice-group[theme="psiquico"]{--pw-metal-0:#F2ACC7;--pw-metal-1:#D04C82;--pw-metal-2:#943865;--pw-metal-3:#EE8AB1;--pw-filament:#F5BCD2;--pw-glow:#F1A3C1;--pw-bg-center:#602442;--pw-bg-edge:#29101C;--pw-bg-solid:#2F1220;--pw-ter-bg-center:#43192D;--pw-ter-bg-edge:#1E0B14;--pw-ter-stroke-0:#4A1C32;--pw-ter-stroke-1:#E6588F;--pw-ter-stroke-2:#943865;--pw-ter-stroke-3:#EF92B6;--pw-ter-stroke-4:#762D51;--pw-ter-stroke-5:#D04C82;--pw-tab-fill-bottom:#D04C82;--pw-tab-fill-top:#250E19;--pw-tab-stroke-a:#F2ACC7;--pw-tab-stroke-b:#FADEE9;--pw-tab-drop:#F09BBC;--pw-tab-inner:#F09BBC}
+[data-pw-theme="sombrio"],pw-card[theme="sombrio"],pw-card-header[theme="sombrio"],pw-tabs[theme="sombrio"],pw-badge[theme="sombrio"],pw-button[theme="sombrio"],pw-number[theme="sombrio"],pw-scroll[theme="sombrio"],pw-progress[theme="sombrio"],pw-pips[theme="sombrio"],pw-segments[theme="sombrio"],pw-steps[theme="sombrio"],pw-ring[theme="sombrio"],pw-dialog[theme="sombrio"],pw-drawer[theme="sombrio"],pw-toast[theme="sombrio"],pw-pagination[theme="sombrio"],pw-empty[theme="sombrio"],pw-list[theme="sombrio"],pw-list-item[theme="sombrio"],pw-avatar[theme="sombrio"],pw-input[theme="sombrio"],pw-textarea[theme="sombrio"],pw-checkbox[theme="sombrio"],pw-radio[theme="sombrio"],pw-choice-group[theme="sombrio"]{--pw-metal-0:#ABAEBA;--pw-metal-1:#424865;--pw-metal-2:#313952;--pw-metal-3:#898D9E;--pw-filament:#BCBEC8;--pw-glow:#A3A5B3;--pw-bg-center:#202535;--pw-bg-edge:#0E1017;--pw-bg-solid:#10121A;--pw-ter-bg-center:#161A25;--pw-ter-bg-edge:#0A0B10;--pw-ter-stroke-0:#181C29;--pw-ter-stroke-1:#575C75;--pw-ter-stroke-2:#313952;--pw-ter-stroke-3:#9295A5;--pw-ter-stroke-4:#272E42;--pw-ter-stroke-5:#424865;--pw-tab-fill-bottom:#424865;--pw-tab-fill-top:#0C0E14;--pw-tab-stroke-a:#ABAEBA;--pw-tab-stroke-b:#DDDEE3;--pw-tab-drop:#9A9DAC;--pw-tab-inner:#9A9DAC}
+[data-pw-theme="terrestre"],pw-card[theme="terrestre"],pw-card-header[theme="terrestre"],pw-tabs[theme="terrestre"],pw-badge[theme="terrestre"],pw-button[theme="terrestre"],pw-number[theme="terrestre"],pw-scroll[theme="terrestre"],pw-progress[theme="terrestre"],pw-pips[theme="terrestre"],pw-segments[theme="terrestre"],pw-steps[theme="terrestre"],pw-ring[theme="terrestre"],pw-dialog[theme="terrestre"],pw-drawer[theme="terrestre"],pw-toast[theme="terrestre"],pw-pagination[theme="terrestre"],pw-empty[theme="terrestre"],pw-list[theme="terrestre"],pw-list-item[theme="terrestre"],pw-avatar[theme="terrestre"],pw-input[theme="terrestre"],pw-textarea[theme="terrestre"],pw-checkbox[theme="terrestre"],pw-radio[theme="terrestre"],pw-choice-group[theme="terrestre"]{--pw-metal-0:#E8D0B2;--pw-metal-1:#B68C5A;--pw-metal-2:#856846;--pw-metal-3:#E0BD93;--pw-filament:#EDD9C1;--pw-glow:#E6CBAA;--pw-bg-center:#56442E;--pw-bg-edge:#251D14;--pw-bg-solid:#2B2116;--pw-ter-bg-center:#3C2F1F;--pw-ter-bg-edge:#1B150E;--pw-ter-stroke-0:#423423;--pw-ter-stroke-1:#D2A165;--pw-ter-stroke-2:#856846;--pw-ter-stroke-3:#E2C29B;--pw-ter-stroke-4:#6A5338;--pw-ter-stroke-5:#B68C5A;--pw-tab-fill-bottom:#B68C5A;--pw-tab-fill-top:#211A12;--pw-tab-stroke-a:#E8D0B2;--pw-tab-stroke-b:#F6ECE0;--pw-tab-drop:#E4C7A3;--pw-tab-inner:#E4C7A3}
+[data-pw-theme="veneno"],pw-card[theme="veneno"],pw-card-header[theme="veneno"],pw-tabs[theme="veneno"],pw-badge[theme="veneno"],pw-button[theme="veneno"],pw-number[theme="veneno"],pw-scroll[theme="veneno"],pw-progress[theme="veneno"],pw-pips[theme="veneno"],pw-segments[theme="veneno"],pw-steps[theme="veneno"],pw-ring[theme="veneno"],pw-dialog[theme="veneno"],pw-drawer[theme="veneno"],pw-toast[theme="veneno"],pw-pagination[theme="veneno"],pw-empty[theme="veneno"],pw-list[theme="veneno"],pw-list-item[theme="veneno"],pw-avatar[theme="veneno"],pw-input[theme="veneno"],pw-textarea[theme="veneno"],pw-checkbox[theme="veneno"],pw-radio[theme="veneno"],pw-choice-group[theme="veneno"]{--pw-metal-0:#D6AAE0;--pw-metal-1:#9C3CB6;--pw-metal-2:#702F8B;--pw-metal-3:#C589D4;--pw-filament:#DEBBE6;--pw-glow:#D1A2DD;--pw-bg-center:#491F5A;--pw-bg-edge:#1F0D27;--pw-bg-solid:#240F2C;--pw-ter-bg-center:#32153F;--pw-ter-bg-edge:#16091C;--pw-ter-stroke-0:#381846;--pw-ter-stroke-1:#AC56C1;--pw-ter-stroke-2:#702F8B;--pw-ter-stroke-3:#C991D7;--pw-ter-stroke-4:#5A266F;--pw-ter-stroke-5:#9C3CB6;--pw-tab-fill-bottom:#9C3CB6;--pw-tab-fill-top:#1C0C23;--pw-tab-stroke-a:#D6AAE0;--pw-tab-stroke-b:#EEDDF3;--pw-tab-drop:#CD9ADA;--pw-tab-inner:#CD9ADA}
+[data-pw-theme="voador"],pw-card[theme="voador"],pw-card-header[theme="voador"],pw-tabs[theme="voador"],pw-badge[theme="voador"],pw-button[theme="voador"],pw-number[theme="voador"],pw-scroll[theme="voador"],pw-progress[theme="voador"],pw-pips[theme="voador"],pw-segments[theme="voador"],pw-steps[theme="voador"],pw-ring[theme="voador"],pw-dialog[theme="voador"],pw-drawer[theme="voador"],pw-toast[theme="voador"],pw-pagination[theme="voador"],pw-empty[theme="voador"],pw-list[theme="voador"],pw-list-item[theme="voador"],pw-avatar[theme="voador"],pw-input[theme="voador"],pw-textarea[theme="voador"],pw-checkbox[theme="voador"],pw-radio[theme="voador"],pw-choice-group[theme="voador"]{--pw-metal-0:#D2CCF2;--pw-metal-1:#9084D6;--pw-metal-2:#645EA0;--pw-metal-3:#C1B8EE;--pw-filament:#DBD6F5;--pw-glow:#CEC7F1;--pw-bg-center:#413D68;--pw-bg-edge:#1C1A2D;--pw-bg-solid:#201E33;--pw-ter-bg-center:#2D2A48;--pw-ter-bg-edge:#141320;--pw-ter-stroke-0:#322F50;--pw-ter-stroke-1:#A699E6;--pw-ter-stroke-2:#645EA0;--pw-ter-stroke-3:#C5BDEF;--pw-ter-stroke-4:#504B80;--pw-ter-stroke-5:#9084D6;--pw-tab-fill-bottom:#9084D6;--pw-tab-fill-top:#191828;--pw-tab-stroke-a:#D2CCF2;--pw-tab-stroke-b:#EDEBFA;--pw-tab-drop:#CAC2F0;--pw-tab-inner:#CAC2F0}
 
 /* ===================== COMPONENT: pw-element-item ===================== */
 /* item de controle elemental: card tertiary interativo + ícone de tipo + nome */
@@ -1032,34 +1032,90 @@ pw-input .pwf-clear:focus-visible{outline:2px solid var(--pw-focus-ring)}
 :is(pw-input,pw-textarea)[disabled] .pwf-field{cursor:not-allowed}
 :is(pw-input,pw-textarea)[readonly] .pwf-field{background:transparent;box-shadow:none;border-style:dashed}
 
-/* pw-checkbox e pw-radio: input nativo escondido + caixa desenhada (o estado vem do próprio input) */
-pw-checkbox,pw-radio{display:inline-flex;align-items:flex-start;gap:var(--pw-space-2);font-family:var(--pw-font-body);font-size:var(--pw-font-size-md);line-height:var(--pw-line-height-tight);
-  color:var(--pw-text-body);cursor:pointer;vertical-align:top;--cb-s:18px;position:relative;user-select:none}
-:is(pw-checkbox,pw-radio)[size="sm"]{--cb-s:14px;font-size:var(--pw-font-size-sm)}
-:is(pw-checkbox,pw-radio)[size="lg"]{--cb-s:22px;font-size:var(--pw-font-size-lg)}
+/* pw-checkbox e pw-radio: input nativo escondido + caixa desenhada; o estado vem do próprio input
+   anatomia (Carbon, Material 3, Atlassian, Polaris): controle · label · description; grupo: legenda · ajuda · erro/aviso */
+pw-checkbox,pw-radio{--cb-s:18px;--cb-gap:var(--pw-space-2);--cb-c:var(--pw-filament);
+  display:inline-flex;align-items:flex-start;gap:var(--cb-gap);position:relative;vertical-align:top;cursor:pointer;user-select:none;
+  font-family:var(--pw-font-body);font-size:var(--pw-font-size-md);line-height:var(--pw-line-height-tight);color:var(--pw-text-body);
+  -webkit-tap-highlight-color:transparent}
+:is(pw-checkbox,pw-radio)[size="sm"]{--cb-s:14px;--cb-gap:var(--pw-space-1);font-size:var(--pw-font-size-sm)}
+:is(pw-checkbox,pw-radio)[size="lg"]{--cb-s:22px;--cb-gap:var(--pw-space-3);font-size:var(--pw-font-size-lg)}
+:is(pw-checkbox,pw-radio)[label-position="start"]{flex-direction:row-reverse;justify-content:space-between}
+:is(pw-checkbox,pw-radio) label{display:contents;cursor:inherit}
 :is(pw-checkbox,pw-radio) input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
-:is(pw-checkbox,pw-radio) .pwc-box{flex:none;position:relative;width:var(--cb-s);height:var(--cb-s);box-sizing:border-box;display:grid;place-items:center;
+/* área de toque mínima de 24px em volta da caixa */
+:is(pw-checkbox,pw-radio) .pwc-hit{flex:none;position:relative;display:grid;place-items:center;width:max(var(--cb-s),24px);height:max(var(--cb-s),24px);margin:calc((var(--cb-s) - max(var(--cb-s),24px)) / 2)}
+:is(pw-checkbox,pw-radio) .pwc-hit::before{content:"";position:absolute;inset:-4px;border-radius:var(--pw-radius-sm);background:var(--cb-c);opacity:0;transition:opacity var(--card-dur)}
+:is(pw-checkbox,pw-radio):not([disabled]):not([readonly]):hover .pwc-hit::before{opacity:.08}
+:is(pw-checkbox,pw-radio):not([disabled]):not([readonly]):active .pwc-hit::before{opacity:.16}
+pw-radio .pwc-hit::before{border-radius:50%}
+:is(pw-checkbox,pw-radio) .pwc-box{position:relative;width:var(--cb-s);height:var(--cb-s);box-sizing:border-box;display:grid;place-items:center;
   background:var(--pw-surface-field);border:1.5px solid var(--pw-border-strong);box-shadow:var(--pw-shadow-inset-field);color:var(--pw-on-metal);
-  transition:background var(--card-dur),border-color var(--card-dur),box-shadow var(--card-dur)}
+  transition:background var(--card-dur),border-color var(--card-dur),box-shadow var(--card-dur),transform var(--card-dur) var(--card-ease)}
 pw-checkbox .pwc-box{border-radius:var(--pw-radius-xs)}
 pw-radio .pwc-box{border-radius:50%}
-:is(pw-checkbox,pw-radio) .pwc-box svg{width:78%;height:78%;opacity:0;transform:scale(.6);transition:opacity var(--card-dur),transform var(--card-dur) var(--card-ease)}
-pw-radio .pwc-box::after{content:"";width:44%;height:44%;transform:rotate(45deg) scale(.4);background:var(--pw-on-metal);opacity:0;transition:opacity var(--card-dur),transform var(--card-dur) var(--card-ease)}
-:is(pw-checkbox,pw-radio):hover .pwc-box{border-color:var(--pw-border-emphasis)}
-:is(pw-checkbox,pw-radio):has(input:checked) .pwc-box,pw-checkbox:has(input:indeterminate) .pwc-box{background:linear-gradient(135deg,var(--pw-metal-0),var(--pw-metal-1));border-color:var(--pw-filament);box-shadow:0 0 8px -2px var(--pw-glow-soft)}
-pw-checkbox:has(input:checked) .pwc-box .ck,pw-checkbox:has(input:indeterminate) .pwc-box .ind{opacity:1;transform:none}
-pw-checkbox:has(input:indeterminate) .pwc-box .ck{opacity:0}
+:is(pw-checkbox,pw-radio) .pwc-box svg{width:78%;height:78%;opacity:0;transform:scale(.5);transition:opacity var(--card-dur),transform var(--card-dur) var(--card-ease)}
+pw-checkbox .pwc-box .ind{position:absolute}
+pw-radio .pwc-box::after{content:"";width:44%;height:44%;transform:rotate(45deg) scale(.3);background:var(--pw-on-metal);opacity:0;transition:opacity var(--card-dur),transform var(--card-dur) var(--card-ease)}
+:is(pw-checkbox,pw-radio):not([disabled]):not([readonly]):hover .pwc-box{border-color:var(--pw-border-emphasis)}
+:is(pw-checkbox,pw-radio):not([disabled]):not([readonly]):active .pwc-box{transform:scale(.92)}
+/* marcado: metal do tema + brilho */
+:is(pw-checkbox,pw-radio):has(input:checked) .pwc-box,pw-checkbox:has(input:indeterminate) .pwc-box{background:linear-gradient(135deg,var(--pw-metal-0),var(--pw-metal-1));border-color:var(--cb-c);box-shadow:0 0 8px -2px var(--pw-glow-soft)}
+pw-checkbox:has(input:checked:not(:indeterminate)) .pwc-box .ck,pw-checkbox:has(input:indeterminate) .pwc-box .ind{opacity:1;transform:none}
 pw-radio:has(input:checked) .pwc-box::after{opacity:1;transform:rotate(45deg) scale(1)}
-:is(pw-checkbox,pw-radio):has(input:focus-visible) .pwc-box{outline:2px solid var(--pw-focus-ring);outline-offset:2px}
+:is(pw-checkbox,pw-radio):has(input:focus-visible) .pwc-box{outline:2px solid var(--pw-focus-ring);outline-offset:3px}
 :is(pw-checkbox,pw-radio):has(input:checked){color:var(--pw-text-primary)}
-:is(pw-checkbox,pw-radio) .pwc-text{display:grid;gap:var(--pw-space-0-5);padding-top:calc((var(--cb-s) - 1.2em) / 2)}
-:is(pw-checkbox,pw-radio) .pwc-desc{font-size:var(--pw-font-size-xs);color:var(--pw-text-muted)}
+/* texto: label + description, alinhados ao topo; label quebra linha, nunca reticências */
+:is(pw-checkbox,pw-radio) .pwc-text{display:grid;gap:var(--pw-space-0-5);min-width:0;padding-top:calc((var(--cb-s) - 1.2em) / 2)}
+:is(pw-checkbox,pw-radio) .pwc-label{font-weight:var(--pw-font-weight-medium);overflow-wrap:anywhere}
+:is(pw-checkbox,pw-radio) .pwc-req{color:var(--pw-status-error);margin-left:var(--pw-space-0-5)}
+:is(pw-checkbox,pw-radio) .pwc-desc{font-size:var(--pw-font-size-xs);line-height:var(--pw-line-height-normal);color:var(--pw-text-muted);font-weight:var(--pw-font-weight-regular)}
+:is(pw-checkbox,pw-radio)[size="lg"] .pwc-desc{font-size:var(--pw-font-size-sm)}
 :is(pw-checkbox,pw-radio) .pwc-desc:empty,:is(pw-checkbox,pw-radio) .pwc-label:empty{display:none}
-:is(pw-checkbox,pw-radio)[disabled]{opacity:.45;cursor:not-allowed}
-:is(pw-checkbox,pw-radio)[invalid] .pwc-box{border-color:var(--pw-tone-error-solid-top)}
-.pw-fieldset{border:0;margin:0;padding:0;display:grid;gap:var(--pw-space-2);font-family:var(--pw-font-body)}
-.pw-fieldset>legend{padding:0;margin-bottom:var(--pw-space-2);font-size:var(--pw-font-size-sm);font-weight:var(--pw-font-weight-medium);color:var(--pw-text-accent-soft)}
-.pw-fieldset.row{grid-auto-flow:column;justify-content:start;gap:var(--pw-space-4)}
+/* estados */
+:is(pw-checkbox,pw-radio)[disabled]{cursor:not-allowed;opacity:.45}
+:is(pw-checkbox,pw-radio)[readonly]{cursor:default}
+:is(pw-checkbox,pw-radio)[readonly] .pwc-box{background:transparent;box-shadow:none;border-style:dashed;border-color:var(--pw-border-strong)}
+:is(pw-checkbox,pw-radio)[readonly]:has(input:checked) .pwc-box,pw-checkbox[readonly]:has(input:indeterminate) .pwc-box{background:transparent;border-style:dashed;box-shadow:none;color:var(--pw-text-accent)}
+pw-radio[readonly]:has(input:checked) .pwc-box::after{background:var(--pw-text-accent)}
+:is(pw-checkbox,pw-radio)[invalid]{--cb-c:var(--pw-tone-error-solid-top)}
+:is(pw-checkbox,pw-radio)[invalid] .pwc-box{border-color:var(--pw-tone-error-solid-top);box-shadow:var(--pw-shadow-inset-field),0 0 0 2px color-mix(in srgb,var(--pw-tone-error-solid-top) 25%,transparent)}
+:is(pw-checkbox,pw-radio)[warning] .pwc-box{border-color:var(--pw-status-warning)}
+/* variant="card": opção em cartão (tile), clicável inteira */
+:is(pw-checkbox,pw-radio)[variant="card"]{display:flex;padding:var(--pw-space-3) var(--pw-space-4);border-radius:var(--pw-radius-sm);border:1px solid var(--pw-border-default);
+  background:linear-gradient(180deg,var(--pw-surface-raised-top),var(--pw-surface-raised-bottom));transition:border-color var(--card-dur),box-shadow var(--card-dur),background var(--card-dur)}
+:is(pw-checkbox,pw-radio)[variant="card"]:not([disabled]):not([readonly]):hover{border-color:var(--pw-border-emphasis)}
+:is(pw-checkbox,pw-radio)[variant="card"] .pwc-hit::before{display:none}
+:is(pw-checkbox,pw-radio)[variant="card"]:has(input:checked){border-color:var(--cb-c);background:linear-gradient(180deg,color-mix(in srgb,var(--pw-filament) 16%,var(--pw-surface-raised-top)),var(--pw-surface-raised-bottom));
+  box-shadow:0 0 0 1px var(--cb-c),0 0 14px -4px var(--pw-glow-soft)}
+:is(pw-checkbox,pw-radio)[variant="card"]:has(input:focus-visible){outline:2px solid var(--pw-focus-ring);outline-offset:2px}
+:is(pw-checkbox,pw-radio)[variant="card"]:has(input:focus-visible) .pwc-box{outline:none}
+:is(pw-checkbox,pw-radio)[variant="card"] .pwc-meta{margin-left:auto;align-self:center;font-size:var(--pw-font-size-sm);font-weight:var(--pw-font-weight-semibold);color:var(--pw-text-accent);white-space:nowrap}
+:is(pw-checkbox,pw-radio) .pwc-meta:empty{display:none}
+:is(pw-checkbox,pw-radio)[variant="card"][invalid]{border-color:var(--pw-tone-error-solid-top)}
+:is(pw-checkbox,pw-radio)[variant="card"][readonly]:has(input:checked){border-style:dashed;box-shadow:none;border-color:var(--pw-border-emphasis)}
+
+/* pw-choice-group: grupo com legenda, ajuda e mensagem de erro/aviso; repassa disabled/readonly/invalid aos itens */
+pw-choice-group{display:grid;gap:var(--pw-space-2);font-family:var(--pw-font-body);border:0;margin:0;padding:0;min-width:0}
+pw-choice-group .pwcg-legend{display:flex;align-items:baseline;gap:var(--pw-space-1);font-size:var(--pw-font-size-sm);font-weight:var(--pw-font-weight-semibold);color:var(--pw-text-accent-soft)}
+pw-choice-group .pwcg-legend:empty{display:none}
+pw-choice-group .pwcg-req{color:var(--pw-status-error)}
+pw-choice-group .pwcg-help{font-size:var(--pw-font-size-xs);line-height:var(--pw-line-height-normal);color:var(--pw-text-help);margin-top:calc(var(--pw-space-1) * -1)}
+pw-choice-group .pwcg-items{display:flex;flex-direction:column;gap:var(--pw-space-3);align-items:flex-start}
+pw-choice-group[orientation="horizontal"] .pwcg-items{flex-direction:row;flex-wrap:wrap;gap:var(--pw-space-3) var(--pw-space-6)}
+pw-choice-group[variant="card"] .pwcg-items{align-items:stretch;gap:var(--pw-space-2)}
+pw-choice-group[variant="card"][orientation="horizontal"] .pwcg-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+pw-choice-group .pwcg-all{padding-bottom:var(--pw-space-2);border-bottom:1px solid var(--pw-border-subtle);margin-bottom:calc(var(--pw-space-1) * -1)}
+pw-choice-group .pwcg-items.nested{padding-left:calc(18px + var(--pw-space-2))}
+pw-choice-group .pwcg-msg{display:flex;align-items:center;gap:var(--pw-space-1);font-size:var(--pw-font-size-xs);line-height:var(--pw-line-height-tight)}
+pw-choice-group .pwcg-msg:empty{display:none}
+pw-choice-group .pwcg-msg svg{width:14px;height:14px;flex:none}
+pw-choice-group[invalid] .pwcg-msg{color:var(--pw-status-error)}
+pw-choice-group[warning] .pwcg-msg{color:var(--pw-status-warning)}
+.pw-fieldset{border:0;margin:0;padding:0;display:grid;gap:var(--pw-space-3);font-family:var(--pw-font-body)}
+.pw-fieldset>legend{padding:0;margin-bottom:var(--pw-space-2);font-size:var(--pw-font-size-sm);font-weight:var(--pw-font-weight-semibold);color:var(--pw-text-accent-soft)}
+.pw-fieldset.row{grid-auto-flow:column;justify-content:start;gap:var(--pw-space-6)}
+
 
 /* ===================== pw-card tertiary com destaque dourado (opção recomendada) ===================== */
 /* <pw-card variant="tertiary" highlight> · highlight="Recomendado" mostra a faixa com o texto */
@@ -1141,6 +1197,8 @@ pw-card[variant="tertiary"][highlight][interactive]:not([disabled]):hover{box-sh
   <nav class="sub" data-for="data"><a href="#data">Tabela</a><a href="#data-pag">Paginação</a><a href="#data-fold">Recolhível</a><a href="#data-empty">Estado vazio</a><a href="#data-list">Lista selecionável</a><a href="#data-avatar">Avatar</a><a href="#data-uso">Uso</a></nav>
   <button type="button" class="comp-btn" data-comp="form" aria-controls="main">Formulários</button>
   <nav class="sub" data-for="form"><a href="#form">Texto e textarea</a><a href="#form-check">Checkbox e radio</a><a href="#form-uso">Uso</a></nav>
+  <button type="button" class="comp-btn" data-comp="choice" aria-controls="main">Checkbox e Radio</button>
+  <nav class="sub" data-for="choice"><a href="#choice">Visão geral</a><a href="#choice-anatomia">Anatomia</a><a href="#choice-estados">Estados</a><a href="#choice-card">Opção em cartão</a><a href="#choice-playground">Playground</a><a href="#choice-uso">Uso e regras</a></nav>
 </aside>
 <main class="wrap" id="main">
 <header class="top">
@@ -2385,25 +2443,8 @@ PWDS.toast('Sem conexão', { tone: 'error', duration: 0 });   // 0 = fica até f
 </section>
 <section class="story" id="form-check" data-c="form">
   <h2>Checkbox e radio</h2>
-  <p class="lede"><code>&lt;pw-checkbox&gt;</code> e <code>&lt;pw-radio&gt;</code> guardam um input nativo escondido: teclado, leitor de tela e formulário funcionam como sempre. Marcado, a caixa recebe o metal do tema; o radio usa um losango no centro. Agrupe com <code>&lt;fieldset class="pw-fieldset"&gt;</code> (<code>.row</code> para lado a lado).</p>
-  <div class="canvas"><div class="row" style="gap:40px;align-items:flex-start">
-    <fieldset class="pw-fieldset"><legend>Notificações</legend>
-      <pw-checkbox checked>Convites de clã</pw-checkbox><pw-checkbox checked description="Avisa quando um ovo choca">Ovos</pw-checkbox><pw-checkbox indeterminate>Eventos (alguns)</pw-checkbox><pw-checkbox>Mensagens privadas</pw-checkbox><pw-checkbox disabled>Desabilitado</pw-checkbox><pw-checkbox invalid>Aceito os termos</pw-checkbox>
-    </fieldset>
-    <fieldset class="pw-fieldset"><legend>Dificuldade</legend>
-      <pw-radio name="dif" value="facil">Fácil</pw-radio><pw-radio name="dif" value="normal" checked description="Recomendado para a primeira vez">Normal</pw-radio><pw-radio name="dif" value="dificil">Difícil</pw-radio><pw-radio name="dif" value="x" disabled>Insano (bloqueado)</pw-radio>
-    </fieldset>
-    <div data-pw-theme="mewtwo" style="display:grid;gap:16px">
-      <fieldset class="pw-fieldset row"><legend>Tamanhos</legend><pw-checkbox size="sm" checked>sm</pw-checkbox><pw-checkbox checked>md</pw-checkbox><pw-checkbox size="lg" checked>lg</pw-checkbox></fieldset>
-      <fieldset class="pw-fieldset row"><legend>Modo</legend><pw-radio name="mm" size="sm" checked>PvE</pw-radio><pw-radio name="mm">PvP</pw-radio><pw-radio name="mm" size="lg">Raid</pw-radio></fieldset>
-    </div>
-  </div></div>
-  <pre class="code">&lt;pw-checkbox name="ovos" checked description="Avisa quando um ovo choca"&gt;Ovos&lt;/pw-checkbox&gt;
-&lt;fieldset class="pw-fieldset"&gt;
-  &lt;legend&gt;Dificuldade&lt;/legend&gt;
-  &lt;pw-radio name="dif" value="normal" checked&gt;Normal&lt;/pw-radio&gt;
-  &lt;pw-radio name="dif" value="dificil"&gt;Difícil&lt;/pw-radio&gt;
-&lt;/fieldset&gt;</pre>
+  <p class="lede">Têm página própria, com anatomia, estados, grupo e opção em cartão: veja <b>Checkbox e Radio</b> no menu.</p>
+  <div class="canvas"><pw-choice-group label="Ordenar por" orientation="horizontal"><pw-radio value="nivel" checked>Nível</pw-radio><pw-radio value="boost">Boost</pw-radio><pw-radio value="recente">Recente</pw-radio></pw-choice-group></div>
 </section>
 <section class="story" id="form-uso" data-c="form">
   <h2>Uso</h2>
@@ -2413,6 +2454,124 @@ PWDS.toast('Sem conexão', { tone: 'error', duration: 0 });   // 0 = fica até f
     <tr><td><code>pw-checkbox</code></td><td><code>checked</code> · <code>indeterminate</code> · <code>disabled</code> · <code>invalid</code> · <code>name</code> · <code>value</code> · <code>description</code> · <code>size</code>; propriedade <code>.checked</code>; evento <code>change</code></td></tr>
     <tr><td><code>pw-radio</code></td><td>as mesmas do checkbox (menos <code>indeterminate</code>); mesmo <code>name</code> = mesmo grupo</td></tr>
   </tbody></table></div>
+</section>
+
+<section class="story" id="choice" data-c="choice">
+  <h2>Visão geral</h2>
+  <p class="lede">Checkbox escolhe zero, uma ou várias opções independentes; radio escolhe exatamente uma de um grupo. Os dois têm <b>label</b> (o que é a opção, curto) e <b>description</b> (detalhe opcional, em texto menor). A anatomia e as regras seguem o que os principais design systems convergem (Carbon, Material 3, Atlassian, Polaris), com o visual de metal do tema.</p>
+  <div class="canvas"><div class="row" style="gap:48px;align-items:flex-start">
+    <pw-choice-group label="Notificações" help="Escolha o que deve avisar você no jogo.">
+      <pw-checkbox checked description="Quando alguém chama você para um clã">Convites de clã</pw-checkbox>
+      <pw-checkbox checked description="Avisa quando um ovo está pronto para chocar">Ovos</pw-checkbox>
+      <pw-checkbox description="Somente de amigos">Mensagens privadas</pw-checkbox>
+    </pw-choice-group>
+    <pw-choice-group label="Dificuldade" required>
+      <pw-radio value="facil" description="Inimigos com 70% da vida">Fácil</pw-radio>
+      <pw-radio value="normal" checked description="Recomendado para a primeira vez">Normal</pw-radio>
+      <pw-radio value="dificil" description="Recompensas +25%, sem reviver">Difícil</pw-radio>
+    </pw-choice-group>
+  </div></div>
+  <div class="canvas" data-pw-theme="mewtwo"><div class="row" style="gap:48px;align-items:flex-start">
+    <pw-choice-group label="Fragmentos para a máquina" select-all="Todos os fragmentos">
+      <pw-checkbox checked description="Cerulean Cave">Fragmento psíquico</pw-checkbox>
+      <pw-checkbox description="Torre Pokémon">Fragmento sombrio</pw-checkbox>
+      <pw-checkbox disabled description="Ainda não encontrado">Fragmento lendário</pw-checkbox>
+    </pw-choice-group>
+    <pw-choice-group label="Modo" orientation="horizontal"><pw-radio value="pve" checked>PvE</pw-radio><pw-radio value="pvp">PvP</pw-radio><pw-radio value="raid">Raid</pw-radio></pw-choice-group>
+  </div></div>
+</section>
+
+<section class="story" id="choice-anatomia" data-c="choice">
+  <h2>Anatomia</h2>
+  <div class="canvas"><div class="row" style="gap:40px;align-items:center">
+    <pw-choice-group label="1 · Legenda do grupo" help="2 · Ajuda do grupo" error="6 · Mensagem de erro ou aviso">
+      <pw-checkbox checked description="5 · Description (opcional)">4 · Label</pw-checkbox>
+    </pw-choice-group>
+    <ol class="rules" style="margin:0">
+      <li><b>Legenda</b>: diz o que o grupo escolhe ou como escolher. Opcional se o contexto já tiver título.</li>
+      <li><b>Ajuda</b>: instrução curta, antes das opções.</li>
+      <li><b>Controle</b>: caixa (checkbox) ou círculo com losango (radio), 18px, com área de toque de 24px.</li>
+      <li><b>Label</b>: até três palavras quando possível, sem reticências; se for longo, quebra a linha alinhado ao topo.</li>
+      <li><b>Description</b>: detalhe da opção em 11px, cor secundária, ligado ao input por <code>aria-describedby</code>.</li>
+      <li><b>Mensagem</b>: erro (vermelho) ou aviso (laranja) do grupo, anunciada pelo leitor de tela.</li>
+    </ol>
+  </div></div>
+</section>
+
+<section class="story" id="choice-estados" data-c="choice">
+  <h2>Estados</h2>
+  <div class="canvas"><div class="tbl" id="choiceStates"></div></div>
+  <div class="canvas" data-pw-theme="mewtwo"><div class="tbl" id="choiceStatesM"></div></div>
+  <ul class="rules">
+    <li><b>Indeterminado</b> (só checkbox): o "pai" de uma lista em que só parte está marcada. Use <code>select-all</code> no grupo para gerar esse pai automaticamente.</li>
+    <li><b>Somente leitura × desabilitado</b>: somente leitura mostra o valor e pode ser lido e focado, mas não muda (borda tracejada). Desabilitado indica que a opção não está disponível agora.</li>
+    <li><b>Erro</b> vai no grupo (<code>error="…"</code>), não em cada item: os itens recebem a borda vermelha juntos.</li>
+  </ul>
+</section>
+
+<section class="story" id="choice-card" data-c="choice">
+  <h2>Opção em cartão</h2>
+  <p class="lede"><code>variant="card"</code> transforma cada opção em um cartão clicável inteiro, para escolhas com mais peso visual (plano, recompensa, rota). <code>meta</code> mostra um valor à direita.</p>
+  <div class="canvas"><div class="row" style="gap:32px;align-items:flex-start">
+    <pw-choice-group label="Recompensa diária" variant="card" style="width:340px">
+      <pw-radio value="moedas" checked description="Entrega imediata" meta="5.000">Moedas</pw-radio>
+      <pw-radio value="ovo" description="Choca em 2 horas" meta="×1">Ovo misterioso</pw-radio>
+      <pw-radio value="pedra" description="Para boost +10 a +15" meta="×2">Pedra antiga</pw-radio>
+    </pw-choice-group>
+    <div data-pw-theme="mewtwo"><pw-choice-group label="Bônus da raid (até 2)" variant="card" orientation="horizontal" help="Os bônus valem por 1 hora." style="width:440px">
+      <pw-checkbox value="xp" checked description="+20% de experiência">XP</pw-checkbox>
+      <pw-checkbox value="drop" description="+15% de chance de item">Drop</pw-checkbox>
+      <pw-checkbox value="aura" checked description="+12% de dano">Aura</pw-checkbox>
+      <pw-checkbox value="vida" disabled description="Requer nível 80">Vida</pw-checkbox>
+    </pw-choice-group></div>
+  </div></div>
+</section>
+
+<section class="story" id="choice-playground" data-c="choice">
+  <h2>Playground</h2>
+  <div class="pg" id="pgCheckbox"></div>
+  <div class="pg" id="pgRadio"></div>
+  <div class="pg" id="pgGroup"></div>
+</section>
+
+<section class="story" id="choice-uso" data-c="choice">
+  <h2>Uso</h2>
+  <pre class="code">&lt;pw-choice-group label="Notificações" help="Escolha o que deve avisar você"&gt;
+  &lt;pw-checkbox name="ovos" checked description="Avisa quando um ovo choca"&gt;Ovos&lt;/pw-checkbox&gt;
+  &lt;pw-checkbox name="cla"&gt;Convites de clã&lt;/pw-checkbox&gt;
+&lt;/pw-choice-group&gt;
+
+&lt;pw-choice-group label="Dificuldade" name="dif" required error="Escolha uma dificuldade"&gt;
+  &lt;pw-radio value="normal" description="Recomendado"&gt;Normal&lt;/pw-radio&gt;
+  &lt;pw-radio value="dificil"&gt;Difícil&lt;/pw-radio&gt;
+&lt;/pw-choice-group&gt;</pre>
+  <div class="tbl"><table><thead><tr><th>Componente</th><th>Propriedade</th><th>Descrição</th></tr></thead><tbody>
+    <tr><td rowspan="9"><code>pw-checkbox</code><br><code>pw-radio</code></td><td>conteúdo ou <code>label</code></td><td>Label da opção</td></tr>
+    <tr><td><code>description</code></td><td>Detalhe em texto menor, abaixo do label</td></tr>
+    <tr><td><code>checked</code> · <code>indeterminate</code> (checkbox)</td><td>Estado inicial; propriedades <code>.checked</code> e <code>.indeterminate</code></td></tr>
+    <tr><td><code>name</code> · <code>value</code> · <code>required</code></td><td>Repassados ao input nativo (funciona em <code>&lt;form&gt;</code>)</td></tr>
+    <tr><td><code>disabled</code> · <code>readonly</code> · <code>invalid</code> · <code>warning</code></td><td>Estados</td></tr>
+    <tr><td><code>size</code></td><td>sm 14 · md 18 · lg 22px; texto 12 · 14 · 16px</td></tr>
+    <tr><td><code>variant="card"</code> · <code>meta</code></td><td>Opção em cartão com valor à direita</td></tr>
+    <tr><td><code>label-position="start"</code></td><td>Label à esquerda e controle à direita (listas de configurações)</td></tr>
+    <tr><td>evento <code>change</code></td><td><code>detail.checked</code> e <code>detail.value</code></td></tr>
+    <tr><td rowspan="6"><code>pw-choice-group</code></td><td><code>label</code> · <code>help</code> · <code>required</code></td><td>Legenda, ajuda e asterisco; vira <code>role="group"</code> ou <code>radiogroup</code></td></tr>
+    <tr><td><code>error</code> · <code>warning</code></td><td>Mensagem do grupo; <code>error</code> marca todos os itens como inválidos</td></tr>
+    <tr><td><code>orientation</code></td><td>vertical (padrão, mais fácil de ler) · horizontal (até 3 opções curtas)</td></tr>
+    <tr><td><code>name</code> · <code>value</code></td><td>Mesmo <code>name</code> para todos os radios; <code>value</code> marca o radio com esse valor</td></tr>
+    <tr><td><code>variant</code> · <code>disabled</code> · <code>readonly</code></td><td>Aplicados a todos os itens</td></tr>
+    <tr><td><code>select-all="texto"</code></td><td>Checkbox pai que marca todos e fica indeterminado quando só parte está marcada; evento <code>groupchange</code> com <code>detail.value</code></td></tr>
+  </tbody></table></div>
+  <h3>Regras</h3>
+  <ul class="rules">
+    <li><b>Checkbox ou radio?</b> Opções independentes ou várias ao mesmo tempo → checkbox. Uma, e só uma, de uma lista → radio. Ligar algo que vale na hora (som, notificação) → prefira um interruptor.</li>
+    <li><b>Radio não vem marcado por padrão</b>, a não ser que exista uma opção claramente recomendada. Para permitir "nenhuma", inclua essa opção.</li>
+    <li><b>Vertical por padrão</b>; horizontal só com poucas opções curtas.</li>
+    <li><b>Clique no label também marca</b>: a área clicável é o label inteiro, não só a caixa.</li>
+    <li><b>Teclado</b>: Tab entra no grupo; Espaço marca o checkbox; ↑ ↓ (ou ← →) trocam o radio selecionado.</li>
+    <li><b>Espaço depois do grupo</b>: pelo menos <code>--pw-space-8</code> (32px) até o próximo campo; <code>--pw-space-6</code> em formulários densos. Entre opções, <code>--pw-space-3</code>.</li>
+  </ul>
+  <p class="cap" style="margin:0">Referências: <a href="https://carbondesignsystem.com/components/checkbox/usage/" style="color:var(--sb-accent)">Carbon · Checkbox</a> · <a href="https://carbondesignsystem.com/components/radio-button/usage/" style="color:var(--sb-accent)">Carbon · Radio button</a> · <a href="https://cdn.jsdelivr.net/npm/@hegemonart/get-design-done@1.60.4/reference/components/checkbox.md" style="color:var(--sb-accent)">Benchmark de checkbox</a> · <a href="https://cdn.jsdelivr.net/npm/@hegemonart/get-design-done@1.60.4/reference/components/radio.md" style="color:var(--sb-accent)">Benchmark de radio</a></p>
 </section>
 
 </main>
@@ -2426,6 +2585,7 @@ PWDS.toast('Sem conexão', { tone: 'error', duration: 0 });   // 0 = fica até f
     overlay:['Overlays','Diálogo com painel pw-card secondary, drawer lateral, tooltip por atributo e toast.'],
     data:['Dados e listas','Tabela para ranking e membros, paginação, bloco recolhível, estado vazio, lista selecionável e moldura de avatar ou sprite.'],
     form:['Formulários','Campo de texto, textarea, checkbox e radio, no mesmo campo afundado do Input Number. Os inputs nativos ficam no HTML e funcionam em formulários.'],
+    choice:['Checkbox e Radio','Seleção de opções com label e description. Checkbox para várias opções independentes, radio para uma só de um grupo. Inclui grupo com legenda, ajuda e erro, “selecionar todos” e opção em cartão.'],
     space:['Espaçamento','Escala de espaçamento em múltiplos de 4px, apelidos semânticos e raios.'],
     colors:['Cores','Cores fixas que não mudam com o tema. Cada uma tem um só significado.'],
     type:['Tipografia','Tokens de texto do sistema: Spectral para títulos, Inter para labels, textos complementares e informações maiores.'],
@@ -3236,25 +3396,79 @@ class PWInput extends PWTextField{}class PWTextarea extends PWTextField{}
 customElements.define('pw-input',PWInput);customElements.define('pw-textarea',PWTextarea);
 
 class PWCheck extends HTMLElement{
-  static get observedAttributes(){return ['checked','disabled','indeterminate','description','name','value']}
+  static get observedAttributes(){return ['checked','disabled','indeterminate','description','name','value','readonly','invalid','required','label','meta']}
   connectedCallback(){if(!this._init){this._init=true;var radio=this.tagName==='PW-RADIO';
-      var t=document.createElement('span');t.className='pwc-text';var lab=document.createElement('span');lab.className='pwc-label';while(this.firstChild)lab.appendChild(this.firstChild);
-      var d=document.createElement('span');d.className='pwc-desc';t.appendChild(lab);t.appendChild(d);
-      var lb=document.createElement('label');lb.style.display='contents';
+      var t=document.createElement('span');t.className='pwc-text';var lab=document.createElement('span');lab.className='pwc-label';
+      while(this.firstChild)lab.appendChild(this.firstChild);
+      var d=document.createElement('span');d.className='pwc-desc';d.id='pwcd'+(++pwFieldN);t.appendChild(lab);t.appendChild(d);
+      var lb=document.createElement('label');
       this._in=document.createElement('input');this._in.type=radio?'radio':'checkbox';this._in.checked=this.hasAttribute('checked');
-      var box=document.createElement('span');box.className='pwc-box';box.setAttribute('aria-hidden','true');
-      if(!radio)box.innerHTML='<svg class="ck" viewBox="0 0 24 24"><path fill="currentColor" d="'+PW_FILL.check+'"/></svg><svg class="ind" viewBox="0 0 24 24" style="position:absolute"><path fill="currentColor" d="M5 10.4H19V13.6H5Z"/></svg>';
-      lb.appendChild(this._in);lb.appendChild(box);lb.appendChild(t);this.appendChild(lb);this._desc=d;
-      this._in.addEventListener('change',()=>{this.dispatchEvent(new CustomEvent('change',{bubbles:true,detail:{checked:this._in.checked,value:this._in.value}}))})}
+      var hit=document.createElement('span');hit.className='pwc-hit';
+      var box=document.createElement('span');box.className='pwc-box';box.setAttribute('aria-hidden','true');hit.appendChild(box);
+      if(!radio)box.innerHTML='<svg class="ck" viewBox="0 0 24 24"><path fill="currentColor" d="'+PW_FILL.check+'"/></svg><svg class="ind" viewBox="0 0 24 24"><path fill="currentColor" d="M5 10.4H19V13.6H5Z"/></svg>';
+      var meta=document.createElement('span');meta.className='pwc-meta';
+      lb.appendChild(this._in);lb.appendChild(hit);lb.appendChild(t);lb.appendChild(meta);this.appendChild(lb);this._desc=d;this._lab=lab;this._meta=meta;
+      /* somente leitura: o input nativo não tem readonly para checkbox/radio, então o clique é bloqueado */
+      lb.addEventListener('click',e=>{if(this.hasAttribute('readonly'))e.preventDefault()});
+      this._in.addEventListener('keydown',e=>{if(this.hasAttribute('readonly')&&(e.key===' '||e.key.indexOf('Arrow')===0))e.preventDefault()});
+      this._in.addEventListener('change',e=>{e.stopPropagation();this.removeAttribute('indeterminate');this.toggleAttribute('checked',this._in.checked);
+        if(radio&&this._in.checked&&this._in.name)document.querySelectorAll('pw-radio').forEach(r=>{if(r!==this&&r._in&&r._in.name===this._in.name)r.removeAttribute('checked')});
+        this.dispatchEvent(new CustomEvent('change',{bubbles:true,detail:{checked:this._in.checked,value:this._in.value}}))})}
     this.update()}
-  attributeChangedCallback(n){if(!this._init)return;if(n==='checked')this._in.checked=this.hasAttribute('checked');this.update()}
-  get checked(){return this._in?this._in.checked:this.hasAttribute('checked')}set checked(v){if(this._in)this._in.checked=!!v;this.toggleAttribute('checked',!!v)}
+  attributeChangedCallback(n){if(!this._init)return;if(n==='checked'&&this._in.checked!==this.hasAttribute('checked'))this._in.checked=this.hasAttribute('checked');this.update()}
+  get checked(){return this._in?this._in.checked:this.hasAttribute('checked')}set checked(v){this.toggleAttribute('checked',!!v);if(this._in)this._in.checked=!!v}
+  get indeterminate(){return this.hasAttribute('indeterminate')}set indeterminate(v){this.toggleAttribute('indeterminate',!!v)}
+  get value(){return this._in?this._in.value:this.getAttribute('value')}
+  focus(){if(this._in)this._in.focus()}
   update(){var i=this._in;i.disabled=this.hasAttribute('disabled');i.indeterminate=this.hasAttribute('indeterminate');
     ['name','value','required'].forEach(a=>{var v=this.getAttribute(a);v===null?i.removeAttribute(a):i.setAttribute(a,v)});
-    this._desc.textContent=this.getAttribute('description')||''}
+    var lt=this.getAttribute('label');if(lt!==null)this._lab.textContent=lt;
+    var rq=this._lab.querySelector('.pwc-req');if(this.hasAttribute('required')&&!rq)this._lab.insertAdjacentHTML('beforeend','<span class="pwc-req" aria-hidden="true">*</span>');if(!this.hasAttribute('required')&&rq)rq.remove();
+    this._desc.textContent=this.getAttribute('description')||'';this._meta.textContent=this.getAttribute('meta')||'';
+    if(this._desc.textContent)i.setAttribute('aria-describedby',this._desc.id);else i.removeAttribute('aria-describedby');
+    i.setAttribute('aria-invalid',this.hasAttribute('invalid')?'true':'false');
+    this.hasAttribute('readonly')?i.setAttribute('aria-readonly','true'):i.removeAttribute('aria-readonly');
+    if(!this._lab.textContent.trim()&&this.getAttribute('aria-label'))i.setAttribute('aria-label',this.getAttribute('aria-label'))}
 }
 class PWCheckbox extends PWCheck{}class PWRadio extends PWCheck{}
 customElements.define('pw-checkbox',PWCheckbox);customElements.define('pw-radio',PWRadio);
+
+/* ---------- pw-choice-group: legenda, ajuda, erro/aviso, "selecionar todos" ---------- */
+class PWChoiceGroup extends HTMLElement{
+  static get observedAttributes(){return ['label','help','error','warning','invalid','disabled','readonly','required','name','orientation','variant','select-all','value']}
+  connectedCallback(){if(!this._init){this._init=true;var id='pwcg'+(++pwFieldN);this._id=id;
+      var items=document.createElement('div');items.className='pwcg-items';while(this.firstChild)items.appendChild(this.firstChild);
+      this.innerHTML='<div class="pwcg-legend" id="'+id+'l"></div><div class="pwcg-help" id="'+id+'h"></div>';this.appendChild(items);
+      this.insertAdjacentHTML('beforeend','<div class="pwcg-msg" id="'+id+'m" role="alert"></div>');this._items=items;
+      this.addEventListener('change',e=>{if(e.target.closest&&e.target.closest('.pwcg-all'))return;this._syncAll();this._emit()});}
+    this.update()}
+  attributeChangedCallback(){if(this._init)this.update()}
+  get _radio(){return !!this._items.querySelector('pw-radio')}
+  get _opts(){return [].slice.call(this._items.querySelectorAll('pw-checkbox,pw-radio')).filter(x=>!x.closest('.pwcg-all'))}
+  get value(){var o=this._opts.filter(x=>x.checked).map(x=>x.value);return this._radio?(o[0]||''):o}
+  _emit(){this.dispatchEvent(new CustomEvent('groupchange',{bubbles:true,detail:{value:this.value}}))}
+  _syncAll(){var a=this._all;if(!a)return;var o=this._opts.filter(x=>!x.hasAttribute('disabled')),n=o.filter(x=>x.checked).length;
+    a.checked=n>0&&n===o.length;a.indeterminate=n>0&&n<o.length}
+  update(){var radio=this._radio,leg=this.querySelector('.pwcg-legend'),help=this.querySelector('.pwcg-help'),msg=this.querySelector('.pwcg-msg');
+    leg.textContent=this.getAttribute('label')||'';if(this.hasAttribute('required')&&leg.textContent)leg.insertAdjacentHTML('beforeend','<span class="pwcg-req" aria-hidden="true">*</span>');
+    help.textContent=this.getAttribute('help')||'';help.hidden=!help.textContent;
+    var err=this.getAttribute('error'),warn=this.getAttribute('warning');
+    if(err&&!this.hasAttribute('invalid'))this.setAttribute('invalid','');
+    msg.innerHTML=err?pwIcon('warning-circle')+'<span></span>':(warn?pwIcon('warning-circle')+'<span></span>':'');if(msg.lastChild)msg.lastChild.textContent=err||warn;
+    this.setAttribute('role',radio?'radiogroup':'group');this.setAttribute('aria-labelledby',this._id+'l');
+    this.setAttribute('aria-describedby',[help.textContent?this._id+'h':'',msg.textContent?this._id+'m':''].filter(Boolean).join(' '));
+    if(this.hasAttribute('required'))this.setAttribute('aria-required','true');
+    var name=this.getAttribute('name')||(radio?this._id:null),inv=this.hasAttribute('invalid'),dis=this.hasAttribute('disabled'),ro=this.hasAttribute('readonly'),vr=this.getAttribute('variant'),val=this.getAttribute('value');
+    this._opts.forEach(o=>{if(name&&radio)o.setAttribute('name',name);if(vr)o.setAttribute('variant',vr);
+      o.toggleAttribute('invalid',inv);if(dis)o.setAttribute('disabled','');if(ro)o.setAttribute('readonly','');if(warn)o.setAttribute('warning','');else o.removeAttribute('warning');
+      if(val!==null&&radio)o.toggleAttribute('checked',o.getAttribute('value')===val)});
+    var sa=this.getAttribute('select-all');
+    if(sa!==null&&!radio&&!this._all){var w=document.createElement('div');w.className='pwcg-all';var a=document.createElement('pw-checkbox');a.textContent=sa||'Selecionar todos';w.appendChild(a);
+      this.insertBefore(w,this._items);this._items.classList.add('nested');this._all=a;
+      a.addEventListener('change',e=>{e.stopPropagation();var on=a.checked;this._opts.forEach(o=>{if(!o.hasAttribute('disabled'))o.checked=on});this._syncAll();this._emit()});}
+    if(this._all){this._all.toggleAttribute('disabled',dis);this._all.toggleAttribute('readonly',ro);requestAnimationFrame(()=>this._syncAll())}}
+}
+customElements.define('pw-choice-group',PWChoiceGroup);
 
 window.PWDS=Object.assign(window.PWDS||{},{toast:pwToast,icons:PW_FILL,types:PW_TYPES,registerIcon:function(n,d,r){PW_FILL[n]=d;if(r)PW_FILL_RULE[n]=r}});
 /* @pwds-js-end */
@@ -3580,5 +3794,30 @@ pg();
     PWDS.toast(M[1],{tone:t,title:M[0],icon:t==='aura'?'zap':undefined})})});
   var pg=document.getElementById('pagDemo');pg.addEventListener('change',function(e){document.getElementById('pagLog').textContent='Página: '+e.detail.page});
   document.getElementById('listDemo').addEventListener('change',function(e){document.getElementById('listLog').textContent='Selecionado: '+e.detail.value});
+})();
+
+(function(){
+  function states(id){var el=document.getElementById(id);if(!el)return;
+    var S=[['Padrão',''],['Marcado','checked'],['Indeterminado','indeterminate'],['Desabilitado','disabled'],['Desabilitado marcado','disabled checked'],['Somente leitura','readonly checked'],['Erro','invalid'],['Aviso','warning']];
+    var at=a=>a.split(' ').filter(Boolean).map(x=>' '+x).join('');
+    el.innerHTML='<table><thead><tr><th>Estado</th><th>Checkbox</th><th>Radio</th><th>Cartão</th></tr></thead><tbody>'+S.map(r=>'<tr><td>'+r[0]+'</td><td><pw-checkbox'+at(r[1])+' description="Descrição">Label</pw-checkbox></td><td>'+(r[1]==='indeterminate'?'<span class="cap" style="margin:0">—</span>':'<pw-radio name="st'+id+r[0]+'"'+at(r[1])+' description="Descrição">Label</pw-radio>')+'</td><td>'+(r[1]==='indeterminate'?'<span class="cap" style="margin:0">—</span>':'<pw-radio variant="card" name="sc'+id+r[0]+'"'+at(r[1])+' description="Descrição" meta="×1" style="width:200px">Label</pw-radio>')+'</td></tr>').join('')+'</tbody></table>'}
+  states('choiceStates');states('choiceStatesM');
+  if(window.PG){
+    PG('pgCheckbox','pw-checkbox',[['description','text','Avisa quando um ovo choca'],['size','select',['sm','md','lg'],'md'],['variant','select',['','card']],['label-position','select',['','start']],['meta','text',''],['checked','check',true],['indeterminate','check',false],['required','check',false],['invalid','check',false],['warning','check',false],['readonly','check',false],['disabled','check',false]],'Ovos');
+    PG('pgRadio','pw-radio',[['description','text','Recomendado para a primeira vez'],['size','select',['sm','md','lg'],'md'],['variant','select',['','card']],['label-position','select',['','start']],['meta','text',''],['checked','check',true],['invalid','check',false],['readonly','check',false],['disabled','check',false]],'Normal');
+  }
+  /* playground do grupo (monta os filhos) */
+  var host=document.getElementById('pgGroup');if(host){
+    host.innerHTML='<form class="ctrls" onsubmit="return false"><label>tipo<select data-g="tipo"><option>checkbox</option><option>radio</option></select></label><label>label<input type="text" data-g="label" value="Notificações"></label><label>help<input type="text" data-g="help" value="Escolha o que deve avisar você."></label><label>error<input type="text" data-g="error" value=""></label><label>warning<input type="text" data-g="warning" value=""></label><label>orientation<select data-g="orientation"><option>vertical</option><option>horizontal</option></select></label><label>variant<select data-g="variant"><option value="">(nenhum)</option><option>card</option></select></label><label>select-all<input type="text" data-g="select-all" value=""></label><label class="check"><input type="checkbox" data-g="required">required</label><label class="check"><input type="checkbox" data-g="disabled">disabled</label><label class="check"><input type="checkbox" data-g="readonly">readonly</label><label>theme<select data-g="theme"><option value="">poke world (padrão)</option><option>mewtwo</option><option>fogo</option><option>agua</option><option>planta</option></select></label></form><div style="display:grid;gap:14px;min-width:0"><div class="canvas" id="pgGroupStage" style="min-height:200px;display:grid;place-items:center"></div><pre class="code" id="pgGroupCode"></pre><p class="cap" id="pgGroupVal" style="margin:0"></p></div>';
+    var f=host.querySelector('form');
+    function run(){var g={};f.querySelectorAll('[data-g]').forEach(c=>g[c.dataset.g]=c.type==='checkbox'?c.checked:c.value);
+      var t=g.tipo==='radio'?'pw-radio':'pw-checkbox',O=[['Convites de clã','Quando alguém chama você','cla'],['Ovos','Quando um ovo está pronto','ovos'],['Mensagens','Somente de amigos','msg']];
+      var at=[];['label','help','error','warning','variant','select-all'].forEach(k=>{if(g[k]&&!(k==='select-all'&&t==='pw-radio'))at.push(k+'="'+g[k]+'"')});
+      if(g.orientation==='horizontal')at.push('orientation="horizontal"');['required','disabled','readonly'].forEach(k=>{if(g[k])at.push(k)});if(g.theme)at.push('theme="'+g.theme+'"');
+      var kids=O.map((o,i)=>'  <'+t+' value="'+o[2]+'"'+(i===1?' checked':'')+' description="'+o[1]+'">'+o[0]+'</'+t+'>').join('\n');
+      var html='<pw-choice-group'+(at.length?' '+at.join(' '):'')+'>\n'+kids+'\n</pw-choice-group>';
+      var st=document.getElementById('pgGroupStage');st.innerHTML=html;document.getElementById('pgGroupCode').textContent=html;
+      var gr=st.firstChild;var show=()=>{var v=gr.value;document.getElementById('pgGroupVal').textContent='value: '+JSON.stringify(v)};gr.addEventListener('groupchange',show);gr.addEventListener('change',()=>setTimeout(show));setTimeout(show,50)}
+    f.addEventListener('input',run);f.addEventListener('change',run);run()}
 })();
 </script>
