@@ -27,16 +27,14 @@ head = f'/*! Poke World Design System v{ver} — https://github.com/jacques-tony
 (dist / 'pw-components.css').write_text(head + comp + '\n')
 (dist / 'pw-ds.css').write_text(head + fonts + '\n' + css_all + '\n')
 js = head + '''(function(){
-if(window.PWDS)return;
+if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
 if(!document.getElementById('pw-ds-css')&&!document.querySelector('link[href*="pw-ds.css"]')){
   var st=document.createElement('style');st.id='pw-ds-css';st.textContent=%s;
   (document.head||document.documentElement).prepend(st);
 }
 %s
-window.PWDS={version:%s,
-  icons:PW_FILL,
-  registerIcon:function(name,d,rule){PW_FILL[name]=d;if(rule)PW_FILL_RULE[name]=rule;}};
+window.PWDS=Object.assign(window.PWDS||{},{version:%s});
 })();
 ''' % (json.dumps(css_all), js_body, json.dumps(ver))
 (dist / 'pw-ds.js').write_text(js)

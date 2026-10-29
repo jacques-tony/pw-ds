@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.23.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.24.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -80,6 +80,10 @@
   --pw-text-hint:var(--pw-neutral-500);    /* ajuda e placeholders (mistura com o traçado do tema) */
   --pw-text-inverse:var(--pw-gold-900);    /* texto sobre metal claro */
   --pw-on-metal:var(--pw-text-inverse);    /* o tema Mewtwo troca para branco */
+  /* medalhas do ranking */
+  --pw-medal-gold:var(--pw-gold-300); --pw-medal-gold-light:var(--pw-gold-50);
+  --pw-medal-silver:#9EADC2; --pw-medal-silver-light:#E6ECF4;
+  --pw-medal-bronze:#B8703F; --pw-medal-bronze-light:#F0C29E;
   /* sombras e sobreposição */
   --pw-shadow-text:0 1px 1px var(--pw-black-a35);
   --pw-shadow-text-strong:0 1px 2px var(--pw-black-a55);
@@ -149,7 +153,7 @@
   
 }
 /* ===== CORES · 3. SEMÂNTICAS DO TEMA (derivadas; recalculadas em cada componente e área com tema) ===== */
-:root,[data-pw-theme],pw-card,pw-card-header,pw-tabs,pw-tab,pw-icon,pw-element-item,pw-badge,pw-button,pw-number,pw-scroll,.pw-scroll{
+:root,[data-pw-theme],pw-card,pw-card-header,pw-tabs,pw-tab,pw-icon,pw-element-item,pw-badge,pw-button,pw-number,pw-scroll,.pw-scroll,pw-progress,pw-pips,pw-segments,pw-steps,pw-ring,pw-dialog,pw-drawer,pw-toast,pw-pagination,pw-empty,pw-list,pw-list-item,pw-avatar,pw-input,pw-textarea,pw-checkbox,pw-radio{
   --pw-accent:var(--pw-filament);
   --pw-text-accent:color-mix(in srgb,var(--pw-filament) 80%,var(--pw-white));        /* texto de botão secundário, setas */
   --pw-text-accent-strong:color-mix(in srgb,var(--pw-filament) 85%,var(--pw-white)); /* botões − + */

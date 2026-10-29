@@ -7,6 +7,19 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.24.0
+
+- **Ícones (20)**: people, target, skull, shield, gem, flask, crown, coins, pencil, clock, sword, user-plus, gift, zap, compass, ball, egg, card, held e scroll.
+- **Barras e progresso**: `pw-progress` (barra de progresso e de vida com `variant="hp"`, cor por faixa e rastro de dano), `pw-pips` (tentativas), `pw-segments` (buff em segmentos), `pw-steps` (trilha de fases) e `pw-ring` (anel de nível).
+- **Overlays**: `pw-dialog` (painel pw-card secondary, foco preso, Esc, `data-close`), `pw-drawer` (lateral, `side="left"`), tooltip por atributo `data-tip` / `data-tip-pos` e toast (`pw-toast` e `PWDS.toast()`).
+- **Dados e listas**: tabela `.pw-table` (ranking com medalhas `data-rank`, membros, `.is-me`), `pw-pagination`, bloco recolhível `details.fold`, `pw-empty`, `pw-list` + `pw-list-item` (seleção single, multiple ou none) e `pw-avatar` (hex, circle, square ou diamond, com raridade, nível e status).
+- **Formulários**: `pw-input`, `pw-textarea`, `pw-checkbox` e `pw-radio`, com inputs nativos e `.pw-fieldset`.
+- **pw-card tertiary**: `highlight` para destaque dourado; com texto (`highlight="Recomendado"`) mostra a faixa no topo.
+- Tokens novos de medalha: `--pw-medal-gold`, `--pw-medal-silver` e `--pw-medal-bronze`, cada um com a versão `-light`.
+- `PWDS` agora expõe `toast`, `icons`, `types` e `registerIcon`.
+- Todos os novos componentes aceitam `theme` e seguem `data-pw-theme`.
+
 ## 0.23.0
 
 - **pw-card quaternary**: o estado selected ficou bem evidente. O fundo é mais claro, na cor do traçado do tema, com borda acesa, brilho externo e luz interna.
