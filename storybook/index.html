@@ -1277,7 +1277,7 @@ pw-card[variant="tertiary"][highlight][interactive]:not([disabled]):hover{box-sh
 </section>
 <section class="story" id="referencia">
   <h2>Referência</h2>
-  <p class="lede">Tamanho real do Figma. <code>card.primary</code> 514 × 376 com cantos Epic e fundo radial; <code>card.secondary</code> 265 × 374 com cantos Common, fundo sólido e filete interno.</p>
+  <p class="lede">Tamanho real do Figma. <code>card.primary</code> 514 × 376 com a mesma borda e efeitos do secondary (cantos Common e filete interno) e fundo radial; <code>card.secondary</code> 265 × 374 com cantos Common, fundo sólido e filete interno.</p>
   <div class="canvas"><div class="row">
     <div><pw-card variant="primary"></pw-card><div class="cap">variant="primary" · tone="neutral"</div></div>
     <div><pw-card variant="secondary"></pw-card><div class="cap">variant="secondary" · tone="neutral"</div></div>
@@ -2538,7 +2538,7 @@ class PWCard extends HTMLElement{
     var W=Math.round(this.offsetWidth),H=Math.round(this.offsetHeight);
     if(!W||!H||(W===this._w&&H===this._h&&this.getAttribute('variant')===this._v&&this.getAttribute('frame')===this._fr))return;this._fr=this.getAttribute('frame');
     this._w=W;this._h=H;this._v=this.getAttribute('variant');
-    var v=this._v==='secondary'?'secondary':'primary',c=CORNERS[v],u=this._uid;
+    var v=this._v==='secondary'?'secondary':'primary',c=CORNERS.secondary,u=this._uid; /* primary e secondary compartilham a mesma borda e efeitos; muda só o fundo */
     var shape=outline(W,H,c),all=shape+' '+curls(W,H,c),ring=outline(W,H,c,4);
     var bgFill=v==='primary'?'url(#'+u+'-bg)':'var(--card-bg-solid)';
     var border='<path d="'+all+'" fill="none" stroke="var(--card-filament)" stroke-width="4"/>'+
@@ -2620,7 +2620,7 @@ class PWCard extends HTMLElement{
      '</defs>'+
      '<g class="l-art">'+
       '<path class="l-bg" d="'+shape+'" fill="'+bgFill+'"/>'+
-      (v==='secondary'?'<path d="'+chamfer(W,H,7.5,17.485)+'" fill="none" stroke="var(--card-filament)" stroke-width="1"/>':'')+
+      '<path d="'+chamfer(W,H,7.5,17.485)+'" fill="none" stroke="var(--card-filament)" stroke-width="1"/>'+
       '<g class="l-glow" filter="url(#'+u+'-tex)">'+border+'</g>'+
       border+
       '<path class="l-glass" d="'+all+'" fill="none" stroke="url(#'+u+'-glass)" stroke-width="3"/>'+

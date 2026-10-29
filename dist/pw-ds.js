@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.24.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.25.0 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -80,7 +80,7 @@ class PWCard extends HTMLElement{
     var W=Math.round(this.offsetWidth),H=Math.round(this.offsetHeight);
     if(!W||!H||(W===this._w&&H===this._h&&this.getAttribute('variant')===this._v&&this.getAttribute('frame')===this._fr))return;this._fr=this.getAttribute('frame');
     this._w=W;this._h=H;this._v=this.getAttribute('variant');
-    var v=this._v==='secondary'?'secondary':'primary',c=CORNERS[v],u=this._uid;
+    var v=this._v==='secondary'?'secondary':'primary',c=CORNERS.secondary,u=this._uid; /* primary e secondary compartilham a mesma borda e efeitos; muda só o fundo */
     var shape=outline(W,H,c),all=shape+' '+curls(W,H,c),ring=outline(W,H,c,4);
     var bgFill=v==='primary'?'url(#'+u+'-bg)':'var(--card-bg-solid)';
     var border='<path d="'+all+'" fill="none" stroke="var(--card-filament)" stroke-width="4"/>'+
@@ -162,7 +162,7 @@ class PWCard extends HTMLElement{
      '</defs>'+
      '<g class="l-art">'+
       '<path class="l-bg" d="'+shape+'" fill="'+bgFill+'"/>'+
-      (v==='secondary'?'<path d="'+chamfer(W,H,7.5,17.485)+'" fill="none" stroke="var(--card-filament)" stroke-width="1"/>':'')+
+      '<path d="'+chamfer(W,H,7.5,17.485)+'" fill="none" stroke="var(--card-filament)" stroke-width="1"/>'+
       '<g class="l-glow" filter="url(#'+u+'-tex)">'+border+'</g>'+
       border+
       '<path class="l-glass" d="'+all+'" fill="none" stroke="url(#'+u+'-glass)" stroke-width="3"/>'+
@@ -799,5 +799,5 @@ class PWCheckbox extends PWCheck{}class PWRadio extends PWCheck{}
 customElements.define('pw-checkbox',PWCheckbox);customElements.define('pw-radio',PWRadio);
 
 window.PWDS=Object.assign(window.PWDS||{},{toast:pwToast,icons:PW_FILL,types:PW_TYPES,registerIcon:function(n,d,r){PW_FILL[n]=d;if(r)PW_FILL_RULE[n]=r}});
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.24.0"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.25.0"});
 })();

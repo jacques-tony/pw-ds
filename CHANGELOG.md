@@ -8,6 +8,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.25.0
+
+- **pw-card primary**: passa a usar a mesma borda e os mesmos efeitos do secondary (cantos, filete interno, brilho, textura e reflexo). O fundo radial do primary continua igual.
+- Afeta também os tons, o outline e os estados do primary. A moldura `frame="tech"` não muda.
+
 ## 0.24.0
 
 - **Ícones (20)**: people, target, skull, shield, gem, flask, crown, coins, pencil, clock, sword, user-plus, gift, zap, compass, ball, egg, card, held e scroll.
