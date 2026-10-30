@@ -10,6 +10,15 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.27.0
+
+- **pw-card tertiary e quaternary** passam a aceitar `tone` (info · success · warning · error · new · brand). O traçado de 6 interrupções usa as camadas do tom, e o fundo ganha um leve tingimento. Antes só primary e secondary aceitavam tom.
+- **Tipografia display** para nome de boss e telas de destaque:
+  - `--pw-text-display-lg` (64/68), `-md` (48/52) e `-sm` (40/44), em Spectral 700;
+  - classes `.pw-text-display-lg`, `-md` e `-sm`, mais `.pw-text-display-caps` para caixa alta;
+  - tamanhos `--pw-font-size-5xl` (40), `-6xl` (48) e `-7xl` (64).
+
 ## 0.26.0
 
 - **pw-checkbox e pw-radio** refeitos com base em Carbon, Material 3, Atlassian, Polaris e WAI-ARIA APG:

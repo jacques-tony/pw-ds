@@ -1,8 +1,12 @@
-/*! Poke World Design System v0.26.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.27.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
 /* tipografia: classes utilitárias (usam os tokens --pw-text-*) */
+.pw-text-display-lg{font:var(--pw-text-display-lg);letter-spacing:var(--pw-text-display-lg-tracking);text-transform:none}
+.pw-text-display-md{font:var(--pw-text-display-md);letter-spacing:var(--pw-text-display-md-tracking);text-transform:none}
+.pw-text-display-sm{font:var(--pw-text-display-sm);letter-spacing:var(--pw-text-display-sm-tracking);text-transform:none}
+.pw-text-display-caps{text-transform:uppercase;letter-spacing:.06em}
 .pw-text-title-xl{font:var(--pw-text-title-xl);letter-spacing:var(--pw-text-title-xl-tracking);text-transform:none}
 .pw-text-title-lg{font:var(--pw-text-title-lg);letter-spacing:var(--pw-text-title-lg-tracking);text-transform:none}
 .pw-text-title-md{font:var(--pw-text-title-md);letter-spacing:var(--pw-text-title-md-tracking);text-transform:none}
@@ -71,6 +75,13 @@ pw-card[tone="error"]  {--card-metal-0:var(--pw-tone-error-light);--card-metal-1
 pw-card[tone="new"]    {--card-metal-0:var(--pw-tone-new-light);--card-metal-1:var(--pw-tone-new-metal-1);--card-metal-2:var(--pw-tone-new-metal-2);--card-metal-3:var(--pw-tone-new-metal-3);--card-filament:var(--pw-tone-new-filament);--card-glow:var(--pw-tone-new-glow)}
 pw-card[tone="brand"]  {--card-metal-0:var(--pw-tone-brand-light);--card-metal-1:var(--pw-tone-brand-metal-1);--card-metal-2:var(--pw-tone-brand-metal-2);--card-metal-3:var(--pw-tone-brand-metal-3);--card-filament:var(--pw-tone-brand-filament);--card-glow:var(--pw-tone-brand-glow);--glow-op:.85;--dot-op:.7}
 
+/* tons no tertiary e no quaternary: traçado em degradê e fundo levemente tingido com as cores do tom */
+pw-card[variant="tertiary"][tone="info"],pw-card[variant="quaternary"][tone="info"]{--pw-ter-stroke-0:var(--pw-tone-info-dark);--pw-ter-stroke-1:var(--pw-tone-info-metal-1);--pw-ter-stroke-2:var(--pw-tone-info-metal-2);--pw-ter-stroke-3:var(--pw-tone-info-light);--pw-ter-stroke-4:var(--pw-tone-info-dark);--pw-ter-stroke-5:var(--pw-tone-info-base);--pw-ter-bg-center:color-mix(in srgb,var(--pw-tone-info-dark) 45%,var(--pw-blue-950));--pw-ter-bg-edge:color-mix(in srgb,var(--pw-tone-info-dark) 20%,var(--pw-blue-950))}
+pw-card[variant="tertiary"][tone="success"],pw-card[variant="quaternary"][tone="success"]{--pw-ter-stroke-0:var(--pw-tone-success-dark);--pw-ter-stroke-1:var(--pw-tone-success-metal-1);--pw-ter-stroke-2:var(--pw-tone-success-metal-2);--pw-ter-stroke-3:var(--pw-tone-success-light);--pw-ter-stroke-4:var(--pw-tone-success-dark);--pw-ter-stroke-5:var(--pw-tone-success-base);--pw-ter-bg-center:color-mix(in srgb,var(--pw-tone-success-dark) 45%,var(--pw-blue-950));--pw-ter-bg-edge:color-mix(in srgb,var(--pw-tone-success-dark) 20%,var(--pw-blue-950))}
+pw-card[variant="tertiary"][tone="warning"],pw-card[variant="quaternary"][tone="warning"]{--pw-ter-stroke-0:var(--pw-tone-warning-dark);--pw-ter-stroke-1:var(--pw-tone-warning-metal-1);--pw-ter-stroke-2:var(--pw-tone-warning-metal-2);--pw-ter-stroke-3:var(--pw-tone-warning-light);--pw-ter-stroke-4:var(--pw-tone-warning-dark);--pw-ter-stroke-5:var(--pw-tone-warning-base);--pw-ter-bg-center:color-mix(in srgb,var(--pw-tone-warning-dark) 45%,var(--pw-blue-950));--pw-ter-bg-edge:color-mix(in srgb,var(--pw-tone-warning-dark) 20%,var(--pw-blue-950))}
+pw-card[variant="tertiary"][tone="error"],pw-card[variant="quaternary"][tone="error"]{--pw-ter-stroke-0:var(--pw-tone-error-dark);--pw-ter-stroke-1:var(--pw-tone-error-metal-1);--pw-ter-stroke-2:var(--pw-tone-error-metal-2);--pw-ter-stroke-3:var(--pw-tone-error-light);--pw-ter-stroke-4:var(--pw-tone-error-dark);--pw-ter-stroke-5:var(--pw-tone-error-base);--pw-ter-bg-center:color-mix(in srgb,var(--pw-tone-error-dark) 45%,var(--pw-blue-950));--pw-ter-bg-edge:color-mix(in srgb,var(--pw-tone-error-dark) 20%,var(--pw-blue-950))}
+pw-card[variant="tertiary"][tone="new"],pw-card[variant="quaternary"][tone="new"]{--pw-ter-stroke-0:var(--pw-tone-new-dark);--pw-ter-stroke-1:var(--pw-tone-new-metal-1);--pw-ter-stroke-2:var(--pw-tone-new-metal-2);--pw-ter-stroke-3:var(--pw-tone-new-light);--pw-ter-stroke-4:var(--pw-tone-new-dark);--pw-ter-stroke-5:var(--pw-tone-new-base);--pw-ter-bg-center:color-mix(in srgb,var(--pw-tone-new-dark) 45%,var(--pw-blue-950));--pw-ter-bg-edge:color-mix(in srgb,var(--pw-tone-new-dark) 20%,var(--pw-blue-950))}
+pw-card[variant="tertiary"][tone="brand"],pw-card[variant="quaternary"][tone="brand"]{--pw-ter-stroke-0:var(--pw-gold-700);--pw-ter-stroke-1:var(--pw-tone-brand-metal-1);--pw-ter-stroke-2:var(--pw-tone-brand-metal-2);--pw-ter-stroke-3:var(--pw-tone-brand-light);--pw-ter-stroke-4:var(--pw-gold-800);--pw-ter-stroke-5:var(--pw-tone-brand-metal-3);--pw-ter-bg-center:color-mix(in srgb,var(--pw-gold-800) 45%,var(--pw-blue-950));--pw-ter-bg-edge:color-mix(in srgb,var(--pw-gold-800) 20%,var(--pw-blue-950))}
 /* appearance outline: só moldura, sem preenchimento */
 pw-card[appearance="outline"] .l-bg{display:none}
 

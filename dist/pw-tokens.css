@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.26.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.27.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -6,6 +6,12 @@
      Spectral: títulos. Inter: labels, textos complementares e informações maiores. */
   --pw-font-title:"Spectral", Georgia, "Times New Roman", serif;
   --pw-font-body:"Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --pw-text-display-lg-size:64px; --pw-text-display-lg-line:68px; --pw-text-display-lg-weight:700; --pw-text-display-lg-tracking:.02em;
+  --pw-text-display-lg:var(--pw-text-display-lg-weight) var(--pw-text-display-lg-size)/var(--pw-text-display-lg-line) var(--pw-font-title);
+  --pw-text-display-md-size:48px; --pw-text-display-md-line:52px; --pw-text-display-md-weight:700; --pw-text-display-md-tracking:.02em;
+  --pw-text-display-md:var(--pw-text-display-md-weight) var(--pw-text-display-md-size)/var(--pw-text-display-md-line) var(--pw-font-title);
+  --pw-text-display-sm-size:40px; --pw-text-display-sm-line:44px; --pw-text-display-sm-weight:700; --pw-text-display-sm-tracking:.01em;
+  --pw-text-display-sm:var(--pw-text-display-sm-weight) var(--pw-text-display-sm-size)/var(--pw-text-display-sm-line) var(--pw-font-title);
   --pw-text-title-xl-size:32px; --pw-text-title-xl-line:40px; --pw-text-title-xl-weight:700; --pw-text-title-xl-tracking:0;
   --pw-text-title-xl:var(--pw-text-title-xl-weight) var(--pw-text-title-xl-size)/var(--pw-text-title-xl-line) var(--pw-font-title);
   --pw-text-title-lg-size:24px; --pw-text-title-lg-line:32px; --pw-text-title-lg-weight:700; --pw-text-title-lg-tracking:0;
@@ -109,7 +115,7 @@
   --pw-tone-brand-light:var(--pw-gold-50); --pw-tone-brand-filament:var(--pw-gold-50); --pw-tone-brand-metal-1:#E6AE48; --pw-tone-brand-metal-2:#CF9131; --pw-tone-brand-metal-3:#FFDF8C; --pw-tone-brand-glow:#FFD27A;
   /* ===== TIPOGRAFIA · escala de tamanho, peso e altura de linha (usada dentro dos componentes) ===== */
   --pw-font-size-3xs:8px; --pw-font-size-2xs:10px; --pw-font-size-xs:11px; --pw-font-size-sm:12px; --pw-font-size-md:14px;
-  --pw-font-size-lg:16px; --pw-font-size-xl:18px; --pw-font-size-2xl:20px; --pw-font-size-3xl:24px; --pw-font-size-4xl:32px;
+  --pw-font-size-lg:16px; --pw-font-size-xl:18px; --pw-font-size-2xl:20px; --pw-font-size-3xl:24px; --pw-font-size-4xl:32px; --pw-font-size-5xl:40px; --pw-font-size-6xl:48px; --pw-font-size-7xl:64px;
   --pw-font-weight-regular:400; --pw-font-weight-medium:500; --pw-font-weight-semibold:600; --pw-font-weight-bold:700;
   --pw-line-height-none:1; --pw-line-height-tight:1.2; --pw-line-height-normal:1.5;
   --pw-tracking-none:0; --pw-tracking-wide:.01em;
