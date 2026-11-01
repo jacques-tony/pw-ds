@@ -16,6 +16,7 @@ Componentes de interface do OTServ **Poke World Universe**, feitos como Web Comp
 | Progresso e vida · tentativas · buff · fases · nível | `<pw-progress>` · `<pw-pips>` · `<pw-segments>` · `<pw-steps>` · `<pw-ring>` |
 | Diálogo · drawer · toast · tooltip | `<pw-dialog>` · `<pw-drawer>` · `<pw-toast>` / `PWDS.toast()` · `data-tip` |
 | Tabela · paginação · recolhível · vazio · lista · avatar | `.pw-table` · `<pw-pagination>` · `details.fold` · `<pw-empty>` · `<pw-list>`/`<pw-list-item>` · `<pw-avatar>` |
+| Busca com sugestões | `<pw-search>` |
 | Campo de texto · textarea · checkbox · radio | `<pw-input>` · `<pw-textarea>` · `<pw-checkbox>` · `<pw-radio>` |
 
 Tipografia: **Spectral** para títulos e **Inter** para labels e textos (`--pw-font-title`, `--pw-font-body`, escala `--pw-text-*` e classes `.pw-text-*`).

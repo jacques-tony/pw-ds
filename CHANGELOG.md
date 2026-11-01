@@ -11,6 +11,17 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.28.0
+
+- Novo **pw-search**: campo de busca com sugestões, no padrão combobox do WAI-ARIA APG. Referências: Carbon Search, Porsche Input Search e Nord Autocomplete.
+  - Sugestões agrupadas, com ícone ou tipo, descrição e meta à direita; o texto buscado aparece destacado, sem considerar acentos.
+  - Buscas recentes (`recent`), atalho de teclado (`shortcut="/"`), botão de limpar, `loading`, `submit` e mensagem sem resultado.
+  - Tamanhos `size` sm, md e lg; variantes `ghost` e `expandable`.
+  - Teclado: ↑ ↓, Enter e Esc (fecha e, na segunda vez, limpa).
+  - Eventos `search` (com debounce), `select`, `submit` e `clear`.
+- Storybook: nova página **Search**.
+
 ## 0.27.0
 
 - **pw-card tertiary e quaternary** passam a aceitar `tone` (info · success · warning · error · new · brand). O traçado de 6 interrupções usa as camadas do tom, e o fundo ganha um leve tingimento. Antes só primary e secondary aceitavam tom.
