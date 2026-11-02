@@ -12,6 +12,17 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.29.0
+
+- **Tooltip (`data-tip`)** refeito: um balão desenhado por script, no lugar do pseudo-elemento.
+  - Título interno (`data-tip-title`) e ícone (`data-tip-icon`).
+  - Seta que aponta para o centro do elemento.
+  - Posição automática: vira para o outro lado quando não cabe e fica dentro da tela.
+  - `data-tip` vazio usa o `title` nativo do elemento e o remove.
+  - Conteúdo rico (`data-tip-ref`), tons (`data-tip-tone`), `data-tip-delay` e `data-tip-width`.
+  - Segue o tema do elemento; Esc fecha; liga o balão ao elemento por `aria-describedby`.
+
 ## 0.28.0
 
 - Novo **pw-search**: campo de busca com sugestões, no padrão combobox do WAI-ARIA APG. Referências: Carbon Search, Porsche Input Search e Nord Autocomplete.

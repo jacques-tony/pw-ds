@@ -855,20 +855,31 @@ pw-drawer .pwd-foot{display:flex;gap:var(--pw-space-2);justify-content:flex-end;
 pw-drawer .pwd-foot:empty{display:none}
 @media (prefers-reduced-motion:reduce){pw-dialog>pw-card,pw-drawer>.pwdr-panel,.pwd-backdrop{transition:none!important}}
 
-/* tooltip: qualquer elemento com data-tip (posição: data-tip-pos = top · bottom · left · right) */
-[data-tip]{position:relative}
-[data-tip]::after{content:attr(data-tip);position:absolute;z-index:1100;left:50%;bottom:calc(100% + var(--pw-space-2));transform:translate(-50%,4px);
-  width:max-content;max-width:240px;padding:var(--pw-space-1) var(--pw-space-2);border-radius:var(--pw-radius-xs);
-  background:linear-gradient(180deg,var(--pw-surface-raised-top),var(--pw-surface-raised-bottom));border:1px solid var(--pw-border-strong);
-  box-shadow:var(--pw-shadow-sm),inset 0 1px 0 var(--pw-highlight-inset);color:var(--pw-text-primary);
-  font:var(--pw-font-weight-regular) var(--pw-font-size-sm)/var(--pw-line-height-tight) var(--pw-font-body);letter-spacing:0;text-transform:none;text-align:left;white-space:normal;
-  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .15s,transform .15s,visibility .15s}
-[data-tip]:hover::after,[data-tip]:focus-visible::after,[data-tip]:focus-within::after,[data-tip][data-tip-open]::after{opacity:1;visibility:visible;transform:translate(-50%,0)}
-[data-tip][data-tip-pos="bottom"]::after{bottom:auto;top:calc(100% + var(--pw-space-2));transform:translate(-50%,-4px)}
-[data-tip][data-tip-pos="bottom"]:is(:hover,:focus-visible,:focus-within,[data-tip-open])::after{transform:translate(-50%,0)}
-[data-tip][data-tip-pos="left"]::after{left:auto;bottom:auto;right:calc(100% + var(--pw-space-2));top:50%;transform:translate(4px,-50%)}
-[data-tip][data-tip-pos="right"]::after{left:calc(100% + var(--pw-space-2));bottom:auto;top:50%;transform:translate(-4px,-50%)}
-[data-tip][data-tip-pos="left"]:is(:hover,:focus-visible,:focus-within,[data-tip-open])::after,[data-tip][data-tip-pos="right"]:is(:hover,:focus-visible,:focus-within,[data-tip-open])::after{transform:translate(0,-50%)}
+/* tooltip: qualquer elemento com data-tip; desenhado por script num balão com seta (tip) que aponta para o elemento.
+   data-tip = texto · data-tip-title = título interno · data-tip-icon · data-tip-pos = top · bottom · left · right (vira sozinho se não couber) */
+.pw-tip{--tip-bg-a:var(--pw-surface-raised-top);--tip-bg-b:var(--pw-surface-raised-bottom);--tip-bd:var(--pw-border-strong);
+  position:fixed;z-index:1300;left:0;top:0;max-width:260px;box-sizing:border-box;padding:var(--pw-space-2) var(--pw-space-3);pointer-events:none;
+  border-radius:var(--pw-radius-sm);background:linear-gradient(180deg,var(--tip-bg-a),var(--tip-bg-b));border:1px solid var(--tip-bd);
+  box-shadow:var(--pw-shadow-sm),inset 0 1px 0 var(--pw-highlight-inset);color:var(--pw-text-body);font-family:var(--pw-font-body);
+  font-size:var(--pw-font-size-sm);line-height:var(--pw-line-height-normal);text-align:left;opacity:0;transform:translate(var(--tip-dx,0),var(--tip-dy,4px));
+  transition:opacity .14s ease,transform .14s ease;visibility:hidden}
+.pw-tip[data-open]{opacity:1;transform:none;visibility:visible}
+.pw-tip[data-side="bottom"]{--tip-dy:-4px}.pw-tip[data-side="left"]{--tip-dx:4px;--tip-dy:0}.pw-tip[data-side="right"]{--tip-dx:-4px;--tip-dy:0}
+/* seta: losango com a mesma borda do balão, metade escondida atrás dele */
+.pw-tip::before{content:"";position:absolute;width:10px;height:10px;box-sizing:border-box;background:var(--tip-bg-b);border:1px solid var(--tip-bd);transform:rotate(45deg)}
+.pw-tip[data-side="top"]::before{bottom:-6px;left:var(--tip-ax,50%);margin-left:-5px;border-top:0;border-left:0;background:var(--tip-bg-b)}
+.pw-tip[data-side="bottom"]::before{top:-6px;left:var(--tip-ax,50%);margin-left:-5px;border-bottom:0;border-right:0;background:var(--tip-bg-a)}
+.pw-tip[data-side="left"]::before{right:-6px;top:var(--tip-ay,50%);margin-top:-5px;border-bottom:0;border-left:0}
+.pw-tip[data-side="right"]::before{left:-6px;top:var(--tip-ay,50%);margin-top:-5px;border-top:0;border-right:0}
+.pw-tip .pwtp-head{display:flex;align-items:center;gap:var(--pw-space-2);margin-bottom:var(--pw-space-1);color:var(--pw-text-primary);font-weight:var(--pw-font-weight-semibold);font-size:var(--pw-font-size-md);line-height:var(--pw-line-height-tight)}
+.pw-tip .pwtp-head:empty{display:none}
+.pw-tip .pwtp-head svg,.pw-tip .pwtp-head img{width:16px;height:16px;flex:none;color:var(--pw-text-accent)}
+.pw-tip .pwtp-body:empty{display:none}
+.pw-tip .pwtp-body b,.pw-tip .pwtp-body strong{color:var(--pw-text-primary)}
+.pw-tip.only{padding:var(--pw-space-1) var(--pw-space-2);color:var(--pw-text-primary)}
+.pw-tip[data-tone="success"]{--tip-bd:var(--pw-status-success)}.pw-tip[data-tone="warning"]{--tip-bd:var(--pw-status-warning)}
+.pw-tip[data-tone="error"]{--tip-bd:var(--pw-status-error)}.pw-tip[data-tone="info"]{--tip-bd:var(--pw-status-info)}.pw-tip[data-tone="brand"]{--tip-bd:var(--pw-filament)}
+@media (prefers-reduced-motion:reduce){.pw-tip{transition:none}}
 
 /* pw-toast: aviso temporário (use PWDS.toast(...) ou a tag direto) */
 .pw-toast-region{position:fixed;z-index:1200;right:var(--pw-space-4);bottom:var(--pw-space-4);display:grid;gap:var(--pw-space-2);width:min(360px,calc(100vw - var(--pw-space-8)));pointer-events:none}
@@ -2397,16 +2408,36 @@ q.value = 5;</pre>
 </section>
 <section class="story" id="overlay-tip" data-c="overlay">
   <h2>Tooltip</h2>
-  <p class="lede">Qualquer elemento com <code>data-tip="texto"</code> mostra a dica ao passar o mouse ou receber foco. Posição com <code>data-tip-pos</code> (top · bottom · left · right). Use para explicar ícones e números, nunca para informação essencial.</p>
-  <div class="canvas"><div class="row" style="gap:28px;align-items:center;padding:28px 0">
-    <pw-button variant="secondary" icon="boost" data-tip="Aumenta o boost em +1 (máximo +50)">Boost</pw-button>
-    <pw-badge tone="aura" data-tip="Aura do Pokémon: +12% de dano" data-tip-pos="bottom">+12</pw-badge>
-    <span tabindex="0" data-tip="Esquerda" data-tip-pos="left" style="color:var(--pw-text-accent)"><pw-icon name="info" size="md"></pw-icon></span>
-    <span tabindex="0" data-tip="Direita, com texto maior que quebra em várias linhas quando passa de 240px de largura." data-tip-pos="right" style="color:var(--pw-text-accent)"><pw-icon name="help" size="md"></pw-icon></span>
-    <span data-pw-theme="mewtwo"><pw-button size="sm" icon="limit-break" label="Limit Break" data-tip="Limit Break · tema Mewtwo"></pw-button></span>
-  </div></div>
-  <pre class="code">&lt;pw-button icon="boost" data-tip="Aumenta o boost em +1"&gt;Boost&lt;/pw-button&gt;
-&lt;span tabindex="0" data-tip="Dica" data-tip-pos="right"&gt;…&lt;/span&gt;</pre>
+  <p class="lede">Qualquer elemento com <code>data-tip="texto"</code> mostra um balão ao passar o mouse (após 250ms) ou ao receber foco pelo teclado. O balão tem uma <b>seta</b> que aponta sempre para o centro do elemento e troca de lado sozinho quando não cabe na tela. Com <code>data-tip-title</code>, ganha um <b>título interno</b>; <code>data-tip-icon</code> coloca um ícone ao lado do título. Esc fecha.</p>
+  <div class="canvas"><div class="row" style="gap:32px;align-items:center;padding:48px 0;justify-content:center">
+    <pw-button variant="secondary" icon="boost" data-tip="Aumenta o boost em +1. Máximo +50.">Boost</pw-button>
+    <pw-button icon="limit-break" data-tip-title="Limit Break" data-tip-icon="limit-break" data-tip="Rompe o limite do Pokémon de +12 para +13. Consome 1 Pedra de Fogo Antiga mesmo se falhar." data-tip-pos="bottom">Romper</pw-button>
+    <pw-badge tone="aura" data-tip-title="Aura do Pokémon" data-tip="+12% de dano em todas as batalhas por 30 min." data-tip-tone="brand" data-tip-pos="right">+12</pw-badge>
+    <span tabindex="0" title="Ganhe XP derrotando Pokémon selvagens." data-tip style="color:var(--pw-text-accent)" data-tip-pos="left"><pw-icon name="info" size="md"></pw-icon></span>
+    <span tabindex="0" data-tip-title="Falta item" data-tip-icon="warning-circle" data-tip="Você precisa de 2 Pedras Adormecidas." data-tip-tone="warning" style="color:var(--pw-status-warning)"><pw-icon name="warning-circle" size="md"></pw-icon></span>
+    <span data-pw-theme="mewtwo"><pw-button size="sm" icon="gem" label="Fragmento" data-tip-title="Fragmento psíquico" data-tip-ref="#tipRich" data-tip-pos="top"></pw-button></span>
+  </div>
+  <div id="tipRich" hidden><b>2 / 3</b> coletados. Encontrado em Cerulean Cave e na Torre Pokémon.<div style="margin-top:6px"><pw-progress value="2" max="3" size="sm" tone="aura"></pw-progress></div></div></div>
+  <div class="tbl"><table><thead><tr><th>Atributo</th><th>Valores</th><th>Descrição</th></tr></thead><tbody>
+    <tr><td><code>data-tip</code></td><td>texto</td><td>Conteúdo do balão. Vazio + <code>title</code> no elemento: usa o <code>title</code> (e o remove para não abrir o balão nativo do navegador)</td></tr>
+    <tr><td><code>data-tip-title</code></td><td>texto</td><td>Título interno, em destaque acima do texto</td></tr>
+    <tr><td><code>data-tip-icon</code></td><td>nome de ícone</td><td>Ícone ao lado do título</td></tr>
+    <tr><td><code>data-tip-ref</code></td><td>seletor (<code>#id</code>)</td><td>Conteúdo rico copiado de um elemento escondido (negrito, barra, lista curta). Sem botões ou links: tooltip não recebe foco</td></tr>
+    <tr><td><code>data-tip-pos</code></td><td>top · bottom · left · right</td><td>Lado preferido; se não couber, vira para o oposto. A seta acompanha</td></tr>
+    <tr><td><code>data-tip-tone</code></td><td>success · warning · error · info · brand</td><td>Borda e seta na cor do status</td></tr>
+    <tr><td><code>data-tip-delay</code> · <code>data-tip-width</code></td><td>ms (250) · CSS (260px)</td><td>Atraso ao passar o mouse · largura máxima</td></tr>
+  </tbody></table></div>
+  <pre class="code">&lt;pw-button icon="limit-break"
+  data-tip-title="Limit Break"
+  data-tip="Rompe o limite de +12 para +13."
+  data-tip-pos="bottom"&gt;Romper&lt;/pw-button&gt;
+
+&lt;span tabindex="0" title="Ganhe XP derrotando Pokémon." data-tip&gt;…&lt;/span&gt;   &lt;!-- usa o title --&gt;</pre>
+  <ul class="rules">
+    <li>Tooltip explica, não decide: nada essencial ou interativo dentro dele (use um diálogo ou drawer para isso).</li>
+    <li>Elementos que não são botões ou links precisam de <code>tabindex="0"</code> para abrir pelo teclado. O balão é ligado ao elemento por <code>aria-describedby</code>.</li>
+    <li>Título curto (até 3 palavras) e texto de até duas linhas; para mais, use <code>data-tip-width</code> com moderação.</li>
+  </ul>
 </section>
 <section class="story" id="overlay-toast" data-c="overlay">
   <h2>Toast</h2>
@@ -3732,6 +3763,40 @@ class PWSearch extends HTMLElement{
     else if(e.key==='Home'||e.key==='End'){if(this._act>-1)this._setAct(-1)}}
 }
 customElements.define('pw-search',PWSearch);
+
+/* ---------- tooltip (data-tip): balão com título, seta e posição automática ---------- */
+(function(){if(window.__pwTip)return;window.__pwTip=1;
+  var tip,cur,timer,uid='pwtip';
+  function el(){if(tip)return tip;tip=document.createElement('div');tip.className='pw-tip';tip.id=uid;tip.setAttribute('role','tooltip');
+    tip.innerHTML='<div class="pwtp-head"></div><div class="pwtp-body"></div>';document.body.appendChild(tip);return tip}
+  function host(t){var h=t&&t.closest&&t.closest('[data-tip],[data-tip-title],[data-tip-ref]');return h}
+  function content(h){/* title nativo: data-tip vazio usa o title do elemento e o remove para não aparecer o balão do navegador */
+    if(h.hasAttribute('title')&&!h.getAttribute('data-tip')){h.setAttribute('data-tip',h.getAttribute('title'));h.removeAttribute('title')}
+    var ref=h.getAttribute('data-tip-ref'),src=ref&&document.querySelector(ref);
+    return {title:h.getAttribute('data-tip-title')||'',text:src?null:(h.getAttribute('data-tip')||''),html:src?src.innerHTML:null,icon:h.getAttribute('data-tip-icon')}}
+  function themeOf(h){var t=h.closest('[theme]:not(pw-card-header),[data-pw-theme]');return t?(t.getAttribute('data-pw-theme')||t.getAttribute('theme')):''}
+  function place(h){var t=el(),r=h.getBoundingClientRect(),g=8,vw=innerWidth,vh=innerHeight,w=t.offsetWidth,ht=t.offsetHeight,
+      want=h.getAttribute('data-tip-pos')||'top',order={top:['top','bottom','right','left'],bottom:['bottom','top','right','left'],left:['left','right','top','bottom'],right:['right','left','top','bottom']}[want]||['top','bottom'];
+    var fits={top:r.top-ht-g>4,bottom:r.bottom+ht+g<vh-4,left:r.left-w-g>4,right:r.right+w+g<vw-4},side=order.find(s=>fits[s])||want,x,y;
+    if(side==='top'||side==='bottom'){x=r.left+r.width/2-w/2;y=side==='top'?r.top-ht-g:r.bottom+g}else{y=r.top+r.height/2-ht/2;x=side==='left'?r.left-w-g:r.right+g}
+    var cx=Math.max(6,Math.min(vw-w-6,x)),cy=Math.max(6,Math.min(vh-ht-6,y));
+    t.style.left=Math.round(cx)+'px';t.style.top=Math.round(cy)+'px';t.setAttribute('data-side',side);
+    t.style.setProperty('--tip-ax',Math.max(12,Math.min(w-12,r.left+r.width/2-cx))+'px');t.style.setProperty('--tip-ay',Math.max(10,Math.min(ht-10,r.top+r.height/2-cy))+'px')}
+  function show(h){var c=content(h),t=el();if(!c.title&&!c.text&&!c.html)return;cur=h;
+    var hd=t.firstChild,bd=t.lastChild;hd.innerHTML=(c.icon?pwIcon(c.icon):'')+(c.title?'<span></span>':'');if(c.title)hd.lastChild.textContent=c.title;
+    if(c.html!==null)bd.innerHTML=c.html;else bd.textContent=c.text;t.classList.toggle('only',!c.title&&c.html===null);
+    var th=themeOf(h);th?t.setAttribute('data-pw-theme',th):t.removeAttribute('data-pw-theme');var tn=h.getAttribute('data-tip-tone');tn?t.setAttribute('data-tone',tn):t.removeAttribute('data-tone');
+    t.style.maxWidth=h.getAttribute('data-tip-width')||'';t.removeAttribute('data-open');place(h);requestAnimationFrame(()=>{if(cur===h){place(h);t.setAttribute('data-open','')}});
+    var d=h.getAttribute('aria-describedby')||'';if(d.indexOf(uid)<0)h.setAttribute('aria-describedby',(d+' '+uid).trim())}
+  function hide(){clearTimeout(timer);if(!cur)return;var d=(cur.getAttribute('aria-describedby')||'').replace(uid,'').trim();d?cur.setAttribute('aria-describedby',d):cur.removeAttribute('aria-describedby');cur=null;if(tip)tip.removeAttribute('data-open')}
+  document.addEventListener('pointerover',e=>{var h=host(e.target);if(h===cur)return;if(!h){if(cur&&!cur.contains(e.target))hide();return}
+    clearTimeout(timer);var dl=parseFloat(h.getAttribute('data-tip-delay'));timer=setTimeout(()=>show(h),isNaN(dl)?(cur?0:250):dl)},true);
+  document.addEventListener('pointerout',e=>{var h=host(e.target);if(h&&h===cur&&!h.contains(e.relatedTarget))hide();else if(h&&!cur)clearTimeout(timer)},true);
+  document.addEventListener('focusin',e=>{var h=host(e.target);if(h&&e.target.matches&&e.target.matches(':focus-visible'))show(h)});
+  document.addEventListener('focusout',e=>{if(cur&&cur.contains(e.target))hide()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&cur)hide()});
+  addEventListener('scroll',()=>{if(cur)place(cur)},true);addEventListener('resize',()=>{if(cur)place(cur)});
+})();
 
 window.PWDS=Object.assign(window.PWDS||{},{toast:pwToast,icons:PW_FILL,types:PW_TYPES,registerIcon:function(n,d,r){PW_FILL[n]=d;if(r)PW_FILL_RULE[n]=r}});
 /* @pwds-js-end */
