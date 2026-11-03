@@ -15,6 +15,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.31.1
+
+- **pw-card quaternary**: o degradê da borda passa de vertical para diagonal: aceso no canto superior esquerdo e apagado no inferior direito, como no tertiary.
+
 ## 0.31.0
 
 - **Tabela ranking com troféus**: a classe `.pw-table.trophies` troca os losangos por troféus.

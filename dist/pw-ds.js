@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.31.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.31.1 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -128,7 +128,7 @@ class PWCard extends HTMLElement{
       var qr=function(o,r){return '<rect x="'+(0.5-o)+'" y="'+(0.5-o)+'" width="'+(W-1+2*o)+'" height="'+(H-1+2*o)+'" rx="'+(r+o)+'"'};
       this._svg.innerHTML='<defs>'+
         '<radialGradient id="'+u+'-qbg" cx=".5" cy=".35" r=".85"><stop offset="0" style="stop-color:var(--pw-qua-bg-center)"/><stop offset="1" style="stop-color:var(--pw-qua-bg-edge)"/></radialGradient>'+
-        '<linearGradient id="'+u+'-qst" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--pw-qua-stroke-top)"/><stop offset=".35" style="stop-color:var(--pw-qua-stroke-mid)"/><stop offset="1" style="stop-color:var(--pw-qua-stroke-bottom)"/></linearGradient>'+
+        '<linearGradient id="'+u+'-qst" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pw-qua-stroke-top)"/><stop offset=".35" style="stop-color:var(--pw-qua-stroke-mid)"/><stop offset="1" style="stop-color:var(--pw-qua-stroke-bottom)"/></linearGradient>'+
         '<linearGradient id="'+u+'-qin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--pw-black)" stop-opacity=".55"/><stop offset=".22" style="stop-color:var(--pw-black)" stop-opacity="0"/></linearGradient></defs>'+
         '<g class="l-art">'+qr(0,6)+' class="l-bg" fill="url(#'+u+'-qbg)" style="fill-opacity:var(--pw-qua-bg-op)"/>'+
         qr(0,6)+' fill="url(#'+u+'-qin)"/>'+
@@ -971,5 +971,5 @@ customElements.define('pw-search',PWSearch);
 })();
 
 window.PWDS=Object.assign(window.PWDS||{},{toast:pwToast,icons:PW_FILL,types:PW_TYPES,registerIcon:function(n,d,r){PW_FILL[n]=d;if(r)PW_FILL_RULE[n]=r}});
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.31.0"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.31.1"});
 })();

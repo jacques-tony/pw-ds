@@ -1623,7 +1623,7 @@ document.querySelector('pw-card-header').play(); // repete a abertura</pre>
 </section>
 <section class="story" id="quaternary">
   <h2>Quaternary</h2>
-  <p class="lede">Card para blocos dentro de um tertiary: fundo mais escuro e quase opaco, sombra interna no topo e traçado de 1px que acende em cima e some embaixo. Isso cria um "poço" que contrasta e se destaca sobre o tertiary. As cores derivam dos tokens do tertiary, então funciona em todos os temas, inclusive nos 18 tipos.</p>
+  <p class="lede">Card para blocos dentro de um tertiary: fundo mais escuro e quase opaco, sombra interna no topo e traçado de 1px em degradê diagonal, aceso no canto superior esquerdo e apagado no inferior direito. Isso cria um "poço" que contrasta e se destaca sobre o tertiary. As cores derivam dos tokens do tertiary, então funciona em todos os temas, inclusive nos 18 tipos.</p>
   <pre class="code">&lt;pw-card variant="tertiary"&gt;
   &lt;pw-card variant="quaternary"&gt;…&lt;/pw-card&gt;
 &lt;/pw-card&gt;</pre>
@@ -1634,7 +1634,7 @@ document.querySelector('pw-card-header').play(); // repete a abertura</pre>
   <div class="tbl"><table><thead><tr><th>Token</th><th>Padrão</th><th>Uso</th></tr></thead><tbody>
     <tr><td><code>--pw-qua-bg-center</code> · <code>--pw-qua-bg-edge</code></td><td>fundo do tertiary escurecido (45% · 30%)</td><td>Fundo radial</td></tr>
     <tr><td><code>--pw-qua-bg-op</code></td><td>.96</td><td>Opacidade do fundo</td></tr>
-    <tr><td><code>--pw-qua-stroke-top</code> · <code>-mid</code> · <code>-bottom</code></td><td>traçados 3 · 1 · 0 do tertiary</td><td>Traçado vertical, aceso no topo</td></tr>
+    <tr><td><code>--pw-qua-stroke-top</code> · <code>-mid</code> · <code>-bottom</code></td><td>traçados 3 · 1 · 0 do tertiary</td><td>Traçado em degradê diagonal (aceso no canto superior esquerdo)</td></tr>
   </tbody></table></div>
 </section>
 
@@ -2998,7 +2998,7 @@ class PWCard extends HTMLElement{
       var qr=function(o,r){return '<rect x="'+(0.5-o)+'" y="'+(0.5-o)+'" width="'+(W-1+2*o)+'" height="'+(H-1+2*o)+'" rx="'+(r+o)+'"'};
       this._svg.innerHTML='<defs>'+
         '<radialGradient id="'+u+'-qbg" cx=".5" cy=".35" r=".85"><stop offset="0" style="stop-color:var(--pw-qua-bg-center)"/><stop offset="1" style="stop-color:var(--pw-qua-bg-edge)"/></radialGradient>'+
-        '<linearGradient id="'+u+'-qst" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--pw-qua-stroke-top)"/><stop offset=".35" style="stop-color:var(--pw-qua-stroke-mid)"/><stop offset="1" style="stop-color:var(--pw-qua-stroke-bottom)"/></linearGradient>'+
+        '<linearGradient id="'+u+'-qst" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pw-qua-stroke-top)"/><stop offset=".35" style="stop-color:var(--pw-qua-stroke-mid)"/><stop offset="1" style="stop-color:var(--pw-qua-stroke-bottom)"/></linearGradient>'+
         '<linearGradient id="'+u+'-qin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--pw-black)" stop-opacity=".55"/><stop offset=".22" style="stop-color:var(--pw-black)" stop-opacity="0"/></linearGradient></defs>'+
         '<g class="l-art">'+qr(0,6)+' class="l-bg" fill="url(#'+u+'-qbg)" style="fill-opacity:var(--pw-qua-bg-op)"/>'+
         qr(0,6)+' fill="url(#'+u+'-qin)"/>'+
