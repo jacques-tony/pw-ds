@@ -18,6 +18,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.32.2
+
+- **pw-card-header banner**: as linhas finas de baixo, nas laterais, foram removidas. Ficam só as linhas superiores, com o ponto de luz.
+
 ## 0.32.1
 
 - Storybook: o playground do Card Header ganhou as opções `variant` (padrão ou banner), `size` (para o banner) e mais temas elementais.

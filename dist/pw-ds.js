@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.32.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.32.2 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -261,8 +261,6 @@ class PWCardHeader extends HTMLElement{
       '<g class="bn-lines">'+
         '<rect class="bn-line l" x="'+f(lxL-L)+'" y="'+f(ly-1)+'" width="'+L+'" height="2" fill="url(#'+u+'-ll)"/>'+
         '<rect class="bn-line r" x="'+f(lxR)+'" y="'+f(ly-1)+'" width="'+L+'" height="2" fill="url(#'+u+'-lr)"/>'+
-        '<rect class="bn-line l" x="'+f(lxL-L*.6)+'" y="'+f(bot+3)+'" width="'+f(L*.6)+'" height="1" fill="url(#'+u+'-ll)" opacity=".6"/>'+
-        '<rect class="bn-line r" x="'+f(lxR)+'" y="'+f(bot+3)+'" width="'+f(L*.6)+'" height="1" fill="url(#'+u+'-lr)" opacity=".6"/>'+
         '<rect class="bn-glint l" x="'+f(lxL-24)+'" y="'+f(ly-1.5)+'" width="24" height="3" rx="1.5" style="fill:var(--pw-white)"/>'+
         '<rect class="bn-glint r" x="'+f(lxR)+'" y="'+f(ly-1.5)+'" width="24" height="3" rx="1.5" style="fill:var(--pw-white)"/>'+
       '</g><g class="bn-wings">'+
@@ -1015,5 +1013,5 @@ customElements.define('pw-search',PWSearch);
 })();
 
 window.PWDS=Object.assign(window.PWDS||{},{toast:pwToast,icons:PW_FILL,types:PW_TYPES,registerIcon:function(n,d,r){PW_FILL[n]=d;if(r)PW_FILL_RULE[n]=r}});
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.32.1"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.32.2"});
 })();
