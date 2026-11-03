@@ -16,6 +16,17 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.32.0
+
+- **pw-card-header `variant="banner"`**: título de destaque no estilo HUD.
+  - Visual: faixa com pontas chanfradas, duas asas em chevron de cada lado e linhas longas para fora.
+  - `size` sm (40), md (52) e lg (64px); ícone só quando definido.
+  - Ajustes: `--bn-wing`, `--bn-line` e `--bn-speed`.
+  - Animação de abertura: a faixa estica do centro, as asas deslizam, as linhas correm e o texto se junta.
+  - Animação ambiente: brilho atravessa a faixa, as asas pulsam em sequência e um ponto de luz corre pelas linhas.
+  - Usa as cores do tema, aceita os valores de `animate` e `.play()` e respeita reduzir movimento.
+
 ## 0.31.1
 
 - **pw-card quaternary**: o degradê da borda passa de vertical para diagonal: aceso no canto superior esquerdo e apagado no inferior direito, como no tertiary.

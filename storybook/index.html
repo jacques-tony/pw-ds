@@ -399,6 +399,47 @@ pw-card-header .pwh-flash{opacity:0}
 @keyframes pwh-label{from{opacity:0;transform:scale(1.08);filter:blur(3px)}to{opacity:1;transform:none;filter:blur(0)}}
 @keyframes pwh-flash{0%{opacity:0}35%{opacity:1}100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){pw-card-header :is(.pwh-bolts,.pwh-sparks,.pwh-motes){display:none}pw-card-header :is(.pwh-shim,.pwh-trace){animation:none!important}pw-card-header[data-opening] :is(.pwh-frame,.pwh-label,.pwh-flash){animation-duration:.01s!important;animation-delay:0s!important}}
+/* ---- pw-card-header variant="banner": faixa chanfrada com asas e linhas (HUD) ---- */
+pw-card-header[variant="banner"]{justify-self:center;--bn-wing:84px;--bn-line:220px;height:52px;padding:0 calc(var(--bn-wing) + var(--pw-space-8));color:var(--pw-on-metal);
+  font:var(--pw-font-weight-bold) var(--pw-font-size-xl)/1 var(--pw-font-body);letter-spacing:.01em;text-transform:none}
+pw-card-header[variant="banner"][size="sm"]{--bn-wing:60px;--bn-line:140px;height:40px;font-size:var(--pw-font-size-md)}
+pw-card-header[variant="banner"][size="lg"]{--bn-wing:110px;--bn-line:300px;height:64px;font-size:var(--pw-font-size-2xl)}
+pw-card-header[variant="banner"] .pwh-label{text-shadow:0 1px 0 color-mix(in srgb,var(--pw-white) 35%,transparent);transform:translateY(-1px)}
+pw-card-header[variant="banner"]:not([icon]) .pwh-label::before,pw-card-header[variant="banner"]:not([icon]) .pwh-label::after{content:none}
+pw-card-header[variant="banner"] .pwh-label::before,pw-card-header[variant="banner"] .pwh-label::after{color:inherit;text-shadow:none}
+pw-card-header[variant="banner"] svg *{transform-box:fill-box}
+pw-card-header[variant="banner"] .bn-line.l{transform-origin:right center}pw-card-header[variant="banner"] .bn-line.r{transform-origin:left center}
+pw-card-header[variant="banner"] .bn-glint{opacity:0}
+pw-card-header[variant="banner"] .bn-halo{opacity:.7}
+/* abertura: linhas saem do centro, asas deslizam para fora, faixa abre e o texto entra */
+pw-card-header[variant="banner"][data-opening] .pwh-frame{animation:none}
+pw-card-header[variant="banner"][data-opening] .bn-band{animation:pwbn-band var(--hdr-intro) cubic-bezier(.2,.8,.2,1) both;transform-origin:center}
+pw-card-header[variant="banner"][data-opening] .bn-wing.l{animation:pwbn-wing-l calc(var(--hdr-intro) * .9) cubic-bezier(.2,.8,.2,1) calc(var(--hdr-intro) * .25) both}
+pw-card-header[variant="banner"][data-opening] .bn-wing.r{animation:pwbn-wing-r calc(var(--hdr-intro) * .9) cubic-bezier(.2,.8,.2,1) calc(var(--hdr-intro) * .25) both}
+pw-card-header[variant="banner"][data-opening] .bn-wing.w2{animation-delay:calc(var(--hdr-intro) * .4)}
+pw-card-header[variant="banner"][data-opening] .bn-line{animation:pwbn-line calc(var(--hdr-intro) * 1.1) cubic-bezier(.5,0,.2,1) calc(var(--hdr-intro) * .45) both}
+pw-card-header[variant="banner"][data-opening] .bn-halo{animation:pwbn-halo calc(var(--hdr-intro) * 1.6) ease-out both}
+pw-card-header[variant="banner"][data-opening] .pwh-label{animation:pwbn-label calc(var(--hdr-intro) * .7) ease-out calc(var(--hdr-intro) * .55) both}
+@keyframes pwbn-band{0%{transform:scaleX(0);opacity:0}40%{opacity:1}70%{transform:scaleX(1.04)}100%{transform:none}}
+@keyframes pwbn-wing-l{from{transform:translateX(60%);opacity:0}to{transform:none;opacity:1}}
+@keyframes pwbn-wing-r{from{transform:translateX(-60%);opacity:0}to{transform:none;opacity:1}}
+@keyframes pwbn-line{from{transform:scaleX(0)}to{transform:none}}
+@keyframes pwbn-halo{0%{opacity:0}30%{opacity:1}100%{opacity:.7}}
+@keyframes pwbn-label{from{opacity:0;letter-spacing:.3em;filter:blur(2px)}to{opacity:1;letter-spacing:.01em;filter:none}}
+/* ambiente: brilho atravessa a faixa, asas pulsam em sequência e um ponto de luz corre pelas linhas */
+pw-card-header[variant="banner"]:is([animate=""],[animate="both"],[animate="ambient"]) .bn-sweep{animation:pwbn-sweep var(--bn-speed,3.6s) ease-in-out infinite}
+pw-card-header[variant="banner"]:is([animate=""],[animate="both"],[animate="ambient"]) .bn-wing.w1{animation:pwbn-pulse var(--bn-speed,3.6s) ease-in-out infinite}
+pw-card-header[variant="banner"]:is([animate=""],[animate="both"],[animate="ambient"]) .bn-wing.w2{animation:pwbn-pulse var(--bn-speed,3.6s) ease-in-out calc(var(--bn-speed,3.6s) * .15) infinite}
+pw-card-header[variant="banner"]:is([animate=""],[animate="both"],[animate="ambient"]) .bn-glint.l{animation:pwbn-glint-l var(--bn-speed,3.6s) cubic-bezier(.4,0,.6,1) infinite}
+pw-card-header[variant="banner"]:is([animate=""],[animate="both"],[animate="ambient"]) .bn-glint.r{animation:pwbn-glint-r var(--bn-speed,3.6s) cubic-bezier(.4,0,.6,1) infinite}
+pw-card-header[variant="banner"]:is([animate=""],[animate="both"],[animate="ambient"]) .bn-halo{animation:pwbn-breath calc(var(--bn-speed,3.6s) * 1.5) ease-in-out infinite}
+pw-card-header[variant="banner"][data-opening] :is(.bn-sweep,.bn-glint){animation:none}
+@keyframes pwbn-sweep{0%,30%{transform:translateX(0)}75%,100%{transform:translateX(calc(var(--bn-w,600px) * 1.3))}}
+@keyframes pwbn-pulse{0%,55%,100%{filter:none}70%{filter:brightness(1.45) drop-shadow(0 0 6px var(--pw-glow))}}
+@keyframes pwbn-glint-l{0%,40%{transform:translateX(0);opacity:0}45%{opacity:1}85%{opacity:0}100%{transform:translateX(calc(var(--bn-line,220px) * -1));opacity:0}}
+@keyframes pwbn-glint-r{0%,40%{transform:translateX(0);opacity:0}45%{opacity:1}85%{opacity:0}100%{transform:translateX(var(--bn-line,220px));opacity:0}}
+@keyframes pwbn-breath{0%,100%{opacity:.55}50%{opacity:.85}}
+@media (prefers-reduced-motion:reduce){pw-card-header[variant="banner"] *{animation:none!important}}
 /* ===================== COMPONENT: pw-tabs / pw-tab ===================== */
 pw-tabs{position:relative;display:inline-flex;flex-wrap:wrap;gap:var(--pw-space-2);align-items:center;
   --tab-pad:var(--pw-space-2);--tab-gap:var(--pw-space-1);--tab-fs:var(--pw-font-size-sm);--tab-ic:14px}
@@ -1278,7 +1319,7 @@ pw-search .pws-live{position:absolute;width:1px;height:1px;overflow:hidden;clip-
   </nav>
   <button type="button" class="comp-btn" data-comp="header" aria-controls="main">Card Header</button>
   <nav class="sub" data-for="header">
-    <a href="#header">Visão geral</a><a href="#header-playground">Playground</a><a href="#header-animacao">Animação</a><a href="#header-composicao">Composição com o card</a>
+    <a href="#header">Visão geral</a><a href="#header-playground">Playground</a><a href="#header-animacao">Animação</a><a href="#header-banner">Banner</a><a href="#header-composicao">Composição com o card</a>
   </nav>
   <button type="button" class="comp-btn" data-comp="tabs" aria-controls="main">Tabs</button>
   <nav class="sub" data-for="tabs">
@@ -1559,6 +1600,24 @@ pw-search .pws-live{position:absolute;width:1px;height:1px;overflow:hidden;clip-
 &lt;pw-card-header animate="intro" style="--hdr-intro:1.2s"&gt;Ascensão Estelar&lt;/pw-card-header&gt;
 
 document.querySelector('pw-card-header').play(); // repete a abertura</pre>
+<h3 id="header-banner" style="scroll-margin-top:24px">Variante banner</h3>
+  <p class="lede"><code>variant="banner"</code> é um título de destaque no estilo HUD: faixa central com pontas chanfradas, duas asas em chevron de cada lado e linhas longas que se estendem para fora. Use para avisos de estado da partida (esperando renascer, vitória, raid começando). Com <code>animate</code>, abre do centro: a faixa estica, as asas deslizam para fora, as linhas correm até as pontas e o texto se junta. Depois, um brilho atravessa a faixa, as asas pulsam e um ponto de luz corre pelas linhas. Cores do tema.</p>
+  <div class="canvas" id="bnCanvas" style="display:grid;gap:34px;justify-items:center;padding:48px 28px;overflow:hidden">
+    <pw-card-header variant="banner" animate>Aguarde para renascer</pw-card-header>
+    <pw-card-header variant="banner" animate theme="planta">Wait to Respawn</pw-card-header>
+    <pw-card-header variant="banner" animate theme="mewtwo" size="lg" icon="star">Raid lendária</pw-card-header>
+    <div class="row" style="gap:40px;justify-content:center"><pw-card-header variant="banner" animate theme="fogo" size="sm">Vitória</pw-card-header><pw-card-header variant="banner" animate theme="agua" size="sm">Turno inimigo</pw-card-header></div>
+    <button class="btn" type="button" id="bnReplay">Repetir abertura</button>
+  </div>
+  <pre class="code">&lt;pw-card-header variant="banner" animate&gt;Aguarde para renascer&lt;/pw-card-header&gt;
+&lt;pw-card-header variant="banner" animate theme="planta" size="lg"&gt;Wait to Respawn&lt;/pw-card-header&gt;</pre>
+  <div class="tbl"><table><thead><tr><th>Configuração</th><th>Padrão</th><th>Descrição</th></tr></thead><tbody>
+    <tr><td><code>size</code></td><td>md</td><td>sm 40 · md 52 · lg 64px de altura</td></tr>
+    <tr><td><code>animate</code></td><td>sem animação</td><td>Mesmos valores da variante padrão: vazio/both, intro, ambient, none; <code>.play()</code> repete</td></tr>
+    <tr><td><code>icon</code></td><td>sem ícone</td><td>Na banner, o ícone só aparece quando definido</td></tr>
+    <tr><td><code>--bn-wing</code> · <code>--bn-line</code></td><td>84px · 220px</td><td>Espaço das asas de cada lado · comprimento das linhas laterais (saem para fora do elemento)</td></tr>
+    <tr><td><code>--bn-speed</code></td><td>3.6s</td><td>Ciclo do brilho, das asas e do ponto de luz</td></tr>
+  </tbody></table></div>
   <h3 id="header-composicao" style="scroll-margin-top:24px">Composição com o card</h3>
   <p class="lede">O header é um componente independente. Para usar como título de janela, envolva os dois em <code>.pw-titled</code>: o header fica centralizado sobre a borda superior e cobre a linha do card.</p>
   <div class="canvas"><div class="row">
@@ -3048,9 +3107,9 @@ customElements.define('pw-card',PWCard);
 var PW_ICONS={ /* provisório: será substituído pelo componente Icon */
   sparkle:'"\\2726"', star:'"\\2605"', diamond:'"\\25C6"', bolt:'"\\26A1\\FE0E"' };
 class PWCardHeader extends HTMLElement{
-  static get observedAttributes(){return ['icon','animate']}
+  static get observedAttributes(){return ['icon','animate','variant']}
   attributeChangedCallback(n,o,v){var i=PW_ICONS[this.getAttribute('icon')];i?this.style.setProperty('--hdr-icon',i):this.style.removeProperty('--hdr-icon');
-    if(n==='animate'&&this._init&&o!==v)this.play()}
+    if(n==='animate'&&this._init&&o!==v)this.play();if(n==='variant'&&this._init&&o!==v){this._w=0;this.render();this.play()}}
   /* toca a animação de abertura (se animate permitir); pode ser chamada de novo para repetir */
   play(){var a=this.getAttribute('animate');this._cfg();this._start();if(a===null||a==='none'||a==='ambient')return;
     this.removeAttribute('data-opening');void this.offsetWidth;this.setAttribute('data-opening','');
@@ -3062,7 +3121,7 @@ class PWCardHeader extends HTMLElement{
   /* ponto no perímetro (t de 0 a 1) e a normal para fora */
   _at(t){var P=this._poly,L=this._len,tot=this._tot,d=((t%1)+1)%1*tot;
     for(var i=0;i<P.length;i++){if(d<=L[i]||i===P.length-1){var A=P[i],B=P[(i+1)%P.length],f=Math.min(1,d/L[i]);return [A[0]+(B[0]-A[0])*f,A[1]+(B[1]-A[1])*f,(B[1]-A[1])/L[i],-(B[0]-A[0])/L[i]]}d-=L[i]}}
-  _start(){if(this._raf||!this._svg||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  _start(){if(this.getAttribute('variant')==='banner')return;if(this._raf||!this._svg||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
     var last=performance.now(),step=now=>{this._raf=0;if(!this.isConnected||!this._ambient())return;
       var dt=Math.min(.05,(now-last)/1000);last=now;if(this._vis!==false&&!document.hidden)this._tick(now/1000,dt);this._raf=requestAnimationFrame(step)};
     this._raf=requestAnimationFrame(step)}
@@ -3106,9 +3165,53 @@ class PWCardHeader extends HTMLElement{
     this._io=new IntersectionObserver(e=>{this._vis=e[e.length-1].isIntersecting});this._io.observe(this);this.render();this.play();
   }
   disconnectedCallback(){if(this._ro)this._ro.disconnect();if(this._io)this._io.disconnect();cancelAnimationFrame(this._raf);this._raf=0}
+  /* variant="banner": faixa central chanfrada + asas em chevron + linhas longas para os lados (estilo HUD) */
+  _renderBanner(W,H){var u=this._uid,cs=getComputedStyle(this),wing=parseFloat(cs.getPropertyValue('--bn-wing'))||H*1.6,L=parseFloat(cs.getPropertyValue('--bn-line'))||200;
+    var top=H*.14,bot=H*.86,sl=(bot-top)*.62,b0=wing,b1=W-wing,f=v=>v.toFixed(1);
+    var P=pts=>'M'+pts.map(p=>f(p[0])+' '+f(p[1])).join(' L')+' Z';
+    var band=P([[b0,top],[b1,top],[b1-sl,bot],[b0+sl,bot]]);
+    var inner=P([[b0+6,top+4],[b1-6,top+4],[b1-sl-2,bot-4],[b0+sl+2,bot-4]]);
+    var hi=P([[b0+4,top+2],[b1-4,top+2],[b1-4-sl*.25,top+(bot-top)*.38],[b0+4+sl*.25,top+(bot-top)*.38]]);
+    var wg=function(x,w,t,b,side){var k=(b-t)/(bot-top)*sl;return side<0?P([[x-w,t],[x,t],[x+k,b],[x+k-w,b]]):P([[x,t],[x+w,t],[x+w-k,b],[x-k,b]])};
+    var g1=H*.12,w1=H*.32,w2=H*.2,t2=top+(bot-top)*.18,b2=bot-(bot-top)*.18;
+    var wl1=wg(b0-g1,w1,top,bot,-1),wl2=wg(b0-g1*2-w1,w2,t2,b2,-1),wr1=wg(b1+g1,w1,top,bot,1),wr2=wg(b1+g1*2+w1,w2,t2,b2,1);
+    var ly=top+1.5,lxL=b0-g1*3-w1-w2,lxR=W-lxL;
+    this._svg.setAttribute('width',W);this._svg.setAttribute('height',H);this._svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    var lg=(id,x1,x2)=>'<linearGradient id="'+u+id+'" x1="'+x1+'" y1="0" x2="'+x2+'" y2="0"><stop offset="0" style="stop-color:var(--pw-filament)"/><stop offset=".55" style="stop-color:var(--pw-metal-1)" stop-opacity=".55"/><stop offset="1" style="stop-color:var(--pw-metal-1)" stop-opacity="0"/></linearGradient>';
+    this._svg.innerHTML='<defs>'+
+      '<linearGradient id="'+u+'-bf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--pw-metal-0)"/><stop offset=".45" style="stop-color:var(--pw-metal-1)"/><stop offset="1" style="stop-color:var(--pw-metal-2)"/></linearGradient>'+
+      '<linearGradient id="'+u+'-wf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--pw-metal-0)"/><stop offset="1" style="stop-color:var(--pw-metal-1)"/></linearGradient>'+
+      lg('-ll',1,0)+lg('-lr',0,1)+
+      '<linearGradient id="'+u+'-sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--pw-white)" stop-opacity="0"/><stop offset=".5" style="stop-color:var(--pw-white)" stop-opacity=".55"/><stop offset="1" style="stop-color:var(--pw-white)" stop-opacity="0"/></linearGradient>'+
+      '<radialGradient id="'+u+'-gl" cx=".5" cy=".5" r=".5"><stop offset="0" style="stop-color:var(--pw-glow)" stop-opacity=".5"/><stop offset="1" style="stop-color:var(--pw-glow)" stop-opacity="0"/></radialGradient>'+
+      '<filter id="'+u+'-bl" x="-20%" y="-80%" width="140%" height="260%"><feGaussianBlur stdDeviation="5"/></filter>'+
+      '<clipPath id="'+u+'-bc"><path d="'+band+'"/></clipPath></defs>'+
+      '<ellipse class="bn-halo" cx="'+W/2+'" cy="'+H/2+'" rx="'+f((b1-b0)*.7)+'" ry="'+f(H*1.4)+'" fill="url(#'+u+'-gl)"/>'+
+      '<g class="bn-lines">'+
+        '<rect class="bn-line l" x="'+f(lxL-L)+'" y="'+f(ly-1)+'" width="'+L+'" height="2" fill="url(#'+u+'-ll)"/>'+
+        '<rect class="bn-line r" x="'+f(lxR)+'" y="'+f(ly-1)+'" width="'+L+'" height="2" fill="url(#'+u+'-lr)"/>'+
+        '<rect class="bn-line l" x="'+f(lxL-L*.6)+'" y="'+f(bot+3)+'" width="'+f(L*.6)+'" height="1" fill="url(#'+u+'-ll)" opacity=".6"/>'+
+        '<rect class="bn-line r" x="'+f(lxR)+'" y="'+f(bot+3)+'" width="'+f(L*.6)+'" height="1" fill="url(#'+u+'-lr)" opacity=".6"/>'+
+        '<rect class="bn-glint l" x="'+f(lxL-24)+'" y="'+f(ly-1.5)+'" width="24" height="3" rx="1.5" style="fill:var(--pw-white)"/>'+
+        '<rect class="bn-glint r" x="'+f(lxR)+'" y="'+f(ly-1.5)+'" width="24" height="3" rx="1.5" style="fill:var(--pw-white)"/>'+
+      '</g><g class="bn-wings">'+
+        '<path class="bn-wing l w1" d="'+wl1+'" fill="url(#'+u+'-wf)" stroke="var(--pw-filament)" stroke-width="1"/>'+
+        '<path class="bn-wing l w2" d="'+wl2+'" fill="url(#'+u+'-wf)" opacity=".75"/>'+
+        '<path class="bn-wing r w1" d="'+wr1+'" fill="url(#'+u+'-wf)" stroke="var(--pw-filament)" stroke-width="1"/>'+
+        '<path class="bn-wing r w2" d="'+wr2+'" fill="url(#'+u+'-wf)" opacity=".75"/>'+
+      '</g><g class="bn-band">'+
+        '<path d="'+band+'" fill="url(#'+u+'-bf)" filter="url(#'+u+'-bl)" opacity=".55"/>'+
+        '<path d="'+band+'" fill="url(#'+u+'-bf)" stroke="var(--pw-filament)" stroke-width="1.5"/>'+
+        '<path d="'+hi+'" style="fill:var(--pw-white)" opacity=".22"/>'+
+        '<path d="'+inner+'" fill="none" stroke="var(--pw-white)" stroke-opacity=".35" stroke-width="1"/>'+
+        '<rect x="'+f(b0+sl)+'" y="'+f(bot+2)+'" width="'+f(b1-b0-sl*2)+'" height="2" style="fill:var(--pw-filament)" opacity=".8"/>'+
+        '<g clip-path="url(#'+u+'-bc)"><rect class="bn-sweep" x="'+f(b0-W*.3)+'" y="0" width="'+f(W*.25)+'" height="'+H+'" fill="url(#'+u+'-sw)"/></g>'+
+      '</g>';
+    this.style.setProperty('--bn-w',W+'px')}
   render(){
     var W=Math.round(this.offsetWidth),H=Math.round(this.offsetHeight);
     if(!W||!H||(W===this._w&&H===this._h))return;this._w=W;this._h=H;
+    if(this.getAttribute('variant')==='banner'){cancelAnimationFrame(this._raf);this._raf=0;this._renderBanner(W,H);return}
     var u=this._uid,s=1.5,tip=Math.round(H*0.38),m=H/2;
     var shape='M'+tip+' '+s+' L'+(W-tip)+' '+s+' L'+(W-s)+' '+m+' L'+(W-tip)+' '+(H-s)+' L'+tip+' '+(H-s)+' L'+s+' '+m+' Z';
     this.style.setProperty('--hdr-tip',tip+'px');
@@ -4012,6 +4115,7 @@ window.PW_EL_PAL={"inseto": {"dark": "#5A7D2B", "mid": "#7EAB33", "light": "#97C
   g('hpReplay').addEventListener('click',function(){var h=g('hpStage').querySelector('pw-card-header');if(h)h.play()});
   g('hpCopy').addEventListener('click',function(){var b=this;navigator.clipboard.writeText(g('hpCode').textContent).then(()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar HTML',1400)}).catch(()=>{var r=document.createRange();r.selectNodeContents(g('hpCode'));var s=getSelection();s.removeAllRanges();s.addRange(r)})});
   hp();
+  document.getElementById('bnReplay').addEventListener('click',function(){document.querySelectorAll('#bnCanvas pw-card-header').forEach(h=>h.play())});
   g('hdrReplayAll').addEventListener('click',function(){document.querySelectorAll('#header pw-card-header[animate]').forEach(h=>h.play())});
 })();
 
