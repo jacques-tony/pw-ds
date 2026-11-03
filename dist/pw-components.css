@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.29.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.30.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -38,7 +38,7 @@ pw-card{--card-metal-0:var(--pw-metal-0);--card-metal-1:var(--pw-metal-1);--card
 pw-card{display:block;position:relative;box-sizing:border-box;color:var(--card-text);
   --lift:0px; --press:1; --glow-op:.6; --dot-op:.5; --ring-op:0; --bg-bright:1;
   transform:translateY(var(--lift)) scale(var(--press));transition:transform var(--card-dur) var(--card-ease)}
-pw-card[variant="primary"],pw-card:not([variant]){width:514px;height:376px}
+pw-card[variant="primary"],pw-card[variant="tech"],pw-card:not([variant]){width:514px;height:376px}
 pw-card[variant="secondary"]{width:265px;height:374px}
 pw-card[variant="tertiary"]{width:320px;height:200px}
 /* quaternary: mais escuro e opaco que o tertiary, para ficar em destaque dentro dele. Deriva do tema (vale para os 18 tipos) */

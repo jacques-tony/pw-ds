@@ -13,6 +13,15 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.30.0
+
+- **pw-card `variant="tech"`**: a moldura Tech vira um tipo de card próprio, que funciona em qualquer tema (Poke World, Mewtwo e os 18 tipos).
+  - Aceita `tone`, `appearance="outline"` e os estados interativos.
+  - O tamanho padrão é 514 × 376, igual ao primary.
+- `variant="primary" frame="tech"` continua funcionando.
+- Storybook: a seção "Primary · moldura Tech (Mewtwo)" passa a se chamar **Tech**, com exemplos em vários temas e tons; o playground do Card ganhou a opção `tech`.
+
 ## 0.29.0
 
 - **Tooltip (`data-tip`)** refeito: um balão desenhado por script, no lugar do pseudo-elemento.

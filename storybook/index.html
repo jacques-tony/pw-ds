@@ -299,7 +299,7 @@ pw-card{--card-metal-0:var(--pw-metal-0);--card-metal-1:var(--pw-metal-1);--card
 pw-card{display:block;position:relative;box-sizing:border-box;color:var(--card-text);
   --lift:0px; --press:1; --glow-op:.6; --dot-op:.5; --ring-op:0; --bg-bright:1;
   transform:translateY(var(--lift)) scale(var(--press));transition:transform var(--card-dur) var(--card-ease)}
-pw-card[variant="primary"],pw-card:not([variant]){width:514px;height:376px}
+pw-card[variant="primary"],pw-card[variant="tech"],pw-card:not([variant]){width:514px;height:376px}
 pw-card[variant="secondary"]{width:265px;height:374px}
 pw-card[variant="tertiary"]{width:320px;height:200px}
 /* quaternary: mais escuro e opaco que o tertiary, para ficar em destaque dentro dele. Deriva do tema (vale para os 18 tipos) */
@@ -1260,7 +1260,7 @@ pw-search .pws-live{position:absolute;width:1px;height:1px;overflow:hidden;clip-
   <div class="grp" style="margin-top:10px">Componentes</div>
   <button type="button" class="comp-btn" data-comp="card" aria-controls="main">Card</button>
   <nav class="sub" data-for="card">
-    <a href="#referencia">Referência</a><a href="#playground">Playground</a><a href="#primary-tech">Primary Tech</a><a href="#tertiary">Tertiary</a><a href="#tertiary-destaque">Destaque dourado</a><a href="#quaternary">Quaternary</a><a href="#temas">Temas</a><a href="#tons">Tons semânticos</a><a href="#outline">Outline</a><a href="#estados">Estados</a><a href="#anatomia">Anatomia</a><a href="#tokens">Tokens</a><a href="#uso">Regras de uso</a><a href="#pendencias">Pendências</a>
+    <a href="#referencia">Referência</a><a href="#playground">Playground</a><a href="#primary-tech">Tech</a><a href="#tertiary">Tertiary</a><a href="#tertiary-destaque">Destaque dourado</a><a href="#quaternary">Quaternary</a><a href="#temas">Temas</a><a href="#tons">Tons semânticos</a><a href="#outline">Outline</a><a href="#estados">Estados</a><a href="#anatomia">Anatomia</a><a href="#tokens">Tokens</a><a href="#uso">Regras de uso</a><a href="#pendencias">Pendências</a>
   </nav>
   <button type="button" class="comp-btn" data-comp="header" aria-controls="main">Card Header</button>
   <nav class="sub" data-for="header">
@@ -1458,7 +1458,7 @@ pw-search .pws-live{position:absolute;width:1px;height:1px;overflow:hidden;clip-
   <p class="lede">Combine as propriedades. Com <code>interactive</code> ligado, passe o mouse, clique para selecionar e use Tab para ver o foco.</p>
   <div class="pg">
     <form class="ctrls" id="pgForm" onsubmit="return false">
-      <label for="pgVariant">variant<select id="pgVariant"><option>primary</option><option>secondary</option><option>tertiary</option><option>quaternary</option></select></label>
+      <label for="pgVariant">variant<select id="pgVariant"><option>primary</option><option>secondary</option><option>tertiary</option><option>quaternary</option><option>tech</option></select></label>
       <label for="pgTone">tone<select id="pgTone"><option>neutral</option><option>info</option><option>success</option><option>warning</option><option>error</option><option>new</option><option>brand</option></select></label>
       <label for="pgTheme">theme<select id="pgTheme"><option value="">poke world (padrão)</option><option>mewtwo</option></select></label>
       <label for="pgEl">element (tertiary selected)<select id="pgEl"><option value="">nenhum</option></select></label>
@@ -1558,17 +1558,30 @@ document.querySelector('pw-card-header').play(); // repete a abertura</pre>
 </section>
 
 <section class="story" id="primary-tech">
-  <h2>Primary · moldura Tech (Mewtwo)</h2>
-  <p class="lede">Variação do card primary no estilo da janela da Máquina do Mewtwo: cantos chanfrados, linha dupla com brilho interno, faixas diagonais nos cantos, gemas em losango e filetes de luz no topo e na base. Feita para o tema Mewtwo; as cores vêm todas dos tokens (metal, traçado, brilho e fundo), então ela acompanha qualquer ajuste do tema.</p>
-  <pre class="code">&lt;pw-card variant="primary" frame="tech" theme="mewtwo"&gt;…&lt;/pw-card&gt;</pre>
-  <div class="canvas" data-pw-theme="mewtwo"><div class="row" style="gap:28px;align-items:flex-start">
-    <div><pw-card variant="primary" frame="tech"></pw-card><div class="cap">frame="tech" · 514 × 376</div></div>
-    <div class="pw-titled"><pw-card-header>Máquina do Mewtwo</pw-card-header><pw-card variant="primary" frame="tech" style="width:460px;height:300px"><span class="k-eyebrow">Boost</span><h3 class="k-title">Charmander +4</h3><p class="k-body">Pedra Adormecida · 55% de chance</p></pw-card><div class="cap">com Card Header</div></div>
+  <h2>Tech</h2>
+  <p class="lede"><code>variant="tech"</code> é um tipo de card próprio, inspirado na janela da Máquina do Mewtwo: cantos chanfrados, linha dupla com brilho interno, faixas diagonais nos cantos, gemas em losango e filetes de luz no topo e na base. Funciona em <b>qualquer tema</b>, porque todas as cores vêm dos tokens (metal, traçado, brilho e fundo), e aceita tons, outline e os estados interativos como o primary. O antigo <code>variant="primary" frame="tech"</code> continua funcionando.</p>
+  <pre class="code">&lt;pw-card variant="tech"&gt;…&lt;/pw-card&gt;
+&lt;pw-card variant="tech" theme="fogo" tone="success" interactive&gt;…&lt;/pw-card&gt;</pre>
+  <div class="canvas"><div class="row" style="gap:28px;align-items:flex-start">
+    <div><pw-card variant="tech"></pw-card><div class="cap">variant="tech" · Poke World · 514 × 376</div></div>
+    <div class="pw-titled"><pw-card-header>Máquina de Boost</pw-card-header><pw-card variant="tech" style="width:460px;height:300px"><span class="k-eyebrow">Boost</span><h3 class="k-title">Charizard +12</h3><p class="k-body">Pedra de Fogo Antiga · 72% de chance</p></pw-card></div>
   </div></div>
   <div class="canvas" data-pw-theme="mewtwo"><div class="row" style="gap:28px;align-items:flex-start">
-    <div><pw-card variant="primary" frame="tech" interactive style="width:300px;height:200px"></pw-card><div class="cap">interactive (passe o mouse)</div></div>
-    <div><pw-card variant="primary" frame="tech" interactive selected style="width:300px;height:200px"></pw-card><div class="cap">selected</div></div>
-    <div><pw-card variant="primary" frame="tech" interactive disabled style="width:300px;height:200px"></pw-card><div class="cap">disabled</div></div>
+    <div class="pw-titled"><pw-card-header>Máquina do Mewtwo</pw-card-header><pw-card variant="tech" style="width:460px;height:300px"><span class="k-eyebrow">Boost</span><h3 class="k-title">Charmander +4</h3><p class="k-body">Pedra Adormecida · 55% de chance</p></pw-card></div>
+    <div><pw-card variant="tech" interactive selected style="width:300px;height:200px"></pw-card><div class="cap">mewtwo · selected</div></div>
+  </div></div>
+  <div class="canvas"><div class="row" style="gap:24px;align-items:flex-start">
+    <div><pw-card variant="tech" theme="fogo" style="width:240px;height:160px"></pw-card><div class="cap">theme="fogo"</div></div>
+    <div><pw-card variant="tech" theme="agua" style="width:240px;height:160px"></pw-card><div class="cap">theme="agua"</div></div>
+    <div><pw-card variant="tech" theme="planta" style="width:240px;height:160px"></pw-card><div class="cap">theme="planta"</div></div>
+    <div><pw-card variant="tech" tone="success" style="width:240px;height:160px"></pw-card><div class="cap">tone="success"</div></div>
+    <div><pw-card variant="tech" tone="error" style="width:240px;height:160px"></pw-card><div class="cap">tone="error"</div></div>
+    <div><pw-card variant="tech" appearance="outline" style="width:240px;height:160px"></pw-card><div class="cap">appearance="outline"</div></div>
+  </div></div>
+  <div class="canvas"><div class="row" style="gap:28px;align-items:flex-start">
+    <div><pw-card variant="tech" interactive style="width:300px;height:200px"></pw-card><div class="cap">interactive (passe o mouse)</div></div>
+    <div><pw-card variant="tech" interactive selected style="width:300px;height:200px"></pw-card><div class="cap">selected</div></div>
+    <div><pw-card variant="tech" interactive disabled style="width:300px;height:200px"></pw-card><div class="cap">disabled</div></div>
   </div></div>
 </section>
 
@@ -2914,7 +2927,7 @@ class PWCard extends HTMLElement{
     var border='<path d="'+all+'" fill="none" stroke="var(--card-filament)" stroke-width="4"/>'+
                '<path d="'+all+'" fill="none" stroke="url(#'+u+'-metal)" stroke-width="2"/>';
     this._svg.setAttribute('width',W);this._svg.setAttribute('height',H);this._svg.setAttribute('viewBox','0 0 '+W+' '+H);
-    if((this._v==='primary'||!this._v)&&this._fr==='tech'){
+    if(this._v==='tech'||((this._v==='primary'||!this._v)&&this._fr==='tech')){
       /* moldura "tech" (Máquina do Mewtwo): cantos chanfrados, linha dupla, faixas nos cantos, gemas e filetes de luz; cores dos tokens */
       var C=Math.min(26,W*.08,H*.08),o=1.5,i2=9;
       var oct=function(a,c){return 'M'+(a+c)+' '+a+' L'+(W-a-c)+' '+a+' L'+(W-a)+' '+(a+c)+' L'+(W-a)+' '+(H-a-c)+' L'+(W-a-c)+' '+(H-a)+' L'+(a+c)+' '+(H-a)+' L'+a+' '+(H-a-c)+' L'+a+' '+(a+c)+' Z'};
