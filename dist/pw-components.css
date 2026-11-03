@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.32.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.32.3 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -135,13 +135,13 @@ pw-card-header .pwh-flash{opacity:0}
 @keyframes pwh-flash{0%{opacity:0}35%{opacity:1}100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){pw-card-header :is(.pwh-bolts,.pwh-sparks,.pwh-motes){display:none}pw-card-header :is(.pwh-shim,.pwh-trace){animation:none!important}pw-card-header[data-opening] :is(.pwh-frame,.pwh-label,.pwh-flash){animation-duration:.01s!important;animation-delay:0s!important}}
 /* ---- pw-card-header variant="banner": faixa chanfrada com asas e linhas (HUD) ---- */
-pw-card-header[variant="banner"]{justify-self:center;--bn-wing:84px;--bn-line:220px;height:52px;padding:0 calc(var(--bn-wing) + var(--pw-space-8));color:var(--pw-on-metal);
+pw-card-header[variant="banner"]{justify-self:center;--bn-wing:84px;--bn-line:220px;height:52px;padding:0 calc(var(--bn-wing) + var(--pw-space-8));color:var(--pw-text-title);
   font:var(--pw-font-weight-bold) var(--pw-font-size-xl)/1 var(--pw-font-body);letter-spacing:.01em;text-transform:none}
 pw-card-header[variant="banner"][size="sm"]{--bn-wing:60px;--bn-line:140px;height:40px;font-size:var(--pw-font-size-md)}
 pw-card-header[variant="banner"][size="lg"]{--bn-wing:110px;--bn-line:300px;height:64px;font-size:var(--pw-font-size-2xl)}
-pw-card-header[variant="banner"] .pwh-label{text-shadow:0 1px 0 color-mix(in srgb,var(--pw-white) 35%,transparent);transform:translateY(-1px)}
+pw-card-header[variant="banner"] .pwh-label{text-shadow:0 1px 2px var(--pw-black-a55),0 0 10px var(--pw-glow-soft);transform:translateY(-1px)}
 pw-card-header[variant="banner"]:not([icon]) .pwh-label::before,pw-card-header[variant="banner"]:not([icon]) .pwh-label::after{content:none}
-pw-card-header[variant="banner"] .pwh-label::before,pw-card-header[variant="banner"] .pwh-label::after{color:inherit;text-shadow:none}
+pw-card-header[variant="banner"] .pwh-label::before,pw-card-header[variant="banner"] .pwh-label::after{color:inherit;text-shadow:0 0 8px var(--pw-glow)}
 pw-card-header[variant="banner"] svg *{transform-box:fill-box}
 pw-card-header[variant="banner"] .bn-line.l{transform-origin:right center}pw-card-header[variant="banner"] .bn-line.r{transform-origin:left center}
 pw-card-header[variant="banner"] .bn-glint{opacity:0}

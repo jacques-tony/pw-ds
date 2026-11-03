@@ -19,6 +19,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.32.3
+
+- **pw-card-header banner**: as linhas laterais e o ponto de luz que corre por elas ficam no centro vertical do header.
+- O interior da faixa usa o fundo radial escuro do tema, como no header de pontas, com borda de metal, filete interno e brilho. O texto agora é claro, com sombra.
+
 ## 0.32.2
 
 - **pw-card-header banner**: as linhas finas de baixo, nas laterais, foram removidas. Ficam só as linhas superiores, com o ponto de luz.

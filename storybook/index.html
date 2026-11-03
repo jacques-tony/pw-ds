@@ -400,13 +400,13 @@ pw-card-header .pwh-flash{opacity:0}
 @keyframes pwh-flash{0%{opacity:0}35%{opacity:1}100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){pw-card-header :is(.pwh-bolts,.pwh-sparks,.pwh-motes){display:none}pw-card-header :is(.pwh-shim,.pwh-trace){animation:none!important}pw-card-header[data-opening] :is(.pwh-frame,.pwh-label,.pwh-flash){animation-duration:.01s!important;animation-delay:0s!important}}
 /* ---- pw-card-header variant="banner": faixa chanfrada com asas e linhas (HUD) ---- */
-pw-card-header[variant="banner"]{justify-self:center;--bn-wing:84px;--bn-line:220px;height:52px;padding:0 calc(var(--bn-wing) + var(--pw-space-8));color:var(--pw-on-metal);
+pw-card-header[variant="banner"]{justify-self:center;--bn-wing:84px;--bn-line:220px;height:52px;padding:0 calc(var(--bn-wing) + var(--pw-space-8));color:var(--pw-text-title);
   font:var(--pw-font-weight-bold) var(--pw-font-size-xl)/1 var(--pw-font-body);letter-spacing:.01em;text-transform:none}
 pw-card-header[variant="banner"][size="sm"]{--bn-wing:60px;--bn-line:140px;height:40px;font-size:var(--pw-font-size-md)}
 pw-card-header[variant="banner"][size="lg"]{--bn-wing:110px;--bn-line:300px;height:64px;font-size:var(--pw-font-size-2xl)}
-pw-card-header[variant="banner"] .pwh-label{text-shadow:0 1px 0 color-mix(in srgb,var(--pw-white) 35%,transparent);transform:translateY(-1px)}
+pw-card-header[variant="banner"] .pwh-label{text-shadow:0 1px 2px var(--pw-black-a55),0 0 10px var(--pw-glow-soft);transform:translateY(-1px)}
 pw-card-header[variant="banner"]:not([icon]) .pwh-label::before,pw-card-header[variant="banner"]:not([icon]) .pwh-label::after{content:none}
-pw-card-header[variant="banner"] .pwh-label::before,pw-card-header[variant="banner"] .pwh-label::after{color:inherit;text-shadow:none}
+pw-card-header[variant="banner"] .pwh-label::before,pw-card-header[variant="banner"] .pwh-label::after{color:inherit;text-shadow:0 0 8px var(--pw-glow)}
 pw-card-header[variant="banner"] svg *{transform-box:fill-box}
 pw-card-header[variant="banner"] .bn-line.l{transform-origin:right center}pw-card-header[variant="banner"] .bn-line.r{transform-origin:left center}
 pw-card-header[variant="banner"] .bn-glint{opacity:0}
@@ -3177,11 +3177,12 @@ class PWCardHeader extends HTMLElement{
     var wg=function(x,w,t,b,side){var k=(b-t)/(bot-top)*sl;return side<0?P([[x-w,t],[x,t],[x+k,b],[x+k-w,b]]):P([[x,t],[x+w,t],[x+w-k,b],[x-k,b]])};
     var g1=H*.12,w1=H*.32,w2=H*.2,t2=top+(bot-top)*.18,b2=bot-(bot-top)*.18;
     var wl1=wg(b0-g1,w1,top,bot,-1),wl2=wg(b0-g1*2-w1,w2,t2,b2,-1),wr1=wg(b1+g1,w1,top,bot,1),wr2=wg(b1+g1*2+w1,w2,t2,b2,1);
-    var ly=top+1.5,lxL=b0-g1*3-w1-w2,lxR=W-lxL;
+    var ly=H/2,lxL=b0-g1*3-w1-w2,lxR=W-lxL;
     this._svg.setAttribute('width',W);this._svg.setAttribute('height',H);this._svg.setAttribute('viewBox','0 0 '+W+' '+H);
     var lg=(id,x1,x2)=>'<linearGradient id="'+u+id+'" x1="'+x1+'" y1="0" x2="'+x2+'" y2="0"><stop offset="0" style="stop-color:var(--pw-filament)"/><stop offset=".55" style="stop-color:var(--pw-metal-1)" stop-opacity=".55"/><stop offset="1" style="stop-color:var(--pw-metal-1)" stop-opacity="0"/></linearGradient>';
     this._svg.innerHTML='<defs>'+
-      '<linearGradient id="'+u+'-bf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--pw-metal-0)"/><stop offset=".45" style="stop-color:var(--pw-metal-1)"/><stop offset="1" style="stop-color:var(--pw-metal-2)"/></linearGradient>'+
+      '<radialGradient id="'+u+'-bf" cx=".5" cy=".5" r=".6"><stop offset="0" style="stop-color:var(--pw-bg-center)"/><stop offset="1" style="stop-color:var(--pw-bg-edge)"/></radialGradient>'+
+      '<linearGradient id="'+u+'-bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pw-metal-0)"/><stop offset=".4" style="stop-color:var(--pw-metal-1)"/><stop offset=".8" style="stop-color:var(--pw-metal-2)"/><stop offset="1" style="stop-color:var(--pw-metal-3)"/></linearGradient>'+
       '<linearGradient id="'+u+'-wf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--pw-metal-0)"/><stop offset="1" style="stop-color:var(--pw-metal-1)"/></linearGradient>'+
       lg('-ll',1,0)+lg('-lr',0,1)+
       '<linearGradient id="'+u+'-sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0" style="stop-color:var(--pw-white)" stop-opacity="0"/><stop offset=".5" style="stop-color:var(--pw-white)" stop-opacity=".55"/><stop offset="1" style="stop-color:var(--pw-white)" stop-opacity="0"/></linearGradient>'+
@@ -3200,10 +3201,12 @@ class PWCardHeader extends HTMLElement{
         '<path class="bn-wing r w1" d="'+wr1+'" fill="url(#'+u+'-wf)" stroke="var(--pw-filament)" stroke-width="1"/>'+
         '<path class="bn-wing r w2" d="'+wr2+'" fill="url(#'+u+'-wf)" opacity=".75"/>'+
       '</g><g class="bn-band">'+
-        '<path d="'+band+'" fill="url(#'+u+'-bf)" filter="url(#'+u+'-bl)" opacity=".55"/>'+
-        '<path d="'+band+'" fill="url(#'+u+'-bf)" stroke="var(--pw-filament)" stroke-width="1.5"/>'+
-        '<path d="'+hi+'" style="fill:var(--pw-white)" opacity=".22"/>'+
-        '<path d="'+inner+'" fill="none" stroke="var(--pw-white)" stroke-opacity=".35" stroke-width="1"/>'+
+        '<path d="'+band+'" fill="none" stroke="var(--pw-glow)" stroke-width="4" filter="url(#'+u+'-bl)" opacity=".7"/>'+
+        '<path d="'+band+'" fill="url(#'+u+'-bf)"/>'+
+        '<path d="'+hi+'" style="fill:var(--pw-filament)" opacity=".1"/>'+
+        '<path d="'+band+'" fill="none" stroke="var(--pw-filament)" stroke-width="3"/>'+
+        '<path d="'+band+'" fill="none" stroke="url(#'+u+'-bm)" stroke-width="1.5"/>'+
+        '<path d="'+inner+'" fill="none" stroke="var(--pw-filament)" stroke-opacity=".45" stroke-width="1"/>'+
         '<rect x="'+f(b0+sl)+'" y="'+f(bot+2)+'" width="'+f(b1-b0-sl*2)+'" height="2" style="fill:var(--pw-filament)" opacity=".8"/>'+
         '<g clip-path="url(#'+u+'-bc)"><rect class="bn-sweep" x="'+f(b0-W*.3)+'" y="0" width="'+f(W*.25)+'" height="'+H+'" fill="url(#'+u+'-sw)"/></g>'+
       '</g>';
