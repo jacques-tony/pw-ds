@@ -17,6 +17,13 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.32.1
+
+- Storybook: o playground do Card Header ganhou as opções `variant` (padrão ou banner), `size` (para o banner) e mais temas elementais.
+- O botão "Copiar HTML" não estica mais na altura.
+- Sem mudança nos componentes.
+
 ## 0.32.0
 
 - **pw-card-header `variant="banner"`**: título de destaque no estilo HUD.

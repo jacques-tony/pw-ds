@@ -229,7 +229,7 @@ select{font:inherit;font-family:var(--f-body);font-size:14px;color:var(--sb-fg);
 select:focus-visible,button:focus-visible{outline:2px solid var(--sb-accent);outline-offset:2px}
 .check{display:flex!important;align-items:center;gap:8px;font-size:13px!important}
 pre.code{font-family:var(--f-mono);font-size:12.5px;background:var(--sb-panel);border:1px solid var(--sb-line);border-radius:8px;padding:14px;overflow-x:auto;margin:0;color:#cfd8ee;white-space:pre}
-.btn{font:inherit;font-size:13px;color:var(--sb-bg);background:var(--sb-accent);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;justify-self:start}
+.btn{font:inherit;font-size:13px;color:var(--sb-bg);background:var(--sb-accent);border:0;border-radius:6px;padding:7px 12px;cursor:pointer;justify-self:start;align-self:start}
 ul.rules{margin:0;padding-left:18px;display:grid;gap:6px;max-width:75ch}
 .flag{display:inline-block;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border-radius:4px;background:#3a2a0b;color:#ffcf7a}
 .flag.ok{background:#0e3322;color:#8ee6b2}
@@ -1551,7 +1551,9 @@ pw-search .pws-live{position:absolute;width:1px;height:1px;overflow:hidden;clip-
   <div class="pg">
     <form class="ctrls" id="hpForm" onsubmit="return false">
       <label for="hpText">texto<input id="hpText" type="text" value="Ascensão Estelar" maxlength="40" autocomplete="off"></label>
-      <label for="hpTheme">theme<select id="hpTheme"><option value="">poke world (padrão)</option><option>mewtwo</option></select></label>
+      <label for="hpVariant">variant<select id="hpVariant"><option value="">padrão (pontas)</option><option value="banner">banner (HUD)</option></select></label>
+      <label for="hpSize">size (banner)<select id="hpSize" disabled><option value="sm">sm · 40px</option><option value="" selected>md · 52px</option><option value="lg">lg · 64px</option></select></label>
+      <label for="hpTheme">theme<select id="hpTheme"><option value="">poke world (padrão)</option><option>mewtwo</option><option>fogo</option><option>agua</option><option>planta</option><option>eletrico</option><option>psiquico</option><option>gelo</option><option>dragao</option><option>fantasma</option></select></label>
       <label class="check" for="hpShowIcon"><input type="checkbox" id="hpShowIcon" checked> show-icon</label>
       <label for="hpIcon">icon<select id="hpIcon"><option>sparkle</option><option>star</option><option>diamond</option><option>bolt</option></select></label>
       <label for="hpAnim">animate<select id="hpAnim"><option value="">nenhuma</option><option value="both" selected>both (abertura + raios)</option><option value="intro">intro (só abertura)</option><option value="ambient">ambient (só raios)</option></select></label>
@@ -4101,17 +4103,19 @@ window.PW_EL_PAL={"inseto": {"dark": "#5A7D2B", "mid": "#7EAB33", "light": "#97C
   var g=id=>document.getElementById(id);
   function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
   function hp(){
+    var vr=g('hpVariant').value,sz=g('hpSize').value;g('hpSize').disabled=vr!=='banner';g('hpSpeed').disabled=vr==='banner';
     var txt=g('hpText').value,th=g('hpTheme').value,show=g('hpShowIcon').checked,ic=g('hpIcon').value,an=g('hpAnim').value,sp=+g('hpSpeed').value;
     g('hpIcon').disabled=!show;
     var el=document.createElement('pw-card-header');
-    if(th)el.setAttribute('theme',th);if(an)el.setAttribute('animate',an);if(an&&sp!==9)el.style.setProperty('--hdr-ambient',sp+'s');
+    if(vr)el.setAttribute('variant',vr);if(vr&&sz)el.setAttribute('size',sz);
+    if(th)el.setAttribute('theme',th);if(an)el.setAttribute('animate',an);if(!vr&&an&&sp!==9)el.style.setProperty('--hdr-ambient',sp+'s');
     if(!show)el.setAttribute('show-icon','false');else if(ic!=='sparkle')el.setAttribute('icon',ic);
     el.textContent=txt;
     var st=g('hpStage');st.innerHTML='';st.appendChild(el);
-    var a=[];if(th)a.push('theme="'+th+'"');if(an)a.push('animate="'+an+'"');if(an&&sp!==9)a.push('style="--hdr-ambient:'+sp+'s"');if(!show)a.push('show-icon="false"');else if(ic!=='sparkle')a.push('icon="'+ic+'"');
+    var a=[];if(vr)a.push('variant="'+vr+'"');if(vr&&sz)a.push('size="'+sz+'"');if(th)a.push('theme="'+th+'"');if(an)a.push('animate="'+an+'"');if(!vr&&an&&sp!==9)a.push('style="--hdr-ambient:'+sp+'s"');if(!show)a.push('show-icon="false"');else if(ic!=='sparkle')a.push('icon="'+ic+'"');
     g('hpCode').textContent='<pw-card-header'+(a.length?' '+a.join(' '):'')+'>'+txt+'</pw-card-header>';
   }
-  ['hpText','hpTheme','hpShowIcon','hpIcon','hpAnim','hpSpeed'].forEach(id=>g(id).addEventListener(id==='hpText'||id==='hpSpeed'?'input':'change',hp));
+  ['hpText','hpVariant','hpSize','hpTheme','hpShowIcon','hpIcon','hpAnim','hpSpeed'].forEach(id=>g(id).addEventListener(id==='hpText'||id==='hpSpeed'?'input':'change',hp));
   g('hpReplay').addEventListener('click',function(){var h=g('hpStage').querySelector('pw-card-header');if(h)h.play()});
   g('hpCopy').addEventListener('click',function(){var b=this;navigator.clipboard.writeText(g('hpCode').textContent).then(()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar HTML',1400)}).catch(()=>{var r=document.createRange();r.selectNodeContents(g('hpCode'));var s=getSelection();s.removeAllRanges();s.addRange(r)})});
   hp();

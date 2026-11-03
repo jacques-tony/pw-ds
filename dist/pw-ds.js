@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.32.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.32.1 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1015,5 +1015,5 @@ customElements.define('pw-search',PWSearch);
 })();
 
 window.PWDS=Object.assign(window.PWDS||{},{toast:pwToast,icons:PW_FILL,types:PW_TYPES,registerIcon:function(n,d,r){PW_FILL[n]=d;if(r)PW_FILL_RULE[n]=r}});
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.32.0"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.32.1"});
 })();
