@@ -933,6 +933,20 @@ pw-toast[leaving]{animation:pwts-out .22s ease both}
 .pw-table tr[data-rank="3"] .rank b{color:var(--pw-text-inverse)}.pw-table tr[data-rank="3"] .rank b::before{background:linear-gradient(135deg,var(--pw-medal-bronze-light),var(--pw-medal-bronze));border-color:var(--pw-medal-bronze-light)}
 .pw-table .rank b{isolation:isolate}
 
+/* ranking com troféus: <table class="pw-table trophies"> · top 3 viram troféus de ouro, prata e bronze com o número na taça */
+:root{--pw-trophy-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M6.00 2.00 L18.00 2.00 L18.00 4.00 L22.00 4.00 L22.00 7.40 L18.40 11.40 L17.20 11.40 L14.60 14.60 L13.60 14.80 L13.60 17.60 L17.00 17.60 L17.00 21.80 L7.00 21.80 L7.00 17.60 L10.40 17.60 L10.40 14.80 L9.40 14.60 L6.80 11.40 L5.60 11.40 L2.00 7.40 L2.00 4.00 L6.00 4.00 Z M3.80 5.80 L6.00 5.80 L6.20 9.20 Z M20.20 5.80 L18.00 5.80 L17.80 9.20 Z'/%3E%3C/svg%3E")}
+.pw-table.trophies .rank{width:52px}
+.pw-table.trophies .rank b{width:32px;height:32px;font-size:var(--pw-font-size-2xs);font-weight:var(--pw-font-weight-bold)}
+.pw-table.trophies tr:not([data-rank="1"]):not([data-rank="2"]):not([data-rank="3"]) .rank b{color:var(--pw-text-muted);font-size:var(--pw-font-size-sm)}
+.pw-table.trophies tr:not([data-rank="1"]):not([data-rank="2"]):not([data-rank="3"]) .rank b::before{display:none}
+.pw-table.trophies tr:is([data-rank="1"],[data-rank="2"],[data-rank="3"]) .rank b{padding-bottom:9px;box-sizing:border-box;color:var(--pw-text-inverse);text-shadow:0 1px 0 rgb(255 255 255 / .35)}
+.pw-table.trophies tr:is([data-rank="1"],[data-rank="2"],[data-rank="3"]) .rank b::before{inset:0;transform:none;border:0;border-radius:0;
+  -webkit-mask:var(--pw-trophy-mask) center/contain no-repeat;mask:var(--pw-trophy-mask) center/contain no-repeat}
+.pw-table.trophies tr[data-rank="1"] .rank b::before{background:linear-gradient(160deg,var(--pw-medal-gold-light) 10%,var(--pw-medal-gold) 55%,var(--pw-gold-600));box-shadow:none;filter:drop-shadow(0 0 6px var(--pw-medal-gold))}
+.pw-table.trophies tr[data-rank="2"] .rank b::before{background:linear-gradient(160deg,var(--pw-medal-silver-light) 10%,var(--pw-medal-silver) 60%,var(--pw-neutral-600))}
+.pw-table.trophies tr[data-rank="3"] .rank b::before{background:linear-gradient(160deg,var(--pw-medal-bronze-light) 10%,var(--pw-medal-bronze) 60%,var(--pw-orange-900))}
+.pw-table.trophies tr[data-rank="1"] .rank b{width:36px;height:36px}
+
 /* pw-pagination */
 pw-pagination{display:inline-flex}
 pw-pagination nav{display:flex;align-items:center;gap:var(--pw-space-1);flex-wrap:wrap}
@@ -2484,6 +2498,21 @@ PWDS.toast('Sem conexão', { tone: 'error', duration: 0 });   // 0 = fica até f
       <tr><td class="rank"><b>4</b></td><td><div class="who"><pw-avatar size="sm" initials="GA"></pw-avatar><span>GaryOak</span></div></td><td class="muted">Pallet</td><td class="num">91</td><td class="num">98.775</td></tr>
       <tr class="is-me"><td class="rank"><b>5</b></td><td><div class="who"><pw-avatar size="sm" tone="new" initials="VC" status="online"></pw-avatar><span class="strong">Você</span></div></td><td class="muted">Mewtwo</td><td class="num">88</td><td class="num">90.110</td></tr>
     </tbody></table></div></div>
+  <h3>Ranking com troféus</h3>
+  <p class="lede" style="margin-top:-6px">Adicione a classe <code>trophies</code>: os três primeiros (<code>data-rank="1|2|3"</code>) viram troféus de ouro, prata e bronze com a posição na taça; do 4º em diante fica só o número.</p>
+  <pre class="code">&lt;table class="pw-table trophies"&gt; … &lt;tr data-rank="1"&gt;&lt;td class="rank"&gt;&lt;b&gt;1&lt;/b&gt;&lt;/td&gt; …</pre>
+  <div class="canvas"><div class="pw-table-wrap" style="max-width:680px"><table class="pw-table trophies">
+    <thead><tr><th class="rank">#</th><th>Treinador</th><th>Clã</th><th class="num">Nível</th><th class="num">Pontos</th></tr></thead>
+    <tbody>
+      <tr data-rank="1"><td class="rank"><b>1</b></td><td><div class="who"><pw-avatar size="sm" tone="brand" initials="AK" level="99"></pw-avatar><span class="strong">AshKetchum</span></div></td><td class="muted">Pallet</td><td class="num">99</td><td class="num strong">128.450</td></tr>
+      <tr data-rank="2"><td class="rank"><b>2</b></td><td><div class="who"><pw-avatar size="sm" initials="MS" level="96"></pw-avatar><span class="strong">MistyStar</span></div></td><td class="muted">Cerulean</td><td class="num">96</td><td class="num strong">119.020</td></tr>
+      <tr data-rank="3"><td class="rank"><b>3</b></td><td><div class="who"><pw-avatar size="sm" initials="BR" level="94"></pw-avatar><span class="strong">BrockRock</span></div></td><td class="muted">Pewter</td><td class="num">94</td><td class="num strong">111.300</td></tr>
+      <tr><td class="rank"><b>4</b></td><td><div class="who"><pw-avatar size="sm" initials="GA"></pw-avatar><span>GaryOak</span></div></td><td class="muted">Pallet</td><td class="num">91</td><td class="num">98.775</td></tr>
+      <tr class="is-me"><td class="rank"><b>5</b></td><td><div class="who"><pw-avatar size="sm" tone="new" initials="VC" status="online"></pw-avatar><span class="strong">Você</span></div></td><td class="muted">Mewtwo</td><td class="num">88</td><td class="num">90.110</td></tr>
+    </tbody></table></div></div>
+  <div class="canvas" data-pw-theme="mewtwo"><div class="pw-table-wrap" style="max-width:420px"><table class="pw-table trophies compact">
+    <thead><tr><th class="rank">#</th><th>Clã</th><th class="num">Pontos</th></tr></thead>
+    <tbody><tr data-rank="1"><td class="rank"><b>1</b></td><td class="strong">Fogo Eterno</td><td class="num">1,2M</td></tr><tr data-rank="2"><td class="rank"><b>2</b></td><td class="strong">Mewtwo Hunters</td><td class="num">980K</td></tr><tr data-rank="3"><td class="rank"><b>3</b></td><td class="strong">Cerulean Tide</td><td class="num">912K</td></tr><tr><td class="rank"><b>4</b></td><td>Pallet Crew</td><td class="num">740K</td></tr></tbody></table></div></div>
   <h3>Membros</h3>
   <div class="canvas" data-pw-theme="mewtwo"><div class="pw-table-wrap" style="max-width:680px"><table class="pw-table">
     <thead><tr><th>Membro</th><th>Cargo</th><th>Último acesso</th><th class="num">Contribuição</th></tr></thead>

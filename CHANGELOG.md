@@ -14,6 +14,14 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.31.0
+
+- **Tabela ranking com troféus**: a classe `.pw-table.trophies` troca os losangos por troféus.
+  - Os três primeiros (`data-rank="1|2|3"`) viram troféus de ouro, prata e bronze, com a posição na taça; o 1º é um pouco maior e brilha.
+  - Do 4º em diante fica só o número.
+  - Funciona também com `.compact` e em qualquer tema.
+
 ## 0.30.0
 
 - **pw-card `variant="tech"`**: a moldura Tech vira um tipo de card próprio, que funciona em qualquer tema (Poke World, Mewtwo e os 18 tipos).

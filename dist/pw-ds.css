@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.30.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.31.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -846,6 +846,20 @@ pw-toast[leaving]{animation:pwts-out .22s ease both}
 .pw-table tr[data-rank="2"] .rank b{color:var(--pw-text-inverse)}.pw-table tr[data-rank="2"] .rank b::before{background:linear-gradient(135deg,var(--pw-medal-silver-light),var(--pw-medal-silver));border-color:var(--pw-medal-silver-light)}
 .pw-table tr[data-rank="3"] .rank b{color:var(--pw-text-inverse)}.pw-table tr[data-rank="3"] .rank b::before{background:linear-gradient(135deg,var(--pw-medal-bronze-light),var(--pw-medal-bronze));border-color:var(--pw-medal-bronze-light)}
 .pw-table .rank b{isolation:isolate}
+
+/* ranking com troféus: <table class="pw-table trophies"> · top 3 viram troféus de ouro, prata e bronze com o número na taça */
+:root{--pw-trophy-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M6.00 2.00 L18.00 2.00 L18.00 4.00 L22.00 4.00 L22.00 7.40 L18.40 11.40 L17.20 11.40 L14.60 14.60 L13.60 14.80 L13.60 17.60 L17.00 17.60 L17.00 21.80 L7.00 21.80 L7.00 17.60 L10.40 17.60 L10.40 14.80 L9.40 14.60 L6.80 11.40 L5.60 11.40 L2.00 7.40 L2.00 4.00 L6.00 4.00 Z M3.80 5.80 L6.00 5.80 L6.20 9.20 Z M20.20 5.80 L18.00 5.80 L17.80 9.20 Z'/%3E%3C/svg%3E")}
+.pw-table.trophies .rank{width:52px}
+.pw-table.trophies .rank b{width:32px;height:32px;font-size:var(--pw-font-size-2xs);font-weight:var(--pw-font-weight-bold)}
+.pw-table.trophies tr:not([data-rank="1"]):not([data-rank="2"]):not([data-rank="3"]) .rank b{color:var(--pw-text-muted);font-size:var(--pw-font-size-sm)}
+.pw-table.trophies tr:not([data-rank="1"]):not([data-rank="2"]):not([data-rank="3"]) .rank b::before{display:none}
+.pw-table.trophies tr:is([data-rank="1"],[data-rank="2"],[data-rank="3"]) .rank b{padding-bottom:9px;box-sizing:border-box;color:var(--pw-text-inverse);text-shadow:0 1px 0 rgb(255 255 255 / .35)}
+.pw-table.trophies tr:is([data-rank="1"],[data-rank="2"],[data-rank="3"]) .rank b::before{inset:0;transform:none;border:0;border-radius:0;
+  -webkit-mask:var(--pw-trophy-mask) center/contain no-repeat;mask:var(--pw-trophy-mask) center/contain no-repeat}
+.pw-table.trophies tr[data-rank="1"] .rank b::before{background:linear-gradient(160deg,var(--pw-medal-gold-light) 10%,var(--pw-medal-gold) 55%,var(--pw-gold-600));box-shadow:none;filter:drop-shadow(0 0 6px var(--pw-medal-gold))}
+.pw-table.trophies tr[data-rank="2"] .rank b::before{background:linear-gradient(160deg,var(--pw-medal-silver-light) 10%,var(--pw-medal-silver) 60%,var(--pw-neutral-600))}
+.pw-table.trophies tr[data-rank="3"] .rank b::before{background:linear-gradient(160deg,var(--pw-medal-bronze-light) 10%,var(--pw-medal-bronze) 60%,var(--pw-orange-900))}
+.pw-table.trophies tr[data-rank="1"] .rank b{width:36px;height:36px}
 
 /* pw-pagination */
 pw-pagination{display:inline-flex}
