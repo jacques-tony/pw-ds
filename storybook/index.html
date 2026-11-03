@@ -400,12 +400,11 @@ pw-card-header .pwh-flash{opacity:0}
 @keyframes pwh-flash{0%{opacity:0}35%{opacity:1}100%{opacity:0}}
 @media (prefers-reduced-motion:reduce){pw-card-header :is(.pwh-bolts,.pwh-sparks,.pwh-motes){display:none}pw-card-header :is(.pwh-shim,.pwh-trace){animation:none!important}pw-card-header[data-opening] :is(.pwh-frame,.pwh-label,.pwh-flash){animation-duration:.01s!important;animation-delay:0s!important}}
 /* ---- pw-card-header variant="banner": faixa chanfrada com asas e linhas (HUD) ---- */
-pw-card-header[variant="banner"]{justify-self:center;--bn-wing:84px;--bn-line:220px;height:52px;padding:0 calc(var(--bn-wing) + var(--pw-space-8));color:var(--pw-text-title);
-  font:var(--pw-font-weight-bold) var(--pw-font-size-xl)/1 var(--pw-font-body);letter-spacing:.01em;text-transform:none}
-pw-card-header[variant="banner"][size="sm"]{--bn-wing:60px;--bn-line:140px;height:40px;font-size:var(--pw-font-size-md)}
-pw-card-header[variant="banner"][size="lg"]{--bn-wing:110px;--bn-line:300px;height:64px;font-size:var(--pw-font-size-2xl)}
-pw-card-header[variant="banner"] .pwh-label{text-shadow:0 1px 2px var(--pw-black-a55),0 0 10px var(--pw-glow-soft);transform:translateY(-1px)}
-pw-card-header[variant="banner"]:not([icon]) .pwh-label::before,pw-card-header[variant="banner"]:not([icon]) .pwh-label::after{content:none}
+/* mesmo texto do header de pontas: --pw-text-title-caps (Spectral, caixa alta) na cor --pw-text-title */
+pw-card-header[variant="banner"]{justify-self:center;--bn-wing:84px;--bn-line:220px;height:52px;padding:0 calc(var(--bn-wing) + var(--pw-space-12))}
+pw-card-header[variant="banner"][size="sm"]{--bn-wing:60px;--bn-line:140px;height:40px;padding:0 calc(var(--bn-wing) + var(--pw-space-8));font-size:var(--pw-font-size-md)}
+pw-card-header[variant="banner"][size="lg"]{--bn-wing:110px;--bn-line:300px;height:64px;padding:0 calc(var(--bn-wing) + var(--pw-space-16));font-size:var(--pw-font-size-3xl)}
+pw-card-header[variant="banner"] .pwh-label{text-shadow:0 1px 2px var(--pw-black-a55),0 0 10px var(--pw-glow-soft)}
 pw-card-header[variant="banner"] .pwh-label::before,pw-card-header[variant="banner"] .pwh-label::after{color:inherit;text-shadow:0 0 8px var(--pw-glow)}
 pw-card-header[variant="banner"] svg *{transform-box:fill-box}
 pw-card-header[variant="banner"] .bn-line.l{transform-origin:right center}pw-card-header[variant="banner"] .bn-line.r{transform-origin:left center}
@@ -413,19 +412,19 @@ pw-card-header[variant="banner"] .bn-glint{opacity:0}
 pw-card-header[variant="banner"] .bn-halo{opacity:.7}
 /* abertura: linhas saem do centro, asas deslizam para fora, faixa abre e o texto entra */
 pw-card-header[variant="banner"][data-opening] .pwh-frame{animation:none}
-pw-card-header[variant="banner"][data-opening] .bn-band{animation:pwbn-band var(--hdr-intro) cubic-bezier(.2,.8,.2,1) both;transform-origin:center}
-pw-card-header[variant="banner"][data-opening] .bn-wing.l{animation:pwbn-wing-l calc(var(--hdr-intro) * .9) cubic-bezier(.2,.8,.2,1) calc(var(--hdr-intro) * .25) both}
-pw-card-header[variant="banner"][data-opening] .bn-wing.r{animation:pwbn-wing-r calc(var(--hdr-intro) * .9) cubic-bezier(.2,.8,.2,1) calc(var(--hdr-intro) * .25) both}
-pw-card-header[variant="banner"][data-opening] .bn-wing.w2{animation-delay:calc(var(--hdr-intro) * .4)}
-pw-card-header[variant="banner"][data-opening] .bn-line{animation:pwbn-line calc(var(--hdr-intro) * 1.1) cubic-bezier(.5,0,.2,1) calc(var(--hdr-intro) * .45) both}
-pw-card-header[variant="banner"][data-opening] .bn-halo{animation:pwbn-halo calc(var(--hdr-intro) * 1.6) ease-out both}
-pw-card-header[variant="banner"][data-opening] .pwh-label{animation:pwbn-label calc(var(--hdr-intro) * .7) ease-out calc(var(--hdr-intro) * .55) both}
-@keyframes pwbn-band{0%{transform:scaleX(0);opacity:0}40%{opacity:1}70%{transform:scaleX(1.04)}100%{transform:none}}
-@keyframes pwbn-wing-l{from{transform:translateX(60%);opacity:0}to{transform:none;opacity:1}}
-@keyframes pwbn-wing-r{from{transform:translateX(-60%);opacity:0}to{transform:none;opacity:1}}
+pw-card-header[variant="banner"][data-opening] .bn-band{animation:pwbn-band calc(var(--hdr-intro) * 1.2) cubic-bezier(.22,.61,.36,1) both;transform-origin:center}
+pw-card-header[variant="banner"][data-opening] .bn-wing.l{animation:pwbn-wing-l calc(var(--hdr-intro) * 1.2) cubic-bezier(.22,.61,.36,1) calc(var(--hdr-intro) * .15) both}
+pw-card-header[variant="banner"][data-opening] .bn-wing.r{animation:pwbn-wing-r calc(var(--hdr-intro) * 1.2) cubic-bezier(.22,.61,.36,1) calc(var(--hdr-intro) * .15) both}
+pw-card-header[variant="banner"][data-opening] .bn-wing.w2{animation-delay:calc(var(--hdr-intro) * .25)}
+pw-card-header[variant="banner"][data-opening] .bn-line{animation:pwbn-line calc(var(--hdr-intro) * 1.4) cubic-bezier(.22,.61,.36,1) calc(var(--hdr-intro) * .2) both}
+pw-card-header[variant="banner"][data-opening] .bn-halo{animation:pwbn-halo calc(var(--hdr-intro) * 1.4) cubic-bezier(.22,.61,.36,1) both}
+pw-card-header[variant="banner"][data-opening] .pwh-label{animation:pwbn-label calc(var(--hdr-intro) * .9) cubic-bezier(.22,.61,.36,1) calc(var(--hdr-intro) * .35) both}
+@keyframes pwbn-band{from{transform:scaleX(.55);opacity:0}to{transform:none;opacity:1}}
+@keyframes pwbn-wing-l{from{transform:translateX(40%);opacity:0}to{transform:none;opacity:1}}
+@keyframes pwbn-wing-r{from{transform:translateX(-40%);opacity:0}to{transform:none;opacity:1}}
 @keyframes pwbn-line{from{transform:scaleX(0)}to{transform:none}}
-@keyframes pwbn-halo{0%{opacity:0}30%{opacity:1}100%{opacity:.7}}
-@keyframes pwbn-label{from{opacity:0;letter-spacing:.3em;filter:blur(2px)}to{opacity:1;letter-spacing:.01em;filter:none}}
+@keyframes pwbn-halo{from{opacity:0}to{opacity:.7}}
+@keyframes pwbn-label{from{opacity:0}to{opacity:1}}
 /* ambiente: brilho atravessa a faixa, asas pulsam em sequência e um ponto de luz corre pelas linhas */
 pw-card-header[variant="banner"]:is([animate=""],[animate="both"],[animate="ambient"]) .bn-sweep{animation:pwbn-sweep var(--bn-speed,3.6s) ease-in-out infinite}
 pw-card-header[variant="banner"]:is([animate=""],[animate="both"],[animate="ambient"]) .bn-wing.w1{animation:pwbn-pulse var(--bn-speed,3.6s) ease-in-out infinite}
@@ -1603,7 +1602,7 @@ pw-search .pws-live{position:absolute;width:1px;height:1px;overflow:hidden;clip-
 
 document.querySelector('pw-card-header').play(); // repete a abertura</pre>
 <h3 id="header-banner" style="scroll-margin-top:24px">Variante banner</h3>
-  <p class="lede"><code>variant="banner"</code> é um título de destaque no estilo HUD: faixa central com pontas chanfradas, duas asas em chevron de cada lado e linhas longas que se estendem para fora. Use para avisos de estado da partida (esperando renascer, vitória, raid começando). Com <code>animate</code>, abre do centro: a faixa estica, as asas deslizam para fora, as linhas correm até as pontas e o texto se junta. Depois, um brilho atravessa a faixa, as asas pulsam e um ponto de luz corre pelas linhas. Cores do tema.</p>
+  <p class="lede"><code>variant="banner"</code> é um título de destaque no estilo HUD: faixa central com pontas chanfradas, duas asas em chevron de cada lado e linhas longas que se estendem para fora. Use para avisos de estado da partida (esperando renascer, vitória, raid começando). Com <code>animate</code>, abre do centro numa única transição suave: a faixa cresce e aparece, as asas deslizam para fora, as linhas correm até as pontas e o texto surge. Depois, um brilho atravessa a faixa, as asas pulsam e um ponto de luz corre pelas linhas. Cores do tema.</p>
   <div class="canvas" id="bnCanvas" style="display:grid;gap:34px;justify-items:center;padding:48px 28px;overflow:hidden">
     <pw-card-header variant="banner" animate>Aguarde para renascer</pw-card-header>
     <pw-card-header variant="banner" animate theme="planta">Wait to Respawn</pw-card-header>
@@ -1616,7 +1615,7 @@ document.querySelector('pw-card-header').play(); // repete a abertura</pre>
   <div class="tbl"><table><thead><tr><th>Configuração</th><th>Padrão</th><th>Descrição</th></tr></thead><tbody>
     <tr><td><code>size</code></td><td>md</td><td>sm 40 · md 52 · lg 64px de altura</td></tr>
     <tr><td><code>animate</code></td><td>sem animação</td><td>Mesmos valores da variante padrão: vazio/both, intro, ambient, none; <code>.play()</code> repete</td></tr>
-    <tr><td><code>icon</code></td><td>sem ícone</td><td>Na banner, o ícone só aparece quando definido</td></tr>
+    <tr><td><code>icon</code> · <code>show-icon</code></td><td>✦</td><td>Igual ao header de pontas: ícone dos dois lados do texto; <code>show-icon="false"</code> esconde</td></tr>
     <tr><td><code>--bn-wing</code> · <code>--bn-line</code></td><td>84px · 220px</td><td>Espaço das asas de cada lado · comprimento das linhas laterais (saem para fora do elemento)</td></tr>
     <tr><td><code>--bn-speed</code></td><td>3.6s</td><td>Ciclo do brilho, das asas e do ponto de luz</td></tr>
   </tbody></table></div>

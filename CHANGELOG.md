@@ -20,6 +20,15 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.33.0
+
+- **pw-card-header banner**:
+  - Usa o mesmo texto do header de pontas: `--pw-text-title-caps` (Spectral, caixa alta) na cor `--pw-text-title`.
+  - Mais espaço nas laterais: padding de `--pw-space-12` no md, `-8` no sm e `-16` no lg.
+  - Ícones iguais aos do header de pontas: ✦ por padrão, `icon` para trocar e `show-icon="false"` para esconder.
+  - Abertura numa única transição suave: a faixa cresce e aparece, as asas e as linhas saem e o texto surge, sem pular de tamanho nem piscar.
+
 ## 0.32.3
 
 - **pw-card-header banner**: as linhas laterais e o ponto de luz que corre por elas ficam no centro vertical do header.
