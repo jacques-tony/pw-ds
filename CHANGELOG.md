@@ -22,6 +22,16 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.34.1
+
+- **pw-tabs folder**: transição mais suave entre as abas.
+  - O metal entra e sai num fade de 450ms.
+  - A aba selecionada sobe 2px.
+  - Uma luz desliza pela linha de base até a nova aba (420ms).
+  - Cor, brilho e borda mudam juntos.
+  - Respeita reduzir movimento.
+
 ## 0.34.0
 
 - **pw-tabs `variant="folder"`**: abas de pasta.
