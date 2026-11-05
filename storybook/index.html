@@ -486,6 +486,38 @@ pw-tabs .pwt-ghost::before{content:"";position:absolute;inset:0;border-radius:in
 pw-tab[data-arriving]{--fill-op:0!important;--stroke-op:0!important;--drop-op:0!important;transition:none}
 pw-tab[data-arriving]::before,pw-tab[data-arriving]::after{transition:none}
 pw-tab[disabled],pw-tab[state="disabled"]{opacity:.38;cursor:not-allowed;--drop-op:0}
+
+/* ---- pw-tabs variant="folder": abas de pasta (cantos de cima arredondados) sobre uma linha de base; a selecionada vira metal do tema ---- */
+pw-tabs[variant="folder"]{gap:var(--pw-space-1);align-items:flex-end;flex-wrap:nowrap;padding:0 var(--pw-space-2);--tab-fs:var(--pw-font-size-md);--tab-ic:18px;--tab-gap:var(--pw-space-2)}
+pw-tabs[variant="folder"][size="sm"]{--tab-fs:var(--pw-font-size-sm);--tab-ic:14px}
+pw-tabs[variant="folder"][size="lg"]{--tab-fs:var(--pw-font-size-lg);--tab-ic:20px}
+pw-tabs[variant="folder"]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;z-index:0;pointer-events:none;
+  background:linear-gradient(90deg,transparent,var(--pw-border-strong) 6%,var(--pw-metal-1) 50%,var(--pw-border-strong) 94%,transparent);box-shadow:0 0 8px var(--pw-glow-soft)}
+pw-tabs[variant="folder"] .pwt-ghost{display:none}
+pw-tabs[variant="folder"] pw-tab{justify-content:center;min-width:var(--fd-w,160px);padding:var(--pw-space-3) var(--pw-space-6) calc(var(--pw-space-3) + 2px);
+  border-radius:var(--pw-radius-lg) var(--pw-radius-lg) 0 0;font-weight:var(--pw-font-weight-semibold);color:var(--pw-text-accent);
+  background:linear-gradient(180deg,var(--pw-surface-raised-top),var(--pw-surface-raised-bottom));box-shadow:none;z-index:1}
+pw-tabs[variant="folder"][size="sm"] pw-tab{min-width:var(--fd-w,120px);padding:var(--pw-space-2) var(--pw-space-4) calc(var(--pw-space-2) + 2px)}
+pw-tabs[variant="folder"][size="lg"] pw-tab{min-width:var(--fd-w,200px);padding:var(--pw-space-4) var(--pw-space-8) calc(var(--pw-space-4) + 2px)}
+/* borda: acesa em cima, some para baixo */
+pw-tabs[variant="folder"] pw-tab::before{opacity:1;padding:1px;border-radius:inherit;
+  background:linear-gradient(180deg,var(--pw-border-emphasis),var(--pw-border-subtle) 70%,transparent)}
+/* preenchimento metal: aparece com transição ao selecionar */
+pw-tabs[variant="folder"] pw-tab::after{opacity:0;box-shadow:inset 0 1px 0 var(--pw-white-a55),inset 0 -6px 12px -6px var(--pw-black-a35);
+  background:linear-gradient(180deg,var(--pw-metal-0),var(--pw-metal-1) 55%,var(--pw-metal-2))}
+pw-tabs[variant="folder"] pw-tab .pwt-shine{display:none}
+pw-tabs[variant="folder"] pw-tab:not([disabled]):not([selected]):hover,pw-tabs[variant="folder"] pw-tab[state="hover"]{color:var(--pw-text-primary);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--pw-filament) 12%,var(--pw-surface-raised-top)),var(--pw-surface-raised-bottom))}
+pw-tabs[variant="folder"] pw-tab:not([disabled]):not([selected]):hover::before{background:linear-gradient(180deg,var(--pw-filament),var(--pw-border-default) 70%,transparent)}
+pw-tabs[variant="folder"] pw-tab[selected],pw-tabs[variant="folder"] pw-tab[state="selected"]{z-index:2;color:var(--pw-on-metal);font-weight:var(--pw-font-weight-bold);
+  box-shadow:0 -4px 16px -6px var(--pw-glow),0 6px 18px -4px var(--pw-glow-soft)}
+pw-tabs[variant="folder"] pw-tab[selected]::after,pw-tabs[variant="folder"] pw-tab[state="selected"]::after{opacity:1}
+pw-tabs[variant="folder"] pw-tab[selected]::before,pw-tabs[variant="folder"] pw-tab[state="selected"]::before{background:linear-gradient(180deg,var(--pw-white),var(--pw-filament) 40%,var(--pw-metal-1))}
+pw-tabs[variant="folder"] pw-tab[selected]:not([disabled]):hover::after{filter:brightness(1.06)}
+pw-tabs[variant="folder"] pw-tab[data-arriving]::after{transition:opacity var(--card-dur)}
+pw-tabs[variant="folder"] pw-tab[data-arriving][selected]::after{opacity:1}
+pw-tabs[variant="folder"] pw-tab:focus-visible{outline:2px solid var(--pw-focus-ring);outline-offset:2px}
+pw-tabs[variant="folder"][block]{display:flex}pw-tabs[variant="folder"][block] pw-tab{flex:1}
 .tabpanel{font-size:14px;color:var(--sb-muted);padding-top:14px;max-width:60ch}
 @media (prefers-reduced-motion:reduce){pw-tab,pw-tab::before,pw-tab::after{transition:none}}
 .pw-titled{position:relative;display:inline-block;width:fit-content;justify-self:start;padding-top:26px}
@@ -1322,7 +1354,7 @@ pw-search .pws-live{position:absolute;width:1px;height:1px;overflow:hidden;clip-
   </nav>
   <button type="button" class="comp-btn" data-comp="tabs" aria-controls="main">Tabs</button>
   <nav class="sub" data-for="tabs">
-    <a href="#tabs">Visão geral</a><a href="#tabs-playground">Playground</a><a href="#tabs-tamanhos">Tamanhos</a><a href="#tabs-estados">Estados</a><a href="#tabs-tokens">Tokens</a><a href="#tabs-a11y">Acessibilidade</a>
+    <a href="#tabs">Visão geral</a><a href="#tabs-playground">Playground</a><a href="#tabs-tamanhos">Tamanhos</a><a href="#tabs-folder">Variante pasta</a><a href="#tabs-estados">Estados</a><a href="#tabs-tokens">Tokens</a><a href="#tabs-a11y">Acessibilidade</a>
   </nav>
   <button type="button" class="comp-btn" data-comp="button" aria-controls="main">Button</button>
   <nav class="sub" data-for="button">
@@ -1852,9 +1884,10 @@ document.querySelector('pw-card-header').play(); // repete a abertura</pre>
   <div class="pg">
     <form class="ctrls" id="tpForm" onsubmit="return false">
       <label for="tpText">texto da aba<input id="tpText" type="text" value="Visão geral" maxlength="30" autocomplete="off"></label>
+      <label for="tpVariant">variant<select id="tpVariant"><option value="">padrão</option><option value="folder">folder (pasta)</option></select></label>
       <label for="tpSize">size<select id="tpSize"><option>sm</option><option selected>md</option><option>lg</option></select></label>
       <label for="tpState">state<select id="tpState"><option>unselected</option><option>hover</option><option selected>selected</option><option value="selected-hover">selected + hover</option><option>disabled</option></select></label>
-      <label for="tpTheme">theme<select id="tpTheme"><option value="">poke world (padrão)</option><option>mewtwo</option></select></label>
+      <label for="tpTheme">theme<select id="tpTheme"><option value="">poke world (padrão)</option><option>mewtwo</option><option>fogo</option><option>agua</option><option>planta</option><option>psiquico</option></select></label>
       <label class="check" for="tpShowIcon"><input type="checkbox" id="tpShowIcon" checked> show-icon</label>
       <label for="tpIcon">icon<select id="tpIcon"><option>craft</option><option>boost</option><option>limit-break</option><option>close</option><option>check</option><option>warning</option><option>grid</option><option>star</option><option>bolt</option><option>map</option><option>bag</option></select></label>
       <p class="cap" style="margin:0">craft, boost, limit-break e close vêm do componente Icon. Os demais ainda são provisórios.</p>
@@ -1867,6 +1900,29 @@ document.querySelector('pw-card-header').play(); // repete a abertura</pre>
   </div>
 </section>
 
+<section class="story" data-c="tabs" id="tabs-folder">
+  <h2>Variante pasta</h2>
+  <p class="lede"><code>variant="folder"</code> desenha abas de pasta, com cantos de cima arredondados, apoiadas numa linha de base acesa. A aba selecionada recebe o metal do tema e brilha; as outras ficam no vidro escuro, com borda acesa no topo. Boa para alternar visões de um mesmo painel (Meu pedido / Doar fragmentos). Usa o mesmo comportamento e teclado das Tabs.</p>
+  <div class="canvas" style="display:grid;gap:28px">
+    <pw-tabs variant="folder" aria-label="Fragmentos"><pw-tab show-icon="false">Meu pedido</pw-tab><pw-tab icon="gift" selected>Doar fragmentos</pw-tab></pw-tabs>
+    <pw-tabs variant="folder" aria-label="Clã"><pw-tab icon="people" selected>Membros</pw-tab><pw-tab icon="trophy">Ranking</pw-tab><pw-tab icon="scroll">Missões</pw-tab><pw-tab icon="lock" disabled>Loja do clã</pw-tab></pw-tabs>
+    <pw-tabs variant="folder" size="sm" aria-label="Pequeno"><pw-tab selected show-icon="false">Ativos</pw-tab><pw-tab show-icon="false">Histórico</pw-tab></pw-tabs>
+  </div>
+  <div class="canvas" data-pw-theme="mewtwo" style="display:grid;gap:28px">
+    <pw-tabs variant="folder" size="lg" aria-label="Máquina"><pw-tab icon="gem" selected>Fragmentos</pw-tab><pw-tab icon="boost">Boost</pw-tab></pw-tabs>
+    <div data-pw-theme="fogo"><pw-tabs variant="folder" block aria-label="Fogo"><pw-tab selected icon="fogo">Fogo</pw-tab><pw-tab icon="agua">Água</pw-tab><pw-tab icon="planta">Planta</pw-tab></pw-tabs></div>
+  </div>
+  <pre class="code">&lt;pw-tabs variant="folder" aria-label="Fragmentos"&gt;
+  &lt;pw-tab show-icon="false"&gt;Meu pedido&lt;/pw-tab&gt;
+  &lt;pw-tab icon="gift" selected&gt;Doar fragmentos&lt;/pw-tab&gt;
+&lt;/pw-tabs&gt;</pre>
+  <div class="tbl"><table><thead><tr><th>Configuração</th><th>Padrão</th><th>Descrição</th></tr></thead><tbody>
+    <tr><td><code>variant="folder"</code></td><td>—</td><td>Ativa o estilo de pasta</td></tr>
+    <tr><td><code>size</code></td><td>md</td><td>sm 12 · md 14 · lg 16px de texto; largura mínima 120 · 160 · 200px</td></tr>
+    <tr><td><code>block</code></td><td>—</td><td>As abas dividem a largura inteira</td></tr>
+    <tr><td><code>--fd-w</code></td><td>160px</td><td>Largura mínima de cada aba</td></tr>
+  </tbody></table></div>
+</section>
 <section class="story" id="tabs-tamanhos" data-c="tabs">
   <h2>Tamanhos</h2>
   <p class="lede">O md (31px) é o tamanho do Figma. sm e lg são derivações proporcionais.</p>
@@ -4085,16 +4141,16 @@ window.PW_EL_PAL={"inseto": {"dark": "#5A7D2B", "mid": "#7EAB33", "light": "#97C
   function tp(){
     var t=g('tpText').value,sz=g('tpSize').value,st=g('tpState').value,th=g('tpTheme').value,sh=g('tpShowIcon').checked,ic=g('tpIcon').value;
     g('tpIcon').disabled=!sh;
-    var a=[];if(sz!=='md')a.push('size="'+sz+'"');if(th)a.push('theme="'+th+'"');
+    var vr=g('tpVariant').value;var a=[];if(vr)a.push('variant="'+vr+'"');if(sz!=='md')a.push('size="'+sz+'"');if(th)a.push('theme="'+th+'"');
     var ta=['icon="'+ic+'"'];if(!sh)ta=['show-icon="false"'];
     if(st==='selected'||st==='selected-hover')ta.push('selected');if(st==='disabled')ta.push('disabled');
     var forced=st==='hover'?' state="hover"':st==='selected-hover'?' state="selected-hover"':'';
     g('tpStage').innerHTML='';var wrap=document.createElement('div');
-    wrap.innerHTML='<pw-tabs '+a.join(' ')+' aria-label="Playground"><pw-tab '+ta.join(' ')+forced+'></pw-tab></pw-tabs>';
+    wrap.innerHTML='<pw-tabs '+a.join(' ')+' aria-label="Playground"><pw-tab '+ta.join(' ')+forced+'></pw-tab>'+(vr?'<pw-tab show-icon="false">Outra aba</pw-tab>':'')+'</pw-tabs>';
     wrap.querySelector('pw-tab').textContent=t;g('tpStage').appendChild(wrap.firstChild);
     g('tpCode').textContent='<pw-tabs'+(a.length?' '+a.join(' '):'')+' aria-label="…">\n  <pw-tab '+ta.join(' ')+'>'+t+'</pw-tab>\n</pw-tabs>';
   }
-  ['tpText','tpSize','tpState','tpTheme','tpShowIcon','tpIcon'].forEach(id=>g(id).addEventListener(id==='tpText'?'input':'change',tp));
+  ['tpText','tpVariant','tpSize','tpState','tpTheme','tpShowIcon','tpIcon'].forEach(id=>g(id).addEventListener(id==='tpText'?'input':'change',tp));
   g('tpCopy').addEventListener('click',function(){var b=this;navigator.clipboard.writeText(g('tpCode').textContent).then(()=>{b.textContent='Copiado';setTimeout(()=>b.textContent='Copiar HTML',1400)}).catch(()=>{var r=document.createRange();r.selectNodeContents(g('tpCode'));var s=getSelection();s.removeAllRanges();s.addRange(r)})});
   tp();
 })();

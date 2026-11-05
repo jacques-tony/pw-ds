@@ -21,6 +21,16 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.34.0
+
+- **pw-tabs `variant="folder"`**: abas de pasta.
+  - Visual: cantos de cima arredondados, apoiadas numa linha de base acesa.
+  - A aba selecionada recebe o metal do tema com brilho; as outras ficam no vidro escuro, com a borda acesa no topo.
+  - `size` sm, md e lg; `block` divide a largura inteira; `--fd-w` define a largura mínima.
+  - Mesmo comportamento, teclado e acessibilidade das Tabs.
+- Storybook: nova seção "Variante pasta"; o playground das Tabs ganhou as opções `variant` e mais temas.
+
 ## 0.33.0
 
 - **pw-card-header banner**:

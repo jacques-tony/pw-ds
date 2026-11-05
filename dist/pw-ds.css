@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.33.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.34.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -401,6 +401,38 @@ pw-tabs .pwt-ghost::before{content:"";position:absolute;inset:0;border-radius:in
 pw-tab[data-arriving]{--fill-op:0!important;--stroke-op:0!important;--drop-op:0!important;transition:none}
 pw-tab[data-arriving]::before,pw-tab[data-arriving]::after{transition:none}
 pw-tab[disabled],pw-tab[state="disabled"]{opacity:.38;cursor:not-allowed;--drop-op:0}
+
+/* ---- pw-tabs variant="folder": abas de pasta (cantos de cima arredondados) sobre uma linha de base; a selecionada vira metal do tema ---- */
+pw-tabs[variant="folder"]{gap:var(--pw-space-1);align-items:flex-end;flex-wrap:nowrap;padding:0 var(--pw-space-2);--tab-fs:var(--pw-font-size-md);--tab-ic:18px;--tab-gap:var(--pw-space-2)}
+pw-tabs[variant="folder"][size="sm"]{--tab-fs:var(--pw-font-size-sm);--tab-ic:14px}
+pw-tabs[variant="folder"][size="lg"]{--tab-fs:var(--pw-font-size-lg);--tab-ic:20px}
+pw-tabs[variant="folder"]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;z-index:0;pointer-events:none;
+  background:linear-gradient(90deg,transparent,var(--pw-border-strong) 6%,var(--pw-metal-1) 50%,var(--pw-border-strong) 94%,transparent);box-shadow:0 0 8px var(--pw-glow-soft)}
+pw-tabs[variant="folder"] .pwt-ghost{display:none}
+pw-tabs[variant="folder"] pw-tab{justify-content:center;min-width:var(--fd-w,160px);padding:var(--pw-space-3) var(--pw-space-6) calc(var(--pw-space-3) + 2px);
+  border-radius:var(--pw-radius-lg) var(--pw-radius-lg) 0 0;font-weight:var(--pw-font-weight-semibold);color:var(--pw-text-accent);
+  background:linear-gradient(180deg,var(--pw-surface-raised-top),var(--pw-surface-raised-bottom));box-shadow:none;z-index:1}
+pw-tabs[variant="folder"][size="sm"] pw-tab{min-width:var(--fd-w,120px);padding:var(--pw-space-2) var(--pw-space-4) calc(var(--pw-space-2) + 2px)}
+pw-tabs[variant="folder"][size="lg"] pw-tab{min-width:var(--fd-w,200px);padding:var(--pw-space-4) var(--pw-space-8) calc(var(--pw-space-4) + 2px)}
+/* borda: acesa em cima, some para baixo */
+pw-tabs[variant="folder"] pw-tab::before{opacity:1;padding:1px;border-radius:inherit;
+  background:linear-gradient(180deg,var(--pw-border-emphasis),var(--pw-border-subtle) 70%,transparent)}
+/* preenchimento metal: aparece com transição ao selecionar */
+pw-tabs[variant="folder"] pw-tab::after{opacity:0;box-shadow:inset 0 1px 0 var(--pw-white-a55),inset 0 -6px 12px -6px var(--pw-black-a35);
+  background:linear-gradient(180deg,var(--pw-metal-0),var(--pw-metal-1) 55%,var(--pw-metal-2))}
+pw-tabs[variant="folder"] pw-tab .pwt-shine{display:none}
+pw-tabs[variant="folder"] pw-tab:not([disabled]):not([selected]):hover,pw-tabs[variant="folder"] pw-tab[state="hover"]{color:var(--pw-text-primary);
+  background:linear-gradient(180deg,color-mix(in srgb,var(--pw-filament) 12%,var(--pw-surface-raised-top)),var(--pw-surface-raised-bottom))}
+pw-tabs[variant="folder"] pw-tab:not([disabled]):not([selected]):hover::before{background:linear-gradient(180deg,var(--pw-filament),var(--pw-border-default) 70%,transparent)}
+pw-tabs[variant="folder"] pw-tab[selected],pw-tabs[variant="folder"] pw-tab[state="selected"]{z-index:2;color:var(--pw-on-metal);font-weight:var(--pw-font-weight-bold);
+  box-shadow:0 -4px 16px -6px var(--pw-glow),0 6px 18px -4px var(--pw-glow-soft)}
+pw-tabs[variant="folder"] pw-tab[selected]::after,pw-tabs[variant="folder"] pw-tab[state="selected"]::after{opacity:1}
+pw-tabs[variant="folder"] pw-tab[selected]::before,pw-tabs[variant="folder"] pw-tab[state="selected"]::before{background:linear-gradient(180deg,var(--pw-white),var(--pw-filament) 40%,var(--pw-metal-1))}
+pw-tabs[variant="folder"] pw-tab[selected]:not([disabled]):hover::after{filter:brightness(1.06)}
+pw-tabs[variant="folder"] pw-tab[data-arriving]::after{transition:opacity var(--card-dur)}
+pw-tabs[variant="folder"] pw-tab[data-arriving][selected]::after{opacity:1}
+pw-tabs[variant="folder"] pw-tab:focus-visible{outline:2px solid var(--pw-focus-ring);outline-offset:2px}
+pw-tabs[variant="folder"][block]{display:flex}pw-tabs[variant="folder"][block] pw-tab{flex:1}
 @media (prefers-reduced-motion:reduce){pw-tab,pw-tab::before,pw-tab::after{transition:none}}
 .pw-titled{position:relative;display:inline-block;width:fit-content;justify-self:start;padding-top:26px}
 .pw-titled>pw-card-header{position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:2}
