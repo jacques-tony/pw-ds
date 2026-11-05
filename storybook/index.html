@@ -488,21 +488,21 @@ pw-tab[data-arriving]::before,pw-tab[data-arriving]::after{transition:none}
 pw-tab[disabled],pw-tab[state="disabled"]{opacity:.38;cursor:not-allowed;--drop-op:0}
 
 /* ---- pw-tabs variant="folder": abas de pasta (cantos de cima arredondados) sobre uma linha de base; a selecionada vira metal do tema ---- */
-pw-tabs[variant="folder"]{gap:var(--pw-space-1);align-items:flex-end;flex-wrap:nowrap;padding:0 var(--pw-space-2);--tab-fs:var(--pw-font-size-md);--tab-ic:18px;--tab-gap:var(--pw-space-2)}
-pw-tabs[variant="folder"][size="sm"]{--tab-fs:var(--pw-font-size-sm);--tab-ic:14px}
-pw-tabs[variant="folder"][size="lg"]{--tab-fs:var(--pw-font-size-lg);--tab-ic:20px}
+pw-tabs[variant="folder"]{gap:var(--pw-space-1);align-items:flex-end;flex-wrap:nowrap;padding:0 var(--pw-space-2) 2px;--fd-h:44px;--fd-grow:6px;--tab-fs:var(--pw-font-size-md);--tab-ic:18px;--tab-gap:var(--pw-space-2)}
+pw-tabs[variant="folder"][size="sm"]{--tab-fs:var(--pw-font-size-sm);--tab-ic:14px;--fd-h:34px;--fd-grow:4px}
+pw-tabs[variant="folder"][size="lg"]{--tab-fs:var(--pw-font-size-lg);--tab-ic:20px;--fd-h:54px;--fd-grow:8px}
 pw-tabs[variant="folder"]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;z-index:0;pointer-events:none;
   background:linear-gradient(90deg,transparent,var(--pw-border-strong) 6%,var(--pw-metal-1) 50%,var(--pw-border-strong) 94%,transparent);box-shadow:0 0 8px var(--pw-glow-soft)}
 /* transição suave: o metal entra e sai em fade mais longo, a aba sobe 2px e uma luz desliza pela linha de base até a nova aba */
 pw-tabs[variant="folder"] .pwt-ghost{z-index:4;background:none;box-shadow:none;border-radius:0}
 pw-tabs[variant="folder"] .pwt-ghost::before{content:none}
-pw-tabs[variant="folder"] .pwt-ghost::after{content:"";position:absolute;left:10%;right:10%;bottom:-1px;height:3px;border-radius:var(--pw-radius-full);
+pw-tabs[variant="folder"] .pwt-ghost::after{content:"";position:absolute;left:10%;right:10%;bottom:-2px;height:3px;border-radius:var(--pw-radius-full);
   background:linear-gradient(90deg,transparent,var(--pw-white),var(--pw-filament),var(--pw-white),transparent);box-shadow:0 0 12px 2px var(--pw-glow)}
-pw-tabs[variant="folder"] pw-tab{transition:color .35s ease,box-shadow .45s ease,transform .4s cubic-bezier(.22,.61,.36,1),background .35s ease;justify-content:center;min-width:var(--fd-w,160px);padding:var(--pw-space-3) var(--pw-space-6) calc(var(--pw-space-3) + 2px);
+pw-tabs[variant="folder"] pw-tab{transition:color .35s ease,box-shadow .45s ease,height .4s cubic-bezier(.22,.61,.36,1),background .35s ease;justify-content:center;min-width:var(--fd-w,160px);height:var(--fd-h);padding:0 var(--pw-space-6);
   border-radius:var(--pw-radius-lg) var(--pw-radius-lg) 0 0;font-weight:var(--pw-font-weight-semibold);color:var(--pw-text-accent);
   background:linear-gradient(180deg,var(--pw-surface-raised-top),var(--pw-surface-raised-bottom));box-shadow:none;z-index:1}
-pw-tabs[variant="folder"][size="sm"] pw-tab{min-width:var(--fd-w,120px);padding:var(--pw-space-2) var(--pw-space-4) calc(var(--pw-space-2) + 2px)}
-pw-tabs[variant="folder"][size="lg"] pw-tab{min-width:var(--fd-w,200px);padding:var(--pw-space-4) var(--pw-space-8) calc(var(--pw-space-4) + 2px)}
+pw-tabs[variant="folder"][size="sm"] pw-tab{min-width:var(--fd-w,120px);padding:0 var(--pw-space-4)}
+pw-tabs[variant="folder"][size="lg"] pw-tab{min-width:var(--fd-w,200px);padding:0 var(--pw-space-8)}
 /* borda: acesa em cima, some para baixo */
 pw-tabs[variant="folder"] pw-tab::before{transition:background .35s ease;opacity:1;padding:1px;border-radius:inherit;
   background:linear-gradient(180deg,var(--pw-border-emphasis),var(--pw-border-subtle) 70%,transparent)}
@@ -513,7 +513,7 @@ pw-tabs[variant="folder"] pw-tab .pwt-shine{display:none}
 pw-tabs[variant="folder"] pw-tab:not([disabled]):not([selected]):hover,pw-tabs[variant="folder"] pw-tab[state="hover"]{color:var(--pw-text-primary);
   background:linear-gradient(180deg,color-mix(in srgb,var(--pw-filament) 12%,var(--pw-surface-raised-top)),var(--pw-surface-raised-bottom))}
 pw-tabs[variant="folder"] pw-tab:not([disabled]):not([selected]):hover::before{background:linear-gradient(180deg,var(--pw-filament),var(--pw-border-default) 70%,transparent)}
-pw-tabs[variant="folder"] pw-tab[selected],pw-tabs[variant="folder"] pw-tab[state="selected"]{z-index:2;transform:translateY(-2px);color:var(--pw-on-metal);font-weight:var(--pw-font-weight-bold);
+pw-tabs[variant="folder"] pw-tab[selected],pw-tabs[variant="folder"] pw-tab[state="selected"]{z-index:2;height:calc(var(--fd-h) + var(--fd-grow));color:var(--pw-on-metal);font-weight:var(--pw-font-weight-bold);
   box-shadow:0 -4px 16px -6px var(--pw-glow),0 6px 18px -4px var(--pw-glow-soft)}
 pw-tabs[variant="folder"] pw-tab[selected]::after,pw-tabs[variant="folder"] pw-tab[state="selected"]::after{opacity:1}
 pw-tabs[variant="folder"] pw-tab[selected]::before,pw-tabs[variant="folder"] pw-tab[state="selected"]::before{background:linear-gradient(180deg,var(--pw-white),var(--pw-filament) 40%,var(--pw-metal-1))}
@@ -1906,7 +1906,7 @@ document.querySelector('pw-card-header').play(); // repete a abertura</pre>
 
 <section class="story" data-c="tabs" id="tabs-folder">
   <h2>Variante pasta</h2>
-  <p class="lede"><code>variant="folder"</code> desenha abas de pasta, com cantos de cima arredondados, apoiadas numa linha de base acesa. A aba selecionada recebe o metal do tema e brilha; as outras ficam no vidro escuro, com borda acesa no topo. Boa para alternar visões de um mesmo painel (Meu pedido / Doar fragmentos). Usa o mesmo comportamento e teclado das Tabs.</p>
+  <p class="lede"><code>variant="folder"</code> desenha abas de pasta, com cantos de cima arredondados, apoiadas numa linha de base acesa. Todas as abas têm a mesma altura; só a selecionada fica um pouco mais alta, recebe o metal do tema e brilha. As outras ficam no vidro escuro, com borda acesa no topo. A linha de base fica encostada embaixo das abas. Boa para alternar visões de um mesmo painel (Meu pedido / Doar fragmentos). Usa o mesmo comportamento e teclado das Tabs.</p>
   <div class="canvas" style="display:grid;gap:28px">
     <pw-tabs variant="folder" aria-label="Fragmentos"><pw-tab show-icon="false">Meu pedido</pw-tab><pw-tab icon="gift" selected>Doar fragmentos</pw-tab></pw-tabs>
     <pw-tabs variant="folder" aria-label="Clã"><pw-tab icon="people" selected>Membros</pw-tab><pw-tab icon="trophy">Ranking</pw-tab><pw-tab icon="scroll">Missões</pw-tab><pw-tab icon="lock" disabled>Loja do clã</pw-tab></pw-tabs>
@@ -1915,6 +1915,24 @@ document.querySelector('pw-card-header').play(); // repete a abertura</pre>
   <div class="canvas" data-pw-theme="mewtwo" style="display:grid;gap:28px">
     <pw-tabs variant="folder" size="lg" aria-label="Máquina"><pw-tab icon="gem" selected>Fragmentos</pw-tab><pw-tab icon="boost">Boost</pw-tab></pw-tabs>
     <div data-pw-theme="fogo"><pw-tabs variant="folder" block aria-label="Fogo"><pw-tab selected icon="fogo">Fogo</pw-tab><pw-tab icon="agua">Água</pw-tab><pw-tab icon="planta">Planta</pw-tab></pw-tabs></div>
+  </div>
+  <h3>Playground</h3>
+  <div class="pg">
+    <form class="ctrls" id="fpForm" onsubmit="return false">
+      <label>abas (separadas por vírgula)<input type="text" id="fpTabs" value="Meu pedido,Doar fragmentos,Histórico"></label>
+      <label>ícones (na mesma ordem; vazio = sem ícone)<input type="text" id="fpIcons" value=",gift,clock"></label>
+      <label>selecionada (1 = primeira)<input type="number" id="fpSel" min="1" value="2"></label>
+      <label>desabilitada (nº, vazio = nenhuma)<input type="text" id="fpDis" value=""></label>
+      <label>size<select id="fpSize"><option value="sm">sm · 34px</option><option value="" selected>md · 44px</option><option value="lg">lg · 54px</option></select></label>
+      <label>--fd-w (largura mínima, px)<input type="number" id="fpW" min="60" step="10" placeholder="padrão"></label>
+      <label>--fd-grow (quanto a selecionada cresce, px)<input type="number" id="fpGrow" min="0" max="16" placeholder="padrão"></label>
+      <label class="check"><input type="checkbox" id="fpBlock"> block (largura inteira)</label>
+      <label>theme<select id="fpTheme"><option value="">poke world (padrão)</option><option>mewtwo</option><option>fogo</option><option>agua</option><option>planta</option><option>eletrico</option><option>psiquico</option><option>dragao</option><option>gelo</option><option>fantasma</option></select></label>
+    </form>
+    <div style="display:grid;gap:14px;min-width:0;align-content:start">
+      <div class="canvas" id="fpStage" style="min-height:140px;display:grid;align-items:center"></div>
+      <pre class="code" id="fpCode"></pre>
+    </div>
   </div>
   <pre class="code">&lt;pw-tabs variant="folder" aria-label="Fragmentos"&gt;
   &lt;pw-tab show-icon="false"&gt;Meu pedido&lt;/pw-tab&gt;
@@ -1925,6 +1943,7 @@ document.querySelector('pw-card-header').play(); // repete a abertura</pre>
     <tr><td><code>size</code></td><td>md</td><td>sm 12 · md 14 · lg 16px de texto; largura mínima 120 · 160 · 200px</td></tr>
     <tr><td><code>block</code></td><td>—</td><td>As abas dividem a largura inteira</td></tr>
     <tr><td><code>--fd-w</code></td><td>160px</td><td>Largura mínima de cada aba</td></tr>
+    <tr><td><code>--fd-h</code> · <code>--fd-grow</code></td><td>44px · 6px</td><td>Altura das abas · quanto a selecionada fica mais alta (sm 34/4, lg 54/8)</td></tr>
   </tbody></table></div>
 </section>
 <section class="story" id="tabs-tamanhos" data-c="tabs">
@@ -4379,4 +4398,12 @@ pg();
   d.addEventListener('clear',()=>log.textContent='clear');
   if(window.PG)PG('pgSearch','pw-search',[['placeholder','text','Buscar Pokémon, item ou jogador'],['label','text',''],['label-visible','check',false],['size','select',['sm','md','lg'],'md'],['variant','select',['','ghost']],['shortcut','text',''],['suggestions','text','Charizard,Charmander,Blastoise,Pedra de Fogo,Ultra Ball'],['show-all','check',false],['expandable','check',false],['submit','check',false],['loading','check',false],['disabled','check',false]],null,{style:'width:320px'});
 })();
+
+(function(){var f=document.getElementById('fpForm');if(!f)return;var g=id=>document.getElementById(id);
+  function run(){var tabs=g('fpTabs').value.split(',').map(x=>x.trim()).filter(Boolean),ics=g('fpIcons').value.split(',').map(x=>x.trim()),sel=Math.max(1,+g('fpSel').value||1),dis=+g('fpDis').value||0;
+    var a=['variant="folder"'];if(g('fpSize').value)a.push('size="'+g('fpSize').value+'"');if(g('fpTheme').value)a.push('theme="'+g('fpTheme').value+'"');if(g('fpBlock').checked)a.push('block');
+    var st=[];if(g('fpW').value)st.push('--fd-w:'+g('fpW').value+'px');if(g('fpGrow').value!=='')st.push('--fd-grow:'+g('fpGrow').value+'px');if(st.length)a.push('style="'+st.join(';')+'"');
+    var kids=tabs.map((t,i)=>{var at=[];at.push(ics[i]?'icon="'+ics[i]+'"':'show-icon="false"');if(i+1===sel)at.push('selected');if(i+1===dis)at.push('disabled');return '  <pw-tab '+at.join(' ')+'>'+t.replace(/</g,'&lt;')+'</pw-tab>'}).join('\n');
+    var html='<pw-tabs '+a.join(' ')+' aria-label="Playground">\n'+kids+'\n</pw-tabs>';g('fpStage').innerHTML=html;g('fpCode').textContent=html}
+  f.addEventListener('input',run);f.addEventListener('change',run);run()})();
 </script>

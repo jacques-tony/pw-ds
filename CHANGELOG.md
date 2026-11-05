@@ -23,6 +23,15 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.35.0
+
+- **pw-tabs folder**:
+  - Todas as abas têm a mesma altura (`--fd-h`: sm 34, md 44, lg 54px), com ou sem ícone.
+  - Só a selecionada fica mais alta (`--fd-grow`: 4, 6 e 8px), com transição suave.
+  - A linha de base fica encostada embaixo das abas, sem passar por baixo delas.
+- Storybook: playground próprio da variante pasta (abas, ícones, selecionada, desabilitada, size, `--fd-w`, `--fd-grow`, `block` e tema).
+
 ## 0.34.1
 
 - **pw-tabs folder**: transição mais suave entre as abas.
