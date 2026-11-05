@@ -521,6 +521,21 @@ pw-tabs[variant="folder"] pw-tab[selected]:not([disabled]):hover::after{filter:b
 pw-tabs[variant="folder"] pw-tab[data-arriving]::after{transition:opacity .45s cubic-bezier(.22,.61,.36,1)}
 pw-tabs[variant="folder"] pw-tab[data-arriving][selected]::after{opacity:1}
 pw-tabs[variant="folder"] pw-tab:focus-visible{outline:2px solid var(--pw-focus-ring);outline-offset:2px}
+
+/* tamanho xs (24px), para barras compactas */
+pw-tabs[variant="folder"][size="xs"]{--tab-fs:var(--pw-font-size-2xs);--tab-ic:12px;--tab-gap:var(--pw-space-1);--fd-h:24px;--fd-grow:3px;--fd-c:5px;padding-bottom:1px;gap:var(--pw-space-0-5)}
+pw-tabs[variant="folder"][size="xs"] pw-tab{min-width:var(--fd-w,80px);padding:0 var(--pw-space-3);border-radius:var(--pw-radius-xs) var(--pw-radius-xs) 0 0}
+pw-tabs[variant="folder"][size="xs"]::after{height:1px}
+/* corners="chamfer": cantos de cima chanfrados (corte a 45°) no lugar dos arredondados; borda, vidro e metal seguem o corte */
+pw-tabs[variant="folder"][corners="chamfer"]{--fd-cut:polygon(var(--fd-c,8px) 0,calc(100% - var(--fd-c,8px)) 0,100% var(--fd-c,8px),100% 100%,0 100%,0 var(--fd-c,8px));
+  --fd-cut-in:polygon(calc(var(--fd-c,8px) - .4px) 0,calc(100% - var(--fd-c,8px) + .4px) 0,100% calc(var(--fd-c,8px) - .4px),100% 100%,0 100%,0 calc(var(--fd-c,8px) - .4px))}
+pw-tabs[variant="folder"][corners="chamfer"] pw-tab{border-radius:0;background:none!important;box-shadow:none!important}
+pw-tabs[variant="folder"][corners="chamfer"] pw-tab::before{z-index:-3;padding:0;inset:0;border-radius:0;-webkit-mask:none;mask:none;clip-path:var(--fd-cut)}
+pw-tabs[variant="folder"][corners="chamfer"] pw-tab .pwt-shine{display:block;z-index:-2;inset:1px 1px 0;border-radius:0;opacity:1;mix-blend-mode:normal;-webkit-mask:none;mask:none;clip-path:var(--fd-cut-in);
+  background:linear-gradient(180deg,var(--pw-surface-raised-top),var(--pw-surface-raised-bottom));transition:background .35s ease}
+pw-tabs[variant="folder"][corners="chamfer"] pw-tab:not([disabled]):not([selected]):hover .pwt-shine{background:linear-gradient(180deg,color-mix(in srgb,var(--pw-filament) 12%,var(--pw-surface-raised-top)),var(--pw-surface-raised-bottom))}
+pw-tabs[variant="folder"][corners="chamfer"] pw-tab::after{inset:1px 1px 0;border-radius:0;clip-path:var(--fd-cut-in)}
+pw-tabs[variant="folder"][corners="chamfer"] pw-tab[selected]{filter:drop-shadow(0 -2px 8px var(--pw-glow-soft))}
 pw-tabs[variant="folder"][block]{display:flex}pw-tabs[variant="folder"][block] pw-tab{flex:1}
 .tabpanel{font-size:14px;color:var(--sb-muted);padding-top:14px;max-width:60ch}
 @media (prefers-reduced-motion:reduce){pw-tab,pw-tab::before,pw-tab::after,pw-tabs[variant="folder"] pw-tab{transition:none!important;transform:none!important}}
@@ -1911,6 +1926,10 @@ document.querySelector('pw-card-header').play(); // repete a abertura</pre>
     <pw-tabs variant="folder" aria-label="Fragmentos"><pw-tab show-icon="false">Meu pedido</pw-tab><pw-tab icon="gift" selected>Doar fragmentos</pw-tab></pw-tabs>
     <pw-tabs variant="folder" aria-label="Clã"><pw-tab icon="people" selected>Membros</pw-tab><pw-tab icon="trophy">Ranking</pw-tab><pw-tab icon="scroll">Missões</pw-tab><pw-tab icon="lock" disabled>Loja do clã</pw-tab></pw-tabs>
     <pw-tabs variant="folder" size="sm" aria-label="Pequeno"><pw-tab selected show-icon="false">Ativos</pw-tab><pw-tab show-icon="false">Histórico</pw-tab></pw-tabs>
+    <div style="display:grid;gap:6px"><span class="cap" style="margin:0">corners="chamfer"</span><pw-tabs variant="folder" corners="chamfer" aria-label="Chanfrado"><pw-tab show-icon="false">Meu pedido</pw-tab><pw-tab icon="gift" selected>Doar fragmentos</pw-tab><pw-tab icon="clock">Histórico</pw-tab></pw-tabs></div>
+    <div style="display:grid;gap:6px"><span class="cap" style="margin:0">size="xs" · 24px · chanfrado e arredondado</span>
+      <pw-tabs variant="folder" size="xs" corners="chamfer" aria-label="Compacto"><pw-tab selected show-icon="false">Todos</pw-tab><pw-tab show-icon="false">Pokémon</pw-tab><pw-tab show-icon="false">Itens</pw-tab><pw-tab show-icon="false">Clã</pw-tab></pw-tabs>
+      <pw-tabs variant="folder" size="xs" aria-label="Compacto arredondado"><pw-tab icon="bag" selected>Inventário</pw-tab><pw-tab icon="gem">Gemas</pw-tab></pw-tabs></div>
   </div>
   <div class="canvas" data-pw-theme="mewtwo" style="display:grid;gap:28px">
     <pw-tabs variant="folder" size="lg" aria-label="Máquina"><pw-tab icon="gem" selected>Fragmentos</pw-tab><pw-tab icon="boost">Boost</pw-tab></pw-tabs>
@@ -1923,7 +1942,8 @@ document.querySelector('pw-card-header').play(); // repete a abertura</pre>
       <label>ícones (na mesma ordem; vazio = sem ícone)<input type="text" id="fpIcons" value=",gift,clock"></label>
       <label>selecionada (1 = primeira)<input type="number" id="fpSel" min="1" value="2"></label>
       <label>desabilitada (nº, vazio = nenhuma)<input type="text" id="fpDis" value=""></label>
-      <label>size<select id="fpSize"><option value="sm">sm · 34px</option><option value="" selected>md · 44px</option><option value="lg">lg · 54px</option></select></label>
+      <label>corners<select id="fpCorners"><option value="">arredondados</option><option value="chamfer">chanfrados</option></select></label>
+      <label>size<select id="fpSize"><option value="xs">xs · 24px</option><option value="sm">sm · 34px</option><option value="" selected>md · 44px</option><option value="lg">lg · 54px</option></select></label>
       <label>--fd-w (largura mínima, px)<input type="number" id="fpW" min="60" step="10" placeholder="padrão"></label>
       <label>--fd-grow (quanto a selecionada cresce, px)<input type="number" id="fpGrow" min="0" max="16" placeholder="padrão"></label>
       <label class="check"><input type="checkbox" id="fpBlock"> block (largura inteira)</label>
@@ -1940,7 +1960,8 @@ document.querySelector('pw-card-header').play(); // repete a abertura</pre>
 &lt;/pw-tabs&gt;</pre>
   <div class="tbl"><table><thead><tr><th>Configuração</th><th>Padrão</th><th>Descrição</th></tr></thead><tbody>
     <tr><td><code>variant="folder"</code></td><td>—</td><td>Ativa o estilo de pasta</td></tr>
-    <tr><td><code>size</code></td><td>md</td><td>sm 12 · md 14 · lg 16px de texto; largura mínima 120 · 160 · 200px</td></tr>
+    <tr><td><code>size</code></td><td>md</td><td>xs 24 · sm 34 · md 44 · lg 54px de altura; texto 10 · 12 · 14 · 16px; largura mínima 80 · 120 · 160 · 200px</td></tr>
+    <tr><td><code>corners</code></td><td>arredondados</td><td><code>chamfer</code>: cantos de cima cortados a 45°; tamanho do corte em <code>--fd-c</code> (8px; 5px no xs)</td></tr>
     <tr><td><code>block</code></td><td>—</td><td>As abas dividem a largura inteira</td></tr>
     <tr><td><code>--fd-w</code></td><td>160px</td><td>Largura mínima de cada aba</td></tr>
     <tr><td><code>--fd-h</code> · <code>--fd-grow</code></td><td>44px · 6px</td><td>Altura das abas · quanto a selecionada fica mais alta (sm 34/4, lg 54/8)</td></tr>
@@ -4401,7 +4422,7 @@ pg();
 
 (function(){var f=document.getElementById('fpForm');if(!f)return;var g=id=>document.getElementById(id);
   function run(){var tabs=g('fpTabs').value.split(',').map(x=>x.trim()).filter(Boolean),ics=g('fpIcons').value.split(',').map(x=>x.trim()),sel=Math.max(1,+g('fpSel').value||1),dis=+g('fpDis').value||0;
-    var a=['variant="folder"'];if(g('fpSize').value)a.push('size="'+g('fpSize').value+'"');if(g('fpTheme').value)a.push('theme="'+g('fpTheme').value+'"');if(g('fpBlock').checked)a.push('block');
+    var a=['variant="folder"'];if(g('fpSize').value)a.push('size="'+g('fpSize').value+'"');if(g('fpCorners').value)a.push('corners="chamfer"');if(g('fpTheme').value)a.push('theme="'+g('fpTheme').value+'"');if(g('fpBlock').checked)a.push('block');
     var st=[];if(g('fpW').value)st.push('--fd-w:'+g('fpW').value+'px');if(g('fpGrow').value!=='')st.push('--fd-grow:'+g('fpGrow').value+'px');if(st.length)a.push('style="'+st.join(';')+'"');
     var kids=tabs.map((t,i)=>{var at=[];at.push(ics[i]?'icon="'+ics[i]+'"':'show-icon="false"');if(i+1===sel)at.push('selected');if(i+1===dis)at.push('disabled');return '  <pw-tab '+at.join(' ')+'>'+t.replace(/</g,'&lt;')+'</pw-tab>'}).join('\n');
     var html='<pw-tabs '+a.join(' ')+' aria-label="Playground">\n'+kids+'\n</pw-tabs>';g('fpStage').innerHTML=html;g('fpCode').textContent=html}

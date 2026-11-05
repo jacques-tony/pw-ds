@@ -24,6 +24,14 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.36.0
+
+- **pw-tabs folder**:
+  - Novo `size="xs"`: 24px de altura, texto de 10px, ícone de 12px, largura mínima de 80px; a selecionada cresce 3px.
+  - Novo `corners="chamfer"`: cantos de cima cortados a 45° no lugar dos arredondados. Borda, vidro e metal seguem o corte. O tamanho do corte fica em `--fd-c` (8px; 5px no xs).
+- Storybook: exemplos chanfrados e xs; o playground da variante pasta ganhou `corners` e o tamanho xs.
+
 ## 0.35.0
 
 - **pw-tabs folder**:

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.35.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.36.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -256,6 +256,21 @@ pw-tabs[variant="folder"] pw-tab[selected]:not([disabled]):hover::after{filter:b
 pw-tabs[variant="folder"] pw-tab[data-arriving]::after{transition:opacity .45s cubic-bezier(.22,.61,.36,1)}
 pw-tabs[variant="folder"] pw-tab[data-arriving][selected]::after{opacity:1}
 pw-tabs[variant="folder"] pw-tab:focus-visible{outline:2px solid var(--pw-focus-ring);outline-offset:2px}
+
+/* tamanho xs (24px), para barras compactas */
+pw-tabs[variant="folder"][size="xs"]{--tab-fs:var(--pw-font-size-2xs);--tab-ic:12px;--tab-gap:var(--pw-space-1);--fd-h:24px;--fd-grow:3px;--fd-c:5px;padding-bottom:1px;gap:var(--pw-space-0-5)}
+pw-tabs[variant="folder"][size="xs"] pw-tab{min-width:var(--fd-w,80px);padding:0 var(--pw-space-3);border-radius:var(--pw-radius-xs) var(--pw-radius-xs) 0 0}
+pw-tabs[variant="folder"][size="xs"]::after{height:1px}
+/* corners="chamfer": cantos de cima chanfrados (corte a 45°) no lugar dos arredondados; borda, vidro e metal seguem o corte */
+pw-tabs[variant="folder"][corners="chamfer"]{--fd-cut:polygon(var(--fd-c,8px) 0,calc(100% - var(--fd-c,8px)) 0,100% var(--fd-c,8px),100% 100%,0 100%,0 var(--fd-c,8px));
+  --fd-cut-in:polygon(calc(var(--fd-c,8px) - .4px) 0,calc(100% - var(--fd-c,8px) + .4px) 0,100% calc(var(--fd-c,8px) - .4px),100% 100%,0 100%,0 calc(var(--fd-c,8px) - .4px))}
+pw-tabs[variant="folder"][corners="chamfer"] pw-tab{border-radius:0;background:none!important;box-shadow:none!important}
+pw-tabs[variant="folder"][corners="chamfer"] pw-tab::before{z-index:-3;padding:0;inset:0;border-radius:0;-webkit-mask:none;mask:none;clip-path:var(--fd-cut)}
+pw-tabs[variant="folder"][corners="chamfer"] pw-tab .pwt-shine{display:block;z-index:-2;inset:1px 1px 0;border-radius:0;opacity:1;mix-blend-mode:normal;-webkit-mask:none;mask:none;clip-path:var(--fd-cut-in);
+  background:linear-gradient(180deg,var(--pw-surface-raised-top),var(--pw-surface-raised-bottom));transition:background .35s ease}
+pw-tabs[variant="folder"][corners="chamfer"] pw-tab:not([disabled]):not([selected]):hover .pwt-shine{background:linear-gradient(180deg,color-mix(in srgb,var(--pw-filament) 12%,var(--pw-surface-raised-top)),var(--pw-surface-raised-bottom))}
+pw-tabs[variant="folder"][corners="chamfer"] pw-tab::after{inset:1px 1px 0;border-radius:0;clip-path:var(--fd-cut-in)}
+pw-tabs[variant="folder"][corners="chamfer"] pw-tab[selected]{filter:drop-shadow(0 -2px 8px var(--pw-glow-soft))}
 pw-tabs[variant="folder"][block]{display:flex}pw-tabs[variant="folder"][block] pw-tab{flex:1}
 @media (prefers-reduced-motion:reduce){pw-tab,pw-tab::before,pw-tab::after,pw-tabs[variant="folder"] pw-tab{transition:none!important;transform:none!important}}
 .pw-titled{position:relative;display:inline-block;width:fit-content;justify-self:start;padding-top:26px}
