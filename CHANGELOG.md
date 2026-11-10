@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.43.0
+- `pw-hud`: ordenar a equipe pelo botão direito num card (ou na pílula do `pw-party`): mover para o início/esquerda/direita/fim ou trocar com outro Pokémon, com animação de deslize. Atalhos Ctrl+N seguem a nova ordem. Evento `reorder` (cancelável) e método `move(de, para, trocar)`.
+
 ## 0.42.2
 - `pw-hud`: efeitos de hover e foco dos botões da barra de atalhos não são mais cortados.
 

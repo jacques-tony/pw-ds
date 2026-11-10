@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.42.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.43.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1412,6 +1412,8 @@ pw-hud .pwhd-menu [role="menuitem"]{display:flex;align-items:center;gap:var(--pw
 pw-hud .pwhd-menu [role="menuitem"]:is(:hover,:focus){color:var(--pw-on-metal);background:linear-gradient(180deg,var(--pw-metal-0),var(--pw-metal-1))}
 pw-hud .pwhd-menu [role="menuitem"].danger{color:var(--pw-status-error)}
 pw-hud .pwhd-menu [role="menuitem"].danger:is(:hover,:focus){color:var(--pw-white);background:linear-gradient(180deg,var(--pw-tone-error-solid-top),var(--pw-tone-error-solid-bottom))}
+pw-hud .pwhd-menu-title{padding:var(--pw-space-1) var(--pw-space-2);font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase;color:var(--pw-text-accent-soft)}
+pw-hud .pwhd-menu [role="menuitem"][aria-disabled="true"]{opacity:.4;cursor:not-allowed;background:none;color:var(--pw-text-muted)}
 pw-hud .pwhd-menu hr{border:0;border-top:1px solid var(--pw-border-subtle);margin:var(--pw-space-1) 0}
 @keyframes pwhd-pop{from{opacity:0;transform:translateY(4px) scale(.98)}}
 /* equipe na lateral (perfil reduzido) */
