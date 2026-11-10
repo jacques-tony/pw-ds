@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.42.0
+- `pw-hud`: cards da equipe em `tertiary` `tone="neutral"` filled com a borda azul visível; borda dourada (mais grossa) só no selecionado.
+- Largura da HUD calculada para o perfil + 6 cards (`--hd-w`).
+- A HUD fica encaixada na borda de baixo: a parte inferior do card primary sai da tela. `docked="false"` mostra o card inteiro.
+
 ## 0.41.0
 - `pw-hud`: a base agora é um `pw-card variant="primary"`; cards da equipe são `pw-card variant="tertiary" interactive`, e o selecionado ganha o destaque dourado (`highlight`).
 - Equipe limitada a 6 Pokémon (Ctrl+1…6); espaços vazios mostram a arte `assets/hud/empty-slot.webp`.

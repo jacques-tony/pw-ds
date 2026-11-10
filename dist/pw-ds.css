@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.41.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.42.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1307,8 +1307,13 @@ pw-navbar[collapsed] .pwnb-ball{top:calc(var(--nb-ball) / -2)}
 /* ===================== COMPONENT: pw-hud (HUD inferior) + pw-party ===================== */
 pw-hud{--hd-slot:calc(var(--pw-space-7) + var(--pw-space-0-5));--hd-card-w:calc(var(--pw-space-16) + var(--pw-space-2) + var(--pw-space-0-5));--hd-card-h:calc(var(--pw-space-32) + var(--pw-space-1) + var(--pw-space-0-5));
   position:relative;display:block;box-sizing:border-box;min-width:0;max-width:100%;font-family:var(--pw-font-body);color:var(--pw-text-body)}
-pw-hud pw-card.pwhd-shell{width:100%;height:auto;--lift:0px}
-pw-hud pw-card.pwhd-shell>.pwc-content{height:auto;padding:var(--pw-space-5) var(--pw-space-5) var(--pw-space-3)}
+pw-hud{--hd-gap:var(--pw-space-2);--hd-pad:var(--pw-space-5);
+  --hd-w:calc(calc(var(--pw-space-32) * 2 + var(--pw-space-8)) + var(--pw-space-4) + var(--hd-card-w) * 6 + var(--hd-gap) * 5 + var(--hd-pad) * 2);width:var(--hd-w)}
+/* card primary encaixado na borda de baixo da tela: a parte inferior da moldura fica para fora */
+pw-hud pw-card.pwhd-shell{width:100%;height:auto;--lift:0px;margin-bottom:calc(var(--pw-space-8) * -1)}
+pw-hud pw-card.pwhd-shell>.pwc-content{height:auto;padding:var(--hd-pad) var(--hd-pad) calc(var(--pw-space-3) + var(--pw-space-8))}
+pw-hud[docked="false"] pw-card.pwhd-shell{margin-bottom:0}
+pw-hud[docked="false"] pw-card.pwhd-shell>.pwc-content{padding-bottom:var(--pw-space-3)}
 pw-hud .pwhd-body{position:relative;display:grid;gap:var(--pw-space-3);min-width:0}
 pw-hud .pwhd-top{display:flex;gap:var(--pw-space-4);align-items:stretch;min-width:0}
 /* perfil completo */
@@ -1337,11 +1342,13 @@ pw-hud pw-button.pwhd-act>button{--b-fg:var(--pw-text-accent)}
 pw-hud pw-button.pwhd-act[aria-pressed="true"]{--b-bg:linear-gradient(180deg,var(--pw-metal-0),var(--pw-metal-1));--b-fg:var(--pw-on-metal);--b-bd:var(--pw-filament)}
 pw-hud .pwhd-slot:focus-visible,pw-hud .pwhd-card:focus-visible{outline:2px solid var(--pw-focus-ring);outline-offset:2px}
 /* cards da equipe: pw-card tertiary; selecionado = tertiary com destaque dourado */
-pw-hud .pwhd-team{display:flex;gap:var(--pw-space-2);min-width:0;padding:var(--pw-space-1) 0}
+pw-hud .pwhd-team{display:flex;gap:var(--hd-gap);min-width:0;padding:var(--pw-space-1) 0}
 pw-hud pw-card.pwhd-card{flex:none;width:var(--hd-card-w);height:var(--hd-card-h);border-radius:var(--pw-radius-md);overflow:visible}
 pw-hud pw-card.pwhd-card>.pwc-content{padding:0;gap:0;border-radius:inherit;overflow:hidden}
+/* a arte fica dentro da moldura do tertiary, para a borda (azul ou dourada) aparecer inteira */
+pw-hud pw-card.pwhd-card[highlight]{box-shadow:0 0 0 2px color-mix(in srgb,var(--pw-gold-200) 85%,transparent),0 0 18px -2px color-mix(in srgb,var(--pw-gold-300) 60%,transparent)}
 pw-hud .pwhd-card .key{position:absolute;top:var(--pw-space-1);right:var(--pw-space-1);z-index:2;font-size:var(--pw-font-size-2xs);color:var(--pw-text-title);text-shadow:var(--pw-shadow-text-strong)}
-pw-hud .pwhd-card .pic{position:absolute;inset:0;overflow:hidden;border-radius:inherit}
+pw-hud .pwhd-card .pic{position:absolute;inset:var(--pw-space-0-5);overflow:hidden;border-radius:var(--pw-radius-sm)}
 pw-hud .pwhd-card .pic img{width:100%;height:100%;object-fit:cover;object-position:50% 0;transition:transform .25s var(--card-ease)}
 pw-hud .pwhd-card[interactive]:hover .pic img{transform:scale(1.06)}
 pw-hud .pwhd-card[interactive] .pic::after{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,var(--pw-bg-edge))}
