@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.40.0
+- Ícone novo `poke` (`icons/poke.svg` e `<pw-icon name="poke">`), usado nos espaços vazios da barra de atalhos do `pw-hud`.
+- `pw-hud`: cards da equipe com arte de corpo inteiro (`team[].card`, 74×134); barras de HP/CD, vida e XP passam a ser `pw-progress`; ações, setas e botões do rodapé passam a ser `pw-button`; medidas trocadas por tokens de espaçamento, fonte e raio.
+- `pw-party`: pílulas com a arte do Pokémon (`team[].banner` 180×40 e `team[].bannerLg` 210×50 com `size="lg"`) e barra `pw-progress variant="hp"`.
+
 ## 0.39.0
 - Ícones: nova categoria **Barra de navegação** com os 23 ícones ilustrados novos (`icons/nav/*.webp`, máx. 40px) e reduções em `icons/nav/16`, `24` e `32` (nunca ampliados).
 - `PWDS.navIcon(nome, tamanho)` aceita 16, 24 ou 32; `pw-nav-item` ganha `icon-size` e usa 24px automaticamente na `pw-navbar size="sm"`.
