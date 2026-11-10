@@ -25,6 +25,21 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.37.0
+
+- Novo **pw-navbar** (Navigation Bar do HUD), com `pw-nav-item` e `pw-nav-sep`.
+  - Visual: moldura com cantos chanfrados, fundo e metal do tema, separadores entre grupos.
+  - Itens: dica com o nome (`label`), `badge` (número ou `dot`), `active`, `disabled` e evento `select`.
+  - Teclado: ← →, Home e End.
+  - Tamanhos `size` sm, md e lg.
+  - Pokébola nas cores do tema para recolher e abrir, com a mesma animação do jogo:
+    - recolher: os ícones somem das pontas para o centro, a barra encolhe até um hexágono, a pokébola entra girando e sobe até ficar meio escondida no topo;
+    - abrir: o caminho inverso.
+  - Métodos `collapse()`, `expand()` e `toggle()`; evento `toggle`; atributo `collapsed`; `--nb-speed` para a velocidade.
+- **23 ícones de jogo** da barra em `icons/nav/*.webp`, usados por nome com `game-icon` (trainer-card, aura, bag, pokedex, team, map, tasks, trade, badges, ranking, guild, shop, gifts, board, achievements, hunt, minigames, clan, referral, radar, boost, settings, exit). Servidos pelo jsDelivr na mesma versão da biblioteca; `window.PW_NAV_ICONS` troca os caminhos.
+- `PWDS.navIcon(nome)` e `PWDS.navIconNames`.
+
 ## 0.36.0
 
 - **pw-tabs folder**:
