@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.41.0
+- `pw-hud`: a base agora é um `pw-card variant="primary"`; cards da equipe são `pw-card variant="tertiary" interactive`, e o selecionado ganha o destaque dourado (`highlight`).
+- Equipe limitada a 6 Pokémon (Ctrl+1…6); espaços vazios mostram a arte `assets/hud/empty-slot.webp`.
+- Hover dos cards não é mais cortado; barra de atalhos com overlay suave nas pontas quando há mais itens para rolar.
+
 ## 0.40.0
 - Ícone novo `poke` (`icons/poke.svg` e `<pw-icon name="poke">`), usado nos espaços vazios da barra de atalhos do `pw-hud`.
 - `pw-hud`: cards da equipe com arte de corpo inteiro (`team[].card`, 74×134); barras de HP/CD, vida e XP passam a ser `pw-progress`; ações, setas e botões do rodapé passam a ser `pw-button`; medidas trocadas por tokens de espaçamento, fonte e raio.
