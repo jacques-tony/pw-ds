@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.39.0
+- Ícones: nova categoria **Barra de navegação** com os 23 ícones ilustrados novos (`icons/nav/*.webp`, máx. 40px) e reduções em `icons/nav/16`, `24` e `32` (nunca ampliados).
+- `PWDS.navIcon(nome, tamanho)` aceita 16, 24 ou 32; `pw-nav-item` ganha `icon-size` e usa 24px automaticamente na `pw-navbar size="sm"`.
+- `pw-navbar`: os ícones novos substituem os anteriores; o hover não é mais cortado pela barra; o traço de selecionado desliza com animação até o ícone clicado.
+
 ## 0.38.0
 
 - Novo **pw-hud** (HUD inferior do jogador), com todos os tokens do DS.
