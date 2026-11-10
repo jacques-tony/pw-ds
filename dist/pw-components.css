@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.42.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.42.1 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1219,7 +1219,9 @@ pw-hud[profile="compact"] .pwhd-actions{flex-wrap:nowrap}
 pw-hud .pwhd-actions.out{display:none}
 pw-hud[profile="compact"] .pwhd-actions.in{display:none}
 pw-hud[profile="compact"] .pwhd-actions.out{display:flex}
-pw-hud[hotkeys="hidden"] .pwhd-hotbar{display:none}
+pw-hud .pwhd-hotbar{max-height:var(--pw-space-12);transition:max-height .32s var(--card-ease),opacity .25s ease,margin-top .32s var(--card-ease),visibility 0s linear 0s}
+pw-hud[hotkeys="hidden"] .pwhd-hotbar{max-height:0;opacity:0;margin-top:calc(var(--pw-space-3) * -1);visibility:hidden;
+  transition:max-height .32s var(--card-ease),opacity .2s ease,margin-top .32s var(--card-ease),visibility 0s linear .32s}
 /* menu de ação do atalho */
 pw-hud .pwhd-menu{position:absolute;z-index:20;min-width:calc(var(--pw-space-32) + var(--pw-space-10) + var(--pw-space-0-5));padding:var(--pw-space-1);border-radius:var(--pw-radius-sm);
   background:linear-gradient(180deg,var(--pw-surface-raised-top),var(--pw-surface-raised-bottom));border:1px solid var(--pw-border-strong);box-shadow:var(--pw-shadow-sm),inset 0 1px 0 var(--pw-highlight-inset);

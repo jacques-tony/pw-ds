@@ -1485,7 +1485,9 @@ pw-hud[profile="compact"] .pwhd-actions{flex-wrap:nowrap}
 pw-hud .pwhd-actions.out{display:none}
 pw-hud[profile="compact"] .pwhd-actions.in{display:none}
 pw-hud[profile="compact"] .pwhd-actions.out{display:flex}
-pw-hud[hotkeys="hidden"] .pwhd-hotbar{display:none}
+pw-hud .pwhd-hotbar{max-height:var(--pw-space-12);transition:max-height .32s var(--card-ease),opacity .25s ease,margin-top .32s var(--card-ease),visibility 0s linear 0s}
+pw-hud[hotkeys="hidden"] .pwhd-hotbar{max-height:0;opacity:0;margin-top:calc(var(--pw-space-3) * -1);visibility:hidden;
+  transition:max-height .32s var(--card-ease),opacity .2s ease,margin-top .32s var(--card-ease),visibility 0s linear .32s}
 /* menu de ação do atalho */
 pw-hud .pwhd-menu{position:absolute;z-index:20;min-width:calc(var(--pw-space-32) + var(--pw-space-10) + var(--pw-space-0-5));padding:var(--pw-space-1);border-radius:var(--pw-radius-sm);
   background:linear-gradient(180deg,var(--pw-surface-raised-top),var(--pw-surface-raised-bottom));border:1px solid var(--pw-border-strong);box-shadow:var(--pw-shadow-sm),inset 0 1px 0 var(--pw-highlight-inset);
@@ -4480,7 +4482,7 @@ class PWHud extends HTMLElement{
       '<div class="pwhd-hotbar"><pw-button class="pwhd-arrow" variant="ghost" size="sm" particles="0" icon="chevron-left" data-dir="-1" data-label="Atalhos anteriores"></pw-button><div class="pwhd-slots" role="toolbar" aria-label="Atalhos">'+slots+'</div><pw-button class="pwhd-arrow" variant="ghost" size="sm" particles="0" icon="chevron-right" data-dir="1" data-label="Próximos atalhos"></pw-button></div>'+
       '<div class="pwhd-foot"><pw-button class="pwhd-toggle" variant="ghost" size="sm" particles="0" data-hd="profile" data-tip-pos="top">Perfil</pw-button><pw-button class="pwhd-toggle" variant="ghost" size="sm" particles="0" data-hd="hotkeys">Hotkeys</pw-button></div>';
     this.querySelectorAll('pw-button[data-label]').forEach(b=>{var i=b.querySelector('button');if(i)i.setAttribute('aria-label',b.dataset.label)});this._acts();
-    var sl=this.querySelector('.pwhd-slots');sl.addEventListener('scroll',()=>this._arrows(),{passive:true});this._sync();requestAnimationFrame(()=>this._arrows())}
+    var sl=this.querySelector('.pwhd-slots');sl.addEventListener('scroll',()=>this._arrows(),{passive:true});if(this._sro)this._sro.disconnect();this._sro=new ResizeObserver(()=>this._arrows());this._sro.observe(sl);this._sync();requestAnimationFrame(()=>this._arrows())}
   _arrows(){var s=this.querySelector('.pwhd-slots');if(!s)return;var a=this.querySelectorAll('.pwhd-arrow');a[0].toggleAttribute('disabled',s.scrollLeft<=2);a[1].toggleAttribute('disabled',s.scrollLeft+s.clientWidth>=s.scrollWidth-2);s.toggleAttribute('data-fade-l',s.scrollLeft>2);s.toggleAttribute('data-fade-r',s.scrollLeft+s.clientWidth<s.scrollWidth-2)}
   _acts(){this.querySelectorAll('pw-button.pwhd-act').forEach(b=>{var i=b.querySelector('button');if(!i)return;if(b.hasAttribute('aria-pressed'))i.setAttribute('aria-pressed',b.getAttribute('aria-pressed'));else i.removeAttribute('aria-pressed')})}
   _pick(i){var t=this._data.team[i];this._data.team.forEach((x,k)=>{if(x)x.active=k===i});this.querySelectorAll('.pwhd-card[data-team]').forEach(c=>{var on=+c.dataset.team===i;c.toggleAttribute('selected',on);c.toggleAttribute('highlight',on)});

@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.42.1
+- `pw-hud`: as setas da barra de atalhos agora habilitam corretamente quando há mais atalhos do que cabem (recalcula ao mudar de tamanho).
+- Esconder/mostrar hotkeys com transição suave de altura e opacidade.
+
 ## 0.42.0
 - `pw-hud`: cards da equipe em `tertiary` `tone="neutral"` filled com a borda azul visível; borda dourada (mais grossa) só no selecionado.
 - Largura da HUD calculada para o perfil + 6 cards (`--hd-w`).
