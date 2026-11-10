@@ -26,6 +26,18 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+
+## 0.38.0
+
+- Novo **pw-hud** (HUD inferior do jogador), com todos os tokens do DS.
+  - **Perfil**: foto (silhueta com dica quando não há foto), nome, nível, barras de vida e XP e ações rápidas com dica e liga/desliga.
+  - **Cards da equipe**: atalho Ctrl+N, retrato, tipo, vida com cor por faixa e recarga (CD); clique ou Ctrl+1…9 seleciona.
+  - **Barra de atalhos**: pokébola apagada nos espaços vazios, quantidade (vermelha em zero), setas para rolar e menu de ação (Usar em si, Usar no alvo, Usar no pokémon, Com mira, Equipar, Escolher atalho, Limpar) com teclado.
+  - **Modos** no rodapé: "Perfil reduzido / completo" (perfil em uma linha, equipe na lateral) e "Esconder / mostrar hotkeys", com transição suave da altura.
+  - Dados por `.data` ou `<script type="application/json">`; eventos `action`, `pokemon`, `hotkey` (cancelável) e `profilechange`.
+- Novo **pw-party**: equipe em pílulas na lateral, ligada ao HUD por `for`; aparece no perfil reduzido.
+- Storybook: nova página **HUD inferior**.
+
 ## 0.37.0
 
 - Novo **pw-navbar** (Navigation Bar do HUD), com `pw-nav-item` e `pw-nav-sep`.
