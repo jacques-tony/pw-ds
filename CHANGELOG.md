@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.42.2
+- `pw-hud`: efeitos de hover e foco dos botões da barra de atalhos não são mais cortados.
+
 ## 0.42.1
 - `pw-hud`: as setas da barra de atalhos agora habilitam corretamente quando há mais atalhos do que cabem (recalcula ao mudar de tamanho).
 - Esconder/mostrar hotkeys com transição suave de altura e opacidade.
