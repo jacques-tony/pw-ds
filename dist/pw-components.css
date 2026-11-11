@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.48.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.48.1 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1183,7 +1183,7 @@ pw-hud .pwhd-card .bar span{position:absolute;inset:0;display:grid;place-items:c
   color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);pointer-events:none}
 /* barra de atalhos */
 pw-hud .pwhd-hotbar{display:flex;align-items:center;gap:var(--pw-space-2);min-width:0;overflow:visible}
-pw-hud .pwhd-slots{flex:1;display:flex;gap:var(--pw-space-1);overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;min-width:0;padding:var(--pw-space-0-5)}
+pw-hud .pwhd-slots{flex:1;display:flex;gap:var(--pw-space-1);overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;min-width:0;padding:var(--pw-space-2) var(--pw-space-1) var(--pw-space-0-5)}
 pw-hud .pwhd-slots::-webkit-scrollbar{display:none}
 /* overlay nas pontas: o atalho some suavemente em vez de parecer cortado */
 pw-hud .pwhd-slots{--fl:var(--pw-space-0);--fr:var(--pw-space-0);-webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--fl),#000 calc(100% - var(--fr)),transparent);mask-image:linear-gradient(90deg,transparent,#000 var(--fl),#000 calc(100% - var(--fr)),transparent)}
@@ -1203,8 +1203,7 @@ pw-hud .pwhd-slot img{width:80%;height:80%;object-fit:contain;filter:drop-shadow
 pw-hud .pwhd-slot svg{width:60%;height:60%;color:var(--pw-text-accent)}
 pw-hud .pwhd-slot .q{position:absolute;right:1px;bottom:0;font-size:var(--pw-font-size-3xs);font-weight:var(--pw-font-weight-bold);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
 pw-hud .pwhd-slot .q.zero{color:var(--pw-status-error)}
-pw-hud .pwhd-slot .kb{position:absolute;right:var(--pw-space-0-5);top:1px;z-index:2;max-width:calc(100% - var(--pw-space-1));overflow:hidden;text-overflow:ellipsis;white-space:nowrap;pointer-events:none;
-  font:var(--pw-font-weight-bold) var(--pw-font-size-3xs)/1 var(--pw-font-body);color:var(--pw-text-title);text-shadow:var(--pw-shadow-text-strong)}
+pw-hud .pwhd-slot .kb{position:absolute;right:calc(var(--pw-space-1) * -1);top:calc(var(--pw-space-1) * -1);z-index:2;pointer-events:none}
 pw-hud .pwhd-slot>img,pw-hud .pwhd-slot>svg{position:absolute;inset:0;margin:auto}
 pw-hud .pwhd-slot.empty{cursor:context-menu}
 /* ===================== COMPONENT: pw-kbd (tecla do teclado) ===================== */

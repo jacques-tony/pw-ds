@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.48.1
+- `pw-hud`: a tecla de cada atalho agora é um `pw-badge tone="brand" appearance="outline" size="sm"` no canto superior direito.
+- Teclas padrão: os 22 primeiros atalhos já vêm com 1…9, 0 e F1…F12 (`key` definido nos dados tem prioridade; `key: null` deixa sem tecla). "Remover tecla" e "Limpar" preservam essa regra.
+
 ## 0.48.0
 - Novos componentes **`pw-control-group`** e **`pw-control-group-item`**: lista suspensa para menus dropdown, menus de contexto, seletores e filtros.
   - `type`: `menu` (padrão, `role="menu"`), `single` (listbox) e `multi` (listbox multiselecionável, com checkbox).
