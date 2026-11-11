@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.48.4
+- `pw-hud`: os menus de contexto (botão direito nos atalhos e nos Pokémon/pílulas) agora são `pw-control-group` com `pw-control-group-item`: título com o nome do item/Pokémon, ícones, separador, ações destrutivas em vermelho e a tecla atual ao lado de "Definir atalho". Teclado do control group (setas, Home/End, letras, Enter); Esc/Tab fecham.
+- Corrige o modo Editar ordem saindo sozinho ao ser aberto pelo Enter.
+
 ## 0.48.3
 - `pw-hud`: atalhos de 40×40; badge da tecla centralizado no topo do atalho, `tone="brand"` preenchido, `size="sm"`.
 

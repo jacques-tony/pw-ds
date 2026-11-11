@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.48.3 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.48.4 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1439,15 +1439,9 @@ pw-hud .pwhd-hotbar{max-height:calc(var(--hd-slot) + var(--pw-space-6));transiti
 pw-hud[hotkeys="hidden"] .pwhd-hotbar{max-height:0;overflow:hidden;opacity:0;margin-top:calc(var(--pw-space-3) * -1);visibility:hidden;
   transition:max-height .32s var(--card-ease),opacity .2s ease,margin-top .32s var(--card-ease),visibility 0s linear .32s}
 /* menu de ação do atalho */
-pw-hud .pwhd-menu{position:absolute;z-index:20;min-width:calc(var(--pw-space-32) + var(--pw-space-10) + var(--pw-space-0-5));padding:var(--pw-space-1);border-radius:var(--pw-radius-sm);
-  background:linear-gradient(180deg,var(--pw-surface-raised-top),var(--pw-surface-raised-bottom));border:1px solid var(--pw-border-strong);box-shadow:var(--pw-shadow-sm),inset 0 1px 0 var(--pw-highlight-inset);
-  animation:pwhd-pop .14s var(--card-ease)}
+pw-hud pw-control-group.pwhd-menu{position:absolute;z-index:20;min-width:calc(var(--pw-space-32) + var(--pw-space-16));animation:pwhd-pop .14s var(--card-ease)}
 pw-hud .pwhd-menu[hidden]{display:none}
-pw-hud .pwhd-menu [role="menuitem"]{display:flex;align-items:center;gap:var(--pw-space-2);padding:var(--pw-space-1) var(--pw-space-2);min-height:var(--pw-space-7);box-sizing:border-box;border-radius:var(--pw-radius-xs);
   font-size:var(--pw-font-size-sm);color:var(--pw-text-body);cursor:pointer;outline:none}
-pw-hud .pwhd-menu [role="menuitem"]:is(:hover,:focus){color:var(--pw-on-metal);background:linear-gradient(180deg,var(--pw-metal-0),var(--pw-metal-1))}
-pw-hud .pwhd-menu [role="menuitem"].danger{color:var(--pw-status-error)}
-pw-hud .pwhd-menu [role="menuitem"].danger:is(:hover,:focus){color:var(--pw-white);background:linear-gradient(180deg,var(--pw-tone-error-solid-top),var(--pw-tone-error-solid-bottom))}
 /* modo editar ordem */
 /* card primary que sai de trás da HUD com a instrução e o botão Concluir */
 pw-hud pw-card.pwhd-shell{z-index:1}
@@ -1462,10 +1456,6 @@ pw-hud[editing] .pwhd-card[data-team]:nth-child(2n),pw-party[editing] .pwpt[data
 pw-hud[editing] .pwhd-card.dragging,pw-party[editing] .pwpt.dragging{cursor:grabbing;animation:none;z-index:10;transition:none;box-shadow:0 0 0 2px var(--pw-filament),0 12px 24px var(--pw-black-a45),0 0 18px var(--pw-glow)}
 pw-hud[editing] .pwhd-card.swapping,pw-party[editing] .pwpt.swapping{animation:none}
 @keyframes pwhd-wiggle{0%,100%{rotate:-1.2deg}50%{rotate:1.2deg}}
-pw-hud .pwhd-menu [role="menuitem"] svg{width:var(--pw-space-4);height:var(--pw-space-4);flex:none}
-pw-hud .pwhd-menu-title{padding:var(--pw-space-1) var(--pw-space-2);font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase;color:var(--pw-text-accent-soft)}
-pw-hud .pwhd-menu [role="menuitem"][aria-disabled="true"]{opacity:.4;cursor:not-allowed;background:none;color:var(--pw-text-muted)}
-pw-hud .pwhd-menu hr{border:0;border-top:1px solid var(--pw-border-subtle);margin:var(--pw-space-1) 0}
 @keyframes pwhd-pop{from{opacity:0;transform:translateY(4px) scale(.98)}}
 /* equipe na lateral (perfil reduzido) */
 pw-party{--pt-w:calc(var(--pw-space-32) + var(--pw-space-12) + var(--pw-space-1));--pt-h:var(--pw-space-10);display:grid;gap:var(--pw-space-2);width:var(--pt-w);font-family:var(--pw-font-body)}
