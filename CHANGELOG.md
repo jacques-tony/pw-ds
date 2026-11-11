@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.47.1
+- `pw-card` primary: sem a linha interna e borda externa 1px mais fina (secondary não muda).
+- `pw-hud`: imagem do item sempre centralizada no atalho; a tecla aparece só como texto no canto superior direito.
+
 ## 0.47.0
 - Novo componente **`pw-kbd`** (tecla do teclado): `<pw-kbd>Q</pw-kbd>`, `keys="Ctrl+1"`, `size` xs/sm/lg, `tone="accent"`, método `press()`.
 - `pw-hud`, barra de atalhos: clique usa o item; **botão direito** abre as opções (no espaço vazio, só "Definir atalho"). "Escolher atalho" virou "Definir atalho".
