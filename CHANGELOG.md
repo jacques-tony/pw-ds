@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.50.2
+- `pw-hud`: badge Ctrl+N dos cards da equipe agora usa `tone="neutral"`.
+
 ## 0.50.1
 - `pw-hud`: recarga zerada mostra "Sem CD". Novo método `updatePokemon(índice, {hp, cd, cdLeft})` atualiza vida e recarga ao vivo sem recriar a HUD (também nas pílulas do `pw-party`).
 - Storybook: controle "Simular combate" / "Curar" fora da HUD para ver a vida caindo e a recarga subindo e descendo no Pokémon selecionado.
