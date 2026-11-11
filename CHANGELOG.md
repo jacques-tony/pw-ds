@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.48.3
+- `pw-hud`: atalhos de 40×40; badge da tecla centralizado no topo do atalho, `tone="brand"` preenchido, `size="sm"`.
+
 ## 0.48.2
 - `pw-hud`: atalhos de 48×48 com 12px entre eles; badge da tecla no canto superior esquerdo, sobre a borda; setas rolam 4 atalhos considerando o novo tamanho.
 

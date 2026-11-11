@@ -1391,7 +1391,7 @@ pw-navbar[collapsed] .pwnb-ball{top:calc(var(--nb-ball) / -2)}
 @media (prefers-reduced-motion:reduce){pw-nav-item,pw-nav-item .pwni-ic{transition:none}}
 
 /* ===================== COMPONENT: pw-hud (HUD inferior) + pw-party ===================== */
-pw-hud{--hd-slot:var(--pw-space-12);--hd-card-w:calc(var(--pw-space-16) + var(--pw-space-2) + var(--pw-space-0-5));--hd-card-h:calc(var(--pw-space-32) + var(--pw-space-1) + var(--pw-space-0-5));
+pw-hud{--hd-slot:var(--pw-space-10);--hd-card-w:calc(var(--pw-space-16) + var(--pw-space-2) + var(--pw-space-0-5));--hd-card-h:calc(var(--pw-space-32) + var(--pw-space-1) + var(--pw-space-0-5));
   position:relative;display:block;box-sizing:border-box;min-width:0;max-width:100%;font-family:var(--pw-font-body);color:var(--pw-text-body)}
 pw-hud{--hd-gap:var(--pw-space-2);--hd-pad:var(--pw-space-5);
   --hd-w:calc(calc(var(--pw-space-32) * 2 + var(--pw-space-8)) + var(--pw-space-4) + var(--hd-card-w) * 6 + var(--hd-gap) * 5 + var(--hd-pad) * 2);width:var(--hd-w)}
@@ -1469,7 +1469,7 @@ pw-hud .pwhd-slot img{width:80%;height:80%;object-fit:contain;filter:drop-shadow
 pw-hud .pwhd-slot svg{width:60%;height:60%;color:var(--pw-text-accent)}
 pw-hud .pwhd-slot .q{position:absolute;right:1px;bottom:0;font-size:var(--pw-font-size-3xs);font-weight:var(--pw-font-weight-bold);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
 pw-hud .pwhd-slot .q.zero{color:var(--pw-status-error)}
-pw-hud .pwhd-slot .kb{position:absolute;left:var(--pw-space-1);top:calc(var(--pw-space-2) * -1);z-index:2;pointer-events:none;background:var(--pw-bg-edge)}
+pw-hud .pwhd-slot .kb{position:absolute;left:50%;top:calc(var(--pw-space-2) * -1);transform:translateX(-50%);z-index:2;pointer-events:none}
 pw-hud .pwhd-slot>img,pw-hud .pwhd-slot>svg{position:absolute;inset:0;margin:auto}
 pw-hud .pwhd-slot.empty{cursor:context-menu}
 /* ===================== COMPONENT: pw-kbd (tecla do teclado) ===================== */
@@ -4776,7 +4776,7 @@ class PWHud extends HTMLElement{
       return '<pw-card variant="tertiary" tone="neutral" appearance="filled" interactive class="pwhd-card" data-team="'+i+'"'+((t.card||t.image)?' bg-image="'+E(t.card||t.image)+'" bg-position="top"':'')+''+(t.active?' selected highlight':'')+' aria-label="'+E(t.name)+', HP '+Math.round(v*100)+'%, atalho '+E(t.hotkey||'Ctrl+'+(i+1))+'" data-tip-title="'+E(t.name)+'" data-tip="'+E((t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v*100)+'%')+'">'+
         '<span class="key">'+E(t.hotkey||'Ctrl+'+(i+1))+'</span>'+(t.type?'<span class="typ"><pw-icon type="'+E(t.type)+'" size="xs"></pw-icon></span>':'')+pwHudStars(t.stars)+
         '<span class="bars"><span class="bar"><pw-progress variant="hp" value="'+Math.round(v*100)+'"></pw-progress><span>'+Math.round(v*100)+'%</span></span><span class="bar cd"><pw-progress tone="info" value="'+Math.round(cd*100)+'"></pw-progress><span>'+(t.cdLeft?'CD '+t.cdLeft+'s':'CD --')+'</span></span></span></pw-card>'}).join('');
-    pwHudKeys(d.hotkeys);var slots=(d.hotkeys||[]).map((h,i)=>{var kb=h&&h.key?'<pw-badge class="kb" tone="brand" appearance="outline" size="sm" aria-hidden="true">'+E(h.key)+'</pw-badge>':'';
+    pwHudKeys(d.hotkeys);var slots=(d.hotkeys||[]).map((h,i)=>{var kb=h&&h.key?'<pw-badge class="kb" tone="brand" size="sm" aria-hidden="true">'+E(h.key)+'</pw-badge>':'';
       if(pwHkEmpty(h))return '<button type="button" class="pwhd-slot empty" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="Atalho vazio '+(i+1)+(h&&h.key?', tecla '+E(h.key):'')+'. Botão direito para opções" data-tip="'+(h&&h.key?'Tecla '+E(h.key)+' · ':'')+'Botão direito para definir atalho">'+pwIcon('poke')+kb+'</button>';
       return '<button type="button" class="pwhd-slot" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="'+E(h.label||'Atalho '+(i+1))+(h.count!=null?', '+h.count+' unidades':'')+(h.key?', tecla '+E(h.key):'')+'" data-tip-title="'+E(h.label||'')+'" data-tip="'+(h.key?'Tecla '+E(h.key)+' · ':'')+'Clique para usar · botão direito para opções">'+
         (h.image?'<img src="'+E(h.image)+'" alt="">':pwIcon(h.icon||'gem'))+(h.count!=null?'<span class="q'+(h.count===0?' zero':'')+'">'+h.count+'</span>':'')+kb+'</button>'}).join('');
@@ -4797,7 +4797,7 @@ class PWHud extends HTMLElement{
     document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>{if(p._from)p._from(this)});this.dispatchEvent(new CustomEvent('pokemon',{bubbles:true,detail:{index:i,pokemon:t}}))}
   _click(e){var t=e.target;var mi=t.closest('[role="menuitem"]');if(mi){if(mi.dataset.move!=null)this._doMove(mi);else this._run(mi.dataset.action);return}
     var x=t.closest('.pwhd-toggle');if(x){if(x.dataset.hd==='profile')this.setAttribute('profile',this.profile==='compact'?'full':'compact');else this.setAttribute('hotkeys',this.getAttribute('hotkeys')==='hidden'?'shown':'hidden');return}
-    var ar=t.closest('.pwhd-arrow');if(ar){var s=this.querySelector('.pwhd-slots'),st=(this.querySelector('.pwhd-slot')||{offsetWidth:48}).offsetWidth+(parseFloat(getComputedStyle(s).columnGap)||12);if(!ar.hasAttribute('disabled'))s.scrollBy({left:+ar.dataset.dir*st*4});return}
+    var ar=t.closest('.pwhd-arrow');if(ar){var s=this.querySelector('.pwhd-slots'),st=(this.querySelector('.pwhd-slot')||{offsetWidth:40}).offsetWidth+(parseFloat(getComputedStyle(s).columnGap)||12);if(!ar.hasAttribute('disabled'))s.scrollBy({left:+ar.dataset.dir*st*4});return}
     var dn=t.closest('.pwhd-done');if(dn){this.doneOrder();return}
     var c=t.closest('.pwhd-card[data-team]');if(c){if(!this._editing)this._pick(+c.dataset.team);return}
     var a=t.closest('.pwhd-act');if(a){var act=this._data.actions[+a.dataset.act];if(act&&act.pressed!==undefined){act.pressed=!act.pressed;a.setAttribute('aria-pressed',act.pressed?'true':'false');this._acts()}
