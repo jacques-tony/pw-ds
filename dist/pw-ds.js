@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.50.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.50.1 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1177,7 +1177,7 @@ class PWHud extends HTMLElement{
       var v=Math.max(0,Math.min(100,t.hp==null?100:t.hp))/100,cd=t.cd?Math.max(0,Math.min(1,(t.cdLeft||0)/t.cd)):0;
       return '<pw-card variant="tertiary" tone="neutral" appearance="filled" interactive class="pwhd-card" data-team="'+i+'"'+((t.card||t.image)?' bg-image="'+E(t.card||t.image)+'" bg-position="top"':'')+''+(t.active?' selected highlight':'')+' aria-label="'+E(t.name)+', HP '+Math.round(v*100)+'%, atalho '+E(t.hotkey||'Ctrl+'+(i+1))+'" data-tip-title="'+E(t.name)+'" data-tip="'+E((t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v*100)+'%')+'">'+
         '<pw-badge class="key" tone="brand" size="xs">'+E(t.hotkey||'Ctrl+'+(i+1))+'</pw-badge>'+(t.type?'<span class="typ"><pw-icon type="'+E(t.type)+'" size="xs"></pw-icon></span>':'')+pwHudStars(t.stars)+
-        '<span class="bars"><span class="bar"><pw-progress variant="hp" value="'+Math.round(v*100)+'"></pw-progress><span>'+Math.round(v*100)+'%</span></span><span class="bar cd"><pw-progress tone="info" value="'+Math.round(cd*100)+'"></pw-progress><span>'+(t.cdLeft?'CD '+t.cdLeft+'s':'CD --')+'</span></span></span></pw-card>'}).join('');
+        '<span class="bars"><span class="bar"><pw-progress variant="hp" value="'+Math.round(v*100)+'"></pw-progress><span>'+Math.round(v*100)+'%</span></span><span class="bar cd"><pw-progress tone="info" value="'+Math.round(cd*100)+'"></pw-progress><span>'+(t.cdLeft?'CD '+t.cdLeft+'s':'Sem CD')+'</span></span></span></pw-card>'}).join('');
     pwHudKeys(d.hotkeys);var slots=(d.hotkeys||[]).map((h,i)=>{var kb=h&&h.key?'<pw-badge class="kb" tone="brand" size="xs" aria-hidden="true">'+E(h.key)+'</pw-badge>':'';
       if(pwHkEmpty(h))return '<pw-card variant="quaternary" interactive state="idle" class="pwhd-slot empty" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="Atalho vazio '+(i+1)+(h&&h.key?', tecla '+E(h.key):'')+'. Botão direito para opções" data-tip="'+(h&&h.key?'Tecla '+E(h.key)+' · ':'')+'Botão direito para definir atalho">'+pwIcon('poke')+kb+'</pw-card>';
       return '<pw-card variant="quaternary" interactive state="idle" class="pwhd-slot" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="'+E(h.label||'Atalho '+(i+1))+(h.count!=null?', '+h.count+' unidades':'')+(h.key?', tecla '+E(h.key):'')+'" data-tip-title="'+E(h.label||'')+'" data-tip="'+(h.key?'Tecla '+E(h.key)+' · ':'')+'Clique para usar · botão direito para opções">'+
@@ -1266,6 +1266,13 @@ class PWHud extends HTMLElement{
     if(action==='Remover tecla'){if(h)h.key=null;this._rerender();return}
     if(action==='Limpar'){this._data.hotkeys[i]={key:h?h.key:null};var sc=this.querySelector('.pwhd-slots').scrollLeft;this.render();this.querySelector('.pwhd-slots').scrollLeft=sc}}
 }
+/* atualiza vida/recarga de um Pokémon sem recriar a HUD (para dados ao vivo) */
+PWHud.prototype.updatePokemon=function(i,patch){var t=(this._data.team||[])[i];if(!t||!t.name)return;Object.assign(t,patch||{});
+  var v=Math.max(0,Math.min(100,t.hp==null?100:t.hp)),cd=t.cd?Math.max(0,Math.min(1,(t.cdLeft||0)/t.cd)):0,c=this.querySelector('.pwhd-card[data-team="'+i+'"]');
+  if(c){var b=c.querySelectorAll('.bar');if(b[0]){b[0].querySelector('pw-progress').setAttribute('value',Math.round(v));b[0].querySelector('span').textContent=Math.round(v)+'%'}
+    if(b[1]){b[1].querySelector('pw-progress').setAttribute('value',Math.round(cd*100));b[1].querySelector('span').textContent=t.cdLeft?'CD '+t.cdLeft+'s':'Sem CD'}
+    c.setAttribute('aria-label',t.name+', HP '+Math.round(v)+'%, atalho '+(t.hotkey||'Ctrl+'+(i+1)));if(c.hasAttribute('data-tip'))c.setAttribute('data-tip',(t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v)+'%')}
+  document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>{var pp=p.querySelector('.pwpt[data-team="'+i+'"] pw-progress');if(pp)pp.setAttribute('value',Math.round(v))})};
 PWHud.prototype._rerender=function(){var s=this.querySelector('.pwhd-slots'),sc=s?s.scrollLeft:0;this.render();var n=this.querySelector('.pwhd-slots');if(n)n.scrollLeft=sc};
 /* modal "Definir atalho": pw-dialog do DS com a tecla mostrada em pw-kbd */
 PWHud.prototype.bindKey=function(i){var hud=this,h=this._data.hotkeys[i],cur=h&&h.key||null,pick=cur;
@@ -1421,5 +1428,5 @@ class PWControlGroup extends HTMLElement{
       var f=ord.find(x=>nm(x).indexOf(q)===0);if(f)go(f)}}
 }
 customElements.define('pw-control-group',PWControlGroup);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.50.0"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.50.1"});
 })();
