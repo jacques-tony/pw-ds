@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.45.0
+- `pw-hud`: ascensão estelar — 5 estrelas ao lado do ícone de tipo de cada card (`team[].stars`, 0 a 5; conquistadas em dourado).
+- Card de editar ordem: mais alto (borda inferior escondida atrás da HUD), padding de 16px no topo e laterais; botão agora diz "Salvar".
+
 ## 0.44.1
 - `pw-hud`: a instrução "Arraste os Pokémon para mudar a ordem" e o botão Concluir agora ficam num `pw-card variant="primary"` que sai deslizando de trás da HUD.
 
