@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.50.0
+- `pw-hud`: todos os blocos internos são componentes do DS — perfil em `pw-card variant="tertiary" tone="neutral"`, atalhos em `pw-card variant="quaternary" interactive` (menu aberto = `state="selected"`), cards da equipe em `tertiary`, base e card de editar ordem em `primary`, menus em `pw-control-group`.
+- Vida e experiência agora são `pw-progress` padrão com label ("Vida" com `variant="hp"`, "Experiência") e valor "atual / máximo", sem ícone.
+
 ## 0.49.2
 - `pw-hud`: foto do avatar alinhada pelo topo (mostra o rosto também no perfil reduzido). Storybook: exemplo com foto do personagem.
 
