@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.45.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.46.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1168,10 +1168,7 @@ pw-hud pw-card.pwhd-card>.pwc-content{padding:0;gap:0;border-radius:inherit;over
 /* a arte fica dentro da moldura do tertiary, para a borda (azul ou dourada) aparecer inteira */
 pw-hud pw-card.pwhd-card[highlight]{box-shadow:0 0 0 2px color-mix(in srgb,var(--pw-gold-200) 85%,transparent),0 0 18px -2px color-mix(in srgb,var(--pw-gold-300) 60%,transparent)}
 pw-hud .pwhd-card .key{position:absolute;top:var(--pw-space-1);right:var(--pw-space-1);z-index:2;font-size:var(--pw-font-size-2xs);color:var(--pw-text-title);text-shadow:var(--pw-shadow-text-strong)}
-pw-hud .pwhd-card .pic{position:absolute;inset:var(--pw-space-0-5);overflow:hidden;border-radius:var(--pw-radius-sm)}
-pw-hud .pwhd-card .pic img{width:100%;height:100%;object-fit:cover;object-position:50% 0;transition:transform .25s var(--card-ease)}
-pw-hud .pwhd-card[interactive]:hover .pic img{transform:scale(1.06)}
-pw-hud .pwhd-card[interactive] .pic::after{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,var(--pw-bg-edge))}
+pw-hud .pwhd-card[interactive]>.pwc-content::before{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,color-mix(in srgb,var(--pw-bg-edge) 85%,transparent));pointer-events:none}
 pw-hud .pwhd-card.empty .key{color:var(--pw-text-muted)}
 pw-hud .pwhd-card .typ{position:absolute;left:var(--pw-space-1);bottom:calc(var(--pw-space-9) + var(--pw-space-1));z-index:2;display:grid;place-items:center;padding:var(--pw-space-0-5);border-radius:var(--pw-radius-xs);
   background:var(--pw-black-a55);border:1px solid var(--pw-metal-1)}
@@ -1248,7 +1245,6 @@ pw-hud[editing] .pwhd-card[data-team],pw-party[editing] .pwpt[data-team]{cursor:
 pw-hud[editing] .pwhd-card[data-team]:nth-child(2n),pw-party[editing] .pwpt[data-team]:nth-child(2n){animation-delay:-.45s}
 pw-hud[editing] .pwhd-card.dragging,pw-party[editing] .pwpt.dragging{cursor:grabbing;animation:none;z-index:10;transition:none;box-shadow:0 0 0 2px var(--pw-filament),0 12px 24px var(--pw-black-a45),0 0 18px var(--pw-glow)}
 pw-hud[editing] .pwhd-card.swapping,pw-party[editing] .pwpt.swapping{animation:none}
-pw-hud[editing] .pwhd-card .pic img{transform:none!important}
 @keyframes pwhd-wiggle{0%,100%{rotate:-1.2deg}50%{rotate:1.2deg}}
 pw-hud .pwhd-menu [role="menuitem"] svg{width:var(--pw-space-4);height:var(--pw-space-4);flex:none}
 pw-hud .pwhd-menu-title{padding:var(--pw-space-1) var(--pw-space-2);font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase;color:var(--pw-text-accent-soft)}

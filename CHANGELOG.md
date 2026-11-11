@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.46.0
+- `pw-card` (todas as variantes): fundo com imagem. `bg-image` (url), `bg` = `image` (padrão, troca o fundo) ou `both` (imagem sobre o fundo do tema), `bg-opacity` (0–1), `bg-position` (center/top/bottom/left/right) e `bg-fit` (cover/contain). A imagem é recortada no formato do fundo de cada variante; bordas, brilho, anel e destaque não mudam.
+- `pw-hud`: cards dos Pokémon e espaços vazios usam `bg-image`, sem a faixa entre a arte e a borda.
+
 ## 0.45.0
 - `pw-hud`: ascensão estelar — 5 estrelas ao lado do ícone de tipo de cada card (`team[].stars`, 0 a 5; conquistadas em dourado).
 - Card de editar ordem: mais alto (borda inferior escondida atrás da HUD), padding de 16px no topo e laterais; botão agora diz "Salvar".
