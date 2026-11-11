@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.47.0
+- Novo componente **`pw-kbd`** (tecla do teclado): `<pw-kbd>Q</pw-kbd>`, `keys="Ctrl+1"`, `size` xs/sm/lg, `tone="accent"`, método `press()`.
+- `pw-hud`, barra de atalhos: clique usa o item; **botão direito** abre as opções (no espaço vazio, só "Definir atalho"). "Escolher atalho" virou "Definir atalho".
+- Modal **Definir atalho** (`pw-dialog`): captura a tecla (com Ctrl/Alt/Shift), mostra em `pw-kbd` grande com animação, mostra o atalho atual e avisa quando a tecla já está em outro atalho (é movida). Evento `keybind` (cancelável) e método `bindKey(índice)`.
+- Teclas definidas aparecem no canto do atalho e acionam o item ao serem pressionadas (evento `hotkey` com `action: "Usar"`).
+
 ## 0.46.0
 - `pw-card` (todas as variantes): fundo com imagem. `bg-image` (url), `bg` = `image` (padrão, troca o fundo) ou `both` (imagem sobre o fundo do tema), `bg-opacity` (0–1), `bg-position` (center/top/bottom/left/right) e `bg-fit` (cover/contain). A imagem é recortada no formato do fundo de cada variante; bordas, brilho, anel e destaque não mudam.
 - `pw-hud`: cards dos Pokémon e espaços vazios usam `bg-image`, sem a faixa entre a arte e a borda.
