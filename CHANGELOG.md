@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.49.1
+- `pw-hud`: o atalho Ctrl+N dos cards da equipe agora é um `pw-badge` brand `xs` centralizado no topo do card, na mesma posição dos atalhos da barra (atualiza ao editar a ordem).
+
 ## 0.49.0
 - `pw-badge`: novo tamanho `size="xs"` (14px, texto 8px), também no playground.
 - `pw-hud`: badges das teclas dos atalhos usam o `xs`.

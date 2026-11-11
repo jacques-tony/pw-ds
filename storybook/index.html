@@ -1429,13 +1429,13 @@ pw-hud pw-button.pwhd-act>button{--b-fg:var(--pw-text-accent)}
 pw-hud pw-button.pwhd-act[aria-pressed="true"]{--b-bg:linear-gradient(180deg,var(--pw-metal-0),var(--pw-metal-1));--b-fg:var(--pw-on-metal);--b-bd:var(--pw-filament)}
 pw-hud .pwhd-slot:focus-visible,pw-hud .pwhd-card:focus-visible{outline:2px solid var(--pw-focus-ring);outline-offset:2px}
 /* cards da equipe: pw-card tertiary; selecionado = tertiary com destaque dourado */
-pw-hud .pwhd-team{display:flex;gap:var(--hd-gap);min-width:0;padding:var(--pw-space-1) 0}
+pw-hud .pwhd-team{display:flex;gap:var(--hd-gap);min-width:0;padding:var(--pw-space-2) 0 var(--pw-space-1)}
 pw-hud pw-card.pwhd-card{flex:none;width:var(--hd-card-w);height:var(--hd-card-h);border-radius:var(--pw-radius-md);overflow:visible}
-pw-hud pw-card.pwhd-card>.pwc-content{padding:0;gap:0;border-radius:inherit;overflow:hidden}
+pw-hud pw-card.pwhd-card>.pwc-content{padding:0;gap:0;border-radius:inherit;overflow:visible}
 /* a arte fica dentro da moldura do tertiary, para a borda (azul ou dourada) aparecer inteira */
 pw-hud pw-card.pwhd-card[highlight]{box-shadow:0 0 0 2px color-mix(in srgb,var(--pw-gold-200) 85%,transparent),0 0 18px -2px color-mix(in srgb,var(--pw-gold-300) 60%,transparent)}
-pw-hud .pwhd-card .key{position:absolute;top:var(--pw-space-1);right:var(--pw-space-1);z-index:2;font-size:var(--pw-font-size-2xs);color:var(--pw-text-title);text-shadow:var(--pw-shadow-text-strong)}
-pw-hud .pwhd-card[interactive]>.pwc-content::before{content:"";position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,color-mix(in srgb,var(--pw-bg-edge) 85%,transparent));pointer-events:none}
+pw-hud .pwhd-card .key{position:absolute;left:50%;top:calc((var(--pw-space-3) + var(--pw-space-0-5)) / -2);transform:translateX(-50%);z-index:3;white-space:nowrap;pointer-events:none}
+pw-hud .pwhd-card[interactive]>.pwc-content::before{content:"";border-radius:0 0 var(--pw-radius-md) var(--pw-radius-md);position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,color-mix(in srgb,var(--pw-bg-edge) 85%,transparent));pointer-events:none}
 pw-hud .pwhd-card.empty .key{color:var(--pw-text-muted)}
 pw-hud .pwhd-card .typ{position:absolute;left:var(--pw-space-1);bottom:calc(var(--pw-space-9) + var(--pw-space-1));z-index:2;display:grid;place-items:center;padding:var(--pw-space-0-5);border-radius:var(--pw-radius-xs);
   background:var(--pw-black-a55);border:1px solid var(--pw-metal-1)}
@@ -4763,10 +4763,10 @@ class PWHud extends HTMLElement{
     var hp=p.hpMax?Math.max(0,Math.min(1,(p.hp||0)/p.hpMax)):0,xp=Math.max(0,Math.min(100,p.xp||0))/100;
     var acts=(d.actions||[]).map((a,i)=>'<pw-button class="pwhd-act" size="sm" appearance="outline" particles="0" icon="'+E(a.icon||'grid')+'" data-act="'+i+'" data-label="'+E(a.label)+'" data-tip-title="'+E(a.label)+'" data-tip="'+E(a.hint||'')+'"'+(a.pressed!==undefined?' aria-pressed="'+(a.pressed?'true':'false')+'"':'')+'></pw-button>').join('');
     var tm=(d.team||[]).slice(0,6);while(tm.length<6)tm.push(null);
-    var team=tm.map((t,i)=>{if(!t||!t.name)return '<pw-card variant="tertiary" tone="neutral" appearance="filled" class="pwhd-card empty" bg-image="'+E(pwHudEmpty())+'" bg-position="top" role="img" aria-label="Espaço vazio '+(i+1)+'"><span class="key">'+E((t&&t.hotkey)||'Ctrl+'+(i+1))+'</span></pw-card>';
+    var team=tm.map((t,i)=>{if(!t||!t.name)return '<pw-card variant="tertiary" tone="neutral" appearance="filled" class="pwhd-card empty" bg-image="'+E(pwHudEmpty())+'" bg-position="top" role="img" aria-label="Espaço vazio '+(i+1)+'"><pw-badge class="key" tone="brand" size="xs">'+E((t&&t.hotkey)||'Ctrl+'+(i+1))+'</pw-badge></pw-card>';
       var v=Math.max(0,Math.min(100,t.hp==null?100:t.hp))/100,cd=t.cd?Math.max(0,Math.min(1,(t.cdLeft||0)/t.cd)):0;
       return '<pw-card variant="tertiary" tone="neutral" appearance="filled" interactive class="pwhd-card" data-team="'+i+'"'+((t.card||t.image)?' bg-image="'+E(t.card||t.image)+'" bg-position="top"':'')+''+(t.active?' selected highlight':'')+' aria-label="'+E(t.name)+', HP '+Math.round(v*100)+'%, atalho '+E(t.hotkey||'Ctrl+'+(i+1))+'" data-tip-title="'+E(t.name)+'" data-tip="'+E((t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v*100)+'%')+'">'+
-        '<span class="key">'+E(t.hotkey||'Ctrl+'+(i+1))+'</span>'+(t.type?'<span class="typ"><pw-icon type="'+E(t.type)+'" size="xs"></pw-icon></span>':'')+pwHudStars(t.stars)+
+        '<pw-badge class="key" tone="brand" size="xs">'+E(t.hotkey||'Ctrl+'+(i+1))+'</pw-badge>'+(t.type?'<span class="typ"><pw-icon type="'+E(t.type)+'" size="xs"></pw-icon></span>':'')+pwHudStars(t.stars)+
         '<span class="bars"><span class="bar"><pw-progress variant="hp" value="'+Math.round(v*100)+'"></pw-progress><span>'+Math.round(v*100)+'%</span></span><span class="bar cd"><pw-progress tone="info" value="'+Math.round(cd*100)+'"></pw-progress><span>'+(t.cdLeft?'CD '+t.cdLeft+'s':'CD --')+'</span></span></span></pw-card>'}).join('');
     pwHudKeys(d.hotkeys);var slots=(d.hotkeys||[]).map((h,i)=>{var kb=h&&h.key?'<pw-badge class="kb" tone="brand" size="xs" aria-hidden="true">'+E(h.key)+'</pw-badge>':'';
       if(pwHkEmpty(h))return '<button type="button" class="pwhd-slot empty" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="Atalho vazio '+(i+1)+(h&&h.key?', tecla '+E(h.key):'')+'. Botão direito para opções" data-tip="'+(h&&h.key?'Tecla '+E(h.key)+' · ':'')+'Botão direito para definir atalho">'+pwIcon('poke')+kb+'</button>';
@@ -4845,7 +4845,7 @@ class PWHud extends HTMLElement{
     var nu=ord.map(k=>old[k]);var ev=new CustomEvent('reorder',{bubbles:true,cancelable:true,detail:{order:ord,team:nu}});this.dispatchEvent(ev);if(ev.defaultPrevented){this.render();this._emitTeam();return}
     for(var k=0;k<ord.length;k++)t[k]=nu[k];t.forEach((x,k)=>{if(x)x.hotkey='Ctrl+'+(k+1)});
     /* atualiza índices e atalhos sem recriar (mantém o modo de edição) */
-    [this._eBox].forEach(b=>{if(!b)return;[].slice.call(b.querySelectorAll('[data-team]')).forEach((x,k)=>{x.dataset.team=k;var key=x.querySelector('.key');if(key)key.textContent='Ctrl+'+(k+1)})})}
+    [this._eBox].forEach(b=>{if(!b)return;[].slice.call(b.querySelectorAll('[data-team]')).forEach((x,k)=>{x.dataset.team=k;var key=x.querySelector('.key');if(key)key.outerHTML='<pw-badge class="key" tone="brand" size="xs">Ctrl+'+(k+1)+'</pw-badge>'})})}
   doneOrder(){if(!this._editing)return;this._editing=false;this.removeAttribute('editing');document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>p.removeAttribute('editing'));
     document.removeEventListener('keydown',this._eKey);document.removeEventListener('pointerdown',this._eOut);if(this._eBox)this._eBox.removeEventListener('pointerdown',this._eDown);this._eBox=null;
     this.render();this._emitTeam();this.dispatchEvent(new CustomEvent('orderdone',{bubbles:true}))}
