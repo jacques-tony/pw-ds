@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.44.0
+- `pw-hud` / `pw-party`: ordem da equipe agora é um modo **Editar ordem** (botão direito → Editar ordem). Os cards balançam e podem ser arrastados; ao passar sobre outro, os dois trocam de lugar com animação. Concluir, Enter, Esc ou clicar fora encerram. Eventos `reorder` (cancelável, `detail.order`) e `orderdone`; métodos `editOrder()` e `doneOrder()`. Remove o menu de mover/trocar e o método `move()` da 0.43.0.
+
 ## 0.43.0
 - `pw-hud`: ordenar a equipe pelo botão direito num card (ou na pílula do `pw-party`): mover para o início/esquerda/direita/fim ou trocar com outro Pokémon, com animação de deslize. Atalhos Ctrl+N seguem a nova ordem. Evento `reorder` (cancelável) e método `move(de, para, trocar)`.
 
