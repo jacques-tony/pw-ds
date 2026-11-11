@@ -616,6 +616,7 @@ pw-badge{--b-light:var(--pw-neutral-200);--b-base:var(--pw-ter-stroke-1);--b-dar
   color:var(--b-text);border:1px solid color-mix(in srgb,var(--b-light) 55%,transparent);
   background:linear-gradient(180deg,var(--b-base),var(--b-dark));text-shadow:var(--pw-shadow-text);
   box-shadow:inset 0 1px 0 color-mix(in srgb,var(--b-light) 35%,transparent)}
+pw-badge[size="xs"]{--bh:calc(var(--pw-space-3) + var(--pw-space-0-5));--bpx:var(--pw-space-0-5);--bfs:var(--pw-font-size-3xs);--bic:var(--pw-space-2);letter-spacing:.02em}
 pw-badge[size="sm"]{--bh:18px;--bpx:var(--pw-space-1);--bfs:var(--pw-font-size-2xs);--bic:12px}
 pw-badge[size="lg"]{--bh:26px;--bpx:var(--pw-space-3);--bfs:var(--pw-font-size-md);--bic:16px}
 pw-badge .pwb-icon{display:inline-flex;width:var(--bic);height:var(--bic);flex:none;margin-right:calc(var(--pw-space-0-5) * -1)}
@@ -1469,7 +1470,7 @@ pw-hud .pwhd-slot img{width:80%;height:80%;object-fit:contain;filter:drop-shadow
 pw-hud .pwhd-slot svg{width:60%;height:60%;color:var(--pw-text-accent)}
 pw-hud .pwhd-slot .q{position:absolute;right:1px;bottom:0;font-size:var(--pw-font-size-3xs);font-weight:var(--pw-font-weight-bold);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
 pw-hud .pwhd-slot .q.zero{color:var(--pw-status-error)}
-pw-hud .pwhd-slot .kb{position:absolute;left:50%;top:calc(var(--pw-space-2) * -1);transform:translateX(-50%);z-index:2;pointer-events:none}
+pw-hud .pwhd-slot .kb{position:absolute;left:50%;top:calc((var(--pw-space-3) + var(--pw-space-0-5)) / -2);transform:translateX(-50%);z-index:2;pointer-events:none}
 pw-hud .pwhd-slot>img,pw-hud .pwhd-slot>svg{position:absolute;inset:0;margin:auto}
 pw-hud .pwhd-slot.empty{cursor:context-menu}
 /* ===================== COMPONENT: pw-kbd (tecla do teclado) ===================== */
@@ -2608,7 +2609,7 @@ q.value = 5;</pre>
       <label for="bpText">texto<input id="bpText" type="text" value="Concluída" maxlength="30" autocomplete="off"></label>
       <label for="bpTone">tone<select id="bpTone"><option>neutral</option><option>info</option><option selected>success</option><option>warning</option><option>error</option><option>new</option><option>brand</option></select></label>
       <label for="bpApp">appearance<select id="bpApp"><option>filled</option><option>outline</option></select></label>
-      <label for="bpSize">size<select id="bpSize"><option>sm</option><option selected>md</option><option>lg</option></select></label>
+      <label for="bpSize">size<select id="bpSize"><option>xs</option><option>sm</option><option selected>md</option><option>lg</option></select></label>
       <label for="bpIcon">icon (à direita)<select id="bpIcon"></select></label>
       <label for="bpTheme">theme<select id="bpTheme"><option value="">poke world (padrão)</option><option>mewtwo</option></select></label>
     </form>
@@ -2625,7 +2626,7 @@ q.value = 5;</pre>
   <div class="canvas"><div class="tbl" id="bvTable"></div></div>
   <div class="canvas" data-pw-theme="mewtwo"><div class="tbl" id="bvTableM"></div></div>
   <h3>Tamanhos</h3>
-  <div class="canvas"><div class="row" style="gap:14px;align-items:center"><pw-badge size="sm" tone="success" icon="check">sm · 18px</pw-badge><pw-badge size="md" tone="success" icon="check">md · 22px</pw-badge><pw-badge size="lg" tone="success" icon="check">lg · 26px</pw-badge><pw-badge size="sm" tone="error" icon="close" label="Falhou"></pw-badge><pw-badge tone="error" icon="close" label="Falhou"></pw-badge><pw-badge size="lg" tone="error" icon="close" label="Falhou"></pw-badge></div></div>
+  <div class="canvas"><div class="row" style="gap:14px;align-items:center"><pw-badge size="xs" tone="success" icon="check">xs · 14px</pw-badge><pw-badge size="sm" tone="success" icon="check">sm · 18px</pw-badge><pw-badge size="md" tone="success" icon="check">md · 22px</pw-badge><pw-badge size="lg" tone="success" icon="check">lg · 26px</pw-badge><pw-badge size="sm" tone="error" icon="close" label="Falhou"></pw-badge><pw-badge tone="error" icon="close" label="Falhou"></pw-badge><pw-badge size="lg" tone="error" icon="close" label="Falhou"></pw-badge></div></div>
 </section>
 
 <section class="story" id="badge-uso" data-c="badge">
@@ -4767,7 +4768,7 @@ class PWHud extends HTMLElement{
       return '<pw-card variant="tertiary" tone="neutral" appearance="filled" interactive class="pwhd-card" data-team="'+i+'"'+((t.card||t.image)?' bg-image="'+E(t.card||t.image)+'" bg-position="top"':'')+''+(t.active?' selected highlight':'')+' aria-label="'+E(t.name)+', HP '+Math.round(v*100)+'%, atalho '+E(t.hotkey||'Ctrl+'+(i+1))+'" data-tip-title="'+E(t.name)+'" data-tip="'+E((t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v*100)+'%')+'">'+
         '<span class="key">'+E(t.hotkey||'Ctrl+'+(i+1))+'</span>'+(t.type?'<span class="typ"><pw-icon type="'+E(t.type)+'" size="xs"></pw-icon></span>':'')+pwHudStars(t.stars)+
         '<span class="bars"><span class="bar"><pw-progress variant="hp" value="'+Math.round(v*100)+'"></pw-progress><span>'+Math.round(v*100)+'%</span></span><span class="bar cd"><pw-progress tone="info" value="'+Math.round(cd*100)+'"></pw-progress><span>'+(t.cdLeft?'CD '+t.cdLeft+'s':'CD --')+'</span></span></span></pw-card>'}).join('');
-    pwHudKeys(d.hotkeys);var slots=(d.hotkeys||[]).map((h,i)=>{var kb=h&&h.key?'<pw-badge class="kb" tone="brand" size="sm" aria-hidden="true">'+E(h.key)+'</pw-badge>':'';
+    pwHudKeys(d.hotkeys);var slots=(d.hotkeys||[]).map((h,i)=>{var kb=h&&h.key?'<pw-badge class="kb" tone="brand" size="xs" aria-hidden="true">'+E(h.key)+'</pw-badge>':'';
       if(pwHkEmpty(h))return '<button type="button" class="pwhd-slot empty" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="Atalho vazio '+(i+1)+(h&&h.key?', tecla '+E(h.key):'')+'. Botão direito para opções" data-tip="'+(h&&h.key?'Tecla '+E(h.key)+' · ':'')+'Botão direito para definir atalho">'+pwIcon('poke')+kb+'</button>';
       return '<button type="button" class="pwhd-slot" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="'+E(h.label||'Atalho '+(i+1))+(h.count!=null?', '+h.count+' unidades':'')+(h.key?', tecla '+E(h.key):'')+'" data-tip-title="'+E(h.label||'')+'" data-tip="'+(h.key?'Tecla '+E(h.key)+' · ':'')+'Clique para usar · botão direito para opções">'+
         (h.image?'<img src="'+E(h.image)+'" alt="">':pwIcon(h.icon||'gem'))+(h.count!=null?'<span class="q'+(h.count===0?' zero':'')+'">'+h.count+'</span>':'')+kb+'</button>'}).join('');

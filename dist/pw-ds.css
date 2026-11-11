@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.48.4 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.49.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -530,6 +530,7 @@ pw-badge{--b-light:var(--pw-neutral-200);--b-base:var(--pw-ter-stroke-1);--b-dar
   color:var(--b-text);border:1px solid color-mix(in srgb,var(--b-light) 55%,transparent);
   background:linear-gradient(180deg,var(--b-base),var(--b-dark));text-shadow:var(--pw-shadow-text);
   box-shadow:inset 0 1px 0 color-mix(in srgb,var(--b-light) 35%,transparent)}
+pw-badge[size="xs"]{--bh:calc(var(--pw-space-3) + var(--pw-space-0-5));--bpx:var(--pw-space-0-5);--bfs:var(--pw-font-size-3xs);--bic:var(--pw-space-2);letter-spacing:.02em}
 pw-badge[size="sm"]{--bh:18px;--bpx:var(--pw-space-1);--bfs:var(--pw-font-size-2xs);--bic:12px}
 pw-badge[size="lg"]{--bh:26px;--bpx:var(--pw-space-3);--bfs:var(--pw-font-size-md);--bic:16px}
 pw-badge .pwb-icon{display:inline-flex;width:var(--bic);height:var(--bic);flex:none;margin-right:calc(var(--pw-space-0-5) * -1)}
@@ -1383,7 +1384,7 @@ pw-hud .pwhd-slot img{width:80%;height:80%;object-fit:contain;filter:drop-shadow
 pw-hud .pwhd-slot svg{width:60%;height:60%;color:var(--pw-text-accent)}
 pw-hud .pwhd-slot .q{position:absolute;right:1px;bottom:0;font-size:var(--pw-font-size-3xs);font-weight:var(--pw-font-weight-bold);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
 pw-hud .pwhd-slot .q.zero{color:var(--pw-status-error)}
-pw-hud .pwhd-slot .kb{position:absolute;left:50%;top:calc(var(--pw-space-2) * -1);transform:translateX(-50%);z-index:2;pointer-events:none}
+pw-hud .pwhd-slot .kb{position:absolute;left:50%;top:calc((var(--pw-space-3) + var(--pw-space-0-5)) / -2);transform:translateX(-50%);z-index:2;pointer-events:none}
 pw-hud .pwhd-slot>img,pw-hud .pwhd-slot>svg{position:absolute;inset:0;margin:auto}
 pw-hud .pwhd-slot.empty{cursor:context-menu}
 /* ===================== COMPONENT: pw-kbd (tecla do teclado) ===================== */
