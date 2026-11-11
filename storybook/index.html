@@ -1499,10 +1499,14 @@ pw-hud .pwhd-menu [role="menuitem"]:is(:hover,:focus){color:var(--pw-on-metal);b
 pw-hud .pwhd-menu [role="menuitem"].danger{color:var(--pw-status-error)}
 pw-hud .pwhd-menu [role="menuitem"].danger:is(:hover,:focus){color:var(--pw-white);background:linear-gradient(180deg,var(--pw-tone-error-solid-top),var(--pw-tone-error-solid-bottom))}
 /* modo editar ordem */
-pw-hud .pwhd-done-bar{display:none}
-pw-hud[editing] .pwhd-done-bar{position:absolute;z-index:15;left:50%;top:calc(var(--hd-pad) * -1 - var(--pw-space-5));transform:translate(-50%,-50%);display:flex;align-items:center;gap:var(--pw-space-3);padding:var(--pw-space-1) var(--pw-space-1) var(--pw-space-1) var(--pw-space-3);
-  border-radius:var(--pw-radius-full);background:linear-gradient(180deg,var(--pw-surface-raised-top),var(--pw-surface-raised-bottom));border:1px solid var(--pw-filament);box-shadow:var(--pw-shadow-sm),0 0 12px -2px var(--pw-glow);
-  font-size:var(--pw-font-size-sm);color:var(--pw-text-body);white-space:nowrap;animation:pwhd-pop .2s var(--card-ease)}
+/* card primary que sai de trás da HUD com a instrução e o botão Concluir */
+pw-hud pw-card.pwhd-shell{z-index:1}
+pw-hud pw-card.pwhd-done-bar{position:absolute;z-index:0;left:50%;bottom:calc(100% - var(--pw-space-4));width:auto;height:auto;--lift:0px;
+  transform:translate(-50%,100%);opacity:0;visibility:hidden;pointer-events:none;
+  transition:transform .38s cubic-bezier(.2,.8,.2,1),opacity .2s ease,visibility 0s linear .38s}
+pw-hud pw-card.pwhd-done-bar>.pwc-content{height:auto;flex-direction:row;align-items:center;gap:var(--pw-space-3);
+  padding:var(--pw-space-2) var(--pw-space-4) calc(var(--pw-space-2) + var(--pw-space-4));font-size:var(--pw-font-size-sm);color:var(--pw-text-body);white-space:nowrap}
+pw-hud[editing] pw-card.pwhd-done-bar{transform:translate(-50%,0);opacity:1;visibility:visible;pointer-events:auto;transition:transform .38s cubic-bezier(.2,.8,.2,1),opacity .2s ease,visibility 0s}
 pw-hud[editing] .pwhd-card[data-team],pw-party[editing] .pwpt[data-team]{cursor:grab;touch-action:none;animation:pwhd-wiggle .9s ease-in-out infinite}
 pw-hud[editing] .pwhd-card[data-team]:nth-child(2n),pw-party[editing] .pwpt[data-team]:nth-child(2n){animation-delay:-.45s}
 pw-hud[editing] .pwhd-card.dragging,pw-party[editing] .pwpt.dragging{cursor:grabbing;animation:none;z-index:10;transition:none;box-shadow:0 0 0 2px var(--pw-filament),0 12px 24px var(--pw-black-a45),0 0 18px var(--pw-glow)}
@@ -4454,7 +4458,7 @@ class PWHud extends HTMLElement{
   connectedCallback(){if(this._init)return;this._init=true;this._u='pwhd'+(++uidN);if(!this.id)this.id=this._u;
     this.setAttribute('role','region');if(!this.getAttribute('aria-label'))this.setAttribute('aria-label','HUD do jogador');
     var json=this.querySelector('script[type="application/json"]');if(json){try{this._data=Object.assign(this._data,JSON.parse(json.textContent))}catch(e){}}
-    this.innerHTML='<pw-card variant="primary" class="pwhd-shell"><div class="pwhd-body"></div></pw-card><div class="pwhd-menu" role="menu" hidden></div>';
+    this.innerHTML='<pw-card variant="primary" class="pwhd-done-bar" aria-live="polite"><span>Arraste os Pokémon para mudar a ordem</span><pw-button class="pwhd-done" size="sm" particles="0" icon="check">Concluir</pw-button></pw-card><pw-card variant="primary" class="pwhd-shell"><div class="pwhd-body"></div></pw-card><div class="pwhd-menu" role="menu" hidden></div>';
     this._body=this.querySelector('.pwhd-body');this._menu=this.querySelector('.pwhd-menu');
     this.addEventListener('click',e=>this._click(e));
     this.addEventListener('contextmenu',e=>{var c=e.target.closest('.pwhd-card[data-team]');if(!c)return;e.preventDefault();if(this._editing)return;this._teamMenu(+c.dataset.team,c)});
@@ -4496,7 +4500,7 @@ class PWHud extends HTMLElement{
       '<div class="pwhd-actions in">'+acts+'</div></div><div class="pwhd-actions out">'+acts+'</div></div>'+
       '<div class="pwhd-team" role="group" aria-label="Equipe">'+team+'</div></div>'+
       '<div class="pwhd-hotbar"><pw-button class="pwhd-arrow" variant="ghost" size="sm" particles="0" icon="chevron-left" data-dir="-1" data-label="Atalhos anteriores"></pw-button><div class="pwhd-slots" role="toolbar" aria-label="Atalhos">'+slots+'</div><pw-button class="pwhd-arrow" variant="ghost" size="sm" particles="0" icon="chevron-right" data-dir="1" data-label="Próximos atalhos"></pw-button></div>'+
-      '<div class="pwhd-foot"><pw-button class="pwhd-toggle" variant="ghost" size="sm" particles="0" data-hd="profile" data-tip-pos="top">Perfil</pw-button><pw-button class="pwhd-toggle" variant="ghost" size="sm" particles="0" data-hd="hotkeys">Hotkeys</pw-button></div><div class="pwhd-done-bar"><span>Arraste os Pokémon para mudar a ordem</span><pw-button class="pwhd-done" size="sm" particles="0" icon="check">Concluir</pw-button></div>';
+      '<div class="pwhd-foot"><pw-button class="pwhd-toggle" variant="ghost" size="sm" particles="0" data-hd="profile" data-tip-pos="top">Perfil</pw-button><pw-button class="pwhd-toggle" variant="ghost" size="sm" particles="0" data-hd="hotkeys">Hotkeys</pw-button></div>';
     this.querySelectorAll('pw-button[data-label]').forEach(b=>{var i=b.querySelector('button');if(i)i.setAttribute('aria-label',b.dataset.label)});this._acts();
     var sl=this.querySelector('.pwhd-slots');sl.addEventListener('scroll',()=>this._arrows(),{passive:true});if(this._sro)this._sro.disconnect();this._sro=new ResizeObserver(()=>this._arrows());this._sro.observe(sl);this._sync();requestAnimationFrame(()=>this._arrows())}
   _arrows(){var s=this.querySelector('.pwhd-slots');if(!s)return;var a=this.querySelectorAll('.pwhd-arrow');a[0].toggleAttribute('disabled',s.scrollLeft<=2);a[1].toggleAttribute('disabled',s.scrollLeft+s.clientWidth>=s.scrollWidth-2);s.toggleAttribute('data-fade-l',s.scrollLeft>2);s.toggleAttribute('data-fade-r',s.scrollLeft+s.clientWidth<s.scrollWidth-2)}

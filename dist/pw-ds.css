@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.44.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.44.1 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1413,10 +1413,14 @@ pw-hud .pwhd-menu [role="menuitem"]:is(:hover,:focus){color:var(--pw-on-metal);b
 pw-hud .pwhd-menu [role="menuitem"].danger{color:var(--pw-status-error)}
 pw-hud .pwhd-menu [role="menuitem"].danger:is(:hover,:focus){color:var(--pw-white);background:linear-gradient(180deg,var(--pw-tone-error-solid-top),var(--pw-tone-error-solid-bottom))}
 /* modo editar ordem */
-pw-hud .pwhd-done-bar{display:none}
-pw-hud[editing] .pwhd-done-bar{position:absolute;z-index:15;left:50%;top:calc(var(--hd-pad) * -1 - var(--pw-space-5));transform:translate(-50%,-50%);display:flex;align-items:center;gap:var(--pw-space-3);padding:var(--pw-space-1) var(--pw-space-1) var(--pw-space-1) var(--pw-space-3);
-  border-radius:var(--pw-radius-full);background:linear-gradient(180deg,var(--pw-surface-raised-top),var(--pw-surface-raised-bottom));border:1px solid var(--pw-filament);box-shadow:var(--pw-shadow-sm),0 0 12px -2px var(--pw-glow);
-  font-size:var(--pw-font-size-sm);color:var(--pw-text-body);white-space:nowrap;animation:pwhd-pop .2s var(--card-ease)}
+/* card primary que sai de trás da HUD com a instrução e o botão Concluir */
+pw-hud pw-card.pwhd-shell{z-index:1}
+pw-hud pw-card.pwhd-done-bar{position:absolute;z-index:0;left:50%;bottom:calc(100% - var(--pw-space-4));width:auto;height:auto;--lift:0px;
+  transform:translate(-50%,100%);opacity:0;visibility:hidden;pointer-events:none;
+  transition:transform .38s cubic-bezier(.2,.8,.2,1),opacity .2s ease,visibility 0s linear .38s}
+pw-hud pw-card.pwhd-done-bar>.pwc-content{height:auto;flex-direction:row;align-items:center;gap:var(--pw-space-3);
+  padding:var(--pw-space-2) var(--pw-space-4) calc(var(--pw-space-2) + var(--pw-space-4));font-size:var(--pw-font-size-sm);color:var(--pw-text-body);white-space:nowrap}
+pw-hud[editing] pw-card.pwhd-done-bar{transform:translate(-50%,0);opacity:1;visibility:visible;pointer-events:auto;transition:transform .38s cubic-bezier(.2,.8,.2,1),opacity .2s ease,visibility 0s}
 pw-hud[editing] .pwhd-card[data-team],pw-party[editing] .pwpt[data-team]{cursor:grab;touch-action:none;animation:pwhd-wiggle .9s ease-in-out infinite}
 pw-hud[editing] .pwhd-card[data-team]:nth-child(2n),pw-party[editing] .pwpt[data-team]:nth-child(2n){animation-delay:-.45s}
 pw-hud[editing] .pwhd-card.dragging,pw-party[editing] .pwpt.dragging{cursor:grabbing;animation:none;z-index:10;transition:none;box-shadow:0 0 0 2px var(--pw-filament),0 12px 24px var(--pw-black-a45),0 0 18px var(--pw-glow)}
