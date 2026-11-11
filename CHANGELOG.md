@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.49.2
+- `pw-hud`: foto do avatar alinhada pelo topo (mostra o rosto também no perfil reduzido). Storybook: exemplo com foto do personagem.
+
 ## 0.49.1
 - `pw-hud`: o atalho Ctrl+N dos cards da equipe agora é um `pw-badge` brand `xs` centralizado no topo do card, na mesma posição dos atalhos da barra (atualiza ao editar a ordem).
 
