@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.48.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.48.2 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1305,7 +1305,7 @@ pw-navbar[collapsed] .pwnb-ball{top:calc(var(--nb-ball) / -2)}
 @media (prefers-reduced-motion:reduce){pw-nav-item,pw-nav-item .pwni-ic{transition:none}}
 
 /* ===================== COMPONENT: pw-hud (HUD inferior) + pw-party ===================== */
-pw-hud{--hd-slot:calc(var(--pw-space-7) + var(--pw-space-0-5));--hd-card-w:calc(var(--pw-space-16) + var(--pw-space-2) + var(--pw-space-0-5));--hd-card-h:calc(var(--pw-space-32) + var(--pw-space-1) + var(--pw-space-0-5));
+pw-hud{--hd-slot:var(--pw-space-12);--hd-card-w:calc(var(--pw-space-16) + var(--pw-space-2) + var(--pw-space-0-5));--hd-card-h:calc(var(--pw-space-32) + var(--pw-space-1) + var(--pw-space-0-5));
   position:relative;display:block;box-sizing:border-box;min-width:0;max-width:100%;font-family:var(--pw-font-body);color:var(--pw-text-body)}
 pw-hud{--hd-gap:var(--pw-space-2);--hd-pad:var(--pw-space-5);
   --hd-w:calc(calc(var(--pw-space-32) * 2 + var(--pw-space-8)) + var(--pw-space-4) + var(--hd-card-w) * 6 + var(--hd-gap) * 5 + var(--hd-pad) * 2);width:var(--hd-w)}
@@ -1363,7 +1363,7 @@ pw-hud .pwhd-card .bar span{position:absolute;inset:0;display:grid;place-items:c
   color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);pointer-events:none}
 /* barra de atalhos */
 pw-hud .pwhd-hotbar{display:flex;align-items:center;gap:var(--pw-space-2);min-width:0;overflow:visible}
-pw-hud .pwhd-slots{flex:1;display:flex;gap:var(--pw-space-1);overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;min-width:0;padding:var(--pw-space-2) var(--pw-space-1) var(--pw-space-0-5)}
+pw-hud .pwhd-slots{flex:1;display:flex;gap:var(--pw-space-3);overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;min-width:0;padding:var(--pw-space-3) var(--pw-space-1) var(--pw-space-0-5)}
 pw-hud .pwhd-slots::-webkit-scrollbar{display:none}
 /* overlay nas pontas: o atalho some suavemente em vez de parecer cortado */
 pw-hud .pwhd-slots{--fl:var(--pw-space-0);--fr:var(--pw-space-0);-webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--fl),#000 calc(100% - var(--fr)),transparent);mask-image:linear-gradient(90deg,transparent,#000 var(--fl),#000 calc(100% - var(--fr)),transparent)}
@@ -1377,13 +1377,13 @@ pw-hud .pwhd-slot:active{transform:scale(.94)}
 pw-hud .pwhd-slot[aria-expanded="true"]{border-color:var(--pw-filament);box-shadow:0 0 0 1px var(--pw-filament)}
 /* vazio: ícone poke do DS */
 pw-hud .pwhd-slot.empty{color:color-mix(in srgb,var(--pw-text-muted) 70%,transparent)}
-pw-hud .pwhd-slot.empty svg{width:65%;height:65%;color:inherit}
+pw-hud .pwhd-slot.empty svg{width:50%;height:50%;color:inherit}
 pw-hud .pwhd-slot.empty{cursor:default}
 pw-hud .pwhd-slot img{width:80%;height:80%;object-fit:contain;filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
 pw-hud .pwhd-slot svg{width:60%;height:60%;color:var(--pw-text-accent)}
 pw-hud .pwhd-slot .q{position:absolute;right:1px;bottom:0;font-size:var(--pw-font-size-3xs);font-weight:var(--pw-font-weight-bold);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
 pw-hud .pwhd-slot .q.zero{color:var(--pw-status-error)}
-pw-hud .pwhd-slot .kb{position:absolute;right:calc(var(--pw-space-1) * -1);top:calc(var(--pw-space-1) * -1);z-index:2;pointer-events:none}
+pw-hud .pwhd-slot .kb{position:absolute;left:var(--pw-space-1);top:calc(var(--pw-space-2) * -1);z-index:2;pointer-events:none;background:var(--pw-bg-edge)}
 pw-hud .pwhd-slot>img,pw-hud .pwhd-slot>svg{position:absolute;inset:0;margin:auto}
 pw-hud .pwhd-slot.empty{cursor:context-menu}
 /* ===================== COMPONENT: pw-kbd (tecla do teclado) ===================== */
@@ -1435,7 +1435,7 @@ pw-hud[profile="compact"] .pwhd-actions{flex-wrap:nowrap}
 pw-hud .pwhd-actions.out{display:none}
 pw-hud[profile="compact"] .pwhd-actions.in{display:none}
 pw-hud[profile="compact"] .pwhd-actions.out{display:flex}
-pw-hud .pwhd-hotbar{max-height:var(--pw-space-12);transition:max-height .32s var(--card-ease),opacity .25s ease,margin-top .32s var(--card-ease),visibility 0s linear 0s}
+pw-hud .pwhd-hotbar{max-height:calc(var(--hd-slot) + var(--pw-space-6));transition:max-height .32s var(--card-ease),opacity .25s ease,margin-top .32s var(--card-ease),visibility 0s linear 0s}
 pw-hud[hotkeys="hidden"] .pwhd-hotbar{max-height:0;overflow:hidden;opacity:0;margin-top:calc(var(--pw-space-3) * -1);visibility:hidden;
   transition:max-height .32s var(--card-ease),opacity .2s ease,margin-top .32s var(--card-ease),visibility 0s linear .32s}
 /* menu de ação do atalho */

@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.48.2
+- `pw-hud`: atalhos de 48×48 com 12px entre eles; badge da tecla no canto superior esquerdo, sobre a borda; setas rolam 4 atalhos considerando o novo tamanho.
+
 ## 0.48.1
 - `pw-hud`: a tecla de cada atalho agora é um `pw-badge tone="brand" appearance="outline" size="sm"` no canto superior direito.
 - Teclas padrão: os 22 primeiros atalhos já vêm com 1…9, 0 e F1…F12 (`key` definido nos dados tem prioridade; `key: null` deixa sem tecla). "Remover tecla" e "Limpar" preservam essa regra.
