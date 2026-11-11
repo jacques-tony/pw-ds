@@ -27,6 +27,14 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.48.0
+- Novos componentes **`pw-control-group`** e **`pw-control-group-item`**: lista suspensa para menus dropdown, menus de contexto, seletores e filtros.
+  - `type`: `menu` (padrão, `role="menu"`), `single` (listbox) e `multi` (listbox multiselecionável, com checkbox).
+  - `for="id"` prende ao gatilho: abre no clique/↓/↑, vira para cima se não couber, nunca sai da tela, fecha ao escolher, clicar fora, Esc ou Tab e devolve o foco. Sem `for`, fica fixo na página.
+  - Itens com `icon`/`type`/`src`, `description`, `meta`, `shortcut` (em `pw-kbd`), `section`, `selected`, `disabled`, `tone="danger"`; `<hr>` separa grupos.
+  - Teclado do WAI-ARIA (setas com volta, Home/End, typeahead, Enter/Espaço) com `aria-activedescendant`; `size` sm/md/lg; `value`, `data-cg-label` no gatilho; eventos `select` (cancelável), `change`, `open`, `close`.
+- `pw-kbd keys="Ctrl+1"` agora desenha uma tecla para cada parte.
+
 ## 0.47.1
 - `pw-card` primary: sem a linha interna e borda externa 1px mais fina (secondary não muda).
 - `pw-hud`: imagem do item sempre centralizada no atalho; a tecla aparece só como texto no canto superior direito.

@@ -1485,8 +1485,8 @@ pw-kbd[size="sm"]{--kb-h:var(--pw-space-5);--kb-px:var(--pw-space-1);--kb-fs:var
 pw-kbd[size="lg"]{--kb-h:var(--pw-space-14);--kb-px:var(--pw-space-4);--kb-fs:var(--pw-font-size-2xl);--kb-depth:6px;border-radius:var(--pw-radius-md)}
 pw-kbd[tone="accent"],pw-kbd[pressed]{border-color:var(--pw-filament)}
 pw-kbd[pressed]{transform:translateY(calc(var(--kb-depth) - 1px));box-shadow:inset 0 1px 0 var(--pw-highlight-inset),inset 0 -1px 0 color-mix(in srgb,var(--pw-black) 45%,var(--pw-bg-edge)),0 0 12px var(--pw-glow)}
-pw-kbd[data-multi]{all:unset;display:inline-flex;align-items:center;gap:var(--pw-space-1)}
-pw-kbd[data-multi]>kbd{all:unset}
+pw-kbd[data-multi]{all:unset;display:inline-flex;align-items:center;gap:var(--pw-space-0-5)}
+pw-kbd[data-multi] .plus{font-size:var(--pw-font-size-2xs)}
 pw-kbd .plus,pw-dialog .plus{color:var(--pw-text-muted);font-weight:var(--pw-font-weight-bold)}
 /* modal de definir atalho */
 pw-dialog.pwhd-bind .pwkb-lede{margin:0 0 var(--pw-space-4);color:var(--pw-text-body)}
@@ -1571,6 +1571,75 @@ pw-party[size="lg"] .pwpt .key{top:var(--pw-space-1);font-size:var(--pw-font-siz
 pw-party .pwpt.empty{opacity:.5;cursor:default;border-style:dashed}
 @media (prefers-reduced-motion:reduce){pw-hud *,pw-party *{transition:none!important;animation:none!important}}
 
+/* ===================== COMPONENT: pw-control-group + pw-control-group-item (lista suspensa: menus, dropdowns, seleção) ===================== */
+/* referências: WAI-ARIA APG Menu Button / Listbox, Radix Dropdown Menu, Carbon Menu, Adobe Spectrum Menu */
+pw-control-group{--cg-item-h:36px;--cg-px:var(--pw-space-3);--cg-fs:var(--pw-font-size-md);--cg-ic:var(--pw-space-4);--cg-max-h:min(calc(var(--cg-item-h) * 10.5),calc(100vh - var(--pw-space-16)));
+  display:block;box-sizing:border-box;min-width:calc(var(--pw-space-32) + var(--pw-space-16));max-width:min(calc(var(--pw-space-32) * 3),calc(100vw - var(--pw-space-8)));
+  padding:var(--pw-space-1);border-radius:var(--pw-radius-md);font-family:var(--pw-font-body);color:var(--pw-text-body);
+  background:linear-gradient(180deg,var(--pw-surface-raised-top),var(--pw-surface-raised-bottom));border:1px solid var(--pw-border-strong);
+  box-shadow:var(--pw-shadow-sm),0 12px 32px var(--pw-black-a45),inset 0 1px 0 var(--pw-highlight-inset);outline:none}
+pw-control-group[size="sm"]{--cg-item-h:28px;--cg-px:var(--pw-space-2);--cg-fs:var(--pw-font-size-sm);--cg-ic:var(--pw-space-3)}
+pw-control-group[size="lg"]{--cg-item-h:44px;--cg-px:var(--pw-space-4);--cg-fs:var(--pw-font-size-lg);--cg-ic:var(--pw-space-5)}
+pw-control-group .pwcl-list{max-height:var(--cg-max-h);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--pw-metal-1) transparent;display:grid;gap:1px}
+pw-control-group .pwcl-title{padding:var(--pw-space-2) var(--cg-px) var(--pw-space-1);font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase;color:var(--pw-text-accent-soft)}
+pw-control-group .pwcl-section{padding:var(--pw-space-2) var(--cg-px) var(--pw-space-1);font-size:var(--pw-font-size-2xs);font-weight:var(--pw-font-weight-semibold);letter-spacing:.06em;text-transform:uppercase;color:var(--pw-text-muted)}
+pw-control-group .pwcl-section:not(:first-child){margin-top:var(--pw-space-1);border-top:1px solid var(--pw-border-subtle);padding-top:var(--pw-space-2)}
+pw-control-group hr{border:0;border-top:1px solid var(--pw-border-subtle);margin:var(--pw-space-1) var(--pw-space-1);width:auto}
+pw-control-group .pwcl-empty{padding:var(--pw-space-3) var(--cg-px);font-size:var(--pw-font-size-sm);color:var(--pw-text-muted);text-align:center}
+/* flutuante (preso a um gatilho via for="id") */
+pw-control-group[for]{position:fixed;inset:auto;margin:0;z-index:1000;overflow:visible}
+pw-control-group[for]:not([open]){display:none}
+pw-control-group[for][open]{animation:pwcl-in .16s var(--card-ease)}
+pw-control-group[data-side="top"][open]{animation-name:pwcl-in-up}
+@keyframes pwcl-in{from{opacity:0;transform:translateY(calc(var(--pw-space-1) * -1)) scale(.98)}}
+@keyframes pwcl-in-up{from{opacity:0;transform:translateY(var(--pw-space-1)) scale(.98)}}
+/* item */
+pw-control-group-item{position:relative;display:grid;grid-template-columns:auto 1fr auto;align-items:center;column-gap:var(--pw-space-2);min-height:var(--cg-item-h);box-sizing:border-box;
+  padding:var(--pw-space-1) var(--cg-px);border-radius:var(--pw-radius-sm);font-size:var(--cg-fs);line-height:var(--pw-line-height-tight);color:var(--pw-text-body);cursor:pointer;outline:none;user-select:none;
+  transition:background var(--card-dur),color var(--card-dur)}
+pw-control-group-item .pwci-lead{display:grid;place-items:center;width:var(--cg-ic);height:var(--cg-ic);color:var(--pw-text-accent)}
+pw-control-group-item .pwci-lead:empty{display:none}
+pw-control-group-item .pwci-lead svg,pw-control-group-item .pwci-lead img,pw-control-group-item .pwci-lead pw-icon{width:100%;height:100%}
+pw-control-group-item .pwci-txt{display:grid;gap:2px;min-width:0;grid-column:2}
+pw-control-group-item .pwci-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:inherit}
+pw-control-group-item .pwci-desc{font-size:var(--pw-font-size-xs);color:var(--pw-text-muted);white-space:normal}
+pw-control-group-item .pwci-desc:empty{display:none}
+pw-control-group-item .pwci-end{grid-column:3;display:flex;align-items:center;gap:var(--pw-space-2);color:var(--pw-text-muted);font-size:var(--pw-font-size-xs)}
+pw-control-group-item .pwci-end:empty{display:none}
+pw-control-group-item .pwci-check{display:none;width:var(--cg-ic);height:var(--cg-ic);color:var(--pw-filament)}
+pw-control-group-item .pwci-check svg{width:100%;height:100%}
+/* seleção: o check fica na coluna da frente para o texto não pular */
+pw-control-group[type="single"] pw-control-group-item,pw-control-group[type="multi"] pw-control-group-item{grid-template-columns:var(--cg-ic) auto 1fr auto}
+pw-control-group[type="single"] pw-control-group-item .pwci-check,pw-control-group[type="multi"] pw-control-group-item .pwci-check{display:grid;grid-column:1;grid-row:1}
+pw-control-group[type="single"] pw-control-group-item .pwci-lead,pw-control-group[type="multi"] pw-control-group-item .pwci-lead{grid-column:2}
+pw-control-group[type="single"] pw-control-group-item .pwci-txt,pw-control-group[type="multi"] pw-control-group-item .pwci-txt{grid-column:3}
+pw-control-group[type="single"] pw-control-group-item .pwci-end,pw-control-group[type="multi"] pw-control-group-item .pwci-end{grid-column:4}
+pw-control-group[type="single"] pw-control-group-item .pwci-check svg{visibility:hidden}
+pw-control-group[type="single"] pw-control-group-item[selected] .pwci-check svg{visibility:visible}
+pw-control-group[type="multi"] pw-control-group-item .pwci-check{box-sizing:border-box;border-radius:var(--pw-radius-xs);border:1px solid var(--pw-border-strong);background:var(--pw-surface-field);padding:1px}
+pw-control-group[type="multi"] pw-control-group-item .pwci-check svg{opacity:0;transform:scale(.6);transition:opacity .12s,transform .12s var(--card-ease)}
+pw-control-group[type="multi"] pw-control-group-item[selected] .pwci-check{border-color:var(--pw-filament);background:linear-gradient(180deg,var(--pw-metal-0),var(--pw-metal-1));color:var(--pw-on-metal)}
+pw-control-group[type="multi"] pw-control-group-item[selected] .pwci-check svg{opacity:1;transform:none}
+pw-control-group-item[selected]{color:var(--pw-text-primary)}
+pw-control-group[type="single"] pw-control-group-item[selected]{background:color-mix(in srgb,var(--pw-filament) 10%,transparent)}
+/* hover e foco do teclado usam o mesmo destaque (ativo) */
+pw-control-group-item[data-active]{color:var(--pw-text-primary);background:color-mix(in srgb,var(--pw-filament) 16%,transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--pw-filament) 45%,transparent)}
+pw-control-group-item[data-active] .pwci-lead{color:var(--pw-text-title)}
+pw-control-group:focus-visible pw-control-group-item[data-active],pw-control-group-item:focus-visible{box-shadow:inset 0 0 0 2px var(--pw-focus-ring)}
+pw-control-group-item:active{background:color-mix(in srgb,var(--pw-filament) 24%,transparent)}
+pw-control-group-item[tone="danger"]{color:var(--pw-status-error)}
+pw-control-group-item[tone="danger"] .pwci-lead{color:var(--pw-status-error)}
+pw-control-group-item[tone="danger"][data-active]{color:var(--pw-white);background:linear-gradient(180deg,var(--pw-tone-error-solid-top),var(--pw-tone-error-solid-bottom));box-shadow:none}
+pw-control-group-item[tone="danger"][data-active] .pwci-lead{color:var(--pw-white)}
+pw-control-group-item[disabled]{opacity:.45;cursor:not-allowed;background:none!important;box-shadow:none!important}
+pw-control-group-item[hidden]{display:none}
+pw-control-group-item mark{background:none;color:var(--pw-text-title);font-weight:var(--pw-font-weight-bold)}
+/* gatilho padrão (pw-button com seta) gira a seta quando aberto */
+[aria-haspopup][aria-expanded="true"] .pwcl-caret,[aria-expanded="true"]>button .pwcl-caret{transform:rotate(180deg)}
+.pwcl-caret{display:inline-block;transition:transform .2s var(--card-ease)}
+@media (prefers-reduced-motion:reduce){pw-control-group[for][open]{animation:none}pw-control-group-item,pw-control-group-item .pwci-check svg{transition:none}}
+pw-button[aria-haspopup][aria-expanded="true"] .pwbt-label+.pwbt-icon{transform:rotate(180deg)}
+pw-button[aria-haspopup] .pwbt-label+.pwbt-icon{transition:transform .2s var(--card-ease)}
 /* @pwds-css-end */
 /* demo content inside cards */
 .k-eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--card-filament)}
@@ -1644,6 +1713,8 @@ pw-party .pwpt.empty{opacity:.5;cursor:default;border-style:dashed}
   <button type="button" class="comp-btn" data-comp="form" aria-controls="main">Formulários</button>
   <nav class="sub" data-for="form"><a href="#form">Texto e textarea</a><a href="#form-check">Checkbox e radio</a><a href="#form-uso">Uso</a></nav>
   <button type="button" class="comp-btn" data-comp="choice" aria-controls="main">Checkbox e Radio</button>
+  <button type="button" class="comp-btn" data-comp="cg" aria-controls="main">Control Group</button>
+  <nav class="sub" data-for="cg"><a href="#cg">Visão geral</a><a href="#cg-selecao">Seleção</a><a href="#cg-tamanhos">Tamanhos</a><a href="#cg-uso">Uso, teclado e UX</a></nav>
   <button type="button" class="comp-btn" data-comp="search" aria-controls="main">Search</button>
   <nav class="sub" data-for="search"><a href="#search">Visão geral</a><a href="#search-variantes">Variantes</a><a href="#search-pg">Playground</a><a href="#search-uso">Uso e teclado</a></nav>
   <nav class="sub" data-for="choice"><a href="#choice">Visão geral</a><a href="#choice-anatomia">Anatomia</a><a href="#choice-estados">Estados</a><a href="#choice-card">Opção em cartão</a><a href="#choice-playground">Playground</a><a href="#choice-uso">Uso e regras</a></nav>
@@ -3247,6 +3318,136 @@ PWDS.toast('Sem conexão', { tone: 'error', duration: 0 });   // 0 = fica até f
   </ul>
   <p class="cap" style="margin:0">Referências: <a href="https://carbondesignsystem.com/components/search/usage/" style="color:var(--sb-accent)">Carbon · Search</a> · <a href="https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-autocomplete-none.html" style="color:var(--sb-accent)">WAI-ARIA APG · Combobox</a> · <a href="https://designsystem.porsche.com/v4/components/input-search/accessibility/" style="color:var(--sb-accent)">Porsche · Input Search</a> · <a href="https://nordhealth.design/components/autocomplete" style="color:var(--sb-accent)">Nord · Autocomplete</a></p>
 </section>
+<section class="story" id="cg" data-c="cg">
+  <h2>Visão geral</h2>
+  <p class="lede"><code>&lt;pw-control-group&gt;</code> é a lista suspensa do sistema: o painel de opções de menus dropdown, menus de contexto, seletores e filtros. Cada linha é um <code>&lt;pw-control-group-item&gt;</code> com ícone, texto, descrição, atalho e estado. Com <code>for="id"</code> ele vira flutuante e preso a um gatilho; sem <code>for</code>, fica fixo na página (por exemplo, dentro de um card).</p>
+  <div class="canvas" style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;min-height:400px">
+    <div style="display:grid;gap:10px;justify-items:start">
+      <span class="cap" style="margin:0">Menu de ações (dropdown)</span>
+      <pw-button id="cgActBtn" appearance="outline" icon="grid" icon-end="chevron-down">Ações do Pokémon</pw-button>
+      <pw-control-group for="cgActBtn" id="cgAct" label="Ações do Pokémon">
+        <pw-control-group-item icon="search" shortcut="I" section="Pokémon">Ver detalhes</pw-control-group-item>
+        <pw-control-group-item icon="pencil" shortcut="R">Renomear</pw-control-group-item>
+        <pw-control-group-item icon="held" description="Item segurado em batalha">Equipar item</pw-control-group-item>
+        <pw-control-group-item icon="limit-break" meta="+12" disabled description="Precisa de Pedra de Fogo Antiga">Romper limite</pw-control-group-item>
+        <pw-control-group-item icon="refresh" section="Equipe">Trocar com reserva</pw-control-group-item>
+        <pw-control-group-item icon="sort">Editar ordem</pw-control-group-item>
+        <hr>
+        <pw-control-group-item icon="close" tone="danger" shortcut="Del">Liberar Pokémon</pw-control-group-item>
+      </pw-control-group>
+    </div>
+    <div style="display:grid;gap:10px;justify-items:start">
+      <span class="cap" style="margin:0">Mesmo menu, fixo na página</span>
+      <pw-control-group label="Ações" heading="Charizard · Nv. 62" style="width:280px">
+        <pw-control-group-item icon="search" shortcut="I">Ver detalhes</pw-control-group-item>
+        <pw-control-group-item icon="pencil" shortcut="R">Renomear</pw-control-group-item>
+        <pw-control-group-item icon="held" description="Item segurado em batalha">Equipar item</pw-control-group-item>
+        <pw-control-group-item icon="limit-break" meta="+12" disabled>Romper limite</pw-control-group-item>
+        <hr>
+        <pw-control-group-item icon="close" tone="danger" shortcut="Del">Liberar Pokémon</pw-control-group-item>
+      </pw-control-group>
+    </div>
+  </div>
+  <p class="cap" id="cgLog" style="margin:0">Use o mouse ou o teclado: Tab até o botão, ↓ abre, ↑/↓ percorre, letras pulam para o item, Enter escolhe, Esc fecha.</p>
+</section>
+<section class="story" id="cg-selecao" data-c="cg">
+  <h2>Seleção única e múltipla</h2>
+  <p class="lede"><code>type="single"</code> funciona como um select: marca uma opção, fecha e mostra o valor no gatilho. <code>type="multi"</code> é para filtros: cada clique marca ou desmarca e o painel continua aberto.</p>
+  <div class="canvas" data-pw-theme="mewtwo" style="display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;min-height:420px">
+    <div style="display:grid;gap:10px;justify-items:start">
+      <span class="cap" style="margin:0">type="single" · ordenar</span>
+      <pw-button id="cgSortBtn" appearance="outline" icon="sort" icon-end="chevron-down" data-cg-label="Ordenar por">Ordenar por</pw-button>
+      <pw-control-group for="cgSortBtn" type="single" value="nivel" label="Ordenar por">
+        <pw-control-group-item value="nivel" icon="trophy">Nível</pw-control-group-item>
+        <pw-control-group-item value="nome" icon="pencil">Nome</pw-control-group-item>
+        <pw-control-group-item value="pc" icon="bolt" description="Poder de combate">PC</pw-control-group-item>
+        <pw-control-group-item value="captura" icon="clock">Data de captura</pw-control-group-item>
+        <pw-control-group-item value="raridade" icon="gem">Raridade</pw-control-group-item>
+      </pw-control-group>
+    </div>
+    <div style="display:grid;gap:10px;justify-items:start">
+      <span class="cap" style="margin:0">type="multi" · filtrar por tipo</span>
+      <pw-button id="cgTypeBtn" appearance="outline" icon="filter" icon-end="chevron-down" data-cg-label="Todos os tipos">Todos os tipos</pw-button>
+      <pw-control-group for="cgTypeBtn" type="multi" value="fogo,agua" label="Filtrar por tipo" heading="Tipos">
+        <pw-control-group-item value="fogo" type="fogo" meta="12">Fogo</pw-control-group-item>
+        <pw-control-group-item value="agua" type="agua" meta="9">Água</pw-control-group-item>
+        <pw-control-group-item value="planta" type="planta" meta="7">Planta</pw-control-group-item>
+        <pw-control-group-item value="eletrico" type="eletrico" meta="4">Elétrico</pw-control-group-item>
+        <pw-control-group-item value="psiquico" type="psiquico" meta="3">Psíquico</pw-control-group-item>
+        <pw-control-group-item value="fantasma" type="fantasma" meta="2">Fantasma</pw-control-group-item>
+        <pw-control-group-item value="dragao" type="dragao" meta="1">Dragão</pw-control-group-item>
+        <pw-control-group-item value="gelo" type="gelo" meta="0" disabled>Gelo</pw-control-group-item>
+        <pw-control-group-item value="inseto" type="inseto" meta="5">Inseto</pw-control-group-item>
+        <pw-control-group-item value="pedra" type="pedra" meta="2">Pedra</pw-control-group-item>
+      </pw-control-group>
+    </div>
+    <div style="display:grid;gap:10px;justify-items:start">
+      <span class="cap" style="margin:0">fixo · lista de seleção</span>
+      <pw-control-group type="single" value="normal" label="Dificuldade" heading="Dificuldade" style="width:260px">
+        <pw-control-group-item value="facil" description="Pokémon selvagens 20% mais fracos">Fácil</pw-control-group-item>
+        <pw-control-group-item value="normal" description="Equilíbrio padrão do jogo">Normal</pw-control-group-item>
+        <pw-control-group-item value="dificil" description="Mais XP, menos itens de cura">Difícil</pw-control-group-item>
+      </pw-control-group>
+    </div>
+  </div>
+</section>
+<section class="story" id="cg-tamanhos" data-c="cg">
+  <h2>Tamanhos</h2>
+  <div class="canvas" style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+    <div style="display:grid;gap:6px"><span class="cap" style="margin:0">sm · 28px</span><pw-control-group size="sm" label="Exemplo" style="width:200px"><pw-control-group-item icon="bag">Mochila</pw-control-group-item><pw-control-group-item icon="map" data-active>Mapa</pw-control-group-item><pw-control-group-item icon="settings">Configurações</pw-control-group-item></pw-control-group></div>
+    <div style="display:grid;gap:6px"><span class="cap" style="margin:0">md · 36px (padrão)</span><pw-control-group label="Exemplo" style="width:220px"><pw-control-group-item icon="bag">Mochila</pw-control-group-item><pw-control-group-item icon="map">Mapa</pw-control-group-item><pw-control-group-item icon="settings">Configurações</pw-control-group-item></pw-control-group></div>
+    <div style="display:grid;gap:6px"><span class="cap" style="margin:0">lg · 44px (toque)</span><pw-control-group size="lg" label="Exemplo" style="width:240px"><pw-control-group-item icon="bag">Mochila</pw-control-group-item><pw-control-group-item icon="map">Mapa</pw-control-group-item><pw-control-group-item icon="settings">Configurações</pw-control-group-item></pw-control-group></div>
+  </div>
+</section>
+<section class="story" id="cg-uso" data-c="cg">
+  <h2>Uso</h2>
+  <pre class="code">&lt;pw-button id="acoes" icon-end="chevron-down"&gt;Ações&lt;/pw-button&gt;
+&lt;pw-control-group for="acoes" label="Ações do Pokémon"&gt;
+  &lt;pw-control-group-item icon="search" shortcut="I" section="Pokémon"&gt;Ver detalhes&lt;/pw-control-group-item&gt;
+  &lt;pw-control-group-item icon="pencil" value="renomear"&gt;Renomear&lt;/pw-control-group-item&gt;
+  &lt;hr&gt;
+  &lt;pw-control-group-item icon="close" tone="danger"&gt;Liberar Pokémon&lt;/pw-control-group-item&gt;
+&lt;/pw-control-group&gt;
+
+&lt;script&gt;
+  menu.addEventListener('select', e =&gt; executar(e.detail.value));   // menu: ação escolhida
+  filtro.addEventListener('change', e =&gt; filtrar(e.detail.value));  // single: string · multi: array
+&lt;/script&gt;</pre>
+  <div class="tbl"><table><thead><tr><th>pw-control-group</th><th>Valores</th><th>Descrição</th></tr></thead><tbody>
+    <tr><td><code>type</code></td><td>menu (padrão) · single · multi</td><td>Ações (<code>role="menu"</code>), seleção única ou múltipla (<code>role="listbox"</code>)</td></tr>
+    <tr><td><code>for</code></td><td>id do gatilho</td><td>Vira flutuante: abre no clique ou ↓/↑ do gatilho, fica preso a ele, vira para cima se não couber e nunca sai da tela</td></tr>
+    <tr><td><code>placement</code></td><td>bottom-start · bottom-end · top-start · top-end</td><td>Lado preferido (padrão bottom-start)</td></tr>
+    <tr><td><code>value</code> / <code>.value</code></td><td>texto · lista com vírgula · array</td><td>Seleção atual. Com <code>data-cg-label</code> no gatilho, o texto do gatilho mostra a escolha</td></tr>
+    <tr><td><code>label</code> · <code>heading</code></td><td>texto</td><td>Nome acessível · título visível no topo</td></tr>
+    <tr><td><code>size</code></td><td>sm · md · lg</td><td>Altura do item 28 / 36 / 44px</td></tr>
+    <tr><td><code>close-on-select="false"</code></td><td>—</td><td>Mantém aberto depois de escolher (multi já fica aberto)</td></tr>
+    <tr><td>métodos · eventos</td><td><code>show()</code> <code>hide()</code> <code>toggle()</code> · <code>select</code> (cancelável) <code>change</code> <code>open</code> <code>close</code></td><td><code>detail.item</code>, <code>detail.value</code>, <code>detail.label</code></td></tr>
+  </tbody></table></div>
+  <div class="tbl"><table><thead><tr><th>pw-control-group-item</th><th>Valores</th><th>Descrição</th></tr></thead><tbody>
+    <tr><td>texto · <code>label</code> · <code>value</code></td><td>texto</td><td>Rótulo e valor (o valor padrão é o rótulo)</td></tr>
+    <tr><td><code>icon</code> · <code>type</code> · <code>src</code></td><td>ícone do DS · tipo elemental · imagem</td><td>Elemento à esquerda</td></tr>
+    <tr><td><code>description</code> · <code>meta</code> · <code>shortcut</code></td><td>texto · texto curto · tecla</td><td>Segunda linha · contador à direita · atalho em <code>pw-kbd</code></td></tr>
+    <tr><td><code>section</code></td><td>texto</td><td>Abre uma seção com título antes do item; use <code>&lt;hr&gt;</code> para separar sem título</td></tr>
+    <tr><td><code>selected</code> · <code>disabled</code> · <code>tone="danger"</code></td><td>—</td><td>Marcado · indisponível (continua visível) · ação destrutiva</td></tr>
+  </tbody></table></div>
+  <h3>Teclado</h3>
+  <ul class="rules">
+    <li>No gatilho: <b>Enter</b>, <b>Espaço</b> ou <b>↓</b> abrem no primeiro item (ou no selecionado); <b>↑</b> abre no último.</li>
+    <li>Na lista: <b>↑ ↓</b> percorrem (dão a volta), <b>Home/End</b> vão ao primeiro e ao último, <b>letras</b> pulam para o item que começa com elas, <b>Enter/Espaço</b> escolhem, <b>Esc</b> fecha e devolve o foco ao gatilho, <b>Tab</b> fecha e segue.</li>
+    <li>O foco fica no painel e o item ativo é anunciado por <code>aria-activedescendant</code>; itens desabilitados são pulados.</li>
+  </ul>
+  <h3>Regras de UX</h3>
+  <ul class="rules">
+    <li><b>Quando usar:</b> menu para ações sobre algo (verbo: "Renomear"); single para escolher um valor entre 5 ou mais opções (com até 4, prefira radio); multi para filtros. Não use menu para navegação principal.</li>
+    <li><b>Rótulos curtos</b>, começando pelo verbo nas ações; ordene por frequência ou de forma lógica, nunca aleatória. Agrupe com <code>section</code> ou <code>&lt;hr&gt;</code> a partir de ~7 itens.</li>
+    <li><b>Ação destrutiva</b> fica por último, separada por <code>&lt;hr&gt;</code>, com <code>tone="danger"</code>, e deve pedir confirmação num <code>pw-dialog</code>.</li>
+    <li><b>Mostre indisponível em vez de esconder</b>: <code>disabled</code> com <code>description</code> explicando o motivo, para o jogador saber que a opção existe.</li>
+    <li>O painel tem no mínimo a largura do gatilho e rola a partir de ~8 itens; para listas longas com busca use <code>pw-search</code>.</li>
+    <li>Hover e teclado usam o mesmo destaque; atalhos e contadores ficam alinhados à direita; o check da seleção tem coluna própria para o texto não pular.</li>
+    <li>Fecha ao escolher (menu e single), ao clicar fora, com Esc ou Tab. Abrir não deve mover o resto da página.</li>
+  </ul>
+  <p class="cap" style="margin:0">Referências: <a href="https://www.w3.org/WAI/ARIA/apg/patterns/menu/" style="color:var(--sb-accent)">WAI-ARIA APG · Menu</a> · <a href="https://www.w3.org/WAI/ARIA/apg/patterns/listbox/" style="color:var(--sb-accent)">WAI-ARIA APG · Listbox</a> · <a href="https://www.radix-ui.com/primitives/docs/components/dropdown-menu" style="color:var(--sb-accent)">Radix · Dropdown Menu</a> · <a href="https://carbondesignsystem.com/components/menu/usage/" style="color:var(--sb-accent)">Carbon · Menu</a> · <a href="https://spectrum.adobe.com/page/menu/" style="color:var(--sb-accent)">Adobe Spectrum · Menu</a> · <a href="https://inclusive-components.design/menus-menu-buttons/" style="color:var(--sb-accent)">Inclusive Components · Menus</a></p>
+</section>
 
 <section class="story" id="navbar" data-c="navbar">
   <h2>Visão geral</h2>
@@ -3362,6 +3563,7 @@ PWDS.toast('Sem conexão', { tone: 'error', duration: 0 });   // 0 = fica até f
     overlay:['Overlays','Diálogo com painel pw-card secondary, drawer lateral, tooltip por atributo e toast.'],
     data:['Dados e listas','Tabela para ranking e membros, paginação, bloco recolhível, estado vazio, lista selecionável e moldura de avatar ou sprite.'],
     form:['Formulários','Campo de texto, textarea, checkbox e radio, no mesmo campo afundado do Input Number. Os inputs nativos ficam no HTML e funcionam em formulários.'],
+    cg:['Control Group','Lista suspensa para menus dropdown, menus de contexto, seletores e filtros. pw-control-group é o painel; pw-control-group-item é cada opção. Padrões Menu e Listbox do WAI-ARIA.'],
     search:['Search','Campo de busca com sugestões, destaque do texto buscado, buscas recentes, atalho de teclado e variantes compacta, ghost e expansível. Padrão combobox do WAI-ARIA.'],
     choice:['Checkbox e Radio','Seleção de opções com label e description. Checkbox para várias opções independentes, radio para uma só de um grupo. Inclui grupo com legenda, ajuda e erro, “selecionar todos” e opção em cartão.'],
     space:['Espaçamento','Escala de espaçamento em múltiplos de 4px, apelidos semânticos e raios.'],
@@ -4696,7 +4898,7 @@ class PWKbd extends HTMLElement{
   static get observedAttributes(){return ['keys']}
   connectedCallback(){if(!this._init){this._init=true;if(!this.hasAttribute('role'))this.setAttribute('role','img')}this.update()}
   attributeChangedCallback(){if(this._init)this.update()}
-  update(){var k=this.getAttribute('keys');if(k!==null){this.innerHTML=k.split('+').map((x,i,a)=>'<kbd>'+pwEsc(x)+'</kbd>'+(i<a.length-1?'<span class="plus">+</span>':'')).join('');this.setAttribute('data-multi','')}
+  update(){var k=this.getAttribute('keys');if(k!==null){var sz=this.getAttribute('size');this.innerHTML=k.split('+').map((x,i,a)=>'<pw-kbd'+(sz?' size="'+sz+'"':'')+(this.getAttribute('tone')?' tone="'+this.getAttribute('tone')+'"':'')+'>'+pwEsc(x)+'</pw-kbd>'+(i<a.length-1?'<span class="plus">+</span>':'')).join('');this.setAttribute('data-multi','')}
     this.setAttribute('aria-label','Tecla '+(k||this.textContent.trim()))}
   press(){this.removeAttribute('pressed');void this.offsetWidth;this.setAttribute('pressed','');clearTimeout(this._pt);this._pt=setTimeout(()=>this.removeAttribute('pressed'),260)}
 }
@@ -4715,6 +4917,105 @@ class PWParty extends HTMLElement{
 customElements.define('pw-party',PWParty);
 
 window.PWDS=Object.assign(window.PWDS||{},{navIcon:pwNavIcon,navIconNames:PW_NAV_NAMES,toast:pwToast,icons:PW_FILL,types:PW_TYPES,registerIcon:function(n,d,r){PW_FILL[n]=d;if(r)PW_FILL_RULE[n]=r}});
+/* ---------- pw-control-group + pw-control-group-item: lista suspensa (menu, dropdown, seleção única/múltipla) ---------- */
+/* padrão WAI-ARIA: type="menu" → role=menu/menuitem · "single" → listbox/option · "multi" → listbox multiselecionável. Foco fica no grupo (aria-activedescendant). */
+class PWControlGroupItem extends HTMLElement{
+  static get observedAttributes(){return ['label','icon','type','src','description','shortcut','meta','selected','disabled','tone']}
+  connectedCallback(){if(!this._init){this._init=true;if(!this.id)this.id='pwci'+(++uidN);var txt=this.getAttribute('label');if(txt===null)txt=this.textContent.trim();this._label=txt;
+      this.innerHTML='<span class="pwci-check" aria-hidden="true">'+pwIcon('check')+'</span><span class="pwci-lead" aria-hidden="true"></span><span class="pwci-txt"><span class="pwci-label"></span><span class="pwci-desc"></span></span><span class="pwci-end"></span>';
+      this.addEventListener('pointermove',()=>{var g=this._group();if(g&&!this.hasAttribute('disabled')&&!this.hasAttribute('data-active'))g._activate(this,false)});
+      this.addEventListener('click',e=>{var g=this._group();if(g){e.preventDefault();g._choose(this)}})}
+    this.update()}
+  attributeChangedCallback(n){if(!this._init)return;if(n==='label')this._label=this.getAttribute('label')||'';this.update()}
+  _group(){return this.closest('pw-control-group')}
+  get value(){return this.getAttribute('value')!==null?this.getAttribute('value'):this._label}
+  get label(){return this._label}
+  update(){var g=this._group(),t=g?g.kind:'menu',ic=this.getAttribute('icon'),ty=this.getAttribute('type'),src=this.getAttribute('src');
+    this.querySelector('.pwci-lead').innerHTML=src?'<img src="'+pwEsc(src)+'" alt="">':ty?'<pw-icon type="'+pwEsc(ty)+'"></pw-icon>':ic?pwIcon(ic):'';
+    this.querySelector('.pwci-label').textContent=this._label;this.querySelector('.pwci-desc').textContent=this.getAttribute('description')||'';
+    var sc=this.getAttribute('shortcut'),mt=this.getAttribute('meta');this.querySelector('.pwci-end').innerHTML=(mt?'<span>'+pwEsc(mt)+'</span>':'')+(sc?'<pw-kbd size="sm" keys="'+pwEsc(sc)+'"></pw-kbd>':'');
+    var sel=this.hasAttribute('selected');this.setAttribute('role',t==='menu'?'menuitem':'option');
+    if(t==='menu')this.removeAttribute('aria-selected');else this.setAttribute('aria-selected',sel?'true':'false');
+    this.setAttribute('aria-disabled',this.hasAttribute('disabled')?'true':'false');
+    var d=this.getAttribute('description');if(d)this.setAttribute('aria-description',d);if(sc)this.setAttribute('aria-keyshortcuts',sc)}
+}
+customElements.define('pw-control-group-item',PWControlGroupItem);
+
+class PWControlGroup extends HTMLElement{
+  static get observedAttributes(){return ['open','type','label','value']}
+  get kind(){var t=this.getAttribute('type');return t==='single'||t==='multi'?t:'menu'}
+  connectedCallback(){if(this._init)return;this._init=true;if(!this.id)this.id='pwcl'+(++uidN);
+    var list=document.createElement('div');list.className='pwcl-list';
+    /* título e seções: item com section="Nome" abre uma seção; <hr> separa grupos */
+    [].slice.call(this.childNodes).forEach(n=>{if(n.nodeType===1&&n.tagName==='PW-CONTROL-GROUP-ITEM'&&n.getAttribute('section')){var s=document.createElement('div');s.className='pwcl-section';s.setAttribute('role','presentation');s.textContent=n.getAttribute('section');list.appendChild(s)}
+      if(n.nodeType===1&&n.tagName==='HR')n.setAttribute('role','separator');list.appendChild(n)});
+    var tt=this.getAttribute('heading');if(tt){var h=document.createElement('div');h.className='pwcl-title';h.id=this.id+'t';h.textContent=tt;this.appendChild(h);this.setAttribute('aria-labelledby',h.id)}
+    this.appendChild(list);this._list=list;this.tabIndex=-1;this._sync();
+    if(this.getAttribute('value')!==null)this.value=this.getAttribute('value');
+    this.addEventListener('keydown',e=>this._key(e));
+    this.addEventListener('pointerleave',()=>{if(!this._kb)this._activate(null)});
+    this.addEventListener('focus',()=>{if(!this._act){var s=this.items().find(x=>x.hasAttribute('selected'))||this._nav()[0];if(s)this._activate(s,true)}});
+    this.items().forEach(i=>{if(i._init)i.update()});
+    if(this.getAttribute('for'))this.setAttribute('popover','manual');
+    var trig=this.trigger;if(trig)this._wire(trig);else if(this.getAttribute('for'))requestAnimationFrame(()=>{var t=this.trigger;if(t)this._wire(t)});
+    this._doc=e=>{if(!this.hasAttribute('open'))return;var t=this.trigger;if(this.contains(e.target)||(t&&t.contains(e.target)))return;this.hide(false)};
+    this._pos=()=>{if(this.hasAttribute('open'))this.place()};}
+  disconnectedCallback(){document.removeEventListener('pointerdown',this._doc,true);removeEventListener('resize',this._pos);removeEventListener('scroll',this._pos,true)}
+  attributeChangedCallback(n,o,v){if(!this._init)return;if(n==='type'){this._sync();this.items().forEach(i=>i.update())}if(n==='open'&&(o===null)!==(v===null))this._toggled(v!==null)}
+  get trigger(){var f=this.getAttribute('for');return f?document.getElementById(f):null}
+  items(){return [].slice.call(this.querySelectorAll('pw-control-group-item'))}
+  _nav(){return this.items().filter(i=>!i.hasAttribute('disabled')&&!i.hidden)}
+  _sync(){var k=this.kind;this.setAttribute('role',k==='menu'?'menu':'listbox');if(k==='multi')this.setAttribute('aria-multiselectable','true');else this.removeAttribute('aria-multiselectable');
+    var l=this.getAttribute('label');if(l)this.setAttribute('aria-label',l)}
+  /* valor: single → string · multi → array */
+  get value(){var s=this.items().filter(i=>i.hasAttribute('selected')).map(i=>i.value);return this.kind==='multi'?s:(s[0]||'')}
+  set value(v){var a=Array.isArray(v)?v.map(String):String(v).split(this.kind==='multi'?',':'\u0000');this.items().forEach(i=>i.toggleAttribute('selected',a.indexOf(i.value)>-1));this.items().forEach(i=>i.update());this._label()}
+  _label(){var t=this.trigger;if(!t||!t.hasAttribute('data-cg-label'))return;var s=this.items().filter(i=>i.hasAttribute('selected')),lab=this.kind==='multi'?(s.length?(s.length>2?s.length+' selecionados':s.map(i=>i.label).join(', ')):t.getAttribute('data-cg-label')):(s[0]?s[0].label:t.getAttribute('data-cg-label'));
+    var span=t.querySelector('.pwcl-value')||t.querySelector('.pwbt-label');if(span)span.textContent=lab}
+  _wire(t){t.setAttribute('aria-haspopup',this.kind==='menu'?'menu':'listbox');t.setAttribute('aria-expanded','false');t.setAttribute('aria-controls',this.id);
+    var b=t.querySelector('button')||t;b.setAttribute('aria-haspopup',this.kind==='menu'?'menu':'listbox');b.setAttribute('aria-expanded','false');b.setAttribute('aria-controls',this.id);
+    if(!this.getAttribute('label')&&!this.getAttribute('heading')){var l=(t.textContent||'').trim();if(l)this.setAttribute('aria-label',l)}
+    t.addEventListener('click',e=>{if(t.hasAttribute('disabled'))return;this.toggle()});
+    t.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();this.show(e.key==='ArrowUp'?'last':'first')}});
+    this._label()}
+  show(focus){if(this.hasAttribute('open'))return;this._want=focus||'first';this.setAttribute('open','')}
+  hide(ret){if(!this.hasAttribute('open'))return;this._ret=ret!==false;this.removeAttribute('open')}
+  toggle(){this.hasAttribute('open')?this.hide():this.show()}
+  _toggled(on){var t=this.trigger;[t,t&&t.querySelector('button')].forEach(x=>{if(x)x.setAttribute('aria-expanded',on?'true':'false')});
+    if(on){this._kb=false;try{if(this.showPopover&&!this.matches(':popover-open'))this.showPopover()}catch(x){}this.place();document.addEventListener('pointerdown',this._doc,true);addEventListener('resize',this._pos);addEventListener('scroll',this._pos,true);
+      document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}));/* fecha tooltips */
+      var n=this._nav(),s=this.items().find(i=>i.hasAttribute('selected')&&!i.hasAttribute('disabled'));this._activate(this._want==='last'?n[n.length-1]:(s||n[0]),true);this.focus({preventScroll:true});
+      this.dispatchEvent(new CustomEvent('open',{bubbles:true}))}
+    else{try{if(this.hidePopover&&this.matches(':popover-open'))this.hidePopover()}catch(x){}document.removeEventListener('pointerdown',this._doc,true);removeEventListener('resize',this._pos);removeEventListener('scroll',this._pos,true);this._activate(null);
+      if(this._ret!==false&&t){var b=t.querySelector('button')||t;b.focus({preventScroll:true})}this._ret=true;this.dispatchEvent(new CustomEvent('close',{bubbles:true}))}}
+  /* posiciona abaixo do gatilho; vira para cima se não couber; mantém dentro da tela */
+  place(){var t=this.trigger;if(!t)return;var r=t.getBoundingClientRect(),m=8,pl=this.getAttribute('placement')||'bottom-start';
+    this.style.minWidth=Math.max(r.width,0)+'px';this.style.left='0px';this.style.top='0px';var w=this.offsetWidth,h=this.offsetHeight,vw=innerWidth,vh=innerHeight;
+    var top=/^top/.test(pl),below=vh-r.bottom-m,above=r.top-m;if(!top&&h>below&&above>below)top=true;else if(top&&h>above&&below>above)top=false;
+    var y=top?r.top-h-4:r.bottom+4,x=/end$/.test(pl)?r.right-w:r.left;x=Math.max(m,Math.min(vw-w-m,x));y=Math.max(m,Math.min(vh-h-m,y));
+    this.style.left=x+'px';this.style.top=y+'px';this.setAttribute('data-side',top?'top':'bottom')}
+  _activate(it,scroll){if(this._act)this._act.removeAttribute('data-active');this._act=it;if(it){it.setAttribute('data-active','');this.setAttribute('aria-activedescendant',it.id);if(scroll)it.scrollIntoView({block:'nearest'})}else this.removeAttribute('aria-activedescendant')}
+  _choose(it){if(!it||it.hasAttribute('disabled'))return;var k=this.kind;
+    var ev=new CustomEvent('select',{bubbles:true,cancelable:true,detail:{item:it,value:it.value,label:it.label}});this.dispatchEvent(ev);if(ev.defaultPrevented)return;
+    if(k==='single'){this.items().forEach(i=>{i.toggleAttribute('selected',i===it);i.update()})}else if(k==='multi'){it.toggleAttribute('selected');it.update()}
+    if(k!=='menu'){this._label();this.dispatchEvent(new CustomEvent('change',{bubbles:true,detail:{value:this.value}}))}
+    this._activate(it,false);if(k!=='multi'&&this.getAttribute('for')&&this.getAttribute('close-on-select')!=='false')this.hide()}
+  _key(e){var n=this._nav();if(!n.length&&e.key!=='Escape')return;var i=n.indexOf(this._act),go=x=>{e.preventDefault();this._kb=true;this._activate(x,true)};
+    switch(e.key){
+      case 'ArrowDown':return go(n[(i+1)%n.length]);
+      case 'ArrowUp':return go(n[(i-1+n.length)%n.length]);
+      case 'Home':case 'PageUp':return go(n[0]);
+      case 'End':case 'PageDown':return go(n[n.length-1]);
+      case 'Enter':case ' ':e.preventDefault();if(this._act)this._choose(this._act);return;
+      case 'Escape':if(this.getAttribute('for')){e.preventDefault();e.stopPropagation();this.hide()}return;
+      case 'Tab':if(this.getAttribute('for'))this.hide(false);return}
+    /* digitar pula para o item que começa com as letras (typeahead) */
+    if(e.key.length===1&&!e.ctrlKey&&!e.metaKey&&!e.altKey){clearTimeout(this._tt);this._tq=(this._tq||'')+e.key.toLowerCase();this._tt=setTimeout(()=>this._tq='',600);
+      var q=this._tq,nm=x=>x.label.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase(),start=q.length===1?i+1:i,ord=n.slice(Math.max(0,start)).concat(n.slice(0,Math.max(0,start)));
+      var f=ord.find(x=>nm(x).indexOf(q)===0);if(f)go(f)}}
+}
+customElements.define('pw-control-group',PWControlGroup);
+
 /* @pwds-js-end */
 (function(){
   var g=document.getElementById('scrollThemes'),T=[['','Poke World'],['mewtwo','Mewtwo']].concat(Object.keys(PW_TYPE_LABEL).map(k=>[k,PW_TYPE_LABEL[k]]));
@@ -5110,3 +5411,5 @@ pg();
 
 <script>(function(){var L=document.getElementById('navbarIconLib');if(!L)return;PWDS.navIconNames.forEach(function(n){var d=document.createElement('div');d.style.cssText='display:grid;gap:8px;justify-items:center;padding:12px 8px;border:1px solid var(--pw-border-subtle);border-radius:var(--pw-radius-md);background:var(--pw-bg-edge)';
 d.innerHTML='<div style="display:flex;align-items:flex-end;gap:8px;height:40px">'+[16,24,32,0].map(function(s){return '<img src="'+PWDS.navIcon(n,s)+'" width="'+(s||40)+'" height="'+(s||40)+'" alt="" title="'+(s||40)+'px">'}).join('')+'</div><code style="font-size:11px;color:var(--pw-text-secondary)">'+n+'</code>';L.appendChild(d)})})();</script>
+
+<script>(function(){var l=document.getElementById('cgLog');document.querySelectorAll('pw-control-group').forEach(g=>{g.addEventListener('select',e=>{if(l)l.textContent='select → '+e.detail.label});g.addEventListener('change',e=>{if(l)l.textContent='change → '+JSON.stringify(e.detail.value)})})})();</script>

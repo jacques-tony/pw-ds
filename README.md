@@ -17,6 +17,8 @@ Componentes de interface do OTServ **Poke World Universe**, feitos como Web Comp
 | Diálogo · drawer · toast · tooltip | `<pw-dialog>` · `<pw-drawer>` · `<pw-toast>` / `PWDS.toast()` · `data-tip` |
 | Tabela · paginação · recolhível · vazio · lista · avatar | `.pw-table` · `<pw-pagination>` · `details.fold` · `<pw-empty>` · `<pw-list>`/`<pw-list-item>` · `<pw-avatar>` |
 | Busca com sugestões | `<pw-search>` |
+| Lista suspensa (menu, dropdown, seleção) | `<pw-control-group>` `<pw-control-group-item>` |
+| Tecla do teclado | `<pw-kbd>` |
 | HUD inferior e equipe lateral | `<pw-hud>` + `<pw-party>` |
 | Barra de navegação do HUD | `<pw-navbar>` + `<pw-nav-item>` + `<pw-nav-sep>` |
 | Campo de texto · textarea · checkbox · radio | `<pw-input>` · `<pw-textarea>` · `<pw-checkbox>` · `<pw-radio>` |
