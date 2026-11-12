@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.61.3
+- `pw-widget-minimap`: corrige o mapa que não aparecia em alguns navegadores (bordas esmaecidas agora por degradê sobreposto em vez de `mask`, sem `will-change` na camada; tamanho da imagem definido ao carregar).
+
 ## 0.61.2
 - `pw-widget-minimap`: você fica no centro da área visível do mapa (entre a faixa de coordenadas e as ações); botões menores (24px) com mais respiro da borda; redimensionar no mesmo padrão da mochila: alça embaixo (altura) e alça na lateral direita (largura), com dica e teclado.
 
