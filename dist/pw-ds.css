@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.53.6 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.53.7 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1565,7 +1565,8 @@ pw-widget-bag .pwbg-body{flex:1;min-height:0;display:flex;flex-direction:column}
 pw-widget-bag[collapsed] .pwbg-body{display:none}
 /* folga para o hover (sobe 2px + brilho) não ser cortado; a margem negativa mantém o mesmo espaçamento visual */
 pw-widget-bag pw-scroll.pwbg-scroll{flex:1;min-height:0;padding:var(--pw-space-2) var(--pw-space-3) calc(var(--pw-space-6) - var(--pw-space-1)) var(--pw-space-1);margin:calc(var(--pw-space-2) * -1) 0 0 calc(var(--pw-space-1) * -1)}
-/* a rolagem vai até a borda (o overlay cobre o corte ali), mas a barra para na altura dos slots */
+/* a rolagem vai até a borda (o overlay cobre o corte ali), mas a barra para na altura dos slots; cantos de baixo chanfrados como a moldura */
+pw-widget-bag pw-scroll.pwbg-scroll{clip-path:polygon(0 0,100% 0,100% calc(100% - var(--pw-space-5)),calc(100% - var(--pw-space-5)) 100%,var(--pw-space-5) 100%,0 calc(100% - var(--pw-space-5)))}
 pw-widget-bag pw-scroll.pwbg-scroll::-webkit-scrollbar-track{margin-block:var(--pw-space-2) calc(var(--pw-space-6) - var(--pw-space-1))}
 pw-widget-bag .pwbg-grid{display:grid;grid-template-columns:repeat(var(--wb-cols),var(--wb-slot));grid-auto-rows:var(--wb-slot);gap:var(--wb-gap);padding:0 var(--pw-space-0-5)}
 pw-widget-bag pw-card.pwbg-slot{position:relative;width:var(--wb-slot);height:var(--wb-slot);border-radius:var(--pw-radius-sm);cursor:pointer}
@@ -1589,7 +1590,7 @@ pw-widget-bag .pwbg-body::after{content:"";position:absolute;z-index:5;left:calc
   background:linear-gradient(transparent,var(--wb-ov));
   clip-path:polygon(0 0,100% 0,100% calc(100% - var(--pw-space-5)),calc(100% - var(--pw-space-5)) 100%,var(--pw-space-5) 100%,0 calc(100% - var(--pw-space-5)))}
 pw-widget-bag .pwbg-body[data-more]::after{opacity:1}
-pw-widget-bag .pwbg-body::before{content:"";position:absolute;z-index:5;left:calc(var(--wb-pad) * -1 + var(--pw-space-1));right:calc(var(--wb-pad) * -1 + var(--pw-space-1));top:0;height:var(--pw-space-8);pointer-events:none;opacity:0;transition:opacity .25s;
+pw-widget-bag .pwbg-body::before{content:"";position:absolute;z-index:5;left:calc(var(--wb-pad) * -1 + var(--pw-space-1));right:calc(var(--wb-pad) * -1 + var(--pw-space-1));top:calc(var(--pw-space-2) * -1);height:var(--pw-space-6);pointer-events:none;opacity:0;transition:opacity .25s;
   background:linear-gradient(var(--wb-ov),transparent)}
 pw-widget-bag .pwbg-body[data-less]::before{opacity:1}
 /* alça de redimensionar (borda de baixo) */

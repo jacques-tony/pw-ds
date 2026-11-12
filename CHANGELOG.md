@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.53.7
+- `pw-widget-bag`: overlay de cima começa no limite da área dos slots (não fica no meio deles); área dos slots com os cantos de baixo chanfrados como a moldura, sem pontas aparecendo fora do overlay.
+
 ## 0.53.6
 - `pw-widget-bag`: a área dos slots vai até a borda dourada e o overlay de baixo começa nela, então ao redimensionar os slots somem suavemente na borda em vez de serem cortados antes dela; a barra de rolagem continua limitada à altura dos slots.
 
