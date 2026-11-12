@@ -1701,7 +1701,7 @@ pw-widget-bag[collapsed] .pwbg-resize,pw-widget-bag[locked] .pwbg-resize{display
 pw-widget-bag.dragging,pw-widget-bag.resizing{user-select:none}
 pw-widget-bag.dragging>pw-card{filter:drop-shadow(0 12px 24px var(--pw-black-a45))}
 /* magnetismo: brilho nas mochilas que vão grudar */
-pw-widget-bag.magnet>pw-card{filter:drop-shadow(0 0 10px var(--pw-glow)) drop-shadow(0 0 2px var(--pw-filament))}
+pw-widget-bag.magnet>pw-card{filter:drop-shadow(0 0 3px color-mix(in srgb,var(--pw-glow) 45%,transparent))}
 @media (prefers-reduced-motion:reduce){pw-widget-bag *{transition:none!important}}
 /* @pwds-css-end */
 /* demo content inside cards */
@@ -1948,7 +1948,7 @@ pw-widget-bag.magnet>pw-card{filter:drop-shadow(0 0 10px var(--pw-glow)) drop-sh
     <li>Arrastar pelo cabeçalho; os botões do cabeçalho não iniciam o arraste. A posição fica sempre dentro da área do pai.</li>
     <li>Redimensionar pela borda de baixo (aparece um traço ao passar o mouse); ao soltar, a altura encaixa em linhas inteiras de slots, entre 1 linha e todas. Pelo teclado: foque a borda e use ↑ ↓, Home e End.</li>
     <li>Bloqueado esconde a borda de redimensionar e desliga o arraste, mas recolher e fechar continuam funcionando.</li>
-    <li><b>Magnetismo:</b> ao arrastar uma mochila perto de outra (até 14px), ela gruda na borda e alinha com ela; as duas brilham enquanto vão grudar. Mochilas que se encostam viram um <b>conjunto</b>: arrastar qualquer uma move todas. Segure <b>Alt</b> ao arrastar para soltar uma mochila do conjunto. Mochilas bloqueadas não são levadas junto.</li>
+    <li><b>Magnetismo:</b> ao arrastar uma mochila perto de outra (até 14px), ela gruda na borda e alinha com ela, e as molduras se sobrepõem para formar uma linha só na divisão. Mochilas que se encostam viram um <b>conjunto</b>: arrastar qualquer uma move todas. Segure <b>Alt</b> ao arrastar para soltar uma mochila do conjunto. Mochilas bloqueadas não são levadas junto.</li>
     <li>Num conjunto empilhado, quando uma mochila abre, recolhe ou é redimensionada, as que estão grudadas embaixo acompanham a mudança de altura. Evento <code>groupchange</code> ao formar um conjunto; <code>bag.group()</code> devolve as mochilas do conjunto.</li>
   </ul>
 </section>
@@ -5228,8 +5228,10 @@ class PWWidgetBag extends HTMLElement{
   /* arrastar pelo cabeçalho, dentro do elemento pai */
   /* ---------- magnetismo: mochilas que encostam viram um conjunto ---------- */
   static _box(b){return {b:b,x:b.offsetLeft,y:b.offsetTop,w:b.offsetWidth,h:b.offsetHeight}}
-  static _touch(a,b){var t=1.5,vo=Math.min(a.y+a.h,b.y+b.h)-Math.max(a.y,b.y),ho=Math.min(a.x+a.w,b.x+b.w)-Math.max(a.x,b.x);
-    return ((Math.abs(a.x+a.w-b.x)<=t||Math.abs(b.x+b.w-a.x)<=t)&&vo>0)||((Math.abs(a.y+a.h-b.y)<=t||Math.abs(b.y+b.h-a.y)<=t)&&ho>0)}
+  /* encostadas = bordas sobrepostas em PWWidgetBag.O px (as molduras viram uma linha só) */
+  static _near(e1,e2){var d=e1-e2;return d>=-1.5&&d<=PWWidgetBag.O+1.5}
+  static _touch(a,b){var N=PWWidgetBag._near,vo=Math.min(a.y+a.h,b.y+b.h)-Math.max(a.y,b.y),ho=Math.min(a.x+a.w,b.x+b.w)-Math.max(a.x,b.x);
+    return ((N(a.x+a.w,b.x)||N(b.x+b.w,a.x))&&vo>PWWidgetBag.O)||((N(a.y+a.h,b.y)||N(b.y+b.h,a.y))&&ho>PWWidgetBag.O)}
   _peers(){var p=this.parentNode;return p?[].slice.call(p.children).filter(x=>x.tagName==='PW-WIDGET-BAG'&&!x.hidden&&x.offsetParent===this.offsetParent):[]}
   /* conjunto = mochilas ligadas por encostar (direta ou indiretamente) */
   group(){var all=this._peers().map(PWWidgetBag._box),seen=[this],q=[this];
@@ -5250,8 +5252,8 @@ class PWWidgetBag extends HTMLElement{
           /* lado a lado (precisa sobrepor na vertical) · empilhado (precisa sobrepor na horizontal) · alinhamento das bordas quando já estão encostando */
           var vo=Math.min(B,o.y+o.h)-Math.max(Tp,o.y)>0,ho=Math.min(R,o.x+o.w)-Math.max(L,o.x)>0,
               stack=Math.abs(B-o.y)<=T||Math.abs(Tp-o.y-o.h)<=T,side=Math.abs(R-o.x)<=T||Math.abs(L-o.x-o.w)<=T;
-          var cx=[];if(vo)cx.push(o.x+o.w-L,o.x-R);if(stack&&ho)cx.push(o.x-L,o.x+o.w-R);
-          var cy=[];if(ho)cy.push(o.y+o.h-Tp,o.y-B);if(side&&vo)cy.push(o.y-Tp,o.y+o.h-B);
+          var O=PWWidgetBag.O,cx=[];if(vo)cx.push(o.x+o.w-O-L,o.x+O-R);if(stack&&ho)cx.push(o.x-L,o.x+o.w-R);
+          var cy=[];if(ho)cy.push(o.y+o.h-O-Tp,o.y+O-B);if(side&&vo)cy.push(o.y-Tp,o.y+o.h-B);
           cx.forEach(d=>{if(Math.abs(d)<Math.abs(bdx)){bdx=d;bx=o}});cy.forEach(d=>{if(Math.abs(d)<Math.abs(bdy)){bdy=d;by=o}})})});
         if(Math.abs(bdx)<=T)x+=bdx;if(Math.abs(bdy)<=T)y+=bdy;
         x=Math.max(-minX,Math.min(PW-maxX,x));y=Math.max(-minY,Math.min(PH-maxY,y));
@@ -5261,14 +5263,14 @@ class PWWidgetBag extends HTMLElement{
         hits.forEach(b=>{if(now.indexOf(b)<0)b.classList.remove('magnet')});now.forEach(b=>b.classList.add('magnet'));hits=now;G.forEach(b=>b.classList.toggle('magnet',now.length>0))};
       var up=()=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);G.concat(hits).forEach(b=>b.classList.remove('dragging','magnet'));
         this._mark();var grp=this.group();
-        if(hits.length&&!matchMedia('(prefers-reduced-motion: reduce)').matches)grp.forEach(b=>b.querySelector('.pwbg-card').animate([{filter:'drop-shadow(0 0 0 transparent)'},{filter:'drop-shadow(0 0 14px var(--pw-glow))'},{filter:'drop-shadow(0 0 0 transparent)'}],{duration:500}));
+        if(hits.length&&!matchMedia('(prefers-reduced-motion: reduce)').matches)grp.forEach(b=>b.querySelector('.pwbg-card').animate([{filter:'brightness(1)'},{filter:'brightness(1.08)'},{filter:'brightness(1)'}],{duration:260,easing:'ease-out'}));
         this.dispatchEvent(new CustomEvent('move',{bubbles:true,detail:{left:this.offsetLeft,top:this.offsetTop,group:grp}}));
         if(hits.length)this.dispatchEvent(new CustomEvent('groupchange',{bubbles:true,detail:{group:grp}}))};
       document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)});
     /* quando a mochila muda de altura (abrir, recolher, redimensionar), as que estão grudadas embaixo acompanham */
     this._lh=0;new ResizeObserver(()=>{var h=this.offsetHeight;if(!this._lh){this._lh=h;return}var d=h-this._lh,oldB=this.offsetTop+this._lh;this._lh=h;if(!d)return;
       var me={x:this.offsetLeft,w:this.offsetWidth},moved=[this],chain=b=>{this._peers().forEach(o=>{if(moved.indexOf(o)>-1)return;var ob=PWWidgetBag._box(o);
-        if(Math.abs(ob.y-b.bottom)<=1.5&&Math.min(b.x+b.w,ob.x+ob.w)-Math.max(b.x,ob.x)>0){moved.push(o);var nb={x:ob.x,w:ob.w,bottom:ob.y+ob.h};o.style.top=(ob.y+d)+'px';o.style.bottom='auto';chain(nb)}})};
+        if(PWWidgetBag._near(b.bottom,ob.y)&&Math.min(b.x+b.w,ob.x+ob.w)-Math.max(b.x,ob.x)>0){moved.push(o);var nb={x:ob.x,w:ob.w,bottom:ob.y+ob.h};o.style.top=(ob.y+d)+'px';o.style.bottom='auto';chain(nb)}})};
       chain({x:me.x,w:me.w,bottom:oldB})}).observe(this)}
   /* redimensionar pela borda de baixo; encaixa em linhas inteiras de slots */
   _row(){var cs=getComputedStyle(this);return (this.querySelector('.pwbg-slot')||{offsetHeight:32}).offsetHeight+(parseFloat(getComputedStyle(this.querySelector('.pwbg-grid')).rowGap)||8)}
@@ -5283,6 +5285,7 @@ class PWWidgetBag extends HTMLElement{
       document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)});
     g.addEventListener('keydown',e=>{var L=this._limits(),d={ArrowUp:-L.row,ArrowDown:L.row,Home:-1e4,End:1e4}[e.key];if(d===undefined)return;e.preventDefault();var h=this._setH(this.offsetHeight+d,true);this.dispatchEvent(new CustomEvent('resize',{bubbles:true,detail:{height:h}}))})}
 }
+PWWidgetBag.O=3;
 customElements.define('pw-widget-bag',PWWidgetBag);
 
 /* @pwds-js-end */

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.55.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.55.1 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1615,5 +1615,5 @@ pw-widget-bag[collapsed] .pwbg-resize,pw-widget-bag[locked] .pwbg-resize{display
 pw-widget-bag.dragging,pw-widget-bag.resizing{user-select:none}
 pw-widget-bag.dragging>pw-card{filter:drop-shadow(0 12px 24px var(--pw-black-a45))}
 /* magnetismo: brilho nas mochilas que vão grudar */
-pw-widget-bag.magnet>pw-card{filter:drop-shadow(0 0 10px var(--pw-glow)) drop-shadow(0 0 2px var(--pw-filament))}
+pw-widget-bag.magnet>pw-card{filter:drop-shadow(0 0 3px color-mix(in srgb,var(--pw-glow) 45%,transparent))}
 @media (prefers-reduced-motion:reduce){pw-widget-bag *{transition:none!important}}

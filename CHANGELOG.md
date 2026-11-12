@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.55.1
+- `pw-widget-bag`: efeito de conexão bem mais sutil; mochilas conectadas sobrepõem as molduras em 3px (`PWWidgetBag.O`) para a divisão virar uma linha só.
+
 ## 0.55.0
 - `pw-widget-bag`: magnetismo e conjuntos.
   - Ao arrastar perto de outra mochila (até 14px), gruda na borda (lado a lado ou empilhada) e alinha as bordas; as mochilas brilham enquanto vão grudar.
