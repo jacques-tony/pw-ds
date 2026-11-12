@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.56.2
+- Ícones `fullscreen` e `fullscreen-exit`.
+- Storybook: botão Tela cheia na simulação do jogo (ocupa a tela toda mantendo 16:9; Esc ou o botão saem).
+
 ## 0.56.1
 - `pw-widget-bag`: encaixe diagonal (canto com canto): os chanfros encostam numa linha só, sem espaço entre as mochilas, e contam como conjunto; animação de conexão mais curta (~0,5s).
 
