@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.64.1
+- `pw-widget-battle`: layout de Ordenar/Prioridade volta ao original (lado a lado, sem card envolvendo); `pw-card` quaternary aplicado só nos 5 slots de filtro.
+- Overlay de rolagem em cima e embaixo da lista, igual à Mochila.
+- Espaço interno na lista para o hover do primeiro alvo não cortar a borda.
+- Estado atacando agora fica cinza de verdade (moldura em escala de cinza), sem escurecer o card.
+
 ## 0.64.0
 - `pw-widget-battle`: filtros e selects agrupados num `pw-card` quaternary; Ordenar/Prioridade em largura total (sem truncar).
 - Redimensionamento vertical pela borda de baixo (padrão da Mochila), com mínimo de 1 alvo visível; lista rola dentro de `pw-scroll`.
