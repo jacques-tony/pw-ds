@@ -27,6 +27,13 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.56.0
+- `pw-card`: novo atributo `chamfer="tl tr br bl"` que escala o chanfro de cada canto da moldura primary/secondary (ex.: `1 1 .5 .5`).
+- `pw-widget-bag`:
+  - Mochilas empilhadas (em cima/embaixo) ficam com metade do chanfro nos cantos da junção.
+  - Lado a lado mantêm o chanfro e só encostam as bordas.
+  - Ao conectar, um filete de luz percorre a junção e as mochilas pulsam.
+
 ## 0.55.1
 - `pw-widget-bag`: efeito de conexão bem mais sutil; mochilas conectadas sobrepõem as molduras em 3px (`PWWidgetBag.O`) para a divisão virar uma linha só.
 
