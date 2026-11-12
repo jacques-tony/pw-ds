@@ -27,6 +27,13 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.55.0
+- `pw-widget-bag`: magnetismo e conjuntos.
+  - Ao arrastar perto de outra mochila (até 14px), gruda na borda (lado a lado ou empilhada) e alinha as bordas; as mochilas brilham enquanto vão grudar.
+  - Mochilas que se encostam formam um conjunto (atributo `grouped`): arrastar qualquer uma move todas. Alt ao arrastar solta do conjunto; mochilas bloqueadas não são levadas.
+  - Num conjunto empilhado, abrir, recolher ou redimensionar uma mochila empurra as de baixo junto.
+  - `bag.group()`, evento `groupchange`; `move` traz `detail.group`.
+
 ## 0.54.2
 - `pw-widget-bag`: "‹ Voltar" fica abaixo do título sem mudar a posição do título nem o espaçamento do cabeçalho.
 

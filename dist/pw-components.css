@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.54.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.55.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1434,4 +1434,6 @@ pw-widget-bag .pwbg-resize:focus-visible{box-shadow:0 0 0 2px var(--pw-focus-rin
 pw-widget-bag[collapsed] .pwbg-resize,pw-widget-bag[locked] .pwbg-resize{display:none}
 pw-widget-bag.dragging,pw-widget-bag.resizing{user-select:none}
 pw-widget-bag.dragging>pw-card{filter:drop-shadow(0 12px 24px var(--pw-black-a45))}
+/* magnetismo: brilho nas mochilas que vão grudar */
+pw-widget-bag.magnet>pw-card{filter:drop-shadow(0 0 10px var(--pw-glow)) drop-shadow(0 0 2px var(--pw-filament))}
 @media (prefers-reduced-motion:reduce){pw-widget-bag *{transition:none!important}}
