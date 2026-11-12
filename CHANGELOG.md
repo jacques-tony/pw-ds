@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.53.5
+- `pw-widget-bag`: hover dos slots da primeira linha e da primeira coluna não é mais cortado (folga na área de rolagem, sem mudar o espaçamento).
+
 ## 0.53.4
 - `pw-widget-bag`: cabeçalho de 64px com o conteúdo centralizado (20px em cima e embaixo dos botões) igual aberto e fechado, sem salto ao abrir.
 
