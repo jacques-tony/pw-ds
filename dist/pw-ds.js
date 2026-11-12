@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.51.4 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.52.0 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1216,8 +1216,8 @@ class PWHud extends HTMLElement{
     if(title){if(!t){t=document.createElement('div');t.className='pwcl-title';t.id=m.id+'t';m.insertBefore(t,list)}t.textContent=title;m.setAttribute('aria-labelledby',t.id)}else if(t){t.remove();m.removeAttribute('aria-labelledby')}
     list.innerHTML=opts.map(o=>o==='-'?'<hr role="separator">':'<pw-control-group-item value="'+E(o.value||o.label)+'"'+(o.icon?' icon="'+E(o.icon)+'"':'')+(o.tone?' tone="'+o.tone+'"':'')+(o.shortcut?' shortcut="'+E(o.shortcut)+'"':'')+(o.meta?' meta="'+E(o.meta)+'"':'')+(o.disabled?' disabled':'')+'>'+E(o.label)+'</pw-control-group-item>').join('');
     m._act=null}
-  _showMenu(el,beside){var m=this._menu;m.hidden=false;var r=this.getBoundingClientRect(),b=el.getBoundingClientRect();
-    var x=beside?b.right-r.left+6:Math.max(4,Math.min(r.width-m.offsetWidth-4,b.left-r.left)),y=beside?b.top-r.top:b.top-r.top-m.offsetHeight-6;m.style.left=x+'px';m.style.top=y+'px';
+  _showMenu(el,beside){var m=this._menu;m.hidden=false;var r=this.getBoundingClientRect(),b=el.getBoundingClientRect(),S=(r.width/this.offsetWidth)||1;
+    var x=beside?(b.right-r.left)/S+6:Math.max(4,Math.min(this.offsetWidth-m.offsetWidth-4,(b.left-r.left)/S)),y=beside?(b.top-r.top)/S:(b.top-r.top)/S-m.offsetHeight-6;m.style.left=x+'px';m.style.top=y+'px';
     el._tip=el.getAttribute('data-tip');el._tipT=el.getAttribute('data-tip-title');el.removeAttribute('data-tip');el.removeAttribute('data-tip-title');document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}));document.querySelectorAll('.pw-tip,[class*="tooltip"]').forEach(x=>{if(x.matches('[role=tooltip]'))x.hidden=true});m.focus({preventScroll:true});var f=m._nav&&m._nav()[0];if(f)m._activate(f,true)}
   _teamMenu(i,el){this._closeMenu();var t=(this._data.team||[]).slice(0,6),n=t.length;while(n>0&&!(t[n-1]&&t[n-1].name))n--;
     
@@ -1239,11 +1239,11 @@ class PWHud extends HTMLElement{
     this._eOut=e=>{if(!e.target.closest('.pwhd-card,.pwpt,.pwhd-done'))hud.doneOrder()};setTimeout(()=>document.addEventListener('pointerdown',this._eOut),0);
     this._eDown=e=>{var el=e.target.closest(sel);if(!el||e.button!==0)return;e.preventDefault();var r0=el.getBoundingClientRect(),off=axis==='x'?e.clientX-r0.left:e.clientY-r0.top,tr=0;
       el.classList.add('dragging');
-      var mv=ev=>{var r=el.getBoundingClientRect(),lay=(axis==='x'?r.left:r.top)-tr,pos=(axis==='x'?ev.clientX:ev.clientY)-off;tr=pos-lay;el.style.transform=(axis==='x'?'translateX(':'translateY(')+tr+'px) scale(1.06)';
+      var S=(box.getBoundingClientRect().width/box.offsetWidth)||1;var mv=ev=>{var r=el.getBoundingClientRect(),lay=(axis==='x'?r.left:r.top)-tr,pos=(axis==='x'?ev.clientX:ev.clientY)-off;tr=pos-lay;el.style.transform=(axis==='x'?'translateX(':'translateY(')+(tr/S)+'px) scale(1.06)';
         var c=axis==='x'?ev.clientX:ev.clientY,tg=items().find(x=>{if(x===el||x.classList.contains('swapping'))return false;var q=x.getBoundingClientRect(),a=axis==='x'?q.left:q.top,b=axis==='x'?q.right:q.bottom;return c>a+(b-a)*.25&&c<b-(b-a)*.25});
         if(tg){var before=tg.getBoundingClientRect(),lb=el.getBoundingClientRect();var t=document.createComment('');el.replaceWith(t);tg.replaceWith(el);t.replaceWith(tg);
           var after=tg.getBoundingClientRect(),d=axis==='x'?before.left-after.left:before.top-after.top;
-          var la=el.getBoundingClientRect();tr-=(axis==='x'?la.left-lb.left:la.top-lb.top);el.style.transform=(axis==='x'?'translateX(':'translateY(')+tr+'px) scale(1.06)';
+          var la=el.getBoundingClientRect();tr-=(axis==='x'?la.left-lb.left:la.top-lb.top);el.style.transform=(axis==='x'?'translateX(':'translateY(')+(tr/S)+'px) scale(1.06)';
           if(!red){tg.classList.add('swapping');tg.animate([{transform:(axis==='x'?'translateX(':'translateY(')+d+'px) scale(.94)'},{transform:'none'}],{duration:260,easing:'cubic-bezier(.2,.8,.2,1)'}).finished.then(()=>tg.classList.remove('swapping'),()=>tg.classList.remove('swapping'))}}};
       var up=()=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);el.classList.remove('dragging');
         var from=el.style.transform;el.style.transform='';if(!red&&tr)el.animate([{transform:from},{transform:'none'}],{duration:220,easing:'cubic-bezier(.2,.8,.2,1)'});
@@ -1479,7 +1479,7 @@ class PWWidgetBag extends HTMLElement{
   /* arrastar pelo cabeçalho, dentro do elemento pai */
   _dragInit(){var hd=this.querySelector('.pwbg-head');hd.addEventListener('pointerdown',e=>{if(e.button!==0||this.hasAttribute('locked')||this.hasAttribute('static')||e.target.closest('pw-button'))return;
       e.preventDefault();var p=this.offsetParent||document.body,pr=p.getBoundingClientRect(),r=this.getBoundingClientRect(),dx=e.clientX-r.left,dy=e.clientY-r.top;this.classList.add('dragging');
-      var mv=ev=>{var x=Math.max(0,Math.min(pr.width-r.width,ev.clientX-pr.left-dx)),y=Math.max(0,Math.min(pr.height-this.offsetHeight,ev.clientY-pr.top-dy));this.style.left=x+'px';this.style.top=y+'px';this.style.right='auto';this.style.bottom='auto'};
+      var S=(pr.width/(p.offsetWidth||pr.width))||1;var mv=ev=>{var x=Math.max(0,Math.min((pr.width-r.width)/S,(ev.clientX-pr.left-dx)/S)),y=Math.max(0,Math.min((pr.height-r.height)/S,(ev.clientY-pr.top-dy)/S));this.style.left=x+'px';this.style.top=y+'px';this.style.right='auto';this.style.bottom='auto'};
       var up=()=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);this.classList.remove('dragging');
         this.dispatchEvent(new CustomEvent('move',{bubbles:true,detail:{left:this.offsetLeft,top:this.offsetTop}}))};
       document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)})}
@@ -1490,12 +1490,12 @@ class PWWidgetBag extends HTMLElement{
   _setH(h,snap){var L=this._limits();if(snap)h=L.base+Math.round((h-L.base)/L.row)*L.row;h=Math.max(L.min,Math.min(L.max,h));this.style.height=h+'px';var g=this.querySelector('.pwbg-resize');g.setAttribute('aria-valuenow',Math.round((h-L.base)/L.row));g.setAttribute('aria-valuemin',1);g.setAttribute('aria-valuemax',Math.round((L.max-L.base)/L.row));return h}
   _resizeInit(){var g=this.querySelector('.pwbg-resize');
     g.addEventListener('pointerdown',e=>{if(e.button!==0||this.hasAttribute('locked'))return;e.preventDefault();var y0=e.clientY,h0=this.offsetHeight;this.classList.add('resizing');document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}));
-      var mv=ev=>this._setH(h0+ev.clientY-y0,false);
+      var S=(this.getBoundingClientRect().height/this.offsetHeight)||1;var mv=ev=>this._setH(h0+(ev.clientY-y0)/S,false);
       var up=()=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);this.classList.remove('resizing');var h=this._setH(this.offsetHeight,true);
         this.dispatchEvent(new CustomEvent('resize',{bubbles:true,detail:{height:h}}))};
       document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)});
     g.addEventListener('keydown',e=>{var L=this._limits(),d={ArrowUp:-L.row,ArrowDown:L.row,Home:-1e4,End:1e4}[e.key];if(d===undefined)return;e.preventDefault();var h=this._setH(this.offsetHeight+d,true);this.dispatchEvent(new CustomEvent('resize',{bubbles:true,detail:{height:h}}))})}
 }
 customElements.define('pw-widget-bag',PWWidgetBag);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.51.4"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.52.0"});
 })();

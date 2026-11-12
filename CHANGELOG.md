@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.52.0
+- Storybook: nova página inicial **Global Navigation** (abre primeiro), com a simulação da tela do jogo em 1920×1080 no topo e as seções Barra superior (antiga Navigation Bar), HUD inferior e Widget Mochila na mesma página.
+- `pw-hud` e `pw-widget-bag`: menus, editar ordem, arrastar e redimensionar funcionam também dentro de um container escalado (`transform: scale`).
+
 ## 0.51.4
 - `pw-widget-bag`: cabeçalho com 12px embaixo (fechada = 64px); barra de rolagem limitada à área dos slots, sem entrar na borda; overlay também em cima quando há slots acima.
 
