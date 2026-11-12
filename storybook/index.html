@@ -1663,7 +1663,15 @@ pw-widget-bag .pwbg-slot .pwc-content>img{width:calc(100% - var(--pw-space-1));h
 pw-widget-bag .pwbg-slot .pwc-content>svg{width:62%;height:62%;color:var(--pw-text-accent)}
 pw-widget-bag .pwbg-slot.empty{cursor:default}
 pw-widget-bag .pwbg-slot.is-bag{cursor:context-menu}
-pw-widget-bag .pwbg-acts pw-button[data-a="back"],pw-widget-bag .pwbg-head>pw-button[data-a="back"]{margin-left:calc(var(--pw-space-2) * -1)}
+pw-widget-bag .pwbg-tt{flex:1;min-width:0;display:grid;gap:1px}
+pw-widget-bag .pwbg-tt .pwbg-title{flex:none}
+pw-widget-bag .pwbg-back{all:unset;justify-self:start;cursor:pointer;font:var(--pw-font-weight-medium) var(--pw-font-size-3xs)/1 var(--pw-font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--pw-text-accent-soft);transition:color var(--card-dur)}
+pw-widget-bag .pwbg-back::before{content:"‹ "}
+pw-widget-bag .pwbg-back:hover{color:var(--pw-text-title);text-decoration:underline}
+pw-widget-bag .pwbg-back:focus-visible{outline:2px solid var(--pw-focus-ring);outline-offset:2px;border-radius:2px}
+pw-widget-bag .pwbg-back[hidden]{display:none}
+pw-widget-bag .pwbg-ic2{flex:none;width:var(--pw-space-6);height:var(--pw-space-6);overflow:hidden;filter:drop-shadow(0 1px 2px var(--pw-black-a45))}
+pw-widget-bag .pwbg-ic2 img{display:block;width:100%;height:calc(var(--n) * 100%);image-rendering:pixelated}
 pw-widget-bag .pwbg-head>pw-button[hidden],pw-widget-bag .pwbg-ic[hidden]{display:none}
 pw-widget-bag .pwbg-slot.empty .pwc-content>svg{width:60%;height:60%;color:color-mix(in srgb,var(--pw-text-muted) 70%,transparent)}
 pw-widget-bag .pwbg-slot .q{position:absolute;right:var(--pw-space-0-5);bottom:0;z-index:2;pointer-events:none;font:var(--pw-font-weight-bold) var(--pw-font-size-3xs)/1 var(--pw-font-body);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
@@ -5158,12 +5166,12 @@ class PWWidgetBag extends HTMLElement{
   set items(v){this._items=Array.isArray(v)?v:[];this._stack=[];if(this._init){this._grid();this._sync()}}
   connectedCallback(){if(this._init)return;this._init=true;var json=this.querySelector('script[type="application/json"]');if(json){try{this._items=JSON.parse(json.textContent)}catch(e){}}
     this.setAttribute('role','region');var u=this._u='pwbg'+(++uidN);
-    this.innerHTML='<pw-card variant="primary" fill="'+(this.getAttribute('fill')==='gradient'?'gradient':'solid')+'" class="pwbg-card"><div class="pwbg-head"><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="chevron-left" data-a="back" hidden></pw-button><img class="pwbg-ic" alt="" draggable="false"><h2 class="pwbg-title" id="'+u+'t"></h2><div class="pwbg-acts">'+
+    this.innerHTML='<pw-card variant="primary" fill="'+(this.getAttribute('fill')==='gradient'?'gradient':'solid')+'" class="pwbg-card"><div class="pwbg-head"><img class="pwbg-ic" alt="" draggable="false"><span class="pwbg-ic2" hidden><img alt="" draggable="false"></span><div class="pwbg-tt"><h2 class="pwbg-title" id="'+u+'t"></h2><button type="button" class="pwbg-back" data-a="back" hidden>Voltar</button></div><div class="pwbg-acts">'+
       '<pw-button variant="ghost" size="sm" fx="none" particles="0" data-a="collapse"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" data-a="lock"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" data-a="close" data-label="Fechar"></pw-button></div></div>'+
       '<div class="pwbg-body" id="'+u+'b"><pw-scroll class="pwbg-scroll"><div class="pwbg-grid" role="grid"></div></pw-scroll></div></pw-card>'+
       '<div class="pwbg-resize" role="separator" aria-orientation="horizontal" tabindex="0" aria-label="Redimensionar mochila (setas ↑ ↓)" data-tip="Arraste para redimensionar" data-tip-pos="bottom"></div>';
     this.setAttribute('aria-labelledby',u+'t');this.querySelector('.pwbg-ic').src=pwNavIcon(this.getAttribute('icon')||'bag',24);
-    this._btn('back').addEventListener('click',()=>this.back());
+    this.querySelector('.pwbg-back').addEventListener('click',()=>this.back());this.querySelector('.pwbg-back').addEventListener('pointerdown',e=>e.stopPropagation());
     this.querySelector('.pwbg-acts').addEventListener('click',e=>{var b=e.target.closest('pw-button[data-a]');if(!b||b.hasAttribute('disabled'))return;var a=b.dataset.a;
       if(a==='back')this.back();else if(a==='collapse')this.toggle();else if(a==='lock')this.toggleAttribute('locked');else this.close()});
     this.querySelector('.pwbg-grid').addEventListener('click',e=>{var s=e.target.closest('.pwbg-slot[data-i]');if(!s||s.classList.contains('empty'))return;var i=+s.dataset.i;
@@ -5184,7 +5192,8 @@ class PWWidgetBag extends HTMLElement{
     if(n==='locked')this.dispatchEvent(new CustomEvent('lock',{bubbles:true,detail:{locked:this.hasAttribute('locked')}}))}}
   _btn(a){return this.querySelector('pw-button[data-a="'+a+'"]')}
   _sync(){var top=this._stack.length?this._stack[this._stack.length-1]:null,cur=top?top.bag:null;this.querySelector('.pwbg-title').textContent=cur?(cur.label||'Mochila'):(this.getAttribute('heading')||'Mochila');
-    var tt=this.querySelector('.pwbg-title');if(cur)tt.setAttribute('data-tip',cur.label||'Mochila');else tt.removeAttribute('data-tip');var bb=this._btn('back');bb.hidden=!top;this.querySelector('.pwbg-ic').hidden=!!top;bb.setAttribute('data-tip','Voltar para '+(this._stack.length>1?(this._stack[this._stack.length-2].bag.label||'mochila anterior'):(this.getAttribute('heading')||'Mochila')));var bbi=bb.querySelector('button');if(bbi)bbi.setAttribute('aria-label',bb.getAttribute('data-tip'));var c=this.hasAttribute('collapsed'),l=this.hasAttribute('locked');
+    var tt=this.querySelector('.pwbg-title');if(cur)tt.setAttribute('data-tip',cur.label||'Mochila');else tt.removeAttribute('data-tip');var bb=this.querySelector('.pwbg-back');bb.hidden=!top;bb.setAttribute('aria-label','Voltar para '+(this._stack.length>1?(this._stack[this._stack.length-2].bag.label||'mochila anterior'):(this.getAttribute('heading')||'Mochila')));
+    var i1=this.querySelector('.pwbg-ic'),i2=this.querySelector('.pwbg-ic2');i1.hidden=!!(cur&&(cur.sprite||cur.image));i2.hidden=!i1.hidden;if(!i2.hidden){i2.style.setProperty('--n',cur.sprite?(+cur.frames||1):1);i2.firstChild.src=cur.sprite||cur.image}var c=this.hasAttribute('collapsed'),l=this.hasAttribute('locked');
     var bc=this._btn('collapse'),bl=this._btn('lock'),lab=(b,t)=>{b.setAttribute('data-tip',t);var i=b.querySelector('button');if(i)i.setAttribute('aria-label',t)};
     bc.setAttribute('icon',c?'chevron-down':'chevron-up');lab(bc,c?'Abrir':'Recolher');var bi=bc.querySelector('button');if(bi){bi.setAttribute('aria-expanded',c?'false':'true');bi.setAttribute('aria-controls',this._u+'b')}
     bl.setAttribute('icon',l?'lock':'unlock');lab(bl,l?'Desbloquear (permitir mover)':'Bloquear posição e tamanho');var li=bl.querySelector('button');if(li)li.setAttribute('aria-pressed',l?'true':'false');
@@ -5192,7 +5201,7 @@ class PWWidgetBag extends HTMLElement{
   /* mochila dentro da mochila: item {type:'bag', items:[...], slots} — botão direito abre, botão ← volta */
   openBag(i){var it=this._items[i];if(!it||it.type!=='bag')return;if(!Array.isArray(it.items))it.items=[];var ev=new CustomEvent('bagopen',{bubbles:true,cancelable:true,detail:{index:i,item:it,depth:this._stack.length+1}});this.dispatchEvent(ev);if(ev.defaultPrevented)return;
     var sc=this.querySelector('.pwbg-scroll');this._stack.push({items:this._items,bag:it,scroll:sc.scrollTop});this._items=it.items;this._swap(1)}
-  back(){if(!this._stack.length)return;var t=this._stack.pop();this._items=t.items;this._swap(-1,t.scroll);this.dispatchEvent(new CustomEvent('bagback',{bubbles:true,detail:{depth:this._stack.length}}));var b=this._btn('back');(b.hidden?this._btn('collapse'):b).querySelector('button').focus()}
+  back(){if(!this._stack.length)return;var t=this._stack.pop();this._items=t.items;this._swap(-1,t.scroll);this.dispatchEvent(new CustomEvent('bagback',{bubbles:true,detail:{depth:this._stack.length}}));var b=this.querySelector('.pwbg-back');(b.hidden?this._btn('collapse').querySelector('button'):b).focus()}
   _swap(dir,scroll){var g=this.querySelector('.pwbg-grid'),sc=this.querySelector('.pwbg-scroll'),go=()=>{this._grid();this._sync();if(!this._userH)this.fitAll();sc.scrollTop=scroll||0;this._more&&this._more()};
     if(matchMedia('(prefers-reduced-motion: reduce)').matches){go();return}
     g.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateX('+(-dir*12)+'px)'}],{duration:120,easing:'ease-in'}).finished.then(()=>{go();g.animate([{opacity:0,transform:'translateX('+(dir*12)+'px)'},{opacity:1,transform:'none'}],{duration:180,easing:'ease-out'})})}
