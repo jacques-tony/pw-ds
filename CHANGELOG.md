@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.56.4
+- Teste (experimental): `pw-card data-noglow` esconde o brilho externo da borda; `pw-widget-bag data-noglow` repassa. Storybook: comparação "Teste de borda" (3px e 2px, com e sem brilho). Overlays da mochila de 2px acompanham o chanfro menor.
+
 ## 0.56.3
 - Teste (experimental): `pw-widget-bag data-thin` usa borda de 2px no total e metade do chanfro. O `pw-card` ganhou o atributo experimental `data-stroke`; sem ele nada muda.
 
