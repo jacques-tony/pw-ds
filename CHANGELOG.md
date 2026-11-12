@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.57.0
+- `pw-card` primary: borda de 2px no total (filete 2px + metal/reflexo 1,3px) e chanfro com 50% do tamanho anterior. `chamfer` continua multiplicando por canto.
+- `pw-card`: novo `glow="false"` (propriedade `.glow`) para desligar o brilho externo da borda; padrão ligado. No playground do Card.
+- `pw-hud` e `pw-widget-bag` repassam `glow="false"` ao card; magnetismo das mochilas ajustado para a borda e o chanfro novos.
+- Removidos os testes (`data-thin`, `data-noglow`, `data-stroke`) e a seção "Teste de borda"; Global Navigation volta ao padrão dos componentes.
+
 ## 0.56.5
 - Teste (experimental): `pw-hud data-thin data-noglow` (moldura 2px, meio chanfro, sem brilho) e `pw-navbar data-thin` (moldura 2px, meio chanfro, sem a linha interna). Sem os atributos nada muda. Storybook: aplicado só na simulação do jogo.
 

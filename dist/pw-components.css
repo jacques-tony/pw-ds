@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.56.5 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.57.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -39,6 +39,8 @@ pw-card{display:block;position:relative;box-sizing:border-box;color:var(--card-t
   --lift:0px; --press:1; --glow-op:.6; --dot-op:.5; --ring-op:0; --bg-bright:1;
   transform:translateY(var(--lift)) scale(var(--press));transition:transform var(--card-dur) var(--card-ease)}
 pw-card[variant="primary"],pw-card[variant="tech"],pw-card:not([variant]){width:514px;height:376px}
+/* glow="false": desliga o brilho externo da borda (primary, secondary e tech) */
+pw-card[glow="false"] .l-glow,pw-card[glow="false"] .l-dots{display:none}
 pw-card[variant="secondary"]{width:265px;height:374px}
 pw-card[variant="tertiary"]{width:320px;height:200px}
 /* quaternary: mais escuro e opaco que o tertiary, para ficar em destaque dentro dele. Deriva do tema (vale para os 18 tipos) */
@@ -1356,14 +1358,13 @@ pw-button[aria-haspopup][aria-expanded="true"] .pwbt-label+.pwbt-icon{transform:
 pw-button[aria-haspopup] .pwbt-label+.pwbt-icon{transition:transform .2s var(--card-ease)}
 /* ===================== COMPONENT: pw-widget-bag (widget Mochila) ===================== */
 /* feito só com peças do DS: pw-card primary (moldura), pw-button ghost (ações), pw-scroll (rolagem), pw-card quaternary (slots), pw-badge (quantidade) */
-pw-widget-bag{--wb-ch:var(--pw-space-5);--wb-ov:var(--pw-bg-solid);--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5;--wb-pad:var(--pw-space-4);--wb-head:var(--pw-space-16);
+pw-widget-bag{--wb-ch:calc(var(--pw-space-5) / 2);--wb-ov:var(--pw-bg-solid);--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5;--wb-pad:var(--pw-space-4);--wb-head:var(--pw-space-16);
   position:absolute;display:block;box-sizing:border-box;width:calc(var(--wb-slot) * var(--wb-cols) + var(--wb-gap) * (var(--wb-cols) - 1) + var(--wb-pad) * 2);
   height:calc(var(--wb-head) + (var(--wb-slot) + var(--wb-gap)) * 7 + var(--pw-space-4));min-height:calc(var(--wb-head) + var(--wb-slot) + var(--pw-space-4));
   font-family:var(--pw-font-body);z-index:10;touch-action:none}
 pw-widget-bag[hidden]{display:none}
 pw-widget-bag[collapsed]{height:auto!important}
 pw-widget-bag[static]{position:relative}
-pw-widget-bag[data-thin]{--wb-ch:calc(var(--pw-space-5) / 2)}
 pw-widget-bag[fill="gradient"]{--wb-ov:var(--pw-bg-edge)}
 pw-widget-bag>pw-card.pwbg-card{width:100%;height:100%;--lift:0px}
 pw-widget-bag>pw-card.pwbg-card>.pwc-content{height:100%;padding:0 var(--wb-pad) var(--pw-space-1);gap:0;display:flex;flex-direction:column;min-height:0;overflow:hidden;box-sizing:border-box}
@@ -1436,8 +1437,6 @@ pw-widget-bag[collapsed] .pwbg-resize,pw-widget-bag[locked] .pwbg-resize{display
 pw-widget-bag.dragging,pw-widget-bag.resizing{user-select:none}
 pw-widget-bag.dragging>pw-card{filter:drop-shadow(0 12px 24px var(--pw-black-a45))}
 /* magnetismo: brilho nas mochilas que vão grudar */
-/* teste: sem brilho na borda */
-pw-card[data-noglow] .l-glow,pw-card[data-noglow] .l-dots{display:none}
 pw-widget-bag.magnet>pw-card{filter:drop-shadow(0 0 3px color-mix(in srgb,var(--pw-glow) 45%,transparent))}
 .pwbg-flash{position:absolute;z-index:9999;pointer-events:none;border-radius:var(--pw-radius-full);transform-origin:center;
   background:linear-gradient(90deg,transparent,var(--pw-filament) 20%,var(--pw-white) 50%,var(--pw-filament) 80%,transparent);box-shadow:0 0 18px 2px var(--pw-glow),0 0 6px var(--pw-white),0 0 30px color-mix(in srgb,var(--pw-glow) 60%,transparent)}
