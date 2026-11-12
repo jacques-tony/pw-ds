@@ -27,6 +27,17 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.66.0
+- Novo `<pw-widget-chat>` (Widget Bate-papo): casca padrão dos widgets, redimensiona na largura (direita e esquerda) e na altura.
+  - Canais em abas (`pw-button`), com setas e ← → no teclado, `pw-badge` de não lidas e botão do meio para fechar canais abertos.
+  - Log com horário, autor (clique responde em privado com `/w`) e tipos `system`, `private`, `error`, `me`; overlay de rolagem; botão "Novas mensagens" quando você está lendo o histórico.
+  - `pw-input` com Enter para enviar e ↑ ↓ para o histórico; Minimizar (só a barra de digitar); limpar canal.
+  - Diálogo Canais (`pw-dialog` + `pw-list` + `pw-input` "Abrir novo canal").
+  - API `chat`, `channel`, `push()`, `send()`, `select()`, `openChannel()`, `closeChannel()`; eventos `send` (cancelável), `channel`, `open-channel`, `close-channel`, `clear`.
+- Novos ícones: `send`, `trash`, `globe`.
+- `pw-dialog`: corrigido o card que esticava até a altura máxima da tela.
+- Simulação: bate-papo no canto inferior direito.
+
 ## 0.65.2
 - `pw-widget-stats`: título no mesmo padrão dos outros widgets (mesma fonte, com reticências quando excede); ícone do cabeçalho e atalho na simulação passam a ser `tasks` (Tarefas).
 

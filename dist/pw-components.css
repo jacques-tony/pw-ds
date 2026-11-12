@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.65.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.66.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -659,7 +659,7 @@ pw-dialog .pwd-backdrop{position:absolute;inset:0;background:var(--pw-overlay);b
 pw-dialog[open] .pwd-backdrop{opacity:1}
 pw-dialog>pw-card{position:relative;width:min(var(--dlg-w),100%)!important;height:auto!important;max-height:calc(100vh - var(--pw-space-8));opacity:0;transform:translateY(12px) scale(.97);transition:opacity .2s,transform .25s var(--card-ease)}
 pw-dialog[open]>pw-card{opacity:1;transform:none}
-pw-dialog>pw-card>.pwc-content{padding:var(--pw-space-6);gap:var(--pw-space-4);max-height:inherit;box-sizing:border-box}
+pw-dialog>pw-card>.pwc-content{padding:var(--pw-space-6);gap:var(--pw-space-4);max-height:inherit;height:auto;box-sizing:border-box}
 pw-dialog .pwd-head{display:flex;align-items:center;justify-content:space-between;gap:var(--pw-space-3)}
 pw-dialog .pwd-title{margin:0;font:var(--pw-text-title-md);color:var(--pw-text-title)}
 pw-dialog .pwd-body{color:var(--pw-text-body);font:var(--pw-text-body-md);overflow:auto;min-height:0}
@@ -1672,3 +1672,65 @@ pw-widget-stats .pwst-bar:hover{filter:brightness(1.25)}
 pw-widget-stats .pwst-ticks{display:flex;flex-direction:column;justify-content:space-between;height:var(--pw-space-12);font-size:var(--pw-font-size-2xs);text-align:right}
 pw-widget-stats .pwst-xl{display:flex;justify-content:space-between;gap:var(--pw-space-1);font-size:var(--pw-font-size-2xs);padding-top:var(--pw-space-1)}
 pw-widget-stats .pwst-xl span{flex:1;text-align:center}
+/* ===================== COMPONENT: pw-widget-chat (casca igual à dos widgets) ===================== */
+
+pw-widget-chat{position:absolute;display:block;box-sizing:border-box;width:calc(var(--pw-space-16) * 8);height:calc(var(--pw-space-16) * 4 + var(--pw-space-8));font-family:var(--pw-font-body);z-index:10;touch-action:none;
+  --wb-pad:var(--pw-space-4);--wb-head:var(--pw-space-14);--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5}
+pw-widget-chat[hidden]{display:none}
+pw-widget-chat>pw-card.pwbg-card{width:100%;height:100%;--lift:0px}
+pw-widget-chat>pw-card.pwbg-card>.pwc-content{height:100%;padding:0 var(--wb-pad) var(--pw-space-1);gap:0;display:flex;flex-direction:column;min-height:0;overflow:hidden;box-sizing:border-box}
+pw-widget-chat[collapsed]{height:auto!important}
+pw-widget-chat[collapsed]>pw-card.pwbg-card>.pwc-content{height:auto;padding-bottom:0}
+pw-widget-chat .pwbg-head{flex:none;display:flex;align-items:center;gap:var(--pw-space-1);box-sizing:border-box;height:var(--wb-head);padding:0;cursor:grab;user-select:none}
+pw-widget-chat[locked] .pwbg-head{cursor:default}
+pw-widget-chat .pwbg-ic{flex:none;width:var(--pw-space-6);height:var(--pw-space-6);object-fit:contain}
+pw-widget-chat .pwbg-ic2,pw-widget-chat .pwbg-back{display:none}
+pw-widget-chat .pwbg-tt{flex:1;min-width:0}
+pw-widget-chat .pwbg-title{margin:0;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.02em;color:var(--pw-text-title);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+pw-widget-chat .pwbg-acts{display:flex}
+pw-widget-chat .pwmm-resize{position:absolute;z-index:4;display:grid;place-items:center;outline:none;border-radius:var(--pw-radius-full)}
+pw-widget-chat .pwmm-rb{left:var(--pw-space-8);right:var(--pw-space-8);bottom:calc(var(--pw-space-1) * -1);height:var(--pw-space-3);cursor:ns-resize}
+pw-widget-chat .pwmm-rr,pw-widget-chat .pwmm-rl{top:var(--pw-space-16);bottom:var(--pw-space-16);right:calc(var(--pw-space-1) * -1);width:var(--pw-space-3);cursor:ew-resize}
+pw-widget-chat .pwmm-rl{right:auto;left:calc(var(--pw-space-1) * -1)}
+pw-widget-chat .pwmm-resize::after{content:"";border-radius:var(--pw-radius-full);background:var(--pw-filament);opacity:0;box-shadow:0 0 8px var(--pw-glow);transition:opacity var(--card-dur)}
+pw-widget-chat .pwmm-rb::after{width:var(--pw-space-10);height:var(--pw-space-1)}pw-widget-chat :is(.pwmm-rr,.pwmm-rl)::after{width:var(--pw-space-1);height:var(--pw-space-10)}
+pw-widget-chat:hover .pwmm-resize::after{opacity:.45}pw-widget-chat .pwmm-resize:hover::after,pw-widget-chat.resizing .pwmm-resize::after,pw-widget-chat .pwmm-resize:focus-visible::after{opacity:1}
+pw-widget-chat[collapsed] .pwmm-resize,pw-widget-chat[locked] .pwmm-resize{display:none}
+pw-widget-chat{--wb-ov:var(--pw-bg-solid);--wb-ch:calc(var(--pw-space-5) / 2)}
+pw-widget-chat .pwbg-ic{display:grid;place-items:center;color:var(--pw-text-title)}pw-widget-chat .pwbg-ic svg{width:var(--pw-space-5);height:var(--pw-space-5)}
+pw-widget-chat .pwct-body{flex:1;min-height:0;display:flex;flex-direction:column;gap:var(--pw-space-2);position:relative}
+pw-widget-chat[collapsed] .pwct-body{display:none}
+pw-widget-chat .pwct-bar{flex:none;display:flex;align-items:center;gap:var(--pw-space-1)}
+pw-widget-chat .pwct-tabs{flex:1;min-width:0;display:flex;gap:var(--pw-space-1);overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;padding:var(--pw-space-1) var(--pw-space-0-5);margin:calc(var(--pw-space-1) * -1) 0}
+pw-widget-chat .pwct-tabs::-webkit-scrollbar{display:none}
+pw-widget-chat .pwct-tab{flex:none;position:relative}
+pw-widget-chat .pwct-tab pw-badge{position:absolute;top:calc(var(--pw-space-1) * -1);right:calc(var(--pw-space-1) * -1);pointer-events:none;z-index:3}
+pw-widget-chat pw-scroll.pwct-scroll{flex:1;min-height:0;padding:var(--pw-space-1) var(--pw-space-2) var(--pw-space-1) 0;font:var(--pw-text-body-sm);line-height:1.35}
+pw-widget-chat .pwct-log{list-style:none;margin:0;padding:0;display:grid;gap:var(--pw-space-0-5)}
+pw-widget-chat .pwct-m{padding-left:var(--pw-space-10);text-indent:calc(var(--pw-space-10) * -1);color:var(--pw-text-primary);overflow-wrap:anywhere}
+pw-widget-chat .pwct-t{color:var(--pw-text-muted);font-variant-numeric:tabular-nums;margin-right:var(--pw-space-1)}
+pw-widget-chat .pwct-a{color:var(--pw-text-accent);font-weight:var(--pw-font-weight-semibold,600);cursor:pointer}
+pw-widget-chat .pwct-a:hover{text-decoration:underline}
+pw-widget-chat .pwct-m[data-type="system"]{color:var(--pw-tone-warning-text)}
+pw-widget-chat .pwct-m[data-type="private"]{color:var(--pw-tone-info-text)}
+pw-widget-chat .pwct-m[data-type="error"]{color:var(--pw-tone-error-text)}
+pw-widget-chat .pwct-m[data-type="me"] .pwct-a{color:var(--pw-tone-success-text)}
+pw-widget-chat .pwct-m.new{animation:pwct-in .3s var(--card-ease)}
+@keyframes pwct-in{from{opacity:0;transform:translateY(4px)}}
+pw-widget-chat .pwct-empty{color:var(--pw-text-muted);text-align:center;padding:var(--pw-space-4) 0}
+pw-widget-chat .pwct-ov{position:absolute;left:0;right:0;pointer-events:none;height:var(--pw-space-6);opacity:0;transition:opacity .25s;z-index:2}
+pw-widget-chat .pwct-ov.t{background:linear-gradient(var(--wb-ov),transparent)}pw-widget-chat .pwct-ov.b{background:linear-gradient(transparent,var(--wb-ov))}
+pw-widget-chat .pwct-ov.on{opacity:1}
+pw-widget-chat .pwct-logw{flex:1;min-height:0;display:flex;flex-direction:column;position:relative}
+pw-widget-chat .pwct-ov.t{top:0}pw-widget-chat .pwct-ov.b{bottom:0}
+pw-widget-chat .pwct-newmsg{position:absolute;left:50%;bottom:var(--pw-space-2);transform:translateX(-50%);z-index:3}
+pw-widget-chat .pwct-newmsg[hidden]{display:none}
+pw-widget-chat .pwct-foot{flex:none;display:flex;align-items:center;gap:var(--pw-space-2);padding-bottom:var(--pw-space-3)}
+pw-widget-chat .pwct-foot pw-input{flex:1;min-width:0}
+pw-widget-chat .pwct-foot pw-input .pwf-label:empty{display:none}
+pw-widget-chat .pwct-sep{width:1px;align-self:stretch;margin:var(--pw-space-1) 0;background:var(--pw-border-default)}
+/* minimizado: só a barra de digitar */
+pw-widget-chat[minimized]{height:auto!important}
+pw-widget-chat[minimized] :is(.pwct-bar,.pwct-logw){display:none}
+pw-widget-chat[minimized] .pwmm-resize{display:none}
+pw-dialog.pwct-dlg pw-list{margin:0 0 var(--pw-space-3)}
