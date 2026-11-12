@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.58.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.58.1 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1482,8 +1482,8 @@ class PWWidgetBag extends HTMLElement{
   /* Ctrl + botão direito numa mochila: abre ela num widget separado, ao lado */
   openBagWindow(i){var it=this._items[i];if(!it||it.type!=='bag')return;if(!Array.isArray(it.items))it.items=[];
     var ev=new CustomEvent('bagwindow',{bubbles:true,cancelable:true,detail:{index:i,item:it}});this.dispatchEvent(ev);if(ev.defaultPrevented)return;
-    var nb=document.createElement('pw-widget-bag');nb.setAttribute('heading',it.label||'Mochila');nb.setAttribute('slots',it.slots||20);if(this.getAttribute('glow'))nb.setAttribute('glow',this.getAttribute('glow'));
-    nb._self=it;nb._items=it.items;var p=this.offsetParent||this.parentNode,x=this.offsetLeft+this.offsetWidth+16,y=this.offsetTop;
+    var nb=document.createElement('pw-widget-bag');if(this.getAttribute('slots'))nb.setAttribute('slots',this.getAttribute('slots'));if(this.getAttribute('glow'))nb.setAttribute('glow',this.getAttribute('glow'));
+    /* leva o caminho: o "Voltar" da janela nova sobe para a mochila de onde ela saiu */nb._stack=this._stack.map(s=>Object.assign({},s)).concat([{items:this._items,bag:it,scroll:0}]);nb._items=it.items;if(this.getAttribute('heading'))nb.setAttribute('heading',this.getAttribute('heading'));var p=this.offsetParent||this.parentNode,x=this.offsetLeft+this.offsetWidth+16,y=this.offsetTop;
     if(p&&x+this.offsetWidth>p.clientWidth)x=Math.max(0,this.offsetLeft-this.offsetWidth-16);nb.style.left=x+'px';nb.style.top=y+'px';
     this.parentNode.appendChild(nb);PWWidgetBag._z=(PWWidgetBag._z||10)+1;nb.style.zIndex=PWWidgetBag._z;
     if(!matchMedia('(prefers-reduced-motion: reduce)').matches)nb.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'none'}],{duration:180,easing:'ease-out'});
@@ -1593,5 +1593,5 @@ class PWWidgetBag extends HTMLElement{
 }
 PWWidgetBag.O=2;PWWidgetBag.C=13.5;/* C: posição em que as linhas dos chanfros (primary, 50%) coincidem */
 customElements.define('pw-widget-bag',PWWidgetBag);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.58.0"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.58.1"});
 })();

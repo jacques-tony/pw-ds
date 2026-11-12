@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.58.1
+- `pw-widget-bag`: a janela aberta com Ctrl + botão direito leva o caminho das mochilas; o "Voltar" nela sobe para a mochila de onde ela saiu, até a principal.
+
 ## 0.58.0
 - `pw-widget-bag`: Ctrl + botão direito numa mochila interna abre ela num widget separado ao lado (com o ícone e o nome dela, removido ao fechar); `openBagWindow(i)`, evento `bagwindow` (cancelável). Slots vazios não são interativos (sem hover, clique, toque ou menu).
 
