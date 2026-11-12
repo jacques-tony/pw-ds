@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.61.4
+- `pw-widget-minimap`: o mapa fica dentro da moldura (não cobre mais a borda dourada) com os cantos no formato do chanfro; imagem do andar desenhada como fundo com tamanho explícito (`floors[z].w/h`), carregando de forma confiável; mapas de exemplo em WebP (bem menores).
+
 ## 0.61.3
 - `pw-widget-minimap`: corrige o mapa que não aparecia em alguns navegadores (bordas esmaecidas agora por degradê sobreposto em vez de `mask`, sem `will-change` na camada; tamanho da imagem definido ao carregar).
 
