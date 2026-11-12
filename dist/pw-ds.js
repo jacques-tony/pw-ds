@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.57.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.57.2 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1539,11 +1539,14 @@ class PWWidgetBag extends HTMLElement{
           /* lado a lado (precisa sobrepor na vertical) · empilhado (precisa sobrepor na horizontal) · alinhamento das bordas quando já estão encostando */
           var vo=Math.min(B,o.y+o.h)-Math.max(Tp,o.y)>0,ho=Math.min(R,o.x+o.w)-Math.max(L,o.x)>0,
               stack=Math.abs(B-o.y)<=T||Math.abs(Tp-o.y-o.h)<=T,side=Math.abs(R-o.x)<=T||Math.abs(L-o.x-o.w)<=T;
-          var O=PWWidgetBag.O,cx=[];if(vo)cx.push(o.x+o.w-O-L,o.x+O-R);if(stack&&ho)cx.push(o.x-L,o.x+o.w-R);
-          var cy=[];if(ho)cy.push(o.y+o.h-O-Tp,o.y+O-B);if(side&&vo)cy.push(o.y-Tp,o.y+o.h-B);
+          var O=PWWidgetBag.O,N=PWWidgetBag._near,ov=(a1,a2,b1,b2)=>Math.min(a2,b2)-Math.max(a1,b1)>O;
+          /* lado de "o" que já tem mochila conectada não aceita outra */
+          var occ=s=>others.some(q=>q!==o&&(s==='r'?N(o.x+o.w,q.x)&&ov(o.y,o.y+o.h,q.y,q.y+q.h):s==='l'?N(q.x+q.w,o.x)&&ov(o.y,o.y+o.h,q.y,q.y+q.h):s==='b'?N(o.y+o.h,q.y)&&ov(o.x,o.x+o.w,q.x,q.x+q.w):N(q.y+q.h,o.y)&&ov(o.x,o.x+o.w,q.x,q.x+q.w)));
+          var cx=[];if(vo){if(!occ('r'))cx.push(o.x+o.w-O-L);if(!occ('l'))cx.push(o.x+O-R)}if(stack&&ho)cx.push(o.x-L,o.x+o.w-R);
+          var cy=[];if(ho){if(!occ('b'))cy.push(o.y+o.h-O-Tp);if(!occ('t'))cy.push(o.y+O-B)}if(side&&vo)cy.push(o.y-Tp,o.y+o.h-B);
           cx.forEach(d=>{if(Math.abs(d)<Math.abs(bdx)){bdx=d;bx=o}});cy.forEach(d=>{if(Math.abs(d)<Math.abs(bdy)){bdy=d;by=o}});
           /* encaixe diagonal (canto com canto): só quando não há encaixe reto */
-          var vov=Math.min(B,o.y+o.h)-Math.max(Tp,o.y),hov=Math.min(R,o.x+o.w)-Math.max(L,o.x),CC=PWWidgetBag.C+T;if(vov<CC&&hov<CC&&vov>-T&&hov>-T)PWWidgetBag._diagPos(o,m.w,m.h).forEach(q=>{var ddx=q[0]-L,ddy=q[1]-Tp;if(Math.abs(ddx)<=T*2&&Math.abs(ddy)<=T*2&&Math.abs(ddx)+Math.abs(ddy)<Math.abs(bdx)+Math.abs(bdy)){bdx=ddx;bdy=ddy;bx=by=o;dg=true}})})});
+          var vov=Math.min(B,o.y+o.h)-Math.max(Tp,o.y),hov=Math.min(R,o.x+o.w)-Math.max(L,o.x),CC=PWWidgetBag.C+T;if(vov<CC&&hov<CC&&vov>-T&&hov>-T)PWWidgetBag._diagPos(o,m.w,m.h).forEach((q,qi)=>{if(others.some(z=>z!==o&&PWWidgetBag._diagPos(o,z.w,z.h)[qi].every((v,vi)=>Math.abs(v-(vi?z.y:z.x))<=1.5)))return;var ddx=q[0]-L,ddy=q[1]-Tp;if(Math.abs(ddx)<=T*2&&Math.abs(ddy)<=T*2&&Math.abs(ddx)+Math.abs(ddy)<Math.abs(bdx)+Math.abs(bdy)){bdx=ddx;bdy=ddy;bx=by=o;dg=true}})})});
         if(dg){x+=bdx;y+=bdy}else{if(Math.abs(bdx)<=T)x+=bdx;if(Math.abs(bdy)<=T)y+=bdy}
         x=Math.max(-minX,Math.min(PW-maxX,x));y=Math.max(-minY,Math.min(PH-maxY,y));
         mem.forEach(m=>{m.b.style.left=(x+m.ox)+'px';m.b.style.top=(y+m.oy)+'px'});
@@ -1554,7 +1557,7 @@ class PWWidgetBag extends HTMLElement{
         this._mark();var grp=this.group();
         if(hits.length&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
           G.forEach(m=>{var a=PWWidgetBag._box(m);hits.forEach(o=>{var ob=PWWidgetBag._box(o);if(PWWidgetBag._touch(a,ob))this._flash(a,ob)})});
-          grp.forEach(b=>b.querySelector('.pwbg-card').animate([{filter:'brightness(1)'},{filter:'brightness(1.18) drop-shadow(0 0 6px var(--pw-glow))',offset:.3},{filter:'brightness(1)'}],{duration:320,easing:'ease-out'}))}
+}
         this.dispatchEvent(new CustomEvent('move',{bubbles:true,detail:{left:this.offsetLeft,top:this.offsetTop,group:grp}}));
         if(hits.length)this.dispatchEvent(new CustomEvent('groupchange',{bubbles:true,detail:{group:grp}}))};
       document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)});
@@ -1578,5 +1581,5 @@ class PWWidgetBag extends HTMLElement{
 }
 PWWidgetBag.O=2;PWWidgetBag.C=12;
 customElements.define('pw-widget-bag',PWWidgetBag);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.57.1"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.57.2"});
 })();

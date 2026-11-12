@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.57.2
+- `pw-widget-bag`: lado (ou canto diagonal) que já tem mochila conectada não aceita outra conexão; efeito de conexão sem o pulso com filtro (que recortava a moldura), fica só o filete de luz na junção.
+- Storybook: redimensionar a mochila em tela cheia não sai mais da tela cheia.
+
 ## 0.57.1
 - `pw-widget-bag`: sem brilho por padrão (`glow="true"` liga); cabeçalho um token menor (56px, 14px acima e abaixo dos botões; fechada com 56px); conectadas mantêm o chanfro padrão.
 
