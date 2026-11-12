@@ -27,6 +27,16 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.61.0
+- Novo componente **`pw-widget-minimap`** (widget Minimap), no padrão dos widgets e só com peças do DS:
+  - Coordenadas e horário do jogo em card tertiary; mapa do andar atual com você no centro (arrastar para mover, roda/+/− para zoom 1–4, setas no teclado).
+  - Controles em `pw-button`: subir e descer andar, centralizar (fica destacado quando o mapa saiu de você), maximizar/restaurar, zoom − e +.
+  - Maximizado: ocupa a área do jogo, controles na vertical sobre o mapa e legenda "Locais de caça" com `pw-checkbox` (Comum, Wildscape, Primal) filtrando os marcadores.
+  - Abre no tamanho padrão (largura da mochila) e cresce na largura e na altura pelo canto inferior direito; recolher, bloquear, fechar, arrastar e magnetismo iguais aos outros widgets.
+  - `.map` (floors, origin, player, hunts, time, filters), `floor()`, `zoom()`, `center()`, `maximize()`, `setPlayer()`, `.time`; eventos `floor`, `zoom`, `pan`, `maximize`, `filter`, `resize`.
+- Ícone `map-pin`; imagens de exemplo dos andares em `assets/minimap/`.
+- Storybook: seção Widget Minimap e o minimapa na simulação do jogo (o ícone de mapa da barra superior abre e fecha).
+
 ## 0.60.5
 - Barra de cooldown (`pw-widget-pokemon` e cards da `pw-hud`): desce de forma linear e contínua entre as atualizações de 1s; ao reiniciar, enche na hora.
 
