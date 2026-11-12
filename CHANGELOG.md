@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.56.3
+- Teste (experimental): `pw-widget-bag data-thin` usa borda de 2px no total e metade do chanfro. O `pw-card` ganhou o atributo experimental `data-stroke`; sem ele nada muda.
+
 ## 0.56.2
 - Ícones `fullscreen` e `fullscreen-exit`.
 - Storybook: botão Tela cheia na simulação do jogo (ocupa a tela toda mantendo 16:9; Esc ou o botão saem).

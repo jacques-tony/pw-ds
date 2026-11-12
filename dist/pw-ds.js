@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.56.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.56.3 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -48,7 +48,7 @@ function chamfer(W,H,i,c){
 var uidN=0;
 
 class PWCard extends HTMLElement{
-  static get observedAttributes(){return ['variant','interactive','disabled','selected','frame','fill','chamfer','bg-image','bg','bg-opacity','bg-position','bg-fit']}
+  static get observedAttributes(){return ['variant','interactive','disabled','selected','frame','fill','chamfer','data-stroke','bg-image','bg','bg-opacity','bg-position','bg-fit']}
   connectedCallback(){
     if(!this._init){
       this._init=true;this._uid='pwc'+(++uidN);
@@ -92,7 +92,7 @@ class PWCard extends HTMLElement{
     bg.style.opacity=this.getAttribute('bg')==='both'?'':'0'}
   _frameRender(){
     var W=Math.round(this.offsetWidth),H=Math.round(this.offsetHeight);
-    if(!W||!H||(W===this._w&&H===this._h&&this.getAttribute('variant')===this._v&&this.getAttribute('frame')===this._fr&&this.getAttribute('fill')===this._fl&&this.getAttribute('chamfer')===this._ch))return;this._fr=this.getAttribute('frame');this._fl=this.getAttribute('fill');this._ch=this.getAttribute('chamfer');
+    if(!W||!H||(W===this._w&&H===this._h&&this.getAttribute('variant')===this._v&&this.getAttribute('frame')===this._fr&&this.getAttribute('fill')===this._fl&&this.getAttribute('chamfer')===this._ch&&this.getAttribute('data-stroke')===this._st))return;this._st=this.getAttribute('data-stroke');this._fr=this.getAttribute('frame');this._fl=this.getAttribute('fill');this._ch=this.getAttribute('chamfer');
     this._w=W;this._h=H;this._v=this.getAttribute('variant');
     var v=this._v==='secondary'?'secondary':'primary',c=CORNERS.secondary,u=this._uid; /* primary e secondary compartilham a mesma borda e efeitos; muda só o fundo */
     /* chamfer="tl tr br bl" escala o chanfro de cada canto (ex.: 1 1 .5 .5) */
@@ -101,8 +101,10 @@ class PWCard extends HTMLElement{
     /* fill: gradient (padrão do primary) · solid (cor única, bom para widgets) */
     var bgFill=v==='primary'&&this.getAttribute('fill')!=='solid'?'url(#'+u+'-bg)':'var(--card-bg-solid)';
     var pri=v==='primary';/* primary: borda externa 1px mais fina e sem a linha interna */
-    var border='<path d="'+all+'" fill="none" stroke="var(--card-filament)" stroke-width="'+(pri?3:4)+'"/>'+
-               '<path d="'+all+'" fill="none" stroke="url(#'+u+'-metal)" stroke-width="2"/>';
+    /* data-stroke (experimental, só para teste): espessura total da borda; sem ele nada muda */
+    var stw=parseFloat(this.getAttribute('data-stroke'))||(pri?3:4),stm=Math.min(2,stw*2/3);
+    var border='<path d="'+all+'" fill="none" stroke="var(--card-filament)" stroke-width="'+stw+'"/>'+
+               '<path d="'+all+'" fill="none" stroke="url(#'+u+'-metal)" stroke-width="'+stm+'"/>';
     this._svg.setAttribute('width',W);this._svg.setAttribute('height',H);this._svg.setAttribute('viewBox','0 0 '+W+' '+H);
     if(this._v==='tech'||((this._v==='primary'||!this._v)&&this._fr==='tech')){
       /* moldura "tech" (Máquina do Mewtwo): cantos chanfrados, linha dupla, faixas nos cantos, gemas e filetes de luz; cores dos tokens */
@@ -183,7 +185,7 @@ class PWCard extends HTMLElement{
       (pri?'':'<path d="'+chamfer(W,H,7.5,17.485)+'" fill="none" stroke="var(--card-filament)" stroke-width="1"/>')+
       '<g class="l-glow" filter="url(#'+u+'-tex)">'+border+'</g>'+
       border+
-      '<path class="l-glass" d="'+all+'" fill="none" stroke="url(#'+u+'-glass)" stroke-width="'+(pri?2:3)+'"/>'+
+      '<path class="l-glass" d="'+all+'" fill="none" stroke="url(#'+u+'-glass)" stroke-width="'+(this.hasAttribute('data-stroke')?stm:(pri?2:3))+'"/>'+
       '<g class="l-dots" filter="url(#'+u+'-dot)">'+
         [[7,7],[W-7,7],[W-7,H-7],[7,H-7]].map(p=>'<circle cx="'+p[0]+'" cy="'+p[1]+'" r="7" fill="var(--card-glow)"/>').join('')+'</g>'+
      '</g>'+
@@ -1441,7 +1443,7 @@ class PWWidgetBag extends HTMLElement{
   set items(v){this._items=Array.isArray(v)?v:[];this._stack=[];if(this._init){this._grid();this._sync()}}
   connectedCallback(){if(this._init)return;this._init=true;var json=this.querySelector('script[type="application/json"]');if(json){try{this._items=JSON.parse(json.textContent)}catch(e){}}
     this.setAttribute('role','region');var u=this._u='pwbg'+(++uidN);
-    this.innerHTML='<pw-card variant="primary" fill="'+(this.getAttribute('fill')==='gradient'?'gradient':'solid')+'" class="pwbg-card"><div class="pwbg-head"><img class="pwbg-ic" alt="" draggable="false"><span class="pwbg-ic2" hidden><img alt="" draggable="false"></span><div class="pwbg-tt"><h2 class="pwbg-title" id="'+u+'t"></h2><button type="button" class="pwbg-back" data-a="back" hidden>Voltar</button></div><div class="pwbg-acts">'+
+    var thin=this.hasAttribute('data-thin');this.innerHTML='<pw-card variant="primary" fill="'+(this.getAttribute('fill')==='gradient'?'gradient':'solid')+'"'+(thin?' data-stroke="2"':'')+' class="pwbg-card"><div class="pwbg-head"><img class="pwbg-ic" alt="" draggable="false"><span class="pwbg-ic2" hidden><img alt="" draggable="false"></span><div class="pwbg-tt"><h2 class="pwbg-title" id="'+u+'t"></h2><button type="button" class="pwbg-back" data-a="back" hidden>Voltar</button></div><div class="pwbg-acts">'+
       '<pw-button variant="ghost" size="sm" fx="none" particles="0" data-a="collapse"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" data-a="lock"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" data-a="close" data-label="Fechar"></pw-button></div></div>'+
       '<div class="pwbg-body" id="'+u+'b"><pw-scroll class="pwbg-scroll"><div class="pwbg-grid" role="grid"></div></pw-scroll></div></pw-card>'+
       '<div class="pwbg-resize" role="separator" aria-orientation="horizontal" tabindex="0" aria-label="Redimensionar mochila (setas ↑ ↓)" data-tip="Arraste para redimensionar" data-tip-pos="bottom"></div>';
@@ -1513,7 +1515,7 @@ class PWWidgetBag extends HTMLElement{
     all.forEach((b,i)=>{b.toggleAttribute('grouped',b.group().length>1);var a=bx[i],top=false,bot=false;
       bx.forEach((o,j)=>{if(i===j)return;var ho=Math.min(a.x+a.w,o.x+o.w)-Math.max(a.x,o.x)>O;if(!ho)return;if(N(o.y+o.h,a.y))top=true;if(N(a.y+a.h,o.y))bot=true});
       /* empilhadas: os cantos da junção ficam com metade do chanfro; lado a lado mantém o chanfro */
-      var k=(top?'.5 .5 ':'1 1 ')+(bot?'.5 .5':'1 1'),c=b.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==k)c.setAttribute('chamfer',k)})}
+      var f=b.hasAttribute('data-thin')?.5:1,k=(top?f/2+' '+f/2+' ':f+' '+f+' ')+(bot?f/2+' '+f/2:f+' '+f),c=b.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==k)c.setAttribute('chamfer',k)})}
   /* efeito de conexão: um filete de luz percorre a junção e as mochilas pulsam */
   _flash(a,o){var p=this.offsetParent;if(!p||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var O=PWWidgetBag.O,N=PWWidgetBag._near,f=document.createElement('span');f.className='pwbg-flash';var x,y,w,hh,vert=false;
     if(N(a.y+a.h,o.y)||N(o.y+o.h,a.y)){var yy=N(a.y+a.h,o.y)?a.y+a.h-O/2:o.y+o.h-O/2;x=Math.max(a.x,o.x)+8;w=Math.min(a.x+a.w,o.x+o.w)-8-x;y=yy-3;hh=6}
@@ -1575,5 +1577,5 @@ class PWWidgetBag extends HTMLElement{
 }
 PWWidgetBag.O=3;PWWidgetBag.C=24;
 customElements.define('pw-widget-bag',PWWidgetBag);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.56.2"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.56.3"});
 })();
