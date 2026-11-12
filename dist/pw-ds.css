@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.50.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.51.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1534,3 +1534,48 @@ pw-control-group-item mark{background:none;color:var(--pw-text-title);font-weigh
 @media (prefers-reduced-motion:reduce){pw-control-group[for][open]{animation:none}pw-control-group-item,pw-control-group-item .pwci-check svg{transition:none}}
 pw-button[aria-haspopup][aria-expanded="true"] .pwbt-label+.pwbt-icon{transform:rotate(180deg)}
 pw-button[aria-haspopup] .pwbt-label+.pwbt-icon{transition:transform .2s var(--card-ease)}
+/* ===================== COMPONENT: pw-widget-bag (widget Mochila) ===================== */
+/* feito só com peças do DS: pw-card primary (moldura), pw-button ghost (ações), pw-scroll (rolagem), pw-card quaternary (slots), pw-badge (quantidade) */
+pw-widget-bag{--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5;--wb-pad:var(--pw-space-4);--wb-head:var(--pw-space-12);
+  position:absolute;display:block;box-sizing:border-box;width:calc(var(--wb-slot) * var(--wb-cols) + var(--wb-gap) * (var(--wb-cols) - 1) + var(--wb-pad) * 2 + var(--pw-space-3));
+  height:calc(var(--wb-head) + (var(--wb-slot) + var(--wb-gap)) * 7 + var(--wb-pad));min-height:calc(var(--wb-head) + var(--wb-slot) + var(--wb-gap) + var(--wb-pad));
+  font-family:var(--pw-font-body);z-index:10;touch-action:none}
+pw-widget-bag[hidden]{display:none}
+pw-widget-bag[collapsed]{height:auto!important;min-height:0}
+pw-widget-bag[static]{position:relative}
+pw-widget-bag>pw-card.pwbg-card{width:100%;height:100%;--lift:0px}
+pw-widget-bag>pw-card.pwbg-card>.pwc-content{height:100%;padding:0 var(--wb-pad) 0;gap:0;display:flex;flex-direction:column;min-height:0}
+pw-widget-bag[collapsed]>pw-card.pwbg-card>.pwc-content{height:auto}
+/* cabeçalho: alça de arrastar */
+pw-widget-bag .pwbg-head{flex:none;display:flex;align-items:center;gap:var(--pw-space-1-5,var(--pw-space-1));height:var(--wb-head);cursor:grab;user-select:none}
+pw-widget-bag[locked] .pwbg-head,pw-widget-bag[static] .pwbg-head{cursor:default}
+pw-widget-bag.dragging .pwbg-head{cursor:grabbing}
+pw-widget-bag .pwbg-ic{flex:none;width:var(--pw-space-6);height:var(--pw-space-6);object-fit:contain;filter:drop-shadow(0 1px 2px var(--pw-black-a45))}
+pw-widget-bag .pwbg-title{flex:1;min-width:0;margin:0;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.04em;color:var(--pw-text-title);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+pw-widget-bag .pwbg-acts{display:flex;align-items:center;gap:0}
+pw-widget-bag .pwbg-acts pw-button{--bh:var(--pw-space-6);--bic:var(--pw-space-4)}
+pw-widget-bag[locked] .pwbg-acts pw-button[data-a="lock"]{--b-fg:var(--pw-text-title)}
+/* corpo */
+pw-widget-bag .pwbg-body{flex:1;min-height:0;display:flex;flex-direction:column;padding-bottom:var(--wb-pad)}
+pw-widget-bag[collapsed] .pwbg-body{display:none}
+pw-widget-bag pw-scroll.pwbg-scroll{flex:1;min-height:0;padding-right:var(--pw-space-3)}
+pw-widget-bag .pwbg-grid{display:grid;grid-template-columns:repeat(var(--wb-cols),var(--wb-slot));grid-auto-rows:var(--wb-slot);gap:var(--wb-gap);padding:var(--pw-space-0-5)}
+pw-widget-bag pw-card.pwbg-slot{position:relative;width:var(--wb-slot);height:var(--wb-slot);border-radius:var(--pw-radius-sm);cursor:pointer}
+pw-widget-bag pw-card.pwbg-slot>.pwc-content{position:relative;height:100%;padding:0;display:block}
+pw-widget-bag pw-card.pwbg-slot:active{--press:.92}
+pw-widget-bag .pwbg-slot .pwc-content>img,pw-widget-bag .pwbg-slot .pwc-content>svg{position:absolute;inset:0;margin:auto;z-index:1}
+pw-widget-bag .pwbg-slot .pwc-content>img{width:88%;height:88%;object-fit:contain;filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
+pw-widget-bag .pwbg-slot .pwc-content>svg{width:62%;height:62%;color:var(--pw-text-accent)}
+pw-widget-bag .pwbg-slot.empty{cursor:default}
+pw-widget-bag .pwbg-slot.empty .pwc-content>svg{width:60%;height:60%;color:color-mix(in srgb,var(--pw-text-muted) 70%,transparent)}
+pw-widget-bag .pwbg-slot pw-badge{position:absolute;right:calc(var(--pw-space-1) * -1);bottom:calc(var(--pw-space-1) * -1);z-index:2;pointer-events:none}
+/* alça de redimensionar (borda de baixo) */
+pw-widget-bag .pwbg-resize{position:absolute;left:var(--pw-space-8);right:var(--pw-space-8);bottom:calc(var(--pw-space-1) * -1);height:var(--pw-space-3);cursor:ns-resize;z-index:4;display:grid;place-items:center;outline:none;border-radius:var(--pw-radius-full)}
+pw-widget-bag .pwbg-resize::after{content:"";width:var(--pw-space-10);height:var(--pw-space-1);border-radius:var(--pw-radius-full);background:var(--pw-filament);opacity:0;box-shadow:0 0 8px var(--pw-glow);transition:opacity var(--card-dur)}
+pw-widget-bag:hover .pwbg-resize::after{opacity:.45}
+pw-widget-bag .pwbg-resize:hover::after,pw-widget-bag.resizing .pwbg-resize::after,pw-widget-bag .pwbg-resize:focus-visible::after{opacity:1}
+pw-widget-bag .pwbg-resize:focus-visible{box-shadow:0 0 0 2px var(--pw-focus-ring)}
+pw-widget-bag[collapsed] .pwbg-resize,pw-widget-bag[locked] .pwbg-resize{display:none}
+pw-widget-bag.dragging,pw-widget-bag.resizing{user-select:none}
+pw-widget-bag.dragging>pw-card{filter:drop-shadow(0 12px 24px var(--pw-black-a45))}
+@media (prefers-reduced-motion:reduce){pw-widget-bag *{transition:none!important}}

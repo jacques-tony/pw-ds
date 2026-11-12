@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.51.0
+- Novo componente **`pw-widget-bag`** (widget Mochila), feito só com peças do DS: `pw-card` primary, `pw-button` ghost, `pw-scroll`, slots `pw-card` quaternary 32×32 em 5 colunas e `pw-badge` de quantidade; ícone `bag` da barra de navegação.
+  - Aberto e fechado (`collapsed`), bloqueado (`locked`: sem arrastar nem redimensionar) e fechar (`close()` / `show()`).
+  - Arrastar pelo cabeçalho dentro do pai; redimensionar pela borda de baixo (encaixa em linhas inteiras; teclado ↑ ↓ Home End); vem para a frente ao clicar.
+  - `heading`, `slots`, `.items` ou JSON (`image`/`icon`, `label`, `count`, `description`); eventos `select`, `itemmenu`, `move`, `resize`, `collapse`, `lock`, `close` (cancelável).
+
 ## 0.50.2
 - `pw-hud`: badge Ctrl+N dos cards da equipe agora usa `tone="neutral"`.
 
