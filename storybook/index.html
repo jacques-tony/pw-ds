@@ -1715,8 +1715,9 @@ pw-button[aria-haspopup] .pwbt-label+.pwbt-icon{transition:transform .2s var(--c
 /* ===================== COMPONENT: pw-widget-pokemon ===================== */
 /* altura automática sem !important para a animação de abrir/recolher (a mesma da mochila) funcionar */
 pw-widget-pokemon{height:auto}
-pw-widget-pokemon>pw-card.pwbg-card{height:auto}
-pw-widget-pokemon>pw-card.pwbg-card>.pwc-content{height:auto;padding-bottom:var(--pw-space-4)}
+/* o card acompanha a altura animada do widget (igual à mochila); sem animação a altura é a do conteúdo */
+pw-widget-pokemon>pw-card.pwbg-card{height:100%}
+pw-widget-pokemon>pw-card.pwbg-card>.pwc-content{height:100%;padding-bottom:var(--pw-space-4)}
 pw-widget-pokemon[collapsed]>pw-card.pwbg-card>.pwc-content{padding-bottom:0}
 pw-widget-pokemon .pwpk-hic{display:grid;place-items:center}pw-widget-pokemon .pwpk-hic svg{width:100%;height:100%}
 pw-widget-pokemon .pwpk-body{display:grid;gap:var(--pw-space-3)}

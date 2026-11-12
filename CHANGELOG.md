@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.60.4
+- `pw-widget-pokemon`: o card acompanha a altura animada ao abrir/recolher (antes pulava para o tamanho final), deixando a animação igual à da mochila.
+
 ## 0.60.3
 - `pw-widget-pokemon`: barra de recarga padronizada como na HUD: "Cooldown" quando ativa e "Sem CD" quando não há.
 
