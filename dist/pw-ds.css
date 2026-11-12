@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.53.8 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.53.9 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1537,7 +1537,7 @@ pw-button[aria-haspopup] .pwbt-label+.pwbt-icon{transition:transform .2s var(--c
 /* ===================== COMPONENT: pw-widget-bag (widget Mochila) ===================== */
 /* feito só com peças do DS: pw-card primary (moldura), pw-button ghost (ações), pw-scroll (rolagem), pw-card quaternary (slots), pw-badge (quantidade) */
 pw-widget-bag{--wb-ov:var(--pw-bg-solid);--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5;--wb-pad:var(--pw-space-4);--wb-head:var(--pw-space-16);
-  position:absolute;display:block;box-sizing:border-box;width:calc(var(--wb-slot) * var(--wb-cols) + var(--wb-gap) * (var(--wb-cols) - 1) + var(--wb-pad) * 2 + var(--pw-space-3));
+  position:absolute;display:block;box-sizing:border-box;width:calc(var(--wb-slot) * var(--wb-cols) + var(--wb-gap) * (var(--wb-cols) - 1) + var(--wb-pad) * 2);
   height:calc(var(--wb-head) + (var(--wb-slot) + var(--wb-gap)) * 7 + var(--pw-space-4));min-height:calc(var(--wb-head) + var(--wb-slot) + var(--pw-space-4));
   font-family:var(--pw-font-body);z-index:10;touch-action:none}
 pw-widget-bag[hidden]{display:none}
@@ -1552,11 +1552,11 @@ pw-widget-bag[collapsed]{min-height:var(--pw-space-16)!important}
 /* cabeçalho de 64px com o conteúdo centralizado (mesmo espaço em cima e embaixo), igual aberto e fechado: sem salto ao abrir */
 pw-widget-bag[collapsed]>pw-card.pwbg-card>.pwc-content{height:auto;padding-bottom:0}
 /* cabeçalho: alça de arrastar */
-pw-widget-bag .pwbg-head{flex:none;display:flex;align-items:center;gap:var(--pw-space-2);box-sizing:border-box;height:var(--wb-head);padding:0;cursor:grab;user-select:none}
+pw-widget-bag .pwbg-head{flex:none;display:flex;align-items:center;gap:var(--pw-space-1);box-sizing:border-box;height:var(--wb-head);padding:0;cursor:grab;user-select:none}
 pw-widget-bag[locked] .pwbg-head,pw-widget-bag[static] .pwbg-head{cursor:default}
 pw-widget-bag.dragging .pwbg-head{cursor:grabbing}
 pw-widget-bag .pwbg-ic{flex:none;width:var(--pw-space-6);height:var(--pw-space-6);object-fit:contain;filter:drop-shadow(0 1px 2px var(--pw-black-a45))}
-pw-widget-bag .pwbg-title{flex:1;min-width:0;margin:0;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.04em;color:var(--pw-text-title);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+pw-widget-bag .pwbg-title{flex:1;min-width:0;margin:0;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.02em;color:var(--pw-text-title);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 pw-widget-bag .pwbg-acts{display:flex;align-items:center;gap:0}
 
 pw-widget-bag[locked] .pwbg-acts pw-button[data-a="lock"]{--b-fg:var(--pw-text-title)}
@@ -1564,11 +1564,11 @@ pw-widget-bag[locked] .pwbg-acts pw-button[data-a="lock"]{--b-fg:var(--pw-text-t
 pw-widget-bag .pwbg-body{flex:1;min-height:0;display:flex;flex-direction:column}
 pw-widget-bag[collapsed] .pwbg-body{display:none}
 /* folga para o hover (sobe 2px + brilho) não ser cortado; a margem negativa mantém o mesmo espaçamento visual */
-pw-widget-bag pw-scroll.pwbg-scroll{flex:1;min-height:0;padding:var(--pw-space-2) var(--pw-space-3) calc(var(--pw-space-6) - var(--pw-space-1)) var(--pw-space-1);margin:calc(var(--pw-space-2) * -1) 0 0 calc(var(--pw-space-1) * -1)}
+pw-widget-bag pw-scroll.pwbg-scroll{flex:1;min-height:0;padding:var(--pw-space-2) calc(var(--pw-space-2) + var(--pw-space-0-5) - var(--pw-scroll-size)) calc(var(--pw-space-6) - var(--pw-space-1)) var(--pw-space-1);margin:calc(var(--pw-space-2) * -1) calc((var(--pw-space-2) + var(--pw-space-0-5)) * -1) 0 calc(var(--pw-space-1) * -1)}
 /* a rolagem vai até a borda (o overlay cobre o corte ali), mas a barra para na altura dos slots; cantos de baixo chanfrados como a moldura */
 pw-widget-bag pw-scroll.pwbg-scroll{clip-path:polygon(0 0,100% 0,100% calc(100% - var(--pw-space-5)),calc(100% - var(--pw-space-5)) 100%,var(--pw-space-5) 100%,0 calc(100% - var(--pw-space-5)))}
 pw-widget-bag pw-scroll.pwbg-scroll::-webkit-scrollbar-track{margin-block:var(--pw-space-2) calc(var(--pw-space-6) - var(--pw-space-1))}
-pw-widget-bag .pwbg-grid{display:grid;grid-template-columns:repeat(var(--wb-cols),var(--wb-slot));grid-auto-rows:var(--wb-slot);gap:var(--wb-gap);padding:0 var(--pw-space-0-5)}
+pw-widget-bag .pwbg-grid{display:grid;grid-template-columns:repeat(var(--wb-cols),var(--wb-slot));grid-auto-rows:var(--wb-slot);gap:var(--wb-gap);padding:0}
 pw-widget-bag pw-card.pwbg-slot{position:relative;width:var(--wb-slot);height:var(--wb-slot);border-radius:var(--pw-radius-sm);cursor:pointer}
 pw-widget-bag pw-card.pwbg-slot>.pwc-content{position:relative;height:100%;padding:0;display:block}
 pw-widget-bag pw-card.pwbg-slot:active{--press:.92}

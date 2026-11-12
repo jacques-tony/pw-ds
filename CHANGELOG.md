@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.53.9
+- `pw-widget-bag`: slots alinhados às extremidades do cabeçalho (16px de cada lado, até o botão Fechar); barra de rolagem independente do conteúdo, sobre o padding, a ~4px da borda dourada direita; largura sem a reserva da barra (224px).
+
 ## 0.53.8
 - `pw-widget-bag`: botões do cabeçalho em `pw-button` ghost, fill, `size="sm"` padrão (28px) e `fx="none"` (só o hover, sem brilho, partículas ou anel).
 
