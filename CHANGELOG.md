@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.66.2
+- `pw-widget-chat`: não pode ser fechado (sem botão fechar; `close()` não faz nada).
+- Recolhido, continua redimensionável na largura pelas alças da esquerda e da direita.
+
 ## 0.66.1
 - `pw-widget-chat`: altura mínima calculada para mostrar 3 mensagens (largura mínima 320px).
 - Removido o botão Minimizar do rodapé.
