@@ -1644,7 +1644,7 @@ pw-widget-bag.dragging .pwbg-head{cursor:grabbing}
 pw-widget-bag .pwbg-ic{flex:none;width:var(--pw-space-6);height:var(--pw-space-6);object-fit:contain;filter:drop-shadow(0 1px 2px var(--pw-black-a45))}
 pw-widget-bag .pwbg-title{flex:1;min-width:0;margin:0;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.04em;color:var(--pw-text-title);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 pw-widget-bag .pwbg-acts{display:flex;align-items:center;gap:0}
-pw-widget-bag .pwbg-acts pw-button{--bh:var(--pw-space-6);--bic:var(--pw-space-4)}
+
 pw-widget-bag[locked] .pwbg-acts pw-button[data-a="lock"]{--b-fg:var(--pw-text-title)}
 /* corpo */
 pw-widget-bag .pwbg-body{flex:1;min-height:0;display:flex;flex-direction:column}
@@ -5155,7 +5155,7 @@ class PWWidgetBag extends HTMLElement{
   connectedCallback(){if(this._init)return;this._init=true;var json=this.querySelector('script[type="application/json"]');if(json){try{this._items=JSON.parse(json.textContent)}catch(e){}}
     this.setAttribute('role','region');var u=this._u='pwbg'+(++uidN);
     this.innerHTML='<pw-card variant="primary" fill="'+(this.getAttribute('fill')==='gradient'?'gradient':'solid')+'" class="pwbg-card"><div class="pwbg-head"><img class="pwbg-ic" alt="" draggable="false"><h2 class="pwbg-title" id="'+u+'t"></h2><div class="pwbg-acts">'+
-      '<pw-button variant="ghost" size="sm" particles="0" data-a="collapse"></pw-button><pw-button variant="ghost" size="sm" particles="0" data-a="lock"></pw-button><pw-button variant="ghost" size="sm" particles="0" icon="close" data-a="close" data-label="Fechar"></pw-button></div></div>'+
+      '<pw-button variant="ghost" size="sm" fx="none" particles="0" data-a="collapse"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" data-a="lock"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" data-a="close" data-label="Fechar"></pw-button></div></div>'+
       '<div class="pwbg-body" id="'+u+'b"><pw-scroll class="pwbg-scroll"><div class="pwbg-grid" role="grid"></div></pw-scroll></div></pw-card>'+
       '<div class="pwbg-resize" role="separator" aria-orientation="horizontal" tabindex="0" aria-label="Redimensionar mochila (setas ↑ ↓)" data-tip="Arraste para redimensionar" data-tip-pos="bottom"></div>';
     this.setAttribute('aria-labelledby',u+'t');this.querySelector('.pwbg-ic').src=pwNavIcon(this.getAttribute('icon')||'bag',24);

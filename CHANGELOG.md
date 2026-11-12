@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.53.8
+- `pw-widget-bag`: botões do cabeçalho em `pw-button` ghost, fill, `size="sm"` padrão (28px) e `fx="none"` (só o hover, sem brilho, partículas ou anel).
+
 ## 0.53.7
 - `pw-widget-bag`: overlay de cima começa no limite da área dos slots (não fica no meio deles); área dos slots com os cantos de baixo chanfrados como a moldura, sem pontas aparecendo fora do overlay.
 

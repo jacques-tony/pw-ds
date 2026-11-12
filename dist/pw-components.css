@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.53.7 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.53.8 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1378,7 +1378,7 @@ pw-widget-bag.dragging .pwbg-head{cursor:grabbing}
 pw-widget-bag .pwbg-ic{flex:none;width:var(--pw-space-6);height:var(--pw-space-6);object-fit:contain;filter:drop-shadow(0 1px 2px var(--pw-black-a45))}
 pw-widget-bag .pwbg-title{flex:1;min-width:0;margin:0;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.04em;color:var(--pw-text-title);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 pw-widget-bag .pwbg-acts{display:flex;align-items:center;gap:0}
-pw-widget-bag .pwbg-acts pw-button{--bh:var(--pw-space-6);--bic:var(--pw-space-4)}
+
 pw-widget-bag[locked] .pwbg-acts pw-button[data-a="lock"]{--b-fg:var(--pw-text-title)}
 /* corpo */
 pw-widget-bag .pwbg-body{flex:1;min-height:0;display:flex;flex-direction:column}
