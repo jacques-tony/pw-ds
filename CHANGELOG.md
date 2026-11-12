@@ -27,6 +27,16 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.59.0
+- `pw-navbar` (Barra superior):
+  - Moldura passa a ser o mesmo `pw-card` primary da Mochila, com `fill="gradient"` e sem brilho.
+  - 16px nas laterais e ícones com espaçamento igual.
+  - Nova animação: a pokébola vai ao centro, se divide ao meio, as metades vão às laterais e voltam ao meio (ao recolher e ao abrir).
+  - Brilho do item selecionado 20% menor.
+  - Animação correta dentro de container escalado.
+- Storybook: separadores removidos das barras de exemplo e dicas na ordem Perfil … Sair do Jogo.
+- `pw-widget-bag`: a Barra superior também é ímã (a mochila gruda nela, embaixo ou nas laterais).
+
 ## 0.58.2
 - `pw-widget-bag`: mochila conectada pela lateral volta a aceitar conexão em cima e embaixo (todos os lados livres); só os cantos diagonais da junção continuam bloqueados.
 

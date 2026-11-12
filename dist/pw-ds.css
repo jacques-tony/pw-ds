@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.58.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.59.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1264,9 +1264,10 @@ pw-navbar[size="sm"]{--nb-h:44px;--nb-item:32px;--nb-ic:24px;--nb-c:12px;--nb-ba
 pw-navbar[size="lg"]{--nb-h:68px;--nb-item:50px;--nb-ic:38px;--nb-c:20px;--nb-ball:40px}
 pw-navbar[toggle="false"]{padding-bottom:0}
 pw-navbar .pwnb-bar{position:relative;height:var(--nb-h);max-width:100%;box-sizing:border-box;display:flex;align-items:center;justify-content:center;
-  padding:0 calc(var(--nb-c) + var(--pw-space-3));filter:drop-shadow(0 4px 14px var(--pw-black-a45))}
-pw-navbar .pwnb-frame{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
-pw-navbar .pwnb-items{position:relative;display:flex;align-items:center;gap:var(--pw-space-0-5);min-width:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;padding:var(--pw-space-2) var(--pw-space-1);margin:calc(var(--pw-space-1) * -1) 0}
+  padding:0 var(--pw-space-4);filter:drop-shadow(0 4px 14px var(--pw-black-a45))}
+pw-navbar pw-card.pwnb-frame{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;--lift:0px}
+pw-navbar pw-card.pwnb-frame>.pwc-content{padding:0}
+pw-navbar .pwnb-items{position:relative;display:flex;align-items:center;gap:var(--pw-space-0-5);min-width:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;padding:var(--pw-space-2) 0;margin:calc(var(--pw-space-1) * -1) 0}
 pw-navbar .pwnb-items::-webkit-scrollbar{display:none}
 /* item */
 pw-nav-item{position:relative;flex:none;display:inline-grid;place-items:center;width:var(--nb-item);height:var(--nb-item);border-radius:var(--pw-radius-sm);cursor:pointer;outline:none;
@@ -1278,11 +1279,11 @@ pw-nav-item:hover{background:radial-gradient(circle at 50% 60%,color-mix(in srgb
 pw-nav-item:hover .pwni-ic{transform:translateY(-2px) scale(1.12);filter:drop-shadow(0 4px 4px var(--pw-black-a45)) drop-shadow(0 0 6px var(--pw-glow-soft))}
 pw-nav-item:active .pwni-ic{transform:scale(.94)}
 pw-nav-item:focus-visible{box-shadow:0 0 0 2px var(--pw-focus-ring)}
-pw-navbar .pwnb-ind{position:absolute;left:0;bottom:calc(var(--pw-space-2) - 2px);width:0;height:2px;border-radius:var(--pw-radius-full);background:var(--pw-filament);box-shadow:0 0 8px var(--pw-glow);pointer-events:none;opacity:0;
+pw-navbar .pwnb-ind{position:absolute;left:0;bottom:calc(var(--pw-space-2) - 2px);width:0;height:2px;border-radius:var(--pw-radius-full);background:var(--pw-filament);box-shadow:0 0 8px color-mix(in srgb,var(--pw-glow) 80%,transparent);pointer-events:none;opacity:0;
   transition:transform .42s var(--card-ease),width .42s var(--card-ease),opacity .2s}
 pw-navbar .pwnb-ind.on{opacity:1}
 @media (prefers-reduced-motion:reduce){pw-navbar .pwnb-ind{transition:none}}
-pw-nav-item[active] .pwni-ic{filter:drop-shadow(0 0 6px var(--pw-glow-soft))}
+pw-nav-item[active] .pwni-ic{filter:drop-shadow(0 0 6px color-mix(in srgb,var(--pw-glow-soft) 80%,transparent))}
 pw-nav-item[disabled]{opacity:.4;cursor:not-allowed;filter:grayscale(.8)}
 pw-nav-item .pwni-badge{position:absolute;top:0;right:0;min-width:16px;height:16px;padding:0 var(--pw-space-1);box-sizing:border-box;display:grid;place-items:center;border-radius:var(--pw-radius-full);
   background:linear-gradient(180deg,var(--pw-tone-error-solid-top),var(--pw-tone-error-solid-bottom));border:1px solid var(--pw-tone-error-border-soft);color:var(--pw-white);
@@ -1302,6 +1303,7 @@ pw-navbar .pwnb-ball::after{content:"";position:absolute;left:50%;top:50%;width:
 pw-navbar .pwnb-ball:hover{box-shadow:0 0 0 1.5px var(--pw-filament),0 0 12px var(--pw-glow),inset 0 -3px 4px var(--pw-black-a20)}
 pw-navbar .pwnb-ball:focus-visible{outline:2px solid var(--pw-focus-ring);outline-offset:3px}
 pw-navbar[toggle="false"] .pwnb-ball{display:none}
+pw-navbar .pwnb-half{z-index:4}
 /* recolhida: só a pokébola, meio escondida no topo */
 pw-navbar[collapsed] .pwnb-bar{visibility:hidden}
 pw-navbar[collapsed] .pwnb-ball{top:calc(var(--nb-ball) / -2)}
