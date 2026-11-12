@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.61.6
+- `pw-widget-minimap`: volta o degradê superior anterior e todas as bordas esmaecem de forma mais suave (várias paradas, faixa mais larga).
+
 ## 0.61.5
 - `pw-widget-minimap`: degradê superior sólido até o cabeçalho e esmaecendo até depois da faixa de coordenadas.
 

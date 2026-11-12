@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.61.5 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.61.6 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1512,8 +1512,12 @@ pw-widget-minimap .pwmm-vp{--ch:var(--pw-space-3);position:absolute;inset:2px;z-
   clip-path:polygon(var(--ch) 0,calc(100% - var(--ch)) 0,100% var(--ch),100% calc(100% - var(--ch)),calc(100% - var(--ch)) 100%,var(--ch) 100%,0 calc(100% - var(--ch)),0 var(--ch))}
 /* bordas esmaecidas com um degradê por cima (sem mask, para funcionar em todos os navegadores) */
 pw-widget-minimap .pwmm-vp::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
-  background:linear-gradient(90deg,var(--pw-bg-solid),transparent var(--pw-space-6),transparent calc(100% - var(--pw-space-6)),var(--pw-bg-solid)),
-             linear-gradient(var(--pw-bg-solid),var(--pw-bg-solid) calc(var(--wb-head) - var(--pw-space-1)),color-mix(in srgb,var(--pw-bg-solid) 70%,transparent) calc(var(--wb-head) + var(--pw-space-7)),transparent calc(var(--wb-head) + var(--pw-space-7) + var(--pw-space-8)),transparent calc(100% - var(--pw-space-12)),var(--pw-bg-solid))}
+  /* esmaecimento suave (várias paradas) nas laterais, no topo e embaixo */
+  background:
+    linear-gradient(90deg,var(--pw-bg-solid),color-mix(in srgb,var(--pw-bg-solid) 78%,transparent) calc(var(--pw-space-3)),color-mix(in srgb,var(--pw-bg-solid) 45%,transparent) var(--pw-space-6),color-mix(in srgb,var(--pw-bg-solid) 18%,transparent) var(--pw-space-8),transparent var(--pw-space-12)),
+    linear-gradient(270deg,var(--pw-bg-solid),color-mix(in srgb,var(--pw-bg-solid) 78%,transparent) calc(var(--pw-space-3)),color-mix(in srgb,var(--pw-bg-solid) 45%,transparent) var(--pw-space-6),color-mix(in srgb,var(--pw-bg-solid) 18%,transparent) var(--pw-space-8),transparent var(--pw-space-12)),
+    linear-gradient(var(--pw-bg-solid),color-mix(in srgb,var(--pw-bg-solid) 80%,transparent) calc(var(--wb-head) - var(--pw-space-4)),color-mix(in srgb,var(--pw-bg-solid) 50%,transparent) var(--wb-head),color-mix(in srgb,var(--pw-bg-solid) 22%,transparent) calc(var(--wb-head) + var(--pw-space-4)),transparent calc(var(--wb-head) + var(--pw-space-10))),
+    linear-gradient(0deg,var(--pw-bg-solid),color-mix(in srgb,var(--pw-bg-solid) 80%,transparent) var(--pw-space-6),color-mix(in srgb,var(--pw-bg-solid) 45%,transparent) var(--pw-space-10),color-mix(in srgb,var(--pw-bg-solid) 18%,transparent) var(--pw-space-14),transparent var(--pw-space-20))}
 pw-widget-minimap[collapsed] .pwmm-vp{display:none}
 pw-widget-minimap .pwbg-head,pw-widget-minimap .pwmm-body{position:relative;z-index:1}
 pw-widget-minimap .pwmm-body{pointer-events:none}
