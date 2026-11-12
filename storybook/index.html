@@ -1622,7 +1622,7 @@ pw-button[aria-haspopup][aria-expanded="true"] .pwbt-label+.pwbt-icon{transform:
 pw-button[aria-haspopup] .pwbt-label+.pwbt-icon{transition:transform .2s var(--card-ease)}
 /* ===================== COMPONENT: pw-widget-bag (widget Mochila) ===================== */
 /* feito só com peças do DS: pw-card primary (moldura), pw-button ghost (ações), pw-scroll (rolagem), pw-card quaternary (slots), pw-badge (quantidade) */
-pw-widget-bag{--wb-ov:var(--pw-bg-solid);--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5;--wb-pad:var(--pw-space-4);--wb-head:calc(var(--pw-space-3) * 2 + var(--pw-space-7));
+pw-widget-bag{--wb-ov:var(--pw-bg-solid);--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5;--wb-pad:var(--pw-space-4);--wb-head:var(--pw-space-16);
   position:absolute;display:block;box-sizing:border-box;width:calc(var(--wb-slot) * var(--wb-cols) + var(--wb-gap) * (var(--wb-cols) - 1) + var(--wb-pad) * 2 + var(--pw-space-3));
   height:calc(var(--wb-head) + (var(--wb-slot) + var(--wb-gap)) * 7 + var(--pw-space-4));min-height:calc(var(--wb-head) + var(--wb-slot) + var(--pw-space-4));
   font-family:var(--pw-font-body);z-index:10;touch-action:none}
@@ -1635,10 +1635,10 @@ pw-widget-bag>pw-card.pwbg-card>.pwc-content{height:100%;padding:0 var(--wb-pad)
 /* fechado: no mínimo 64px de altura e 24px nas laterais */
 pw-widget-bag[collapsed]{min-height:var(--pw-space-16)!important}
 
-/* o cabeçalho fica na mesma posição aberto e fechado (sem salto): 12 + 28 + 12 + 12 = 64px */
-pw-widget-bag[collapsed]>pw-card.pwbg-card>.pwc-content{height:auto;padding-bottom:var(--pw-space-3)}
+/* cabeçalho de 64px com o conteúdo centralizado (mesmo espaço em cima e embaixo), igual aberto e fechado: sem salto ao abrir */
+pw-widget-bag[collapsed]>pw-card.pwbg-card>.pwc-content{height:auto;padding-bottom:0}
 /* cabeçalho: alça de arrastar */
-pw-widget-bag .pwbg-head{flex:none;display:flex;align-items:center;gap:var(--pw-space-2);box-sizing:border-box;height:var(--wb-head);padding:var(--pw-space-3) 0;cursor:grab;user-select:none}
+pw-widget-bag .pwbg-head{flex:none;display:flex;align-items:center;gap:var(--pw-space-2);box-sizing:border-box;height:var(--wb-head);padding:0;cursor:grab;user-select:none}
 pw-widget-bag[locked] .pwbg-head,pw-widget-bag[static] .pwbg-head{cursor:default}
 pw-widget-bag.dragging .pwbg-head{cursor:grabbing}
 pw-widget-bag .pwbg-ic{flex:none;width:var(--pw-space-6);height:var(--pw-space-6);object-fit:contain;filter:drop-shadow(0 1px 2px var(--pw-black-a45))}

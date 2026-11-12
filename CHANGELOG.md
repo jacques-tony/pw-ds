@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.53.4
+- `pw-widget-bag`: cabeçalho de 64px com o conteúdo centralizado (20px em cima e embaixo dos botões) igual aberto e fechado, sem salto ao abrir.
+
 ## 0.53.3
 - `pw-widget-bag`: volta 24px embaixo (overlay continua indo até a borda); espaço entre o cabeçalho e os slots igual ao espaço do topo do cabeçalho.
 
