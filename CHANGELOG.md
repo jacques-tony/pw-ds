@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.51.2
+- `pw-widget-bag`: 24px nas laterais também aberta; abrir/recolher com transição suave de altura e fade (método `toggle()`); quantidade como texto no canto inferior direito do slot (vermelha em zero); overlay embaixo quando ainda há slots para rolar.
+
 ## 0.51.1
 - `pw-widget-bag` fechado: altura mínima de 64px e 24px de espaço nas laterais.
 

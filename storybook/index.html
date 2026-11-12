@@ -1622,7 +1622,7 @@ pw-button[aria-haspopup][aria-expanded="true"] .pwbt-label+.pwbt-icon{transform:
 pw-button[aria-haspopup] .pwbt-label+.pwbt-icon{transition:transform .2s var(--card-ease)}
 /* ===================== COMPONENT: pw-widget-bag (widget Mochila) ===================== */
 /* feito só com peças do DS: pw-card primary (moldura), pw-button ghost (ações), pw-scroll (rolagem), pw-card quaternary (slots), pw-badge (quantidade) */
-pw-widget-bag{--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5;--wb-pad:var(--pw-space-4);--wb-head:var(--pw-space-12);
+pw-widget-bag{--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5;--wb-pad:var(--pw-space-6);--wb-head:var(--pw-space-12);
   position:absolute;display:block;box-sizing:border-box;width:calc(var(--wb-slot) * var(--wb-cols) + var(--wb-gap) * (var(--wb-cols) - 1) + var(--wb-pad) * 2 + var(--pw-space-3));
   height:calc(var(--wb-head) + (var(--wb-slot) + var(--wb-gap)) * 7 + var(--wb-pad));min-height:calc(var(--wb-head) + var(--wb-slot) + var(--wb-gap) + var(--wb-pad));
   font-family:var(--pw-font-body);z-index:10;touch-action:none}
@@ -1634,7 +1634,7 @@ pw-widget-bag>pw-card.pwbg-card>.pwc-content{height:100%;padding:0 var(--wb-pad)
 /* fechado: no mínimo 64px de altura e 24px nas laterais */
 pw-widget-bag[collapsed]{min-height:var(--pw-space-16)!important}
 pw-widget-bag[collapsed]>pw-card.pwbg-card{min-height:var(--pw-space-16)}
-pw-widget-bag[collapsed]>pw-card.pwbg-card>.pwc-content{height:auto;min-height:var(--pw-space-16);padding:0 var(--pw-space-6);justify-content:center}
+pw-widget-bag[collapsed]>pw-card.pwbg-card>.pwc-content{height:auto;min-height:var(--pw-space-16);justify-content:center}
 /* cabeçalho: alça de arrastar */
 pw-widget-bag .pwbg-head{flex:none;display:flex;align-items:center;gap:var(--pw-space-1-5,var(--pw-space-1));height:var(--wb-head);cursor:grab;user-select:none}
 pw-widget-bag[locked] .pwbg-head,pw-widget-bag[static] .pwbg-head{cursor:default}
@@ -1657,7 +1657,13 @@ pw-widget-bag .pwbg-slot .pwc-content>img{width:88%;height:88%;object-fit:contai
 pw-widget-bag .pwbg-slot .pwc-content>svg{width:62%;height:62%;color:var(--pw-text-accent)}
 pw-widget-bag .pwbg-slot.empty{cursor:default}
 pw-widget-bag .pwbg-slot.empty .pwc-content>svg{width:60%;height:60%;color:color-mix(in srgb,var(--pw-text-muted) 70%,transparent)}
-pw-widget-bag .pwbg-slot pw-badge{position:absolute;right:calc(var(--pw-space-1) * -1);bottom:calc(var(--pw-space-1) * -1);z-index:2;pointer-events:none}
+pw-widget-bag .pwbg-slot .q{position:absolute;right:var(--pw-space-0-5);bottom:0;z-index:2;pointer-events:none;font:var(--pw-font-weight-bold) var(--pw-font-size-3xs)/1 var(--pw-font-body);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
+pw-widget-bag .pwbg-slot .q.zero{color:var(--pw-status-error)}
+/* overlay embaixo quando ainda há slots para rolar (o último não parece cortado) */
+pw-widget-bag .pwbg-body{position:relative}
+pw-widget-bag .pwbg-body::after{content:"";position:absolute;left:0;right:var(--pw-space-3);bottom:var(--wb-pad);height:var(--pw-space-10);pointer-events:none;opacity:0;transition:opacity .25s;
+  background:linear-gradient(transparent,color-mix(in srgb,var(--pw-bg-edge) 92%,transparent))}
+pw-widget-bag .pwbg-body[data-more]::after{opacity:1}
 /* alça de redimensionar (borda de baixo) */
 pw-widget-bag .pwbg-resize{position:absolute;left:var(--pw-space-8);right:var(--pw-space-8);bottom:calc(var(--pw-space-1) * -1);height:var(--pw-space-3);cursor:ns-resize;z-index:4;display:grid;place-items:center;outline:none;border-radius:var(--pw-radius-full)}
 pw-widget-bag .pwbg-resize::after{content:"";width:var(--pw-space-10);height:var(--pw-space-1);border-radius:var(--pw-radius-full);background:var(--pw-filament);opacity:0;box-shadow:0 0 8px var(--pw-glow);transition:opacity var(--card-dur)}
@@ -5117,13 +5123,15 @@ class PWWidgetBag extends HTMLElement{
       '<div class="pwbg-resize" role="separator" aria-orientation="horizontal" tabindex="0" aria-label="Redimensionar mochila (setas ↑ ↓)" data-tip="Arraste para redimensionar" data-tip-pos="bottom"></div>';
     this.setAttribute('aria-labelledby',u+'t');this.querySelector('.pwbg-ic').src=pwNavIcon(this.getAttribute('icon')||'bag',24);
     this.querySelector('.pwbg-acts').addEventListener('click',e=>{var b=e.target.closest('pw-button[data-a]');if(!b||b.hasAttribute('disabled'))return;var a=b.dataset.a;
-      if(a==='collapse')this.toggleAttribute('collapsed');else if(a==='lock')this.toggleAttribute('locked');else this.close()});
+      if(a==='collapse')this.toggle();else if(a==='lock')this.toggleAttribute('locked');else this.close()});
     this.querySelector('.pwbg-grid').addEventListener('click',e=>{var s=e.target.closest('.pwbg-slot[data-i]');if(!s||s.classList.contains('empty'))return;var i=+s.dataset.i;
       this.dispatchEvent(new CustomEvent('select',{bubbles:true,detail:{index:i,item:this._items[i]}}))});
     this.querySelector('.pwbg-grid').addEventListener('contextmenu',e=>{var s=e.target.closest('.pwbg-slot[data-i]');if(!s)return;e.preventDefault();var i=+s.dataset.i;
       this.dispatchEvent(new CustomEvent('itemmenu',{bubbles:true,detail:{index:i,item:this._items[i]||null,slot:s,x:e.clientX,y:e.clientY}}))});
     this.addEventListener('pointerdown',()=>{PWWidgetBag._z=(PWWidgetBag._z||10)+1;this.style.zIndex=PWWidgetBag._z},true);
-    this._dragInit();this._resizeInit();this._grid();this._sync()}
+    var sc=this.querySelector('.pwbg-scroll'),bd=this.querySelector('.pwbg-body');this._more=()=>bd.toggleAttribute('data-more',sc.scrollTop+sc.clientHeight<sc.scrollHeight-2);
+    sc.addEventListener('scroll',this._more,{passive:true});new ResizeObserver(this._more).observe(sc);
+    this._dragInit();this._resizeInit();this._grid();this._sync();requestAnimationFrame(this._more)}
   attributeChangedCallback(n,o,v){if(!this._init||o===v)return;if(n==='slots')this._grid();else if(n==='heading')this._sync();else{this._sync();
     if(n==='collapsed')this.dispatchEvent(new CustomEvent('collapse',{bubbles:true,detail:{collapsed:this.hasAttribute('collapsed')}}));
     if(n==='locked')this.dispatchEvent(new CustomEvent('lock',{bubbles:true,detail:{locked:this.hasAttribute('locked')}}))}}
@@ -5136,8 +5144,16 @@ class PWWidgetBag extends HTMLElement{
   _grid(){var n=Math.max(+this.getAttribute('slots')||35,this._items.length),E=pwEsc,h='';
     for(var i=0;i<n;i++){var it=this._items[i];if(!it||!(it.image||it.icon)){h+='<pw-card variant="quaternary" class="pwbg-slot empty" data-i="'+i+'" role="gridcell" aria-label="Espaço vazio '+(i+1)+'">'+pwIcon('poke')+'</pw-card>';continue}
       h+='<pw-card variant="quaternary" interactive state="idle" class="pwbg-slot" data-i="'+i+'" role="gridcell" aria-label="'+E(it.label||'Item')+(it.count!=null?', '+it.count+' unidades':'')+'"'+(it.label?' data-tip-title="'+E(it.label)+'"':'')+(it.description?' data-tip="'+E(it.description)+'"':'')+'>'+
-        (it.image?'<img src="'+E(it.image)+'" alt="">':pwIcon(it.icon))+(it.count!=null&&it.count!==1?'<pw-badge size="xs" tone="'+(it.count===0?'error':'neutral')+'">'+it.count+'</pw-badge>':'')+'</pw-card>'}
+        (it.image?'<img src="'+E(it.image)+'" alt="">':pwIcon(it.icon))+(it.count!=null&&it.count!==1?'<span class="q'+(it.count===0?' zero':'')+'">'+it.count+'</span>':'')+'</pw-card>'}
     this.querySelector('.pwbg-grid').innerHTML=h}
+  /* abre/recolhe com transição suave de altura (FLIP) */
+  toggle(force){var want=force===undefined?!this.hasAttribute('collapsed'):!!force;if(want===this.hasAttribute('collapsed'))return;
+    var h0=this.offsetHeight;if(this._anim)this._anim.cancel();this.toggleAttribute('collapsed',want);var h1=this.offsetHeight;
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches||h0===h1)return;var bd=this.querySelector('.pwbg-body');
+    if(want){this.removeAttribute('collapsed');this.style.overflow='hidden'}
+    this._anim=this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:340,easing:'cubic-bezier(.22,.8,.24,1)'});
+    bd.animate(want?[{opacity:1},{opacity:0}]:[{opacity:0,transform:'translateY(calc(var(--pw-space-2) * -1))'},{opacity:1,transform:'none'}],{duration:want?200:320,easing:'ease-out',fill:want?'forwards':'none'});
+    this._anim.finished.then(()=>{this.style.overflow='';if(want)this.setAttribute('collapsed','');bd.getAnimations().forEach(a=>a.cancel());this._more&&this._more()},()=>{this.style.overflow=''})}
   close(){var ev=new CustomEvent('close',{bubbles:true,cancelable:true});this.dispatchEvent(ev);if(!ev.defaultPrevented)this.hidden=true}
   show(){this.hidden=false}
   /* arrastar pelo cabeçalho, dentro do elemento pai */
