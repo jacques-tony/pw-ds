@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.61.8
+- `pw-widget-minimap` maximizado: ocupa 80% da área (cerca de 20% menor), centralizado.
+
 ## 0.61.7
 - `pw-widget-minimap`: alça de redimensionar também na lateral esquerda (cresce para a esquerda mantendo a borda direita no lugar), no mesmo padrão das outras.
 

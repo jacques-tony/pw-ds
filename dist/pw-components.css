@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.61.7 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.61.8 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1550,7 +1550,8 @@ pw-widget-minimap .pwmm-rb::after{width:var(--pw-space-10);height:var(--pw-space
 pw-widget-minimap:hover .pwmm-resize::after{opacity:.45}pw-widget-minimap .pwmm-resize:hover::after,pw-widget-minimap.resizing .pwmm-resize::after,pw-widget-minimap .pwmm-resize:focus-visible::after{opacity:1}
 pw-widget-minimap[collapsed] .pwmm-resize,pw-widget-minimap[locked] .pwmm-resize,pw-widget-minimap[maximized] .pwmm-resize{display:none}
 /* maximizado: ocupa a área do jogo; controles na vertical sobre o mapa e legenda de locais de caça */
-pw-widget-minimap[maximized]{left:var(--pw-space-6)!important;top:var(--pw-space-6)!important;right:var(--pw-space-6)!important;bottom:var(--pw-space-6)!important;width:auto!important;height:auto!important;z-index:900!important}
+/* maximizado: 80% da área do jogo, centralizado */
+pw-widget-minimap[maximized]{left:10%!important;top:10%!important;right:10%!important;bottom:10%!important;width:auto!important;height:auto!important;z-index:900!important}
 pw-widget-minimap[maximized] .pwbg-head{cursor:default}
 pw-widget-minimap[maximized] [data-a="collapse"],pw-widget-minimap[maximized] [data-a="lock"]{display:none}
 pw-widget-minimap[maximized] pw-card.pwmm-ctrlc{position:absolute;left:var(--wb-pad);top:50%;transform:translateY(-50%);border-radius:var(--pw-radius-lg)}

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.61.7 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.61.8 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1730,7 +1730,8 @@ pw-widget-minimap .pwmm-rb::after{width:var(--pw-space-10);height:var(--pw-space
 pw-widget-minimap:hover .pwmm-resize::after{opacity:.45}pw-widget-minimap .pwmm-resize:hover::after,pw-widget-minimap.resizing .pwmm-resize::after,pw-widget-minimap .pwmm-resize:focus-visible::after{opacity:1}
 pw-widget-minimap[collapsed] .pwmm-resize,pw-widget-minimap[locked] .pwmm-resize,pw-widget-minimap[maximized] .pwmm-resize{display:none}
 /* maximizado: ocupa a área do jogo; controles na vertical sobre o mapa e legenda de locais de caça */
-pw-widget-minimap[maximized]{left:var(--pw-space-6)!important;top:var(--pw-space-6)!important;right:var(--pw-space-6)!important;bottom:var(--pw-space-6)!important;width:auto!important;height:auto!important;z-index:900!important}
+/* maximizado: 80% da área do jogo, centralizado */
+pw-widget-minimap[maximized]{left:10%!important;top:10%!important;right:10%!important;bottom:10%!important;width:auto!important;height:auto!important;z-index:900!important}
 pw-widget-minimap[maximized] .pwbg-head{cursor:default}
 pw-widget-minimap[maximized] [data-a="collapse"],pw-widget-minimap[maximized] [data-a="lock"]{display:none}
 pw-widget-minimap[maximized] pw-card.pwmm-ctrlc{position:absolute;left:var(--wb-pad);top:50%;transform:translateY(-50%);border-radius:var(--pw-radius-lg)}
