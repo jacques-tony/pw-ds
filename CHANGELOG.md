@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.65.1
+- `pw-widget-stats`: ícone do cabeçalho vem da barra superior (`ranking`, configurável via atributo `icon`).
+- Relação de drop usa os itens da Mochila (Garra do dragão, Pedra azul, Pó vermelho) com sprite animado; listas aceitam `sprite` + `frames`.
+
 ## 0.65.0
 - Novo `<pw-widget-stats>` (Widget Estatísticas): cronômetro da sessão (pausar/retomar, zerar, copiar), resumo e seções recolhíveis (Experiência com histórico em barras, Saque, Suprimentos, Inimigos derrotados, Dano causado e recebido) com listas de itens, monstros e habilidades. Redimensiona só na altura (mínimo: bloco da sessão), overlay de rolagem e magnetismo iguais aos outros widgets.
 - API `stats`, `update(id, valor)`, `toText()`; eventos `pause`, `resume`, `reset` (cancelável), `copy`, `tick`.
