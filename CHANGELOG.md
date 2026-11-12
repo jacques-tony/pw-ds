@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.64.0
+- `pw-widget-battle`: filtros e selects agrupados num `pw-card` quaternary; Ordenar/Prioridade em largura total (sem truncar).
+- Redimensionamento vertical pela borda de baixo (padrão da Mochila), com mínimo de 1 alvo visível; lista rola dentro de `pw-scroll`.
+- Reordenar (ordenação/prioridade/filtro) anima os cards deslizando até a nova posição (FLIP), e alvos novos entram com fade.
+- Sprites de exemplo: Gengar, Nidoking, Charizard e Arcanine (`assets/sprites/`).
+
 ## 0.63.0
 - Novo `<pw-widget-battle>` (Widget Batalha): filtros (Jogadores, NPCs, Pokémon selvagens, Pokémon de jogadores, Grupo), selects Ordenar/Prioridade, lista de alvos com sprite e barra de vida; estados normal, atacando e alvo (tone error + selected). API `battle`, `setTarget()`, `updateTarget()`; eventos `filter`, `sort`, `target`. Integrado à simulação pelo ícone Batalha da navbar.
 
