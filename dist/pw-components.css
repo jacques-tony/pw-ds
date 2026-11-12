@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.59.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.60.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1360,89 +1360,115 @@ pw-button[aria-haspopup][aria-expanded="true"] .pwbt-label+.pwbt-icon{transform:
 pw-button[aria-haspopup] .pwbt-label+.pwbt-icon{transition:transform .2s var(--card-ease)}
 /* ===================== COMPONENT: pw-widget-bag (widget Mochila) ===================== */
 /* feito só com peças do DS: pw-card primary (moldura), pw-button ghost (ações), pw-scroll (rolagem), pw-card quaternary (slots), pw-badge (quantidade) */
-pw-widget-bag{--wb-ch:calc(var(--pw-space-5) / 2);--wb-ov:var(--pw-bg-solid);--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5;--wb-pad:var(--pw-space-4);--wb-head:var(--pw-space-14);
+:is(pw-widget-bag,pw-widget-pokemon){--wb-ch:calc(var(--pw-space-5) / 2);--wb-ov:var(--pw-bg-solid);--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5;--wb-pad:var(--pw-space-4);--wb-head:var(--pw-space-14);
   position:absolute;display:block;box-sizing:border-box;width:calc(var(--wb-slot) * var(--wb-cols) + var(--wb-gap) * (var(--wb-cols) - 1) + var(--wb-pad) * 2);
   height:calc(var(--wb-head) + (var(--wb-slot) + var(--wb-gap)) * 7 + var(--pw-space-4));min-height:calc(var(--wb-head) + var(--wb-slot) + var(--pw-space-4));
   font-family:var(--pw-font-body);z-index:10;touch-action:none}
-pw-widget-bag[hidden]{display:none}
-pw-widget-bag[collapsed]{height:auto!important}
-pw-widget-bag[static]{position:relative}
-pw-widget-bag[fill="gradient"]{--wb-ov:var(--pw-bg-edge)}
-pw-widget-bag>pw-card.pwbg-card{width:100%;height:100%;--lift:0px}
-pw-widget-bag>pw-card.pwbg-card>.pwc-content{height:100%;padding:0 var(--wb-pad) var(--pw-space-1);gap:0;display:flex;flex-direction:column;min-height:0;overflow:hidden;box-sizing:border-box}
+:is(pw-widget-bag,pw-widget-pokemon)[hidden]{display:none}
+:is(pw-widget-bag,pw-widget-pokemon)[collapsed]{height:auto!important}
+:is(pw-widget-bag,pw-widget-pokemon)[static]{position:relative}
+:is(pw-widget-bag,pw-widget-pokemon)[fill="gradient"]{--wb-ov:var(--pw-bg-edge)}
+:is(pw-widget-bag,pw-widget-pokemon)>pw-card.pwbg-card{width:100%;height:100%;--lift:0px}
+:is(pw-widget-bag,pw-widget-pokemon)>pw-card.pwbg-card>.pwc-content{height:100%;padding:0 var(--wb-pad) var(--pw-space-1);gap:0;display:flex;flex-direction:column;min-height:0;overflow:hidden;box-sizing:border-box}
 /* fechado: no mínimo 64px de altura e 24px nas laterais */
-pw-widget-bag[collapsed]{min-height:var(--wb-head)!important}
+:is(pw-widget-bag,pw-widget-pokemon)[collapsed]{min-height:var(--wb-head)!important}
 
 /* cabeçalho de 64px com o conteúdo centralizado (mesmo espaço em cima e embaixo), igual aberto e fechado: sem salto ao abrir */
-pw-widget-bag[collapsed]>pw-card.pwbg-card>.pwc-content{height:auto;padding-bottom:0}
+:is(pw-widget-bag,pw-widget-pokemon)[collapsed]>pw-card.pwbg-card>.pwc-content{height:auto;padding-bottom:0}
 /* cabeçalho: alça de arrastar */
-pw-widget-bag .pwbg-head{flex:none;display:flex;align-items:center;gap:var(--pw-space-1);box-sizing:border-box;height:var(--wb-head);padding:0;cursor:grab;user-select:none}
-pw-widget-bag[locked] .pwbg-head,pw-widget-bag[static] .pwbg-head{cursor:default}
-pw-widget-bag.dragging .pwbg-head{cursor:grabbing}
-pw-widget-bag .pwbg-ic{flex:none;width:var(--pw-space-6);height:var(--pw-space-6);object-fit:contain;filter:drop-shadow(0 1px 2px var(--pw-black-a45))}
-pw-widget-bag .pwbg-title{flex:1;min-width:0;margin:0;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.02em;color:var(--pw-text-title);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-pw-widget-bag .pwbg-acts{display:flex;align-items:center;gap:0}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-head{flex:none;display:flex;align-items:center;gap:var(--pw-space-1);box-sizing:border-box;height:var(--wb-head);padding:0;cursor:grab;user-select:none}
+:is(pw-widget-bag,pw-widget-pokemon)[locked] .pwbg-head,:is(pw-widget-bag,pw-widget-pokemon)[static] .pwbg-head{cursor:default}
+:is(pw-widget-bag,pw-widget-pokemon).dragging .pwbg-head{cursor:grabbing}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-ic{flex:none;width:var(--pw-space-6);height:var(--pw-space-6);object-fit:contain;filter:drop-shadow(0 1px 2px var(--pw-black-a45))}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-title{flex:1;min-width:0;margin:0;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.02em;color:var(--pw-text-title);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-acts{display:flex;align-items:center;gap:0}
 
-pw-widget-bag[locked] .pwbg-acts pw-button[data-a="lock"]{--b-fg:var(--pw-text-title)}
+:is(pw-widget-bag,pw-widget-pokemon)[locked] .pwbg-acts pw-button[data-a="lock"]{--b-fg:var(--pw-text-title)}
 /* corpo */
-pw-widget-bag .pwbg-body{flex:1;min-height:0;display:flex;flex-direction:column}
-pw-widget-bag[collapsed] .pwbg-body{display:none}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-body{flex:1;min-height:0;display:flex;flex-direction:column}
+:is(pw-widget-bag,pw-widget-pokemon)[collapsed] .pwbg-body{display:none}
 /* folga para o hover (sobe 2px + brilho) não ser cortado; a margem negativa mantém o mesmo espaçamento visual */
-pw-widget-bag pw-scroll.pwbg-scroll{flex:1;min-height:0;padding:var(--pw-space-2) calc(var(--pw-space-2) + var(--pw-space-0-5) - var(--pw-scroll-size) - 1px) calc(var(--pw-space-6) - var(--pw-space-1)) var(--pw-space-1);margin:calc(var(--pw-space-2) * -1) calc((var(--pw-space-2) + var(--pw-space-0-5)) * -1 + 1px) 0 calc(var(--pw-space-1) * -1)}
+:is(pw-widget-bag,pw-widget-pokemon) pw-scroll.pwbg-scroll{flex:1;min-height:0;padding:var(--pw-space-2) calc(var(--pw-space-2) + var(--pw-space-0-5) - var(--pw-scroll-size) - 1px) calc(var(--pw-space-6) - var(--pw-space-1)) var(--pw-space-1);margin:calc(var(--pw-space-2) * -1) calc((var(--pw-space-2) + var(--pw-space-0-5)) * -1 + 1px) 0 calc(var(--pw-space-1) * -1)}
 /* a rolagem vai até a borda (o overlay cobre o corte ali), mas a barra para na altura dos slots; cantos de baixo chanfrados como a moldura */
-pw-widget-bag pw-scroll.pwbg-scroll{clip-path:polygon(0 0,100% 0,100% calc(100% - var(--wb-ch)),calc(100% - var(--wb-ch)) 100%,var(--wb-ch) 100%,0 calc(100% - var(--wb-ch)))}
-pw-widget-bag pw-scroll.pwbg-scroll::-webkit-scrollbar-track{margin-block:var(--pw-space-2) calc(var(--pw-space-6) - var(--pw-space-1))}
-pw-widget-bag .pwbg-grid{display:grid;grid-template-columns:repeat(var(--wb-cols),var(--wb-slot));grid-auto-rows:var(--wb-slot);gap:var(--wb-gap);padding:0}
-pw-widget-bag pw-card.pwbg-slot{position:relative;width:var(--wb-slot);height:var(--wb-slot);border-radius:var(--pw-radius-sm);cursor:pointer}
-pw-widget-bag pw-card.pwbg-slot>.pwc-content{position:relative;height:100%;padding:0;display:block}
-pw-widget-bag pw-card.pwbg-slot:not(.empty):active{--press:.92}
+:is(pw-widget-bag,pw-widget-pokemon) pw-scroll.pwbg-scroll{clip-path:polygon(0 0,100% 0,100% calc(100% - var(--wb-ch)),calc(100% - var(--wb-ch)) 100%,var(--wb-ch) 100%,0 calc(100% - var(--wb-ch)))}
+:is(pw-widget-bag,pw-widget-pokemon) pw-scroll.pwbg-scroll::-webkit-scrollbar-track{margin-block:var(--pw-space-2) calc(var(--pw-space-6) - var(--pw-space-1))}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-grid{display:grid;grid-template-columns:repeat(var(--wb-cols),var(--wb-slot));grid-auto-rows:var(--wb-slot);gap:var(--wb-gap);padding:0}
+:is(pw-widget-bag,pw-widget-pokemon) pw-card.pwbg-slot{position:relative;width:var(--wb-slot);height:var(--wb-slot);border-radius:var(--pw-radius-sm);cursor:pointer}
+:is(pw-widget-bag,pw-widget-pokemon) pw-card.pwbg-slot>.pwc-content{position:relative;height:100%;padding:0;display:block}
+:is(pw-widget-bag,pw-widget-pokemon) pw-card.pwbg-slot:not(.empty):active{--press:.92}
 /* slot vazio não é interativo */
-pw-widget-bag pw-card.pwbg-slot.empty{cursor:default;--lift:0px!important;--press:1!important}
-pw-widget-bag .pwbg-slot .pwc-content>img,pw-widget-bag .pwbg-slot .pwc-content>svg{position:absolute;inset:0;margin:auto;z-index:1}
-pw-widget-bag .pwbg-slot .pwc-content>img{width:calc(100% - var(--pw-space-1));height:calc(100% - var(--pw-space-1));object-fit:contain;filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
-pw-widget-bag .pwbg-slot .pwc-content>svg{width:62%;height:62%;color:var(--pw-text-accent)}
-pw-widget-bag .pwbg-slot.empty{cursor:default}
-pw-widget-bag .pwbg-slot.is-bag{cursor:context-menu}
-pw-widget-bag .pwbg-tt{flex:1;min-width:0;position:relative;display:flex;align-items:center}
-pw-widget-bag .pwbg-tt .pwbg-title{flex:1}
+:is(pw-widget-bag,pw-widget-pokemon) pw-card.pwbg-slot.empty{cursor:default;--lift:0px!important;--press:1!important}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-slot .pwc-content>img,:is(pw-widget-bag,pw-widget-pokemon) .pwbg-slot .pwc-content>svg{position:absolute;inset:0;margin:auto;z-index:1}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-slot .pwc-content>img{width:calc(100% - var(--pw-space-1));height:calc(100% - var(--pw-space-1));object-fit:contain;filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-slot .pwc-content>svg{width:62%;height:62%;color:var(--pw-text-accent)}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-slot.empty{cursor:default}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-slot.is-bag{cursor:context-menu}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-tt{flex:1;min-width:0;position:relative;display:flex;align-items:center}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-tt .pwbg-title{flex:1}
 /* "Voltar" fica abaixo do título sem mudar a posição nem o espaçamento do cabeçalho */
-pw-widget-bag .pwbg-back{all:unset;position:absolute;left:0;top:calc(100% + var(--pw-space-0-5));cursor:pointer;font:var(--pw-font-weight-medium) var(--pw-font-size-3xs)/1 var(--pw-font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--pw-text-accent-soft);transition:color var(--card-dur)}
-pw-widget-bag .pwbg-back::before{content:"‹ "}
-pw-widget-bag .pwbg-back:hover{color:var(--pw-text-title);text-decoration:underline}
-pw-widget-bag .pwbg-back:focus-visible{outline:2px solid var(--pw-focus-ring);outline-offset:2px;border-radius:2px}
-pw-widget-bag .pwbg-back[hidden]{display:none}
-pw-widget-bag .pwbg-ic2{flex:none;width:var(--pw-space-6);height:var(--pw-space-6);overflow:hidden;filter:drop-shadow(0 1px 2px var(--pw-black-a45))}
-pw-widget-bag .pwbg-ic2 img{display:block;width:100%;height:calc(var(--n) * 100%);image-rendering:pixelated}
-pw-widget-bag .pwbg-head>pw-button[hidden],pw-widget-bag .pwbg-ic[hidden]{display:none}
-pw-widget-bag .pwbg-slot.empty .pwc-content>svg{width:60%;height:60%;color:color-mix(in srgb,var(--pw-text-muted) 70%,transparent)}
-pw-widget-bag .pwbg-slot .q{position:absolute;right:var(--pw-space-0-5);bottom:0;z-index:2;pointer-events:none;font:var(--pw-font-weight-bold) var(--pw-font-size-3xs)/1 var(--pw-font-body);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
-pw-widget-bag .pwbg-slot .q.zero{color:var(--pw-status-error)}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-back{all:unset;position:absolute;left:0;top:calc(100% + var(--pw-space-0-5));cursor:pointer;font:var(--pw-font-weight-medium) var(--pw-font-size-3xs)/1 var(--pw-font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--pw-text-accent-soft);transition:color var(--card-dur)}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-back::before{content:"‹ "}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-back:hover{color:var(--pw-text-title);text-decoration:underline}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-back:focus-visible{outline:2px solid var(--pw-focus-ring);outline-offset:2px;border-radius:2px}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-back[hidden]{display:none}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-ic2{flex:none;width:var(--pw-space-6);height:var(--pw-space-6);overflow:hidden;filter:drop-shadow(0 1px 2px var(--pw-black-a45))}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-ic2 img{display:block;width:100%;height:calc(var(--n) * 100%);image-rendering:pixelated}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-head>pw-button[hidden],:is(pw-widget-bag,pw-widget-pokemon) .pwbg-ic[hidden]{display:none}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-slot.empty .pwc-content>svg{width:60%;height:60%;color:color-mix(in srgb,var(--pw-text-muted) 70%,transparent)}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-slot .q{position:absolute;right:var(--pw-space-0-5);bottom:0;z-index:2;pointer-events:none;font:var(--pw-font-weight-bold) var(--pw-font-size-3xs)/1 var(--pw-font-body);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-slot .q.zero{color:var(--pw-status-error)}
 /* item animado: folha de sprites vertical (frames quadrados), item.sprite + item.frames */
-pw-widget-bag .pwbg-slot .spr{position:absolute;inset:var(--pw-space-0-5);margin:auto;width:auto;height:auto;overflow:hidden;z-index:1}
-pw-widget-bag .pwbg-slot .spr img{display:block;width:100%;height:calc(var(--n) * 100%);image-rendering:pixelated;animation:pwbg-spr calc(var(--n) * 110ms) steps(var(--n)) infinite;filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-slot .spr{position:absolute;inset:var(--pw-space-0-5);margin:auto;width:auto;height:auto;overflow:hidden;z-index:1}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-slot .spr img{display:block;width:100%;height:calc(var(--n) * 100%);image-rendering:pixelated;animation:pwbg-spr calc(var(--n) * 110ms) steps(var(--n)) infinite;filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
 @keyframes pwbg-spr{to{transform:translateY(-100%)}}
-@media (prefers-reduced-motion:reduce){pw-widget-bag .pwbg-slot .spr img{animation:none}}
+@media (prefers-reduced-motion:reduce){:is(pw-widget-bag,pw-widget-pokemon) .pwbg-slot .spr img{animation:none}}
 /* overlay embaixo quando ainda há slots para rolar (o último não parece cortado) */
-pw-widget-bag .pwbg-body{position:relative}
-pw-widget-bag .pwbg-body::after{content:"";position:absolute;z-index:5;left:calc(var(--wb-pad) * -1 + var(--pw-space-1));right:calc(var(--wb-pad) * -1 + var(--pw-space-1));bottom:0;height:var(--pw-space-12);pointer-events:none;opacity:0;transition:opacity .25s;
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-body{position:relative}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-body::after{content:"";position:absolute;z-index:5;left:calc(var(--wb-pad) * -1 + var(--pw-space-1));right:calc(var(--wb-pad) * -1 + var(--pw-space-1));bottom:0;height:var(--pw-space-12);pointer-events:none;opacity:0;transition:opacity .25s;
   background:linear-gradient(transparent,var(--wb-ov));
   clip-path:polygon(0 0,100% 0,100% calc(100% - var(--wb-ch)),calc(100% - var(--wb-ch)) 100%,var(--wb-ch) 100%,0 calc(100% - var(--wb-ch)))}
-pw-widget-bag .pwbg-body[data-more]::after{opacity:1}
-pw-widget-bag .pwbg-body::before{content:"";position:absolute;z-index:5;left:calc(var(--wb-pad) * -1 + var(--pw-space-1));right:calc(var(--wb-pad) * -1 + var(--pw-space-1));top:calc(var(--pw-space-2) * -1);height:var(--pw-space-6);pointer-events:none;opacity:0;transition:opacity .25s;
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-body[data-more]::after{opacity:1}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-body::before{content:"";position:absolute;z-index:5;left:calc(var(--wb-pad) * -1 + var(--pw-space-1));right:calc(var(--wb-pad) * -1 + var(--pw-space-1));top:calc(var(--pw-space-2) * -1);height:var(--pw-space-6);pointer-events:none;opacity:0;transition:opacity .25s;
   background:linear-gradient(var(--wb-ov),transparent)}
-pw-widget-bag .pwbg-body[data-less]::before{opacity:1}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-body[data-less]::before{opacity:1}
 /* alça de redimensionar (borda de baixo) */
-pw-widget-bag .pwbg-resize{position:absolute;left:var(--pw-space-8);right:var(--pw-space-8);bottom:calc(var(--pw-space-1) * -1);height:var(--pw-space-3);cursor:ns-resize;z-index:4;display:grid;place-items:center;outline:none;border-radius:var(--pw-radius-full)}
-pw-widget-bag .pwbg-resize::after{content:"";width:var(--pw-space-10);height:var(--pw-space-1);border-radius:var(--pw-radius-full);background:var(--pw-filament);opacity:0;box-shadow:0 0 8px var(--pw-glow);transition:opacity var(--card-dur)}
-pw-widget-bag:hover .pwbg-resize::after{opacity:.45}
-pw-widget-bag .pwbg-resize:hover::after,pw-widget-bag.resizing .pwbg-resize::after,pw-widget-bag .pwbg-resize:focus-visible::after{opacity:1}
-pw-widget-bag .pwbg-resize:focus-visible{box-shadow:0 0 0 2px var(--pw-focus-ring)}
-pw-widget-bag[collapsed] .pwbg-resize,pw-widget-bag[locked] .pwbg-resize{display:none}
-pw-widget-bag.dragging,pw-widget-bag.resizing{user-select:none}
-pw-widget-bag.dragging>pw-card{filter:drop-shadow(0 12px 24px var(--pw-black-a45))}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-resize{position:absolute;left:var(--pw-space-8);right:var(--pw-space-8);bottom:calc(var(--pw-space-1) * -1);height:var(--pw-space-3);cursor:ns-resize;z-index:4;display:grid;place-items:center;outline:none;border-radius:var(--pw-radius-full)}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-resize::after{content:"";width:var(--pw-space-10);height:var(--pw-space-1);border-radius:var(--pw-radius-full);background:var(--pw-filament);opacity:0;box-shadow:0 0 8px var(--pw-glow);transition:opacity var(--card-dur)}
+:is(pw-widget-bag,pw-widget-pokemon):hover .pwbg-resize::after{opacity:.45}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-resize:hover::after,:is(pw-widget-bag,pw-widget-pokemon).resizing .pwbg-resize::after,:is(pw-widget-bag,pw-widget-pokemon) .pwbg-resize:focus-visible::after{opacity:1}
+:is(pw-widget-bag,pw-widget-pokemon) .pwbg-resize:focus-visible{box-shadow:0 0 0 2px var(--pw-focus-ring)}
+:is(pw-widget-bag,pw-widget-pokemon)[collapsed] .pwbg-resize,:is(pw-widget-bag,pw-widget-pokemon)[locked] .pwbg-resize{display:none}
+:is(pw-widget-bag,pw-widget-pokemon).dragging,:is(pw-widget-bag,pw-widget-pokemon).resizing{user-select:none}
+:is(pw-widget-bag,pw-widget-pokemon).dragging>pw-card{filter:drop-shadow(0 12px 24px var(--pw-black-a45))}
 /* magnetismo: brilho nas mochilas que vão grudar */
-pw-widget-bag.magnet>pw-card{filter:drop-shadow(0 0 3px color-mix(in srgb,var(--pw-glow) 45%,transparent))}
+:is(pw-widget-bag,pw-widget-pokemon).magnet>pw-card{filter:drop-shadow(0 0 3px color-mix(in srgb,var(--pw-glow) 45%,transparent))}
 .pwbg-flash{position:absolute;z-index:9999;pointer-events:none;border-radius:var(--pw-radius-full);transform-origin:center;
   background:linear-gradient(90deg,transparent,var(--pw-filament) 20%,var(--pw-white) 50%,var(--pw-filament) 80%,transparent);filter:drop-shadow(0 0 4px color-mix(in srgb,var(--pw-white) 70%,transparent)) drop-shadow(0 0 8px color-mix(in srgb,var(--pw-filament) 60%,transparent))}
 .pwbg-flash.v{background:linear-gradient(180deg,transparent,var(--pw-filament) 20%,var(--pw-white) 50%,var(--pw-filament) 80%,transparent)}
 @media (prefers-reduced-motion:reduce){pw-widget-bag *{transition:none!important}}
+/* ===================== COMPONENT: pw-widget-pokemon ===================== */
+pw-widget-pokemon{height:auto!important;width:calc(var(--wb-slot) * 5 + var(--wb-gap) * 4 + var(--wb-pad) * 2 + var(--pw-space-8))}
+pw-widget-pokemon>pw-card.pwbg-card{height:auto}
+pw-widget-pokemon>pw-card.pwbg-card>.pwc-content{height:auto;padding-bottom:var(--pw-space-4)}
+pw-widget-pokemon[collapsed]>pw-card.pwbg-card>.pwc-content{padding-bottom:0}
+pw-widget-pokemon .pwpk-hic{display:grid;place-items:center}pw-widget-pokemon .pwpk-hic svg{width:100%;height:100%}
+pw-widget-pokemon .pwpk-body{display:grid;gap:var(--pw-space-3)}
+pw-widget-pokemon .pwpk-top{display:flex;gap:var(--pw-space-3);align-items:center}
+pw-widget-pokemon pw-card.pwpk-pic{flex:none;width:var(--pw-space-14);height:var(--pw-space-14);border-radius:var(--pw-radius-md)}
+pw-widget-pokemon .pwpk-info{flex:1;min-width:0;display:grid;gap:var(--pw-space-1)}
+pw-widget-pokemon .pwpk-balls{display:flex;justify-content:space-between}
+pw-widget-pokemon .pwpk-ball{width:var(--pw-space-5);height:var(--pw-space-5);color:color-mix(in srgb,var(--pw-text-muted) 70%,transparent)}
+pw-widget-pokemon .pwpk-ball svg{width:100%;height:100%}
+pw-widget-pokemon .pwpk-bar{position:relative;display:grid}
+pw-widget-pokemon .pwpk-bar pw-progress{min-width:0;--pr-h:var(--pw-space-4)}
+pw-widget-pokemon .pwpk-bar .pwp-track{border-radius:var(--pw-radius-xs)}
+pw-widget-pokemon .pwpk-bar>span{position:absolute;inset:0;display:grid;place-items:center;font:var(--pw-font-weight-semibold) var(--pw-font-size-2xs)/1 var(--pw-font-body);font-variant-numeric:tabular-nums;color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);pointer-events:none}
+pw-widget-pokemon .pwpk-row{display:flex;justify-content:space-between;gap:var(--pw-space-3)}
+pw-widget-pokemon .pwpk-acts,pw-widget-pokemon .pwpk-stances{display:flex;gap:var(--pw-space-1)}
+pw-widget-pokemon pw-card.pwpk-btn{width:var(--pw-space-8);height:var(--pw-space-8);border-radius:var(--pw-radius-sm);cursor:pointer}
+pw-widget-pokemon pw-card.pwpk-btn>.pwc-content{padding:0;height:100%;display:grid;place-items:center;position:relative;z-index:1}
+pw-widget-pokemon pw-card.pwpk-btn .pwc-content svg{width:var(--pw-space-5);height:var(--pw-space-5);color:var(--pw-text-muted);transition:color var(--card-dur),transform .15s}
+pw-widget-pokemon pw-card.pwpk-btn:hover .pwc-content svg{transform:scale(1.08)}
+pw-widget-pokemon .st-offensive[selected] .pwc-content svg{color:var(--pw-tone-error-base)}
+pw-widget-pokemon .st-balanced[selected] .pwc-content svg{color:var(--pw-tone-warning-light)}
+pw-widget-pokemon .st-defensive[selected] .pwc-content svg{color:var(--pw-tone-success-light)}

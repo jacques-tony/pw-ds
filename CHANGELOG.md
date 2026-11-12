@@ -27,6 +27,16 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.60.0
+- Novo componente **`pw-widget-pokemon`** (widget Pokémon), no mesmo padrão do Widget Mochila e só com peças do DS:
+  - Card primary sólido sem brilho; cabeçalho com recolher, bloquear e fechar; arrastar e magnetismo/conjuntos com mochilas e com a barra superior.
+  - Retrato do Pokémon ativo (`pw-card` tertiary com imagem), 6 pokébolas da equipe (cheia, vazia ou desmaiado), vida e recarga (`pw-progress`).
+  - Botões em `pw-card` quaternary: chamar/recolher (`action`) e posturas Ofensivo, Equilibrado e Defensivo (`stance`, cancelável, cor por tom).
+  - `.pokemon`, `update({hp, cdLeft…})`, `setStance()`.
+- Ícones novos em `icons/widget/`: pokeball-filled, pokeball-empty, stance-offensive, stance-balanced, stance-defensive.
+- Magnetismo entre todos os widgets `pw-widget-*`.
+- Storybook: seção Widget Pokémon e o widget na simulação do jogo.
+
 ## 0.59.0
 - `pw-navbar` (Barra superior):
   - Moldura passa a ser o mesmo `pw-card` primary da Mochila, com `fill="gradient"` e sem brilho.

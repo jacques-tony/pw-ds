@@ -20,6 +20,7 @@ Componentes de interface do OTServ **Poke World Universe**, feitos como Web Comp
 | Lista suspensa (menu, dropdown, seleção) | `<pw-control-group>` `<pw-control-group-item>` |
 | Tecla do teclado | `<pw-kbd>` |
 | Widget Mochila | `<pw-widget-bag>` |
+| Widget Pokémon | `<pw-widget-pokemon>` |
 | HUD inferior e equipe lateral | `<pw-hud>` + `<pw-party>` |
 | Barra de navegação do HUD | `<pw-navbar>` + `<pw-nav-item>` + `<pw-nav-sep>` |
 | Campo de texto · textarea · checkbox · radio | `<pw-input>` · `<pw-textarea>` · `<pw-checkbox>` · `<pw-radio>` |
