@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.64.2
+- `pw-widget-battle`: removido o estado visual "atacando você"; os alvos têm só os estados normal e alvo selecionado.
+
 ## 0.64.1
 - `pw-widget-battle`: layout de Ordenar/Prioridade volta ao original (lado a lado, sem card envolvendo); `pw-card` quaternary aplicado só nos 5 slots de filtro.
 - Overlay de rolagem em cima e embaixo da lista, igual à Mochila.
