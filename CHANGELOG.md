@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.53.6
+- `pw-widget-bag`: a área dos slots vai até a borda dourada e o overlay de baixo começa nela, então ao redimensionar os slots somem suavemente na borda em vez de serem cortados antes dela; a barra de rolagem continua limitada à altura dos slots.
+
 ## 0.53.5
 - `pw-widget-bag`: hover dos slots da primeira linha e da primeira coluna não é mais cortado (folga na área de rolagem, sem mudar o espaçamento).
 
