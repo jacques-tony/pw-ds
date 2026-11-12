@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.63.0
+- Novo `<pw-widget-battle>` (Widget Batalha): filtros (Jogadores, NPCs, Pokémon selvagens, Pokémon de jogadores, Grupo), selects Ordenar/Prioridade, lista de alvos com sprite e barra de vida; estados normal, atacando e alvo (tone error + selected). API `battle`, `setTarget()`, `updateTarget()`; eventos `filter`, `sort`, `target`. Integrado à simulação pelo ícone Batalha da navbar.
+
 ## 0.62.1
 - Widgets: ao abrir/recolher, a moldura e as alças de redimensionar não deixam mais "rastro" fora do widget (recorte durante a animação e alças escondidas).
 

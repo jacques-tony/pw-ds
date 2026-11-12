@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.62.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.63.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1741,3 +1741,41 @@ pw-widget-minimap[maximized] .pwmm-sep{width:var(--pw-space-5);height:1px}
 pw-widget-minimap[maximized] .pwmm-legend{display:grid;gap:var(--pw-space-2);position:absolute;right:var(--wb-pad);bottom:var(--pw-space-6);z-index:3;padding:var(--pw-space-3) var(--pw-space-4);border-radius:var(--pw-radius-md);background:color-mix(in srgb,var(--pw-bg-edge) 88%,transparent);border:1px solid var(--pw-border-default)}
 pw-widget-minimap .pwmm-legend b{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase;color:var(--pw-text-title)}
 @media (prefers-reduced-motion:reduce){pw-widget-minimap .pwmm-me{animation:none}}
+/* ===================== COMPONENT: pw-widget-battle (casca igual à do minimap) ===================== */
+
+pw-widget-battle{position:absolute;display:block;box-sizing:border-box;width:calc(var(--pw-space-8) * 5 + var(--pw-space-2) * 4 + var(--pw-space-4) * 2);height:auto;font-family:var(--pw-font-body);z-index:10;touch-action:none;
+  --wb-pad:var(--pw-space-4);--wb-head:var(--pw-space-14);--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5}
+pw-widget-battle[hidden]{display:none}
+pw-widget-battle>pw-card.pwbg-card{width:100%;height:100%;--lift:0px}
+pw-widget-battle>pw-card.pwbg-card>.pwc-content{height:100%;padding:0 var(--wb-pad) var(--pw-space-4);gap:0;display:flex;flex-direction:column;min-height:0;overflow:hidden;box-sizing:border-box}
+pw-widget-battle[collapsed]{height:auto!important}
+pw-widget-battle[collapsed]>pw-card.pwbg-card>.pwc-content{height:auto;padding-bottom:0}
+pw-widget-battle .pwbg-head{flex:none;display:flex;align-items:center;gap:var(--pw-space-1);box-sizing:border-box;height:var(--wb-head);padding:0;cursor:grab;user-select:none}
+pw-widget-battle[locked] .pwbg-head{cursor:default}
+pw-widget-battle .pwbg-ic{flex:none;width:var(--pw-space-6);height:var(--pw-space-6);object-fit:contain}
+pw-widget-battle .pwbg-ic2,pw-widget-battle .pwbg-back{display:none}
+pw-widget-battle .pwbg-tt{flex:1;min-width:0}
+pw-widget-battle .pwbg-title{margin:0;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.02em;color:var(--pw-text-title);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+pw-widget-battle .pwbg-acts{display:flex}
+pw-widget-battle .pwbw-body{display:grid;gap:var(--pw-space-3)}
+pw-widget-battle[collapsed] .pwbw-body{display:none}
+pw-widget-battle .pwbw-filters{display:grid;grid-template-columns:repeat(5,var(--wb-slot));gap:var(--wb-gap)}
+pw-widget-battle pw-card.pwbw-f{width:var(--wb-slot);height:var(--wb-slot);border-radius:var(--pw-radius-sm);cursor:pointer}
+pw-widget-battle pw-card.pwbw-f>.pwc-content{padding:0;height:100%;display:grid;place-items:center;position:relative;z-index:1}
+pw-widget-battle pw-card.pwbw-f .pwc-content svg{width:var(--pw-space-4);height:var(--pw-space-4);color:var(--pw-text-muted);transition:color var(--card-dur)}
+pw-widget-battle pw-card.pwbw-f[selected] .pwc-content svg{color:var(--pw-text-primary)}
+pw-widget-battle .pwbw-sorts{display:grid;grid-template-columns:1fr 1fr;gap:var(--wb-gap)}
+pw-widget-battle .pwbw-field{display:grid;gap:var(--pw-space-1);min-width:0}
+pw-widget-battle .pwbw-lab{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase;color:var(--pw-text-accent-soft)}
+pw-widget-battle pw-button.pwbw-sel{display:flex;min-width:0;width:100%}pw-widget-battle pw-button.pwbw-sel>button{min-width:0}pw-widget-battle pw-button.pwbw-sel>button{width:100%;justify-content:space-between;padding:0 var(--pw-space-2)}
+pw-widget-battle pw-button.pwbw-sel .pwbt-label,pw-widget-battle pw-button.pwbw-sel .pwbt-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+pw-widget-battle .pwbw-list{display:grid;gap:var(--pw-space-2)}
+pw-widget-battle pw-card.pwbw-row{width:auto;height:auto;border-radius:var(--pw-radius-sm);cursor:pointer}
+pw-widget-battle pw-card.pwbw-row>.pwc-content{padding:var(--pw-space-1) var(--pw-space-2);height:auto;flex-direction:row;align-items:center;gap:var(--pw-space-2);position:relative;z-index:1}
+pw-widget-battle pw-card.pwbw-row.atk{--pw-ter-bg-center:color-mix(in srgb,var(--pw-text-muted) 40%,var(--pw-ter-bg-center));--pw-ter-bg-edge:color-mix(in srgb,var(--pw-text-muted) 30%,var(--pw-ter-bg-edge))}
+pw-widget-battle .pwbw-pic{flex:none;width:var(--pw-space-8);height:var(--pw-space-8);display:grid;place-items:center;color:var(--pw-text-muted)}
+pw-widget-battle .pwbw-pic{overflow:hidden}pw-widget-battle .pwbw-pic img{max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain;image-rendering:pixelated}pw-widget-battle .pwbw-pic svg{width:60%;height:60%}
+pw-widget-battle .pwbw-info{flex:1;min-width:0;display:grid;gap:var(--pw-space-1)}
+pw-widget-battle .pwbw-name{font:var(--pw-font-weight-medium) var(--pw-font-size-sm)/1 var(--pw-font-body);color:var(--pw-text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+pw-widget-battle .pwbw-info pw-progress{min-width:0}
+pw-widget-battle .pwbw-empty{margin:0;padding:var(--pw-space-3) 0;text-align:center;font-size:var(--pw-font-size-sm);color:var(--pw-text-muted)}
