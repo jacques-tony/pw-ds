@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.65.0
+- Novo `<pw-widget-stats>` (Widget Estatísticas): cronômetro da sessão (pausar/retomar, zerar, copiar), resumo e seções recolhíveis (Experiência com histórico em barras, Saque, Suprimentos, Inimigos derrotados, Dano causado e recebido) com listas de itens, monstros e habilidades. Redimensiona só na altura (mínimo: bloco da sessão), overlay de rolagem e magnetismo iguais aos outros widgets.
+- API `stats`, `update(id, valor)`, `toText()`; eventos `pause`, `resume`, `reset` (cancelável), `copy`, `tick`.
+- Novos ícones: `play`, `pause`, `copy`, `bar-chart`.
+- Simulação: o ícone Ranking da navbar abre/fecha o widget.
+
 ## 0.64.4
 - `pw-widget-battle`: overlay inferior respeita o chanfro da moldura (token `--wb-ch`), sem cobrir a borda.
 

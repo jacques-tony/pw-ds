@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.64.4 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.65.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1432,12 +1432,12 @@ pw-button[aria-haspopup] .pwbt-label+.pwbt-icon{transition:transform .2s var(--c
   background:linear-gradient(var(--wb-ov),transparent)}
 :is(pw-widget-bag,pw-widget-pokemon) .pwbg-body[data-less]::before{opacity:1}
 /* alça de redimensionar (borda de baixo) */
-:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle) .pwbg-resize{position:absolute;left:var(--pw-space-8);right:var(--pw-space-8);bottom:calc(var(--pw-space-1) * -1);height:var(--pw-space-3);cursor:ns-resize;z-index:4;display:grid;place-items:center;outline:none;border-radius:var(--pw-radius-full)}
-:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle) .pwbg-resize::after{content:"";width:var(--pw-space-10);height:var(--pw-space-1);border-radius:var(--pw-radius-full);background:var(--pw-filament);opacity:0;box-shadow:0 0 8px var(--pw-glow);transition:opacity var(--card-dur)}
-:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle):hover .pwbg-resize::after{opacity:.45}
-:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle) .pwbg-resize:hover::after,:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle).resizing .pwbg-resize::after,:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle) .pwbg-resize:focus-visible::after{opacity:1}
-:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle) .pwbg-resize:focus-visible{box-shadow:0 0 0 2px var(--pw-focus-ring)}
-:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle)[collapsed] .pwbg-resize,:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle)[locked] .pwbg-resize{display:none}
+:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle,pw-widget-stats) .pwbg-resize{position:absolute;left:var(--pw-space-8);right:var(--pw-space-8);bottom:calc(var(--pw-space-1) * -1);height:var(--pw-space-3);cursor:ns-resize;z-index:4;display:grid;place-items:center;outline:none;border-radius:var(--pw-radius-full)}
+:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle,pw-widget-stats) .pwbg-resize::after{content:"";width:var(--pw-space-10);height:var(--pw-space-1);border-radius:var(--pw-radius-full);background:var(--pw-filament);opacity:0;box-shadow:0 0 8px var(--pw-glow);transition:opacity var(--card-dur)}
+:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle,pw-widget-stats):hover .pwbg-resize::after{opacity:.45}
+:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle,pw-widget-stats) .pwbg-resize:hover::after,:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle,pw-widget-stats).resizing .pwbg-resize::after,:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle,pw-widget-stats) .pwbg-resize:focus-visible::after{opacity:1}
+:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle,pw-widget-stats) .pwbg-resize:focus-visible{box-shadow:0 0 0 2px var(--pw-focus-ring)}
+:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle,pw-widget-stats)[collapsed] .pwbg-resize,:is(pw-widget-bag,pw-widget-pokemon,pw-widget-battle,pw-widget-stats)[locked] .pwbg-resize{display:none}
 :is(pw-widget-bag,pw-widget-pokemon).dragging,:is(pw-widget-bag,pw-widget-pokemon).resizing{user-select:none}
 :is(pw-widget-bag,pw-widget-pokemon).dragging>pw-card{filter:drop-shadow(0 12px 24px var(--pw-black-a45))}
 /* magnetismo: brilho nas mochilas que vão grudar */
@@ -1605,3 +1605,68 @@ pw-widget-battle .pwbw-info{flex:1;min-width:0;display:grid;gap:var(--pw-space-1
 pw-widget-battle .pwbw-name{font:var(--pw-font-weight-medium) var(--pw-font-size-sm)/1 var(--pw-font-body);color:var(--pw-text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 pw-widget-battle .pwbw-info pw-progress{min-width:0}
 pw-widget-battle .pwbw-empty{margin:0;padding:var(--pw-space-3) 0;text-align:center;font-size:var(--pw-font-size-sm);color:var(--pw-text-muted)}
+/* ===================== COMPONENT: pw-widget-stats (casca igual à da batalha) ===================== */
+
+pw-widget-stats{position:absolute;display:block;box-sizing:border-box;width:calc(var(--pw-space-8) * 5 + var(--pw-space-2) * 4 + var(--pw-space-4) * 2);height:auto;font-family:var(--pw-font-body);z-index:10;touch-action:none;
+  --wb-pad:var(--pw-space-4);--wb-head:var(--pw-space-14);--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5}
+pw-widget-stats[hidden]{display:none}
+pw-widget-stats>pw-card.pwbg-card{width:100%;height:100%;--lift:0px}
+pw-widget-stats>pw-card.pwbg-card>.pwc-content{height:100%;padding:0 var(--wb-pad) var(--pw-space-1);gap:0;display:flex;flex-direction:column;min-height:0;overflow:hidden;box-sizing:border-box}
+pw-widget-stats[collapsed]{height:auto!important}
+pw-widget-stats[collapsed]>pw-card.pwbg-card>.pwc-content{height:auto;padding-bottom:0}
+pw-widget-stats .pwbg-head{flex:none;display:flex;align-items:center;gap:var(--pw-space-1);box-sizing:border-box;height:var(--wb-head);padding:0;cursor:grab;user-select:none}
+pw-widget-stats[locked] .pwbg-head{cursor:default}
+pw-widget-stats .pwbg-ic{flex:none;width:var(--pw-space-6);height:var(--pw-space-6);object-fit:contain}
+pw-widget-stats .pwbg-ic2,pw-widget-stats .pwbg-back{display:none}
+pw-widget-stats .pwbg-tt{flex:1;min-width:0}
+pw-widget-stats .pwbg-title{margin:0;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.02em;color:var(--pw-text-title);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+pw-widget-stats .pwbg-acts{display:flex}
+pw-widget-stats .pwst-body{flex:1;min-height:0;display:flex;flex-direction:column;gap:var(--pw-space-3)}
+pw-widget-stats pw-scroll.pwst-scroll{flex:1;min-height:0;padding:var(--pw-space-2) calc(var(--pw-space-2) + var(--pw-space-0-5) - var(--pw-scroll-size) - 1px) calc(var(--pw-space-6) - var(--pw-space-1)) var(--pw-space-1);margin:calc(var(--pw-space-2) * -1) calc((var(--pw-space-2) + var(--pw-space-0-5)) * -1 + 1px) 0 calc(var(--pw-space-1) * -1);clip-path:polygon(0 0,100% 0,100% calc(100% - var(--wb-ch)),calc(100% - var(--wb-ch)) 100%,var(--wb-ch) 100%,0 calc(100% - var(--wb-ch)))}
+pw-widget-stats pw-scroll.pwst-scroll::-webkit-scrollbar-track{margin-block:var(--pw-space-2) calc(var(--pw-space-6) - var(--pw-space-1))}
+pw-widget-stats{--wb-ov:var(--pw-bg-solid);--wb-ch:calc(var(--pw-space-5) / 2)}pw-widget-stats .pwst-body{position:relative}
+pw-widget-stats .pwst-body::after,pw-widget-stats .pwst-body::before{content:"";position:absolute;z-index:5;left:calc(var(--wb-pad) * -1 + var(--pw-space-1));right:calc(var(--wb-pad) * -1 + var(--pw-space-1));pointer-events:none;opacity:0;transition:opacity .25s}
+pw-widget-stats .pwst-body::after{bottom:0;height:var(--pw-space-12);background:linear-gradient(transparent,var(--wb-ov));clip-path:polygon(0 0,100% 0,100% calc(100% - var(--wb-ch)),calc(100% - var(--wb-ch)) 100%,var(--wb-ch) 100%,0 calc(100% - var(--wb-ch)))}
+pw-widget-stats .pwst-body::before{top:var(--wb-lt,0px);height:var(--pw-space-6);background:linear-gradient(var(--wb-ov),transparent)}
+pw-widget-stats .pwst-body[data-more]::after,pw-widget-stats .pwst-body[data-less]::before{opacity:1}
+pw-widget-stats[collapsed] .pwst-body{display:none}
+pw-widget-stats .pwst-body{gap:0}
+pw-widget-stats .pwbg-title{font-size:var(--pw-font-size-xs);letter-spacing:0;text-overflow:clip}pw-widget-stats .pwbg-acts{margin-right:calc(var(--pw-space-2) * -1)}pw-widget-stats .pwbg-acts pw-button+pw-button{margin-left:calc(var(--pw-space-1) * -1)}pw-widget-stats .pwbg-head{gap:var(--pw-space-1-5,6px)}
+pw-widget-stats .pwbg-ic{display:grid;place-items:center;color:var(--pw-text-title)}pw-widget-stats .pwbg-ic svg{width:var(--pw-space-5);height:var(--pw-space-5)}
+pw-widget-stats .pwst-scroll{font:var(--pw-text-body-sm);color:var(--pw-text-muted);font-variant-numeric:tabular-nums}
+pw-widget-stats .pwst-ses{display:grid;gap:var(--pw-space-1);padding-bottom:var(--pw-space-2)}
+pw-widget-stats .pwst-ses-l{display:flex;align-items:center;gap:var(--pw-space-1);color:var(--pw-text-primary);font:var(--pw-text-label-md)}
+pw-widget-stats .pwst-ses-l svg{width:var(--pw-space-4);height:var(--pw-space-4);color:var(--pw-text-muted)}
+pw-widget-stats .pwst-timer-row{display:flex;align-items:center;gap:var(--pw-space-1)}
+pw-widget-stats .pwst-timer{flex:1;font:var(--pw-font-weight-bold) var(--pw-font-size-xl)/1.1 var(--pw-font-body);letter-spacing:.02em;color:var(--pw-tone-info-text);transition:color var(--card-dur)}
+pw-widget-stats[paused] .pwst-timer{color:var(--pw-tone-error-text)}
+pw-widget-stats .pwst-timer-row pw-button{flex:none}
+pw-widget-stats .pwst-dl{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:var(--pw-space-2);row-gap:var(--pw-space-0-5);margin:0}
+pw-widget-stats .pwst-dl dt{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+pw-widget-stats .pwst-dl dd{margin:0;text-align:right;color:var(--pw-text-primary);white-space:nowrap}
+pw-widget-stats [data-tone="success"]{color:var(--pw-tone-success-text)!important}pw-widget-stats [data-tone="error"]{color:var(--pw-tone-error-text)!important}
+pw-widget-stats .pwst-sec{border-top:1px solid var(--pw-border-subtle);padding:var(--pw-space-2) 0}
+pw-widget-stats .pwst-sh,pw-widget-stats .pwst-subh{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:var(--pw-space-1);width:100%;cursor:pointer;border-radius:var(--pw-radius-xs,4px);color:var(--pw-text-primary)}
+pw-widget-stats .pwst-sh{justify-content:space-between;font:var(--pw-text-label-md);padding:var(--pw-space-0-5) 0}
+pw-widget-stats .pwst-subh{font:var(--pw-font-weight-semibold,600) var(--pw-font-size-sm)/1.4 var(--pw-font-body);margin-top:var(--pw-space-2)}
+pw-widget-stats :is(.pwst-sh,.pwst-subh):focus-visible{box-shadow:0 0 0 2px var(--pw-focus-ring)}
+pw-widget-stats :is(.pwst-sh,.pwst-subh):hover{color:var(--pw-text-title)}
+pw-widget-stats :is(.pwst-sh,.pwst-subh) svg{flex:none;width:var(--pw-space-4);height:var(--pw-space-4);color:var(--pw-text-muted);transition:transform .25s var(--card-ease)}
+pw-widget-stats :is(.pwst-sh,.pwst-subh)[aria-expanded="false"] svg{transform:rotate(-90deg)}
+pw-widget-stats .pwst-col{display:grid;grid-template-rows:1fr;transition:grid-template-rows .28s var(--card-ease),opacity .2s}
+pw-widget-stats .pwst-col.off{grid-template-rows:0fr;opacity:0}
+pw-widget-stats .pwst-in{min-height:0;overflow:hidden}
+pw-widget-stats .pwst-sec>.pwst-col>.pwst-in>.pwst-dl{padding-top:var(--pw-space-1)}
+pw-widget-stats .pwst-list{list-style:none;margin:var(--pw-space-1) 0 0;padding:0;display:grid;gap:var(--pw-space-1)}
+pw-widget-stats .pwst-it{display:grid;grid-template-columns:var(--pw-space-8) minmax(0,1fr) auto auto;align-items:center;gap:var(--pw-space-2);font-size:var(--pw-font-size-xs);color:var(--pw-text-primary)}
+pw-widget-stats .pwst-pic{width:var(--pw-space-8);height:var(--pw-space-8);display:grid;place-items:center;color:var(--pw-text-muted)}
+pw-widget-stats .pwst-pic img{width:100%;height:100%;object-fit:contain;image-rendering:pixelated}pw-widget-stats .pwst-pic svg{width:60%;height:60%}
+pw-widget-stats .pwst-nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+pw-widget-stats .pwst-q{color:var(--pw-text-muted)}pw-widget-stats .pwst-v{text-align:right}
+pw-widget-stats .pwst-chart{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:var(--pw-space-2);margin-top:var(--pw-space-2)}
+pw-widget-stats .pwst-bars{height:var(--pw-space-12);display:flex;align-items:flex-end;gap:var(--pw-space-1)}
+pw-widget-stats .pwst-bar{flex:1;min-height:2px;height:calc(var(--h) * 1%);border-radius:2px 2px 0 0;background:linear-gradient(var(--pw-tone-info-light),var(--pw-tone-info-base));transform-origin:bottom;transition:height .4s var(--card-ease)}
+pw-widget-stats .pwst-bar:hover{filter:brightness(1.25)}
+pw-widget-stats .pwst-ticks{display:flex;flex-direction:column;justify-content:space-between;height:var(--pw-space-12);font-size:var(--pw-font-size-2xs);text-align:right}
+pw-widget-stats .pwst-xl{display:flex;justify-content:space-between;gap:var(--pw-space-1);font-size:var(--pw-font-size-2xs);padding-top:var(--pw-space-1)}
+pw-widget-stats .pwst-xl span{flex:1;text-align:center}
