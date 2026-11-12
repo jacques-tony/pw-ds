@@ -1753,6 +1753,7 @@ pw-widget-pokemon .pwpk-sb.st-offensive[selected] svg{color:var(--pw-tone-error-
 pw-widget-pokemon .pwpk-sb.st-balanced[selected] svg{color:var(--pw-tone-warning-light)}
 pw-widget-pokemon .pwpk-sb.st-defensive[selected] svg{color:var(--pw-tone-success-light)}
 /* ===================== COMPONENT: pw-widget-minimap ===================== */
+.toggling :is(.pwmm-resize,.pwbg-resize){display:none!important}
 pw-widget-minimap{position:absolute;display:block;box-sizing:border-box;width:calc(var(--pw-space-8) * 5 + var(--pw-space-2) * 4 + var(--pw-space-4) * 2);height:auto;font-family:var(--pw-font-body);z-index:10;touch-action:none;
   --wb-pad:var(--pw-space-4);--wb-head:var(--pw-space-14);--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5}
 pw-widget-minimap[hidden]{display:none}
@@ -5400,9 +5401,9 @@ class PWWidgetBag extends HTMLElement{
     var h0=this.offsetHeight;if(this._anim)this._anim.cancel();this.toggleAttribute('collapsed',want);var h1=this.offsetHeight;
     if(matchMedia('(prefers-reduced-motion: reduce)').matches||h0===h1)return;var bd=this.querySelector('.pwbg-body');
     if(want)this.removeAttribute('collapsed');
-    this.style.minHeight='0';this._anim=this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:300,easing:'cubic-bezier(.4,0,.2,1)'});
+    this.style.minHeight='0';/* durante a animação, a moldura (redesenhada um quadro depois) não pode "arrastar" para fora do widget */this.style.clipPath='inset(-6px -6px -6px -6px)';this.classList.add('toggling');this._anim=this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:300,easing:'cubic-bezier(.4,0,.2,1)'});
     bd.animate(want?[{opacity:1},{opacity:0}]:[{opacity:0},{opacity:1}],{duration:want?180:300,easing:'ease-out',fill:want?'forwards':'none'});
-    this._anim.finished.then(()=>{this.style.minHeight='';if(want)this.setAttribute('collapsed','');bd.getAnimations().forEach(a=>a.cancel());this._more&&this._more()},()=>{this.style.overflow=''})}
+    var clr=()=>{this.style.clipPath='';this.classList.remove('toggling')};this._anim.finished.then(clr,clr);this._anim.finished.then(()=>{this.style.minHeight='';if(want)this.setAttribute('collapsed','');bd.getAnimations().forEach(a=>a.cancel());this._more&&this._more()},()=>{this.style.overflow=''})}
   close(){var ev=new CustomEvent('close',{bubbles:true,cancelable:true});this.dispatchEvent(ev);if(!ev.defaultPrevented)this.hidden=true}
   show(){this.hidden=false}
   /* arrastar pelo cabeçalho, dentro do elemento pai */

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.62.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.62.1 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1487,6 +1487,7 @@ pw-widget-pokemon .pwpk-sb.st-offensive[selected] svg{color:var(--pw-tone-error-
 pw-widget-pokemon .pwpk-sb.st-balanced[selected] svg{color:var(--pw-tone-warning-light)}
 pw-widget-pokemon .pwpk-sb.st-defensive[selected] svg{color:var(--pw-tone-success-light)}
 /* ===================== COMPONENT: pw-widget-minimap ===================== */
+.toggling :is(.pwmm-resize,.pwbg-resize){display:none!important}
 pw-widget-minimap{position:absolute;display:block;box-sizing:border-box;width:calc(var(--pw-space-8) * 5 + var(--pw-space-2) * 4 + var(--pw-space-4) * 2);height:auto;font-family:var(--pw-font-body);z-index:10;touch-action:none;
   --wb-pad:var(--pw-space-4);--wb-head:var(--pw-space-14);--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5}
 pw-widget-minimap[hidden]{display:none}

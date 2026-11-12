@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.62.1
+- Widgets: ao abrir/recolher, a moldura e as alças de redimensionar não deixam mais "rastro" fora do widget (recorte durante a animação e alças escondidas).
+
 ## 0.62.0
 - `pw-widget-pokemon`: removida a linha de ações (chamar/recolher e posturas Ofensivo, Equilibrado e Defensivo). O widget mostra retrato, equipe, vida e cooldown.
 
