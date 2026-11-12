@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.51.1
+- `pw-widget-bag` fechado: altura mínima de 64px e 24px de espaço nas laterais.
+
 ## 0.51.0
 - Novo componente **`pw-widget-bag`** (widget Mochila), feito só com peças do DS: `pw-card` primary, `pw-button` ghost, `pw-scroll`, slots `pw-card` quaternary 32×32 em 5 colunas e `pw-badge` de quantidade; ícone `bag` da barra de navegação.
   - Aberto e fechado (`collapsed`), bloqueado (`locked`: sem arrastar nem redimensionar) e fechar (`close()` / `show()`).
