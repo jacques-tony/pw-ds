@@ -27,6 +27,15 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.60.2
+- `pw-widget-pokemon`:
+  - Posturas num único card tertiary não interativo, com hover só no ícone.
+  - Vida e recarga em `pw-progress` padrão (label e valor).
+  - Pokébolas alinhadas ao topo do retrato e barras alinhadas à base dele.
+  - Abrir/recolher igual ao da mochila.
+- Widgets: a animação de abrir/recolher não trava mais no `min-height` (vale para todos). Padrão documentado em `docs/widgets.md`.
+- Storybook: botão "Simular combate" no Widget Pokémon (vida e recarga ao vivo, também na simulação do jogo).
+
 ## 0.60.1
 - `pw-widget-pokemon`: mesma largura da mochila (224px) e altura fixa; ícone do cabeçalho = ícone "team" da barra superior; só cards tertiary neutral no padrão de slot da mochila (retrato com 2 slots, linha de 5 slots com chamar, recolher e as 3 posturas; postura ativa em `state="selected"`). Sprite de exemplo: Clefable olhando para o sul (`icons/widget/clefable-south.webp`).
 

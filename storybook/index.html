@@ -1713,7 +1713,8 @@ pw-button[aria-haspopup] .pwbt-label+.pwbt-icon{transition:transform .2s var(--c
 .pwbg-flash.v{background:linear-gradient(180deg,transparent,var(--pw-filament) 20%,var(--pw-white) 50%,var(--pw-filament) 80%,transparent)}
 @media (prefers-reduced-motion:reduce){pw-widget-bag *{transition:none!important}}
 /* ===================== COMPONENT: pw-widget-pokemon ===================== */
-pw-widget-pokemon{height:auto!important}
+/* altura automática sem !important para a animação de abrir/recolher (a mesma da mochila) funcionar */
+pw-widget-pokemon{height:auto}
 pw-widget-pokemon>pw-card.pwbg-card{height:auto}
 pw-widget-pokemon>pw-card.pwbg-card>.pwc-content{height:auto;padding-bottom:var(--pw-space-4)}
 pw-widget-pokemon[collapsed]>pw-card.pwbg-card>.pwc-content{padding-bottom:0}
@@ -1723,23 +1724,30 @@ pw-widget-pokemon .pwpk-top{display:flex;gap:var(--wb-gap);align-items:center}
 pw-widget-pokemon pw-card.pwpk-pic{flex:none;width:calc(var(--wb-slot) * 2 + var(--wb-gap));height:calc(var(--wb-slot) * 2 + var(--wb-gap));border-radius:var(--pw-radius-md)}
 pw-widget-pokemon pw-card.pwpk-pic>.pwc-content{padding:0;height:100%;display:grid;place-items:center}
 pw-widget-pokemon pw-card.pwpk-pic img{width:80%;height:80%;object-fit:contain;image-rendering:pixelated;position:relative;z-index:1}
-pw-widget-pokemon .pwpk-info{flex:1;min-width:0;display:grid;gap:var(--pw-space-1)}
 pw-widget-pokemon .pwpk-balls{display:flex;justify-content:space-between}
 pw-widget-pokemon .pwpk-ball{width:var(--pw-space-4);height:var(--pw-space-4);color:color-mix(in srgb,var(--pw-text-muted) 70%,transparent)}
 pw-widget-pokemon .pwpk-ball svg{width:100%;height:100%}
-pw-widget-pokemon .pwpk-bar{position:relative;display:grid}
-pw-widget-pokemon .pwpk-bar pw-progress{min-width:0;--pr-h:var(--pw-space-4)}
-pw-widget-pokemon .pwpk-bar .pwp-track{border-radius:var(--pw-radius-xs)}
-pw-widget-pokemon .pwpk-bar>span{position:absolute;inset:0;display:grid;place-items:center;font:var(--pw-font-weight-semibold) var(--pw-font-size-2xs)/1 var(--pw-font-body);font-variant-numeric:tabular-nums;color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);pointer-events:none}
 pw-widget-pokemon .pwpk-row{display:grid;grid-template-columns:repeat(5,var(--wb-slot));gap:var(--wb-gap)}
-pw-widget-pokemon .pwpk-acts,pw-widget-pokemon .pwpk-stances{display:contents}
+pw-widget-pokemon .pwpk-acts{display:contents}
+pw-widget-pokemon .pwpk-info{flex:1;min-width:0;align-self:stretch;display:flex;flex-direction:column;justify-content:space-between}
+pw-widget-pokemon .pwpk-bars{display:grid;gap:var(--pw-space-1)}
+pw-widget-pokemon .pwpk-bars pw-progress{min-width:0}
+pw-widget-pokemon .pwpk-bars .pwp-head{font-size:var(--pw-font-size-2xs)}
+pw-widget-pokemon pw-card.pwpk-stances{grid-column:span 3;width:auto;height:var(--wb-slot);border-radius:var(--pw-radius-sm)}
+pw-widget-pokemon pw-card.pwpk-stances>.pwc-content{padding:0;height:100%}
+pw-widget-pokemon .pwpk-st{position:relative;z-index:1;height:100%;display:grid;grid-template-columns:repeat(3,1fr)}
+pw-widget-pokemon .pwpk-sb{all:unset;display:grid;place-items:center;cursor:pointer;border-radius:var(--pw-radius-xs)}
+pw-widget-pokemon .pwpk-sb svg{width:var(--pw-space-5);height:var(--pw-space-5);color:var(--pw-text-muted);transition:color var(--card-dur),transform .15s var(--card-ease),filter var(--card-dur)}
+pw-widget-pokemon .pwpk-sb:hover svg{transform:scale(1.15);color:var(--pw-text-primary);filter:drop-shadow(0 0 4px var(--pw-glow-soft))}
+pw-widget-pokemon .pwpk-sb:focus-visible{outline:2px solid var(--pw-focus-ring);outline-offset:-2px}
+pw-widget-pokemon .pwpk-sb[selected] svg{transform:scale(1.1)}
 pw-widget-pokemon pw-card.pwpk-btn{cursor:pointer}
 pw-widget-pokemon pw-card.pwpk-btn>.pwc-content{padding:0;height:100%;display:grid;place-items:center;position:relative;z-index:1}
 pw-widget-pokemon pw-card.pwpk-btn .pwc-content svg{position:static;margin:0;width:var(--pw-space-5);height:var(--pw-space-5);color:var(--pw-text-muted);transition:color var(--card-dur),transform .15s}
 pw-widget-pokemon pw-card.pwpk-btn:hover .pwc-content svg{transform:scale(1.08)}
-pw-widget-pokemon .st-offensive[selected] .pwc-content svg{color:var(--pw-tone-error-base)}
-pw-widget-pokemon .st-balanced[selected] .pwc-content svg{color:var(--pw-tone-warning-light)}
-pw-widget-pokemon .st-defensive[selected] .pwc-content svg{color:var(--pw-tone-success-light)}
+pw-widget-pokemon .pwpk-sb.st-offensive[selected] svg{color:var(--pw-tone-error-base)}
+pw-widget-pokemon .pwpk-sb.st-balanced[selected] svg{color:var(--pw-tone-warning-light)}
+pw-widget-pokemon .pwpk-sb.st-defensive[selected] svg{color:var(--pw-tone-success-light)}
 /* @pwds-css-end */
 /* demo content inside cards */
 .k-eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--card-filament)}
@@ -1998,6 +2006,7 @@ pw-widget-pokemon .st-defensive[selected] .pwc-content svg{color:var(--pw-tone-s
     <pw-widget-pokemon id="pokeDemo" style="left:40px;top:40px"><script type="application/json">{"name": "Clefable", "image": "data:image/webp;base64,UklGRsACAABXRUJQVlA4TLMCAAAvKAAKEOfiNrZtVTn7PvuOQ0xO5dRm0Xdrg2EkSUp+93B3YiAF4iRQdzlXkSQpVncvk44TcOrPDzz8ZZr5Dxnc1ZglJuJdz3uB2SQVSABYYSvvQlBEtwDCLJ9xtSs8+wliMA4k9iCJrKkRjADnpdq7SsGbl0QAbArf4ETW/YPySwARzJJoNdziXcf9hO/Al9n9W66vhwz73Wz/35R8lRHJKWykvr1Zsq9SGyncvAEa+x13wTJHxRudMqPEkYiRnAKUQCfR8/A8yYwA8pDhrtbvZ1PTvvKxrnxw9XJmEUX1Ou9hsY/J/z1azMd2md91BtmSbatWM3F3lw37xhPcOSvseGZ04XD9//9j2zk88RrRfwZuGylq02NYfkT3uTYAPKFEQFbteqfSBQCden1tNKu1uvdYb2++WtEVnzV08zTr9VbNHwAvDw/eA5jfEYkymm8TjHpqIoKlvcdHJWV+h6pJALmRIACetROlJCFDyA9rU4CRG59Ir28KTHmpWH3UL9v2jKSPWx/sH/BHhUnPVwMnek/7+Hh1REaQG8uAKYo4MRNFgRqVYXNNT9Dxzlsv7+kZZPpgzhgIufU5vrz1i/zmnIsYC7fDwxHTBpBfX7ccSZ5tRSeBWcCIiEmeghExENVPZy5K6p8uYDKJyjpODVi7xbzdpCc3TowZEc36PMssjBFBOvKGRam3Dz1BPTlUlYBIbrAOiYqeP4wGjSb6+MYGBIt9zAhWhXlFvI1AH70yKC1v08u3yYdhfcASWYWlpv4daz8qjtCibMKJ5/JSlaeM5A1Y+yJO/gLJU2ttnDsXWXarzFCslHRyaplHt5yFsohzJKsid5m7IruvHP8FUGkRsZKzxeaPv//5PeyqHliL2IE/lHeoujSJdw1pIXhx0YNuVXoamSIBjZ4GnrQSlhXiuXYXAA==", "hp": 22194, "hpMax": 22194, "cd": 0, "cdLeft": 0, "stance": "offensive", "team": [{"name": "Clefable"}, {"name": "Blastoise"}, {"name": "Gengar"}, {"name": "Caterpie", "fainted": true}, {"name": "Metapod"}, null]}</script></pw-widget-pokemon>
     <pw-widget-pokemon id="pokeDemo2" collapsed style="left:340px;top:40px"><script type="application/json">{"name": "Clefable", "image": "data:image/webp;base64,UklGRsACAABXRUJQVlA4TLMCAAAvKAAKEOfiNrZtVTn7PvuOQ0xO5dRm0Xdrg2EkSUp+93B3YiAF4iRQdzlXkSQpVncvk44TcOrPDzz8ZZr5Dxnc1ZglJuJdz3uB2SQVSABYYSvvQlBEtwDCLJ9xtSs8+wliMA4k9iCJrKkRjADnpdq7SsGbl0QAbArf4ETW/YPySwARzJJoNdziXcf9hO/Al9n9W66vhwz73Wz/35R8lRHJKWykvr1Zsq9SGyncvAEa+x13wTJHxRudMqPEkYiRnAKUQCfR8/A8yYwA8pDhrtbvZ1PTvvKxrnxw9XJmEUX1Ou9hsY/J/z1azMd2md91BtmSbatWM3F3lw37xhPcOSvseGZ04XD9//9j2zk88RrRfwZuGylq02NYfkT3uTYAPKFEQFbteqfSBQCden1tNKu1uvdYb2++WtEVnzV08zTr9VbNHwAvDw/eA5jfEYkymm8TjHpqIoKlvcdHJWV+h6pJALmRIACetROlJCFDyA9rU4CRG59Ir28KTHmpWH3UL9v2jKSPWx/sH/BHhUnPVwMnek/7+Hh1REaQG8uAKYo4MRNFgRqVYXNNT9Dxzlsv7+kZZPpgzhgIufU5vrz1i/zmnIsYC7fDwxHTBpBfX7ccSZ5tRSeBWcCIiEmeghExENVPZy5K6p8uYDKJyjpODVi7xbzdpCc3TowZEc36PMssjBFBOvKGRam3Dz1BPTlUlYBIbrAOiYqeP4wGjSb6+MYGBIt9zAhWhXlFvI1AH70yKC1v08u3yYdhfcASWYWlpv4daz8qjtCibMKJ5/JSlaeM5A1Y+yJO/gLJU2ttnDsXWXarzFCslHRyaplHt5yFsohzJKsid5m7IruvHP8FUGkRsZKzxeaPv//5PeyqHliL2IE/lHeoujSJdw1pIXhx0YNuVXoamSIBjZ4GnrQSlhXiuXYXAA==", "hp": 22194, "hpMax": 22194, "cd": 0, "cdLeft": 0, "stance": "offensive", "team": [{"name": "Clefable"}, {"name": "Blastoise"}, {"name": "Gengar"}, {"name": "Caterpie", "fainted": true}, {"name": "Metapod"}, null]}</script></pw-widget-pokemon>
   </div>
+  <div class="row" style="gap:12px;align-items:center;margin:8px 0"><pw-button id="pokeSim" size="sm" icon="bolt">Simular combate</pw-button><span class="cap" id="pokeSimSt" style="margin:0">A vida cai em golpes e a recarga sobe e desce sozinha (também no widget da simulação do jogo).</span></div>
   <pre class="code">&lt;pw-widget-pokemon style="left:24px;top:24px"&gt;&lt;/pw-widget-pokemon&gt;
 &lt;script&gt;
   w.pokemon = { name: 'Clefable', image: 'clefable-sul.webp', hp: 22194, hpMax: 22194, cd: 30, cdLeft: 0, stance: 'offensive',
@@ -5303,9 +5312,9 @@ class PWWidgetBag extends HTMLElement{
     var h0=this.offsetHeight;if(this._anim)this._anim.cancel();this.toggleAttribute('collapsed',want);var h1=this.offsetHeight;
     if(matchMedia('(prefers-reduced-motion: reduce)').matches||h0===h1)return;var bd=this.querySelector('.pwbg-body');
     if(want)this.removeAttribute('collapsed');
-    this._anim=this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:300,easing:'cubic-bezier(.4,0,.2,1)'});
+    this.style.minHeight='0';this._anim=this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:300,easing:'cubic-bezier(.4,0,.2,1)'});
     bd.animate(want?[{opacity:1},{opacity:0}]:[{opacity:0},{opacity:1}],{duration:want?180:300,easing:'ease-out',fill:want?'forwards':'none'});
-    this._anim.finished.then(()=>{if(want)this.setAttribute('collapsed','');bd.getAnimations().forEach(a=>a.cancel());this._more&&this._more()},()=>{this.style.overflow=''})}
+    this._anim.finished.then(()=>{this.style.minHeight='';if(want)this.setAttribute('collapsed','');bd.getAnimations().forEach(a=>a.cancel());this._more&&this._more()},()=>{this.style.overflow=''})}
   close(){var ev=new CustomEvent('close',{bubbles:true,cancelable:true});this.dispatchEvent(ev);if(!ev.defaultPrevented)this.hidden=true}
   show(){this.hidden=false}
   /* arrastar pelo cabeçalho, dentro do elemento pai */
@@ -5421,18 +5430,22 @@ class PWWidgetPokemon extends PWWidgetBag{
   fitAll(){}
   _limits(){return {row:1,base:this.offsetHeight,min:this.offsetHeight,max:this.offsetHeight}}
   setStance(s){if(s===this._p.stance)return;var ev=new CustomEvent('stance',{bubbles:true,cancelable:true,detail:{stance:s,previous:this._p.stance}});this.dispatchEvent(ev);if(ev.defaultPrevented)return;
-    this._p.stance=s;this.querySelectorAll('[data-stance]').forEach(c=>{var on=c.dataset.stance===s;c.toggleAttribute('selected',on);c.setAttribute('state',on?'selected':'idle');c.setAttribute('aria-checked',on?'true':'false')})}
-  /* atualiza vida/recarga sem recriar */
-  update(patch){Object.assign(this._p,patch||{});this._render()}
+    this._p.stance=s;this.querySelectorAll('[data-stance]').forEach(c=>{var on=c.dataset.stance===s;c.toggleAttribute('selected',on);c.setAttribute('aria-checked',on?'true':'false')})}
+  _bars(){var p=this._p,hp=p.hpMax?Math.max(0,Math.min(p.hp||0,p.hpMax)):0;
+    return '<pw-progress class="pwpk-hp" size="sm" variant="hp" label="Vida" show-value value="'+hp+'" max="'+(p.hpMax||0)+'"></pw-progress>'+
+      '<pw-progress class="pwpk-cd" size="sm" tone="info" label="'+(p.cdLeft?'Recarga':'Sem recarga')+'"'+(p.cdLeft?' show-value format="value"':'')+' value="'+(p.cdLeft||0)+'" max="'+(p.cd||1)+'"></pw-progress>'}
+  /* atualiza vida/recarga sem recriar o widget */
+  update(patch){Object.assign(this._p,patch||{});var b=this.querySelector('.pwpk-bars');if(!b){this._render();return}
+    var p=this._p,hp=b.querySelector('.pwpk-hp'),cd=b.querySelector('.pwpk-cd');hp.setAttribute('max',p.hpMax||0);hp.setAttribute('value',Math.max(0,Math.min(p.hp||0,p.hpMax||0)));
+    cd.setAttribute('max',p.cd||1);cd.setAttribute('value',p.cdLeft||0);cd.setAttribute('label',p.cdLeft?'Recarga':'Sem recarga');if(p.cdLeft){cd.setAttribute('show-value','');cd.setAttribute('format','value')}else cd.removeAttribute('show-value')}
   _render(){var p=this._p,E=pwEsc,hp=p.hpMax?Math.max(0,Math.min(p.hp||0,p.hpMax)):0,cd=p.cd?Math.max(0,Math.min(1,(p.cdLeft||0)/p.cd)):0,team=(p.team||[]).slice(0,6);while(team.length<6)team.push(null);
     var balls=team.map((t,i)=>'<span class="pwpk-ball'+(t&&t.fainted?' out':'')+'" role="img" aria-label="'+(t?E(t.name||('Pokémon '+(i+1)))+(t.fainted?' (desmaiado)':''):'Espaço vazio')+'"'+(t&&t.name?' data-tip="'+E(t.name)+'"':'')+'>'+pwWIc(t&&!t.fainted?'pokeball-filled':'pokeball-empty')+'</span>').join('');
     this.querySelector('.pwpk-body').innerHTML=
       '<div class="pwpk-top"><pw-card variant="tertiary" tone="neutral" class="pwpk-pic" role="img" aria-label="'+E(p.name||'Pokémon')+'">'+(p.image?'<img src="'+E(p.image)+'" alt="">':'')+'</pw-card>'+
       '<div class="pwpk-info"><div class="pwpk-balls" aria-label="Equipe">'+balls+'</div>'+
-      '<span class="pwpk-bar"><pw-progress variant="hp" value="'+hp+'" max="'+(p.hpMax||0)+'"></pw-progress><span>'+(p.hp||0)+' / '+(p.hpMax||0)+'</span></span>'+
-      '<span class="pwpk-bar cd"><pw-progress tone="info" value="'+Math.round(cd*100)+'"></pw-progress><span>'+(p.cdLeft?'CD '+p.cdLeft+'s':'CD --')+'</span></span></div></div>'+
+      '<div class="pwpk-bars">'+this._bars()+'</div></div></div>'+
       '<div class="pwpk-row"><div class="pwpk-acts">'+(p.actions||[]).map((a,i)=>'<pw-card variant="tertiary" tone="neutral" interactive state="idle" class="pwbg-slot pwpk-btn" data-act="'+i+'" role="button" tabindex="0" aria-label="'+E(a.label)+'" data-tip="'+E(a.label)+'">'+pwWIc(a.icon)+'</pw-card>').join('')+'</div>'+
-      '<div class="pwpk-stances" role="radiogroup" aria-label="Postura">'+PW_STANCES.map(s=>'<pw-card variant="tertiary" tone="neutral" interactive state="'+(p.stance===s[0]?'selected':'idle')+'" class="pwbg-slot pwpk-btn st-'+s[0]+'" data-stance="'+s[0]+'" role="radio" tabindex="0" aria-checked="'+(p.stance===s[0])+'" aria-label="'+s[1]+'" data-tip="'+s[1]+'"'+(p.stance===s[0]?' selected':'')+'>'+pwWIc(s[2])+'</pw-card>').join('')+'</div></div>'}
+      '<pw-card variant="tertiary" tone="neutral" class="pwpk-stances"><div class="pwpk-st" role="radiogroup" aria-label="Postura de combate">'+PW_STANCES.map(s=>'<button type="button" class="pwpk-sb st-'+s[0]+'" data-stance="'+s[0]+'" role="radio" aria-checked="'+(p.stance===s[0])+'" aria-label="'+s[1]+'" data-tip="'+s[1]+'"'+(p.stance===s[0]?' selected':'')+'>'+pwWIc(s[2])+'</button>').join('')+'</div></pw-card></div>'}
 }
 PWWidgetPokemon.prototype.toggle=PWWidgetBag.prototype.toggle;
 customElements.define('pw-widget-pokemon',PWWidgetPokemon);
@@ -5863,3 +5876,9 @@ d.innerHTML='<div style="display:flex;align-items:flex-end;gap:8px;height:40px">
   b.addEventListener('click',()=>set(!w.classList.contains('is-full')));
   document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement&&w.classList.contains('is-full'))set(false)});
   document.addEventListener('keydown',e=>{if(e.isTrusted&&e.key==='Escape'&&w.classList.contains('is-full')&&!document.querySelector('pw-dialog[open]')&&!document.querySelector('pw-control-group[open]'))set(false)})})();</script>
+
+<script>(function(){var b=document.getElementById('pokeSim'),st=document.getElementById('pokeSimSt');if(!b)return;var tm=null,ws=()=>[document.getElementById('pokeDemo'),document.getElementById('gsimPoke')].filter(Boolean);
+  function tick(){ws().forEach(w=>{var p=w.pokemon,hp=p.hp,mx=p.hpMax||1,left=p.cdLeft||0,cd=p.cd||0;if(Math.random()<.7)hp=Math.max(0,hp-Math.round(mx*(.02+Math.random()*.06)));if(hp<=0)hp=mx;
+    if(left>0)left--;else{cd=8+Math.round(Math.random()*8);left=cd}w.update({hp:hp,cd:cd,cdLeft:left});st.textContent=(p.name||'Pokémon')+' · '+hp+' / '+mx+' · '+(left?'recarga '+left+'s':'sem recarga')})}
+  function lab(on){var l=b.querySelector('.pwbt-label');if(l)l.textContent=on?'Parar simulação':'Simular combate';b.setAttribute('icon',on?'close':'bolt')}
+  b.addEventListener('click',()=>{if(tm){clearInterval(tm);tm=null;lab(false);ws().forEach(w=>w.update({cdLeft:0}))}else{tick();tm=setInterval(tick,1000);lab(true)}})})();</script>
