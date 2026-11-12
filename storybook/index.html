@@ -5237,7 +5237,10 @@ class PWWidgetBag extends HTMLElement{
   /* encostadas = bordas sobrepostas em PWWidgetBag.O px (as molduras viram uma linha só) */
   static _near(e1,e2){var d=e1-e2;return d>=-1.5&&d<=PWWidgetBag.O+1.5}
   static _touch(a,b){var N=PWWidgetBag._near,vo=Math.min(a.y+a.h,b.y+b.h)-Math.max(a.y,b.y),ho=Math.min(a.x+a.w,b.x+b.w)-Math.max(a.x,b.x);
-    return ((N(a.x+a.w,b.x)||N(b.x+b.w,a.x))&&vo>PWWidgetBag.O)||((N(a.y+a.h,b.y)||N(b.y+b.h,a.y))&&ho>PWWidgetBag.O)}
+    return ((N(a.x+a.w,b.x)||N(b.x+b.w,a.x))&&vo>PWWidgetBag.O)||((N(a.y+a.h,b.y)||N(b.y+b.h,a.y))&&ho>PWWidgetBag.O)||PWWidgetBag._diag(a,b)}
+  /* diagonal: os chanfros de dois cantos opostos encostam (a linha do chanfro fica em x+y = C) */
+  static _diagPos(o,w,h){var C=PWWidgetBag.C;return [[o.x+o.w-C,o.y+o.h-C],[o.x-w+C,o.y+o.h-C],[o.x+o.w-C,o.y-h+C],[o.x-w+C,o.y-h+C]]}
+  static _diag(a,b){return PWWidgetBag._diagPos(b,a.w,a.h).some(p=>Math.abs(p[0]-a.x)<=1.5&&Math.abs(p[1]-a.y)<=1.5)}
   _peers(){var p=this.parentNode;return p?[].slice.call(p.children).filter(x=>x.tagName==='PW-WIDGET-BAG'&&!x.hidden&&x.offsetParent===this.offsetParent):[]}
   /* conjunto = mochilas ligadas por encostar (direta ou indiretamente) */
   group(){var all=this._peers().map(PWWidgetBag._box),seen=[this],q=[this];
@@ -5251,8 +5254,9 @@ class PWWidgetBag extends HTMLElement{
   _flash(a,o){var p=this.offsetParent;if(!p||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var O=PWWidgetBag.O,N=PWWidgetBag._near,f=document.createElement('span');f.className='pwbg-flash';var x,y,w,hh,vert=false;
     if(N(a.y+a.h,o.y)||N(o.y+o.h,a.y)){var yy=N(a.y+a.h,o.y)?a.y+a.h-O/2:o.y+o.h-O/2;x=Math.max(a.x,o.x)+8;w=Math.min(a.x+a.w,o.x+o.w)-8-x;y=yy-3;hh=6}
     else{vert=true;var xx=N(a.x+a.w,o.x)?a.x+a.w-O/2:o.x+o.w-O/2;y=Math.max(a.y,o.y)+8;hh=Math.min(a.y+a.h,o.y+o.h)-8-y;x=xx-3;w=6}
-    if(w<=0||hh<=0)return;f.style.cssText='left:'+x+'px;top:'+y+'px;width:'+w+'px;height:'+hh+'px';if(vert)f.classList.add('v');p.appendChild(f);
-    f.animate([{transform:vert?'scaleY(0)':'scaleX(0)',opacity:1,easing:'cubic-bezier(.2,.8,.2,1)'},{transform:'none',opacity:1,offset:.35},{transform:'none',opacity:1,offset:.6,easing:'ease-in'},{transform:'none',opacity:0}],{duration:1100}).finished.then(()=>f.remove(),()=>f.remove())}
+    if(PWWidgetBag._diag(a,o)){var cx2=a.x<o.x?a.x+a.w-PWWidgetBag.C/2:a.x+PWWidgetBag.C/2,cy2=a.y<o.y?a.y+a.h-PWWidgetBag.C/2:a.y+PWWidgetBag.C/2;x=cx2-12;y=cy2-3;w=24;hh=6;f.style.rotate=((a.x<o.x)===(a.y<o.y)?'-45deg':'45deg')}
+    if(w<=0||hh<=0)return;f.style.cssText+=';'+'left:'+x+'px;top:'+y+'px;width:'+w+'px;height:'+hh+'px';if(vert)f.classList.add('v');p.appendChild(f);
+    f.animate([{transform:vert?'scaleY(0)':'scaleX(0)',opacity:1,easing:'cubic-bezier(.2,.8,.2,1)'},{transform:'none',opacity:1,offset:.4},{transform:'none',opacity:1,offset:.55,easing:'ease-in'},{transform:'none',opacity:0}],{duration:520}).finished.then(()=>f.remove(),()=>f.remove())}
   _dragInit(){var hd=this.querySelector('.pwbg-head');hd.addEventListener('pointerdown',e=>{if(e.button!==0||this.hasAttribute('locked')||this.hasAttribute('static')||e.target.closest('pw-button'))return;
       e.preventDefault();var p=this.offsetParent||document.body,pr=p.getBoundingClientRect(),r=this.getBoundingClientRect(),dx=e.clientX-r.left,dy=e.clientY-r.top;
       var S=(pr.width/(p.offsetWidth||pr.width))||1,PW=p.clientWidth,PH=p.clientHeight,T=14;
@@ -5263,15 +5267,17 @@ class PWWidgetBag extends HTMLElement{
       var minX=Math.min.apply(null,mem.map(m=>m.ox)),minY=Math.min.apply(null,mem.map(m=>m.oy)),maxX=Math.max.apply(null,mem.map(m=>m.ox+m.w)),maxY=Math.max.apply(null,mem.map(m=>m.oy+m.h));
       G.forEach(b=>{b.classList.add('dragging');b.style.right='auto';b.style.bottom='auto'});
       var hits=[];
-      var mv=ev=>{var x=(ev.clientX-pr.left-dx)/S,y=(ev.clientY-pr.top-dy)/S,bx=null,by=null,bdx=T+1,bdy=T+1,tg=[];
+      var mv=ev=>{var x=(ev.clientX-pr.left-dx)/S,y=(ev.clientY-pr.top-dy)/S,bx=null,by=null,bdx=T+1,bdy=T+1,tg=[],dg=false;
         mem.forEach(m=>{var L=x+m.ox,R=L+m.w,Tp=y+m.oy,B=Tp+m.h;others.forEach(o=>{
           /* lado a lado (precisa sobrepor na vertical) · empilhado (precisa sobrepor na horizontal) · alinhamento das bordas quando já estão encostando */
           var vo=Math.min(B,o.y+o.h)-Math.max(Tp,o.y)>0,ho=Math.min(R,o.x+o.w)-Math.max(L,o.x)>0,
               stack=Math.abs(B-o.y)<=T||Math.abs(Tp-o.y-o.h)<=T,side=Math.abs(R-o.x)<=T||Math.abs(L-o.x-o.w)<=T;
           var O=PWWidgetBag.O,cx=[];if(vo)cx.push(o.x+o.w-O-L,o.x+O-R);if(stack&&ho)cx.push(o.x-L,o.x+o.w-R);
           var cy=[];if(ho)cy.push(o.y+o.h-O-Tp,o.y+O-B);if(side&&vo)cy.push(o.y-Tp,o.y+o.h-B);
-          cx.forEach(d=>{if(Math.abs(d)<Math.abs(bdx)){bdx=d;bx=o}});cy.forEach(d=>{if(Math.abs(d)<Math.abs(bdy)){bdy=d;by=o}})})});
-        if(Math.abs(bdx)<=T)x+=bdx;if(Math.abs(bdy)<=T)y+=bdy;
+          cx.forEach(d=>{if(Math.abs(d)<Math.abs(bdx)){bdx=d;bx=o}});cy.forEach(d=>{if(Math.abs(d)<Math.abs(bdy)){bdy=d;by=o}});
+          /* encaixe diagonal (canto com canto): só quando não há encaixe reto */
+          var vov=Math.min(B,o.y+o.h)-Math.max(Tp,o.y),hov=Math.min(R,o.x+o.w)-Math.max(L,o.x),CC=PWWidgetBag.C+T;if(vov<CC&&hov<CC&&vov>-T&&hov>-T)PWWidgetBag._diagPos(o,m.w,m.h).forEach(q=>{var ddx=q[0]-L,ddy=q[1]-Tp;if(Math.abs(ddx)<=T*2&&Math.abs(ddy)<=T*2&&Math.abs(ddx)+Math.abs(ddy)<Math.abs(bdx)+Math.abs(bdy)){bdx=ddx;bdy=ddy;bx=by=o;dg=true}})})});
+        if(dg){x+=bdx;y+=bdy}else{if(Math.abs(bdx)<=T)x+=bdx;if(Math.abs(bdy)<=T)y+=bdy}
         x=Math.max(-minX,Math.min(PW-maxX,x));y=Math.max(-minY,Math.min(PH-maxY,y));
         mem.forEach(m=>{m.b.style.left=(x+m.ox)+'px';m.b.style.top=(y+m.oy)+'px'});
         /* destaca as mochilas que vão grudar */
@@ -5281,7 +5287,7 @@ class PWWidgetBag extends HTMLElement{
         this._mark();var grp=this.group();
         if(hits.length&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
           G.forEach(m=>{var a=PWWidgetBag._box(m);hits.forEach(o=>{var ob=PWWidgetBag._box(o);if(PWWidgetBag._touch(a,ob))this._flash(a,ob)})});
-          grp.forEach(b=>b.querySelector('.pwbg-card').animate([{filter:'brightness(1)'},{filter:'brightness(1.18) drop-shadow(0 0 6px var(--pw-glow))',offset:.3},{filter:'brightness(1)'}],{duration:600,easing:'ease-out'}))}
+          grp.forEach(b=>b.querySelector('.pwbg-card').animate([{filter:'brightness(1)'},{filter:'brightness(1.18) drop-shadow(0 0 6px var(--pw-glow))',offset:.3},{filter:'brightness(1)'}],{duration:320,easing:'ease-out'}))}
         this.dispatchEvent(new CustomEvent('move',{bubbles:true,detail:{left:this.offsetLeft,top:this.offsetTop,group:grp}}));
         if(hits.length)this.dispatchEvent(new CustomEvent('groupchange',{bubbles:true,detail:{group:grp}}))};
       document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)});
@@ -5303,7 +5309,7 @@ class PWWidgetBag extends HTMLElement{
       document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)});
     g.addEventListener('keydown',e=>{var L=this._limits(),d={ArrowUp:-L.row,ArrowDown:L.row,Home:-1e4,End:1e4}[e.key];if(d===undefined)return;e.preventDefault();var h=this._setH(this.offsetHeight+d,true);this.dispatchEvent(new CustomEvent('resize',{bubbles:true,detail:{height:h}}))})}
 }
-PWWidgetBag.O=3;
+PWWidgetBag.O=3;PWWidgetBag.C=24;
 customElements.define('pw-widget-bag',PWWidgetBag);
 
 /* @pwds-js-end */

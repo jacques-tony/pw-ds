@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.56.1
+- `pw-widget-bag`: encaixe diagonal (canto com canto): os chanfros encostam numa linha só, sem espaço entre as mochilas, e contam como conjunto; animação de conexão mais curta (~0,5s).
+
 ## 0.56.0
 - `pw-card`: novo atributo `chamfer="tl tr br bl"` que escala o chanfro de cada canto da moldura primary/secondary (ex.: `1 1 .5 .5`).
 - `pw-widget-bag`:
