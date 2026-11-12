@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.53.0
+- `pw-card` primary: novo atributo `fill` = `gradient` (padrão, degradê radial) ou `solid` (cor única `--card-bg-solid`), para widgets.
+- `pw-widget-bag`: usa `fill="solid"` por padrão (`fill="gradient"` volta o degradê); cabeçalho com 12px em cima e embaixo nas duas versões.
+
 ## 0.52.0
 - Storybook: nova página inicial **Global Navigation** (abre primeiro), com a simulação da tela do jogo em 1920×1080 no topo e as seções Barra superior (antiga Navigation Bar), HUD inferior e Widget Mochila na mesma página.
 - `pw-hud` e `pw-widget-bag`: menus, editar ordem, arrastar e redimensionar funcionam também dentro de um container escalado (`transform: scale`).

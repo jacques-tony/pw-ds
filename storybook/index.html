@@ -1622,7 +1622,7 @@ pw-button[aria-haspopup][aria-expanded="true"] .pwbt-label+.pwbt-icon{transform:
 pw-button[aria-haspopup] .pwbt-label+.pwbt-icon{transition:transform .2s var(--card-ease)}
 /* ===================== COMPONENT: pw-widget-bag (widget Mochila) ===================== */
 /* feito só com peças do DS: pw-card primary (moldura), pw-button ghost (ações), pw-scroll (rolagem), pw-card quaternary (slots), pw-badge (quantidade) */
-pw-widget-bag{--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5;--wb-pad:var(--pw-space-4);--wb-head:calc(var(--pw-space-6) + var(--pw-space-3) + var(--pw-space-7));
+pw-widget-bag{--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5;--wb-pad:var(--pw-space-4);--wb-head:calc(var(--pw-space-3) * 2 + var(--pw-space-7));
   position:absolute;display:block;box-sizing:border-box;width:calc(var(--wb-slot) * var(--wb-cols) + var(--wb-gap) * (var(--wb-cols) - 1) + var(--wb-pad) * 2 + var(--pw-space-3));
   height:calc(var(--wb-head) + (var(--wb-slot) + var(--wb-gap)) * 7 + var(--pw-space-4));min-height:calc(var(--wb-head) + var(--wb-slot) + var(--pw-space-4));
   font-family:var(--pw-font-body);z-index:10;touch-action:none}
@@ -1636,7 +1636,7 @@ pw-widget-bag[collapsed]{min-height:var(--pw-space-16)!important}
 pw-widget-bag[collapsed]>pw-card.pwbg-card{min-height:var(--pw-space-16)}
 pw-widget-bag[collapsed]>pw-card.pwbg-card>.pwc-content{height:auto;min-height:var(--pw-space-16);justify-content:center;padding-bottom:0}
 /* cabeçalho: alça de arrastar */
-pw-widget-bag .pwbg-head{flex:none;display:flex;align-items:center;gap:var(--pw-space-2);box-sizing:border-box;height:var(--wb-head);padding:var(--pw-space-6) 0 var(--pw-space-3);cursor:grab;user-select:none}
+pw-widget-bag .pwbg-head{flex:none;display:flex;align-items:center;gap:var(--pw-space-2);box-sizing:border-box;height:var(--wb-head);padding:var(--pw-space-3) 0;cursor:grab;user-select:none}
 pw-widget-bag[locked] .pwbg-head,pw-widget-bag[static] .pwbg-head{cursor:default}
 pw-widget-bag.dragging .pwbg-head{cursor:grabbing}
 pw-widget-bag .pwbg-ic{flex:none;width:var(--pw-space-6);height:var(--pw-space-6);object-fit:contain;filter:drop-shadow(0 1px 2px var(--pw-black-a45))}
@@ -1718,7 +1718,7 @@ pw-widget-bag.dragging>pw-card{filter:drop-shadow(0 12px 24px var(--pw-black-a45
   <div class="grp" style="margin-top:10px">Componentes</div>
   <button type="button" class="comp-btn" data-comp="card" aria-controls="main">Card</button>
   <nav class="sub" data-for="card">
-    <a href="#referencia">Referência</a><a href="#playground">Playground</a><a href="#primary-tech">Tech</a><a href="#tertiary">Tertiary</a><a href="#tertiary-destaque">Destaque dourado</a><a href="#quaternary">Quaternary</a><a href="#temas">Temas</a><a href="#card-imagem">Fundo com imagem</a><a href="#tons">Tons semânticos</a><a href="#outline">Outline</a><a href="#estados">Estados</a><a href="#anatomia">Anatomia</a><a href="#tokens">Tokens</a><a href="#uso">Regras de uso</a><a href="#pendencias">Pendências</a>
+    <a href="#referencia">Referência</a><a href="#playground">Playground</a><a href="#primary-tech">Tech</a><a href="#tertiary">Tertiary</a><a href="#tertiary-destaque">Destaque dourado</a><a href="#quaternary">Quaternary</a><a href="#temas">Temas</a><a href="#card-fill">Fundo gradient/solid</a><a href="#card-imagem">Fundo com imagem</a><a href="#tons">Tons semânticos</a><a href="#outline">Outline</a><a href="#estados">Estados</a><a href="#anatomia">Anatomia</a><a href="#tokens">Tokens</a><a href="#uso">Regras de uso</a><a href="#pendencias">Pendências</a>
   </nav>
   <button type="button" class="comp-btn" data-comp="header" aria-controls="main">Card Header</button>
   <nav class="sub" data-for="header">
@@ -1915,6 +1915,7 @@ pw-widget-bag.dragging>pw-card{filter:drop-shadow(0 12px 24px var(--pw-black-a45
 &lt;/script&gt;</pre>
   <div class="tbl"><table><thead><tr><th>Propriedade</th><th>Valores</th><th>Descrição</th></tr></thead><tbody>
     <tr><td><code>heading</code></td><td>texto (Mochila)</td><td>Título no cabeçalho</td></tr>
+    <tr><td><code>fill</code></td><td>solid (padrão) · gradient</td><td>Fundo do card primary da mochila</td></tr>
     <tr><td><code>slots</code></td><td>número (35)</td><td>Quantidade de espaços, em 5 colunas de 32×32 (<code>--wb-cols</code>, <code>--wb-slot</code>)</td></tr>
     <tr><td><code>.items</code> / JSON</td><td>array</td><td><code>image</code> ou <code>icon</code>, <code>label</code>, <code>count</code>, <code>description</code></td></tr>
     <tr><td><code>collapsed</code></td><td>—</td><td>Fechado: mostra só o cabeçalho (botão ⌃/⌄)</td></tr>
@@ -2088,6 +2089,15 @@ pw-widget-bag.dragging>pw-card{filter:drop-shadow(0 12px 24px var(--pw-black-a45
   </div>
 </section>
 
+<section class="story" id="card-fill">
+  <h2>Fundo gradient ou solid</h2>
+  <p class="lede">O card primary aceita <code>fill="gradient"</code> (padrão: degradê radial do tema) ou <code>fill="solid"</code> (cor única <code>--card-bg-solid</code>), mais limpo para widgets e janelas pequenas. A moldura, o brilho e os estados não mudam.</p>
+  <div class="canvas" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:center">
+    <div style="display:grid;gap:6px;justify-items:center"><pw-card fill="gradient" style="width:300px;height:180px"></pw-card><span class="cap" style="margin:0">fill="gradient" (padrão)</span></div>
+    <div style="display:grid;gap:6px;justify-items:center"><pw-card fill="solid" style="width:300px;height:180px"></pw-card><span class="cap" style="margin:0">fill="solid"</span></div>
+    <div data-pw-theme="mewtwo" style="display:grid;gap:6px;justify-items:center"><pw-card fill="solid" style="width:300px;height:180px"></pw-card><span class="cap" style="margin:0">solid · tema Mewtwo</span></div>
+  </div>
+</section>
 <section class="story" id="card-imagem">
   <h2>Fundo com imagem</h2>
   <p class="lede">Todos os cards aceitam uma imagem no fundo. A imagem é recortada no formato do fundo de cada variante, então bordas, brilho, anel de foco e destaques continuam iguais; muda só o preenchimento.</p>
@@ -3747,7 +3757,7 @@ function chamfer(W,H,i,c){
 var uidN=0;
 
 class PWCard extends HTMLElement{
-  static get observedAttributes(){return ['variant','interactive','disabled','selected','frame','bg-image','bg','bg-opacity','bg-position','bg-fit']}
+  static get observedAttributes(){return ['variant','interactive','disabled','selected','frame','fill','bg-image','bg','bg-opacity','bg-position','bg-fit']}
   connectedCallback(){
     if(!this._init){
       this._init=true;this._uid='pwc'+(++uidN);
@@ -3791,11 +3801,12 @@ class PWCard extends HTMLElement{
     bg.style.opacity=this.getAttribute('bg')==='both'?'':'0'}
   _frameRender(){
     var W=Math.round(this.offsetWidth),H=Math.round(this.offsetHeight);
-    if(!W||!H||(W===this._w&&H===this._h&&this.getAttribute('variant')===this._v&&this.getAttribute('frame')===this._fr))return;this._fr=this.getAttribute('frame');
+    if(!W||!H||(W===this._w&&H===this._h&&this.getAttribute('variant')===this._v&&this.getAttribute('frame')===this._fr&&this.getAttribute('fill')===this._fl))return;this._fr=this.getAttribute('frame');this._fl=this.getAttribute('fill');
     this._w=W;this._h=H;this._v=this.getAttribute('variant');
     var v=this._v==='secondary'?'secondary':'primary',c=CORNERS.secondary,u=this._uid; /* primary e secondary compartilham a mesma borda e efeitos; muda só o fundo */
     var shape=outline(W,H,c),all=shape+' '+curls(W,H,c),ring=outline(W,H,c,4);
-    var bgFill=v==='primary'?'url(#'+u+'-bg)':'var(--card-bg-solid)';
+    /* fill: gradient (padrão do primary) · solid (cor única, bom para widgets) */
+    var bgFill=v==='primary'&&this.getAttribute('fill')!=='solid'?'url(#'+u+'-bg)':'var(--card-bg-solid)';
     var pri=v==='primary';/* primary: borda externa 1px mais fina e sem a linha interna */
     var border='<path d="'+all+'" fill="none" stroke="var(--card-filament)" stroke-width="'+(pri?3:4)+'"/>'+
                '<path d="'+all+'" fill="none" stroke="url(#'+u+'-metal)" stroke-width="2"/>';
@@ -5137,7 +5148,7 @@ class PWWidgetBag extends HTMLElement{
   set items(v){this._items=Array.isArray(v)?v:[];if(this._init)this._grid()}
   connectedCallback(){if(this._init)return;this._init=true;var json=this.querySelector('script[type="application/json"]');if(json){try{this._items=JSON.parse(json.textContent)}catch(e){}}
     this.setAttribute('role','region');var u=this._u='pwbg'+(++uidN);
-    this.innerHTML='<pw-card variant="primary" class="pwbg-card"><div class="pwbg-head"><img class="pwbg-ic" alt="" draggable="false"><h2 class="pwbg-title" id="'+u+'t"></h2><div class="pwbg-acts">'+
+    this.innerHTML='<pw-card variant="primary" fill="'+(this.getAttribute('fill')==='gradient'?'gradient':'solid')+'" class="pwbg-card"><div class="pwbg-head"><img class="pwbg-ic" alt="" draggable="false"><h2 class="pwbg-title" id="'+u+'t"></h2><div class="pwbg-acts">'+
       '<pw-button variant="ghost" size="sm" particles="0" data-a="collapse"></pw-button><pw-button variant="ghost" size="sm" particles="0" data-a="lock"></pw-button><pw-button variant="ghost" size="sm" particles="0" icon="close" data-a="close" data-label="Fechar"></pw-button></div></div>'+
       '<div class="pwbg-body" id="'+u+'b"><pw-scroll class="pwbg-scroll"><div class="pwbg-grid" role="grid"></div></pw-scroll></div></pw-card>'+
       '<div class="pwbg-resize" role="separator" aria-orientation="horizontal" tabindex="0" aria-label="Redimensionar mochila (setas ↑ ↓)" data-tip="Arraste para redimensionar" data-tip-pos="bottom"></div>';
