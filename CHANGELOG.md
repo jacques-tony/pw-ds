@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.54.0
+- `pw-widget-bag`: mochila dentro da mochila. Item `{ type: "bag", items: [...], slots }`; botão direito abre a mochila interna (transição lateral), o título mostra o nome dela e o botão ← (ghost sm, no lugar do ícone) volta para a anterior. Vários níveis; altura se ajusta aos slots enquanto o usuário não redimensionar. Métodos `openBag(i)`, `back()`, `fitAll()`; eventos `bagopen` (cancelável) e `bagback`.
+- Barra de rolagem 1px mais para a esquerda.
+- Storybook: item de mochila animado no exemplo, com uma mochila dentro de outra.
+
 ## 0.53.9
 - `pw-widget-bag`: slots alinhados às extremidades do cabeçalho (16px de cada lado, até o botão Fechar); barra de rolagem independente do conteúdo, sobre o padding, a ~4px da borda dourada direita; largura sem a reserva da barra (224px).
 

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.53.9 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.54.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1384,7 +1384,7 @@ pw-widget-bag[locked] .pwbg-acts pw-button[data-a="lock"]{--b-fg:var(--pw-text-t
 pw-widget-bag .pwbg-body{flex:1;min-height:0;display:flex;flex-direction:column}
 pw-widget-bag[collapsed] .pwbg-body{display:none}
 /* folga para o hover (sobe 2px + brilho) não ser cortado; a margem negativa mantém o mesmo espaçamento visual */
-pw-widget-bag pw-scroll.pwbg-scroll{flex:1;min-height:0;padding:var(--pw-space-2) calc(var(--pw-space-2) + var(--pw-space-0-5) - var(--pw-scroll-size)) calc(var(--pw-space-6) - var(--pw-space-1)) var(--pw-space-1);margin:calc(var(--pw-space-2) * -1) calc((var(--pw-space-2) + var(--pw-space-0-5)) * -1) 0 calc(var(--pw-space-1) * -1)}
+pw-widget-bag pw-scroll.pwbg-scroll{flex:1;min-height:0;padding:var(--pw-space-2) calc(var(--pw-space-2) + var(--pw-space-0-5) - var(--pw-scroll-size) - 1px) calc(var(--pw-space-6) - var(--pw-space-1)) var(--pw-space-1);margin:calc(var(--pw-space-2) * -1) calc((var(--pw-space-2) + var(--pw-space-0-5)) * -1 + 1px) 0 calc(var(--pw-space-1) * -1)}
 /* a rolagem vai até a borda (o overlay cobre o corte ali), mas a barra para na altura dos slots; cantos de baixo chanfrados como a moldura */
 pw-widget-bag pw-scroll.pwbg-scroll{clip-path:polygon(0 0,100% 0,100% calc(100% - var(--pw-space-5)),calc(100% - var(--pw-space-5)) 100%,var(--pw-space-5) 100%,0 calc(100% - var(--pw-space-5)))}
 pw-widget-bag pw-scroll.pwbg-scroll::-webkit-scrollbar-track{margin-block:var(--pw-space-2) calc(var(--pw-space-6) - var(--pw-space-1))}
@@ -1396,6 +1396,9 @@ pw-widget-bag .pwbg-slot .pwc-content>img,pw-widget-bag .pwbg-slot .pwc-content>
 pw-widget-bag .pwbg-slot .pwc-content>img{width:calc(100% - var(--pw-space-1));height:calc(100% - var(--pw-space-1));object-fit:contain;filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
 pw-widget-bag .pwbg-slot .pwc-content>svg{width:62%;height:62%;color:var(--pw-text-accent)}
 pw-widget-bag .pwbg-slot.empty{cursor:default}
+pw-widget-bag .pwbg-slot.is-bag{cursor:context-menu}
+pw-widget-bag .pwbg-acts pw-button[data-a="back"],pw-widget-bag .pwbg-head>pw-button[data-a="back"]{margin-left:calc(var(--pw-space-2) * -1)}
+pw-widget-bag .pwbg-head>pw-button[hidden],pw-widget-bag .pwbg-ic[hidden]{display:none}
 pw-widget-bag .pwbg-slot.empty .pwc-content>svg{width:60%;height:60%;color:color-mix(in srgb,var(--pw-text-muted) 70%,transparent)}
 pw-widget-bag .pwbg-slot .q{position:absolute;right:var(--pw-space-0-5);bottom:0;z-index:2;pointer-events:none;font:var(--pw-font-weight-bold) var(--pw-font-size-3xs)/1 var(--pw-font-body);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
 pw-widget-bag .pwbg-slot .q.zero{color:var(--pw-status-error)}
