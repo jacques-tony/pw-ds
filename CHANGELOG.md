@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.53.1
+- `pw-widget-bag`: overlays de rolagem na mesma cor do fundo solid (`--pw-bg-solid`; com `fill="gradient"`, a borda do degradê); abre mostrando todos os slots sem rolagem (método `fitAll()`), e a altura máxima do redimensionamento é exatamente a de todos os slots; cabeçalho na mesma posição aberto e fechado (sem salto na transição).
+
 ## 0.53.0
 - `pw-card` primary: novo atributo `fill` = `gradient` (padrão, degradê radial) ou `solid` (cor única `--card-bg-solid`), para widgets.
 - `pw-widget-bag`: usa `fill="solid"` por padrão (`fill="gradient"` volta o degradê); cabeçalho com 12px em cima e embaixo nas duas versões.
