@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.61.6 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.61.7 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1543,9 +1543,10 @@ pw-widget-minimap .pwmm-legend{display:none}
 pw-widget-minimap .pwmm-lg{display:inline-grid;width:var(--pw-space-4);height:var(--pw-space-4);vertical-align:middle;margin-right:var(--pw-space-1)}pw-widget-minimap .pwmm-lg svg{width:100%;height:100%}
 pw-widget-minimap .pwmm-resize{position:absolute;z-index:4;display:grid;place-items:center;outline:none;border-radius:var(--pw-radius-full)}
 pw-widget-minimap .pwmm-rb{left:var(--pw-space-8);right:var(--pw-space-8);bottom:calc(var(--pw-space-1) * -1);height:var(--pw-space-3);cursor:ns-resize}
-pw-widget-minimap .pwmm-rr{top:var(--pw-space-16);bottom:var(--pw-space-16);right:calc(var(--pw-space-1) * -1);width:var(--pw-space-3);cursor:ew-resize}
+pw-widget-minimap .pwmm-rr,pw-widget-minimap .pwmm-rl{top:var(--pw-space-16);bottom:var(--pw-space-16);right:calc(var(--pw-space-1) * -1);width:var(--pw-space-3);cursor:ew-resize}
+pw-widget-minimap .pwmm-rl{right:auto;left:calc(var(--pw-space-1) * -1)}
 pw-widget-minimap .pwmm-resize::after{content:"";border-radius:var(--pw-radius-full);background:var(--pw-filament);opacity:0;box-shadow:0 0 8px var(--pw-glow);transition:opacity var(--card-dur)}
-pw-widget-minimap .pwmm-rb::after{width:var(--pw-space-10);height:var(--pw-space-1)}pw-widget-minimap .pwmm-rr::after{width:var(--pw-space-1);height:var(--pw-space-10)}
+pw-widget-minimap .pwmm-rb::after{width:var(--pw-space-10);height:var(--pw-space-1)}pw-widget-minimap :is(.pwmm-rr,.pwmm-rl)::after{width:var(--pw-space-1);height:var(--pw-space-10)}
 pw-widget-minimap:hover .pwmm-resize::after{opacity:.45}pw-widget-minimap .pwmm-resize:hover::after,pw-widget-minimap.resizing .pwmm-resize::after,pw-widget-minimap .pwmm-resize:focus-visible::after{opacity:1}
 pw-widget-minimap[collapsed] .pwmm-resize,pw-widget-minimap[locked] .pwmm-resize,pw-widget-minimap[maximized] .pwmm-resize{display:none}
 /* maximizado: ocupa a área do jogo; controles na vertical sobre o mapa e legenda de locais de caça */
