@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.57.3
+- `pw-widget-bag`: brilho do filete de conexão só em branco/dourado (o `--pw-glow` azul escurecia a área ao redor).
+
 ## 0.57.2
 - `pw-widget-bag`: lado (ou canto diagonal) que já tem mochila conectada não aceita outra conexão; efeito de conexão sem o pulso com filtro (que recortava a moldura), fica só o filete de luz na junção.
 - Storybook: redimensionar a mochila em tela cheia não sai mais da tela cheia.
