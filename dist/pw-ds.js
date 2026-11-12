@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.61.8 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.62.0 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1645,9 +1645,7 @@ class PWWidgetPokemon extends PWWidgetBag{
     this.querySelector('.pwpk-body').innerHTML=
       '<div class="pwpk-top"><pw-card variant="tertiary" tone="neutral" class="pwpk-pic" role="img" aria-label="'+E(p.name||'Pokémon')+'">'+(p.image?'<img src="'+E(p.image)+'" alt="">':'')+'</pw-card>'+
       '<div class="pwpk-info"><div class="pwpk-balls" aria-label="Equipe">'+balls+'</div>'+
-      '<div class="pwpk-bars">'+this._bars()+'</div></div></div>'+
-      '<div class="pwpk-row"><div class="pwpk-acts">'+(p.actions||[]).map((a,i)=>'<pw-card variant="tertiary" tone="neutral" interactive state="idle" class="pwbg-slot pwpk-btn" data-act="'+i+'" role="button" tabindex="0" aria-label="'+E(a.label)+'" data-tip="'+E(a.label)+'">'+pwWIc(a.icon)+'</pw-card>').join('')+'</div>'+
-      '<pw-card variant="tertiary" tone="neutral" class="pwpk-stances"><div class="pwpk-st" role="radiogroup" aria-label="Postura de combate">'+PW_STANCES.map(s=>'<button type="button" class="pwpk-sb st-'+s[0]+'" data-stance="'+s[0]+'" role="radio" aria-checked="'+(p.stance===s[0])+'" aria-label="'+s[1]+'" data-tip="'+s[1]+'"'+(p.stance===s[0]?' selected':'')+'>'+pwWIc(s[2])+'</button>').join('')+'</div></pw-card></div>'}
+      '<div class="pwpk-bars">'+this._bars()+'</div></div></div>'}
 }
 PWWidgetPokemon.prototype.toggle=PWWidgetBag.prototype.toggle;
 customElements.define('pw-widget-pokemon',PWWidgetPokemon);
@@ -1733,5 +1731,5 @@ document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}));
 }
 PWWidgetMinimap.prototype.toggle=PWWidgetBag.prototype.toggle;
 customElements.define('pw-widget-minimap',PWWidgetMinimap);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.61.8"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.62.0"});
 })();

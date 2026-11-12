@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.62.0
+- `pw-widget-pokemon`: removida a linha de ações (chamar/recolher e posturas Ofensivo, Equilibrado e Defensivo). O widget mostra retrato, equipe, vida e cooldown.
+
 ## 0.61.8
 - `pw-widget-minimap` maximizado: ocupa 80% da área (cerca de 20% menor), centralizado.
 
