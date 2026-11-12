@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.53.3
+- `pw-widget-bag`: volta 24px embaixo (overlay continua indo até a borda); espaço entre o cabeçalho e os slots igual ao espaço do topo do cabeçalho.
+
 ## 0.53.2
 - `pw-widget-bag`: espaço embaixo igual ao de cima (12px); overlay de baixo vai até a borda; imagens dos itens com 2px de respiro, redimensionadas e centralizadas no slot. Storybook: só os 4 itens animados de exemplo.
 
