@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.51.4
+- `pw-widget-bag`: cabeçalho com 12px embaixo (fechada = 64px); barra de rolagem limitada à área dos slots, sem entrar na borda; overlay também em cima quando há slots acima.
+
 ## 0.51.3
 - `pw-widget-bag`:
   - Cabeçalho (aberto e fechado) com 24px em cima e embaixo e 16px nas laterais.
