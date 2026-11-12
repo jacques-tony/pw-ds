@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.57.1
+- `pw-widget-bag`: sem brilho por padrão (`glow="true"` liga); cabeçalho um token menor (56px, 14px acima e abaixo dos botões; fechada com 56px); conectadas mantêm o chanfro padrão.
+
 ## 0.57.0
 - `pw-card` primary: borda de 2px no total (filete 2px + metal/reflexo 1,3px) e chanfro com 50% do tamanho anterior. `chamfer` continua multiplicando por canto.
 - `pw-card`: novo `glow="false"` (propriedade `.glow`) para desligar o brilho externo da borda; padrão ligado. No playground do Card.

@@ -1624,7 +1624,7 @@ pw-button[aria-haspopup][aria-expanded="true"] .pwbt-label+.pwbt-icon{transform:
 pw-button[aria-haspopup] .pwbt-label+.pwbt-icon{transition:transform .2s var(--card-ease)}
 /* ===================== COMPONENT: pw-widget-bag (widget Mochila) ===================== */
 /* feito só com peças do DS: pw-card primary (moldura), pw-button ghost (ações), pw-scroll (rolagem), pw-card quaternary (slots), pw-badge (quantidade) */
-pw-widget-bag{--wb-ch:calc(var(--pw-space-5) / 2);--wb-ov:var(--pw-bg-solid);--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5;--wb-pad:var(--pw-space-4);--wb-head:var(--pw-space-16);
+pw-widget-bag{--wb-ch:calc(var(--pw-space-5) / 2);--wb-ov:var(--pw-bg-solid);--wb-slot:var(--pw-space-8);--wb-gap:var(--pw-space-2);--wb-cols:5;--wb-pad:var(--pw-space-4);--wb-head:var(--pw-space-14);
   position:absolute;display:block;box-sizing:border-box;width:calc(var(--wb-slot) * var(--wb-cols) + var(--wb-gap) * (var(--wb-cols) - 1) + var(--wb-pad) * 2);
   height:calc(var(--wb-head) + (var(--wb-slot) + var(--wb-gap)) * 7 + var(--pw-space-4));min-height:calc(var(--wb-head) + var(--wb-slot) + var(--pw-space-4));
   font-family:var(--pw-font-body);z-index:10;touch-action:none}
@@ -1635,7 +1635,7 @@ pw-widget-bag[fill="gradient"]{--wb-ov:var(--pw-bg-edge)}
 pw-widget-bag>pw-card.pwbg-card{width:100%;height:100%;--lift:0px}
 pw-widget-bag>pw-card.pwbg-card>.pwc-content{height:100%;padding:0 var(--wb-pad) var(--pw-space-1);gap:0;display:flex;flex-direction:column;min-height:0;overflow:hidden;box-sizing:border-box}
 /* fechado: no mínimo 64px de altura e 24px nas laterais */
-pw-widget-bag[collapsed]{min-height:var(--pw-space-16)!important}
+pw-widget-bag[collapsed]{min-height:var(--wb-head)!important}
 
 /* cabeçalho de 64px com o conteúdo centralizado (mesmo espaço em cima e embaixo), igual aberto e fechado: sem salto ao abrir */
 pw-widget-bag[collapsed]>pw-card.pwbg-card>.pwc-content{height:auto;padding-bottom:0}
@@ -1944,6 +1944,7 @@ pw-widget-bag.magnet>pw-card{filter:drop-shadow(0 0 3px color-mix(in srgb,var(--
   <div class="tbl"><table><thead><tr><th>Propriedade</th><th>Valores</th><th>Descrição</th></tr></thead><tbody>
     <tr><td><code>heading</code></td><td>texto (Mochila)</td><td>Título no cabeçalho</td></tr>
     <tr><td><code>fill</code></td><td>solid (padrão) · gradient</td><td>Fundo do card primary da mochila</td></tr>
+    <tr><td><code>glow</code></td><td>false (padrão) · true</td><td>Brilho externo da borda; a mochila vem sem brilho</td></tr>
     <tr><td><code>slots</code></td><td>número (35)</td><td>Quantidade de espaços, em 5 colunas de 32×32 (<code>--wb-cols</code>, <code>--wb-slot</code>)</td></tr>
     <tr><td><code>.items</code> / JSON</td><td>array</td><td><code>image</code>, <code>icon</code> ou <code>sprite</code> + <code>frames</code> (animado), <code>label</code>, <code>count</code>, <code>description</code></td></tr>
     <tr><td>mochila dentro da mochila</td><td><code>{ type: "bag", items: [...], slots }</code></td><td>Botão direito no item abre a mochila interna (o título muda e aparece o botão ← para voltar). Métodos <code>openBag(índice)</code> e <code>back()</code>; eventos <code>bagopen</code> (cancelável) e <code>bagback</code>. Pode ter vários níveis.</td></tr>
@@ -5186,7 +5187,7 @@ class PWWidgetBag extends HTMLElement{
   set items(v){this._items=Array.isArray(v)?v:[];this._stack=[];if(this._init){this._grid();this._sync()}}
   connectedCallback(){if(this._init)return;this._init=true;var json=this.querySelector('script[type="application/json"]');if(json){try{this._items=JSON.parse(json.textContent)}catch(e){}}
     this.setAttribute('role','region');var u=this._u='pwbg'+(++uidN);
-    this.innerHTML='<pw-card variant="primary" fill="'+(this.getAttribute('fill')==='gradient'?'gradient':'solid')+'"'+(this.getAttribute('glow')==='false'?' glow="false"':'')+' class="pwbg-card"><div class="pwbg-head"><img class="pwbg-ic" alt="" draggable="false"><span class="pwbg-ic2" hidden><img alt="" draggable="false"></span><div class="pwbg-tt"><h2 class="pwbg-title" id="'+u+'t"></h2><button type="button" class="pwbg-back" data-a="back" hidden>Voltar</button></div><div class="pwbg-acts">'+
+    this.innerHTML='<pw-card variant="primary" fill="'+(this.getAttribute('fill')==='gradient'?'gradient':'solid')+'"'+(this.getAttribute('glow')==='true'?'':' glow="false"')+' class="pwbg-card"><div class="pwbg-head"><img class="pwbg-ic" alt="" draggable="false"><span class="pwbg-ic2" hidden><img alt="" draggable="false"></span><div class="pwbg-tt"><h2 class="pwbg-title" id="'+u+'t"></h2><button type="button" class="pwbg-back" data-a="back" hidden>Voltar</button></div><div class="pwbg-acts">'+
       '<pw-button variant="ghost" size="sm" fx="none" particles="0" data-a="collapse"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" data-a="lock"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" data-a="close" data-label="Fechar"></pw-button></div></div>'+
       '<div class="pwbg-body" id="'+u+'b"><pw-scroll class="pwbg-scroll"><div class="pwbg-grid" role="grid"></div></pw-scroll></div></pw-card>'+
       '<div class="pwbg-resize" role="separator" aria-orientation="horizontal" tabindex="0" aria-label="Redimensionar mochila (setas ↑ ↓)" data-tip="Arraste para redimensionar" data-tip-pos="bottom"></div>';
@@ -5258,7 +5259,7 @@ class PWWidgetBag extends HTMLElement{
     all.forEach((b,i)=>{b.toggleAttribute('grouped',b.group().length>1);var a=bx[i],top=false,bot=false;
       bx.forEach((o,j)=>{if(i===j)return;var ho=Math.min(a.x+a.w,o.x+o.w)-Math.max(a.x,o.x)>O;if(!ho)return;if(N(o.y+o.h,a.y))top=true;if(N(a.y+a.h,o.y))bot=true});
       /* empilhadas: os cantos da junção ficam com metade do chanfro; lado a lado mantém o chanfro */
-      var k=(top?'.5 .5 ':'1 1 ')+(bot?'.5 .5':'1 1'),c=b.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==k)c.setAttribute('chamfer',k)})}
+      var k='1 1 1 1',c=b.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==k)c.setAttribute('chamfer',k)})}
   /* efeito de conexão: um filete de luz percorre a junção e as mochilas pulsam */
   _flash(a,o){var p=this.offsetParent;if(!p||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var O=PWWidgetBag.O,N=PWWidgetBag._near,f=document.createElement('span');f.className='pwbg-flash';var x,y,w,hh,vert=false;
     if(N(a.y+a.h,o.y)||N(o.y+o.h,a.y)){var yy=N(a.y+a.h,o.y)?a.y+a.h-O/2:o.y+o.h-O/2;x=Math.max(a.x,o.x)+8;w=Math.min(a.x+a.w,o.x+o.w)-8-x;y=yy-3;hh=6}
