@@ -27,6 +27,14 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.51.3
+- `pw-widget-bag`:
+  - Cabeçalho (aberto e fechado) com 24px em cima e embaixo e 16px nas laterais.
+  - Slots em `pw-card` tertiary neutral, sem tooltip.
+  - Itens animados por folha de sprites (`sprite` + `frames`).
+  - Overlay de rolagem vai até a borda do card.
+  - Abrir/recolher sem cortar o brilho da moldura e com transição mais suave.
+
 ## 0.51.2
 - `pw-widget-bag`: 24px nas laterais também aberta; abrir/recolher com transição suave de altura e fade (método `toggle()`); quantidade como texto no canto inferior direito do slot (vermelha em zero); overlay embaixo quando ainda há slots para rolar.
 
