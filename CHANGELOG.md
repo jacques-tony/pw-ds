@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.58.2
+- `pw-widget-bag`: mochila conectada pela lateral volta a aceitar conexão em cima e embaixo (todos os lados livres); só os cantos diagonais da junção continuam bloqueados.
+
 ## 0.58.1
 - `pw-widget-bag`: a janela aberta com Ctrl + botão direito leva o caminho das mochilas; o "Voltar" nela sobe para a mochila de onde ela saiu, até a principal.
 

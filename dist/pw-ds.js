@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.58.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.58.2 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1553,8 +1553,8 @@ class PWWidgetBag extends HTMLElement{
           var occ=s=>others.some(q=>q!==o&&(s==='r'?N(o.x+o.w,q.x)&&ov(o.y,o.y+o.h,q.y,q.y+q.h):s==='l'?N(q.x+q.w,o.x)&&ov(o.y,o.y+o.h,q.y,q.y+q.h):s==='b'?N(o.y+o.h,q.y)&&ov(o.x,o.x+o.w,q.x,q.x+q.w):N(q.y+q.h,o.y)&&ov(o.x,o.x+o.w,q.x,q.x+q.w)));
           /* a lateral não pode cobrir o canto da junção de um lado já conectado */
           var Cc=PWWidgetBag.C,vok=!(occ('b')&&B>o.y+o.h-Cc)&&!(occ('t')&&Tp<o.y+Cc),hok=!(occ('r')&&R>o.x+o.w-Cc)&&!(occ('l')&&L<o.x+Cc);
-          var cx=[];if(vo&&vok){if(!occ('r'))cx.push(o.x+o.w-O-L);if(!occ('l'))cx.push(o.x+O-R)}if(stack&&ho)cx.push(o.x-L,o.x+o.w-R);
-          var cy=[];if(ho&&hok){if(!occ('b'))cy.push(o.y+o.h-O-Tp);if(!occ('t'))cy.push(o.y+O-B)}if(side&&vo)cy.push(o.y-Tp,o.y+o.h-B);
+          var cx=[];if(vo){if(!occ('r'))cx.push(o.x+o.w-O-L);if(!occ('l'))cx.push(o.x+O-R)}if(stack&&ho)cx.push(o.x-L,o.x+o.w-R);
+          var cy=[];if(ho){if(!occ('b'))cy.push(o.y+o.h-O-Tp);if(!occ('t'))cy.push(o.y+O-B)}if(side&&vo)cy.push(o.y-Tp,o.y+o.h-B);
           cx.forEach(d=>{if(Math.abs(d)<Math.abs(bdx)){bdx=d;bx=o}});cy.forEach(d=>{if(Math.abs(d)<Math.abs(bdy)){bdy=d;by=o}});
           /* encaixe diagonal (canto com canto): só quando não há encaixe reto */
           var vov=Math.min(B,o.y+o.h)-Math.max(Tp,o.y),hov=Math.min(R,o.x+o.w)-Math.max(L,o.x),CC=PWWidgetBag.C+T;if(vov<CC&&hov<CC&&vov>-T&&hov>-T)PWWidgetBag._diagPos(o,m.w,m.h).forEach((q,qi)=>{/* canto na junção de um lado já conectado não aceita conexão */if(occ(qi<2?'b':'t'))return;if(others.some(z=>z!==o&&PWWidgetBag._diagPos(o,z.w,z.h)[qi].every((v,vi)=>Math.abs(v-(vi?z.y:z.x))<=1.5)))return;var ddx=q[0]-L,ddy=q[1]-Tp;if(Math.abs(ddx)<=T*2&&Math.abs(ddy)<=T*2&&Math.abs(ddx)+Math.abs(ddy)<Math.abs(bdx)+Math.abs(bdy)){bdx=ddx;bdy=ddy;bx=by=o;dg=true}})})});
@@ -1593,5 +1593,5 @@ class PWWidgetBag extends HTMLElement{
 }
 PWWidgetBag.O=2;PWWidgetBag.C=13.5;/* C: posição em que as linhas dos chanfros (primary, 50%) coincidem */
 customElements.define('pw-widget-bag',PWWidgetBag);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.58.1"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.58.2"});
 })();
