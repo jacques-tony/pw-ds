@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.60.1
+- `pw-widget-pokemon`: mesma largura da mochila (224px) e altura fixa; ícone do cabeçalho = ícone "team" da barra superior; só cards tertiary neutral no padrão de slot da mochila (retrato com 2 slots, linha de 5 slots com chamar, recolher e as 3 posturas; postura ativa em `state="selected"`). Sprite de exemplo: Clefable olhando para o sul (`icons/widget/clefable-south.webp`).
+
 ## 0.60.0
 - Novo componente **`pw-widget-pokemon`** (widget Pokémon), no mesmo padrão do Widget Mochila e só com peças do DS:
   - Card primary sólido sem brilho; cabeçalho com recolher, bloquear e fechar; arrastar e magnetismo/conjuntos com mochilas e com a barra superior.

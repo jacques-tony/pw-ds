@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.60.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.60.1 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1447,27 +1447,29 @@ pw-button[aria-haspopup] .pwbt-label+.pwbt-icon{transition:transform .2s var(--c
 .pwbg-flash.v{background:linear-gradient(180deg,transparent,var(--pw-filament) 20%,var(--pw-white) 50%,var(--pw-filament) 80%,transparent)}
 @media (prefers-reduced-motion:reduce){pw-widget-bag *{transition:none!important}}
 /* ===================== COMPONENT: pw-widget-pokemon ===================== */
-pw-widget-pokemon{height:auto!important;width:calc(var(--wb-slot) * 5 + var(--wb-gap) * 4 + var(--wb-pad) * 2 + var(--pw-space-8))}
+pw-widget-pokemon{height:auto!important}
 pw-widget-pokemon>pw-card.pwbg-card{height:auto}
 pw-widget-pokemon>pw-card.pwbg-card>.pwc-content{height:auto;padding-bottom:var(--pw-space-4)}
 pw-widget-pokemon[collapsed]>pw-card.pwbg-card>.pwc-content{padding-bottom:0}
 pw-widget-pokemon .pwpk-hic{display:grid;place-items:center}pw-widget-pokemon .pwpk-hic svg{width:100%;height:100%}
 pw-widget-pokemon .pwpk-body{display:grid;gap:var(--pw-space-3)}
-pw-widget-pokemon .pwpk-top{display:flex;gap:var(--pw-space-3);align-items:center}
-pw-widget-pokemon pw-card.pwpk-pic{flex:none;width:var(--pw-space-14);height:var(--pw-space-14);border-radius:var(--pw-radius-md)}
+pw-widget-pokemon .pwpk-top{display:flex;gap:var(--wb-gap);align-items:center}
+pw-widget-pokemon pw-card.pwpk-pic{flex:none;width:calc(var(--wb-slot) * 2 + var(--wb-gap));height:calc(var(--wb-slot) * 2 + var(--wb-gap));border-radius:var(--pw-radius-md)}
+pw-widget-pokemon pw-card.pwpk-pic>.pwc-content{padding:0;height:100%;display:grid;place-items:center}
+pw-widget-pokemon pw-card.pwpk-pic img{width:80%;height:80%;object-fit:contain;image-rendering:pixelated;position:relative;z-index:1}
 pw-widget-pokemon .pwpk-info{flex:1;min-width:0;display:grid;gap:var(--pw-space-1)}
 pw-widget-pokemon .pwpk-balls{display:flex;justify-content:space-between}
-pw-widget-pokemon .pwpk-ball{width:var(--pw-space-5);height:var(--pw-space-5);color:color-mix(in srgb,var(--pw-text-muted) 70%,transparent)}
+pw-widget-pokemon .pwpk-ball{width:var(--pw-space-4);height:var(--pw-space-4);color:color-mix(in srgb,var(--pw-text-muted) 70%,transparent)}
 pw-widget-pokemon .pwpk-ball svg{width:100%;height:100%}
 pw-widget-pokemon .pwpk-bar{position:relative;display:grid}
 pw-widget-pokemon .pwpk-bar pw-progress{min-width:0;--pr-h:var(--pw-space-4)}
 pw-widget-pokemon .pwpk-bar .pwp-track{border-radius:var(--pw-radius-xs)}
 pw-widget-pokemon .pwpk-bar>span{position:absolute;inset:0;display:grid;place-items:center;font:var(--pw-font-weight-semibold) var(--pw-font-size-2xs)/1 var(--pw-font-body);font-variant-numeric:tabular-nums;color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);pointer-events:none}
-pw-widget-pokemon .pwpk-row{display:flex;justify-content:space-between;gap:var(--pw-space-3)}
-pw-widget-pokemon .pwpk-acts,pw-widget-pokemon .pwpk-stances{display:flex;gap:var(--pw-space-1)}
-pw-widget-pokemon pw-card.pwpk-btn{width:var(--pw-space-8);height:var(--pw-space-8);border-radius:var(--pw-radius-sm);cursor:pointer}
+pw-widget-pokemon .pwpk-row{display:grid;grid-template-columns:repeat(5,var(--wb-slot));gap:var(--wb-gap)}
+pw-widget-pokemon .pwpk-acts,pw-widget-pokemon .pwpk-stances{display:contents}
+pw-widget-pokemon pw-card.pwpk-btn{cursor:pointer}
 pw-widget-pokemon pw-card.pwpk-btn>.pwc-content{padding:0;height:100%;display:grid;place-items:center;position:relative;z-index:1}
-pw-widget-pokemon pw-card.pwpk-btn .pwc-content svg{width:var(--pw-space-5);height:var(--pw-space-5);color:var(--pw-text-muted);transition:color var(--card-dur),transform .15s}
+pw-widget-pokemon pw-card.pwpk-btn .pwc-content svg{position:static;margin:0;width:var(--pw-space-5);height:var(--pw-space-5);color:var(--pw-text-muted);transition:color var(--card-dur),transform .15s}
 pw-widget-pokemon pw-card.pwpk-btn:hover .pwc-content svg{transform:scale(1.08)}
 pw-widget-pokemon .st-offensive[selected] .pwc-content svg{color:var(--pw-tone-error-base)}
 pw-widget-pokemon .st-balanced[selected] .pwc-content svg{color:var(--pw-tone-warning-light)}
