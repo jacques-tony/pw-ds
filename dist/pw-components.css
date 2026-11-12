@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.61.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.61.2 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1501,7 +1501,7 @@ pw-widget-minimap .pwbg-ic2,pw-widget-minimap .pwbg-back{display:none}
 pw-widget-minimap .pwbg-tt{flex:1;min-width:0}
 pw-widget-minimap .pwbg-title{margin:0;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.02em;color:var(--pw-text-title);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 pw-widget-minimap .pwbg-acts{display:flex}
-pw-widget-minimap .pwmm-body{flex:1;min-height:0;display:flex;flex-direction:column;gap:var(--pw-space-2)}
+pw-widget-minimap .pwmm-body{flex:1;min-height:0;display:flex;flex-direction:column;gap:var(--pw-space-2);padding-bottom:var(--pw-space-1)}
 pw-widget-minimap[collapsed] .pwmm-body{display:none}
 pw-widget-minimap pw-card.pwmm-info{flex:none;width:auto;background:transparent;height:var(--pw-space-7);border-radius:var(--pw-radius-sm)}
 pw-widget-minimap pw-card.pwmm-info>.pwc-content{padding:0 var(--pw-space-3);height:100%;flex-direction:row;align-items:center;justify-content:space-between;font:var(--pw-font-weight-medium) var(--pw-font-size-xs)/1 var(--pw-font-body);color:var(--pw-text-body);font-variant-numeric:tabular-nums}
@@ -1527,14 +1527,18 @@ pw-widget-minimap .pwmm-pin svg{width:100%;height:100%}
 pw-widget-minimap .pwmm-me{position:absolute;left:50%;top:50%;width:var(--pw-space-3);height:var(--pw-space-3);margin:calc(var(--pw-space-3) / -2);border-radius:50%;background:var(--pw-white);border:2px solid var(--pw-filament);box-shadow:0 0 0 2px var(--pw-black-a45),0 0 8px var(--pw-glow);pointer-events:none;animation:pwmm-me 1.6s ease-in-out infinite}
 @keyframes pwmm-me{50%{box-shadow:0 0 0 2px var(--pw-black-a45),0 0 0 6px color-mix(in srgb,var(--pw-filament) 25%,transparent)}}
 pw-widget-minimap .pwmm-ctrl{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:var(--pw-space-1)}
+pw-widget-minimap .pwmm-ctrl pw-button{--bh:var(--pw-space-6);--bic:var(--pw-space-3)}
 pw-widget-minimap .pwmm-ctrl pw-button>button{border-radius:var(--pw-radius-full)}
 pw-widget-minimap .pwmm-ctrl pw-button[data-mm="center"][data-off]>button{border-color:var(--pw-filament);color:var(--pw-text-title)}
 pw-widget-minimap .pwmm-sep{width:1px;height:var(--pw-space-5);margin:0 var(--pw-space-0-5);background:var(--pw-border-default)}
 pw-widget-minimap .pwmm-legend{display:none}
 pw-widget-minimap .pwmm-lg{display:inline-grid;width:var(--pw-space-4);height:var(--pw-space-4);vertical-align:middle;margin-right:var(--pw-space-1)}pw-widget-minimap .pwmm-lg svg{width:100%;height:100%}
-pw-widget-minimap .pwmm-resize{position:absolute;right:calc(var(--pw-space-1) * -1);bottom:calc(var(--pw-space-1) * -1);width:var(--pw-space-5);height:var(--pw-space-5);cursor:nwse-resize;z-index:4;outline:none}
-pw-widget-minimap .pwmm-resize::after{content:"";position:absolute;right:var(--pw-space-2);bottom:var(--pw-space-2);width:var(--pw-space-2);height:var(--pw-space-2);border-right:2px solid var(--pw-filament);border-bottom:2px solid var(--pw-filament);opacity:0;transition:opacity var(--card-dur)}
-pw-widget-minimap:hover .pwmm-resize::after{opacity:.5}pw-widget-minimap .pwmm-resize:hover::after,pw-widget-minimap.resizing .pwmm-resize::after{opacity:1}
+pw-widget-minimap .pwmm-resize{position:absolute;z-index:4;display:grid;place-items:center;outline:none;border-radius:var(--pw-radius-full)}
+pw-widget-minimap .pwmm-rb{left:var(--pw-space-8);right:var(--pw-space-8);bottom:calc(var(--pw-space-1) * -1);height:var(--pw-space-3);cursor:ns-resize}
+pw-widget-minimap .pwmm-rr{top:var(--pw-space-16);bottom:var(--pw-space-16);right:calc(var(--pw-space-1) * -1);width:var(--pw-space-3);cursor:ew-resize}
+pw-widget-minimap .pwmm-resize::after{content:"";border-radius:var(--pw-radius-full);background:var(--pw-filament);opacity:0;box-shadow:0 0 8px var(--pw-glow);transition:opacity var(--card-dur)}
+pw-widget-minimap .pwmm-rb::after{width:var(--pw-space-10);height:var(--pw-space-1)}pw-widget-minimap .pwmm-rr::after{width:var(--pw-space-1);height:var(--pw-space-10)}
+pw-widget-minimap:hover .pwmm-resize::after{opacity:.45}pw-widget-minimap .pwmm-resize:hover::after,pw-widget-minimap.resizing .pwmm-resize::after,pw-widget-minimap .pwmm-resize:focus-visible::after{opacity:1}
 pw-widget-minimap[collapsed] .pwmm-resize,pw-widget-minimap[locked] .pwmm-resize,pw-widget-minimap[maximized] .pwmm-resize{display:none}
 /* maximizado: ocupa a área do jogo; controles na vertical sobre o mapa e legenda de locais de caça */
 pw-widget-minimap[maximized]{left:var(--pw-space-6)!important;top:var(--pw-space-6)!important;right:var(--pw-space-6)!important;bottom:var(--pw-space-6)!important;width:auto!important;height:auto!important;z-index:900!important}

@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.61.2
+- `pw-widget-minimap`: você fica no centro da área visível do mapa (entre a faixa de coordenadas e as ações); botões menores (24px) com mais respiro da borda; redimensionar no mesmo padrão da mochila: alça embaixo (altura) e alça na lateral direita (largura), com dica e teclado.
+
 ## 0.61.1
 - `pw-widget-minimap`: o mapa ocupa todo o fundo do card (sem card interno), com as bordas esmaecidas; ações (`pw-button`) num `pw-card` tertiary sempre centralizado (embaixo; na vertical à esquerda quando maximizado). Corrige o mapa preto na versão pequena.
 
