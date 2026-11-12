@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.57.6
+- `pw-widget-bag`: filete de conexão mais longo na lateral; cantos e trechos de lateral na junção de um lado já conectado não aceitam novas conexões (diagonal ou lateral que cubra a junção).
+
 ## 0.57.5
 - `pw-widget-bag`: encaixe diagonal com as linhas dos chanfros sobrepostas (uma linha só); mochila conectada na diagonal acompanha quando a outra muda de altura.
 
