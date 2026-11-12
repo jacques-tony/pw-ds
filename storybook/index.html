@@ -1779,7 +1779,7 @@ pw-widget-minimap .pwmm-vp{--ch:var(--pw-space-3);position:absolute;inset:2px;z-
 /* bordas esmaecidas com um degradê por cima (sem mask, para funcionar em todos os navegadores) */
 pw-widget-minimap .pwmm-vp::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
   background:linear-gradient(90deg,var(--pw-bg-solid),transparent var(--pw-space-6),transparent calc(100% - var(--pw-space-6)),var(--pw-bg-solid)),
-             linear-gradient(var(--pw-bg-solid),color-mix(in srgb,var(--pw-bg-solid) 55%,transparent) calc(var(--wb-head) - var(--pw-space-2)),transparent calc(var(--wb-head) + var(--pw-space-6)),transparent calc(100% - var(--pw-space-12)),var(--pw-bg-solid))}
+             linear-gradient(var(--pw-bg-solid),var(--pw-bg-solid) calc(var(--wb-head) - var(--pw-space-1)),color-mix(in srgb,var(--pw-bg-solid) 70%,transparent) calc(var(--wb-head) + var(--pw-space-7)),transparent calc(var(--wb-head) + var(--pw-space-7) + var(--pw-space-8)),transparent calc(100% - var(--pw-space-12)),var(--pw-bg-solid))}
 pw-widget-minimap[collapsed] .pwmm-vp{display:none}
 pw-widget-minimap .pwbg-head,pw-widget-minimap .pwmm-body{position:relative;z-index:1}
 pw-widget-minimap .pwmm-body{pointer-events:none}

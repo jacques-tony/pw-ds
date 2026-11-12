@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.61.5
+- `pw-widget-minimap`: degradê superior sólido até o cabeçalho e esmaecendo até depois da faixa de coordenadas.
+
 ## 0.61.4
 - `pw-widget-minimap`: o mapa fica dentro da moldura (não cobre mais a borda dourada) com os cantos no formato do chanfro; imagem do andar desenhada como fundo com tamanho explícito (`floors[z].w/h`), carregando de forma confiável; mapas de exemplo em WebP (bem menores).
 
