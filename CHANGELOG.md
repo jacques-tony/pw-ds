@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.65.2
+- `pw-widget-stats`: título no mesmo padrão dos outros widgets (mesma fonte, com reticências quando excede); ícone do cabeçalho e atalho na simulação passam a ser `tasks` (Tarefas).
+
 ## 0.65.1
 - `pw-widget-stats`: ícone do cabeçalho vem da barra superior (`ranking`, configurável via atributo `icon`).
 - Relação de drop usa os itens da Mochila (Garra do dragão, Pedra azul, Pó vermelho) com sprite animado; listas aceitam `sprite` + `frames`.

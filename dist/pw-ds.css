@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.65.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.65.2 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -864,7 +864,7 @@ pw-drawer .pwd-foot:empty{display:none}
 @media (prefers-reduced-motion:reduce){pw-dialog>pw-card,pw-drawer>.pwdr-panel,.pwd-backdrop{transition:none!important}}
 
 /* tooltip: qualquer elemento com data-tip; desenhado por script num balão com seta (tip) que aponta para o elemento.
-   data-tip = texto · data-tip-title = título interno · data-tip-icon · data-tip-pos = top · bottom · left · right (vira sozinho se não couber) */
+   data-tip = texto · = título interno · data-tip-icon · data-tip-pos = top · bottom · left · right (vira sozinho se não couber) */
 .pw-tip{--tip-bg-a:var(--pw-surface-raised-top);--tip-bg-b:var(--pw-surface-raised-bottom);--tip-bd:var(--pw-border-strong);
   position:fixed;z-index:1300;left:0;top:0;max-width:260px;box-sizing:border-box;padding:var(--pw-space-2) var(--pw-space-3);pointer-events:none;
   border-radius:var(--pw-radius-sm);background:linear-gradient(180deg,var(--tip-bg-a),var(--tip-bg-b));border:1px solid var(--tip-bd);
@@ -1811,7 +1811,7 @@ pw-widget-stats .pwst-body::before{top:var(--wb-lt,0px);height:var(--pw-space-6)
 pw-widget-stats .pwst-body[data-more]::after,pw-widget-stats .pwst-body[data-less]::before{opacity:1}
 pw-widget-stats[collapsed] .pwst-body{display:none}
 pw-widget-stats .pwst-body{gap:0}
-pw-widget-stats .pwbg-title{font-size:var(--pw-font-size-xs);letter-spacing:0;text-overflow:clip}pw-widget-stats .pwbg-acts{margin-right:calc(var(--pw-space-2) * -1)}pw-widget-stats .pwbg-acts pw-button+pw-button{margin-left:calc(var(--pw-space-1) * -1)}pw-widget-stats .pwbg-head{gap:var(--pw-space-1-5,6px)}
+
 
 pw-widget-stats .pwst-scroll{font:var(--pw-text-body-sm);color:var(--pw-text-muted);font-variant-numeric:tabular-nums}
 pw-widget-stats .pwst-ses{display:grid;gap:var(--pw-space-1);padding-bottom:var(--pw-space-2)}

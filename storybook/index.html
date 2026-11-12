@@ -950,7 +950,7 @@ pw-drawer .pwd-foot:empty{display:none}
 @media (prefers-reduced-motion:reduce){pw-dialog>pw-card,pw-drawer>.pwdr-panel,.pwd-backdrop{transition:none!important}}
 
 /* tooltip: qualquer elemento com data-tip; desenhado por script num balão com seta (tip) que aponta para o elemento.
-   data-tip = texto · data-tip-title = título interno · data-tip-icon · data-tip-pos = top · bottom · left · right (vira sozinho se não couber) */
+   data-tip = texto · = título interno · data-tip-icon · data-tip-pos = top · bottom · left · right (vira sozinho se não couber) */
 .pw-tip{--tip-bg-a:var(--pw-surface-raised-top);--tip-bg-b:var(--pw-surface-raised-bottom);--tip-bd:var(--pw-border-strong);
   position:fixed;z-index:1300;left:0;top:0;max-width:260px;box-sizing:border-box;padding:var(--pw-space-2) var(--pw-space-3);pointer-events:none;
   border-radius:var(--pw-radius-sm);background:linear-gradient(180deg,var(--tip-bg-a),var(--tip-bg-b));border:1px solid var(--tip-bd);
@@ -1897,7 +1897,7 @@ pw-widget-stats .pwst-body::before{top:var(--wb-lt,0px);height:var(--pw-space-6)
 pw-widget-stats .pwst-body[data-more]::after,pw-widget-stats .pwst-body[data-less]::before{opacity:1}
 pw-widget-stats[collapsed] .pwst-body{display:none}
 pw-widget-stats .pwst-body{gap:0}
-pw-widget-stats .pwbg-title{font-size:var(--pw-font-size-xs);letter-spacing:0;text-overflow:clip}pw-widget-stats .pwbg-acts{margin-right:calc(var(--pw-space-2) * -1)}pw-widget-stats .pwbg-acts pw-button+pw-button{margin-left:calc(var(--pw-space-1) * -1)}pw-widget-stats .pwbg-head{gap:var(--pw-space-1-5,6px)}
+
 
 pw-widget-stats .pwst-scroll{font:var(--pw-text-body-sm);color:var(--pw-text-muted);font-variant-numeric:tabular-nums}
 pw-widget-stats .pwst-ses{display:grid;gap:var(--pw-space-1);padding-bottom:var(--pw-space-2)}
@@ -3450,11 +3450,11 @@ const url = PWDS.navIcon('bag', 32); // 16 · 24 · 32 · (vazio = 40)</pre>
   <p class="lede">Qualquer elemento com <code>data-tip="texto"</code> mostra um balão ao passar o mouse (após 250ms) ou ao receber foco pelo teclado. O balão tem uma <b>seta</b> que aponta sempre para o centro do elemento e troca de lado sozinho quando não cabe na tela. Com <code>data-tip-title</code>, ganha um <b>título interno</b>; <code>data-tip-icon</code> coloca um ícone ao lado do título. Esc fecha.</p>
   <div class="canvas"><div class="row" style="gap:32px;align-items:center;padding:48px 0;justify-content:center">
     <pw-button variant="secondary" icon="boost" data-tip="Aumenta o boost em +1. Máximo +50.">Boost</pw-button>
-    <pw-button icon="limit-break" data-tip-title="Limit Break" data-tip-icon="limit-break" data-tip="Rompe o limite do Pokémon de +12 para +13. Consome 1 Pedra de Fogo Antiga mesmo se falhar." data-tip-pos="bottom">Romper</pw-button>
-    <pw-badge tone="aura" data-tip-title="Aura do Pokémon" data-tip="+12% de dano em todas as batalhas por 30 min." data-tip-tone="brand" data-tip-pos="right">+12</pw-badge>
+    <pw-button icon="limit-break"="Limit Break" data-tip-icon="limit-break" data-tip="Rompe o limite do Pokémon de +12 para +13. Consome 1 Pedra de Fogo Antiga mesmo se falhar." data-tip-pos="bottom">Romper</pw-button>
+    <pw-badge tone="aura"="Aura do Pokémon" data-tip="+12% de dano em todas as batalhas por 30 min." data-tip-tone="brand" data-tip-pos="right">+12</pw-badge>
     <span tabindex="0" title="Ganhe XP derrotando Pokémon selvagens." data-tip style="color:var(--pw-text-accent)" data-tip-pos="left"><pw-icon name="info" size="md"></pw-icon></span>
-    <span tabindex="0" data-tip-title="Falta item" data-tip-icon="warning-circle" data-tip="Você precisa de 2 Pedras Adormecidas." data-tip-tone="warning" style="color:var(--pw-status-warning)"><pw-icon name="warning-circle" size="md"></pw-icon></span>
-    <span data-pw-theme="mewtwo"><pw-button size="sm" icon="gem" label="Fragmento" data-tip-title="Fragmento psíquico" data-tip-ref="#tipRich" data-tip-pos="top"></pw-button></span>
+    <span tabindex="0"="Falta item" data-tip-icon="warning-circle" data-tip="Você precisa de 2 Pedras Adormecidas." data-tip-tone="warning" style="color:var(--pw-status-warning)"><pw-icon name="warning-circle" size="md"></pw-icon></span>
+    <span data-pw-theme="mewtwo"><pw-button size="sm" icon="gem" label="Fragmento"="Fragmento psíquico" data-tip-ref="#tipRich" data-tip-pos="top"></pw-button></span>
   </div>
   <div id="tipRich" hidden><b>2 / 3</b> coletados. Encontrado em Cerulean Cave e na Torre Pokémon.<div style="margin-top:6px"><pw-progress value="2" max="3" size="sm" tone="aura"></pw-progress></div></div></div>
   <div class="tbl"><table><thead><tr><th>Atributo</th><th>Valores</th><th>Descrição</th></tr></thead><tbody>
@@ -3467,7 +3467,7 @@ const url = PWDS.navIcon('bag', 32); // 16 · 24 · 32 · (vazio = 40)</pre>
     <tr><td><code>data-tip-delay</code> · <code>data-tip-width</code></td><td>ms (250) · CSS (260px)</td><td>Atraso ao passar o mouse · largura máxima</td></tr>
   </tbody></table></div>
   <pre class="code">&lt;pw-button icon="limit-break"
-  data-tip-title="Limit Break"
+ ="Limit Break"
   data-tip="Rompe o limite de +12 para +13."
   data-tip-pos="bottom"&gt;Romper&lt;/pw-button&gt;
 
@@ -5206,16 +5206,16 @@ class PWHud extends HTMLElement{
     this._arrows()}
   render(){var d=this._data,p=d.player||{},E=pwEsc;
     var hp=p.hpMax?Math.max(0,Math.min(1,(p.hp||0)/p.hpMax)):0,xp=Math.max(0,Math.min(100,p.xp||0))/100;
-    var acts=(d.actions||[]).map((a,i)=>'<pw-button class="pwhd-act" size="sm" appearance="outline" particles="0" icon="'+E(a.icon||'grid')+'" data-act="'+i+'" data-label="'+E(a.label)+'" data-tip-title="'+E(a.label)+'" data-tip="'+E(a.hint||'')+'"'+(a.pressed!==undefined?' aria-pressed="'+(a.pressed?'true':'false')+'"':'')+'></pw-button>').join('');
+    var acts=(d.actions||[]).map((a,i)=>'<pw-button class="pwhd-act" size="sm" appearance="outline" particles="0" icon="'+E(a.icon||'grid')+'" data-act="'+i+'" data-label="'+E(a.label)+'"="'+E(a.label)+'" data-tip="'+E(a.hint||'')+'"'+(a.pressed!==undefined?' aria-pressed="'+(a.pressed?'true':'false')+'"':'')+'></pw-button>').join('');
     var tm=(d.team||[]).slice(0,6);while(tm.length<6)tm.push(null);
     var team=tm.map((t,i)=>{if(!t||!t.name)return '<pw-card variant="tertiary" tone="neutral" appearance="filled" class="pwhd-card empty" bg-image="'+E(pwHudEmpty())+'" bg-position="top" role="img" aria-label="Espaço vazio '+(i+1)+'"><pw-badge class="key" tone="neutral" size="xs">'+E((t&&t.hotkey)||'Ctrl+'+(i+1))+'</pw-badge></pw-card>';
       var v=Math.max(0,Math.min(100,t.hp==null?100:t.hp))/100,cd=t.cd?Math.max(0,Math.min(1,(t.cdLeft||0)/t.cd)):0;
-      return '<pw-card variant="tertiary" tone="neutral" appearance="filled" interactive class="pwhd-card" data-team="'+i+'"'+((t.card||t.image)?' bg-image="'+E(t.card||t.image)+'" bg-position="top"':'')+''+(t.active?' selected highlight':'')+' aria-label="'+E(t.name)+', HP '+Math.round(v*100)+'%, atalho '+E(t.hotkey||'Ctrl+'+(i+1))+'" data-tip-title="'+E(t.name)+'" data-tip="'+E((t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v*100)+'%')+'">'+
+      return '<pw-card variant="tertiary" tone="neutral" appearance="filled" interactive class="pwhd-card" data-team="'+i+'"'+((t.card||t.image)?' bg-image="'+E(t.card||t.image)+'" bg-position="top"':'')+''+(t.active?' selected highlight':'')+' aria-label="'+E(t.name)+', HP '+Math.round(v*100)+'%, atalho '+E(t.hotkey||'Ctrl+'+(i+1))+'"="'+E(t.name)+'" data-tip="'+E((t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v*100)+'%')+'">'+
         '<pw-badge class="key" tone="neutral" size="xs">'+E(t.hotkey||'Ctrl+'+(i+1))+'</pw-badge>'+(t.type?'<span class="typ"><pw-icon type="'+E(t.type)+'" size="xs"></pw-icon></span>':'')+pwHudStars(t.stars)+
         '<span class="bars"><span class="bar"><pw-progress variant="hp" value="'+Math.round(v*100)+'"></pw-progress><span>'+Math.round(v*100)+'%</span></span><span class="bar cd"><pw-progress tone="info" value="'+Math.round(cd*100)+'"></pw-progress><span>'+(t.cdLeft?'CD '+t.cdLeft+'s':'Sem CD')+'</span></span></span></pw-card>'}).join('');
     pwHudKeys(d.hotkeys);var slots=(d.hotkeys||[]).map((h,i)=>{var kb=h&&h.key?'<pw-badge class="kb" tone="brand" size="xs" aria-hidden="true">'+E(h.key)+'</pw-badge>':'';
       if(pwHkEmpty(h))return '<pw-card variant="quaternary" interactive state="idle" class="pwhd-slot empty" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="Atalho vazio '+(i+1)+(h&&h.key?', tecla '+E(h.key):'')+'. Botão direito para opções" data-tip="'+(h&&h.key?'Tecla '+E(h.key)+' · ':'')+'Botão direito para definir atalho">'+pwIcon('poke')+kb+'</pw-card>';
-      return '<pw-card variant="quaternary" interactive state="idle" class="pwhd-slot" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="'+E(h.label||'Atalho '+(i+1))+(h.count!=null?', '+h.count+' unidades':'')+(h.key?', tecla '+E(h.key):'')+'" data-tip-title="'+E(h.label||'')+'" data-tip="'+(h.key?'Tecla '+E(h.key)+' · ':'')+'Clique para usar · botão direito para opções">'+
+      return '<pw-card variant="quaternary" interactive state="idle" class="pwhd-slot" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="'+E(h.label||'Atalho '+(i+1))+(h.count!=null?', '+h.count+' unidades':'')+(h.key?', tecla '+E(h.key):'')+'"="'+E(h.label||'')+'" data-tip="'+(h.key?'Tecla '+E(h.key)+' · ':'')+'Clique para usar · botão direito para opções">'+
         (h.image?'<img src="'+E(h.image)+'" alt="">':pwIcon(h.icon||'gem'))+(h.count!=null?'<span class="q'+(h.count===0?' zero':'')+'">'+h.count+'</span>':'')+kb+'</pw-card>'}).join('');
     var av='<div class="pwhd-avatar" tabindex="0" '+(p.avatar?'role="img" aria-label="'+E(p.name||'')+'"':'data-tip="Foto do personagem indisponível"')+'>'+(p.avatar?'<img src="'+E(p.avatar)+'" alt="">':PW_AVATAR_SVG)+'</div>';
     this._body.innerHTML='<div class="pwhd-top"><pw-card variant="tertiary" tone="neutral" class="pwhd-profile">'+av+
@@ -5721,7 +5721,7 @@ class PWWidgetMinimap extends PWWidgetBag{
     el.style.backgroundImage=src?'url("'+src+'")':'none';var set=(w,hh)=>{el.style.width=w+'px';el.style.height=hh+'px';this._place(false)};
     if(f&&f.w&&f.h)set(f.w,f.h);else if(src){var im=new Image();im.onload=()=>set(im.naturalWidth,im.naturalHeight);im.src=src};this._pins();this._place(false)}
   _pins(){var z=this._zoom,o=this._m.origin,E=pwEsc;this.querySelector('.pwmm-pins').innerHTML=(this._m.hunts||[]).filter(hh=>hh.z===this._z&&this._m.filters[hh.kind]!==false).map(hh=>{var k=PW_HUNT_KINDS.find(x=>x[0]===hh.kind)||PW_HUNT_KINDS[0];
-      return '<span class="pwmm-pin" style="left:'+(hh.x-o.x)+'px;top:'+(hh.y-o.y)+'px;--z:'+z+';color:'+k[2]+'" data-tip-title="'+E(hh.label||k[1])+'" data-tip="'+k[1]+'">'+pwIcon('map-pin')+'</span>'}).join('')}
+      return '<span class="pwmm-pin" style="left:'+(hh.x-o.x)+'px;top:'+(hh.y-o.y)+'px;--z:'+z+';color:'+k[2]+'"="'+E(hh.label||k[1])+'" data-tip="'+k[1]+'">'+pwIcon('map-pin')+'</span>'}).join('')}
   /* posiciona o mapa: jogador no centro + deslocamento do arraste */
   _place(anim){var vp=this.querySelector('.pwmm-vp'),L=this.querySelector('.pwmm-layer'),p=this._m.player,o=this._m.origin,z=this._zoom;
     var sp=this.querySelector('.pwmm-space'),vr=vp.getBoundingClientRect(),sr=sp.getBoundingClientRect(),S=(vr.width/vp.offsetWidth)||1,cx=vp.clientWidth/2,cy=sr.height?(sr.top-vr.top)/S+sr.height/S/2:vp.clientHeight/2;
@@ -5804,7 +5804,7 @@ class PWWidgetStats extends PWWidgetBag{
   connectedCallback(){if(this._init)return;this._init=true;var json=this.querySelector('script[type="application/json"]'),d={};if(json){try{d=JSON.parse(json.textContent)}catch(e){}}
     this._d=Object.assign({elapsed:0,running:true,summary:[],sections:[]},d);this._stack=[];
     var u=this._u='pwst'+(++uidN);this.setAttribute('role','region');
-    this.innerHTML='<pw-card variant="primary" fill="solid" glow="false" class="pwbg-card"><div class="pwbg-head"><img class="pwbg-ic" alt="" draggable="false" src="'+pwNavIcon(this.getAttribute('icon')||'ranking',24)+'"><span class="pwbg-ic2" hidden><img alt=""></span><div class="pwbg-tt"><h2 class="pwbg-title" id="'+u+'t"></h2><button type="button" class="pwbg-back" hidden>Voltar</button></div><div class="pwbg-acts">'+
+    this.innerHTML='<pw-card variant="primary" fill="solid" glow="false" class="pwbg-card"><div class="pwbg-head"><img class="pwbg-ic" alt="" draggable="false" src="'+pwNavIcon(this.getAttribute('icon')||'tasks',24)+'"><span class="pwbg-ic2" hidden><img alt=""></span><div class="pwbg-tt"><h2 class="pwbg-title" id="'+u+'t"></h2><button type="button" class="pwbg-back" hidden>Voltar</button></div><div class="pwbg-acts">'+
       '<pw-button variant="ghost" size="sm" fx="none" particles="0" data-a="collapse"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" data-a="lock"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" data-a="close"></pw-button></div></div>'+
       '<div class="pwbg-body pwst-body" id="'+u+'b"><pw-scroll class="pwst-scroll"><div class="pwst-wrap"></div></pw-scroll></div></pw-card>'+
       '<div class="pwbg-resize" role="separator" aria-orientation="horizontal" tabindex="0" aria-label="Redimensionar estatísticas (setas ↑ ↓)" data-tip="Arraste para redimensionar" data-tip-pos="bottom"></div>';
@@ -6280,7 +6280,7 @@ d.innerHTML='<div style="display:flex;align-items:flex-end;gap:8px;height:40px">
   function lab(on){var l=b.querySelector('.pwbt-label');if(l)l.textContent=on?'Parar simulação':'Simular combate';b.setAttribute('icon',on?'close':'bolt')}
   b.addEventListener('click',()=>{if(tm){clearInterval(tm);tm=null;lab(false);ws().forEach(w=>w.update({cdLeft:0}))}else{tick();tm=setInterval(tick,1000);lab(true)}})})();</script>
 
-<script>(function(){var nb=document.querySelector('#gsim pw-navbar');if(!nb)return;var map={bag:'gsimBag',team:'gsimPoke',map:'gsimMap',trade:'gsimBattle',ranking:'gsimStats'};
+<script>(function(){var nb=document.querySelector('#gsim pw-navbar');if(!nb)return;var map={bag:'gsimBag',team:'gsimPoke',map:'gsimMap',trade:'gsimBattle',tasks:'gsimStats'};
   /* simulação: ícones Mochila e Pokémon da barra superior abrem e fecham os widgets */
   nb.addEventListener('select',e=>{var id=map[e.detail.item.getAttribute('game-icon')];if(!id)return;var w=document.getElementById(id);if(!w)return;
     if(w.hidden){w.show();w.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true}));if(!matchMedia('(prefers-reduced-motion: reduce)').matches)w.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'none'}],{duration:180,easing:'ease-out'})}else w.close()})})();</script>
