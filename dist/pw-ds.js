@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.57.4 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.57.5 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1564,7 +1564,8 @@ class PWWidgetBag extends HTMLElement{
     /* quando a mochila muda de altura (abrir, recolher, redimensionar), as que estão grudadas embaixo acompanham */
     this._lh=0;new ResizeObserver(()=>{var h=this.offsetHeight;if(!this._lh){this._lh=h;return}var d=h-this._lh,oldB=this.offsetTop+this._lh;this._lh=h;if(!d)return;
       var me={x:this.offsetLeft,w:this.offsetWidth},moved=[this],chain=b=>{this._peers().forEach(o=>{if(moved.indexOf(o)>-1)return;var ob=PWWidgetBag._box(o);
-        if(PWWidgetBag._near(b.bottom,ob.y)&&Math.min(b.x+b.w,ob.x+ob.w)-Math.max(b.x,ob.x)>0){moved.push(o);var nb={x:ob.x,w:ob.w,bottom:ob.y+ob.h};o.style.top=(ob.y+d)+'px';o.style.bottom='auto';chain(nb)}})};
+        var C=PWWidgetBag.C,stk=PWWidgetBag._near(b.bottom,ob.y)&&Math.min(b.x+b.w,ob.x+ob.w)-Math.max(b.x,ob.x)>0,dg=Math.abs(ob.y-(b.bottom-C))<=1.5&&(Math.abs(ob.x-(b.x+b.w-C))<=1.5||Math.abs(ob.x+ob.w-(b.x+C))<=1.5);
+        if(stk||dg){moved.push(o);var nb={x:ob.x,w:ob.w,bottom:ob.y+ob.h};o.style.top=(ob.y+d)+'px';o.style.bottom='auto';chain(nb)}})};
       chain({x:me.x,w:me.w,bottom:oldB})}).observe(this)}
   /* redimensionar pela borda de baixo; encaixa em linhas inteiras de slots */
   _row(){var cs=getComputedStyle(this);return (this.querySelector('.pwbg-slot')||{offsetHeight:32}).offsetHeight+(parseFloat(getComputedStyle(this.querySelector('.pwbg-grid')).rowGap)||8)}
@@ -1579,7 +1580,7 @@ class PWWidgetBag extends HTMLElement{
       document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)});
     g.addEventListener('keydown',e=>{var L=this._limits(),d={ArrowUp:-L.row,ArrowDown:L.row,Home:-1e4,End:1e4}[e.key];if(d===undefined)return;e.preventDefault();var h=this._setH(this.offsetHeight+d,true);this.dispatchEvent(new CustomEvent('resize',{bubbles:true,detail:{height:h}}))})}
 }
-PWWidgetBag.O=2;PWWidgetBag.C=12;
+PWWidgetBag.O=2;PWWidgetBag.C=13.5;/* C: posição em que as linhas dos chanfros (primary, 50%) coincidem */
 customElements.define('pw-widget-bag',PWWidgetBag);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.57.4"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.57.5"});
 })();

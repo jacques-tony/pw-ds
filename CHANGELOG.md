@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.57.5
+- `pw-widget-bag`: encaixe diagonal com as linhas dos chanfros sobrepostas (uma linha só); mochila conectada na diagonal acompanha quando a outra muda de altura.
+
 ## 0.57.4
 - `pw-widget-bag`: filete de conexão termina antes dos chanfros e o brilho segue a forma do filete (sem as pontas escuras nos cantos).
 
