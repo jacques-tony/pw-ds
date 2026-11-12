@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.58.0
+- `pw-widget-bag`: Ctrl + botão direito numa mochila interna abre ela num widget separado ao lado (com o ícone e o nome dela, removido ao fechar); `openBagWindow(i)`, evento `bagwindow` (cancelável). Slots vazios não são interativos (sem hover, clique, toque ou menu).
+
 ## 0.57.6
 - `pw-widget-bag`: filete de conexão mais longo na lateral; cantos e trechos de lateral na junção de um lado já conectado não aceitam novas conexões (diagonal ou lateral que cubra a junção).
 

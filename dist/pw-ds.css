@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.57.6 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.58.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1573,7 +1573,9 @@ pw-widget-bag pw-scroll.pwbg-scroll::-webkit-scrollbar-track{margin-block:var(--
 pw-widget-bag .pwbg-grid{display:grid;grid-template-columns:repeat(var(--wb-cols),var(--wb-slot));grid-auto-rows:var(--wb-slot);gap:var(--wb-gap);padding:0}
 pw-widget-bag pw-card.pwbg-slot{position:relative;width:var(--wb-slot);height:var(--wb-slot);border-radius:var(--pw-radius-sm);cursor:pointer}
 pw-widget-bag pw-card.pwbg-slot>.pwc-content{position:relative;height:100%;padding:0;display:block}
-pw-widget-bag pw-card.pwbg-slot:active{--press:.92}
+pw-widget-bag pw-card.pwbg-slot:not(.empty):active{--press:.92}
+/* slot vazio não é interativo */
+pw-widget-bag pw-card.pwbg-slot.empty{cursor:default;--lift:0px!important;--press:1!important}
 pw-widget-bag .pwbg-slot .pwc-content>img,pw-widget-bag .pwbg-slot .pwc-content>svg{position:absolute;inset:0;margin:auto;z-index:1}
 pw-widget-bag .pwbg-slot .pwc-content>img{width:calc(100% - var(--pw-space-1));height:calc(100% - var(--pw-space-1));object-fit:contain;filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
 pw-widget-bag .pwbg-slot .pwc-content>svg{width:62%;height:62%;color:var(--pw-text-accent)}

@@ -1659,7 +1659,9 @@ pw-widget-bag pw-scroll.pwbg-scroll::-webkit-scrollbar-track{margin-block:var(--
 pw-widget-bag .pwbg-grid{display:grid;grid-template-columns:repeat(var(--wb-cols),var(--wb-slot));grid-auto-rows:var(--wb-slot);gap:var(--wb-gap);padding:0}
 pw-widget-bag pw-card.pwbg-slot{position:relative;width:var(--wb-slot);height:var(--wb-slot);border-radius:var(--pw-radius-sm);cursor:pointer}
 pw-widget-bag pw-card.pwbg-slot>.pwc-content{position:relative;height:100%;padding:0;display:block}
-pw-widget-bag pw-card.pwbg-slot:active{--press:.92}
+pw-widget-bag pw-card.pwbg-slot:not(.empty):active{--press:.92}
+/* slot vazio não é interativo */
+pw-widget-bag pw-card.pwbg-slot.empty{cursor:default;--lift:0px!important;--press:1!important}
 pw-widget-bag .pwbg-slot .pwc-content>img,pw-widget-bag .pwbg-slot .pwc-content>svg{position:absolute;inset:0;margin:auto;z-index:1}
 pw-widget-bag .pwbg-slot .pwc-content>img{width:calc(100% - var(--pw-space-1));height:calc(100% - var(--pw-space-1));object-fit:contain;filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
 pw-widget-bag .pwbg-slot .pwc-content>svg{width:62%;height:62%;color:var(--pw-text-accent)}
@@ -1947,7 +1949,7 @@ pw-widget-bag.magnet>pw-card{filter:drop-shadow(0 0 3px color-mix(in srgb,var(--
     <tr><td><code>glow</code></td><td>false (padrão) · true</td><td>Brilho externo da borda; a mochila vem sem brilho</td></tr>
     <tr><td><code>slots</code></td><td>número (35)</td><td>Quantidade de espaços, em 5 colunas de 32×32 (<code>--wb-cols</code>, <code>--wb-slot</code>)</td></tr>
     <tr><td><code>.items</code> / JSON</td><td>array</td><td><code>image</code>, <code>icon</code> ou <code>sprite</code> + <code>frames</code> (animado), <code>label</code>, <code>count</code>, <code>description</code></td></tr>
-    <tr><td>mochila dentro da mochila</td><td><code>{ type: "bag", items: [...], slots }</code></td><td>Botão direito no item abre a mochila interna (o título muda e aparece o botão ← para voltar). Métodos <code>openBag(índice)</code> e <code>back()</code>; eventos <code>bagopen</code> (cancelável) e <code>bagback</code>. Pode ter vários níveis.</td></tr>
+    <tr><td>mochila dentro da mochila</td><td><code>{ type: "bag", items: [...], slots }</code></td><td>Botão direito no item abre a mochila interna (o título muda e aparece o botão ← para voltar). <b>Ctrl + botão direito</b> abre a mochila num widget separado, ao lado (<code>openBagWindow(índice)</code>, evento <code>bagwindow</code>). Métodos <code>openBag(índice)</code> e <code>back()</code>; eventos <code>bagopen</code> (cancelável) e <code>bagback</code>. Pode ter vários níveis.</td></tr>
     <tr><td><code>collapsed</code></td><td>—</td><td>Fechado: mostra só o cabeçalho (botão ⌃/⌄)</td></tr>
     <tr><td><code>locked</code></td><td>—</td><td>Bloqueado: não deixa arrastar nem redimensionar (botão de cadeado)</td></tr>
     <tr><td><code>static</code></td><td>—</td><td>Fica no fluxo da página, sem posição livre</td></tr>
@@ -5197,8 +5199,8 @@ class PWWidgetBag extends HTMLElement{
       if(a==='back')this.back();else if(a==='collapse')this.toggle();else if(a==='lock')this.toggleAttribute('locked');else this.close()});
     this.querySelector('.pwbg-grid').addEventListener('click',e=>{var s=e.target.closest('.pwbg-slot[data-i]');if(!s||s.classList.contains('empty'))return;var i=+s.dataset.i;
       this.dispatchEvent(new CustomEvent('select',{bubbles:true,detail:{index:i,item:this._items[i]}}))});
-    this.querySelector('.pwbg-grid').addEventListener('contextmenu',e=>{var s=e.target.closest('.pwbg-slot[data-i]');if(!s)return;e.preventDefault();var i=+s.dataset.i;
-      if(this._items[i]&&this._items[i].type==='bag'){this.openBag(i);return}
+    this.querySelector('.pwbg-grid').addEventListener('contextmenu',e=>{var s=e.target.closest('.pwbg-slot[data-i]');if(!s)return;e.preventDefault();if(s.classList.contains('empty'))return;var i=+s.dataset.i;
+      if(this._items[i]&&this._items[i].type==='bag'){if(e.ctrlKey||e.metaKey)this.openBagWindow(i);else this.openBag(i);return}
       this.dispatchEvent(new CustomEvent('itemmenu',{bubbles:true,detail:{index:i,item:this._items[i]||null,slot:s,x:e.clientX,y:e.clientY}}))});
     this.addEventListener('pointerdown',()=>{PWWidgetBag._z=(PWWidgetBag._z||10)+1;this.style.zIndex=PWWidgetBag._z},true);
     var sc=this.querySelector('.pwbg-scroll'),bd=this.querySelector('.pwbg-body');this._more=()=>{bd.toggleAttribute('data-more',sc.scrollTop+sc.clientHeight<sc.scrollHeight-8);bd.toggleAttribute('data-less',sc.scrollTop>4)};
@@ -5214,7 +5216,7 @@ class PWWidgetBag extends HTMLElement{
   _btn(a){return this.querySelector('pw-button[data-a="'+a+'"]')}
   _sync(){var top=this._stack.length?this._stack[this._stack.length-1]:null,cur=top?top.bag:null;this.querySelector('.pwbg-title').textContent=cur?(cur.label||'Mochila'):(this.getAttribute('heading')||'Mochila');
     var tt=this.querySelector('.pwbg-title');if(cur)tt.setAttribute('data-tip',cur.label||'Mochila');else tt.removeAttribute('data-tip');var bb=this.querySelector('.pwbg-back');bb.hidden=!top;bb.setAttribute('aria-label','Voltar para '+(this._stack.length>1?(this._stack[this._stack.length-2].bag.label||'mochila anterior'):(this.getAttribute('heading')||'Mochila')));
-    var i1=this.querySelector('.pwbg-ic'),i2=this.querySelector('.pwbg-ic2');i1.hidden=!!(cur&&(cur.sprite||cur.image));i2.hidden=!i1.hidden;if(!i2.hidden){i2.style.setProperty('--n',cur.sprite?(+cur.frames||1):1);i2.firstChild.src=cur.sprite||cur.image}var c=this.hasAttribute('collapsed'),l=this.hasAttribute('locked');
+    var i1=this.querySelector('.pwbg-ic'),i2=this.querySelector('.pwbg-ic2');cur=cur||this._self||null;i1.hidden=!!(cur&&(cur.sprite||cur.image));i2.hidden=!i1.hidden;if(!i2.hidden){i2.style.setProperty('--n',cur.sprite?(+cur.frames||1):1);i2.firstChild.src=cur.sprite||cur.image}var c=this.hasAttribute('collapsed'),l=this.hasAttribute('locked');
     var bc=this._btn('collapse'),bl=this._btn('lock'),lab=(b,t)=>{b.setAttribute('data-tip',t);var i=b.querySelector('button');if(i)i.setAttribute('aria-label',t)};
     bc.setAttribute('icon',c?'chevron-down':'chevron-up');lab(bc,c?'Abrir':'Recolher');var bi=bc.querySelector('button');if(bi){bi.setAttribute('aria-expanded',c?'false':'true');bi.setAttribute('aria-controls',this._u+'b')}
     bl.setAttribute('icon',l?'lock':'unlock');lab(bl,l?'Desbloquear (permitir mover)':'Bloquear posição e tamanho');var li=bl.querySelector('button');if(li)li.setAttribute('aria-pressed',l?'true':'false');
@@ -5222,6 +5224,15 @@ class PWWidgetBag extends HTMLElement{
   /* mochila dentro da mochila: item {type:'bag', items:[...], slots} — botão direito abre, botão ← volta */
   openBag(i){var it=this._items[i];if(!it||it.type!=='bag')return;if(!Array.isArray(it.items))it.items=[];var ev=new CustomEvent('bagopen',{bubbles:true,cancelable:true,detail:{index:i,item:it,depth:this._stack.length+1}});this.dispatchEvent(ev);if(ev.defaultPrevented)return;
     var sc=this.querySelector('.pwbg-scroll');this._stack.push({items:this._items,bag:it,scroll:sc.scrollTop});this._items=it.items;this._swap(1)}
+  /* Ctrl + botão direito numa mochila: abre ela num widget separado, ao lado */
+  openBagWindow(i){var it=this._items[i];if(!it||it.type!=='bag')return;if(!Array.isArray(it.items))it.items=[];
+    var ev=new CustomEvent('bagwindow',{bubbles:true,cancelable:true,detail:{index:i,item:it}});this.dispatchEvent(ev);if(ev.defaultPrevented)return;
+    var nb=document.createElement('pw-widget-bag');nb.setAttribute('heading',it.label||'Mochila');nb.setAttribute('slots',it.slots||20);if(this.getAttribute('glow'))nb.setAttribute('glow',this.getAttribute('glow'));
+    nb._self=it;nb._items=it.items;var p=this.offsetParent||this.parentNode,x=this.offsetLeft+this.offsetWidth+16,y=this.offsetTop;
+    if(p&&x+this.offsetWidth>p.clientWidth)x=Math.max(0,this.offsetLeft-this.offsetWidth-16);nb.style.left=x+'px';nb.style.top=y+'px';
+    this.parentNode.appendChild(nb);PWWidgetBag._z=(PWWidgetBag._z||10)+1;nb.style.zIndex=PWWidgetBag._z;
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches)nb.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'none'}],{duration:180,easing:'ease-out'});
+    nb.addEventListener('close',()=>setTimeout(()=>nb.remove(),0));return nb}
   back(){if(!this._stack.length)return;var t=this._stack.pop();this._items=t.items;this._swap(-1,t.scroll);this.dispatchEvent(new CustomEvent('bagback',{bubbles:true,detail:{depth:this._stack.length}}));var b=this.querySelector('.pwbg-back');(b.hidden?this._btn('collapse').querySelector('button'):b).focus()}
   _swap(dir,scroll){var g=this.querySelector('.pwbg-grid'),sc=this.querySelector('.pwbg-scroll'),go=()=>{this._grid();this._sync();if(!this._userH)this.fitAll();sc.scrollTop=scroll||0;this._more&&this._more()};
     if(matchMedia('(prefers-reduced-motion: reduce)').matches){go();return}
