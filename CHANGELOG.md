@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.61.1
+- `pw-widget-minimap`: o mapa ocupa todo o fundo do card (sem card interno), com as bordas esmaecidas; ações (`pw-button`) num `pw-card` tertiary sempre centralizado (embaixo; na vertical à esquerda quando maximizado). Corrige o mapa preto na versão pequena.
+
 ## 0.61.0
 - Novo componente **`pw-widget-minimap`** (widget Minimap), no padrão dos widgets e só com peças do DS:
   - Coordenadas e horário do jogo em card tertiary; mapa do andar atual com você no centro (arrastar para mover, roda/+/− para zoom 1–4, setas no teclado).
