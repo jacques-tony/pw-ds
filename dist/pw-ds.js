@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.56.4 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.56.5 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1083,15 +1083,15 @@ class PWNavbar extends HTMLElement{
   _focus(t){this._list().forEach(x=>x.tabIndex=x===t?0:-1);t.focus()}
   _sync(){var c=this.hasAttribute('collapsed');this._ball.setAttribute('aria-expanded',c?'false':'true');var l=c?'Abrir barra':'Recolher barra';
     this._ball.setAttribute('aria-label',l);this._ball.setAttribute('data-tip',l);this._ball.setAttribute('data-tip-pos','bottom')}
-  render(){this._moveInd(true);var W=Math.round(this._bar.offsetWidth),H=Math.round(this._bar.offsetHeight);if(!W||!H)return;var u=this._u,c=Math.min(parseFloat(getComputedStyle(this).getPropertyValue('--nb-c'))||16,W/2-1,H/2-1);
+  render(){this._moveInd(true);var W=Math.round(this._bar.offsetWidth),H=Math.round(this._bar.offsetHeight);if(!W||!H)return;var thin=this.hasAttribute('data-thin'),u=this._u,c=Math.min((parseFloat(getComputedStyle(this).getPropertyValue('--nb-c'))||16)*(thin?.5:1),W/2-1,H/2-1);
     var oct=function(o,cc){var a=o,b=W-o,t=o,bt=H-o,k=cc-o*.4;return 'M'+(a+k)+' '+t+' L'+(b-k)+' '+t+' L'+b+' '+(t+k*.85)+' L'+b+' '+(bt-k*.85)+' L'+(b-k)+' '+bt+' L'+(a+k)+' '+bt+' L'+a+' '+(bt-k*.85)+' L'+a+' '+(t+k*.85)+' Z'};
-    var outer=oct(1.5,c),inner=oct(5.5,c);
+    var outer=oct(thin?1:1.5,c),inner=oct(5.5,c);
     this._svg.setAttribute('viewBox','0 0 '+W+' '+H);
     this._svg.innerHTML='<defs><linearGradient id="'+u+'m" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pw-metal-0)"/><stop offset=".4" style="stop-color:var(--pw-metal-1)"/><stop offset=".8" style="stop-color:var(--pw-metal-2)"/><stop offset="1" style="stop-color:var(--pw-metal-3)"/></linearGradient>'+
       '<radialGradient id="'+u+'b" cx=".5" cy=".5" r=".7"><stop offset="0" style="stop-color:var(--pw-bg-center)"/><stop offset="1" style="stop-color:var(--pw-bg-edge)"/></radialGradient></defs>'+
       '<path d="'+outer+'" fill="url(#'+u+'b)"/>'+
-      '<path d="'+outer+'" fill="none" stroke="var(--pw-filament)" stroke-width="3"/><path d="'+outer+'" fill="none" stroke="url(#'+u+'m)" stroke-width="1.6"/>'+
-      '<path d="'+inner+'" fill="none" stroke="var(--pw-filament)" stroke-opacity=".35" stroke-width="1"/>'}
+      '<path d="'+outer+'" fill="none" stroke="var(--pw-filament)" stroke-width="'+(thin?2:3)+'"/><path d="'+outer+'" fill="none" stroke="url(#'+u+'m)" stroke-width="'+(thin?1.3:1.6)+'"/>'+
+      (thin?'':'<path d="'+inner+'" fill="none" stroke="var(--pw-filament)" stroke-opacity=".35" stroke-width="1"/>')}
   toggle(){this._ball.removeAttribute('data-tip');document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}));this.hasAttribute('collapsed')?this.expand():this.collapse()}
   _ms(v){return matchMedia('(prefers-reduced-motion: reduce)').matches?0:v/(parseFloat(getComputedStyle(this).getPropertyValue('--nb-speed'))||1)}
   _pos(){var h=this.getBoundingClientRect(),b=this._bar.getBoundingClientRect(),bl=this._ball.getBoundingClientRect();
@@ -1149,7 +1149,7 @@ class PWHud extends HTMLElement{
   connectedCallback(){if(this._init)return;this._init=true;this._u='pwhd'+(++uidN);if(!this.id)this.id=this._u;
     this.setAttribute('role','region');if(!this.getAttribute('aria-label'))this.setAttribute('aria-label','HUD do jogador');
     var json=this.querySelector('script[type="application/json"]');if(json){try{this._data=Object.assign(this._data,JSON.parse(json.textContent))}catch(e){}}
-    this.innerHTML='<pw-card variant="primary" class="pwhd-done-bar" aria-live="polite"><span>Arraste os Pokémon para mudar a ordem</span><pw-button class="pwhd-done" size="sm" particles="0" icon="check">Salvar</pw-button></pw-card><pw-card variant="primary" class="pwhd-shell"><div class="pwhd-body"></div></pw-card><pw-control-group class="pwhd-menu" size="sm" label="Opções" hidden></pw-control-group>';
+    this.innerHTML='<pw-card variant="primary" class="pwhd-done-bar" aria-live="polite"><span>Arraste os Pokémon para mudar a ordem</span><pw-button class="pwhd-done" size="sm" particles="0" icon="check">Salvar</pw-button></pw-card><pw-card variant="primary" class="pwhd-shell"'+(this.hasAttribute('data-thin')?' data-stroke="2" chamfer=".5 .5 .5 .5"':'')+(this.hasAttribute('data-noglow')?' data-noglow':'')+'><div class="pwhd-body"></div></pw-card><pw-control-group class="pwhd-menu" size="sm" label="Opções" hidden></pw-control-group>';
     this._body=this.querySelector('.pwhd-body');this._menu=this.querySelector('.pwhd-menu');
     this.addEventListener('click',e=>this._click(e));
     this.addEventListener('contextmenu',e=>{var s=e.target.closest('.pwhd-slot[data-slot]');if(s){e.preventDefault();this._openMenu(s);return}var c=e.target.closest('.pwhd-card[data-team]');if(!c)return;e.preventDefault();if(this._editing)return;this._teamMenu(+c.dataset.team,c)});
@@ -1577,5 +1577,5 @@ class PWWidgetBag extends HTMLElement{
 }
 PWWidgetBag.O=3;PWWidgetBag.C=24;
 customElements.define('pw-widget-bag',PWWidgetBag);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.56.4"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.56.5"});
 })();

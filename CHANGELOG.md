@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.56.5
+- Teste (experimental): `pw-hud data-thin data-noglow` (moldura 2px, meio chanfro, sem brilho) e `pw-navbar data-thin` (moldura 2px, meio chanfro, sem a linha interna). Sem os atributos nada muda. Storybook: aplicado só na simulação do jogo.
+
 ## 0.56.4
 - Teste (experimental): `pw-card data-noglow` esconde o brilho externo da borda; `pw-widget-bag data-noglow` repassa. Storybook: comparação "Teste de borda" (3px e 2px, com e sem brilho). Overlays da mochila de 2px acompanham o chanfro menor.
 
