@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.66.1
+- `pw-widget-chat`: altura mínima calculada para mostrar 3 mensagens (largura mínima 320px).
+- Removido o botão Minimizar do rodapé.
+- Overlay pequeno nas bordas das abas de canais quando há mais abas para os lados.
+
 ## 0.66.0
 - Novo `<pw-widget-chat>` (Widget Bate-papo): casca padrão dos widgets, redimensiona na largura (direita e esquerda) e na altura.
   - Canais em abas (`pw-button`), com setas e ← → no teclado, `pw-badge` de não lidas e botão do meio para fechar canais abertos.
