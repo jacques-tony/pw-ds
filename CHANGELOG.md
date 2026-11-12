@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.57.4
+- `pw-widget-bag`: filete de conexão termina antes dos chanfros e o brilho segue a forma do filete (sem as pontas escuras nos cantos).
+
 ## 0.57.3
 - `pw-widget-bag`: brilho do filete de conexão só em branco/dourado (o `--pw-glow` azul escurecia a área ao redor).
 

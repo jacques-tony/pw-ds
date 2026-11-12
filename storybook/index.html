@@ -1705,7 +1705,7 @@ pw-widget-bag.dragging>pw-card{filter:drop-shadow(0 12px 24px var(--pw-black-a45
 /* magnetismo: brilho nas mochilas que vão grudar */
 pw-widget-bag.magnet>pw-card{filter:drop-shadow(0 0 3px color-mix(in srgb,var(--pw-glow) 45%,transparent))}
 .pwbg-flash{position:absolute;z-index:9999;pointer-events:none;border-radius:var(--pw-radius-full);transform-origin:center;
-  background:linear-gradient(90deg,transparent,var(--pw-filament) 20%,var(--pw-white) 50%,var(--pw-filament) 80%,transparent);box-shadow:0 0 6px color-mix(in srgb,var(--pw-white) 70%,transparent),0 0 14px color-mix(in srgb,var(--pw-filament) 55%,transparent)}
+  background:linear-gradient(90deg,transparent,var(--pw-filament) 20%,var(--pw-white) 50%,var(--pw-filament) 80%,transparent);filter:drop-shadow(0 0 4px color-mix(in srgb,var(--pw-white) 70%,transparent)) drop-shadow(0 0 8px color-mix(in srgb,var(--pw-filament) 60%,transparent))}
 .pwbg-flash.v{background:linear-gradient(180deg,transparent,var(--pw-filament) 20%,var(--pw-white) 50%,var(--pw-filament) 80%,transparent)}
 @media (prefers-reduced-motion:reduce){pw-widget-bag *{transition:none!important}}
 /* @pwds-css-end */
@@ -5262,8 +5262,8 @@ class PWWidgetBag extends HTMLElement{
       var k='1 1 1 1',c=b.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==k)c.setAttribute('chamfer',k)})}
   /* efeito de conexão: um filete de luz percorre a junção e as mochilas pulsam */
   _flash(a,o){var p=this.offsetParent;if(!p||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var O=PWWidgetBag.O,N=PWWidgetBag._near,f=document.createElement('span');f.className='pwbg-flash';var x,y,w,hh,vert=false;
-    if(N(a.y+a.h,o.y)||N(o.y+o.h,a.y)){var yy=N(a.y+a.h,o.y)?a.y+a.h-O/2:o.y+o.h-O/2;x=Math.max(a.x,o.x)+8;w=Math.min(a.x+a.w,o.x+o.w)-8-x;y=yy-3;hh=6}
-    else{vert=true;var xx=N(a.x+a.w,o.x)?a.x+a.w-O/2:o.x+o.w-O/2;y=Math.max(a.y,o.y)+8;hh=Math.min(a.y+a.h,o.y+o.h)-8-y;x=xx-3;w=6}
+    if(N(a.y+a.h,o.y)||N(o.y+o.h,a.y)){var yy=N(a.y+a.h,o.y)?a.y+a.h-O/2:o.y+o.h-O/2;var ins=PWWidgetBag.C+10;x=Math.max(a.x,o.x)+ins;w=Math.min(a.x+a.w,o.x+o.w)-ins-x;y=yy-3;hh=6}
+    else{vert=true;var xx=N(a.x+a.w,o.x)?a.x+a.w-O/2:o.x+o.w-O/2;var ins2=PWWidgetBag.C+10;y=Math.max(a.y,o.y)+ins2;hh=Math.min(a.y+a.h,o.y+o.h)-ins2-y;x=xx-3;w=6}
     if(PWWidgetBag._diag(a,o)){var cx2=a.x<o.x?a.x+a.w-PWWidgetBag.C/2:a.x+PWWidgetBag.C/2,cy2=a.y<o.y?a.y+a.h-PWWidgetBag.C/2:a.y+PWWidgetBag.C/2;x=cx2-12;y=cy2-3;w=24;hh=6;f.style.rotate=((a.x<o.x)===(a.y<o.y)?'-45deg':'45deg')}
     if(w<=0||hh<=0)return;f.style.cssText+=';'+'left:'+x+'px;top:'+y+'px;width:'+w+'px;height:'+hh+'px';if(vert)f.classList.add('v');p.appendChild(f);
     f.animate([{transform:vert?'scaleY(0)':'scaleX(0)',opacity:1,easing:'cubic-bezier(.2,.8,.2,1)'},{transform:'none',opacity:1,offset:.4},{transform:'none',opacity:1,offset:.55,easing:'ease-in'},{transform:'none',opacity:0}],{duration:520}).finished.then(()=>f.remove(),()=>f.remove())}
