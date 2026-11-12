@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.64.3 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.64.4 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1580,7 +1580,7 @@ pw-widget-battle .pwbg-acts{display:flex}
 pw-widget-battle .pwbw-body{flex:1;min-height:0;display:flex;flex-direction:column;gap:var(--pw-space-3)}
 pw-widget-battle pw-scroll.pwbw-scroll{flex:1;min-height:0;padding:var(--pw-space-2) calc(var(--pw-space-2) + var(--pw-space-0-5) - var(--pw-scroll-size) - 1px) calc(var(--pw-space-6) - var(--pw-space-1)) var(--pw-space-1);margin:calc(var(--pw-space-2) * -1) calc((var(--pw-space-2) + var(--pw-space-0-5)) * -1 + 1px) 0 calc(var(--pw-space-1) * -1);clip-path:polygon(0 0,100% 0,100% calc(100% - var(--wb-ch)),calc(100% - var(--wb-ch)) 100%,var(--wb-ch) 100%,0 calc(100% - var(--wb-ch)))}
 pw-widget-battle pw-scroll.pwbw-scroll::-webkit-scrollbar-track{margin-block:var(--pw-space-2) calc(var(--pw-space-6) - var(--pw-space-1))}
-pw-widget-battle{--wb-ov:var(--pw-bg-solid)}pw-widget-battle .pwbw-body{position:relative}
+pw-widget-battle{--wb-ov:var(--pw-bg-solid);--wb-ch:calc(var(--pw-space-5) / 2)}pw-widget-battle .pwbw-body{position:relative}
 pw-widget-battle .pwbw-body::after,pw-widget-battle .pwbw-body::before{content:"";position:absolute;z-index:5;left:calc(var(--wb-pad) * -1 + var(--pw-space-1));right:calc(var(--wb-pad) * -1 + var(--pw-space-1));pointer-events:none;opacity:0;transition:opacity .25s}
 pw-widget-battle .pwbw-body::after{bottom:0;height:var(--pw-space-12);background:linear-gradient(transparent,var(--wb-ov));clip-path:polygon(0 0,100% 0,100% calc(100% - var(--wb-ch)),calc(100% - var(--wb-ch)) 100%,var(--wb-ch) 100%,0 calc(100% - var(--wb-ch)))}
 pw-widget-battle .pwbw-body::before{top:var(--wb-lt,0px);height:var(--pw-space-6);background:linear-gradient(var(--wb-ov),transparent)}

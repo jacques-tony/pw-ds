@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.64.4
+- `pw-widget-battle`: overlay inferior respeita o chanfro da moldura (token `--wb-ch`), sem cobrir a borda.
+
 ## 0.64.3
 - `pw-widget-battle`: overlay de rolagem inferior igual ao da Mochila (rolagem vai até a borda com cantos chanfrados, sem faixa cortada no rodapé).
 
