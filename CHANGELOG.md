@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.54.2
+- `pw-widget-bag`: "‹ Voltar" fica abaixo do título sem mudar a posição do título nem o espaçamento do cabeçalho.
+
 ## 0.54.1
 - `pw-widget-bag`: ao abrir uma mochila interna, o ícone do cabeçalho vira o ícone dela e aparece um texto pequeno "‹ Voltar" abaixo do nome (no lugar do botão ←).
 

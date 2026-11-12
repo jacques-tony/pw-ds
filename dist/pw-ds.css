@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.54.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.54.2 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1577,9 +1577,10 @@ pw-widget-bag .pwbg-slot .pwc-content>img{width:calc(100% - var(--pw-space-1));h
 pw-widget-bag .pwbg-slot .pwc-content>svg{width:62%;height:62%;color:var(--pw-text-accent)}
 pw-widget-bag .pwbg-slot.empty{cursor:default}
 pw-widget-bag .pwbg-slot.is-bag{cursor:context-menu}
-pw-widget-bag .pwbg-tt{flex:1;min-width:0;display:grid;gap:1px}
-pw-widget-bag .pwbg-tt .pwbg-title{flex:none}
-pw-widget-bag .pwbg-back{all:unset;justify-self:start;cursor:pointer;font:var(--pw-font-weight-medium) var(--pw-font-size-3xs)/1 var(--pw-font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--pw-text-accent-soft);transition:color var(--card-dur)}
+pw-widget-bag .pwbg-tt{flex:1;min-width:0;position:relative;display:flex;align-items:center}
+pw-widget-bag .pwbg-tt .pwbg-title{flex:1}
+/* "Voltar" fica abaixo do título sem mudar a posição nem o espaçamento do cabeçalho */
+pw-widget-bag .pwbg-back{all:unset;position:absolute;left:0;top:calc(100% + var(--pw-space-0-5));cursor:pointer;font:var(--pw-font-weight-medium) var(--pw-font-size-3xs)/1 var(--pw-font-body);letter-spacing:.06em;text-transform:uppercase;color:var(--pw-text-accent-soft);transition:color var(--card-dur)}
 pw-widget-bag .pwbg-back::before{content:"‹ "}
 pw-widget-bag .pwbg-back:hover{color:var(--pw-text-title);text-decoration:underline}
 pw-widget-bag .pwbg-back:focus-visible{outline:2px solid var(--pw-focus-ring);outline-offset:2px;border-radius:2px}
