@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.60.3
+- `pw-widget-pokemon`: barra de recarga padronizada como na HUD: "Cooldown" quando ativa e "Sem CD" quando não há.
+
 ## 0.60.2
 - `pw-widget-pokemon`:
   - Posturas num único card tertiary não interativo, com hover só no ícone.

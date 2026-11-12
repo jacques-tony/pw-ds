@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.60.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.60.3 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1635,11 +1635,11 @@ class PWWidgetPokemon extends PWWidgetBag{
     this._p.stance=s;this.querySelectorAll('[data-stance]').forEach(c=>{var on=c.dataset.stance===s;c.toggleAttribute('selected',on);c.setAttribute('aria-checked',on?'true':'false')})}
   _bars(){var p=this._p,hp=p.hpMax?Math.max(0,Math.min(p.hp||0,p.hpMax)):0;
     return '<pw-progress class="pwpk-hp" size="sm" variant="hp" label="Vida" show-value value="'+hp+'" max="'+(p.hpMax||0)+'"></pw-progress>'+
-      '<pw-progress class="pwpk-cd" size="sm" tone="info" label="'+(p.cdLeft?'Recarga':'Sem recarga')+'"'+(p.cdLeft?' show-value format="value"':'')+' value="'+(p.cdLeft||0)+'" max="'+(p.cd||1)+'"></pw-progress>'}
+      '<pw-progress class="pwpk-cd" size="sm" tone="info" label="'+(p.cdLeft?'Cooldown':'Sem CD')+'"'+(p.cdLeft?' show-value format="value"':'')+' value="'+(p.cdLeft||0)+'" max="'+(p.cd||1)+'"></pw-progress>'}
   /* atualiza vida/recarga sem recriar o widget */
   update(patch){Object.assign(this._p,patch||{});var b=this.querySelector('.pwpk-bars');if(!b){this._render();return}
     var p=this._p,hp=b.querySelector('.pwpk-hp'),cd=b.querySelector('.pwpk-cd');hp.setAttribute('max',p.hpMax||0);hp.setAttribute('value',Math.max(0,Math.min(p.hp||0,p.hpMax||0)));
-    cd.setAttribute('max',p.cd||1);cd.setAttribute('value',p.cdLeft||0);cd.setAttribute('label',p.cdLeft?'Recarga':'Sem recarga');if(p.cdLeft){cd.setAttribute('show-value','');cd.setAttribute('format','value')}else cd.removeAttribute('show-value')}
+    cd.setAttribute('max',p.cd||1);cd.setAttribute('value',p.cdLeft||0);cd.setAttribute('label',p.cdLeft?'Cooldown':'Sem CD');if(p.cdLeft){cd.setAttribute('show-value','');cd.setAttribute('format','value')}else cd.removeAttribute('show-value')}
   _render(){var p=this._p,E=pwEsc,hp=p.hpMax?Math.max(0,Math.min(p.hp||0,p.hpMax)):0,cd=p.cd?Math.max(0,Math.min(1,(p.cdLeft||0)/p.cd)):0,team=(p.team||[]).slice(0,6);while(team.length<6)team.push(null);
     var balls=team.map((t,i)=>'<span class="pwpk-ball'+(t&&t.fainted?' out':'')+'" role="img" aria-label="'+(t?E(t.name||('Pokémon '+(i+1)))+(t.fainted?' (desmaiado)':''):'Espaço vazio')+'"'+(t&&t.name?' data-tip="'+E(t.name)+'"':'')+'>'+pwWIc(t&&!t.fainted?'pokeball-filled':'pokeball-empty')+'</span>').join('');
     this.querySelector('.pwpk-body').innerHTML=
@@ -1651,5 +1651,5 @@ class PWWidgetPokemon extends PWWidgetBag{
 }
 PWWidgetPokemon.prototype.toggle=PWWidgetBag.prototype.toggle;
 customElements.define('pw-widget-pokemon',PWWidgetPokemon);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.60.2"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.60.3"});
 })();
