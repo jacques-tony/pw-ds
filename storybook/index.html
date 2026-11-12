@@ -1733,6 +1733,9 @@ pw-widget-pokemon .pwpk-acts{display:contents}
 pw-widget-pokemon .pwpk-info{flex:1;min-width:0;align-self:stretch;display:flex;flex-direction:column;justify-content:space-between}
 pw-widget-pokemon .pwpk-bars{display:grid;gap:var(--pw-space-1)}
 pw-widget-pokemon .pwpk-bars pw-progress{min-width:0}
+/* cooldown: desce de forma linear e contínua (o valor é atualizado a cada 1s); ao reiniciar, sobe na hora */
+pw-widget-pokemon .pwpk-cd .pwp-fill,pw-hud .pwhd-card .bar.cd .pwp-fill{transition:width 1s linear}
+pw-widget-pokemon .pwpk-cd.cd-jump .pwp-fill,pw-hud .pwhd-card .bar.cd.cd-jump .pwp-fill{transition:none}
 pw-widget-pokemon .pwpk-bars .pwp-head{font-size:var(--pw-font-size-2xs)}
 pw-widget-pokemon pw-card.pwpk-stances{grid-column:span 3;width:auto;height:var(--wb-slot);border-radius:var(--pw-radius-sm)}
 pw-widget-pokemon pw-card.pwpk-stances>.pwc-content{padding:0;height:100%}
@@ -5088,7 +5091,7 @@ class PWHud extends HTMLElement{
 PWHud.prototype.updatePokemon=function(i,patch){var t=(this._data.team||[])[i];if(!t||!t.name)return;Object.assign(t,patch||{});
   var v=Math.max(0,Math.min(100,t.hp==null?100:t.hp)),cd=t.cd?Math.max(0,Math.min(1,(t.cdLeft||0)/t.cd)):0,c=this.querySelector('.pwhd-card[data-team="'+i+'"]');
   if(c){var b=c.querySelectorAll('.bar');if(b[0]){b[0].querySelector('pw-progress').setAttribute('value',Math.round(v));b[0].querySelector('span').textContent=Math.round(v)+'%'}
-    if(b[1]){b[1].querySelector('pw-progress').setAttribute('value',Math.round(cd*100));b[1].querySelector('span').textContent=t.cdLeft?'CD '+t.cdLeft+'s':'Sem CD'}
+    if(b[1]){var pp=b[1].querySelector('pw-progress'),nv=Math.round(cd*100);if(nv>(+pp.getAttribute('value')||0)){b[1].classList.add('cd-jump');requestAnimationFrame(()=>requestAnimationFrame(()=>b[1].classList.remove('cd-jump')))}pp.setAttribute('value',nv);b[1].querySelector('span').textContent=t.cdLeft?'CD '+t.cdLeft+'s':'Sem CD'}
     c.setAttribute('aria-label',t.name+', HP '+Math.round(v)+'%, atalho '+(t.hotkey||'Ctrl+'+(i+1)));if(c.hasAttribute('data-tip'))c.setAttribute('data-tip',(t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v)+'%')}
   document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>{var pp=p.querySelector('.pwpt[data-team="'+i+'"] pw-progress');if(pp)pp.setAttribute('value',Math.round(v))})};
 PWHud.prototype._rerender=function(){var s=this.querySelector('.pwhd-slots'),sc=s?s.scrollLeft:0;this.render();var n=this.querySelector('.pwhd-slots');if(n)n.scrollLeft=sc};
@@ -5438,7 +5441,7 @@ class PWWidgetPokemon extends PWWidgetBag{
   /* atualiza vida/recarga sem recriar o widget */
   update(patch){Object.assign(this._p,patch||{});var b=this.querySelector('.pwpk-bars');if(!b){this._render();return}
     var p=this._p,hp=b.querySelector('.pwpk-hp'),cd=b.querySelector('.pwpk-cd');hp.setAttribute('max',p.hpMax||0);hp.setAttribute('value',Math.max(0,Math.min(p.hp||0,p.hpMax||0)));
-    cd.setAttribute('max',p.cd||1);cd.setAttribute('value',p.cdLeft||0);cd.setAttribute('label',p.cdLeft?'Cooldown':'Sem CD');if(p.cdLeft){cd.setAttribute('show-value','');cd.setAttribute('format','value')}else cd.removeAttribute('show-value')}
+    var up=(p.cdLeft||0)>(+cd.getAttribute('value')||0);if(up){cd.classList.add('cd-jump');requestAnimationFrame(()=>requestAnimationFrame(()=>cd.classList.remove('cd-jump')))}cd.setAttribute('max',p.cd||1);cd.setAttribute('value',p.cdLeft||0);cd.setAttribute('label',p.cdLeft?'Cooldown':'Sem CD');if(p.cdLeft){cd.setAttribute('show-value','');cd.setAttribute('format','value')}else cd.removeAttribute('show-value')}
   _render(){var p=this._p,E=pwEsc,hp=p.hpMax?Math.max(0,Math.min(p.hp||0,p.hpMax)):0,cd=p.cd?Math.max(0,Math.min(1,(p.cdLeft||0)/p.cd)):0,team=(p.team||[]).slice(0,6);while(team.length<6)team.push(null);
     var balls=team.map((t,i)=>'<span class="pwpk-ball'+(t&&t.fainted?' out':'')+'" role="img" aria-label="'+(t?E(t.name||('Pokémon '+(i+1)))+(t.fainted?' (desmaiado)':''):'Espaço vazio')+'"'+(t&&t.name?' data-tip="'+E(t.name)+'"':'')+'>'+pwWIc(t&&!t.fainted?'pokeball-filled':'pokeball-empty')+'</span>').join('');
     this.querySelector('.pwpk-body').innerHTML=

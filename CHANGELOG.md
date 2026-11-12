@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.60.5
+- Barra de cooldown (`pw-widget-pokemon` e cards da `pw-hud`): desce de forma linear e contínua entre as atualizações de 1s; ao reiniciar, enche na hora.
+
 ## 0.60.4
 - `pw-widget-pokemon`: o card acompanha a altura animada ao abrir/recolher (antes pulava para o tamanho final), deixando a animação igual à da mochila.
 

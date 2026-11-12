@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.60.4 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.60.5 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1647,6 +1647,9 @@ pw-widget-pokemon .pwpk-acts{display:contents}
 pw-widget-pokemon .pwpk-info{flex:1;min-width:0;align-self:stretch;display:flex;flex-direction:column;justify-content:space-between}
 pw-widget-pokemon .pwpk-bars{display:grid;gap:var(--pw-space-1)}
 pw-widget-pokemon .pwpk-bars pw-progress{min-width:0}
+/* cooldown: desce de forma linear e contínua (o valor é atualizado a cada 1s); ao reiniciar, sobe na hora */
+pw-widget-pokemon .pwpk-cd .pwp-fill,pw-hud .pwhd-card .bar.cd .pwp-fill{transition:width 1s linear}
+pw-widget-pokemon .pwpk-cd.cd-jump .pwp-fill,pw-hud .pwhd-card .bar.cd.cd-jump .pwp-fill{transition:none}
 pw-widget-pokemon .pwpk-bars .pwp-head{font-size:var(--pw-font-size-2xs)}
 pw-widget-pokemon pw-card.pwpk-stances{grid-column:span 3;width:auto;height:var(--wb-slot);border-radius:var(--pw-radius-sm)}
 pw-widget-pokemon pw-card.pwpk-stances>.pwc-content{padding:0;height:100%}
