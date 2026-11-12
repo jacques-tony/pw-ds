@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.64.3
+- `pw-widget-battle`: overlay de rolagem inferior igual ao da Mochila (rolagem vai até a borda com cantos chanfrados, sem faixa cortada no rodapé).
+
 ## 0.64.2
 - `pw-widget-battle`: removido o estado visual "atacando você"; os alvos têm só os estados normal e alvo selecionado.
 
