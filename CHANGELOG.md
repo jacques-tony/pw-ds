@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.73.0
+- `pw-hud`: badge de atalho (Ctrl+N) dos cards de Pokémon dentro do card, no canto superior direito a 2px das bordas.
+- Padding de 16px em cima e nas laterais (`--hd-pad`); espaço entre o perfil e os cards igual ao espaço entre os cards (`--hd-gap`, 8px).
+
 ## 0.72.0
 - `pw-hud`: card de perfil com a mesma altura e alinhamento dos cards de Pokémon (`--hd-card-h`); botões de ação mais baixos para caber; 12px entre os cards e as hotkeys.
 
