@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.72.0
+- `pw-hud`: card de perfil com a mesma altura e alinhamento dos cards de Pokémon (`--hd-card-h`); botões de ação mais baixos para caber; 12px entre os cards e as hotkeys.
+
 ## 0.71.2
 - `pw-hud`: setas de navegação das hotkeys como `pw-button` ghost sem efeitos (`fx="none"`).
 

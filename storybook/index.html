@@ -1422,13 +1422,13 @@ pw-hud[docked="false"] pw-card.pwhd-shell>.pwc-content{padding-bottom:var(--pw-s
 pw-hud .pwhd-body{position:relative;display:grid;gap:var(--pw-space-3);min-width:0}
 pw-hud .pwhd-top{display:flex;gap:var(--pw-space-4);align-items:stretch;min-width:0}
 /* perfil completo */
-pw-hud pw-card.pwhd-profile{flex:none;width:var(--hd-profile-w);height:auto;--lift:0px}
+pw-hud pw-card.pwhd-profile{flex:none;align-self:flex-end;width:var(--hd-profile-w);height:var(--hd-card-h);--lift:0px}
 pw-hud pw-card.pwhd-profile>.pwc-content{display:grid;grid-template-columns:auto 1fr;gap:var(--pw-space-3);align-items:stretch;height:100%;padding:var(--pw-space-3)}
 pw-hud .pwhd-avatar{position:relative;align-self:stretch;width:calc(var(--pw-space-24) - var(--pw-space-1));height:auto;border-radius:var(--pw-radius-xs);overflow:hidden;display:grid;place-items:end center;color:color-mix(in srgb,var(--pw-filament) 35%,var(--pw-bg-center));
   background:radial-gradient(circle at 50% 30%,var(--pw-bg-center),var(--pw-bg-edge));border:1px solid var(--pw-border-default)}
 pw-hud .pwhd-avatar img{width:100%;height:100%;object-fit:cover;object-position:50% 15%}
 pw-hud .pwhd-avatar svg{width:92%;height:92%;margin-bottom:-6%}
-pw-hud .pwhd-info{display:grid;grid-template-rows:auto auto auto 1fr;gap:var(--pw-space-2);min-width:0}
+pw-hud .pwhd-info{display:grid;grid-template-rows:auto auto auto 1fr;gap:var(--pw-space-2);min-width:0;min-height:0}
 pw-hud .pwhd-name{display:flex;justify-content:space-between;align-items:baseline;gap:var(--pw-space-2);min-width:0}
 pw-hud .pwhd-name b{font:var(--pw-text-title-sm);color:var(--pw-text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 pw-hud .pwhd-name span{flex:none;font-size:var(--pw-font-size-sm);font-weight:var(--pw-font-weight-medium);color:var(--pw-text-accent-soft)}
@@ -1436,12 +1436,12 @@ pw-hud .pwhd-name span{flex:none;font-size:var(--pw-font-size-sm);font-weight:va
 pw-hud pw-progress.pwhd-stat{min-width:0;--pr-label-w:var(--pw-space-4);--pr-h:calc(var(--pw-space-3) + var(--pw-space-0-5));column-gap:var(--pw-space-1)}
 pw-hud:not([profile="compact"]) .pwhd-stat.xp{margin-top:var(--pw-space-1)}
 pw-hud .pwhd-actions{display:flex;gap:var(--pw-space-2);flex-wrap:wrap}
-pw-hud .pwhd-actions.in{flex-wrap:nowrap;align-items:stretch}pw-hud .pwhd-actions.in pw-button.pwhd-act{flex:1;min-width:0;display:flex}pw-hud .pwhd-actions.in pw-button.pwhd-act>button{width:100%;height:100%;min-height:var(--pw-space-8)}
+pw-hud .pwhd-actions.in{flex-wrap:nowrap;align-items:stretch}pw-hud .pwhd-actions.in pw-button.pwhd-act{flex:1;min-width:0;display:flex}pw-hud .pwhd-actions.in pw-button.pwhd-act>button{width:100%;height:100%;min-height:0}
 pw-hud pw-button.pwhd-act>button{--b-fg:var(--pw-text-accent)}
 pw-hud pw-button.pwhd-act[aria-pressed="true"]{--b-bg:linear-gradient(180deg,var(--pw-metal-0),var(--pw-metal-1));--b-fg:var(--pw-on-metal);--b-bd:var(--pw-filament)}
 pw-hud .pwhd-slot:focus-visible,pw-hud .pwhd-card:focus-visible{outline:2px solid var(--pw-focus-ring);outline-offset:2px}
 /* cards da equipe: pw-card tertiary; selecionado = tertiary com destaque dourado */
-pw-hud .pwhd-team{display:flex;gap:var(--hd-gap);min-width:0;padding:var(--pw-space-2) 0 var(--pw-space-1)}
+pw-hud .pwhd-team{display:flex;gap:var(--hd-gap);min-width:0;padding:var(--pw-space-2) 0 0}
 pw-hud pw-card.pwhd-card{flex:none;width:var(--hd-card-w);height:var(--hd-card-h);border-radius:var(--pw-radius-md);overflow:visible}
 pw-hud pw-card.pwhd-card>.pwc-content{padding:0;gap:0;border-radius:inherit;overflow:visible}
 /* a arte fica dentro da moldura do tertiary, para a borda (azul ou dourada) aparecer inteira */
@@ -1462,7 +1462,7 @@ pw-hud .pwhd-card .bar span{position:absolute;inset:0;display:grid;place-items:c
   color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);pointer-events:none}
 /* barra de atalhos */
 pw-hud .pwhd-hotbar{display:flex;align-items:center;gap:var(--pw-space-2);min-width:0;overflow:visible}
-pw-hud .pwhd-slots{flex:1;display:flex;gap:var(--pw-space-2);overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;min-width:0;padding:var(--pw-space-1) var(--pw-space-1) var(--pw-space-0-5)}
+pw-hud .pwhd-slots{flex:1;display:flex;gap:var(--pw-space-2);overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;min-width:0;padding:0 var(--pw-space-1) var(--pw-space-0-5)}
 pw-hud .pwhd-slots::-webkit-scrollbar{display:none}
 /* overlay nas pontas: o atalho some suavemente em vez de parecer cortado */
 pw-hud .pwhd-slots{--fl:var(--pw-space-0);--fr:var(--pw-space-0);-webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--fl),#000 calc(100% - var(--fr)),transparent);mask-image:linear-gradient(90deg,transparent,#000 var(--fl),#000 calc(100% - var(--fr)),transparent)}
@@ -1523,7 +1523,7 @@ pw-hud .pwhd-foot{display:flex;justify-content:space-between;align-items:center;
 pw-hud .pwhd-toggle>button{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase}
 /* perfil reduzido: perfil em uma linha, cards da equipe vão para a lateral (pw-party) */
 pw-hud[profile="compact"] .pwhd-team{display:none}
-pw-hud[profile="compact"] pw-card.pwhd-profile{width:100%}
+pw-hud[profile="compact"] pw-card.pwhd-profile{width:100%;height:auto;align-self:auto}pw-hud[profile="compact"] pw-card.pwhd-profile>.pwc-content{height:auto}pw-hud[profile="compact"] .pwhd-avatar{align-self:center}
 pw-hud[profile="compact"] pw-card.pwhd-profile>.pwc-content{grid-template-columns:auto minmax(0,1fr) auto;align-items:center;padding:var(--pw-space-2) var(--pw-space-3)}
 pw-hud[profile="compact"] .pwhd-avatar{width:calc(var(--pw-space-7) + var(--pw-space-0-5));height:calc(var(--pw-space-7) + var(--pw-space-0-5));border-radius:50%;place-items:center}
 pw-hud[profile="compact"] .pwhd-avatar svg{width:80%;height:80%;margin:0}
