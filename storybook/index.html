@@ -1446,13 +1446,13 @@ pw-hud .pwhd-card .bar span{position:absolute;inset:0;display:grid;place-items:c
   color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);pointer-events:none}
 /* barra de atalhos */
 pw-hud .pwhd-hotbar{display:flex;align-items:center;gap:var(--pw-space-2);min-width:0;overflow:visible}
-pw-hud .pwhd-slots{flex:1;display:flex;gap:var(--pw-space-3);overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;min-width:0;padding:var(--pw-space-3) var(--pw-space-1) var(--pw-space-0-5)}
+pw-hud .pwhd-slots{flex:1;display:flex;gap:12px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;min-width:0;padding:var(--pw-space-1) var(--pw-space-1) var(--pw-space-0-5)}
 pw-hud .pwhd-slots::-webkit-scrollbar{display:none}
 /* overlay nas pontas: o atalho some suavemente em vez de parecer cortado */
 pw-hud .pwhd-slots{--fl:var(--pw-space-0);--fr:var(--pw-space-0);-webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--fl),#000 calc(100% - var(--fr)),transparent);mask-image:linear-gradient(90deg,transparent,#000 var(--fl),#000 calc(100% - var(--fr)),transparent)}
 pw-hud .pwhd-slots[data-fade-l]{--fl:var(--pw-space-8)}
 pw-hud .pwhd-slots[data-fade-r]{--fr:var(--pw-space-8)}
-/* atalho = pw-card quaternary interativo (state="idle" impede o toggle de seleção do card) */
+/* atalho = pw-card tertiary interativo, mesmo formato do slot da mochila (state="idle" impede o toggle de seleção do card) */
 pw-hud pw-card.pwhd-slot{position:relative;flex:none;width:var(--hd-slot);height:var(--hd-slot);cursor:pointer;border-radius:var(--pw-radius-sm)}
 pw-hud pw-card.pwhd-slot>.pwc-content{position:relative;height:100%;padding:0;display:block}
 pw-hud pw-card.pwhd-slot:active{--press:.94}
@@ -1461,9 +1461,9 @@ pw-hud .pwhd-slot.empty .pwc-content>svg{width:50%;height:50%;color:inherit}
 pw-hud .pwhd-slot.empty{cursor:default}
 pw-hud .pwhd-slot .pwc-content>img{width:80%;height:80%;object-fit:contain;filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
 pw-hud .pwhd-slot .pwc-content>svg{width:60%;height:60%;color:var(--pw-text-accent)}
-pw-hud .pwhd-slot .q{position:absolute;right:1px;bottom:0;font-size:var(--pw-font-size-3xs);font-weight:var(--pw-font-weight-bold);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
+pw-hud .pwhd-slot :is(.q,.kb){position:absolute;right:var(--pw-space-0-5);z-index:2;pointer-events:none;font:var(--pw-font-weight-bold) var(--pw-font-size-3xs)/1 var(--pw-font-body);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
+pw-hud .pwhd-slot .q{bottom:0}pw-hud .pwhd-slot .kb{top:var(--pw-space-0-5)}
 pw-hud .pwhd-slot .q.zero{color:var(--pw-status-error)}
-pw-hud .pwhd-slot .kb{position:absolute;left:50%;top:calc((var(--pw-space-3) + var(--pw-space-0-5)) / -2);transform:translateX(-50%);z-index:2;pointer-events:none}
 pw-hud .pwhd-slot .pwc-content>img,pw-hud .pwhd-slot .pwc-content>svg{z-index:1;position:absolute;inset:0;margin:auto}
 pw-hud .pwhd-slot.empty{cursor:context-menu}
 /* ===================== COMPONENT: pw-kbd (tecla do teclado) ===================== */
@@ -5289,9 +5289,9 @@ class PWHud extends HTMLElement{
       return '<pw-card variant="tertiary" tone="neutral" appearance="filled" interactive class="pwhd-card" data-team="'+i+'"'+((t.card||t.image)?' bg-image="'+E(t.card||t.image)+'" bg-position="top"':'')+''+(t.active?' selected highlight':'')+' aria-label="'+E(t.name)+', HP '+Math.round(v*100)+'%, atalho '+E(t.hotkey||'Ctrl+'+(i+1))+'"="'+E(t.name)+'" data-tip="'+E((t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v*100)+'%')+'">'+
         '<pw-badge class="key" tone="neutral" size="xs">'+E(t.hotkey||'Ctrl+'+(i+1))+'</pw-badge>'+((t.types||t.type)?'<span class="typ">'+(t.types||[t.type]).filter(Boolean).slice(0,2).map(y=>'<pw-icon type="'+E(y)+'" size="2xs"></pw-icon>').join('')+'</span>':'')+pwHudStars(t.stars)+
         '<span class="bars"><span class="bar"><pw-progress variant="hp" value="'+Math.round(v*100)+'"></pw-progress><span>'+Math.round(v*100)+'%</span></span><span class="bar cd"><pw-progress tone="info" value="'+Math.round(cd*100)+'"></pw-progress><span>'+(t.cdLeft?'CD '+t.cdLeft+'s':'Sem CD')+'</span></span></span></pw-card>'}).join('');
-    pwHudKeys(d.hotkeys);var slots=(d.hotkeys||[]).map((h,i)=>{var kb=h&&h.key?'<pw-badge class="kb" tone="brand" size="xs" aria-hidden="true">'+E(h.key)+'</pw-badge>':'';
-      if(pwHkEmpty(h))return '<pw-card variant="quaternary" interactive state="idle" class="pwhd-slot empty" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="Atalho vazio '+(i+1)+(h&&h.key?', tecla '+E(h.key):'')+'. Botão direito para opções" data-tip="'+(h&&h.key?'Tecla '+E(h.key)+' · ':'')+'Botão direito para definir atalho">'+pwIcon('poke')+kb+'</pw-card>';
-      return '<pw-card variant="quaternary" interactive state="idle" class="pwhd-slot" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="'+E(h.label||'Atalho '+(i+1))+(h.count!=null?', '+h.count+' unidades':'')+(h.key?', tecla '+E(h.key):'')+'"="'+E(h.label||'')+'" data-tip="'+(h.key?'Tecla '+E(h.key)+' · ':'')+'Clique para usar · botão direito para opções">'+
+    pwHudKeys(d.hotkeys);var slots=(d.hotkeys||[]).map((h,i)=>{var kb=h&&h.key?'<span class="kb" aria-hidden="true">'+E(h.key)+'</span>':'';
+      if(pwHkEmpty(h))return '<pw-card variant="tertiary" tone="neutral" interactive state="idle" class="pwhd-slot empty" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="Atalho vazio '+(i+1)+(h&&h.key?', tecla '+E(h.key):'')+'. Botão direito para opções" data-tip="'+(h&&h.key?'Tecla '+E(h.key)+' · ':'')+'Botão direito para definir atalho">'+pwIcon('poke')+kb+'</pw-card>';
+      return '<pw-card variant="tertiary" tone="neutral" interactive state="idle" class="pwhd-slot" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="'+E(h.label||'Atalho '+(i+1))+(h.count!=null?', '+h.count+' unidades':'')+(h.key?', tecla '+E(h.key):'')+'"="'+E(h.label||'')+'" data-tip="'+(h.key?'Tecla '+E(h.key)+' · ':'')+'Clique para usar · botão direito para opções">'+
         (h.image?'<img src="'+E(h.image)+'" alt="">':pwIcon(h.icon||'gem'))+(h.count!=null?'<span class="q'+(h.count===0?' zero':'')+'">'+h.count+'</span>':'')+kb+'</pw-card>'}).join('');
     var av='<div class="pwhd-avatar" tabindex="0" '+(p.avatar?'role="img" aria-label="'+E(p.name||'')+'"':'data-tip="Foto do personagem indisponível"')+'>'+(p.avatar?'<img src="'+E(p.avatar)+'" alt="">':PW_AVATAR_SVG)+'</div>';
     this._body.innerHTML='<div class="pwhd-top"><pw-card variant="tertiary" tone="neutral" class="pwhd-profile">'+av+

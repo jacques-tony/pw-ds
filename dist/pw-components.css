@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.67.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.68.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1180,13 +1180,13 @@ pw-hud .pwhd-card .bar span{position:absolute;inset:0;display:grid;place-items:c
   color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);pointer-events:none}
 /* barra de atalhos */
 pw-hud .pwhd-hotbar{display:flex;align-items:center;gap:var(--pw-space-2);min-width:0;overflow:visible}
-pw-hud .pwhd-slots{flex:1;display:flex;gap:var(--pw-space-3);overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;min-width:0;padding:var(--pw-space-3) var(--pw-space-1) var(--pw-space-0-5)}
+pw-hud .pwhd-slots{flex:1;display:flex;gap:12px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;min-width:0;padding:var(--pw-space-1) var(--pw-space-1) var(--pw-space-0-5)}
 pw-hud .pwhd-slots::-webkit-scrollbar{display:none}
 /* overlay nas pontas: o atalho some suavemente em vez de parecer cortado */
 pw-hud .pwhd-slots{--fl:var(--pw-space-0);--fr:var(--pw-space-0);-webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--fl),#000 calc(100% - var(--fr)),transparent);mask-image:linear-gradient(90deg,transparent,#000 var(--fl),#000 calc(100% - var(--fr)),transparent)}
 pw-hud .pwhd-slots[data-fade-l]{--fl:var(--pw-space-8)}
 pw-hud .pwhd-slots[data-fade-r]{--fr:var(--pw-space-8)}
-/* atalho = pw-card quaternary interativo (state="idle" impede o toggle de seleção do card) */
+/* atalho = pw-card tertiary interativo, mesmo formato do slot da mochila (state="idle" impede o toggle de seleção do card) */
 pw-hud pw-card.pwhd-slot{position:relative;flex:none;width:var(--hd-slot);height:var(--hd-slot);cursor:pointer;border-radius:var(--pw-radius-sm)}
 pw-hud pw-card.pwhd-slot>.pwc-content{position:relative;height:100%;padding:0;display:block}
 pw-hud pw-card.pwhd-slot:active{--press:.94}
@@ -1195,9 +1195,9 @@ pw-hud .pwhd-slot.empty .pwc-content>svg{width:50%;height:50%;color:inherit}
 pw-hud .pwhd-slot.empty{cursor:default}
 pw-hud .pwhd-slot .pwc-content>img{width:80%;height:80%;object-fit:contain;filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
 pw-hud .pwhd-slot .pwc-content>svg{width:60%;height:60%;color:var(--pw-text-accent)}
-pw-hud .pwhd-slot .q{position:absolute;right:1px;bottom:0;font-size:var(--pw-font-size-3xs);font-weight:var(--pw-font-weight-bold);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
+pw-hud .pwhd-slot :is(.q,.kb){position:absolute;right:var(--pw-space-0-5);z-index:2;pointer-events:none;font:var(--pw-font-weight-bold) var(--pw-font-size-3xs)/1 var(--pw-font-body);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
+pw-hud .pwhd-slot .q{bottom:0}pw-hud .pwhd-slot .kb{top:var(--pw-space-0-5)}
 pw-hud .pwhd-slot .q.zero{color:var(--pw-status-error)}
-pw-hud .pwhd-slot .kb{position:absolute;left:50%;top:calc((var(--pw-space-3) + var(--pw-space-0-5)) / -2);transform:translateX(-50%);z-index:2;pointer-events:none}
 pw-hud .pwhd-slot .pwc-content>img,pw-hud .pwhd-slot .pwc-content>svg{z-index:1;position:absolute;inset:0;margin:auto}
 pw-hud .pwhd-slot.empty{cursor:context-menu}
 /* ===================== COMPONENT: pw-kbd (tecla do teclado) ===================== */

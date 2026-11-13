@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.68.0
+- `pw-hud`: slots de hotkeys no mesmo formato do slot da Mochila (`pw-card` tertiary neutral); a tecla aparece no canto superior direito com o mesmo estilo de texto da quantidade de itens (que segue no inferior direito); espaçamento de 12px entre slots.
+
 ## 0.67.1
 - `pw-hud`: estrelas dos cards de Pokémon alinhadas à base do card de tipos, com 2px de espaço.
 
