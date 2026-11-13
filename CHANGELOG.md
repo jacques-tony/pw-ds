@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.67.0
+- `pw-icon`: novo tamanho `2xs` (12px).
+- `pw-hud` e `pw-party`: ícones de tipo em `2xs`, com até dois tipos empilhados (`types: ['fogo','voador']`; `type` continua aceito).
+- `pw-hud`: card principal sem glow por padrão (use `glow="true"` para ligar).
+
 ## 0.66.2
 - `pw-widget-chat`: não pode ser fechado (sem botão fechar; `close()` não faz nada).
 - Recolhido, continua redimensionável na largura pelas alças da esquerda e da direita.

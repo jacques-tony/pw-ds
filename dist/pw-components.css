@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.66.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.67.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1167,7 +1167,7 @@ pw-hud pw-card.pwhd-card[highlight]{box-shadow:0 0 0 2px color-mix(in srgb,var(-
 pw-hud .pwhd-card .key{position:absolute;left:50%;top:calc((var(--pw-space-3) + var(--pw-space-0-5)) / -2);transform:translateX(-50%);z-index:3;white-space:nowrap;pointer-events:none}
 pw-hud .pwhd-card[interactive]>.pwc-content::before{content:"";border-radius:0 0 var(--pw-radius-md) var(--pw-radius-md);position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,color-mix(in srgb,var(--pw-bg-edge) 85%,transparent));pointer-events:none}
 pw-hud .pwhd-card.empty .key{color:var(--pw-text-muted)}
-pw-hud .pwhd-card .typ{position:absolute;left:var(--pw-space-1);bottom:calc(var(--pw-space-9) + var(--pw-space-1));z-index:2;display:grid;place-items:center;padding:var(--pw-space-0-5);border-radius:var(--pw-radius-xs);
+pw-hud .pwhd-card .typ{position:absolute;left:var(--pw-space-1);bottom:calc(var(--pw-space-9) + var(--pw-space-1));z-index:2;display:grid;place-items:center;gap:1px;padding:var(--pw-space-0-5);border-radius:var(--pw-radius-xs);
   background:var(--pw-black-a55);border:1px solid var(--pw-metal-1)}
 pw-hud .pwhd-card .stars{position:absolute;z-index:2;left:calc(var(--pw-space-1) + var(--pw-space-6));bottom:calc(var(--pw-space-9) + var(--pw-space-1) + var(--pw-space-1));display:flex;gap:1px}
 pw-hud .pwhd-card .stars pw-icon{width:var(--pw-space-2);height:var(--pw-space-2);color:color-mix(in srgb,var(--pw-text-muted) 55%,transparent);filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
@@ -1282,7 +1282,7 @@ pw-party .pwpt{all:unset;box-sizing:border-box;position:relative;display:grid;gr
 pw-party .pwpt:not([style*="--pt-img"]){background-image:linear-gradient(90deg,var(--pw-bg-center),var(--pw-bg-edge));border:1px solid var(--pw-metal-1)}
 pw-party .pwpt:hover{box-shadow:0 0 0 1px var(--pw-filament),0 0 10px -2px var(--pw-glow);transform:translateX(var(--pw-space-1))}
 pw-party .pwpt[aria-pressed="true"]{box-shadow:0 0 0 2px var(--pw-filament),0 0 12px -2px var(--pw-glow)}
-pw-party .pwpt .typ{position:absolute;left:calc(var(--pw-space-1) * -1);bottom:calc(var(--pw-space-1) * -1);display:grid;place-items:center;padding:var(--pw-space-0-5);border-radius:var(--pw-radius-xs);background:var(--pw-black-a75);border:1px solid var(--pw-metal-1)}
+pw-party .pwpt .typ{position:absolute;left:calc(var(--pw-space-1) * -1);bottom:calc(var(--pw-space-1) * -1);display:grid;place-items:center;gap:1px;padding:var(--pw-space-0-5);border-radius:var(--pw-radius-xs);background:var(--pw-black-a75);border:1px solid var(--pw-metal-1)}
 pw-party .pwpt pw-progress{grid-column:2;min-width:0;--pr-h:var(--pw-space-2)}
 pw-party .pwpt .key{position:absolute;right:var(--pw-space-4);top:var(--pw-space-0-5);font-size:var(--pw-font-size-3xs);color:var(--pw-text-muted)}
 pw-party[size="lg"] .pwpt .key{top:var(--pw-space-1);font-size:var(--pw-font-size-2xs)}
