@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.75.1
+- Novas artes de Charizard, Blastoise, Gengar, Caterpie e Metapod na HUD fixa e na equipe flutuante (`assets/art/`).
+- `pw-party`: a arte ocupa a parte esquerda do card, centralizada no Pokémon e esmaecendo sob as barras.
+
 ## 0.75.0
 - `pw-party` (equipe no perfil reduzido) refeito com `pw-card` tertiary, igual ao card da HUD fixa:
   - Mesmas badges: atalho `pw-badge` xs no canto superior direito e tipos `2xs` empilhados.
