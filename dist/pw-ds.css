@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.71.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.71.1 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -779,7 +779,7 @@ pw-progress .pwp-ict{width:auto;font:var(--pw-font-weight-bold) var(--pw-font-si
 pw-progress[layout="inline"][value-inside]{grid-template-columns:var(--pr-label-w,auto) minmax(0,1fr)}
 pw-progress[layout="inline"][value-inside] .pwp-head>:first-child{grid-column:1;grid-row:1}
 pw-progress[layout="inline"][value-inside] .pwp-track{grid-column:2;grid-row:1}
-pw-progress[layout="inline"][value-inside] .pwp-value{grid-column:2;grid-row:1;justify-self:center;z-index:2;pointer-events:none;font-size:var(--pw-font-size-2xs);line-height:1;color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong)}
+pw-progress[layout="inline"][value-inside] .pwp-value{grid-column:2;grid-row:1;justify-self:end;margin-right:var(--pw-space-2);z-index:2;pointer-events:none;font-size:var(--pw-font-size-2xs);line-height:1;color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong)}
 pw-progress .pwp-value{color:var(--pw-text-primary);font-weight:var(--pw-font-weight-semibold);font-variant-numeric:tabular-nums}
 pw-progress .pwp-head:empty{display:none}
 pw-progress .pwp-track{position:relative;height:var(--pr-h);border-radius:var(--pw-radius-full);background:var(--pw-surface-field);
@@ -1347,7 +1347,8 @@ pw-hud .pwhd-name{display:flex;justify-content:space-between;align-items:baselin
 pw-hud .pwhd-name b{font:var(--pw-text-title-sm);color:var(--pw-text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 pw-hud .pwhd-name span{flex:none;font-size:var(--pw-font-size-sm);font-weight:var(--pw-font-weight-medium);color:var(--pw-text-accent-soft)}
 /* barras de HP e XP */
-pw-hud pw-progress.pwhd-stat{min-width:0;--pr-label-w:var(--pw-space-5);--pr-h:calc(var(--pw-space-3) + var(--pw-space-0-5))}
+pw-hud pw-progress.pwhd-stat{min-width:0;--pr-label-w:var(--pw-space-4);--pr-h:calc(var(--pw-space-3) + var(--pw-space-0-5));column-gap:var(--pw-space-1)}
+pw-hud:not([profile="compact"]) .pwhd-stat.xp{margin-top:var(--pw-space-1)}
 pw-hud .pwhd-actions{display:flex;gap:var(--pw-space-2);flex-wrap:wrap}
 pw-hud .pwhd-actions.in{flex-wrap:nowrap;align-items:stretch}pw-hud .pwhd-actions.in pw-button.pwhd-act{flex:1;min-width:0;display:flex}pw-hud .pwhd-actions.in pw-button.pwhd-act>button{width:100%;height:100%;min-height:var(--pw-space-8)}
 pw-hud pw-button.pwhd-act>button{--b-fg:var(--pw-text-accent)}

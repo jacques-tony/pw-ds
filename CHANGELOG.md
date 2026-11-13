@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.71.1
+- `pw-progress` `value-inside`: valor alinhado à direita dentro da barra.
+- `pw-hud`: mais espaço entre as barras de Vida e Experiência; ícones mais próximos das barras (4px).
+
 ## 0.71.0
 - `pw-progress`: ícone na cor da barra (acompanha verde/amarelo/vermelho no `hp`); novo `icon-text` (ícone em texto, ex.: "EXP"); novo `value-inside` (valor centralizado dentro da barra no `layout="inline"`).
 - `pw-hud`: Vida com coração verde e Experiência com "EXP" dourado, valores dentro das barras, barras mais grossas (14px).
