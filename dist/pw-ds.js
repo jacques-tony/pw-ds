@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.75.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.75.2 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1190,16 +1190,16 @@ class PWHud extends HTMLElement{
     this._arrows()}
   render(){var d=this._data,p=d.player||{},E=pwEsc;
     var hp=p.hpMax?Math.max(0,Math.min(1,(p.hp||0)/p.hpMax)):0,xp=Math.max(0,Math.min(100,p.xp||0))/100;
-    var acts=(d.actions||[]).map((a,i)=>'<pw-button class="pwhd-act" size="sm" appearance="outline" particles="0" icon="'+E(a.icon||'grid')+'" data-act="'+i+'" data-label="'+E(a.label)+'"="'+E(a.label)+'" data-tip="'+E(a.hint||'')+'"'+(a.pressed!==undefined?' aria-pressed="'+(a.pressed?'true':'false')+'"':'')+'></pw-button>').join('');
+    var acts=(d.actions||[]).map((a,i)=>'<pw-button class="pwhd-act" size="sm" appearance="outline" particles="0" icon="'+E(a.icon||'grid')+'" data-act="'+i+'" data-label="'+E(a.label)+'" data-tip-title="'+E(a.label)+'" data-tip="'+E(a.hint||'')+'"'+(a.pressed!==undefined?' aria-pressed="'+(a.pressed?'true':'false')+'"':'')+'></pw-button>').join('');
     var tm=(d.team||[]).slice(0,6);while(tm.length<6)tm.push(null);
     var team=tm.map((t,i)=>{if(!t||!t.name)return '<pw-card variant="tertiary" tone="neutral" appearance="filled" class="pwhd-card empty" bg-image="'+E(pwHudEmpty())+'" bg-position="top" role="img" aria-label="Espaço vazio '+(i+1)+'"><pw-badge class="key" tone="neutral" size="xs">'+E((t&&t.hotkey)||'Ctrl+'+(i+1))+'</pw-badge></pw-card>';
       var v=Math.max(0,Math.min(100,t.hp==null?100:t.hp))/100,cd=t.cd?Math.max(0,Math.min(1,(t.cdLeft||0)/t.cd)):0;
-      return '<pw-card variant="tertiary" tone="neutral" appearance="filled" interactive class="pwhd-card" data-team="'+i+'"'+((t.card||t.image)?' bg-image="'+E(t.card||t.image)+'" bg-position="top"':'')+''+(t.active?' selected highlight':'')+' aria-label="'+E(t.name)+', HP '+Math.round(v*100)+'%, atalho '+E(t.hotkey||'Ctrl+'+(i+1))+'"="'+E(t.name)+'" data-tip="'+E((t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v*100)+'%')+'">'+
+      return '<pw-card variant="tertiary" tone="neutral" appearance="filled" interactive class="pwhd-card" data-team="'+i+'"'+((t.card||t.image)?' bg-image="'+E(t.card||t.image)+'" bg-position="top"':'')+''+(t.active?' selected highlight':'')+' aria-label="'+E(t.name)+', HP '+Math.round(v*100)+'%, atalho '+E(t.hotkey||'Ctrl+'+(i+1))+'" data-tip-title="'+E(t.name)+'" data-tip="'+E((t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v*100)+'%')+'">'+
         '<pw-badge class="key" tone="neutral" size="xs">'+E(t.hotkey||'Ctrl+'+(i+1))+'</pw-badge>'+((t.types||t.type)?'<span class="typ">'+(t.types||[t.type]).filter(Boolean).slice(0,2).map(y=>'<pw-icon type="'+E(y)+'" size="2xs"></pw-icon>').join('')+'</span>':'')+pwHudStars(t.stars)+
         '<span class="bars"><span class="bar"><pw-progress variant="hp" value="'+Math.round(v*100)+'"></pw-progress><span>'+Math.round(v*100)+'%</span></span><span class="bar cd"><pw-progress tone="info" value="'+Math.round(cd*100)+'"></pw-progress><span>'+(t.cdLeft?'CD '+t.cdLeft+'s':'Sem CD')+'</span></span></span></pw-card>'}).join('');
     pwHudKeys(d.hotkeys);var slots=(d.hotkeys||[]).map((h,i)=>{var kb=h&&h.key?'<span class="kb" aria-hidden="true">'+E(h.key)+'</span>':'';
       if(pwHkEmpty(h))return '<pw-card variant="tertiary" tone="neutral" interactive state="idle" class="pwhd-slot empty" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="Atalho vazio '+(i+1)+(h&&h.key?', tecla '+E(h.key):'')+'. Botão direito para opções" data-tip="'+(h&&h.key?'Tecla '+E(h.key)+' · ':'')+'Botão direito para definir atalho">'+pwIcon('poke')+kb+'</pw-card>';
-      return '<pw-card variant="tertiary" tone="neutral" interactive state="idle" class="pwhd-slot" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="'+E(h.label||'Atalho '+(i+1))+(h.count!=null?', '+h.count+' unidades':'')+(h.key?', tecla '+E(h.key):'')+'"="'+E(h.label||'')+'" data-tip="'+(h.key?'Tecla '+E(h.key)+' · ':'')+'Clique para usar · botão direito para opções">'+
+      return '<pw-card variant="tertiary" tone="neutral" interactive state="idle" class="pwhd-slot" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="'+E(h.label||'Atalho '+(i+1))+(h.count!=null?', '+h.count+' unidades':'')+(h.key?', tecla '+E(h.key):'')+'" data-tip-title="'+E(h.label||'')+'" data-tip="'+(h.key?'Tecla '+E(h.key)+' · ':'')+'Clique para usar · botão direito para opções">'+
         (h.sprite?'<span class="spr" style="--n:'+(+h.frames||1)+'"><img src="'+E(h.sprite)+'" alt=""></span>':h.image?'<img src="'+E(h.image)+'" alt="">':pwIcon(h.icon||'gem'))+(h.count!=null?'<span class="q'+(h.count===0?' zero':'')+'">'+h.count+'</span>':'')+kb+'</pw-card>'}).join('');
     var av='<div class="pwhd-avatar" tabindex="0" '+(p.avatar?'role="img" aria-label="'+E(p.name||'')+'"':'data-tip="Foto do personagem indisponível"')+'>'+(p.avatar?'<img src="'+E(p.avatar)+'" alt="">':PW_AVATAR_SVG)+'</div>';
     this._body.innerHTML='<div class="pwhd-top"><pw-card variant="tertiary" tone="neutral" class="pwhd-profile">'+av+
@@ -1353,7 +1353,7 @@ class PWParty extends HTMLElement{
     var key=(t,i)=>'<pw-badge class="key" tone="neutral" size="xs">'+E((t&&t.hotkey)||'Ctrl+'+(i+1))+'</pw-badge>';
     this.innerHTML='<div class="pwpt-move" role="button" tabindex="0" aria-label="Mover equipe (setas)" data-tip="Arraste para mover" data-tip-pos="top">'+pwIcon('grid')+'Mover</div>'+(hud.data.team||[]).slice(0,6).map((t,i)=>{if(!t||!t.name)return '<pw-card variant="tertiary" tone="neutral" appearance="filled" class="pwpt empty" bg-image="'+E(pwHudEmpty())+'" bg-position="center" role="img" aria-label="Espaço vazio '+(i+1)+'">'+key(t,i)+'</pw-card>';
       var img=(this.getAttribute('size')==='lg'&&t.bannerLg)||t.banner||t.bannerLg||t.card||t.image;var v=Math.max(0,Math.min(100,t.hp==null?100:t.hp))/100,cd=t.cd?Math.max(0,Math.min(1,(t.cdLeft||0)/t.cd)):0;
-      return '<pw-card variant="tertiary" tone="neutral" appearance="filled" interactive class="pwpt" data-team="'+i+'" role="button" tabindex="0" aria-pressed="'+(t.active?'true':'false')+'"'+(t.active?' selected highlight':'')+' aria-label=""'+E(t.name)+', HP '+Math.round(v*100)+'%" data-tip="'+E(t.name)+' · HP '+Math.round(v*100)+'%" data-tip-pos="right">'+(img?'<span class="art" style="background-image:url(\''+E(img)+'\')"></span>':'')+key(t,i)+
+      return '<pw-card variant="tertiary" tone="neutral" appearance="filled" interactive class="pwpt" data-team="'+i+'" role="button" tabindex="0" aria-pressed="'+(t.active?'true':'false')+'"'+(t.active?' selected highlight':'')+' aria-label=""'+E(t.name)+', HP '+Math.round(v*100)+'%" data-tip-title="'+E(t.name)+'" data-tip="'+E((t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v*100)+'%')+'" data-tip-pos="right">'+(img?'<span class="art" style="background-image:url(\''+E(img)+'\')"></span>':'')+key(t,i)+
         ((t.types||t.type)?'<span class="typ">'+(t.types||[t.type]).filter(Boolean).slice(0,2).map(y=>'<pw-icon type="'+E(y)+'" size="2xs"></pw-icon>').join('')+'</span>':'')+
         '<span class="bars"><span class="bar"><pw-progress variant="hp" value="'+Math.round(v*100)+'"></pw-progress><span>'+Math.round(v*100)+'%</span></span><span class="bar cd"><pw-progress tone="info" value="'+Math.round(cd*100)+'"></pw-progress><span>'+(t.cdLeft?'CD '+t.cdLeft+'s':'Sem CD')+'</span></span></span></pw-card>'}).join('');
     this._moveInit();
@@ -1725,7 +1725,7 @@ class PWWidgetMinimap extends PWWidgetBag{
     el.style.backgroundImage=src?'url("'+src+'")':'none';var set=(w,hh)=>{el.style.width=w+'px';el.style.height=hh+'px';this._place(false)};
     if(f&&f.w&&f.h)set(f.w,f.h);else if(src){var im=new Image();im.onload=()=>set(im.naturalWidth,im.naturalHeight);im.src=src};this._pins();this._place(false)}
   _pins(){var z=this._zoom,o=this._m.origin,E=pwEsc;this.querySelector('.pwmm-pins').innerHTML=(this._m.hunts||[]).filter(hh=>hh.z===this._z&&this._m.filters[hh.kind]!==false).map(hh=>{var k=PW_HUNT_KINDS.find(x=>x[0]===hh.kind)||PW_HUNT_KINDS[0];
-      return '<span class="pwmm-pin" style="left:'+(hh.x-o.x)+'px;top:'+(hh.y-o.y)+'px;--z:'+z+';color:'+k[2]+'"="'+E(hh.label||k[1])+'" data-tip="'+k[1]+'">'+pwIcon('map-pin')+'</span>'}).join('')}
+      return '<span class="pwmm-pin" style="left:'+(hh.x-o.x)+'px;top:'+(hh.y-o.y)+'px;--z:'+z+';color:'+k[2]+'" data-tip-title="'+E(hh.label||k[1])+'" data-tip="'+k[1]+'">'+pwIcon('map-pin')+'</span>'}).join('')}
   /* posiciona o mapa: jogador no centro + deslocamento do arraste */
   _place(anim){var vp=this.querySelector('.pwmm-vp'),L=this.querySelector('.pwmm-layer'),p=this._m.player,o=this._m.origin,z=this._zoom;
     var sp=this.querySelector('.pwmm-space'),vr=vp.getBoundingClientRect(),sr=sp.getBoundingClientRect(),S=(vr.width/vp.offsetWidth)||1,cx=vp.clientWidth/2,cy=sr.height?(sr.top-vr.top)/S+sr.height/S/2:vp.clientHeight/2;
@@ -1920,5 +1920,5 @@ class PWWidgetChat extends PWWidgetBag{
 }
 PWWidgetChat.prototype.toggle=PWWidgetBag.prototype.toggle;
 customElements.define('pw-widget-chat',PWWidgetChat);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.75.1"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.75.2"});
 })();

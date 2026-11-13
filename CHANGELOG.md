@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.75.2
+- Restaurado o `data-tip-title` que tinha sido removido por engano em 0.65.0: tooltips voltam a mostrar o título (nome do Pokémon na HUD, ações do perfil, hotkeys, pins do minimapa e demos).
+- `pw-party`: tooltip com nome, nível e HP, igual à HUD fixa.
+
 ## 0.75.1
 - Novas artes de Charizard, Blastoise, Gengar, Caterpie e Metapod na HUD fixa e na equipe flutuante (`assets/art/`).
 - `pw-party`: a arte ocupa a parte esquerda do card, centralizada no Pokémon e esmaecendo sob as barras.
