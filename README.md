@@ -25,6 +25,7 @@ Componentes de interface do OTServ **Poke World Universe**, feitos como Web Comp
 | Widget Batalha | `<pw-widget-battle>` |
 | Widget Estatísticas | `<pw-widget-stats>` |
 | Widget Bate-papo | `<pw-widget-chat>` |
+| Widget Loot Stash | `<pw-widget-loot>` |
 | HUD inferior e equipe lateral | `<pw-hud>` + `<pw-party>` |
 | Barra de navegação do HUD | `<pw-navbar>` + `<pw-nav-item>` + `<pw-nav-sep>` |
 | Campo de texto · textarea · checkbox · radio | `<pw-input>` · `<pw-textarea>` · `<pw-checkbox>` · `<pw-radio>` |

@@ -27,6 +27,14 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.77.0
+- Novo `<pw-widget-loot>` (Widget Loot Stash): estende a Mochila (mesma casca, grade de slots 32×32, magnetismo, overlay de rolagem) e só redimensiona na altura.
+  - Clique (ou Espaço/Enter) seleciona itens, com marcação de check.
+  - Rodapé com espaços ocupados / total e quantidade selecionada.
+  - Botões **Coletar** e **Enviar para stash** agem nos selecionados ou em tudo; os itens saem com animação.
+  - API `items`, `selected`; eventos `collect` e `stash` (canceláveis).
+- Simulação: o ícone Caça (`hunt`) da barra superior abre e fecha o Loot Stash.
+
 ## 0.76.0
 - Todos os widgets (`pw-widget-*`) agora se conectam ao topo da HUD inferior (`pw-hud`) por magnetismo, como já fazem com a barra superior. A HUD não se move com o conjunto.
 - Widgets conectados à HUD acompanham quando ela muda de altura (perfil reduzido, esconder hotkeys), levando o grupo junto.
