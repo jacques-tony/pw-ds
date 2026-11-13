@@ -5285,6 +5285,11 @@ class PWHud extends HTMLElement{
   set data(d){this._data=Object.assign({player:{},actions:[],team:[],hotkeys:[]},d||{});if(this._init)this.render();this._emitTeam()}
   get profile(){return this.getAttribute('profile')==='compact'?'compact':'full'}
   connectedCallback(){if(this._init)return;this._init=true;this._u='pwhd'+(++uidN);if(!this.id)this.id=this._u;
+    /* widgets conectados ao topo da HUD acompanham quando ela muda de altura (perfil reduzido, esconder hotkeys) */
+    requestAnimationFrame(()=>{var sh=this.querySelector(':scope > pw-card.pwhd-shell');if(!sh||!window.ResizeObserver)return;var P=()=>this.parentNode,S=()=>{var p=P();return (p.getBoundingClientRect().width/(p.offsetWidth||1))||1},T=()=>(sh.getBoundingClientRect().top-P().getBoundingClientRect().top-(P().clientTop||0))/S();this._lt=T();
+      new ResizeObserver(()=>{var t=T(),d=t-this._lt,old=this._lt;this._lt=t;if(!d||!this.parentNode)return;var L=(sh.getBoundingClientRect().left-P().getBoundingClientRect().left)/S(),R=L+sh.offsetWidth,moved=[];
+        [].slice.call(this.parentNode.children).filter(w=>/^PW-WIDGET-/.test(w.tagName)&&!w.hidden&&Math.abs(w.offsetTop+w.offsetHeight-old)<=PWWidgetBag.O+1.5&&Math.min(w.offsetLeft+w.offsetWidth,R)-Math.max(w.offsetLeft,L)>0)
+          .forEach(w=>(w.group?w.group():[w]).forEach(g=>{if(moved.indexOf(g)<0){moved.push(g);g.style.top=(g.offsetTop+d)+'px';g.style.bottom='auto'}}))}).observe(sh)});
     this.setAttribute('role','region');if(!this.getAttribute('aria-label'))this.setAttribute('aria-label','HUD do jogador');
     var json=this.querySelector('script[type="application/json"]');if(json){try{this._data=Object.assign(this._data,JSON.parse(json.textContent))}catch(e){}}
     this.innerHTML='<pw-card variant="primary" class="pwhd-done-bar" aria-live="polite"><span>Arraste os Pokémon para mudar a ordem</span><pw-button class="pwhd-done" size="sm" particles="0" icon="check">Salvar</pw-button></pw-card><pw-card variant="primary" class="pwhd-shell"'+(this.getAttribute('glow')==='true'?'':' glow="false"')+'><div class="pwhd-body"></div></pw-card><pw-control-group class="pwhd-menu" size="sm" label="Opções" hidden></pw-control-group>';
@@ -5697,8 +5702,8 @@ class PWWidgetBag extends HTMLElement{
       var G=(e.altKey?[this]:this.group()).filter(b=>b===this||!b.hasAttribute('locked')),x0=this.offsetLeft,y0=this.offsetTop;
       var mem=G.map(b=>({b:b,ox:b.offsetLeft-x0,oy:b.offsetTop-y0,w:b.offsetWidth,h:b.offsetHeight}));
       var others=this._peers().filter(b=>G.indexOf(b)<0).map(PWWidgetBag._box);
-      /* a barra superior também é ímã (não se move com o conjunto) */
-      var prr=p.getBoundingClientRect();[].slice.call(p.querySelectorAll('pw-navbar:not([collapsed]) .pwnb-bar')).forEach(nb=>{var q=nb.getBoundingClientRect();if(q.width)others.push({b:nb,x:(q.left-prr.left)/S,y:(q.top-prr.top)/S,w:q.width/S,h:q.height/S,anchor:true})});
+      /* a barra superior e a HUD inferior também são ímãs (não se movem com o conjunto) */
+      var prr=p.getBoundingClientRect();[].slice.call(p.querySelectorAll('pw-navbar:not([collapsed]) .pwnb-bar, pw-hud:not([hidden]) > pw-card.pwhd-shell')).forEach(nb=>{var q=nb.getBoundingClientRect();if(q.width)others.push({b:nb,x:(q.left-prr.left)/S,y:(q.top-prr.top)/S,w:q.width/S,h:q.height/S,anchor:true})});
       var minX=Math.min.apply(null,mem.map(m=>m.ox)),minY=Math.min.apply(null,mem.map(m=>m.oy)),maxX=Math.max.apply(null,mem.map(m=>m.ox+m.w)),maxY=Math.max.apply(null,mem.map(m=>m.oy+m.h));
       G.forEach(b=>{b.classList.add('dragging');b.style.right='auto';b.style.bottom='auto'});
       var hits=[];

@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.76.0
+- Todos os widgets (`pw-widget-*`) agora se conectam ao topo da HUD inferior (`pw-hud`) por magnetismo, como já fazem com a barra superior. A HUD não se move com o conjunto.
+- Widgets conectados à HUD acompanham quando ela muda de altura (perfil reduzido, esconder hotkeys), levando o grupo junto.
+
 ## 0.75.2
 - Restaurado o `data-tip-title` que tinha sido removido por engano em 0.65.0: tooltips voltam a mostrar o título (nome do Pokémon na HUD, ações do perfil, hotkeys, pins do minimapa e demos).
 - `pw-party`: tooltip com nome, nível e HP, igual à HUD fixa.
