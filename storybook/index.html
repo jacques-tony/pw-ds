@@ -1534,7 +1534,8 @@ pw-hud .pwhd-actions.out{display:none}
 pw-hud[profile="compact"] .pwhd-actions.in{display:none}
 pw-hud[profile="compact"] .pwhd-actions.out{display:flex}
 pw-hud .pwhd-hotbar{max-height:calc(var(--hd-slot) + var(--pw-space-6));transition:max-height .32s var(--card-ease),opacity .25s ease,margin-top .32s var(--card-ease),visibility 0s linear 0s}
-pw-hud[hotkeys="hidden"] .pwhd-hotbar{max-height:0;overflow:hidden;opacity:0;margin-top:calc(var(--pw-space-3) * -1);visibility:hidden;
+pw-hud .pwhd-foot{transition:margin-top .32s var(--card-ease)}pw-hud .pwhd-toggle>button{text-transform:uppercase}pw-hud[hotkeys="hidden"] .pwhd-foot{margin-top:calc(var(--pw-space-3) * -1)}
+pw-hud[hotkeys="hidden"] .pwhd-hotbar{max-height:0;min-height:0;overflow:hidden;opacity:0;visibility:hidden;
   transition:max-height .32s var(--card-ease),opacity .2s ease,margin-top .32s var(--card-ease),visibility 0s linear .32s}
 /* menu de ação do atalho */
 pw-hud pw-control-group.pwhd-menu{position:absolute;z-index:20;min-width:calc(var(--pw-space-32) + var(--pw-space-16));animation:pwhd-pop .14s var(--card-ease)}
@@ -5321,12 +5322,19 @@ class PWHud extends HTMLElement{
       '<div class="pwhd-foot"><pw-button class="pwhd-toggle" variant="ghost" size="sm" fx="none" particles="0" data-hd="profile" data-tip-pos="top">Perfil</pw-button><pw-button class="pwhd-toggle" variant="ghost" size="sm" fx="none" particles="0" data-hd="hotkeys">Hotkeys</pw-button></div>';
     this.querySelectorAll('pw-button[data-label]').forEach(b=>{var i=b.querySelector('button');if(i)i.setAttribute('aria-label',b.dataset.label)});this._acts();
     var sl=this.querySelector('.pwhd-slots');sl.addEventListener('scroll',()=>this._arrows(),{passive:true});if(this._sro)this._sro.disconnect();this._sro=new ResizeObserver(()=>this._arrows());this._sro.observe(sl);this._sync();requestAnimationFrame(()=>this._arrows())}
+  /* hotkeys entram/saem como cartas de um baralho: balanço sutil em cascata */
+  _deck(show){var go=()=>this.setAttribute('hotkeys',show?'shown':'hidden'),sl=[].slice.call(this.querySelectorAll('.pwhd-slot')),sc=this.querySelector('.pwhd-slots'),r=sc&&sc.getBoundingClientRect();
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches||!sl.length){go();return}
+    var vis=sl.filter(x=>{var b=x.getBoundingClientRect();return !r||b.right>r.left&&b.left<r.right});
+    if(show){go();vis.forEach((x,i)=>x.animate([{opacity:0,transform:'translateY(14px) rotate(-10deg) scale(.88)'},{opacity:1,transform:'translateY(-3px) rotate(3deg) scale(1.02)',offset:.65},{opacity:1,transform:'none'}],{duration:420,delay:60+i*24,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}))}
+    else{var last=null;vis.forEach((x,i)=>{last=x.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(12px) rotate(8deg) scale(.9)'}],{duration:200,delay:i*14,easing:'cubic-bezier(.4,0,1,1)',fill:'forwards'})});
+      last.finished.then(()=>{go();vis.forEach(x=>x.getAnimations().forEach(a=>a.cancel()))})}}
   _arrows(){var s=this.querySelector('.pwhd-slots');if(!s)return;var a=this.querySelectorAll('.pwhd-arrow');a[0].toggleAttribute('disabled',s.scrollLeft<=2);a[1].toggleAttribute('disabled',s.scrollLeft+s.clientWidth>=s.scrollWidth-2);s.toggleAttribute('data-fade-l',s.scrollLeft>2);s.toggleAttribute('data-fade-r',s.scrollLeft+s.clientWidth<s.scrollWidth-2)}
   _acts(){this.querySelectorAll('pw-button.pwhd-act').forEach(b=>{var i=b.querySelector('button');if(!i)return;if(b.hasAttribute('aria-pressed'))i.setAttribute('aria-pressed',b.getAttribute('aria-pressed'));else i.removeAttribute('aria-pressed')})}
   _pick(i){var t=this._data.team[i];this._data.team.forEach((x,k)=>{if(x)x.active=k===i});this.querySelectorAll('.pwhd-card[data-team]').forEach(c=>{var on=+c.dataset.team===i;c.toggleAttribute('selected',on);c.toggleAttribute('highlight',on)});
     document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>{if(p._from)p._from(this)});this.dispatchEvent(new CustomEvent('pokemon',{bubbles:true,detail:{index:i,pokemon:t}}))}
   _click(e){var t=e.target;if(t.closest('.pwhd-menu'))return;
-    var x=t.closest('.pwhd-toggle');if(x){if(x.dataset.hd==='profile')this.setAttribute('profile',this.profile==='compact'?'full':'compact');else this.setAttribute('hotkeys',this.getAttribute('hotkeys')==='hidden'?'shown':'hidden');return}
+    var x=t.closest('.pwhd-toggle');if(x){if(x.dataset.hd==='profile')this.setAttribute('profile',this.profile==='compact'?'full':'compact');else this._deck(this.getAttribute('hotkeys')==='hidden');return}
     var ar=t.closest('.pwhd-arrow');if(ar){var s=this.querySelector('.pwhd-slots'),st=(this.querySelector('.pwhd-slot')||{offsetWidth:40}).offsetWidth+(parseFloat(getComputedStyle(s).columnGap)||12);if(!ar.hasAttribute('disabled'))s.scrollBy({left:+ar.dataset.dir*st*4});return}
     var dn=t.closest('.pwhd-done');if(dn){this.doneOrder();return}
     var c=t.closest('.pwhd-card[data-team]');if(c){if(!this._editing)this._pick(+c.dataset.team);return}

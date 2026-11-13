@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.74.0
+- `pw-hud`: rótulos de Perfil reduzido / Esconder hotkeys em caixa-alta.
+- Hotkeys entram e saem com balanço sutil em cascata, como cartas de um baralho (respeita `prefers-reduced-motion`).
+- Com hotkeys escondidas, o espaço entre os cards e o rodapé fica em 12px (antes sobrava um vão extra).
+
 ## 0.73.1
 - `pw-hud`: botões Perfil reduzido / Esconder hotkeys como `pw-button` ghost sm sem efeitos (estilo padrão do botão, sem caixa-alta); padding inferior visível de 16px (`--hd-pad`), igual ao de cima e das laterais; 12px entre hotkeys e rodapé.
 

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.73.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.74.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1448,7 +1448,8 @@ pw-hud .pwhd-actions.out{display:none}
 pw-hud[profile="compact"] .pwhd-actions.in{display:none}
 pw-hud[profile="compact"] .pwhd-actions.out{display:flex}
 pw-hud .pwhd-hotbar{max-height:calc(var(--hd-slot) + var(--pw-space-6));transition:max-height .32s var(--card-ease),opacity .25s ease,margin-top .32s var(--card-ease),visibility 0s linear 0s}
-pw-hud[hotkeys="hidden"] .pwhd-hotbar{max-height:0;overflow:hidden;opacity:0;margin-top:calc(var(--pw-space-3) * -1);visibility:hidden;
+pw-hud .pwhd-foot{transition:margin-top .32s var(--card-ease)}pw-hud .pwhd-toggle>button{text-transform:uppercase}pw-hud[hotkeys="hidden"] .pwhd-foot{margin-top:calc(var(--pw-space-3) * -1)}
+pw-hud[hotkeys="hidden"] .pwhd-hotbar{max-height:0;min-height:0;overflow:hidden;opacity:0;visibility:hidden;
   transition:max-height .32s var(--card-ease),opacity .2s ease,margin-top .32s var(--card-ease),visibility 0s linear .32s}
 /* menu de ação do atalho */
 pw-hud pw-control-group.pwhd-menu{position:absolute;z-index:20;min-width:calc(var(--pw-space-32) + var(--pw-space-16));animation:pwhd-pop .14s var(--card-ease)}
