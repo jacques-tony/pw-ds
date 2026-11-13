@@ -6535,7 +6535,11 @@ d.innerHTML='<div style="display:flex;align-items:flex-end;gap:8px;height:40px">
   function lab(on){var l=b.querySelector('.pwbt-label');if(l)l.textContent=on?'Parar simulação':'Simular combate';b.setAttribute('icon',on?'close':'bolt')}
   b.addEventListener('click',()=>{if(tm){clearInterval(tm);tm=null;lab(false);ws().forEach(w=>w.update({cdLeft:0}))}else{tick();tm=setInterval(tick,1000);lab(true)}})})();</script>
 
-<script>(function(){var nb=document.querySelector('#gsim pw-navbar');if(!nb)return;var map={bag:'gsimBag',team:'gsimPoke',map:'gsimMap',trade:'gsimBattle',tasks:'gsimStats',hunt:'gsimLoot'};
+<script>(function(){var h=document.getElementById('gsimHud'),w=document.getElementById('gsimLoot');if(!h||!w)return;
+  /* simulação: o botão "Coleta automática" do perfil da HUD abre e fecha o Loot Stash */
+  h.addEventListener('action',e=>{var a=e.detail&&e.detail.action;if(!a||a.label!=='Coleta automática')return;
+    if(w.hidden){w.show();w.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true}));if(!matchMedia('(prefers-reduced-motion: reduce)').matches)w.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'none'}],{duration:180,easing:'ease-out'})}else w.close()})})();</script>
+<script>(function(){var nb=document.querySelector('#gsim pw-navbar');if(!nb)return;var map={bag:'gsimBag',team:'gsimPoke',map:'gsimMap',trade:'gsimBattle',tasks:'gsimStats'};
   /* simulação: ícones Mochila e Pokémon da barra superior abrem e fecham os widgets */
   nb.addEventListener('select',e=>{var id=map[e.detail.item.getAttribute('game-icon')];if(!id)return;var w=document.getElementById(id);if(!w)return;
     if(w.hidden){w.show();w.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true}));if(!matchMedia('(prefers-reduced-motion: reduce)').matches)w.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'none'}],{duration:180,easing:'ease-out'})}else w.close()})})();</script>
