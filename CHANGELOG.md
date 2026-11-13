@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.70.0
+- `pw-progress`: novo atributo `icon` (substitui o rótulo visual; o `label` vira o nome acessível). Em `variant="hp"` o ícone fica vermelho.
+- Novo ícone `exp`.
+- `pw-hud`: Vida com ícone de coração e Experiência com ícone EXP; foto do perfil ocupa toda a altura do card (descontando o padding); botões de ação com 8px entre eles, ocupando a largura e a altura que sobram.
+- Exemplo: jogador renomeado para "Level Máximo Jr".
+
 ## 0.69.0
 - `pw-progress`: novo `layout="inline"` — rótulo na frente, barra no meio e valor atrás; `--pr-label-w` e `--pr-value-w` alinham várias barras.
 - `pw-hud`: Vida e Experiência em linha; card de perfil 64px mais largo (`--hd-profile-w`) para a barra ter espaço.

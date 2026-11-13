@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.69.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.70.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -592,6 +592,8 @@ pw-progress[variant="hp"][data-level="mid"]{--pr-a:var(--pw-tone-warning-light);
 pw-progress[variant="hp"][data-level="low"]{--pr-a:var(--pw-tone-error-light);--pr-b:var(--pw-tone-error-base);--pr-glow:var(--pw-tone-error-glow)}
 pw-progress .pwp-head{display:flex;justify-content:space-between;align-items:baseline;gap:var(--pw-space-2);font-size:var(--pw-font-size-sm);line-height:var(--pw-line-height-tight)}
 pw-progress .pwp-label{color:var(--pw-text-accent-soft);font-weight:var(--pw-font-weight-medium)}
+pw-progress .pwp-ic{display:inline-grid;place-items:center;width:var(--pr-ic,var(--pw-space-4));height:var(--pr-ic,var(--pw-space-4))}pw-progress .pwp-ic svg{width:100%;height:100%}
+pw-progress[variant="hp"] .pwp-ic{color:var(--pw-tone-error-text)}
 pw-progress .pwp-value{color:var(--pw-text-primary);font-weight:var(--pw-font-weight-semibold);font-variant-numeric:tabular-nums}
 pw-progress .pwp-head:empty{display:none}
 pw-progress .pwp-track{position:relative;height:var(--pr-h);border-radius:var(--pw-radius-full);background:var(--pw-surface-field);
@@ -1149,18 +1151,19 @@ pw-hud .pwhd-body{position:relative;display:grid;gap:var(--pw-space-3);min-width
 pw-hud .pwhd-top{display:flex;gap:var(--pw-space-4);align-items:stretch;min-width:0}
 /* perfil completo */
 pw-hud pw-card.pwhd-profile{flex:none;width:var(--hd-profile-w);height:auto;--lift:0px}
-pw-hud pw-card.pwhd-profile>.pwc-content{display:grid;grid-template-columns:auto 1fr;gap:var(--pw-space-3);align-items:start;height:auto;padding:var(--pw-space-3)}
-pw-hud .pwhd-avatar{position:relative;width:calc(var(--pw-space-16) + var(--pw-space-3));height:calc(var(--pw-space-24) + var(--pw-space-1));border-radius:var(--pw-radius-xs);overflow:hidden;display:grid;place-items:end center;color:color-mix(in srgb,var(--pw-filament) 35%,var(--pw-bg-center));
+pw-hud pw-card.pwhd-profile>.pwc-content{display:grid;grid-template-columns:auto 1fr;gap:var(--pw-space-3);align-items:stretch;height:100%;padding:var(--pw-space-3)}
+pw-hud .pwhd-avatar{position:relative;align-self:stretch;width:calc(var(--pw-space-24) - var(--pw-space-1));height:auto;border-radius:var(--pw-radius-xs);overflow:hidden;display:grid;place-items:end center;color:color-mix(in srgb,var(--pw-filament) 35%,var(--pw-bg-center));
   background:radial-gradient(circle at 50% 30%,var(--pw-bg-center),var(--pw-bg-edge));border:1px solid var(--pw-border-default)}
 pw-hud .pwhd-avatar img{width:100%;height:100%;object-fit:cover;object-position:50% 15%}
 pw-hud .pwhd-avatar svg{width:92%;height:92%;margin-bottom:-6%}
-pw-hud .pwhd-info{display:grid;gap:var(--pw-space-2);min-width:0}
+pw-hud .pwhd-info{display:grid;grid-template-rows:auto auto auto 1fr;gap:var(--pw-space-2);min-width:0}
 pw-hud .pwhd-name{display:flex;justify-content:space-between;align-items:baseline;gap:var(--pw-space-2);min-width:0}
 pw-hud .pwhd-name b{font:var(--pw-text-title-sm);color:var(--pw-text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 pw-hud .pwhd-name span{flex:none;font-size:var(--pw-font-size-sm);font-weight:var(--pw-font-weight-medium);color:var(--pw-text-accent-soft)}
 /* barras de HP e XP */
-pw-hud pw-progress.pwhd-stat{min-width:0;--pr-label-w:calc(var(--pw-space-16) + var(--pw-space-1));--pr-value-w:calc(var(--pw-space-16) + var(--pw-space-3))}
-pw-hud .pwhd-actions{display:flex;gap:var(--pw-space-1);flex-wrap:wrap}
+pw-hud pw-progress.pwhd-stat{min-width:0;--pr-label-w:var(--pw-space-4);--pr-value-w:calc(var(--pw-space-16) + var(--pw-space-3))}
+pw-hud .pwhd-actions{display:flex;gap:var(--pw-space-2);flex-wrap:wrap}
+pw-hud .pwhd-actions.in{flex-wrap:nowrap;align-items:stretch}pw-hud .pwhd-actions.in pw-button.pwhd-act{flex:1;min-width:0;display:flex}pw-hud .pwhd-actions.in pw-button.pwhd-act>button{width:100%;height:100%;min-height:var(--pw-space-8)}
 pw-hud pw-button.pwhd-act>button{--b-fg:var(--pw-text-accent)}
 pw-hud pw-button.pwhd-act[aria-pressed="true"]{--b-bg:linear-gradient(180deg,var(--pw-metal-0),var(--pw-metal-1));--b-fg:var(--pw-on-metal);--b-bd:var(--pw-filament)}
 pw-hud .pwhd-slot:focus-visible,pw-hud .pwhd-card:focus-visible{outline:2px solid var(--pw-focus-ring);outline-offset:2px}
