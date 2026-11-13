@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.71.0
+- `pw-progress`: ícone na cor da barra (acompanha verde/amarelo/vermelho no `hp`); novo `icon-text` (ícone em texto, ex.: "EXP"); novo `value-inside` (valor centralizado dentro da barra no `layout="inline"`).
+- `pw-hud`: Vida com coração verde e Experiência com "EXP" dourado, valores dentro das barras, barras mais grossas (14px).
+
 ## 0.70.0
 - `pw-progress`: novo atributo `icon` (substitui o rótulo visual; o `label` vira o nome acessível). Em `variant="hp"` o ícone fica vermelho.
 - Novo ícone `exp`.
