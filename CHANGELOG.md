@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.67.1
+- `pw-hud`: estrelas dos cards de Pokémon alinhadas à base do card de tipos, com 2px de espaço.
+
 ## 0.67.0
 - `pw-icon`: novo tamanho `2xs` (12px).
 - `pw-hud` e `pw-party`: ícones de tipo em `2xs`, com até dois tipos empilhados (`types: ['fogo','voador']`; `type` continua aceito).
