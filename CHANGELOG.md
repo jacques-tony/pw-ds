@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.73.1
+- `pw-hud`: botões Perfil reduzido / Esconder hotkeys como `pw-button` ghost sm sem efeitos (estilo padrão do botão, sem caixa-alta); padding inferior visível de 16px (`--hd-pad`), igual ao de cima e das laterais; 12px entre hotkeys e rodapé.
+
 ## 0.73.0
 - `pw-hud`: badge de atalho (Ctrl+N) dos cards de Pokémon dentro do card, no canto superior direito a 2px das bordas.
 - Padding de 16px em cima e nas laterais (`--hd-pad`); espaço entre o perfil e os cards igual ao espaço entre os cards (`--hd-gap`, 8px).

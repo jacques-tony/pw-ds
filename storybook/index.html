@@ -1416,9 +1416,9 @@ pw-hud{--hd-gap:var(--pw-space-2);--hd-pad:var(--pw-space-4);
   --hd-profile-w:calc(var(--pw-space-32) * 2 + var(--pw-space-24));--hd-w:calc(var(--hd-profile-w) + var(--hd-gap) + var(--hd-card-w) * 6 + var(--hd-gap) * 5 + var(--hd-pad) * 2);width:var(--hd-w)}
 /* card primary encaixado na borda de baixo da tela: a parte inferior da moldura fica para fora */
 pw-hud pw-card.pwhd-shell{width:100%;height:auto;--lift:0px;margin-bottom:calc(var(--pw-space-8) * -1)}
-pw-hud pw-card.pwhd-shell>.pwc-content{height:auto;padding:var(--hd-pad) var(--hd-pad) calc(var(--pw-space-3) + var(--pw-space-8))}
+pw-hud pw-card.pwhd-shell>.pwc-content{height:auto;padding:var(--hd-pad) var(--hd-pad) calc(var(--hd-pad) + var(--pw-space-8))}
 pw-hud[docked="false"] pw-card.pwhd-shell{margin-bottom:0}
-pw-hud[docked="false"] pw-card.pwhd-shell>.pwc-content{padding-bottom:var(--pw-space-3)}
+pw-hud[docked="false"] pw-card.pwhd-shell>.pwc-content{padding-bottom:var(--hd-pad)}
 pw-hud .pwhd-body{position:relative;display:grid;gap:var(--pw-space-3);min-width:0}
 pw-hud .pwhd-top{display:flex;gap:var(--hd-gap);align-items:stretch;min-width:0}
 /* perfil completo */
@@ -1520,7 +1520,6 @@ pw-dialog.pwhd-bind .pwkb-status svg{width:var(--pw-space-4);height:var(--pw-spa
 @media (prefers-reduced-motion:reduce){pw-kbd{transition:none}pw-dialog.pwhd-bind pw-kbd.ghost,pw-dialog.pwhd-bind .pwkb-zone.got .pwkb-keys{animation:none}}
 /* rodapé com os dois botões de modo */
 pw-hud .pwhd-foot{display:flex;justify-content:space-between;align-items:center;gap:var(--pw-space-3)}
-pw-hud .pwhd-toggle>button{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase}
 /* perfil reduzido: perfil em uma linha, cards da equipe vão para a lateral (pw-party) */
 pw-hud[profile="compact"] .pwhd-team{display:none}
 pw-hud[profile="compact"] pw-card.pwhd-profile{width:100%;height:auto;align-self:auto}pw-hud[profile="compact"] pw-card.pwhd-profile>.pwc-content{height:auto}pw-hud[profile="compact"] .pwhd-avatar{align-self:center}
@@ -5319,7 +5318,7 @@ class PWHud extends HTMLElement{
       '<div class="pwhd-actions in">'+acts+'</div></div><div class="pwhd-actions out">'+acts+'</div></pw-card>'+
       '<div class="pwhd-team" role="group" aria-label="Equipe">'+team+'</div></div>'+
       '<div class="pwhd-hotbar"><pw-button class="pwhd-arrow" variant="ghost" size="sm" fx="none" particles="0" icon="chevron-left" data-dir="-1" data-label="Atalhos anteriores"></pw-button><div class="pwhd-slots" role="toolbar" aria-label="Atalhos">'+slots+'</div><pw-button class="pwhd-arrow" variant="ghost" size="sm" fx="none" particles="0" icon="chevron-right" data-dir="1" data-label="Próximos atalhos"></pw-button></div>'+
-      '<div class="pwhd-foot"><pw-button class="pwhd-toggle" variant="ghost" size="sm" particles="0" data-hd="profile" data-tip-pos="top">Perfil</pw-button><pw-button class="pwhd-toggle" variant="ghost" size="sm" particles="0" data-hd="hotkeys">Hotkeys</pw-button></div>';
+      '<div class="pwhd-foot"><pw-button class="pwhd-toggle" variant="ghost" size="sm" fx="none" particles="0" data-hd="profile" data-tip-pos="top">Perfil</pw-button><pw-button class="pwhd-toggle" variant="ghost" size="sm" fx="none" particles="0" data-hd="hotkeys">Hotkeys</pw-button></div>';
     this.querySelectorAll('pw-button[data-label]').forEach(b=>{var i=b.querySelector('button');if(i)i.setAttribute('aria-label',b.dataset.label)});this._acts();
     var sl=this.querySelector('.pwhd-slots');sl.addEventListener('scroll',()=>this._arrows(),{passive:true});if(this._sro)this._sro.disconnect();this._sro=new ResizeObserver(()=>this._arrows());this._sro.observe(sl);this._sync();requestAnimationFrame(()=>this._arrows())}
   _arrows(){var s=this.querySelector('.pwhd-slots');if(!s)return;var a=this.querySelectorAll('.pwhd-arrow');a[0].toggleAttribute('disabled',s.scrollLeft<=2);a[1].toggleAttribute('disabled',s.scrollLeft+s.clientWidth>=s.scrollWidth-2);s.toggleAttribute('data-fade-l',s.scrollLeft>2);s.toggleAttribute('data-fade-r',s.scrollLeft+s.clientWidth<s.scrollWidth-2)}
