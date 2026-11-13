@@ -27,6 +27,14 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.75.0
+- `pw-party` (equipe no perfil reduzido) refeito com `pw-card` tertiary, igual ao card da HUD fixa:
+  - Mesmas badges: atalho `pw-badge` xs no canto superior direito e tipos `2xs` empilhados.
+  - Barra de vida e nova barra de CD, com texto dentro (% e "CD Ns"/"Sem CD").
+  - Card vazio igual ao da HUD (pokébola de fundo + badge).
+  - Pokémon selecionado 25% maior.
+  - Ao passar o mouse aparece uma caixa com a alça "Mover": arraste (ou setas com foco) para posicionar o conjunto em qualquer lugar do contêiner; evento `move`; `locked` desativa.
+
 ## 0.74.1
 - `pw-hud`: corrigida a piscada ao esconder as hotkeys (os slots só voltam ao estado normal depois que a fileira terminou de recolher).
 

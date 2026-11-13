@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.74.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.75.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1291,20 +1291,33 @@ pw-hud[editing] .pwhd-card.swapping,pw-party[editing] .pwpt.swapping{animation:n
 @keyframes pwhd-wiggle{0%,100%{rotate:-1.2deg}50%{rotate:1.2deg}}
 @keyframes pwhd-pop{from{opacity:0;transform:translateY(4px) scale(.98)}}
 /* equipe na lateral (perfil reduzido) */
-pw-party{--pt-w:calc(var(--pw-space-32) + var(--pw-space-12) + var(--pw-space-1));--pt-h:var(--pw-space-10);display:grid;gap:var(--pw-space-2);width:var(--pt-w);font-family:var(--pw-font-body)}
+pw-party{--pt-w:calc(var(--pw-space-32) + var(--pw-space-12) + var(--pw-space-1));--pt-h:var(--pw-space-14);display:grid;isolation:isolate;gap:var(--pw-space-2);width:var(--pt-w);font-family:var(--pw-font-body)}
 pw-party[size="lg"]{--pt-w:calc(var(--pw-space-32) + var(--pw-space-20) + var(--pw-space-0-5));--pt-h:calc(var(--pw-space-12) + var(--pw-space-0-5))}
 pw-party[hidden]{display:none}
-pw-party .pwpt{all:unset;box-sizing:border-box;position:relative;display:grid;grid-template-columns:42% 1fr;align-items:center;width:var(--pt-w);height:var(--pt-h);cursor:pointer;padding-right:var(--pw-space-3);
-  border-radius:var(--pw-radius-full);background:var(--pw-bg-edge) center/100% 100% no-repeat;background-image:var(--pt-img,none);
-  box-shadow:var(--pw-shadow-sm);transition:box-shadow var(--card-dur),transform .18s var(--card-ease)}
-pw-party .pwpt:not([style*="--pt-img"]){background-image:linear-gradient(90deg,var(--pw-bg-center),var(--pw-bg-edge));border:1px solid var(--pw-metal-1)}
-pw-party .pwpt:hover{box-shadow:0 0 0 1px var(--pw-filament),0 0 10px -2px var(--pw-glow);transform:translateX(var(--pw-space-1))}
-pw-party .pwpt[aria-pressed="true"]{box-shadow:0 0 0 2px var(--pw-filament),0 0 12px -2px var(--pw-glow)}
-pw-party .pwpt .typ{position:absolute;left:calc(var(--pw-space-1) * -1);bottom:calc(var(--pw-space-1) * -1);display:grid;place-items:center;gap:1px;padding:var(--pw-space-0-5);border-radius:var(--pw-radius-xs);background:var(--pw-black-a75);border:1px solid var(--pw-metal-1)}
-pw-party .pwpt pw-progress{grid-column:2;min-width:0;--pr-h:var(--pw-space-2)}
-pw-party .pwpt .key{position:absolute;right:var(--pw-space-4);top:var(--pw-space-0-5);font-size:var(--pw-font-size-3xs);color:var(--pw-text-muted)}
-pw-party[size="lg"] .pwpt .key{top:var(--pw-space-1);font-size:var(--pw-font-size-2xs)}
-pw-party .pwpt.empty{opacity:.5;cursor:default;border-style:dashed}
+/* cada Pokémon = pw-card tertiary (mesmo do card da HUD fixa), arte à esquerda e barras de vida/CD à direita */
+pw-party{position:absolute;margin-top:var(--pw-space-6)}
+pw-party pw-card.pwpt{position:relative;width:var(--pt-w);height:var(--pt-h);border-radius:var(--pw-radius-sm);cursor:pointer;transform-origin:left center;transition:transform .2s var(--card-ease),margin .2s var(--card-ease);overflow:visible}
+pw-party pw-card.pwpt>.pwc-content{padding:0;gap:0;height:100%;display:grid;grid-template-columns:42% 1fr;align-items:end;position:relative}
+pw-party pw-card.pwpt[interactive]>.pwc-content::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(90deg,transparent 25%,color-mix(in srgb,var(--pw-bg-edge) 92%,transparent) 48%);pointer-events:none}
+pw-party pw-card.pwpt[highlight]{transform:scale(1.25);margin-block:calc(var(--pt-h) * .125);z-index:2;box-shadow:0 0 0 2px color-mix(in srgb,var(--pw-gold-200) 85%,transparent),0 0 18px -2px color-mix(in srgb,var(--pw-gold-300) 60%,transparent)}
+pw-party .pwpt .key{position:absolute;right:var(--pw-space-0-5);top:var(--pw-space-0-5);z-index:3;white-space:nowrap;pointer-events:none}
+pw-party .pwpt.empty .key{color:var(--pw-text-muted)}
+pw-party .pwpt.empty{cursor:default}
+pw-party .pwpt .typ{position:absolute;left:var(--pw-space-1);bottom:var(--pw-space-1);z-index:2;display:grid;place-items:center;gap:1px;padding:var(--pw-space-0-5);border-radius:var(--pw-radius-xs);background:var(--pw-black-a55);border:1px solid var(--pw-metal-1)}
+pw-party .pwpt .bars{grid-column:2;position:relative;z-index:2;display:grid;gap:var(--pw-space-0-5);padding:var(--pw-space-1) var(--pw-space-1) var(--pw-space-1) 0}
+pw-party .pwpt .bar{position:relative;display:grid}
+pw-party .pwpt .bar pw-progress{min-width:0;--pr-h:var(--pw-space-3)}
+pw-party .pwpt .bar .pwp-track{border-radius:var(--pw-radius-xs)}
+pw-party .pwpt .bar span{position:absolute;inset:0;display:grid;place-items:center;font-size:var(--pw-font-size-3xs);font-weight:var(--pw-font-weight-semibold);font-variant-numeric:tabular-nums;color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);pointer-events:none}
+pw-party .pwpt .bar.cd .pwp-fill{transition:width 1s linear}
+/* caixa de mover: aparece ao passar o mouse pelo conjunto */
+pw-party::before{content:"";position:absolute;inset:calc(var(--pw-space-2) * -1);top:calc(var(--pw-space-6) * -1);right:calc(var(--pt-w) * -.25 - var(--pw-space-2));border:1px dashed var(--pw-filament);border-radius:var(--pw-radius-md);background:color-mix(in srgb,var(--pw-bg-edge) 35%,transparent);opacity:0;transition:opacity .2s;pointer-events:none;z-index:-1}
+pw-party .pwpt-move{position:absolute;left:calc(var(--pw-space-2) * -1);right:calc(var(--pt-w) * -.25 - var(--pw-space-2));top:calc(var(--pw-space-6) * -1);height:var(--pw-space-5);display:flex;align-items:center;justify-content:center;gap:var(--pw-space-1);cursor:grab;opacity:0;transition:opacity .2s;color:var(--pw-text-accent);font:var(--pw-font-weight-semibold) var(--pw-font-size-3xs)/1 var(--pw-font-body);letter-spacing:.06em;text-transform:uppercase;user-select:none;touch-action:none;border-radius:var(--pw-radius-sm)}
+pw-party .pwpt-move svg{width:var(--pw-space-3);height:var(--pw-space-3)}
+pw-party:is(:hover,:focus-within,.moving)::before,pw-party:is(:hover,:focus-within,.moving) .pwpt-move{opacity:1}
+pw-party.moving .pwpt-move{cursor:grabbing}
+pw-party[locked]::before,pw-party[locked] .pwpt-move{display:none}
+pw-party .pwpt-move:focus-visible{outline:2px solid var(--pw-focus-ring)}
 @media (prefers-reduced-motion:reduce){pw-hud *,pw-party *{transition:none!important;animation:none!important}}
 
 /* ===================== COMPONENT: pw-control-group + pw-control-group-item (lista suspensa: menus, dropdowns, seleção) ===================== */
