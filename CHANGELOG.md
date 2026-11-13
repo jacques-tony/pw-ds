@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.68.1
+- `pw-hud`: slots de hotkeys com 32×32 (mesmo tamanho da Mochila); aceitam `sprite` + `frames` animados.
+- Exemplos de hotkeys trocados pelos itens da Mochila (Pó vermelho, Garra do dragão, Pedra azul, Cristal verde).
+
 ## 0.68.0
 - `pw-hud`: slots de hotkeys no mesmo formato do slot da Mochila (`pw-card` tertiary neutral); a tecla aparece no canto superior direito com o mesmo estilo de texto da quantidade de itens (que segue no inferior direito); espaçamento de 12px entre slots.
 

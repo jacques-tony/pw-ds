@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.68.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.68.1 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1130,7 +1130,7 @@ pw-navbar[collapsed] .pwnb-ball{top:calc(var(--nb-ball) / -2)}
 @media (prefers-reduced-motion:reduce){pw-nav-item,pw-nav-item .pwni-ic{transition:none}}
 
 /* ===================== COMPONENT: pw-hud (HUD inferior) + pw-party ===================== */
-pw-hud{--hd-slot:var(--pw-space-10);--hd-card-w:calc(var(--pw-space-16) + var(--pw-space-2) + var(--pw-space-0-5));--hd-card-h:calc(var(--pw-space-32) + var(--pw-space-1) + var(--pw-space-0-5));
+pw-hud{--hd-slot:var(--pw-space-8);--hd-card-w:calc(var(--pw-space-16) + var(--pw-space-2) + var(--pw-space-0-5));--hd-card-h:calc(var(--pw-space-32) + var(--pw-space-1) + var(--pw-space-0-5));
   position:relative;display:block;box-sizing:border-box;min-width:0;max-width:100%;font-family:var(--pw-font-body);color:var(--pw-text-body)}
 pw-hud{--hd-gap:var(--pw-space-2);--hd-pad:var(--pw-space-5);
   --hd-w:calc(calc(var(--pw-space-32) * 2 + var(--pw-space-8)) + var(--pw-space-4) + var(--hd-card-w) * 6 + var(--hd-gap) * 5 + var(--hd-pad) * 2);width:var(--hd-w)}
@@ -1193,7 +1193,9 @@ pw-hud pw-card.pwhd-slot:active{--press:.94}
 pw-hud .pwhd-slot.empty{color:color-mix(in srgb,var(--pw-text-muted) 70%,transparent)}
 pw-hud .pwhd-slot.empty .pwc-content>svg{width:50%;height:50%;color:inherit}
 pw-hud .pwhd-slot.empty{cursor:default}
-pw-hud .pwhd-slot .pwc-content>img{width:80%;height:80%;object-fit:contain;filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
+pw-hud .pwhd-slot .spr{position:absolute;inset:var(--pw-space-0-5);overflow:hidden;z-index:1}pw-hud .pwhd-slot .spr img{display:block;width:100%;height:calc(var(--n) * 100%);image-rendering:pixelated;animation:pwbg-spr calc(var(--n) * 110ms) steps(var(--n)) infinite;filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
+@media (prefers-reduced-motion:reduce){pw-hud .pwhd-slot .spr img{animation:none}}
+pw-hud .pwhd-slot .pwc-content>img{width:calc(100% - var(--pw-space-1));height:calc(100% - var(--pw-space-1));object-fit:contain;filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
 pw-hud .pwhd-slot .pwc-content>svg{width:60%;height:60%;color:var(--pw-text-accent)}
 pw-hud .pwhd-slot :is(.q,.kb){position:absolute;right:var(--pw-space-0-5);z-index:2;pointer-events:none;font:var(--pw-font-weight-bold) var(--pw-font-size-3xs)/1 var(--pw-font-body);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
 pw-hud .pwhd-slot .q{bottom:0}pw-hud .pwhd-slot .kb{top:var(--pw-space-0-5)}
