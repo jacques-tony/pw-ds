@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.74.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.74.1 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1216,9 +1216,10 @@ class PWHud extends HTMLElement{
   _deck(show){var go=()=>this.setAttribute('hotkeys',show?'shown':'hidden'),sl=[].slice.call(this.querySelectorAll('.pwhd-slot')),sc=this.querySelector('.pwhd-slots'),r=sc&&sc.getBoundingClientRect();
     if(matchMedia('(prefers-reduced-motion: reduce)').matches||!sl.length){go();return}
     var vis=sl.filter(x=>{var b=x.getBoundingClientRect();return !r||b.right>r.left&&b.left<r.right});
+    clearTimeout(this._dkT);sl.forEach(x=>x.getAnimations().forEach(a=>a.cancel()));
     if(show){go();vis.forEach((x,i)=>x.animate([{opacity:0,transform:'translateY(14px) rotate(-10deg) scale(.88)'},{opacity:1,transform:'translateY(-3px) rotate(3deg) scale(1.02)',offset:.65},{opacity:1,transform:'none'}],{duration:420,delay:60+i*24,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}))}
     else{var last=null;vis.forEach((x,i)=>{last=x.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(12px) rotate(8deg) scale(.9)'}],{duration:200,delay:i*14,easing:'cubic-bezier(.4,0,1,1)',fill:'forwards'})});
-      last.finished.then(()=>{go();vis.forEach(x=>x.getAnimations().forEach(a=>a.cancel()))})}}
+      last.finished.then(()=>{go();clearTimeout(this._dkT);this._dkT=setTimeout(()=>vis.forEach(x=>x.getAnimations().forEach(a=>a.cancel())),450)})}}
   _arrows(){var s=this.querySelector('.pwhd-slots');if(!s)return;var a=this.querySelectorAll('.pwhd-arrow');a[0].toggleAttribute('disabled',s.scrollLeft<=2);a[1].toggleAttribute('disabled',s.scrollLeft+s.clientWidth>=s.scrollWidth-2);s.toggleAttribute('data-fade-l',s.scrollLeft>2);s.toggleAttribute('data-fade-r',s.scrollLeft+s.clientWidth<s.scrollWidth-2)}
   _acts(){this.querySelectorAll('pw-button.pwhd-act').forEach(b=>{var i=b.querySelector('button');if(!i)return;if(b.hasAttribute('aria-pressed'))i.setAttribute('aria-pressed',b.getAttribute('aria-pressed'));else i.removeAttribute('aria-pressed')})}
   _pick(i){var t=this._data.team[i];this._data.team.forEach((x,k)=>{if(x)x.active=k===i});this.querySelectorAll('.pwhd-card[data-team]').forEach(c=>{var on=+c.dataset.team===i;c.toggleAttribute('selected',on);c.toggleAttribute('highlight',on)});
@@ -1907,5 +1908,5 @@ class PWWidgetChat extends PWWidgetBag{
 }
 PWWidgetChat.prototype.toggle=PWWidgetBag.prototype.toggle;
 customElements.define('pw-widget-chat',PWWidgetChat);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.74.0"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.74.1"});
 })();

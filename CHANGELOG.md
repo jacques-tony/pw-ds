@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.74.1
+- `pw-hud`: corrigida a piscada ao esconder as hotkeys (os slots só voltam ao estado normal depois que a fileira terminou de recolher).
+
 ## 0.74.0
 - `pw-hud`: rótulos de Perfil reduzido / Esconder hotkeys em caixa-alta.
 - Hotkeys entram e saem com balanço sutil em cascata, como cartas de um baralho (respeita `prefers-reduced-motion`).
