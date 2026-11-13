@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.71.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.71.2 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1208,7 +1208,7 @@ class PWHud extends HTMLElement{
       '<pw-progress class="pwhd-stat xp" layout="inline" value-inside icon-text="EXP" label="Experiência" value="'+Math.round(xp*100)+'" max="100" show-value></pw-progress>'+
       '<div class="pwhd-actions in">'+acts+'</div></div><div class="pwhd-actions out">'+acts+'</div></pw-card>'+
       '<div class="pwhd-team" role="group" aria-label="Equipe">'+team+'</div></div>'+
-      '<div class="pwhd-hotbar"><pw-button class="pwhd-arrow" variant="ghost" size="sm" particles="0" icon="chevron-left" data-dir="-1" data-label="Atalhos anteriores"></pw-button><div class="pwhd-slots" role="toolbar" aria-label="Atalhos">'+slots+'</div><pw-button class="pwhd-arrow" variant="ghost" size="sm" particles="0" icon="chevron-right" data-dir="1" data-label="Próximos atalhos"></pw-button></div>'+
+      '<div class="pwhd-hotbar"><pw-button class="pwhd-arrow" variant="ghost" size="sm" fx="none" particles="0" icon="chevron-left" data-dir="-1" data-label="Atalhos anteriores"></pw-button><div class="pwhd-slots" role="toolbar" aria-label="Atalhos">'+slots+'</div><pw-button class="pwhd-arrow" variant="ghost" size="sm" fx="none" particles="0" icon="chevron-right" data-dir="1" data-label="Próximos atalhos"></pw-button></div>'+
       '<div class="pwhd-foot"><pw-button class="pwhd-toggle" variant="ghost" size="sm" particles="0" data-hd="profile" data-tip-pos="top">Perfil</pw-button><pw-button class="pwhd-toggle" variant="ghost" size="sm" particles="0" data-hd="hotkeys">Hotkeys</pw-button></div>';
     this.querySelectorAll('pw-button[data-label]').forEach(b=>{var i=b.querySelector('button');if(i)i.setAttribute('aria-label',b.dataset.label)});this._acts();
     var sl=this.querySelector('.pwhd-slots');sl.addEventListener('scroll',()=>this._arrows(),{passive:true});if(this._sro)this._sro.disconnect();this._sro=new ResizeObserver(()=>this._arrows());this._sro.observe(sl);this._sync();requestAnimationFrame(()=>this._arrows())}
@@ -1900,5 +1900,5 @@ class PWWidgetChat extends PWWidgetBag{
 }
 PWWidgetChat.prototype.toggle=PWWidgetBag.prototype.toggle;
 customElements.define('pw-widget-chat',PWWidgetChat);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.71.1"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.71.2"});
 })();

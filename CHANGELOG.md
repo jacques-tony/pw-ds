@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.71.2
+- `pw-hud`: setas de navegação das hotkeys como `pw-button` ghost sem efeitos (`fx="none"`).
+
 ## 0.71.1
 - `pw-progress` `value-inside`: valor alinhado à direita dentro da barra.
 - `pw-hud`: mais espaço entre as barras de Vida e Experiência; ícones mais próximos das barras (4px).
