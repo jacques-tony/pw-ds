@@ -6537,6 +6537,12 @@ d.innerHTML='<div style="display:flex;align-items:flex-end;gap:8px;height:40px">
 
 <script>(function(){var h=document.getElementById('gsimHud'),w=document.getElementById('gsimLoot');if(!h||!w)return;
   /* simulação: o botão "Coleta automática" do perfil da HUD abre e fecha o Loot Stash */
+  /* simulação: itens coletados do Loot Stash entram na Mochila (empilham no mesmo item ou ocupam o primeiro espaço livre) */
+  var bag=document.getElementById('gsimBag');w.addEventListener('collect',e=>{if(!bag||!bag._init)return;var B=bag._items,hit=[],n=+bag.getAttribute('slots')||35;
+    e.detail.items.forEach(it=>{var k=B.findIndex(x=>x&&x.type!=='bag'&&x.label===it.label);if(k>-1){B[k].count=(+B[k].count||0)+(+it.count||1);hit.push(k);return}
+      k=B.findIndex(x=>!x);if(k<0&&B.length<n)k=B.length;if(k<0){e.preventDefault();return}B[k]=Object.assign({},it);hit.push(k)});
+    if(bag._stack&&bag._stack.length)return;bag._grid();bag._sync&&bag._sync();
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches)hit.forEach((k,j)=>{var sl=bag.querySelector('.pwbg-slot[data-i="'+k+'"]');if(sl)sl.animate([{transform:'scale(.6)',filter:'brightness(2)'},{transform:'scale(1.12)',offset:.6},{transform:'none',filter:'none'}],{duration:420,delay:j*40,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'})})});
   h.addEventListener('action',e=>{var a=e.detail&&e.detail.action;if(!a||a.label!=='Coleta automática')return;
     if(w.hidden){w.show();w.dispatchEvent(new PointerEvent('pointerdown',{bubbles:true}));if(!matchMedia('(prefers-reduced-motion: reduce)').matches)w.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'none'}],{duration:180,easing:'ease-out'})}else w.close()})})();</script>
 <script>(function(){var nb=document.querySelector('#gsim pw-navbar');if(!nb)return;var map={bag:'gsimBag',team:'gsimPoke',map:'gsimMap',trade:'gsimBattle',tasks:'gsimStats'};

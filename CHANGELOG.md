@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.77.2
+- Simulação: itens coletados no Loot Stash entram na Mochila — empilham no mesmo item (somando a quantidade) ou ocupam o primeiro espaço livre, com um destaque rápido nos slots que mudaram. Se a Mochila estiver cheia, a coleta é cancelada.
+
 ## 0.77.1
 - Simulação: o Loot Stash abre e fecha pelo botão **Coleta automática** do card de perfil da HUD inferior (não mais pelo ícone Caça da barra superior).
 

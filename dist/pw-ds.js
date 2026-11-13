@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.77.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.77.2 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1952,5 +1952,5 @@ class PWWidgetLoot extends PWWidgetBag{
     this.querySelectorAll('.pwlt-acts pw-button').forEach(b=>{b.toggleAttribute('disabled',!used);var t=b.dataset.l==='collect'?(sel?'Coletar '+sel+' selecionado'+(sel>1?'s':''):'Coletar tudo'):(sel?'Enviar '+sel+' para stash':'Enviar tudo para stash');b.setAttribute('data-tip',t)})}
 }
 customElements.define('pw-widget-loot',PWWidgetLoot);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.77.1"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.77.2"});
 })();
