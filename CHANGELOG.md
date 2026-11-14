@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.87.4
+- `pw-dock`: soltar um widget entre dois widgets do painel conecta ele no meio (ordem pela posição).
+- Simulação (Clássico): painel inferior com 224px de altura mínima (mesma largura dos painéis laterais); chat fixo sem recolher nem bloquear; a barra de spells só se move quando a HUD, empurrada pelo painel inferior, encosta nela (e volta à posição original no Estendido).
+
 ## 0.87.3
 - `pw-dock`: novos atributos `resizable` (alça na borda de cima para mudar a altura; `min`/`max`, setas ↑ ↓, evento `resize`) e `overlap` (o widget avança N px sobre as bordas vizinhas, evitando linha dupla).
 - Simulação (Clássico): chat sem linha dupla nas extremidades e com altura ajustável arrastando a borda de cima; HUD e barra de spells acompanham.

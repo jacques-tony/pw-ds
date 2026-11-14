@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.87.3 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.87.4 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2018,7 +2018,7 @@ pw-dock[drop-target]>pw-card.pwdk-bg{filter:brightness(1.25)}
 [docked]{transition:left .2s var(--card-ease),top .2s var(--card-ease),width .2s var(--card-ease)}
 [docked].dragging{transition:none}
 [docked] .pwmm-rl,[docked] .pwmm-rr{display:none!important}
-pw-widget-chat[static] .pwmm-resize{display:none!important}pw-widget-chat[static] .pwbg-head{cursor:default}
+pw-widget-chat[static] :is(.pwmm-resize,[data-a="collapse"],[data-a="lock"]){display:none!important}pw-widget-chat[static] .pwbg-head{cursor:default}
 .pwdk-rz{position:absolute;height:var(--pw-space-3);z-index:9000;cursor:ns-resize;display:grid;place-items:center;outline:none}
 .pwdk-rz::after{content:"";width:var(--pw-space-10);height:var(--pw-space-1);border-radius:var(--pw-radius-full);background:var(--pw-filament);opacity:0;box-shadow:0 0 8px var(--pw-glow);transition:opacity var(--card-dur)}
 .pwdk-rz:not([hidden]){display:grid}.pwdk-rz[hidden]{display:none}.pwdk-rz:hover::after,pw-dock.resizing .pwdk-rz::after,.pwdk-rz:focus-visible::after{opacity:1}
