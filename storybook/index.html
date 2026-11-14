@@ -2281,10 +2281,11 @@ pw-widget-combo pw-card-header.pwcb-head{cursor:grab}
 pw-dock{position:absolute;display:block;box-sizing:border-box;z-index:5}
 pw-dock>pw-card.pwdk-bg{position:absolute;inset:0;width:auto;height:auto;--lift:0px;pointer-events:none}
 pw-dock[drop-target]>pw-card.pwdk-bg{filter:brightness(1.25)}
-pw-dock[drop-target]::after{content:"";position:absolute;inset:var(--pw-space-1);border:1px dashed var(--pw-filament);border-radius:var(--pw-radius-sm);pointer-events:none}
 [docked]{transition:left .2s var(--card-ease),top .2s var(--card-ease),width .2s var(--card-ease)}
 [docked].dragging{transition:none}
-[docked] .pwbg-resize,[docked] .pwmm-rl,[docked] .pwmm-rr{display:none!important}
+[docked] .pwmm-rl,[docked] .pwmm-rr{display:none!important}
+pw-widget-chat[static] .pwmm-resize{display:none!important}pw-widget-chat[static] .pwbg-head{cursor:default}
+.pwdk-flash{position:absolute;z-index:9999;pointer-events:none;box-sizing:border-box;border:2px solid var(--pw-filament);box-shadow:0 0 14px var(--pw-glow),inset 0 0 14px var(--pw-glow)}
 /* @pwds-css-end */
 /* demo content inside cards */
 .k-eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--card-filament)}
@@ -6729,13 +6730,16 @@ class PWDock extends HTMLElement{
   /* fixa o widget no painel (sem chanfros, sem redimensionar na largura) */
   dock(w){if(w._dock===this){this.layout();return}if(w._dock)w._dock.undock(w,true);if(!this._vert())this.widgets.forEach(o=>this.undock(o));
     w._undock={left:w.style.left,top:w.style.top,width:w.style.width,height:w.style.height,right:w.style.right,bottom:w.style.bottom};w._dock=this;w.setAttribute('docked','');
-    var cs=this.widgets.filter(o=>o!==w);w._dockOrder=Math.max(-1,...cs.map(o=>o._dockOrder||0))+1;this._ro.observe(w);this.layout();if(w._mark)w._mark();
+    var cs=this.widgets.filter(o=>o!==w);w._dockOrder=Math.max(-1,...cs.map(o=>o._dockOrder||0))+1;this._ro.observe(w);this.layout();if(w._mark)w._mark();setTimeout(()=>this._flash(w),220);
     this.dispatchEvent(new CustomEvent('dock',{bubbles:true,detail:{widget:w}}))}
   undock(w,silent){if(w._dock!==this)return;this._ro.unobserve(w);w._dock=null;w.removeAttribute('docked');var u=w._undock||{};w.style.width=u.width||'';if(!this._vert())w.style.height=u.height||'';if(silent!=='keep'){}
     this.layout();if(w._mark)w._mark();if(silent!==true)this.dispatchEvent(new CustomEvent('undock',{bubbles:true,detail:{widget:w}}))}
   layout(){if(this._lay)return;this._lay=1;requestAnimationFrame(()=>{this._lay=0;var x=this.offsetLeft,y=this.offsetTop,W=this.clientWidth,H=this.clientHeight,ws=this.widgets.sort((a,b)=>(a._dockOrder||0)-(b._dockOrder||0));
-    if(this._vert()){var t=y;ws.forEach(w=>{if(w.classList.contains('dragging'))return;w.style.left=x+'px';w.style.right='auto';w.style.bottom='auto';w.style.top=t+'px';w.style.width=W+'px';t+=w.offsetHeight})}
+    if(this._vert()){var t=y;ws.forEach(w=>{if(w.classList.contains('dragging'))return;w.style.left=x+'px';w.style.right='auto';w.style.bottom='auto';w.style.top=t+'px';w.style.width=W+'px';t+=w.offsetHeight-2})}
     else ws.forEach(w=>{if(w.classList.contains('dragging'))return;w.style.left=x+'px';w.style.top=y+'px';w.style.right='auto';w.style.bottom='auto';w.style.width=W+'px';w.style.height=H+'px'})})}
+  /* efeito de magnetismo em volta de todo o widget ao fixar */
+  _flash(w){var p=w.offsetParent;if(!p||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var f=document.createElement('span');f.className='pwdk-flash';f.style.cssText='left:'+w.offsetLeft+'px;top:'+w.offsetTop+'px;width:'+w.offsetWidth+'px;height:'+w.offsetHeight+'px';p.appendChild(f);
+    f.animate([{opacity:0,transform:'scale(1.03)'},{opacity:1,transform:'none',offset:.35},{opacity:1,offset:.55},{opacity:0}],{duration:560,easing:'ease-out'}).finished.then(()=>f.remove(),()=>f.remove())}
   _hit(w){var a=this.getBoundingClientRect(),b=w.getBoundingClientRect(),cx=b.left+Math.min(b.width,60)/2+b.width/2-Math.min(b.width,60)/2,cy=b.top+16;return cx>=a.left&&cx<=a.right&&cy>=a.top&&cy<=a.bottom}
 }
 customElements.define('pw-dock',PWDock);
@@ -7198,8 +7202,8 @@ d.innerHTML='<div style="display:flex;align-items:flex-end;gap:8px;height:40px">
 <script>(function(){var g=document.getElementById('gsim'),o=document.getElementById('gsimOptions');if(!g||!o)return;var L=document.getElementById('gsimDockL'),Rr=document.getElementById('gsimDockR'),B=document.getElementById('gsimDockB'),$=id=>document.getElementById(id);
   /* simulação: Opções > Interface > Modo de visualização alterna Estendido / Clássico */
   function set(classic){var sp=$('gsimSpells');if(sp&&g.classList.contains('classic')!==classic){var t=parseFloat(sp.style.top)||0;sp.style.top=(t+(classic?-150:150))+'px'}g.classList.toggle('classic',classic);[L,Rr,B].forEach(d=>d.hidden=!classic);
-    if(classic){requestAnimationFrame(()=>{['gsimPoke','gsimBag'].forEach(id=>{var w=$(id);if(w&&!w.hidden)Rr.dock(w)});var c=$('gsimChat');if(c)B.dock(c);var m=$('gsimMap');if(m&&!m.hidden)L.dock(m)})}
-    else [L,Rr,B].forEach(d=>d.widgets.slice().forEach(w=>{var u=w._undock||{};d.undock(w);Object.assign(w.style,{left:u.left,top:u.top,right:u.right,bottom:u.bottom,height:u.height||w.style.height})}))}
+    if(classic){requestAnimationFrame(()=>{['gsimPoke','gsimBag'].forEach(id=>{var w=$(id);if(w&&!w.hidden)Rr.dock(w)});var c=$('gsimChat');if(c){B.dock(c);c.setAttribute('static','')}var m=$('gsimMap');if(m&&!m.hidden)L.dock(m)})}
+    else{var c2=$('gsimChat');if(c2)c2.removeAttribute('static')}if(!classic)[L,Rr,B].forEach(d=>d.widgets.slice().forEach(w=>{var u=w._undock||{};d.undock(w);Object.assign(w.style,{left:u.left,top:u.top,right:u.right,bottom:u.bottom,height:u.height||w.style.height})}))}
   o.addEventListener('change',e=>{if(e.detail.key==='viewmode')set(e.detail.value==='Clássico')})})();</script>
 <script>(function(){var nb=document.querySelector('#gsim pw-navbar');if(!nb)return;var map={bag:'gsimBag',team:'gsimPoke',map:'gsimMap',trade:'gsimBattle',tasks:'gsimStats',settings:'gsimOptions'};
   /* simulação: ícones Mochila e Pokémon da barra superior abrem e fecham os widgets */

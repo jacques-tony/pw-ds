@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.87.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.87.1 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2195,7 +2195,8 @@ pw-widget-combo pw-card-header.pwcb-head{cursor:grab}
 pw-dock{position:absolute;display:block;box-sizing:border-box;z-index:5}
 pw-dock>pw-card.pwdk-bg{position:absolute;inset:0;width:auto;height:auto;--lift:0px;pointer-events:none}
 pw-dock[drop-target]>pw-card.pwdk-bg{filter:brightness(1.25)}
-pw-dock[drop-target]::after{content:"";position:absolute;inset:var(--pw-space-1);border:1px dashed var(--pw-filament);border-radius:var(--pw-radius-sm);pointer-events:none}
 [docked]{transition:left .2s var(--card-ease),top .2s var(--card-ease),width .2s var(--card-ease)}
 [docked].dragging{transition:none}
-[docked] .pwbg-resize,[docked] .pwmm-rl,[docked] .pwmm-rr{display:none!important}
+[docked] .pwmm-rl,[docked] .pwmm-rr{display:none!important}
+pw-widget-chat[static] .pwmm-resize{display:none!important}pw-widget-chat[static] .pwbg-head{cursor:default}
+.pwdk-flash{position:absolute;z-index:9999;pointer-events:none;box-sizing:border-box;border:2px solid var(--pw-filament);box-shadow:0 0 14px var(--pw-glow),inset 0 0 14px var(--pw-glow)}

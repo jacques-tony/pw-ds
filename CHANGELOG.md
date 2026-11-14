@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.87.1
+- `pw-dock`: sem o tracejado ao arrastar sobre o painel; efeito de magnetismo em volta de todo o widget ao fixar; widgets empilhados sobrepõem a borda (linha única na junção); widgets fixos podem ajustar a altura pela borda de baixo.
+- Simulação (Clássico): bate-papo fixo na barra inferior (não arrasta nem redimensiona).
+
 ## 0.87.0
 - Novo `<pw-dock>`: painel onde widgets ficam fixos. Soltar um widget sobre o painel fixa (largura do painel, sem chanfros, sem alças de largura); arrastar para fora solta e devolve o tamanho; arrastar dentro reordena. `orientation="horizontal"` faz o widget preencher o painel. Eventos `dock` / `undock`.
 - `pw-widget-options`: Modo de visualização passa a ser **Estendido** / **Clássico**.
