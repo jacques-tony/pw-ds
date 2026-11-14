@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.87.2
+- Widgets: magnetismo ignora elementos `pw-widget-*` sem conjunto (Opções, Assistente de combo, Barra de spells). Um erro ali interrompia a troca Clássico ↔ Estendido: o chat não ia para a barra inferior e os widgets dos painéis não voltavam à posição.
+
 ## 0.87.1
 - `pw-dock`: sem o tracejado ao arrastar sobre o painel; efeito de magnetismo em volta de todo o widget ao fixar; widgets empilhados sobrepõem a borda (linha única na junção); widgets fixos podem ajustar a altura pela borda de baixo.
 - Simulação (Clássico): bate-papo fixo na barra inferior (não arrasta nem redimensiona).
