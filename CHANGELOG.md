@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.80.2
+- `pw-party`: arte do Pokémon volta a ser o fundo do próprio `pw-card` (`bg-image`, dentro da moldura) em vez de uma camada por cima; degradê para as barras.
+- Espaçamentos padronizados em 4px: badges de atalho e tipos a 4px das bordas, 4px entre as barras.
+- Selecionado (25% maior) mantém as badges no mesmo tamanho dos outros cards.
+- Corrigido `aria-label` quebrado nos cards.
+
 ## 0.80.1
 - `pw-card` tertiary `highlight`: corrigida a borda dourada dupla — o anel de `box-shadow` (com raio diferente da moldura) foi removido; a borda agora é só a moldura dourada, e o brilho externo continua. Vale para todos os cards em destaque (HUD, equipe flutuante, demos).
 

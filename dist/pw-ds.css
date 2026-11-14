@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.80.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.80.2 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1479,15 +1479,15 @@ pw-party[hidden]{display:none}
 pw-party{position:absolute;margin-top:var(--pw-space-6)}
 pw-party pw-card.pwpt{position:relative;width:var(--pt-w);height:var(--pt-h);border-radius:var(--pw-radius-sm);cursor:pointer;transform-origin:left center;transition:transform .52s cubic-bezier(.45,.05,.25,1),margin .52s cubic-bezier(.45,.05,.25,1),box-shadow .3s;overflow:visible}
 pw-party pw-card.pwpt>.pwc-content{padding:0;gap:0;height:100%;display:grid;grid-template-columns:42% 1fr;align-items:end;position:relative}
-pw-party pw-card.pwpt[interactive]>.pwc-content::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(90deg,transparent 25%,color-mix(in srgb,var(--pw-bg-edge) 92%,transparent) 48%);pointer-events:none}
+pw-party pw-card.pwpt[interactive]>.pwc-content::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(90deg,transparent 22%,color-mix(in srgb,var(--pw-bg-edge) 96%,transparent) 45%);pointer-events:none}
 pw-party pw-card.pwpt[highlight]{transform:scale(1.25);margin-block:calc(var(--pt-h) * .125);z-index:2;box-shadow:0 0 18px -2px color-mix(in srgb,var(--pw-gold-300) 60%,transparent)}
 pw-party .pwpt .art{position:absolute;left:2px;top:2px;bottom:2px;width:60%;border-radius:calc(var(--pw-radius-sm) - 2px) 0 0 calc(var(--pw-radius-sm) - 2px);background:center 30%/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,#000 55%,transparent);mask-image:linear-gradient(90deg,#000 55%,transparent);pointer-events:none}
-pw-party pw-card.pwpt[interactive]>.pwc-content::before{display:none}
-pw-party .pwpt .key{position:absolute;right:var(--pw-space-0-5);top:var(--pw-space-0-5);z-index:3;white-space:nowrap;pointer-events:none}
+pw-party .pwpt .key{position:absolute;right:var(--pw-space-1);top:var(--pw-space-1);transform-origin:top right;z-index:3;white-space:nowrap;pointer-events:none}
 pw-party .pwpt.empty .key{color:var(--pw-text-muted)}
 pw-party .pwpt.empty{cursor:default}
-pw-party .pwpt .typ{position:absolute;left:var(--pw-space-1);bottom:var(--pw-space-1);z-index:2;display:grid;place-items:center;gap:1px;padding:var(--pw-space-0-5);border-radius:var(--pw-radius-xs);background:var(--pw-black-a55);border:1px solid var(--pw-metal-1)}
-pw-party .pwpt .bars{grid-column:2;position:relative;z-index:2;display:grid;gap:var(--pw-space-0-5);padding:var(--pw-space-1) var(--pw-space-1) var(--pw-space-1) 0}
+pw-party .pwpt .typ{position:absolute;left:var(--pw-space-1);bottom:var(--pw-space-1);transform-origin:bottom left;z-index:2;display:grid;place-items:center;gap:1px;padding:var(--pw-space-0-5);border-radius:var(--pw-radius-xs);background:var(--pw-black-a55);border:1px solid var(--pw-metal-1)}
+pw-party .pwpt .bars{grid-column:2;position:relative;z-index:2;display:grid;gap:var(--pw-space-1);padding:var(--pw-space-1) var(--pw-space-1) var(--pw-space-1) 0}
+pw-party pw-card.pwpt[highlight] :is(.key,.typ){transform:scale(.8)}
 pw-party .pwpt .bar{position:relative;display:grid}
 pw-party .pwpt .bar pw-progress{min-width:0;--pr-h:var(--pw-space-3)}
 pw-party .pwpt .bar .pwp-track{border-radius:var(--pw-radius-xs)}
