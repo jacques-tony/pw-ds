@@ -27,6 +27,13 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.80.3
+- `pw-party`:
+  - Corrigida a ponta no canto direito dos cards (o degradê agora segue o raio da moldura, por dentro dela).
+  - Degradê sobre a arte mais suave (várias paradas).
+  - Modo minimalista mostra as barras de vida e de CD, ambas sem o valor.
+  - Alça de mover no canto esquerdo; botão de opções (⋮) com respiro no canto direito; o ✓ de salvar a ordem aparece no lugar do botão de opções.
+
 ## 0.80.2
 - `pw-party`: arte do Pokémon volta a ser o fundo do próprio `pw-card` (`bg-image`, dentro da moldura) em vez de uma camada por cima; degradê para as barras.
 - Espaçamentos padronizados em 4px: badges de atalho e tipos a 4px das bordas, 4px entre as barras.
