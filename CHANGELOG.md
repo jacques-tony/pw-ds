@@ -27,6 +27,20 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.86.0
+- `pw-card-header` banner: novos booleanos `no-lines` (sem linhas/asas laterais) e `no-icons` (sem os ✦).
+- `pw-widget-combo`:
+  - Banner com `no-lines no-icons`; padding de 24px no conteúdo e no botão fechar.
+  - Tipos com `pw-badge icon`; número/classe/nível colados ao nome.
+  - Efetividade num card próprio com 5 níveis (super efetivo, efetivo, normal, inefetivo, muito inefetivo).
+  - Dica abaixo das magias.
+  - Slots com raio de 8px e 2px menores (40×40).
+  - Combo sem espaços vazios no meio (vai sempre para o próximo espaço; arrastar insere e reordena).
+  - Atalho no `pw-input` do DS (foco + tecla).
+  - Um combo por Pokémon (salvar substitui; sem lista de predefinições); arte em `pw-card` tertiary brand ocupando a altura disponível.
+- `pw-widget-spells`: novo atributo `combo-key` — mostra a tecla do combo como badge no slot do Assistente de combo, no padrão das spells.
+- Simulação: começa sem Pokémon invocado; salvar o combo mostra a tecla na barra de spells e troca ao invocar outro Pokémon.
+
 ## 0.85.1
 - `pw-widget-combo`: janela em `pw-card` tech com título `pw-card-header` banner (arrastar pelo banner); combos salvos em uma linha só.
 
