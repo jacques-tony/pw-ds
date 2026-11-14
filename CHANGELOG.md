@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.87.0
+- Novo `<pw-dock>`: painel onde widgets ficam fixos. Soltar um widget sobre o painel fixa (largura do painel, sem chanfros, sem alças de largura); arrastar para fora solta e devolve o tamanho; arrastar dentro reordena. `orientation="horizontal"` faz o widget preencher o painel. Eventos `dock` / `undock`.
+- `pw-widget-options`: Modo de visualização passa a ser **Estendido** / **Clássico**.
+- Simulação: modo Clássico com painéis laterais de largura fixa (largura da Mochila, 224px) em toda a altura e barra inferior com o chat ocupando o espaço restante; Mochila e Pokémon vão para o painel direito, Minimap para o esquerdo. Voltar para Estendido restaura as posições.
+
 ## 0.86.2
 - `pw-widget-combo`: quantidade de espaços do combo igual à quantidade de magias do Pokémon invocado (antes fixa em 8).
 

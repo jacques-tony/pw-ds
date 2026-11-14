@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.86.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.87.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2011,3 +2011,11 @@ pw-widget-combo .pwcb-saved .pwcb-mini img{width:var(--pw-space-5);height:var(--
 .pwcb-ghost img{width:100%;height:100%;object-fit:cover}
 pw-widget-combo .pwcb-sec>.pwcb-hint{margin-top:var(--pw-space-2)}
 pw-widget-combo pw-card-header.pwcb-head{cursor:grab}
+/* ===================== COMPONENT: pw-dock (painel fixo do modo clássico) ===================== */
+pw-dock{position:absolute;display:block;box-sizing:border-box;z-index:5}
+pw-dock>pw-card.pwdk-bg{position:absolute;inset:0;width:auto;height:auto;--lift:0px;pointer-events:none}
+pw-dock[drop-target]>pw-card.pwdk-bg{filter:brightness(1.25)}
+pw-dock[drop-target]::after{content:"";position:absolute;inset:var(--pw-space-1);border:1px dashed var(--pw-filament);border-radius:var(--pw-radius-sm);pointer-events:none}
+[docked]{transition:left .2s var(--card-ease),top .2s var(--card-ease),width .2s var(--card-ease)}
+[docked].dragging{transition:none}
+[docked] .pwbg-resize,[docked] .pwmm-rl,[docked] .pwmm-rr{display:none!important}
