@@ -1589,6 +1589,12 @@ pw-party:is(:hover,:focus-within,.moving) :is(pw-card.pwpt-bg,.pwpt-move){opacit
 pw-party.moving .pwpt-move{cursor:grabbing}
 pw-party[locked] .pwpt-move{display:none}pw-party[locked] .pwpt-lock{display:flex}
 pw-party .pwpt-move:focus-visible{outline:2px solid var(--pw-focus-ring)}
+/* editando a ordem pelo perfil reduzido: o ✓ fica no lugar da alça, junto dos cards (a barra de salvar da HUD some) */
+pw-party pw-button.pwpt-done{position:absolute;top:calc(var(--pw-space-8) * -1);left:50%;margin-left:calc(var(--pt-w) * .125);transform:translateX(-50%);display:none;z-index:3}
+pw-party[editing] pw-button.pwpt-done{display:inline-flex;animation:pwsp-pop .28s var(--card-ease)}
+pw-party[editing] :is(.pwpt-move,.pwpt-lock){display:none}
+pw-party[editing] pw-card.pwpt-bg{opacity:1}
+pw-hud[editing-party] pw-card.pwhd-done-bar{display:none}
 @media (prefers-reduced-motion:reduce){pw-hud *,pw-party *{transition:none!important;animation:none!important}}
 
 /* ===================== COMPONENT: pw-control-group + pw-control-group-item (lista suspensa: menus, dropdowns, seleção) ===================== */
@@ -5479,7 +5485,7 @@ class PWHud extends HTMLElement{
   _menuKey(e){if(e.key==='Escape'||e.key==='Tab'){e.preventDefault();e.stopPropagation();this._closeMenu(true)}}
   _doMove(mi){var el=this._cur;this._closeMenu();this.editOrder(el&&el.closest('pw-party')?el.closest('pw-party'):null)}
   /* modo editar ordem: arraste os cards; ao passar sobre outro, os dois trocam de lugar com animação */
-  editOrder(party){if(this._editing)this.doneOrder();this._editing=true;this.setAttribute('editing','');document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>p.setAttribute('editing',''));
+  editOrder(party){if(this._editing)this.doneOrder();this._editing=true;this.setAttribute('editing','');this.toggleAttribute('editing-party',!!party);document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>p.setAttribute('editing',''));
     var box=party||this.querySelector('.pwhd-team'),sel=party?'.pwpt[data-team]':'.pwhd-card[data-team]',axis=party?'y':'x',hud=this,red=matchMedia('(prefers-reduced-motion: reduce)').matches;
     var items=()=>[].slice.call(box.querySelectorAll(sel));
     items().forEach(x=>{x.removeAttribute('data-tip');x.removeAttribute('data-tip-title')});document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}));
@@ -5504,7 +5510,7 @@ class PWHud extends HTMLElement{
     for(var k=0;k<ord.length;k++)t[k]=nu[k];t.forEach((x,k)=>{if(x)x.hotkey='Ctrl+'+(k+1)});
     /* atualiza índices e atalhos sem recriar (mantém o modo de edição) */
     [this._eBox].forEach(b=>{if(!b)return;[].slice.call(b.querySelectorAll('[data-team]')).forEach((x,k)=>{x.dataset.team=k;var key=x.querySelector('.key');if(key)key.outerHTML='<pw-badge class="key" tone="neutral" size="xs">Ctrl+'+(k+1)+'</pw-badge>'})})}
-  doneOrder(){if(!this._editing)return;this._editing=false;this.removeAttribute('editing');document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>p.removeAttribute('editing'));
+  doneOrder(){if(!this._editing)return;this._editing=false;this.removeAttribute('editing');this.removeAttribute('editing-party');document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>p.removeAttribute('editing'));
     document.removeEventListener('keydown',this._eKey);document.removeEventListener('pointerdown',this._eOut);if(this._eBox)this._eBox.removeEventListener('pointerdown',this._eDown);this._eBox=null;
     this.render();this._emitTeam();this.dispatchEvent(new CustomEvent('orderdone',{bubbles:true}))}
   _run(action){if(this._ctx){var i=this._ctx.team,mi=this._menu.querySelector('[data-action="'+action+'"]');return}var sl=this._cur,i=+sl.dataset.slot,h=this._data.hotkeys[i];this._closeMenu(true);
@@ -5569,11 +5575,11 @@ class PWParty extends HTMLElement{
   connectedCallback(){this.setAttribute('role','group');if(!this.getAttribute('aria-label'))this.setAttribute('aria-label','Equipe');
     var h=document.getElementById(this.getAttribute('for'));if(h&&h._init)this._from(h);
     this.addEventListener('contextmenu',e=>{var b=e.target.closest('.pwpt[data-team]');var hud=document.getElementById(this.getAttribute('for'));if(!b||!hud)return;e.preventDefault();if(hud._editing)return;hud._teamMenu(+b.dataset.team,b)});
-    this.addEventListener('click',e=>{var b=e.target.closest('.pwpt[data-team]');var hud=document.getElementById(this.getAttribute('for'));if(b&&hud&&!hud._editing)hud._pick(+b.dataset.team)})}
+    this.addEventListener('click',e=>{if(e.target.closest('.pwpt-done')){var hd=document.getElementById(this.getAttribute('for'));if(hd)hd.doneOrder();return}var b=e.target.closest('.pwpt[data-team]');var hud=document.getElementById(this.getAttribute('for'));if(b&&hud&&!hud._editing)hud._pick(+b.dataset.team)})}
   _from(hud){var show=this.hasAttribute('always')||hud.profile==='compact',was=!this.hidden;this.hidden=!show;if(!show)return;var E=pwEsc;
     var key=(t,i)=>'<pw-badge class="key" tone="neutral" size="xs">'+E((t&&t.hotkey)||'Ctrl+'+(i+1))+'</pw-badge>';
     var old={};this.querySelectorAll('.pwpt[data-team]').forEach(x=>{old[x.dataset.team]={t:x.offsetTop,hl:x.hasAttribute('highlight')}});
-    var html='<pw-card variant="tertiary" tone="neutral" class="pwpt-bg" aria-hidden="true"></pw-card><div class="pwpt-move" role="button" tabindex="0" aria-label="Mover equipe (setas)" data-tip="Arraste para mover" data-tip-pos="top">'+pwIcon('grip')+'</div><span class="pwpt-lock" role="img" aria-label="Equipe bloqueada">'+pwIcon('lock')+'</span>'+(hud.data.team||[]).slice(0,6).map((t,i)=>{if(!t||!t.name)return '<pw-card variant="tertiary" tone="neutral" appearance="filled" class="pwpt empty" bg-image="'+E(pwHudEmpty())+'" bg-position="center" role="img" aria-label="Espaço vazio '+(i+1)+'">'+key(t,i)+'</pw-card>';
+    var html='<pw-card variant="tertiary" tone="neutral" class="pwpt-bg" aria-hidden="true"></pw-card><div class="pwpt-move" role="button" tabindex="0" aria-label="Mover equipe (setas)" data-tip="Arraste para mover" data-tip-pos="top">'+pwIcon('grip')+'</div><span class="pwpt-lock" role="img" aria-label="Equipe bloqueada">'+pwIcon('lock')+'</span><pw-button class="pwpt-done" size="sm" fx="none" particles="0" icon="check" data-tip-title="Salvar ordem" data-tip="Arraste os Pokémon para mudar a ordem · Enter salva" aria-label="Salvar ordem"></pw-button>'+(hud.data.team||[]).slice(0,6).map((t,i)=>{if(!t||!t.name)return '<pw-card variant="tertiary" tone="neutral" appearance="filled" class="pwpt empty" bg-image="'+E(pwHudEmpty())+'" bg-position="center" role="img" aria-label="Espaço vazio '+(i+1)+'">'+key(t,i)+'</pw-card>';
       var img=(this.getAttribute('size')==='lg'&&t.bannerLg)||t.banner||t.bannerLg||t.card||t.image;var v=Math.max(0,Math.min(100,t.hp==null?100:t.hp))/100,cd=t.cd?Math.max(0,Math.min(1,(t.cdLeft||0)/t.cd)):0;
       return '<pw-card variant="tertiary" tone="neutral" appearance="filled" interactive class="pwpt" data-team="'+i+'" role="button" tabindex="0" aria-pressed="'+(t.active?'true':'false')+'"'+(t.active?' selected highlight':'')+' aria-label=""'+E(t.name)+', HP '+Math.round(v*100)+'%" data-tip-title="'+E(t.name)+'" data-tip="'+E((t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v*100)+'%')+'" data-tip-pos="right">'+(img?'<span class="art" style="background-image:url(\''+E(img)+'\')"></span>':'')+key(t,i)+
         ((t.types||t.type)?'<span class="typ">'+(t.types||[t.type]).filter(Boolean).slice(0,2).map(y=>'<pw-icon type="'+E(y)+'" size="2xs"></pw-icon>').join('')+'</span>':'')+
@@ -5587,7 +5593,7 @@ class PWParty extends HTMLElement{
     if(!was&&!matchMedia('(prefers-reduced-motion: reduce)').matches)[].slice.call(this.querySelectorAll('.pwpt')).forEach((c,i)=>c.animate([{opacity:0,transform:'translateX(-24px)'},{opacity:1,transform:'none'}],{duration:260,delay:i*45,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}))}
   /* mover o conjunto: arrastar a barra "Mover" (ou setas com foco nela); fica dentro do contêiner */
   _moveInit(){var g=this.querySelector('.pwpt-move');if(!g)return;var P=()=>this.offsetParent||document.body,clamp=(x,y)=>{var p=P(),m=8;return [Math.max(m,Math.min(p.clientWidth-this.offsetWidth-m,x)),Math.max(32,Math.min(p.clientHeight-this.offsetHeight-m,y))]},
-      set=(x,y,ev)=>{var c=clamp(x,y);this.style.left=c[0]+'px';this.style.top=c[1]+'px';this.style.right='auto';this.style.bottom='auto';if(ev)this.dispatchEvent(new CustomEvent('move',{bubbles:true,detail:{left:c[0],top:c[1]}}))};
+      set=(x,y,ev)=>{var c=clamp(x,y),cs=getComputedStyle(this),ml=parseFloat(cs.marginLeft)||0,mt=parseFloat(cs.marginTop)||0;this.style.left=(c[0]-ml)+'px';this.style.top=(c[1]-mt)+'px';this.style.right='auto';this.style.bottom='auto';if(ev)this.dispatchEvent(new CustomEvent('move',{bubbles:true,detail:{left:c[0],top:c[1]}}))};
     g.addEventListener('pointerdown',e=>{if(e.button!==0||this.hasAttribute('locked'))return;e.preventDefault();var S=(this.getBoundingClientRect().width/this.offsetWidth)||1,x0=e.clientX,y0=e.clientY,l0=this.offsetLeft,t0=this.offsetTop;this.classList.add('moving');
       var mv=ev=>set(l0+(ev.clientX-x0)/S,t0+(ev.clientY-y0)/S),up=()=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);this.classList.remove('moving');set(this.offsetLeft,this.offsetTop,true)};
       document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)});

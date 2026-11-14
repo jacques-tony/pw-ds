@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.79.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.79.1 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1503,6 +1503,12 @@ pw-party:is(:hover,:focus-within,.moving) :is(pw-card.pwpt-bg,.pwpt-move){opacit
 pw-party.moving .pwpt-move{cursor:grabbing}
 pw-party[locked] .pwpt-move{display:none}pw-party[locked] .pwpt-lock{display:flex}
 pw-party .pwpt-move:focus-visible{outline:2px solid var(--pw-focus-ring)}
+/* editando a ordem pelo perfil reduzido: o ✓ fica no lugar da alça, junto dos cards (a barra de salvar da HUD some) */
+pw-party pw-button.pwpt-done{position:absolute;top:calc(var(--pw-space-8) * -1);left:50%;margin-left:calc(var(--pt-w) * .125);transform:translateX(-50%);display:none;z-index:3}
+pw-party[editing] pw-button.pwpt-done{display:inline-flex;animation:pwsp-pop .28s var(--card-ease)}
+pw-party[editing] :is(.pwpt-move,.pwpt-lock){display:none}
+pw-party[editing] pw-card.pwpt-bg{opacity:1}
+pw-hud[editing-party] pw-card.pwhd-done-bar{display:none}
 @media (prefers-reduced-motion:reduce){pw-hud *,pw-party *{transition:none!important;animation:none!important}}
 
 /* ===================== COMPONENT: pw-control-group + pw-control-group-item (lista suspensa: menus, dropdowns, seleção) ===================== */

@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.79.1
+- `pw-party`: ao editar a ordem pelo perfil reduzido, o botão ✓ de salvar aparece junto dos cards flutuantes (no lugar da alça); a barra de salvar da HUD fica escondida nesse caso.
+- Mover o conjunto: o bloco agora acompanha o ponteiro exatamente, sem pular para longe da alça (descontava a margem duas vezes).
+
 ## 0.79.0
 - `pw-party`:
   - Troca de Pokémon selecionado mais suave: o card que cresce e o que diminui animam tamanho e posição juntos, e os outros deslizam para o lugar; não recria os cards quando nada mudou.
