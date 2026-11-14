@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.80.3 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.80.4 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1299,7 +1299,7 @@ pw-party[hidden]{display:none}
 pw-party{position:absolute;margin-top:var(--pw-space-6)}
 pw-party pw-card.pwpt{position:relative;width:var(--pt-w);height:var(--pt-h);border-radius:var(--pw-radius-sm);cursor:pointer;transform-origin:left center;transition:transform .52s cubic-bezier(.45,.05,.25,1),margin .52s cubic-bezier(.45,.05,.25,1),box-shadow .3s;overflow:visible}
 pw-party pw-card.pwpt>.pwc-content{padding:0;gap:0;height:100%;display:grid;grid-template-columns:42% 1fr;align-items:end;position:relative}
-pw-party pw-card.pwpt[interactive]>.pwc-content::before{content:"";position:absolute;inset:1px;border-radius:calc(var(--pw-radius-sm) - 1px);background:linear-gradient(90deg,transparent 12%,color-mix(in srgb,var(--pw-bg-edge) 25%,transparent) 24%,color-mix(in srgb,var(--pw-bg-edge) 60%,transparent) 34%,color-mix(in srgb,var(--pw-bg-edge) 88%,transparent) 44%,color-mix(in srgb,var(--pw-bg-edge) 96%,transparent) 52%);pointer-events:none}
+pw-party .pwpt>.art{position:absolute;left:2px;top:2px;bottom:2px;width:58%;border-radius:calc(var(--pw-radius-sm) - 2px) 0 0 calc(var(--pw-radius-sm) - 2px);background:left center/cover no-repeat;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,#000 45%,rgba(0,0,0,.55) 70%,transparent);mask-image:linear-gradient(90deg,#000 45%,rgba(0,0,0,.55) 70%,transparent)}
 pw-party pw-card.pwpt[highlight]{transform:scale(1.25);margin-block:calc(var(--pt-h) * .125);z-index:2;box-shadow:0 0 18px -2px color-mix(in srgb,var(--pw-gold-300) 60%,transparent)}
 pw-party .pwpt .art{position:absolute;left:2px;top:2px;bottom:2px;width:60%;border-radius:calc(var(--pw-radius-sm) - 2px) 0 0 calc(var(--pw-radius-sm) - 2px);background:center 30%/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,#000 55%,transparent);mask-image:linear-gradient(90deg,#000 55%,transparent);pointer-events:none}
 pw-party .pwpt .key{position:absolute;right:var(--pw-space-1);top:var(--pw-space-1);transform-origin:top right;z-index:3;white-space:nowrap;pointer-events:none}
@@ -1325,12 +1325,12 @@ pw-party.moving .pwpt-move{cursor:grabbing}
 pw-party[locked] .pwpt-move{display:none}pw-party[locked] .pwpt-lock{display:flex}
 pw-party .pwpt-move:focus-visible{outline:2px solid var(--pw-focus-ring)}
 /* editando a ordem pelo perfil reduzido: o ✓ fica no lugar da alça, junto dos cards (a barra de salvar da HUD some) */
-pw-party pw-button.pwpt-done{position:absolute;top:calc(var(--pw-space-6) * -1 - 2px);right:calc(var(--pt-w) * -.25 + var(--pw-space-1));display:none;z-index:3}pw-party pw-button.pwpt-done>button{height:var(--pw-space-6);min-height:0}
+pw-party pw-button.pwpt-done{position:absolute;top:calc(var(--pw-space-6) * -1 - 2px);right:calc(var(--pt-w) * -.25 + var(--pw-space-2));display:none;z-index:3}pw-party pw-button.pwpt-done>button{height:var(--pw-space-6);min-height:0}
 pw-party[editing] pw-button.pwpt-done{display:inline-flex;animation:pwsp-pop .28s var(--card-ease)}
 pw-party[editing] .pwpt-move{opacity:1}
 pw-party[editing] pw-card.pwpt-bg{opacity:1}
 pw-hud[editing-party] pw-card.pwhd-done-bar{display:none}
-pw-party pw-button.pwpt-opts{position:absolute;top:calc(var(--pw-space-6) * -1 - 2px);right:calc(var(--pt-w) * -.25 + var(--pw-space-1));height:var(--pw-space-6);z-index:3;opacity:0;transition:opacity .2s}
+pw-party pw-button.pwpt-opts{position:absolute;top:calc(var(--pw-space-6) * -1 - 2px);right:calc(var(--pt-w) * -.25 + var(--pw-space-2));height:var(--pw-space-6);z-index:3;opacity:0;transition:opacity .2s}
 pw-party pw-button.pwpt-opts>button{height:var(--pw-space-6);min-height:0}
 pw-party:is(:hover,:focus-within,.menu-open) pw-button.pwpt-opts{opacity:1}
 pw-party:is(.menu-open) :is(pw-card.pwpt-bg,.pwpt-move){opacity:1}
