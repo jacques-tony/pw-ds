@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.80.5
+- `pw-party`: cabeçalho do bloco com 12px de padding em todos os lados (alça, ⋮ e ✓ a 12px das bordas e 12px até os cards); tokens `--pt-pad` e `--pt-hd`.
+
 ## 0.80.4
 - `pw-party`: arte em camada própria dentro da moldura (a borda do card fica por cima e inteira), cobrindo a altura do card e esmaecendo com máscara suave até as barras — sem o degradê por cima que deixava o corte da imagem e os cantos estranhos; botão de opções (⋮) e ✓ com 8px de respiro da borda direita.
 
