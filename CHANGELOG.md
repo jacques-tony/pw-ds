@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.85.1
+- `pw-widget-combo`: janela em `pw-card` tech com título `pw-card-header` banner (arrastar pelo banner); combos salvos em uma linha só.
+
 ## 0.85.0
 - Novo `<pw-widget-combo>` (Assistente de combo), sempre ligado ao Pokémon invocado:
   - Ficha com arte, nome, número, classe, nível, tipos (`pw-badge` + `pw-icon`) e efetividade em 4 níveis com cor.

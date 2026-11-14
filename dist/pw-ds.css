@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.85.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.85.1 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2141,12 +2141,12 @@ pw-dialog.pwbg-qty [slot="footer"],pw-dialog.pwbg-qty .pwd-foot pw-button{flex:1
 /* ===================== COMPONENT: pw-widget-combo (Assistente de combo) ===================== */
 pw-widget-combo{position:absolute;z-index:30;display:block;width:calc(var(--pw-space-32) * 5);font-family:var(--pw-font-body)}
 pw-widget-combo[hidden]{display:none}
-pw-widget-combo>pw-card.pwcb-card{width:100%;height:auto;--lift:0px}
-pw-widget-combo>pw-card.pwcb-card>.pwc-content{padding:0;gap:0;height:auto}
-pw-widget-combo .pwcb-head{display:flex;align-items:center;gap:var(--pw-space-2);padding:var(--pw-space-3) var(--pw-space-3) var(--pw-space-3) var(--pw-space-5);border-bottom:1px solid var(--pw-border-subtle);cursor:grab;user-select:none}
-pw-widget-combo .pwcb-head img{width:var(--pw-space-6);height:var(--pw-space-6)}
-pw-widget-combo .pwcb-head h2{margin:0;flex:1;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.02em;color:var(--pw-text-title)}
-pw-widget-combo .pwcb-body{display:grid;gap:var(--pw-space-4);padding:var(--pw-space-4) var(--pw-space-5) var(--pw-space-5)}
+pw-widget-combo .pwcb-wrap{display:block;width:100%}
+pw-widget-combo pw-card.pwcb-card{width:100%;height:auto;--lift:0px}
+pw-widget-combo pw-card.pwcb-card>.pwc-content{padding:0;gap:0;height:auto}
+pw-widget-combo .pwcb-head{cursor:grab;user-select:none;touch-action:none}
+pw-widget-combo pw-button.pwcb-x{position:absolute;top:var(--pw-space-3);right:var(--pw-space-3);z-index:3}
+pw-widget-combo .pwcb-body{display:grid;gap:var(--pw-space-4);padding:var(--pw-space-10) var(--pw-space-6) var(--pw-space-6);position:relative;z-index:1}
 pw-widget-combo .pwcb-sec h4{margin:0 0 var(--pw-space-2);font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase;color:var(--pw-text-accent-soft);display:flex;align-items:center;gap:var(--pw-space-2)}
 pw-widget-combo .pwcb-sec h4 span{margin-left:auto;text-transform:none;letter-spacing:0;font:var(--pw-text-caption);color:var(--pw-text-muted)}
 pw-widget-combo pw-card.pwcb-box{width:auto;height:auto;--lift:0px}
@@ -2178,6 +2178,7 @@ pw-widget-combo .pwcb-hint{margin:0;font-size:var(--pw-font-size-xs);color:var(-
 pw-widget-combo .pwcb-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:var(--pw-space-3)}
 pw-widget-combo .pwcb-acts{display:flex;gap:var(--pw-space-2)}
 pw-widget-combo pw-list.pwcb-saved pw-list-item{min-height:36px}
+pw-widget-combo .pwcb-saved .pwli-label,pw-widget-combo .pwcb-saved .pwli-main{display:flex;align-items:center;gap:var(--pw-space-2);flex:1;min-width:0}pw-widget-combo .pwcb-saved .pwcb-mini{flex:1}
 pw-widget-combo .pwcb-saved .pwcb-mini{display:flex;gap:2px}
 pw-widget-combo .pwcb-saved .pwcb-mini img{width:var(--pw-space-5);height:var(--pw-space-5);border-radius:4px}
 .pwcb-ghost{position:fixed;z-index:2000;width:var(--pw-space-10);height:var(--pw-space-10);transform:translate(-50%,-50%) scale(1.1);pointer-events:none;border-radius:8px;overflow:hidden;filter:drop-shadow(0 6px 10px var(--pw-black-a55))}
