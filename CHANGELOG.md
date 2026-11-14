@@ -27,6 +27,16 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.85.0
+- Novo `<pw-widget-combo>` (Assistente de combo), sempre ligado ao Pokémon invocado:
+  - Ficha com arte, nome, número, classe, nível, tipos (`pw-badge` + `pw-icon`) e efetividade em 4 níveis com cor.
+  - Magias para arrastar ou clicar; combo de 8 espaços numerados, reordenar arrastando, clique remove; tempo estimado do combo.
+  - Atalho gravado por tecla (`pw-input`); Salvar / Limpar; lista de combos salvos por Pokémon (`pw-list` + `pw-kbd`) com editar e apagar.
+  - Sem Pokémon invocado mostra `pw-empty`.
+  - API `show(pokemon)`, `close()`, `pokemon`, `combos`; evento `save` (cancelável).
+- `pw-hud`: novo evento `teamselect` ao trocar o Pokémon ativo.
+- Simulação: abre pelo ícone de minigames da barra superior e pelo slot ⚡ da barra de spells, e acompanha o Pokémon invocado.
+
 ## 0.84.0
 - `pw-widget-spells`: tom `brand` (moldura dourada) passa a ser o padrão dos slots e do assistente de combo; demo de comparação removida. `slot-tone="neutral"` continua disponível.
 

@@ -28,6 +28,7 @@ Componentes de interface do OTServ **Poke World Universe**, feitos como Web Comp
 | Widget Loot Stash | `<pw-widget-loot>` |
 | Widget Barra de spells | `<pw-widget-spells>` |
 | Widget Opções | `<pw-widget-options>` |
+| Widget Assistente de combo | `<pw-widget-combo>` |
 | Switch | `<pw-switch>` |
 | Slider | `<pw-slider>` |
 | HUD inferior e equipe lateral | `<pw-hud>` + `<pw-party>` |
