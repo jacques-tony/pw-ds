@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.83.3
+- Diálogo **Mover itens**: corpo sem rolagem — ao clicar em − / + não aparece mais barra de scroll.
+
 ## 0.83.2
 - Diálogo **Mover itens**: sem overlay (o jogo continua visível e sem escurecer) e quantidade inicial 1.
 
