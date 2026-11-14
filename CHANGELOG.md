@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.81.1
+- `pw-widget-spells`: novo atributo `slot-tone` (`neutral` padrão, `brand` em teste) para o tom dos slots de spell e do assistente de combo. Demo mostra as duas versões lado a lado para comparação.
+
 ## 0.81.0
 - Novo `<pw-widget-options>` (Widget Opções) com todas as configurações do jogo, reorganizadas em 9 categorias:
   - Geral: idioma, fonte, diálogo, notificações.

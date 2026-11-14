@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.81.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.81.1 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1970,7 +1970,7 @@ customElements.define('pw-widget-loot',PWWidgetLoot);
 
 /* ---------- pw-widget-spells: barra de spells (até 12), horizontal/vertical, recarga, mover, bloquear, editar e redefinir ordem ---------- */
 class PWWidgetSpells extends HTMLElement{
-  static get observedAttributes(){return ['orientation','locked']}
+  static get observedAttributes(){return ['orientation','locked','slot-tone']}
   get spells(){return this._s}
   set spells(v){this._s=(Array.isArray(v)?v:[]).slice(0,12);this._def=this._s.map(x=>x&&x.id);if(this._init)this._render()}
   connectedCallback(){if(this._init)return;this._init=true;var json=this.querySelector('script[type="application/json"]');if(json){try{this.spells=JSON.parse(json.textContent)}catch(e){}}if(!this._s)this.spells=[];
@@ -1992,10 +1992,10 @@ class PWWidgetSpells extends HTMLElement{
       if(this.hasAttribute('editing')&&e.shiftKey&&all[k]){this._swap(+s.dataset.i,+all[k].dataset.i);var t=L.querySelector('.pwsp-slot[data-i="'+all[k].dataset.i+'"]');if(t)t.focus();return}if(all[k])all[k].focus()});
     this._moveInit();this._render()}
   disconnectedCallback(){cancelAnimationFrame(this._raf)}
-  attributeChangedCallback(n){if(!this._init)return;if(n==='locked'){var it=this.querySelector('pw-control-group-item[value="lock"]');if(it){it.setAttribute('label',this.hasAttribute('locked')?'Desbloquear':'Bloquear');it.setAttribute('icon',this.hasAttribute('locked')?'unlock':'lock')}if(this.hasAttribute('locked'))this.edit(false)}
+  attributeChangedCallback(n){if(!this._init)return;if(n==='slot-tone'){this._render();return}if(n==='locked'){var it=this.querySelector('pw-control-group-item[value="lock"]');if(it){it.setAttribute('label',this.hasAttribute('locked')?'Desbloquear':'Bloquear');it.setAttribute('icon',this.hasAttribute('locked')?'unlock':'lock')}if(this.hasAttribute('locked'))this.edit(false)}
     this.setAttribute('aria-orientation',this.getAttribute('orientation')||'horizontal');this.dispatchEvent(new CustomEvent(n==='locked'?'lock':'orientation',{bubbles:true,detail:{locked:this.hasAttribute('locked'),orientation:this.getAttribute('orientation')}}))}
-  _render(){var E=pwEsc,L=this.querySelector('.pwsp-list');if(!L)return;var v=this.getAttribute('orientation')==='vertical';
-    L.innerHTML=this._s.map((x,i)=>{if(!x)return '';var c=this._cd[x.id];return '<pw-card variant="tertiary" tone="neutral" interactive state="idle" class="pwsp-slot'+(c?' cooling':'')+'" data-i="'+i+'"'+(x.imageOff?' data-off':'')+' role="button" tabindex="'+(i?-1:0)+'" aria-label="'+E(x.name||'Spell '+(i+1))+', tecla '+E(x.key||String(i+1))+'" '+(this.hasAttribute('editing')?'':'data-tip-title="'+E(x.name||'')+'" data-tip="'+E((x.cd?'Recarga '+x.cd+'s':'')+(x.hint?(x.cd?' · ':'')+x.hint:''))+'" data-tip-pos="'+(v?'right':'top')+'"')+'>'+
+  _render(){var E=pwEsc,L=this.querySelector('.pwsp-list');if(!L)return;var cbx=this.querySelector('.pwsp-combo');if(cbx)cbx.setAttribute('tone',this.getAttribute('slot-tone')||'neutral');var v=this.getAttribute('orientation')==='vertical';
+    L.innerHTML=this._s.map((x,i)=>{if(!x)return '';var c=this._cd[x.id];return '<pw-card variant="tertiary" tone="'+E(this.getAttribute('slot-tone')||'neutral')+'" interactive state="idle" class="pwsp-slot'+(c?' cooling':'')+'" data-i="'+i+'"'+(x.imageOff?' data-off':'')+' role="button" tabindex="'+(i?-1:0)+'" aria-label="'+E(x.name||'Spell '+(i+1))+', tecla '+E(x.key||String(i+1))+'" '+(this.hasAttribute('editing')?'':'data-tip-title="'+E(x.name||'')+'" data-tip="'+E((x.cd?'Recarga '+x.cd+'s':'')+(x.hint?(x.cd?' · ':'')+x.hint:''))+'" data-tip-pos="'+(v?'right':'top')+'"')+'>'+
         '<img src="'+E(c&&x.imageOff?x.imageOff:x.image)+'" alt="" draggable="false"><span class="cd" aria-hidden="true"></span><pw-badge class="num" tone="neutral" size="xs">'+E(x.key||String(i+1))+'</pw-badge></pw-card>'}).join('');
     this._tick()}
   /* usa a spell i: dispara "cast" (cancelável) e inicia a recarga */
@@ -2201,5 +2201,5 @@ class PWWidgetOptions extends HTMLElement{
       var ev=new CustomEvent(id==='save'?'backup-save':'backup-load',{bubbles:true,cancelable:true,detail:{path:path,items:what}});this.dispatchEvent(ev);if(!ev.defaultPrevented&&window.pwToast)pwToast(id==='save'?'Backup salvo em '+path:'Backup carregado de '+path,{tone:'success'})}))}
 }
 customElements.define('pw-widget-options',PWWidgetOptions);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.81.0"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.81.1"});
 })();
