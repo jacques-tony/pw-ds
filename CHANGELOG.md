@@ -27,6 +27,23 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.81.0
+- Novo `<pw-widget-options>` (Widget Opções) com todas as configurações do jogo, reorganizadas em 9 categorias:
+  - Geral: idioma, fonte, diálogo, notificações.
+  - Interface: layout e janelas, HUD e Pokémon, barra de ações, minimapa, opacidade.
+  - Mapa e combate: mapa e criaturas, golpes.
+  - Controles: movimento, confirmações, tempos de resposta.
+  - Chat: console, mensagens privadas.
+  - Gráficos: tela, qualidade, iluminação.
+  - Áudio: volume, sons.
+  - Atalhos: perfis (criar/renomear/apagar), busca, tabela Primário/Secundário/Terciário com gravação de tecla, adicionar mensagem, redefinir tudo.
+  - Backup: salvar/carregar com pasta e itens.
+  - Busca global com destaque, subseções com scroll-spy, dependências entre opções, restaurar padrões por categoria, arrastar pela barra de título, Esc fecha.
+  - API `show()`, `close()`, `open(categoria)`, `values`; eventos `change`, `hotkey`, `reset`, `backup-save`, `backup-load`, `manage-ignored`.
+- Novos componentes `pw-switch` e `pw-slider`.
+- Novos ícones: `volume`, `monitor`, `keyboard`, `save`, `gamepad`.
+- Simulação: o ícone Configurações da barra superior abre as Opções.
+
 ## 0.80.6
 - `pw-widget-spells`: Assistente de combo virou um slot (`pw-card` tertiary com ícone `zap`) no fim da barra, depois das spells; saiu do menu de opções. Dispara o evento `combo`; fica desativado durante a edição de ordem.
 
