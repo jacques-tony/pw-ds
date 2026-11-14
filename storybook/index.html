@@ -4889,7 +4889,7 @@ class PWNumber extends HTMLElement{
         t=setTimeout(()=>{iv=setInterval(()=>this.stepBy(dir),60)},400)});
         ['pointerup','pointerleave','pointercancel'].forEach(ev=>btn.addEventListener(ev,()=>{clearTimeout(t);clearInterval(iv)}))};
       hold(q('.dec'),-1);hold(q('.inc'),1);hold(q('.pwn-arrows .down'),-1);hold(q('.pwn-arrows .up'),1);
-      q('.max').addEventListener('click',()=>{var m=this._num('max');if(m!=null)this.set(m,true)});
+      q('.max').addEventListener('click',()=>{var m=this._num('max');if(m!=null){this.set(m,true);if(this._in)this._in.value=this.value}});
       this._in.addEventListener('keydown',e=>{var k={ArrowUp:1,ArrowDown:-1,PageUp:10,PageDown:-10}[e.key];
         if(k){e.preventDefault();this.stepBy(k*(e.shiftKey&&Math.abs(k)===1?10:1))}
         else if(e.key==='Home'&&this._num('min')!=null){e.preventDefault();this.set(this._num('min'),true)}
@@ -4908,7 +4908,7 @@ class PWNumber extends HTMLElement{
     var p=this._num('precision');if(p==null){p=(String(st).split('.')[1]||'').length}return +v.toFixed(p)}
   set(v,emit){var nv=this._clamp(v),old=this.value;this.setAttribute('value',nv);
     if(emit&&nv!==old){this.dispatchEvent(new Event('input',{bubbles:true}));this.dispatchEvent(new CustomEvent('change',{bubbles:true,detail:{value:nv}}))}}
-  stepBy(n){if(this.hasAttribute('disabled')||this.hasAttribute('readonly'))return;this.set(this.value+n*(this._num('step')||1),true)}
+  stepBy(n){if(this.hasAttribute('disabled')||this.hasAttribute('readonly'))return;this.set(this.value+n*(this._num('step')||1),true);if(this._in)this._in.value=this.value}
   _commit(){var v=parseFloat(this._in.value.replace(',','.'));if(isNaN(v))v=this.value;this.set(v,true);this._sync()}
   attributeChangedCallback(){if(this._init)this._sync()}
   _sync(){
@@ -5890,15 +5890,12 @@ class PWWidgetBag extends HTMLElement{
   /* diálogo "Mover itens": pw-dialog + pw-card + pw-number + pw-slider + pw-button */
   _qtyDialog(it,n,cb){var E=pwEsc,d=document.createElement('pw-dialog');d.className='pwbg-qty';d.setAttribute('heading','Mover itens');d.setAttribute('size','sm');
     var pic=it.sprite?'<span class="spr" style="--n:'+(+it.frames||1)+'"><img src="'+E(it.sprite)+'" alt=""></span>':it.image?'<img src="'+E(it.image)+'" alt="">':pwIcon(it.icon||'gem');
-    d.innerHTML='<div class="pwbq-top"><pw-card variant="tertiary" tone="neutral" class="pwbq-pic">'+pic+'</pw-card><div class="pwbq-txt"><b>'+E(it.label||'Item')+'</b><small>'+n+' disponíveis</small></div><pw-number value="'+n+'" min="1" max="'+n+'" label="Quantidade" layout="compact" style="--nw:96px"></pw-number></div>'+
-      '<div class="pwbq-range"><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="chevron-left" data-q="-1" aria-label="Diminuir"></pw-button><pw-slider min="1" max="'+n+'" value="'+n+'" label="Quantidade"></pw-slider><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="chevron-right" data-q="1" aria-label="Aumentar"></pw-button></div>'+
-      '<div class="pwbq-lim"><span>1</span><span>'+n+'</span></div>'+
-      '<pw-button slot="footer" variant="ghost" data-close="no">Cancelar</pw-button><pw-button slot="footer" data-close="yes" icon="check">Confirmar</pw-button>';
-    document.body.appendChild(d);var num=d.querySelector('pw-number'),sl=d.querySelector('pw-slider'),q=n,set=v=>{q=Math.max(1,Math.min(n,Math.round(+v)||1));if(+num.value!==q)num.value=q;if(+sl.value!==q)sl.value=q};
-    ['input','change'].forEach(t=>{num.addEventListener(t,()=>set(num.value));sl.addEventListener(t,()=>set(sl.value))});
-    d.addEventListener('click',e=>{var b=e.target.closest('[data-q]');if(b)set(q+(+b.dataset.q))});
+    d.innerHTML='<div class="pwbq-top"><pw-card variant="tertiary" tone="neutral" class="pwbq-pic">'+pic+'</pw-card><div class="pwbq-txt"><b>'+E(it.label||'Item')+'</b><small>'+n+' disponíveis</small></div></div><pw-number value="'+n+'" min="1" max="'+n+'" show-max label="Quantidade" block></pw-number>'+
+      '<pw-button slot="footer" variant="ghost" fx="none" particles="0" data-close="no">Cancelar</pw-button><pw-button slot="footer" fx="none" particles="0" data-close="yes" icon="check">Confirmar</pw-button>';
+    document.body.appendChild(d);var num=d.querySelector('pw-number'),q=n,set=v=>{q=Math.max(1,Math.min(n,Math.round(+v)||1))};
+    ['input','change'].forEach(t=>num.addEventListener(t,()=>set(num.value)));
     d.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.target.closest('pw-button')){e.preventDefault();d.close('yes')}});
-    d.addEventListener('close',e=>{if(e.detail.value==='yes')cb(q);d.remove()});requestAnimationFrame(()=>{d.show();setTimeout(()=>{var i=num.querySelector('input');if(i){i.focus();i.select()}},60)})}
+    d.addEventListener('close',e=>{if(e.detail.value==='yes')cb((set(num.value),q));d.remove()});requestAnimationFrame(()=>{var pc=d.querySelector(':scope>pw-card');if(pc)pc.setAttribute('variant','primary');var x=d.querySelector('.pwd-x');if(x){x.setAttribute('fx','none');x.setAttribute('particles','0')}d.show();setTimeout(()=>{var i=num.querySelector('input');if(i){i.focus();i.select()}},60)})}
   fitAll(){if(this.hasAttribute('collapsed'))return;var sc=this.querySelector('.pwbg-scroll'),g=this.querySelector('.pwbg-grid'),cs=getComputedStyle(sc);
     this.style.height=Math.max(this._limits().min,this.offsetHeight-sc.clientHeight+g.offsetHeight+parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom))+'px'}
   attributeChangedCallback(n,o,v){if(!this._init||o===v)return;if(n==='slots')this._grid();else if(n==='heading')this._sync();else{this._sync();

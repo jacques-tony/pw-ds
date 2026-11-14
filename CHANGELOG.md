@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.83.1
+- Diálogo **Mover itens**: card `primary`, quantidade só com `pw-number` (− / + e botão **Máx.**), sem a faixa; todos os botões sem efeitos (`fx="none"`), inclusive o fechar.
+- `pw-number`: corrigido o campo que não atualizava ao usar − / + ou Máx. com o campo em foco (ao sair do campo, o valor antigo voltava).
+
 ## 0.83.0
 - `pw-widget-bag` (e Loot Stash): arrastar itens entre espaços, mochilas e o Loot Stash. Soltar em espaço vazio move; no mesmo item empilha; em outro item troca; numa mochila guarda dentro dela.
 - Pilhas com mais de 1 abrem o diálogo **Mover itens** (`pw-dialog` + `pw-card` + `pw-number` + `pw-slider` + `pw-button`): quantidade com campo, faixa e setas ‹ ›, Confirmar (Enter) e Cancelar (Esc).
