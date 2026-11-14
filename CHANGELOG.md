@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.82.1
+- `pw-widget-spells`: card da spell com raio de 12px e 2px menor (30×30); a arte da spell mantém o tamanho (30×30) e a borda do tom fica por cima dela.
+- `pw-card` tertiary: raio da moldura configurável por `--ter-r` (padrão 8px).
+
 ## 0.82.0
 - Card de Pokémon vazio usa o verso de carta PokeWorld Universe: vertical na HUD fixa (`assets/hud/empty-slot.webp`), horizontal na equipe flutuante (`assets/hud/empty-slot-h.webp`, `window.PW_PARTY_EMPTY` para trocar).
 - `pw-party[minimal]` mais compacto: cards de 28px de altura, barras de 4px com 2px entre elas, 4px entre os cards.
