@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.87.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.87.3 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2199,4 +2199,7 @@ pw-dock[drop-target]>pw-card.pwdk-bg{filter:brightness(1.25)}
 [docked].dragging{transition:none}
 [docked] .pwmm-rl,[docked] .pwmm-rr{display:none!important}
 pw-widget-chat[static] .pwmm-resize{display:none!important}pw-widget-chat[static] .pwbg-head{cursor:default}
+.pwdk-rz{position:absolute;height:var(--pw-space-3);z-index:9000;cursor:ns-resize;display:grid;place-items:center;outline:none}
+.pwdk-rz::after{content:"";width:var(--pw-space-10);height:var(--pw-space-1);border-radius:var(--pw-radius-full);background:var(--pw-filament);opacity:0;box-shadow:0 0 8px var(--pw-glow);transition:opacity var(--card-dur)}
+.pwdk-rz:not([hidden]){display:grid}.pwdk-rz[hidden]{display:none}.pwdk-rz:hover::after,pw-dock.resizing .pwdk-rz::after,.pwdk-rz:focus-visible::after{opacity:1}
 .pwdk-flash{position:absolute;z-index:9999;pointer-events:none;box-sizing:border-box;border:2px solid var(--pw-filament);box-shadow:0 0 14px var(--pw-glow),inset 0 0 14px var(--pw-glow)}
