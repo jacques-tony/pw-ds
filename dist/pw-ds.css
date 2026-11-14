@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.78.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.78.3 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2001,9 +2001,9 @@ pw-widget-spells[editing] .pwsp-slot{cursor:grab;touch-action:none;animation:pwh
 pw-widget-spells[editing] .pwsp-slot:nth-child(2n){animation-delay:-.45s}
 pw-widget-spells[editing] .pwsp-slot.dragging{cursor:grabbing;animation:none;z-index:10;transition:none;box-shadow:0 0 0 2px var(--pw-filament),0 8px 18px var(--pw-black-a45),0 0 14px var(--pw-glow)}
 pw-widget-spells .pwsp-slot.swapping{animation:none!important}
-pw-widget-spells pw-card.pwsp-done-bar{position:absolute;left:0;bottom:calc(100% + var(--pw-space-2));width:auto;height:auto;--lift:0px;transform:translateY(8px);opacity:0;visibility:hidden;pointer-events:none;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .2s ease,visibility 0s linear .32s}
-pw-widget-spells pw-card.pwsp-done-bar>.pwc-content{height:auto;flex-direction:row;align-items:center;gap:var(--pw-space-3);padding:var(--pw-space-2) var(--pw-space-2) var(--pw-space-2) var(--pw-space-4);font-size:var(--pw-font-size-sm);color:var(--pw-text-body);white-space:nowrap}
-pw-widget-spells[editing] pw-card.pwsp-done-bar{transform:none;opacity:1;visibility:visible;pointer-events:auto;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .2s ease,visibility 0s}
+pw-widget-spells .pwsp-done{flex:none;display:none}pw-widget-spells .pwsp-done>button{border-radius:var(--pw-radius-full)!important;width:var(--sp-slot);height:var(--sp-slot);padding:0}
+pw-widget-spells[editing] .pwsp-done{display:inline-flex;animation:pwsp-pop .28s var(--card-ease)}
+@keyframes pwsp-pop{from{transform:scale(.6);opacity:0}}
 pw-widget-spells .pwsp-lock{display:none;flex:none;place-items:center;width:var(--pw-space-4);height:var(--pw-space-6);color:var(--pw-text-accent)}
 pw-widget-spells[orientation="vertical"] .pwsp-lock{width:var(--pw-space-6);height:var(--pw-space-4)}
 pw-widget-spells .pwsp-lock svg{width:var(--pw-space-4);height:var(--pw-space-4);filter:drop-shadow(0 1px 1px var(--pw-black-a55))}

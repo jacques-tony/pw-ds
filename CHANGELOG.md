@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.78.3
+- `pw-widget-spells`: ao editar a ordem, um botão de check (✓) aparece no lugar do botão de menu para salvar; removida a faixa "Arraste as spells…" (a dica fica no tooltip do check).
+
 ## 0.78.2
 - `pw-widget-spells`: menu de ações usa o `pw-control-group` padrão do DS em `size="sm"` (mesmo dos menus da HUD e da Batalha), sem o `type` que alterava a aparência.
 
