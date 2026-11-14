@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.79.0
+- `pw-party`:
+  - Troca de Pokémon selecionado mais suave: o card que cresce e o que diminui animam tamanho e posição juntos, e os outros deslizam para o lugar; não recria os cards quando nada mudou.
+  - Mover o conjunto no mesmo padrão da barra de spells: fundo `pw-card` tertiary e alça ⠿ só ao passar o mouse; cadeado quando `locked`.
+
 ## 0.78.4
 - `pw-widget-spells`: botões de menu e de check (salvar ordem) com o formato padrão do `pw-button` (sem arredondamento total).
 
