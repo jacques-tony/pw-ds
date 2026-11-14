@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.78.2
+- `pw-widget-spells`: menu de ações usa o `pw-control-group` padrão do DS em `size="sm"` (mesmo dos menus da HUD e da Batalha), sem o `type` que alterava a aparência.
+
 ## 0.78.1
 - `pw-widget-spells`:
   - Bloqueada mostra um ícone de cadeado no lugar da alça.

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.78.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.78.2 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1968,7 +1968,7 @@ class PWWidgetSpells extends HTMLElement{
       '<pw-button id="'+u+'m" class="pwsp-menu" appearance="outline" size="sm" fx="none" particles="0" icon="menu" data-tip="Opções da barra" aria-label="Opções da barra" aria-haspopup="menu"></pw-button>'+
       '</div>'+
       '<pw-card variant="primary" glow="false" class="pwsp-done-bar" aria-live="polite"><span>Arraste as spells para mudar a ordem</span><pw-button class="pwsp-done" size="sm" fx="none" particles="0" icon="check">Salvar</pw-button></pw-card>'+
-      '<pw-control-group for="'+u+'m" type="menu" label="Opções da barra de spells">'+[['orient','rotate-cw','Mudar orientação'],['lock','lock','Bloquear'],['edit','pencil','Editar ordem'],['reset','refresh','Redefinir ordem'],['combo','zap','Assistente de combo']].map(o=>'<pw-control-group-item value="'+o[0]+'" icon="'+o[1]+'">'+o[2]+'</pw-control-group-item>').join('')+'</pw-control-group>';
+      '<pw-control-group for="'+u+'m" size="sm" label="Opções da barra de spells">'+[['orient','rotate-cw','Mudar orientação'],['lock','lock','Bloquear'],['edit','pencil','Editar ordem'],['reset','refresh','Redefinir ordem'],['combo','zap','Assistente de combo']].map(o=>'<pw-control-group-item value="'+o[0]+'" icon="'+o[1]+'">'+o[2]+'</pw-control-group-item>').join('')+'</pw-control-group>';
     var L=this.querySelector('.pwsp-list'),M=this.querySelector('pw-control-group');
     new MutationObserver(()=>this.classList.toggle('menu-open',M.hasAttribute('open'))).observe(M,{attributes:true,attributeFilter:['open']});
     M.addEventListener('select',e=>{var v=e.detail.value;
@@ -2037,5 +2037,5 @@ class PWWidgetSpells extends HTMLElement{
     g.addEventListener('keydown',e=>{var d={ArrowUp:[0,-16],ArrowDown:[0,16],ArrowLeft:[-16,0],ArrowRight:[16,0]}[e.key];if(!d||this.hasAttribute('locked'))return;e.preventDefault();set(this.offsetLeft+d[0],this.offsetTop+d[1],true)})}
 }
 customElements.define('pw-widget-spells',PWWidgetSpells);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.78.1"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.78.2"});
 })();

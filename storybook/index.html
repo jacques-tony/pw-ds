@@ -6178,7 +6178,7 @@ class PWWidgetSpells extends HTMLElement{
       '<pw-button id="'+u+'m" class="pwsp-menu" appearance="outline" size="sm" fx="none" particles="0" icon="menu" data-tip="Opções da barra" aria-label="Opções da barra" aria-haspopup="menu"></pw-button>'+
       '</div>'+
       '<pw-card variant="primary" glow="false" class="pwsp-done-bar" aria-live="polite"><span>Arraste as spells para mudar a ordem</span><pw-button class="pwsp-done" size="sm" fx="none" particles="0" icon="check">Salvar</pw-button></pw-card>'+
-      '<pw-control-group for="'+u+'m" type="menu" label="Opções da barra de spells">'+[['orient','rotate-cw','Mudar orientação'],['lock','lock','Bloquear'],['edit','pencil','Editar ordem'],['reset','refresh','Redefinir ordem'],['combo','zap','Assistente de combo']].map(o=>'<pw-control-group-item value="'+o[0]+'" icon="'+o[1]+'">'+o[2]+'</pw-control-group-item>').join('')+'</pw-control-group>';
+      '<pw-control-group for="'+u+'m" size="sm" label="Opções da barra de spells">'+[['orient','rotate-cw','Mudar orientação'],['lock','lock','Bloquear'],['edit','pencil','Editar ordem'],['reset','refresh','Redefinir ordem'],['combo','zap','Assistente de combo']].map(o=>'<pw-control-group-item value="'+o[0]+'" icon="'+o[1]+'">'+o[2]+'</pw-control-group-item>').join('')+'</pw-control-group>';
     var L=this.querySelector('.pwsp-list'),M=this.querySelector('pw-control-group');
     new MutationObserver(()=>this.classList.toggle('menu-open',M.hasAttribute('open'))).observe(M,{attributes:true,attributeFilter:['open']});
     M.addEventListener('select',e=>{var v=e.detail.value;
