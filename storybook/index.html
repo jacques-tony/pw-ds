@@ -2208,7 +2208,7 @@ pw-widget-options .pwop-foot small{color:var(--pw-text-muted);font-size:var(--pw
 .pwbg-ghost .spr{position:absolute;inset:0;overflow:hidden}.pwbg-ghost .spr img{display:block;width:100%;height:calc(var(--n) * 100%);image-rendering:pixelated;animation:pwbg-spr calc(var(--n) * 110ms) steps(var(--n)) infinite}
 :is(pw-widget-bag,pw-widget-loot) .pwbg-slot.dragging-src{opacity:.35}
 :is(pw-widget-bag,pw-widget-loot) .pwbg-slot.drop-over{box-shadow:0 0 0 2px var(--pw-filament),0 0 10px var(--pw-glow)}
-pw-dialog.pwbg-qty{--dlg-w:320px}
+pw-dialog.pwbg-qty{--dlg-w:320px;pointer-events:none}pw-dialog.pwbg-qty>pw-card{pointer-events:auto}pw-dialog.pwbg-qty .pwd-backdrop{display:none}
 pw-dialog.pwbg-qty .pwd-body{display:grid;gap:var(--pw-space-3)}
 pw-dialog.pwbg-qty .pwbq-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:var(--pw-space-3)}
 pw-dialog.pwbg-qty pw-card.pwbq-pic{width:var(--pw-space-10);height:var(--pw-space-10);--lift:0px}
@@ -5890,9 +5890,9 @@ class PWWidgetBag extends HTMLElement{
   /* diálogo "Mover itens": pw-dialog + pw-card + pw-number + pw-slider + pw-button */
   _qtyDialog(it,n,cb){var E=pwEsc,d=document.createElement('pw-dialog');d.className='pwbg-qty';d.setAttribute('heading','Mover itens');d.setAttribute('size','sm');
     var pic=it.sprite?'<span class="spr" style="--n:'+(+it.frames||1)+'"><img src="'+E(it.sprite)+'" alt=""></span>':it.image?'<img src="'+E(it.image)+'" alt="">':pwIcon(it.icon||'gem');
-    d.innerHTML='<div class="pwbq-top"><pw-card variant="tertiary" tone="neutral" class="pwbq-pic">'+pic+'</pw-card><div class="pwbq-txt"><b>'+E(it.label||'Item')+'</b><small>'+n+' disponíveis</small></div></div><pw-number value="'+n+'" min="1" max="'+n+'" show-max label="Quantidade" block></pw-number>'+
+    d.innerHTML='<div class="pwbq-top"><pw-card variant="tertiary" tone="neutral" class="pwbq-pic">'+pic+'</pw-card><div class="pwbq-txt"><b>'+E(it.label||'Item')+'</b><small>'+n+' disponíveis</small></div></div><pw-number value="1" min="1" max="'+n+'" show-max label="Quantidade" block></pw-number>'+
       '<pw-button slot="footer" variant="ghost" fx="none" particles="0" data-close="no">Cancelar</pw-button><pw-button slot="footer" fx="none" particles="0" data-close="yes" icon="check">Confirmar</pw-button>';
-    document.body.appendChild(d);var num=d.querySelector('pw-number'),q=n,set=v=>{q=Math.max(1,Math.min(n,Math.round(+v)||1))};
+    document.body.appendChild(d);var num=d.querySelector('pw-number'),q=1,set=v=>{q=Math.max(1,Math.min(n,Math.round(+v)||1))};
     ['input','change'].forEach(t=>num.addEventListener(t,()=>set(num.value)));
     d.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.target.closest('pw-button')){e.preventDefault();d.close('yes')}});
     d.addEventListener('close',e=>{if(e.detail.value==='yes')cb((set(num.value),q));d.remove()});requestAnimationFrame(()=>{var pc=d.querySelector(':scope>pw-card');if(pc)pc.setAttribute('variant','primary');var x=d.querySelector('.pwd-x');if(x){x.setAttribute('fx','none');x.setAttribute('particles','0')}d.show();setTimeout(()=>{var i=num.querySelector('input');if(i){i.focus();i.select()}},60)})}

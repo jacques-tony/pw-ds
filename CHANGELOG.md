@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.83.2
+- Diálogo **Mover itens**: sem overlay (o jogo continua visível e sem escurecer) e quantidade inicial 1.
+
 ## 0.83.1
 - Diálogo **Mover itens**: card `primary`, quantidade só com `pw-number` (− / + e botão **Máx.**), sem a faixa; todos os botões sem efeitos (`fx="none"`), inclusive o fechar.
 - `pw-number`: corrigido o campo que não atualizava ao usar − / + ou Máx. com o campo em foco (ao sair do campo, o valor antigo voltava).
