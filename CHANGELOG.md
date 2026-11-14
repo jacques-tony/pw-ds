@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.80.1
+- `pw-card` tertiary `highlight`: corrigida a borda dourada dupla — o anel de `box-shadow` (com raio diferente da moldura) foi removido; a borda agora é só a moldura dourada, e o brilho externo continua. Vale para todos os cards em destaque (HUD, equipe flutuante, demos).
+
 ## 0.80.0
 - `pw-party`:
   - Novo botão ghost (⋮) no canto direito, visível no hover, que abre um `pw-control-group` com **Modo minimalista** / **Modo completo** e **Editar ordem**.

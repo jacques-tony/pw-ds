@@ -1272,12 +1272,13 @@ pw-choice-group[warning] .pwcg-msg{color:var(--pw-status-warning)}
 pw-card[variant="tertiary"][highlight]{
   --pw-ter-stroke-0:var(--pw-gold-700);--pw-ter-stroke-1:var(--pw-gold-300);--pw-ter-stroke-2:var(--pw-gold-600);
   --pw-ter-stroke-3:var(--pw-gold-100);--pw-ter-stroke-4:var(--pw-gold-500);--pw-ter-stroke-5:var(--pw-gold-200);
-  border-radius:var(--pw-radius-md);box-shadow:0 0 0 1px color-mix(in srgb,var(--pw-gold-200) 70%,transparent),0 0 18px -2px color-mix(in srgb,var(--pw-gold-300) 55%,transparent),inset 0 0 22px -6px color-mix(in srgb,var(--pw-gold-300) 35%,transparent)}
+  /* a borda dourada é só a moldura (svg); o box-shadow é só brilho, sem anel, para não desenhar uma segunda borda fora do raio da moldura */
+  box-shadow:0 0 18px -2px color-mix(in srgb,var(--pw-gold-300) 55%,transparent),inset 0 0 22px -6px color-mix(in srgb,var(--pw-gold-300) 35%,transparent)}
 pw-card[variant="tertiary"][highlight] .l-tstroke{stroke-width:1.5}
 pw-card[variant="tertiary"][highlight]:not([highlight=""])::before{content:attr(highlight);position:absolute;z-index:3;top:0;left:var(--pw-space-4);transform:translateY(-50%);
   padding:var(--pw-space-0-5) var(--pw-space-2);border-radius:var(--pw-radius-xs);background:linear-gradient(180deg,var(--pw-gold-100),var(--pw-gold-400));color:var(--pw-text-inverse);
   font:var(--pw-font-weight-bold) var(--pw-font-size-2xs)/var(--pw-line-height-tight) var(--pw-font-body);letter-spacing:.08em;text-transform:uppercase;box-shadow:0 0 10px -2px var(--pw-gold-300);white-space:nowrap}
-pw-card[variant="tertiary"][highlight][interactive]:not([disabled]):hover{box-shadow:0 0 0 1px var(--pw-gold-100),0 0 24px 0 color-mix(in srgb,var(--pw-gold-300) 65%,transparent),inset 0 0 22px -6px color-mix(in srgb,var(--pw-gold-300) 45%,transparent)}
+pw-card[variant="tertiary"][highlight][interactive]:not([disabled]):hover{box-shadow:0 0 24px 0 color-mix(in srgb,var(--pw-gold-300) 65%,transparent),inset 0 0 22px -6px color-mix(in srgb,var(--pw-gold-300) 45%,transparent)}
 
 /* ===================== COMPONENT: pw-search ===================== */
 /* campo de busca com sugestões (padrão combobox do WAI-ARIA APG); referências: Carbon Search, Porsche Input Search, Nord Autocomplete */
@@ -1445,7 +1446,7 @@ pw-hud .pwhd-team{display:flex;gap:var(--hd-gap);min-width:0;padding:0}
 pw-hud pw-card.pwhd-card{flex:none;width:var(--hd-card-w);height:var(--hd-card-h);border-radius:var(--pw-radius-md);overflow:visible}
 pw-hud pw-card.pwhd-card>.pwc-content{padding:0;gap:0;border-radius:inherit;overflow:visible}
 /* a arte fica dentro da moldura do tertiary, para a borda (azul ou dourada) aparecer inteira */
-pw-hud pw-card.pwhd-card[highlight]{box-shadow:0 0 0 2px color-mix(in srgb,var(--pw-gold-200) 85%,transparent),0 0 18px -2px color-mix(in srgb,var(--pw-gold-300) 60%,transparent)}
+pw-hud pw-card.pwhd-card[highlight]{box-shadow:0 0 18px -2px color-mix(in srgb,var(--pw-gold-300) 60%,transparent)}
 pw-hud .pwhd-card .key{position:absolute;right:var(--pw-space-0-5);top:var(--pw-space-0-5);z-index:3;white-space:nowrap;pointer-events:none}
 pw-hud .pwhd-card[interactive]>.pwc-content::before{content:"";border-radius:0 0 var(--pw-radius-md) var(--pw-radius-md);position:absolute;inset:auto 0 0;height:45%;background:linear-gradient(transparent,color-mix(in srgb,var(--pw-bg-edge) 85%,transparent));pointer-events:none}
 pw-hud .pwhd-card.empty .key{color:var(--pw-text-muted)}
@@ -1565,7 +1566,7 @@ pw-party{position:absolute;margin-top:var(--pw-space-6)}
 pw-party pw-card.pwpt{position:relative;width:var(--pt-w);height:var(--pt-h);border-radius:var(--pw-radius-sm);cursor:pointer;transform-origin:left center;transition:transform .52s cubic-bezier(.45,.05,.25,1),margin .52s cubic-bezier(.45,.05,.25,1),box-shadow .3s;overflow:visible}
 pw-party pw-card.pwpt>.pwc-content{padding:0;gap:0;height:100%;display:grid;grid-template-columns:42% 1fr;align-items:end;position:relative}
 pw-party pw-card.pwpt[interactive]>.pwc-content::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(90deg,transparent 25%,color-mix(in srgb,var(--pw-bg-edge) 92%,transparent) 48%);pointer-events:none}
-pw-party pw-card.pwpt[highlight]{transform:scale(1.25);margin-block:calc(var(--pt-h) * .125);z-index:2;box-shadow:0 0 0 2px color-mix(in srgb,var(--pw-gold-200) 85%,transparent),0 0 18px -2px color-mix(in srgb,var(--pw-gold-300) 60%,transparent)}
+pw-party pw-card.pwpt[highlight]{transform:scale(1.25);margin-block:calc(var(--pt-h) * .125);z-index:2;box-shadow:0 0 18px -2px color-mix(in srgb,var(--pw-gold-300) 60%,transparent)}
 pw-party .pwpt .art{position:absolute;left:2px;top:2px;bottom:2px;width:60%;border-radius:calc(var(--pw-radius-sm) - 2px) 0 0 calc(var(--pw-radius-sm) - 2px);background:center 30%/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,#000 55%,transparent);mask-image:linear-gradient(90deg,#000 55%,transparent);pointer-events:none}
 pw-party pw-card.pwpt[interactive]>.pwc-content::before{display:none}
 pw-party .pwpt .key{position:absolute;right:var(--pw-space-0-5);top:var(--pw-space-0-5);z-index:3;white-space:nowrap;pointer-events:none}
