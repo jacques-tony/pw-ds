@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.82.0
+- Card de Pokémon vazio usa o verso de carta PokeWorld Universe: vertical na HUD fixa (`assets/hud/empty-slot.webp`), horizontal na equipe flutuante (`assets/hud/empty-slot-h.webp`, `window.PW_PARTY_EMPTY` para trocar).
+- `pw-party[minimal]` mais compacto: cards de 28px de altura, barras de 4px com 2px entre elas, 4px entre os cards.
+
 ## 0.81.1
 - `pw-widget-spells`: novo atributo `slot-tone` (`neutral` padrão, `brand` em teste) para o tom dos slots de spell e do assistente de combo. Demo mostra as duas versões lado a lado para comparação.
 

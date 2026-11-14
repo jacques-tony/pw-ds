@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.81.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.82.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1337,9 +1337,11 @@ pw-party:is(:hover,:focus-within,.menu-open) pw-button.pwpt-opts{opacity:1}
 pw-party:is(.menu-open) :is(pw-card.pwpt-bg,.pwpt-move){opacity:1}
 pw-party[editing] pw-button.pwpt-opts{display:none}
 /* modo minimalista: só a arte e a vida, cards menores */
-pw-party[minimal]{--pt-w:calc(var(--pw-space-32) + var(--pw-space-2));--pt-h:var(--pw-space-9)}
+pw-party[minimal]{--pt-w:var(--pw-space-32);--pt-h:var(--pw-space-7);gap:var(--pw-space-1)}
 pw-party[minimal] .pwpt :is(.key,.typ,.bar>span){display:none}
-pw-party[minimal] .pwpt .bar pw-progress{--pr-h:var(--pw-space-2)}
+pw-party[minimal] .pwpt .bar pw-progress{--pr-h:var(--pw-space-1)}
+pw-party[minimal] .pwpt .bars{gap:2px;padding:0 var(--pw-space-1) 0 0}
+pw-party[minimal] .pwpt .bar .pwp-track{border-radius:var(--pw-radius-full)}
 pw-party[minimal] .pwpt .bars{align-self:center}
 @media (prefers-reduced-motion:reduce){pw-hud *,pw-party *{transition:none!important;animation:none!important}}
 
