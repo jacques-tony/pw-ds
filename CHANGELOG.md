@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.78.4
+- `pw-widget-spells`: botões de menu e de check (salvar ordem) com o formato padrão do `pw-button` (sem arredondamento total).
+
 ## 0.78.3
 - `pw-widget-spells`: ao editar a ordem, um botão de check (✓) aparece no lugar do botão de menu para salvar; removida a faixa "Arraste as spells…" (a dica fica no tooltip do check).
 

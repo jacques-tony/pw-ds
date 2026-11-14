@@ -2087,7 +2087,7 @@ pw-widget-spells[editing] .pwsp-slot{cursor:grab;touch-action:none;animation:pwh
 pw-widget-spells[editing] .pwsp-slot:nth-child(2n){animation-delay:-.45s}
 pw-widget-spells[editing] .pwsp-slot.dragging{cursor:grabbing;animation:none;z-index:10;transition:none;box-shadow:0 0 0 2px var(--pw-filament),0 8px 18px var(--pw-black-a45),0 0 14px var(--pw-glow)}
 pw-widget-spells .pwsp-slot.swapping{animation:none!important}
-pw-widget-spells .pwsp-done{flex:none;display:none}pw-widget-spells .pwsp-done>button{border-radius:var(--pw-radius-full)!important;width:var(--sp-slot);height:var(--sp-slot);padding:0}
+pw-widget-spells .pwsp-done{flex:none;display:none}
 pw-widget-spells[editing] .pwsp-done{display:inline-flex;animation:pwsp-pop .28s var(--card-ease)}
 @keyframes pwsp-pop{from{transform:scale(.6);opacity:0}}
 pw-widget-spells .pwsp-lock{display:none;flex:none;place-items:center;width:var(--pw-space-4);height:var(--pw-space-6);color:var(--pw-text-accent)}
@@ -2097,7 +2097,6 @@ pw-widget-spells[locked] .pwsp-lock{display:grid}
 pw-widget-spells[locked] .pwsp-grip{display:none}
 pw-widget-spells .pwsp-menu{flex:none;opacity:0;transition:opacity .2s}
 pw-widget-spells:is(:hover,:focus-within,.moving,.menu-open) .pwsp-menu{opacity:1}
-pw-widget-spells .pwsp-menu>button{border-radius:var(--pw-radius-full)!important;width:var(--sp-slot);height:var(--sp-slot);padding:0}
 pw-widget-spells[editing] .pwsp-menu{display:none}
 @media (prefers-reduced-motion:reduce){pw-widget-spells *{animation:none!important;transition:none!important}}
 /* @pwds-css-end */
