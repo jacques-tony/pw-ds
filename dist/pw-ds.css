@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.78.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.78.1 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1969,15 +1969,15 @@ pw-widget-spells[hidden]{display:none}
 pw-widget-spells .pwsp-bar{position:relative;display:flex;align-items:center;gap:var(--sp-gap);padding:var(--pw-space-2) var(--pw-space-3);border-radius:var(--pw-radius-lg);isolation:isolate}
 pw-widget-spells[orientation="vertical"] .pwsp-bar{flex-direction:column;padding:var(--pw-space-3) var(--pw-space-2)}
 /* fundo só aparece ao passar o mouse, focar, mover ou editar */
-pw-widget-spells .pwsp-bar::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:color-mix(in srgb,var(--pw-bg-edge) 72%,transparent);box-shadow:inset 0 0 0 1px var(--pw-border-subtle),var(--pw-shadow-sm);backdrop-filter:blur(4px);opacity:0;transition:opacity .2s}
-pw-widget-spells:is(:hover,:focus-within,.moving,[editing]) .pwsp-bar::before{opacity:1}
+/* fundo = pw-card tertiary do DS, só visível ao passar o mouse, focar, mover, editar ou com o menu aberto */
+pw-widget-spells pw-card.pwsp-bg{position:absolute;inset:0;width:auto;height:auto;z-index:-1;border-radius:var(--pw-radius-md);--lift:0px;pointer-events:none;opacity:0;transition:opacity .2s}
+pw-widget-spells:is(:hover,:focus-within,.moving,.menu-open,[editing]) pw-card.pwsp-bg{opacity:1}
 pw-widget-spells .pwsp-grip{flex:none;display:grid;place-items:center;width:var(--pw-space-4);height:var(--pw-space-6);color:var(--pw-text-muted);cursor:grab;border-radius:var(--pw-radius-xs);opacity:0;transition:opacity .2s}
 pw-widget-spells[orientation="vertical"] .pwsp-grip{width:var(--pw-space-6);height:var(--pw-space-4)}
 pw-widget-spells .pwsp-grip svg{width:var(--pw-space-4);height:var(--pw-space-4)}
 pw-widget-spells[orientation="vertical"] .pwsp-grip svg{transform:rotate(90deg)}
 pw-widget-spells:is(:hover,:focus-within,.moving) .pwsp-grip{opacity:1}
 pw-widget-spells.moving .pwsp-grip{cursor:grabbing}
-pw-widget-spells[locked] .pwsp-grip{visibility:hidden}
 pw-widget-spells .pwsp-grip:focus-visible{outline:2px solid var(--pw-focus-ring)}
 pw-widget-spells .pwsp-list{display:flex;gap:var(--sp-gap)}
 pw-widget-spells[orientation="vertical"] .pwsp-list{flex-direction:column}
@@ -1997,14 +1997,20 @@ pw-widget-spells .pwsp-slot.ready{animation:pwsp-ready .45s var(--card-ease)}
 pw-widget-spells .pwsp-slot.cast{animation:pwsp-cast .3s var(--card-ease)}
 @keyframes pwsp-cast{50%{transform:scale(.86)}}
 /* editar ordem: slots balançam; arraste um sobre o outro para trocar */
-pw-widget-spells[editing] .pwsp-slot{cursor:grab;animation:pwsp-wiggle .32s ease-in-out infinite alternate}
-pw-widget-spells[editing] .pwsp-slot:nth-child(2n){animation-delay:-.16s}
-pw-widget-spells .pwsp-slot.drag{opacity:.4}
-pw-widget-spells .pwsp-slot.over{box-shadow:0 0 0 2px var(--pw-filament),0 0 10px var(--pw-glow)}
-@keyframes pwsp-wiggle{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
-pw-widget-spells .pwsp-menu{flex:none}
+pw-widget-spells[editing] .pwsp-slot{cursor:grab;touch-action:none;animation:pwhd-wiggle .9s ease-in-out infinite}
+pw-widget-spells[editing] .pwsp-slot:nth-child(2n){animation-delay:-.45s}
+pw-widget-spells[editing] .pwsp-slot.dragging{cursor:grabbing;animation:none;z-index:10;transition:none;box-shadow:0 0 0 2px var(--pw-filament),0 8px 18px var(--pw-black-a45),0 0 14px var(--pw-glow)}
+pw-widget-spells .pwsp-slot.swapping{animation:none!important}
+pw-widget-spells pw-card.pwsp-done-bar{position:absolute;left:0;bottom:calc(100% + var(--pw-space-2));width:auto;height:auto;--lift:0px;transform:translateY(8px);opacity:0;visibility:hidden;pointer-events:none;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .2s ease,visibility 0s linear .32s}
+pw-widget-spells pw-card.pwsp-done-bar>.pwc-content{height:auto;flex-direction:row;align-items:center;gap:var(--pw-space-3);padding:var(--pw-space-2) var(--pw-space-2) var(--pw-space-2) var(--pw-space-4);font-size:var(--pw-font-size-sm);color:var(--pw-text-body);white-space:nowrap}
+pw-widget-spells[editing] pw-card.pwsp-done-bar{transform:none;opacity:1;visibility:visible;pointer-events:auto;transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .2s ease,visibility 0s}
+pw-widget-spells .pwsp-lock{display:none;flex:none;place-items:center;width:var(--pw-space-4);height:var(--pw-space-6);color:var(--pw-text-accent)}
+pw-widget-spells[orientation="vertical"] .pwsp-lock{width:var(--pw-space-6);height:var(--pw-space-4)}
+pw-widget-spells .pwsp-lock svg{width:var(--pw-space-4);height:var(--pw-space-4);filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
+pw-widget-spells[locked] .pwsp-lock{display:grid}
+pw-widget-spells[locked] .pwsp-grip{display:none}
+pw-widget-spells .pwsp-menu{flex:none;opacity:0;transition:opacity .2s}
+pw-widget-spells:is(:hover,:focus-within,.moving,.menu-open) .pwsp-menu{opacity:1}
 pw-widget-spells .pwsp-menu>button{border-radius:var(--pw-radius-full)!important;width:var(--sp-slot);height:var(--sp-slot);padding:0}
-pw-widget-spells .pwsp-done{flex:none}
-pw-widget-spells:not([editing]) .pwsp-done{display:none}
 pw-widget-spells[editing] .pwsp-menu{display:none}
 @media (prefers-reduced-motion:reduce){pw-widget-spells *{animation:none!important;transition:none!important}}

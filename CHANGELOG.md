@@ -27,6 +27,14 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.78.1
+- `pw-widget-spells`:
+  - Bloqueada mostra um ícone de cadeado no lugar da alça.
+  - Editar ordem igual à HUD: barra "Arraste as spells para mudar a ordem" + Salvar, slots balançando, arrastar com as outras abrindo espaço animado, números acompanhando; Salvar, Enter, Esc ou clique fora conclui.
+  - Redefinir ordem (e Shift + setas) com animação das spells voltando ao lugar.
+  - Botão de ações só aparece no hover/foco (fica visível com o menu aberto).
+  - Fundo da barra agora é um `pw-card` tertiary do DS.
+
 ## 0.78.0
 - Novo `<pw-widget-spells>` (Barra de spells), com até 12 spells:
   - Slots `pw-card` tertiary 32×32 com `pw-badge` do atalho.
