@@ -6026,7 +6026,7 @@ class PWWidgetBag extends HTMLElement{
   /* diagonal: os chanfros de dois cantos opostos encostam (a linha do chanfro fica em x+y = C) */
   static _diagPos(o,w,h){var C=PWWidgetBag.C;return [[o.x+o.w-C,o.y+o.h-C],[o.x-w+C,o.y+o.h-C],[o.x+o.w-C,o.y-h+C],[o.x-w+C,o.y-h+C]]}
   static _diag(a,b){return PWWidgetBag._diagPos(b,a.w,a.h).some(p=>Math.abs(p[0]-a.x)<=1.5&&Math.abs(p[1]-a.y)<=1.5)}
-  _peers(){var p=this.parentNode;return p?[].slice.call(p.children).filter(x=>/^PW-WIDGET-/.test(x.tagName)&&typeof x.group==='function'&&!x.hidden&&x.offsetParent===this.offsetParent):[]}
+  _peers(){var p=this.parentNode;return p?[].slice.call(p.children).filter(x=>/^PW-WIDGET-/.test(x.tagName)&&typeof x.group==='function'&&!x.hidden&&!x.hasAttribute('static')&&x.offsetParent===this.offsetParent):[]}
   /* conjunto = mochilas ligadas por encostar (direta ou indiretamente) */
   group(){var all=this._peers().map(PWWidgetBag._box),seen=[this],q=[this];
     while(q.length){var cur=PWWidgetBag._box(q.shift());all.forEach(o=>{if(seen.indexOf(o.b)<0&&PWWidgetBag._touch(cur,o)){seen.push(o.b);q.push(o.b)}})}return seen}
@@ -6084,7 +6084,7 @@ class PWWidgetBag extends HTMLElement{
         if(hits.length)this.dispatchEvent(new CustomEvent('groupchange',{bubbles:true,detail:{group:grp}}))};
       document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)});
     /* quando a mochila muda de altura (abrir, recolher, redimensionar), as que estão grudadas embaixo acompanham */
-    this._lh=0;new ResizeObserver(()=>{var h=this.offsetHeight;if(!this._lh){this._lh=h;return}var d=h-this._lh,oldB=this.offsetTop+this._lh;this._lh=h;if(!d)return;
+    this._lh=0;new ResizeObserver(()=>{if(this.hasAttribute('static')){this._lh=this.offsetHeight;return}var h=this.offsetHeight;if(!this._lh){this._lh=h;return}var d=h-this._lh,oldB=this.offsetTop+this._lh;this._lh=h;if(!d)return;
       var me={x:this.offsetLeft,w:this.offsetWidth},moved=[this],chain=b=>{this._peers().forEach(o=>{if(moved.indexOf(o)>-1)return;var ob=PWWidgetBag._box(o);
         var C=PWWidgetBag.C,stk=PWWidgetBag._near(b.bottom,ob.y)&&Math.min(b.x+b.w,ob.x+ob.w)-Math.max(b.x,ob.x)>0,dg=Math.abs(ob.y-(b.bottom-C))<=1.5&&(Math.abs(ob.x-(b.x+b.w-C))<=1.5||Math.abs(ob.x+ob.w-(b.x+C))<=1.5);
         if(stk||dg){moved.push(o);var nb={x:ob.x,w:ob.w,bottom:ob.y+ob.h};o.style.top=(ob.y+d)+'px';o.style.bottom='auto';chain(nb)}})};

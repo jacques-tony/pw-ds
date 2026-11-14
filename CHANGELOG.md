@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.87.6
+- Widgets com `static` (ex.: bate-papo fixo no modo Clássico) ficam fora do magnetismo: outros widgets não grudam nem arrastam/empurram ele, e ele não move vizinhos.
+
 ## 0.87.5
 - Simulação (Clássico): barra de spells empurrada em tempo real ao redimensionar o painel inferior (sem a transição da HUD durante o arraste e cálculo no mesmo quadro).
 

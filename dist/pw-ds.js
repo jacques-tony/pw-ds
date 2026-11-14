@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.87.5 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.87.6 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1604,7 +1604,7 @@ class PWWidgetBag extends HTMLElement{
   /* diagonal: os chanfros de dois cantos opostos encostam (a linha do chanfro fica em x+y = C) */
   static _diagPos(o,w,h){var C=PWWidgetBag.C;return [[o.x+o.w-C,o.y+o.h-C],[o.x-w+C,o.y+o.h-C],[o.x+o.w-C,o.y-h+C],[o.x-w+C,o.y-h+C]]}
   static _diag(a,b){return PWWidgetBag._diagPos(b,a.w,a.h).some(p=>Math.abs(p[0]-a.x)<=1.5&&Math.abs(p[1]-a.y)<=1.5)}
-  _peers(){var p=this.parentNode;return p?[].slice.call(p.children).filter(x=>/^PW-WIDGET-/.test(x.tagName)&&typeof x.group==='function'&&!x.hidden&&x.offsetParent===this.offsetParent):[]}
+  _peers(){var p=this.parentNode;return p?[].slice.call(p.children).filter(x=>/^PW-WIDGET-/.test(x.tagName)&&typeof x.group==='function'&&!x.hidden&&!x.hasAttribute('static')&&x.offsetParent===this.offsetParent):[]}
   /* conjunto = mochilas ligadas por encostar (direta ou indiretamente) */
   group(){var all=this._peers().map(PWWidgetBag._box),seen=[this],q=[this];
     while(q.length){var cur=PWWidgetBag._box(q.shift());all.forEach(o=>{if(seen.indexOf(o.b)<0&&PWWidgetBag._touch(cur,o)){seen.push(o.b);q.push(o.b)}})}return seen}
@@ -1662,7 +1662,7 @@ class PWWidgetBag extends HTMLElement{
         if(hits.length)this.dispatchEvent(new CustomEvent('groupchange',{bubbles:true,detail:{group:grp}}))};
       document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)});
     /* quando a mochila muda de altura (abrir, recolher, redimensionar), as que estão grudadas embaixo acompanham */
-    this._lh=0;new ResizeObserver(()=>{var h=this.offsetHeight;if(!this._lh){this._lh=h;return}var d=h-this._lh,oldB=this.offsetTop+this._lh;this._lh=h;if(!d)return;
+    this._lh=0;new ResizeObserver(()=>{if(this.hasAttribute('static')){this._lh=this.offsetHeight;return}var h=this.offsetHeight;if(!this._lh){this._lh=h;return}var d=h-this._lh,oldB=this.offsetTop+this._lh;this._lh=h;if(!d)return;
       var me={x:this.offsetLeft,w:this.offsetWidth},moved=[this],chain=b=>{this._peers().forEach(o=>{if(moved.indexOf(o)>-1)return;var ob=PWWidgetBag._box(o);
         var C=PWWidgetBag.C,stk=PWWidgetBag._near(b.bottom,ob.y)&&Math.min(b.x+b.w,ob.x+ob.w)-Math.max(b.x,ob.x)>0,dg=Math.abs(ob.y-(b.bottom-C))<=1.5&&(Math.abs(ob.x-(b.x+b.w-C))<=1.5||Math.abs(ob.x+ob.w-(b.x+C))<=1.5);
         if(stk||dg){moved.push(o);var nb={x:ob.x,w:ob.w,bottom:ob.y+ob.h};o.style.top=(ob.y+d)+'px';o.style.bottom='auto';chain(nb)}})};
@@ -2335,5 +2335,5 @@ customElements.define('pw-dock',PWDock);
   document.addEventListener('pointermove',e=>{var w=document.querySelector('[class*="dragging"]:is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-minimap,pw-widget-battle,pw-widget-stats,pw-widget-chat)');document.querySelectorAll('pw-dock[drop-target]').forEach(d=>{if(!w||!d._hit(w))d.removeAttribute('drop-target')});if(w)docks(w).forEach(d=>d.toggleAttribute('drop-target',d._hit(w)))},true);
   document.addEventListener('move',e=>{var w=e.target;if(!/^PW-WIDGET-/.test(w.tagName)||w.tagName==='PW-WIDGET-SPELLS')return;document.querySelectorAll('pw-dock[drop-target]').forEach(d=>d.removeAttribute('drop-target'));
     var d=docks(w).find(d=>d._hit(w));if(d){if(w._dock===d){var ws=d.widgets.filter(o=>o!==w),i=ws.filter(o=>o.offsetTop+o.offsetHeight/2<w.offsetTop).length;ws.splice(i,0,w);ws.forEach((o,k)=>o._dockOrder=k);d.layout()}else d.dock(w)}else if(w._dock)w._dock.undock(w)})})();
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.87.5"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.87.6"});
 })();
