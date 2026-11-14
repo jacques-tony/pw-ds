@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.83.0
+- `pw-widget-bag` (e Loot Stash): arrastar itens entre espaços, mochilas e o Loot Stash. Soltar em espaço vazio move; no mesmo item empilha; em outro item troca; numa mochila guarda dentro dela.
+- Pilhas com mais de 1 abrem o diálogo **Mover itens** (`pw-dialog` + `pw-card` + `pw-number` + `pw-slider` + `pw-button`): quantidade com campo, faixa e setas ‹ ›, Confirmar (Enter) e Cancelar (Esc).
+- Evento `itemmove` (cancelável) com origem, destino, item e quantidade.
+
 ## 0.82.3
 - `pw-widget-spells`: badge do atalho segue o `pw-badge` xs padrão, com largura mínima igual à altura (14×14) — antes ficava estreita (9px) em números de 1 dígito.
 

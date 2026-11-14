@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.82.3 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.83.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2116,3 +2116,25 @@ pw-widget-options .pwop-hk button.key.rec{color:var(--pw-text-accent);animation:
 pw-widget-options .pwop-foot{display:flex;align-items:center;gap:var(--pw-space-2);padding:var(--pw-space-3) var(--pw-space-5);border-top:1px solid var(--pw-border-subtle)}
 pw-widget-options .pwop-foot .grow{flex:1}
 pw-widget-options .pwop-foot small{color:var(--pw-text-muted);font-size:var(--pw-font-size-xs)}
+/* arrastar item da mochila + diálogo "Mover itens" */
+.pwbg-ghost{position:fixed;z-index:2000;width:var(--pw-space-8);height:var(--pw-space-8);transform:translate(-50%,-50%) scale(1.1);pointer-events:none;filter:drop-shadow(0 6px 10px var(--pw-black-a55))}
+.pwbg-ghost>img,.pwbg-ghost>svg{width:100%;height:100%;object-fit:contain}
+.pwbg-ghost .spr{position:absolute;inset:0;overflow:hidden}.pwbg-ghost .spr img{display:block;width:100%;height:calc(var(--n) * 100%);image-rendering:pixelated;animation:pwbg-spr calc(var(--n) * 110ms) steps(var(--n)) infinite}
+:is(pw-widget-bag,pw-widget-loot) .pwbg-slot.dragging-src{opacity:.35}
+:is(pw-widget-bag,pw-widget-loot) .pwbg-slot.drop-over{box-shadow:0 0 0 2px var(--pw-filament),0 0 10px var(--pw-glow)}
+pw-dialog.pwbg-qty{--dlg-w:320px}
+pw-dialog.pwbg-qty .pwd-body{display:grid;gap:var(--pw-space-3)}
+pw-dialog.pwbg-qty .pwbq-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:var(--pw-space-3)}
+pw-dialog.pwbg-qty pw-card.pwbq-pic{width:var(--pw-space-10);height:var(--pw-space-10);--lift:0px}
+pw-dialog.pwbg-qty pw-card.pwbq-pic>.pwc-content{padding:0;height:100%;position:relative}
+pw-dialog.pwbg-qty .pwbq-pic :is(img,svg){position:absolute;inset:var(--pw-space-1);width:calc(100% - var(--pw-space-2));height:calc(100% - var(--pw-space-2));object-fit:contain;z-index:1;color:var(--pw-text-accent)}
+pw-dialog.pwbg-qty .pwbq-pic .spr{position:absolute;inset:var(--pw-space-1);overflow:hidden;z-index:1}pw-dialog.pwbg-qty .pwbq-pic .spr img{position:static;display:block;width:100%;height:calc(var(--n) * 100%);image-rendering:pixelated;animation:pwbg-spr calc(var(--n) * 110ms) steps(var(--n)) infinite}
+pw-dialog.pwbg-qty .pwbq-txt{display:grid;gap:2px;min-width:0}
+pw-dialog.pwbg-qty .pwbq-txt b{font-weight:var(--pw-font-weight-semibold);color:var(--pw-text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+pw-dialog.pwbg-qty .pwbq-txt small{font-size:var(--pw-font-size-xs);color:var(--pw-text-muted)}
+pw-dialog.pwbg-qty pw-number .pwn-label,pw-dialog.pwbg-qty pw-number label{display:none}
+pw-dialog.pwbg-qty pw-number input::-webkit-inner-spin-button,pw-dialog.pwbg-qty pw-number input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}pw-dialog.pwbg-qty pw-number input{-moz-appearance:textfield;text-align:center}
+pw-dialog.pwbg-qty .pwbq-range{display:flex;align-items:center;gap:var(--pw-space-1)}
+pw-dialog.pwbg-qty .pwbq-range pw-slider{flex:1;min-width:0}pw-dialog.pwbg-qty .pwbq-range pw-slider output{display:none}
+pw-dialog.pwbg-qty .pwbq-lim{display:flex;justify-content:space-between;padding:0 var(--pw-space-8);margin-top:calc(var(--pw-space-2) * -1);font-size:var(--pw-font-size-2xs);color:var(--pw-text-muted);font-variant-numeric:tabular-nums}
+pw-dialog.pwbg-qty [slot="footer"],pw-dialog.pwbg-qty .pwd-foot pw-button{flex:1}pw-dialog.pwbg-qty .pwd-foot pw-button>button{width:100%}

@@ -2202,6 +2202,28 @@ pw-widget-options .pwop-hk button.key.rec{color:var(--pw-text-accent);animation:
 pw-widget-options .pwop-foot{display:flex;align-items:center;gap:var(--pw-space-2);padding:var(--pw-space-3) var(--pw-space-5);border-top:1px solid var(--pw-border-subtle)}
 pw-widget-options .pwop-foot .grow{flex:1}
 pw-widget-options .pwop-foot small{color:var(--pw-text-muted);font-size:var(--pw-font-size-xs)}
+/* arrastar item da mochila + diálogo "Mover itens" */
+.pwbg-ghost{position:fixed;z-index:2000;width:var(--pw-space-8);height:var(--pw-space-8);transform:translate(-50%,-50%) scale(1.1);pointer-events:none;filter:drop-shadow(0 6px 10px var(--pw-black-a55))}
+.pwbg-ghost>img,.pwbg-ghost>svg{width:100%;height:100%;object-fit:contain}
+.pwbg-ghost .spr{position:absolute;inset:0;overflow:hidden}.pwbg-ghost .spr img{display:block;width:100%;height:calc(var(--n) * 100%);image-rendering:pixelated;animation:pwbg-spr calc(var(--n) * 110ms) steps(var(--n)) infinite}
+:is(pw-widget-bag,pw-widget-loot) .pwbg-slot.dragging-src{opacity:.35}
+:is(pw-widget-bag,pw-widget-loot) .pwbg-slot.drop-over{box-shadow:0 0 0 2px var(--pw-filament),0 0 10px var(--pw-glow)}
+pw-dialog.pwbg-qty{--dlg-w:320px}
+pw-dialog.pwbg-qty .pwd-body{display:grid;gap:var(--pw-space-3)}
+pw-dialog.pwbg-qty .pwbq-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:var(--pw-space-3)}
+pw-dialog.pwbg-qty pw-card.pwbq-pic{width:var(--pw-space-10);height:var(--pw-space-10);--lift:0px}
+pw-dialog.pwbg-qty pw-card.pwbq-pic>.pwc-content{padding:0;height:100%;position:relative}
+pw-dialog.pwbg-qty .pwbq-pic :is(img,svg){position:absolute;inset:var(--pw-space-1);width:calc(100% - var(--pw-space-2));height:calc(100% - var(--pw-space-2));object-fit:contain;z-index:1;color:var(--pw-text-accent)}
+pw-dialog.pwbg-qty .pwbq-pic .spr{position:absolute;inset:var(--pw-space-1);overflow:hidden;z-index:1}pw-dialog.pwbg-qty .pwbq-pic .spr img{position:static;display:block;width:100%;height:calc(var(--n) * 100%);image-rendering:pixelated;animation:pwbg-spr calc(var(--n) * 110ms) steps(var(--n)) infinite}
+pw-dialog.pwbg-qty .pwbq-txt{display:grid;gap:2px;min-width:0}
+pw-dialog.pwbg-qty .pwbq-txt b{font-weight:var(--pw-font-weight-semibold);color:var(--pw-text-primary);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+pw-dialog.pwbg-qty .pwbq-txt small{font-size:var(--pw-font-size-xs);color:var(--pw-text-muted)}
+pw-dialog.pwbg-qty pw-number .pwn-label,pw-dialog.pwbg-qty pw-number label{display:none}
+pw-dialog.pwbg-qty pw-number input::-webkit-inner-spin-button,pw-dialog.pwbg-qty pw-number input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}pw-dialog.pwbg-qty pw-number input{-moz-appearance:textfield;text-align:center}
+pw-dialog.pwbg-qty .pwbq-range{display:flex;align-items:center;gap:var(--pw-space-1)}
+pw-dialog.pwbg-qty .pwbq-range pw-slider{flex:1;min-width:0}pw-dialog.pwbg-qty .pwbq-range pw-slider output{display:none}
+pw-dialog.pwbg-qty .pwbq-lim{display:flex;justify-content:space-between;padding:0 var(--pw-space-8);margin-top:calc(var(--pw-space-2) * -1);font-size:var(--pw-font-size-2xs);color:var(--pw-text-muted);font-variant-numeric:tabular-nums}
+pw-dialog.pwbg-qty [slot="footer"],pw-dialog.pwbg-qty .pwd-foot pw-button{flex:1}pw-dialog.pwbg-qty .pwd-foot pw-button>button{width:100%}
 /* @pwds-css-end */
 /* demo content inside cards */
 .k-eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--card-filament)}
@@ -5841,9 +5863,42 @@ class PWWidgetBag extends HTMLElement{
     this.addEventListener('pointerdown',()=>{PWWidgetBag._z=(PWWidgetBag._z||10)+1;this.style.zIndex=PWWidgetBag._z},true);
     var sc=this.querySelector('.pwbg-scroll'),bd=this.querySelector('.pwbg-body');this._more=()=>{bd.toggleAttribute('data-more',sc.scrollTop+sc.clientHeight<sc.scrollHeight-8);bd.toggleAttribute('data-less',sc.scrollTop>4)};
     sc.addEventListener('scroll',this._more,{passive:true});new ResizeObserver(this._more).observe(sc);
-    this._dragInit();this._resizeInit();this._grid();this._sync();
+    this._dragInit();this._resizeInit();this._grid();this._sync();this._itemDragInit();
     /* por padrão abre mostrando todos os slots (sem rolagem); depois de redimensionar, mantém a altura escolhida */
     requestAnimationFrame(()=>{if(!this.style.height&&!this.hasAttribute('collapsed'))this.fitAll();this._more();this._mark()})}
+  /* arrastar item: solta em outro espaço (desta ou de outra mochila / loot). Pilhas com mais de 1 abrem o diálogo "Mover itens" para escolher a quantidade */
+  _itemDragInit(){var G=this.querySelector('.pwbg-grid');
+    G.addEventListener('pointerdown',e=>{var sl=e.target.closest('.pwbg-slot[data-i]');if(!sl||sl.classList.contains('empty')||e.button!==0)return;e.preventDefault();var x0=e.clientX,y0=e.clientY,gh=null,over=null,i=+sl.dataset.i,it=this._items[i];
+      var mv=ev=>{if(!gh){if(Math.hypot(ev.clientX-x0,ev.clientY-y0)<6)return;gh=document.createElement('div');gh.className='pwbg-ghost';var src=sl.querySelector('.pwc-content')||sl;gh.innerHTML=[...src.children].filter(c=>c.matches('img,.spr,svg')).map(c=>c.outerHTML).join('');document.body.appendChild(gh);sl.classList.add('dragging-src');this._dragging=true}
+        gh.style.left=ev.clientX+'px';gh.style.top=ev.clientY+'px';var t=document.elementsFromPoint(ev.clientX,ev.clientY).find(x=>!gh.contains(x)),o=t&&t.closest&&t.closest('.pwbg-slot[data-i]');if(o&&!o.closest('pw-widget-bag,pw-widget-loot'))o=null;if(o===sl)o=null;if(over&&over!==o)over.classList.remove('drop-over');over=o;if(over)over.classList.add('drop-over')};
+      var up=()=>{window.removeEventListener('pointermove',mv,true);window.removeEventListener('pointerup',up,true);window.removeEventListener('pointercancel',up,true);if(!gh)return;gh.remove();sl.classList.remove('dragging-src');setTimeout(()=>this._dragging=false,0);
+        if(!over)return;over.classList.remove('drop-over');var W=over.closest('pw-widget-bag,pw-widget-loot'),j=+over.dataset.i,dst=W._items[j],n=it.count==null?1:+it.count;
+        var go=q=>this._moveItem(i,W,j,q);if(n>1&&!(dst&&dst.label!==it.label))this._qtyDialog(it,n,go);else go(n)};
+      window.addEventListener('pointermove',mv,true);window.addEventListener('pointerup',up,true);window.addEventListener('pointercancel',up,true)});
+    G.addEventListener('dragstart',e=>e.preventDefault());
+    /* clique logo após arrastar não deve selecionar */
+    G.addEventListener('click',e=>{if(this._dragging){e.stopImmediatePropagation();e.preventDefault()}},true)}
+  _moveItem(i,W,j,q){var A=this._items,B=W._items,s=A[i],d=B[j];if(!s)return;var n=s.count==null?1:+s.count;q=Math.max(1,Math.min(n,q|0));
+    var ev=new CustomEvent('itemmove',{bubbles:true,cancelable:true,detail:{from:{widget:this,index:i},to:{widget:W,index:j},item:s,quantity:q}});this.dispatchEvent(ev);if(ev.defaultPrevented)return;
+    if(d&&d.type==='bag'&&!(W===this&&i===j)&&s.type!=='bag'){d.items=d.items||[];var k=d.items.findIndex(x=>x&&x.label===s.label);if(k>-1)d.items[k].count=(+d.items[k].count||1)+q;else{k=d.items.findIndex(x=>!x);var c=Object.assign({},s,{count:q});if(k>-1)d.items[k]=c;else d.items.push(c)}}
+    else if(!d){B[j]=Object.assign({},s,{count:s.count==null?undefined:q})}
+    else if(d.label===s.label&&d.type!=='bag'){d.count=(+d.count||1)+q}
+    else{B[j]=s;A[i]=d;q=n}
+    if(B[j]!==s){if(s.count!=null){s.count=n-q;if(s.count<=0)A[i]=null}else if(B[j]!==s&&A[i]===s)A[i]=null}
+    this._grid();this._sync();if(W!==this){W._grid();W._sync()}
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches){var t=W.querySelector('.pwbg-slot[data-i="'+j+'"]');if(t)t.animate([{transform:'scale(.7)',filter:'brightness(1.8)'},{transform:'scale(1.1)',offset:.6},{transform:'none',filter:'none'}],{duration:360,easing:'cubic-bezier(.2,.8,.2,1)'})}}
+  /* diálogo "Mover itens": pw-dialog + pw-card + pw-number + pw-slider + pw-button */
+  _qtyDialog(it,n,cb){var E=pwEsc,d=document.createElement('pw-dialog');d.className='pwbg-qty';d.setAttribute('heading','Mover itens');d.setAttribute('size','sm');
+    var pic=it.sprite?'<span class="spr" style="--n:'+(+it.frames||1)+'"><img src="'+E(it.sprite)+'" alt=""></span>':it.image?'<img src="'+E(it.image)+'" alt="">':pwIcon(it.icon||'gem');
+    d.innerHTML='<div class="pwbq-top"><pw-card variant="tertiary" tone="neutral" class="pwbq-pic">'+pic+'</pw-card><div class="pwbq-txt"><b>'+E(it.label||'Item')+'</b><small>'+n+' disponíveis</small></div><pw-number value="'+n+'" min="1" max="'+n+'" label="Quantidade" layout="compact" style="--nw:96px"></pw-number></div>'+
+      '<div class="pwbq-range"><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="chevron-left" data-q="-1" aria-label="Diminuir"></pw-button><pw-slider min="1" max="'+n+'" value="'+n+'" label="Quantidade"></pw-slider><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="chevron-right" data-q="1" aria-label="Aumentar"></pw-button></div>'+
+      '<div class="pwbq-lim"><span>1</span><span>'+n+'</span></div>'+
+      '<pw-button slot="footer" variant="ghost" data-close="no">Cancelar</pw-button><pw-button slot="footer" data-close="yes" icon="check">Confirmar</pw-button>';
+    document.body.appendChild(d);var num=d.querySelector('pw-number'),sl=d.querySelector('pw-slider'),q=n,set=v=>{q=Math.max(1,Math.min(n,Math.round(+v)||1));if(+num.value!==q)num.value=q;if(+sl.value!==q)sl.value=q};
+    ['input','change'].forEach(t=>{num.addEventListener(t,()=>set(num.value));sl.addEventListener(t,()=>set(sl.value))});
+    d.addEventListener('click',e=>{var b=e.target.closest('[data-q]');if(b)set(q+(+b.dataset.q))});
+    d.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.target.closest('pw-button')){e.preventDefault();d.close('yes')}});
+    d.addEventListener('close',e=>{if(e.detail.value==='yes')cb(q);d.remove()});requestAnimationFrame(()=>{d.show();setTimeout(()=>{var i=num.querySelector('input');if(i){i.focus();i.select()}},60)})}
   fitAll(){if(this.hasAttribute('collapsed'))return;var sc=this.querySelector('.pwbg-scroll'),g=this.querySelector('.pwbg-grid'),cs=getComputedStyle(sc);
     this.style.height=Math.max(this._limits().min,this.offsetHeight-sc.clientHeight+g.offsetHeight+parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom))+'px'}
   attributeChangedCallback(n,o,v){if(!this._init||o===v)return;if(n==='slots')this._grid();else if(n==='heading')this._sync();else{this._sync();
