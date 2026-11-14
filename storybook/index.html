@@ -1595,6 +1595,15 @@ pw-party[editing] pw-button.pwpt-done{display:inline-flex;animation:pwsp-pop .28
 pw-party[editing] :is(.pwpt-move,.pwpt-lock){display:none}
 pw-party[editing] pw-card.pwpt-bg{opacity:1}
 pw-hud[editing-party] pw-card.pwhd-done-bar{display:none}
+pw-party pw-button.pwpt-opts{position:absolute;top:calc(var(--pw-space-6) * -1);right:calc(var(--pt-w) * -.25);height:var(--pw-space-6);z-index:3;opacity:0;transition:opacity .2s}
+pw-party pw-button.pwpt-opts>button{height:var(--pw-space-6);min-height:0}
+pw-party:is(:hover,:focus-within,.menu-open) pw-button.pwpt-opts{opacity:1}
+pw-party:is(.menu-open) :is(pw-card.pwpt-bg,.pwpt-move){opacity:1}
+pw-party[editing] pw-button.pwpt-opts{display:none}
+/* modo minimalista: só a arte e a vida, cards menores */
+pw-party[minimal]{--pt-w:calc(var(--pw-space-32) + var(--pw-space-2));--pt-h:var(--pw-space-9)}
+pw-party[minimal] .pwpt :is(.key,.typ,.bar.cd){display:none}
+pw-party[minimal] .pwpt .bars{align-self:center}
 @media (prefers-reduced-motion:reduce){pw-hud *,pw-party *{transition:none!important;animation:none!important}}
 
 /* ===================== COMPONENT: pw-control-group + pw-control-group-item (lista suspensa: menus, dropdowns, seleção) ===================== */
@@ -5574,18 +5583,21 @@ customElements.define('pw-kbd',PWKbd);
 class PWParty extends HTMLElement{
   connectedCallback(){this.setAttribute('role','group');if(!this.getAttribute('aria-label'))this.setAttribute('aria-label','Equipe');
     var h=document.getElementById(this.getAttribute('for'));if(h&&h._init)this._from(h);
-    this.addEventListener('contextmenu',e=>{var b=e.target.closest('.pwpt[data-team]');var hud=document.getElementById(this.getAttribute('for'));if(!b||!hud)return;e.preventDefault();if(hud._editing)return;hud._teamMenu(+b.dataset.team,b)});
+    this.addEventListener('contextmenu',e=>{if(e.target.closest('.pwpt[data-team]'))e.preventDefault()});
+    /* menu do conjunto (botão ghost no canto direito, aparece no hover) */
+    this.addEventListener('select',e=>{var g=e.target.closest&&e.target.closest('pw-control-group.pwpt-cg');if(!g)return;var hud=document.getElementById(this.getAttribute('for')),v=e.detail.value;
+      if(v==='minimal'){this.toggleAttribute('minimal');if(hud)this._from(hud);this.dispatchEvent(new CustomEvent('minimal',{bubbles:true,detail:{minimal:this.hasAttribute('minimal')}}))}else if(v==='edit'&&hud)setTimeout(()=>hud.editOrder(this),0)});
     this.addEventListener('click',e=>{if(e.target.closest('.pwpt-done')){var hd=document.getElementById(this.getAttribute('for'));if(hd)hd.doneOrder();return}var b=e.target.closest('.pwpt[data-team]');var hud=document.getElementById(this.getAttribute('for'));if(b&&hud&&!hud._editing)hud._pick(+b.dataset.team)})}
   _from(hud){var show=this.hasAttribute('always')||hud.profile==='compact',was=!this.hidden;this.hidden=!show;if(!show)return;var E=pwEsc;
     var key=(t,i)=>'<pw-badge class="key" tone="neutral" size="xs">'+E((t&&t.hotkey)||'Ctrl+'+(i+1))+'</pw-badge>';
     var old={};this.querySelectorAll('.pwpt[data-team]').forEach(x=>{old[x.dataset.team]={t:x.offsetTop,hl:x.hasAttribute('highlight')}});
-    var html='<pw-card variant="tertiary" tone="neutral" class="pwpt-bg" aria-hidden="true"></pw-card><div class="pwpt-move" role="button" tabindex="0" aria-label="Mover equipe (setas)" data-tip="Arraste para mover" data-tip-pos="top">'+pwIcon('grip')+'</div><span class="pwpt-lock" role="img" aria-label="Equipe bloqueada">'+pwIcon('lock')+'</span><pw-button class="pwpt-done" size="sm" fx="none" particles="0" icon="check" data-tip-title="Salvar ordem" data-tip="Arraste os Pokémon para mudar a ordem · Enter salva" aria-label="Salvar ordem"></pw-button>'+(hud.data.team||[]).slice(0,6).map((t,i)=>{if(!t||!t.name)return '<pw-card variant="tertiary" tone="neutral" appearance="filled" class="pwpt empty" bg-image="'+E(pwHudEmpty())+'" bg-position="center" role="img" aria-label="Espaço vazio '+(i+1)+'">'+key(t,i)+'</pw-card>';
+    var html='<pw-card variant="tertiary" tone="neutral" class="pwpt-bg" aria-hidden="true"></pw-card><div class="pwpt-move" role="button" tabindex="0" aria-label="Mover equipe (setas)" data-tip="Arraste para mover" data-tip-pos="top">'+pwIcon('grip')+'</div><span class="pwpt-lock" role="img" aria-label="Equipe bloqueada">'+pwIcon('lock')+'</span><pw-button id="'+(this._mid=this._mid||'pwptm'+(++uidN))+'" class="pwpt-opts" variant="ghost" size="sm" fx="none" particles="0" icon="more-vertical" data-tip="Opções da equipe" aria-label="Opções da equipe" aria-haspopup="menu"></pw-button><pw-control-group class="pwpt-cg" for="'+this._mid+'" size="sm" label="Opções da equipe"><pw-control-group-item value="minimal" icon="'+(this.hasAttribute('minimal')?'grid':'minus')+'">'+(this.hasAttribute('minimal')?'Modo completo':'Modo minimalista')+'</pw-control-group-item><pw-control-group-item value="edit" icon="sort">Editar ordem</pw-control-group-item></pw-control-group><pw-button class="pwpt-done" size="sm" fx="none" particles="0" icon="check" data-tip-title="Salvar ordem" data-tip="Arraste os Pokémon para mudar a ordem · Enter salva" aria-label="Salvar ordem"></pw-button>'+(hud.data.team||[]).slice(0,6).map((t,i)=>{if(!t||!t.name)return '<pw-card variant="tertiary" tone="neutral" appearance="filled" class="pwpt empty" bg-image="'+E(pwHudEmpty())+'" bg-position="center" role="img" aria-label="Espaço vazio '+(i+1)+'">'+key(t,i)+'</pw-card>';
       var img=(this.getAttribute('size')==='lg'&&t.bannerLg)||t.banner||t.bannerLg||t.card||t.image;var v=Math.max(0,Math.min(100,t.hp==null?100:t.hp))/100,cd=t.cd?Math.max(0,Math.min(1,(t.cdLeft||0)/t.cd)):0;
       return '<pw-card variant="tertiary" tone="neutral" appearance="filled" interactive class="pwpt" data-team="'+i+'" role="button" tabindex="0" aria-pressed="'+(t.active?'true':'false')+'"'+(t.active?' selected highlight':'')+' aria-label=""'+E(t.name)+', HP '+Math.round(v*100)+'%" data-tip-title="'+E(t.name)+'" data-tip="'+E((t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v*100)+'%')+'" data-tip-pos="right">'+(img?'<span class="art" style="background-image:url(\''+E(img)+'\')"></span>':'')+key(t,i)+
         ((t.types||t.type)?'<span class="typ">'+(t.types||[t.type]).filter(Boolean).slice(0,2).map(y=>'<pw-icon type="'+E(y)+'" size="2xs"></pw-icon>').join('')+'</span>':'')+
         '<span class="bars"><span class="bar"><pw-progress variant="hp" value="'+Math.round(v*100)+'"></pw-progress><span>'+Math.round(v*100)+'%</span></span><span class="bar cd"><pw-progress tone="info" value="'+Math.round(cd*100)+'"></pw-progress><span>'+(t.cdLeft?'CD '+t.cdLeft+'s':'Sem CD')+'</span></span></span></pw-card>'}).join('');
     if(html===this._html&&was)return;this._html=html;this.innerHTML=html;
-    this._moveInit();
+    this._moveInit();var cg=this.querySelector('pw-control-group.pwpt-cg');if(cg)new MutationObserver(()=>this.classList.toggle('menu-open',cg.hasAttribute('open'))).observe(cg,{attributes:true,attributeFilter:['open']});
     /* troca de selecionado: cada card desliza da posição/tamanho antigos para os novos */
     if(was&&!matchMedia('(prefers-reduced-motion: reduce)').matches){var S=(this.getBoundingClientRect().width/this.offsetWidth)||1;this.querySelectorAll('.pwpt[data-team]').forEach(x=>{var o=old[x.dataset.team];if(!o)return;var hl=x.hasAttribute('highlight');
       x.style.transition='none';var dy=o.t-x.offsetTop,s0=o.hl?1.25:1,s1=hl?1.25:1;if(!dy&&s0===s1){x.style.transition='';return}

@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.80.0
+- `pw-party`:
+  - Novo botão ghost (⋮) no canto direito, visível no hover, que abre um `pw-control-group` com **Modo minimalista** / **Modo completo** e **Editar ordem**.
+  - Editar ordem saiu do menu de cada card (botão direito nos cards da equipe flutuante não abre mais menu).
+  - Novo atributo `minimal`: cards menores só com a arte e a vida (sem atalho, tipos e CD); evento `minimal`.
+
 ## 0.79.1
 - `pw-party`: ao editar a ordem pelo perfil reduzido, o botão ✓ de salvar aparece junto dos cards flutuantes (no lugar da alça); a barra de salvar da HUD fica escondida nesse caso.
 - Mover o conjunto: o bloco agora acompanha o ponteiro exatamente, sem pular para longe da alça (descontava a margem duas vezes).

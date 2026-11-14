@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.79.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.80.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1509,6 +1509,15 @@ pw-party[editing] pw-button.pwpt-done{display:inline-flex;animation:pwsp-pop .28
 pw-party[editing] :is(.pwpt-move,.pwpt-lock){display:none}
 pw-party[editing] pw-card.pwpt-bg{opacity:1}
 pw-hud[editing-party] pw-card.pwhd-done-bar{display:none}
+pw-party pw-button.pwpt-opts{position:absolute;top:calc(var(--pw-space-6) * -1);right:calc(var(--pt-w) * -.25);height:var(--pw-space-6);z-index:3;opacity:0;transition:opacity .2s}
+pw-party pw-button.pwpt-opts>button{height:var(--pw-space-6);min-height:0}
+pw-party:is(:hover,:focus-within,.menu-open) pw-button.pwpt-opts{opacity:1}
+pw-party:is(.menu-open) :is(pw-card.pwpt-bg,.pwpt-move){opacity:1}
+pw-party[editing] pw-button.pwpt-opts{display:none}
+/* modo minimalista: só a arte e a vida, cards menores */
+pw-party[minimal]{--pt-w:calc(var(--pw-space-32) + var(--pw-space-2));--pt-h:var(--pw-space-9)}
+pw-party[minimal] .pwpt :is(.key,.typ,.bar.cd){display:none}
+pw-party[minimal] .pwpt .bars{align-self:center}
 @media (prefers-reduced-motion:reduce){pw-hud *,pw-party *{transition:none!important;animation:none!important}}
 
 /* ===================== COMPONENT: pw-control-group + pw-control-group-item (lista suspensa: menus, dropdowns, seleção) ===================== */
