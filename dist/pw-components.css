@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.77.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.78.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1783,3 +1783,48 @@ pw-widget-loot .pwbg-slot .pwlt-ck svg{width:80%;height:80%}
 pw-widget-loot .pwbg-slot[aria-selected="true"] .pwlt-ck{transform:scale(1)}
 pw-widget-loot .pwbg-slot.leaving{animation:pwlt-out .28s var(--card-ease) forwards}
 @keyframes pwlt-out{to{opacity:0;transform:translateY(-6px) scale(.7)}}
+/* ===================== COMPONENT: pw-widget-spells (barra de spells) ===================== */
+pw-widget-spells{position:absolute;z-index:10;display:block;--sp-slot:var(--pw-space-8);--sp-gap:var(--pw-space-2);font-family:var(--pw-font-body);touch-action:none}
+pw-widget-spells[hidden]{display:none}
+pw-widget-spells .pwsp-bar{position:relative;display:flex;align-items:center;gap:var(--sp-gap);padding:var(--pw-space-2) var(--pw-space-3);border-radius:var(--pw-radius-lg);isolation:isolate}
+pw-widget-spells[orientation="vertical"] .pwsp-bar{flex-direction:column;padding:var(--pw-space-3) var(--pw-space-2)}
+/* fundo só aparece ao passar o mouse, focar, mover ou editar */
+pw-widget-spells .pwsp-bar::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:color-mix(in srgb,var(--pw-bg-edge) 72%,transparent);box-shadow:inset 0 0 0 1px var(--pw-border-subtle),var(--pw-shadow-sm);backdrop-filter:blur(4px);opacity:0;transition:opacity .2s}
+pw-widget-spells:is(:hover,:focus-within,.moving,[editing]) .pwsp-bar::before{opacity:1}
+pw-widget-spells .pwsp-grip{flex:none;display:grid;place-items:center;width:var(--pw-space-4);height:var(--pw-space-6);color:var(--pw-text-muted);cursor:grab;border-radius:var(--pw-radius-xs);opacity:0;transition:opacity .2s}
+pw-widget-spells[orientation="vertical"] .pwsp-grip{width:var(--pw-space-6);height:var(--pw-space-4)}
+pw-widget-spells .pwsp-grip svg{width:var(--pw-space-4);height:var(--pw-space-4)}
+pw-widget-spells[orientation="vertical"] .pwsp-grip svg{transform:rotate(90deg)}
+pw-widget-spells:is(:hover,:focus-within,.moving) .pwsp-grip{opacity:1}
+pw-widget-spells.moving .pwsp-grip{cursor:grabbing}
+pw-widget-spells[locked] .pwsp-grip{visibility:hidden}
+pw-widget-spells .pwsp-grip:focus-visible{outline:2px solid var(--pw-focus-ring)}
+pw-widget-spells .pwsp-list{display:flex;gap:var(--sp-gap)}
+pw-widget-spells[orientation="vertical"] .pwsp-list{flex-direction:column}
+pw-widget-spells pw-card.pwsp-slot{position:relative;flex:none;width:var(--sp-slot);height:var(--sp-slot);border-radius:var(--pw-radius-sm);cursor:pointer;overflow:visible}
+pw-widget-spells pw-card.pwsp-slot>.pwc-content{padding:0;height:100%;display:block;position:relative}
+pw-widget-spells pw-card.pwsp-slot:active{--press:.92}
+pw-widget-spells .pwsp-slot img{position:absolute;inset:1px;width:calc(100% - 2px);height:calc(100% - 2px);object-fit:cover;border-radius:calc(var(--pw-radius-sm) - 1px);z-index:1;pointer-events:none}
+pw-widget-spells .pwsp-slot .num{position:absolute;left:calc(var(--pw-space-1) * -1);top:calc(var(--pw-space-1) * -1);z-index:4;pointer-events:none}
+/* recarga: varredura + segundos; usa a arte "off" quando houver, senão escurece */
+pw-widget-spells .pwsp-slot .cd{position:absolute;inset:1px;z-index:3;border-radius:calc(var(--pw-radius-sm) - 1px);display:none;place-items:center;pointer-events:none;
+  background:conic-gradient(transparent calc(var(--cdp,0) * 360deg),color-mix(in srgb,var(--pw-black) 62%,transparent) 0);font:var(--pw-font-weight-bold) var(--pw-font-size-2xs)/1 var(--pw-font-body);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
+pw-widget-spells .pwsp-slot.cooling .cd{display:grid}
+pw-widget-spells .pwsp-slot.cooling:not([data-off]) img{filter:grayscale(.85) brightness(.75)}
+pw-widget-spells .pwsp-slot.cooling{cursor:not-allowed}
+pw-widget-spells .pwsp-slot.ready{animation:pwsp-ready .45s var(--card-ease)}
+@keyframes pwsp-ready{40%{filter:brightness(1.6);transform:scale(1.1)}}
+pw-widget-spells .pwsp-slot.cast{animation:pwsp-cast .3s var(--card-ease)}
+@keyframes pwsp-cast{50%{transform:scale(.86)}}
+/* editar ordem: slots balançam; arraste um sobre o outro para trocar */
+pw-widget-spells[editing] .pwsp-slot{cursor:grab;animation:pwsp-wiggle .32s ease-in-out infinite alternate}
+pw-widget-spells[editing] .pwsp-slot:nth-child(2n){animation-delay:-.16s}
+pw-widget-spells .pwsp-slot.drag{opacity:.4}
+pw-widget-spells .pwsp-slot.over{box-shadow:0 0 0 2px var(--pw-filament),0 0 10px var(--pw-glow)}
+@keyframes pwsp-wiggle{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+pw-widget-spells .pwsp-menu{flex:none}
+pw-widget-spells .pwsp-menu>button{border-radius:var(--pw-radius-full)!important;width:var(--sp-slot);height:var(--sp-slot);padding:0}
+pw-widget-spells .pwsp-done{flex:none}
+pw-widget-spells:not([editing]) .pwsp-done{display:none}
+pw-widget-spells[editing] .pwsp-menu{display:none}
+@media (prefers-reduced-motion:reduce){pw-widget-spells *{animation:none!important;transition:none!important}}

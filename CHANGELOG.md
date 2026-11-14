@@ -27,6 +27,18 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.78.0
+- Novo `<pw-widget-spells>` (Barra de spells), com até 12 spells:
+  - Slots `pw-card` tertiary 32×32 com `pw-badge` do atalho.
+  - Fundo e alça de mover aparecem só ao passar o mouse.
+  - Horizontal ou vertical (`orientation`).
+  - Recarga com varredura e segundos; usa a arte "off" quando informada (`imageOff`), senão escurece.
+  - Menu (`pw-button` + `pw-control-group`): Mudar orientação, Bloquear, Editar ordem (arrastar slot sobre slot ou Shift + setas), Redefinir ordem e Assistente de combo.
+  - API `spells`, `cast()`, `cooldown()`, `edit()`, `resetOrder()`; eventos `cast` (cancelável), `ready`, `reorder`, `combo`, `move`, `lock`, `orientation`.
+- Novos ícones: `grip`, `rotate-cw`.
+- Ícones de spells de exemplo em `icons/spells/`.
+- Simulação: barra de spells acima da HUD.
+
 ## 0.77.2
 - Simulação: itens coletados no Loot Stash entram na Mochila — empilham no mesmo item (somando a quantidade) ou ocupam o primeiro espaço livre, com um destaque rápido nos slots que mudaram. Se a Mochila estiver cheia, a coleta é cancelada.
 
