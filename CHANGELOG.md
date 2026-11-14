@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.87.5
+- Simulação (Clássico): barra de spells empurrada em tempo real ao redimensionar o painel inferior (sem a transição da HUD durante o arraste e cálculo no mesmo quadro).
+
 ## 0.87.4
 - `pw-dock`: soltar um widget entre dois widgets do painel conecta ele no meio (ordem pela posição).
 - Simulação (Clássico): painel inferior com 224px de altura mínima (mesma largura dos painéis laterais); chat fixo sem recolher nem bloquear; a barra de spells só se move quando a HUD, empurrada pelo painel inferior, encosta nela (e volta à posição original no Estendido).

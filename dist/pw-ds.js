@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.87.4 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.87.5 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -2335,5 +2335,5 @@ customElements.define('pw-dock',PWDock);
   document.addEventListener('pointermove',e=>{var w=document.querySelector('[class*="dragging"]:is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-minimap,pw-widget-battle,pw-widget-stats,pw-widget-chat)');document.querySelectorAll('pw-dock[drop-target]').forEach(d=>{if(!w||!d._hit(w))d.removeAttribute('drop-target')});if(w)docks(w).forEach(d=>d.toggleAttribute('drop-target',d._hit(w)))},true);
   document.addEventListener('move',e=>{var w=e.target;if(!/^PW-WIDGET-/.test(w.tagName)||w.tagName==='PW-WIDGET-SPELLS')return;document.querySelectorAll('pw-dock[drop-target]').forEach(d=>d.removeAttribute('drop-target'));
     var d=docks(w).find(d=>d._hit(w));if(d){if(w._dock===d){var ws=d.widgets.filter(o=>o!==w),i=ws.filter(o=>o.offsetTop+o.offsetHeight/2<w.offsetTop).length;ws.splice(i,0,w);ws.forEach((o,k)=>o._dockOrder=k);d.layout()}else d.dock(w)}else if(w._dock)w._dock.undock(w)})})();
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.87.4"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.87.5"});
 })();

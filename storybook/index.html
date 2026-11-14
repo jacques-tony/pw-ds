@@ -2306,7 +2306,7 @@ pw-widget-chat[static] :is(.pwmm-resize,[data-a="collapse"],[data-a="lock"]){dis
 .gsim .gsim-hud{position:absolute;left:50%;bottom:0;transform:translateX(-50%);transition:bottom .25s}
 /* modo clássico: painéis laterais com a largura da mochila e barra inferior para o chat */
 .gsim #gsimDockL{left:0;top:0;bottom:0;width:224px}.gsim #gsimDockR{right:0;top:0;bottom:0;width:224px}.gsim #gsimDockB{left:224px;right:224px;bottom:0;height:224px}
-.gsim.classic .gsim-hud{bottom:var(--dkb,224px)}
+.gsim.classic .gsim-hud{bottom:var(--dkb,224px)}.gsim.dk-resizing .gsim-hud{transition:none}
 .gsim.classic .gsim-nav{left:calc(50%);}
 .gsim .gsim-party{position:absolute;left:290px;top:120px;z-index:12}
 .gn-group{margin-top:48px;padding-top:24px;border-top:1px solid var(--sb-line)}
@@ -7210,12 +7210,13 @@ d.innerHTML='<div style="display:flex;align-items:flex-end;gap:8px;height:40px">
   c.addEventListener('save',()=>setTimeout(key,0));h.addEventListener('teamselect',()=>{c.pokemon=cur();key()})})();</script>
 <script>(function(){var g=document.getElementById('gsim'),o=document.getElementById('gsimOptions');if(!g||!o)return;var L=document.getElementById('gsimDockL'),Rr=document.getElementById('gsimDockR'),B=document.getElementById('gsimDockB'),$=id=>document.getElementById(id);
   /* simulação: Opções > Interface > Modo de visualização alterna Estendido / Clássico */
-  function set(classic){var sp=$('gsimSpells');if(sp&&classic&&!g.classList.contains('classic'))sp._top0=sp.style.top;if(sp&&!classic&&sp._top0!=null){sp.style.top=sp._top0;sp._top0=null}if(classic)setTimeout(push,320);g.classList.toggle('classic',classic);[L,Rr,B].forEach(d=>{d.hidden=!classic;d.layout()});
+  function set(classic){var sp=$('gsimSpells');if(sp&&classic&&!g.classList.contains('classic'))sp._top0=sp.style.top;if(sp&&!classic&&sp._top0!=null){sp.style.top=sp._top0;sp._top0=null}if(classic)setTimeout(()=>push(),320);g.classList.toggle('classic',classic);[L,Rr,B].forEach(d=>{d.hidden=!classic;d.layout()});
     if(classic){requestAnimationFrame(()=>{['gsimPoke','gsimBag'].forEach(id=>{var w=$(id);if(w&&!w.hidden)Rr.dock(w)});var c=$('gsimChat');if(c){B.dock(c);c.setAttribute('static','')}var m=$('gsimMap');if(m&&!m.hidden)L.dock(m)})}
     else{var c2=$('gsimChat');if(c2)c2.removeAttribute('static')}if(!classic)[L,Rr,B].forEach(d=>d.widgets.slice().forEach(w=>{var u=w._undock||{};d.undock(w);Object.assign(w.style,{left:u.left,top:u.top,right:u.right,bottom:u.bottom,height:u.height||w.style.height})}))}
   /* barra de spells só se move quando a HUD (empurrada pelo painel inferior) encosta nela */
-  var push=()=>requestAnimationFrame(()=>requestAnimationFrame(()=>{var sp=$('gsimSpells'),hud=$('gsimHud');if(!sp||!hud)return;var lim=hud.offsetTop-8,b=sp.offsetTop+sp.offsetHeight;if(b>lim)sp.style.top=(sp.offsetTop-(b-lim))+'px'}));
-  B.addEventListener('resize',e=>{g.style.setProperty('--dkb',e.detail.height+'px');push()});
+  var push=h=>{var sp=$('gsimSpells'),hud=$('gsimHud');if(!sp||!hud)return;h=h||B.offsetHeight;var lim=g.offsetHeight-h-hud.offsetHeight-8,b=sp.offsetTop+sp.offsetHeight;if(b>lim)sp.style.top=(sp.offsetTop-(b-lim))+'px'};
+  /* em tempo real: sem transição durante o arraste e cálculo no mesmo quadro */
+  B.addEventListener('resize',e=>{g.classList.add('dk-resizing');clearTimeout(B._rt);B._rt=setTimeout(()=>g.classList.remove('dk-resizing'),120);g.style.setProperty('--dkb',e.detail.height+'px');push(e.detail.height)});
   o.addEventListener('change',e=>{if(e.detail.key==='viewmode')set(e.detail.value==='Clássico')})})();</script>
 <script>(function(){var nb=document.querySelector('#gsim pw-navbar');if(!nb)return;var map={bag:'gsimBag',team:'gsimPoke',map:'gsimMap',trade:'gsimBattle',tasks:'gsimStats',settings:'gsimOptions'};
   /* simulação: ícones Mochila e Pokémon da barra superior abrem e fecham os widgets */
