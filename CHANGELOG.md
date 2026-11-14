@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.80.6
+- `pw-widget-spells`: Assistente de combo virou um slot (`pw-card` tertiary com ícone `zap`) no fim da barra, depois das spells; saiu do menu de opções. Dispara o evento `combo`; fica desativado durante a edição de ordem.
+
 ## 0.80.5
 - `pw-party`: cabeçalho do bloco com 12px de padding em todos os lados (alça, ⋮ e ✓ a 12px das bordas e 12px até os cards); tokens `--pt-pad` e `--pt-hd`.
 

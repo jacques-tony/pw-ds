@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.80.5 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.80.6 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2030,6 +2030,8 @@ pw-widget-spells[orientation="vertical"] .pwsp-lock{width:var(--pw-space-6);heig
 pw-widget-spells .pwsp-lock svg{width:var(--pw-space-4);height:var(--pw-space-4);filter:drop-shadow(0 1px 1px var(--pw-black-a55))}
 pw-widget-spells[locked] .pwsp-lock{display:grid}
 pw-widget-spells[locked] .pwsp-grip{display:none}
+pw-widget-spells .pwsp-combo .pwc-content{display:grid!important;place-items:center}pw-widget-spells .pwsp-combo .pwc-content>svg{position:relative;z-index:1;width:var(--pw-space-4);height:var(--pw-space-4);color:var(--pw-text-accent)}
+pw-widget-spells[editing] .pwsp-combo{opacity:.4;pointer-events:none}
 pw-widget-spells .pwsp-menu{flex:none;opacity:0;transition:opacity .2s}
 pw-widget-spells:is(:hover,:focus-within,.moving,.menu-open) .pwsp-menu{opacity:1}
 pw-widget-spells[editing] .pwsp-menu{display:none}
