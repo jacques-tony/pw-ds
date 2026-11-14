@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.84.0
+- `pw-widget-spells`: tom `brand` (moldura dourada) passa a ser o padrão dos slots e do assistente de combo; demo de comparação removida. `slot-tone="neutral"` continua disponível.
+
 ## 0.83.3
 - Diálogo **Mover itens**: corpo sem rolagem — ao clicar em − / + não aparece mais barra de scroll.
 
