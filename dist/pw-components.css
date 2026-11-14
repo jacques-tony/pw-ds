@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.86.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.86.1 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -145,7 +145,7 @@ pw-card-header[variant="banner"] .pwh-label{text-shadow:0 1px 2px var(--pw-black
 pw-card-header[variant="banner"] .pwh-label::before,pw-card-header[variant="banner"] .pwh-label::after{color:inherit;text-shadow:0 0 8px var(--pw-glow)}
 pw-card-header[variant="banner"] svg *{transform-box:fill-box}
 /* no-lines: banner sem as linhas e asas laterais */
-pw-card-header[variant="banner"][no-lines] :is(.bn-line,.bn-wing,.bn-glint,.bn-speed){display:none}
+pw-card-header[variant="banner"][no-lines] :is(.bn-line,.bn-glint){display:none}
 /* no-icons: sem os ✦ ao lado do texto */
 pw-card-header[no-icons] .pwh-label::before,pw-card-header[no-icons] .pwh-label::after{content:none!important;display:none!important}
 pw-card-header[variant="banner"] .bn-line.l{transform-origin:right center}pw-card-header[variant="banner"] .bn-line.r{transform-origin:left center}
