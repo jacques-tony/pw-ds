@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.86.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.86.2 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -2247,7 +2247,7 @@ class PWWidgetCombo extends HTMLElement{
     this._saved=this._saved||{};this._combo=this._load();var u=this._u='pwcb'+(++uidN);this.setAttribute('role','dialog');this.setAttribute('aria-labelledby',u+'t');
     this.innerHTML='<div class="pw-titled pwcb-wrap"><pw-card-header variant="banner" animate no-lines no-icons class="pwcb-head" id="'+u+'t">Assistente de combo</pw-card-header><pw-card variant="tech" class="pwcb-card"><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" aria-label="Fechar" data-tip="Fechar (Esc)" data-c="close" class="pwcb-x"></pw-button><div class="pwcb-body"></div></pw-card></div>';
     this.addEventListener('click',e=>{var b=e.target.closest('[data-c]');if(!b)return;var c=b.dataset.c;
-      if(c==='close')this.close();else if(c==='clear'){this._combo={moves:Array(8).fill(null),key:''};var ki=this.querySelector('.pwcb-key');if(ki)ki.value='';this._slots()}else if(c==='save')this.save()});
+      if(c==='close')this.close();else if(c==='clear'){this._combo={moves:Array(this._n()).fill(null),key:''};var ki=this.querySelector('.pwcb-key');if(ki)ki.value='';this._slots()}else if(c==='save')this.save()});
     this.addEventListener('keydown',e=>{if(e.key==='Escape'&&!this._rec){e.preventDefault();this.close()}});
     var hd=this.querySelector('.pwcb-head');hd.addEventListener('pointerdown',e=>{if(e.button!==0)return;e.preventDefault();var S=(this.getBoundingClientRect().width/this.offsetWidth)||1,x0=e.clientX,y0=e.clientY,l0=this.offsetLeft,t0=this.offsetTop,p=this.offsetParent||document.body;
       var mv=ev=>{this.style.left=Math.max(0,Math.min(p.clientWidth-this.offsetWidth,l0+(ev.clientX-x0)/S))+'px';this.style.top=Math.max(0,Math.min(p.clientHeight-this.offsetHeight,t0+(ev.clientY-y0)/S))+'px';this.style.transform='none'},up=()=>{window.removeEventListener('pointermove',mv,true);window.removeEventListener('pointerup',up,true)};window.addEventListener('pointermove',mv,true);window.addEventListener('pointerup',up,true)});
@@ -2255,10 +2255,12 @@ class PWWidgetCombo extends HTMLElement{
   show(p){if(p)this.pokemon=p;this.hidden=false;var hh=this.querySelector('.pwcb-head');if(hh&&hh.play)requestAnimationFrame(()=>hh.play());this.dispatchEvent(new CustomEvent('open',{bubbles:true}))}
   close(){this.hidden=true;this.dispatchEvent(new CustomEvent('close',{bubbles:true}))}
   toggle(p){this.hidden?this.show(p):this.close()}
+  /* um espaço por magia do Pokémon */
+  _n(){return Math.max(1,((this._p&&this._p.moves)||[]).length||8)}
   _k(){return this._p?(this._p.id||this._p.name):'_'}
-  _load(){return {moves:Array(8).fill(null),key:''}}
+  _load(){return {moves:Array(this._n()).fill(null),key:''}}
   _mv(id){return ((this._p&&this._p.moves)||[]).find(m=>m.id===id)}
-  _load(){var c=this._saved&&this._saved[this._k()];return c?JSON.parse(JSON.stringify(c)):{moves:Array(8).fill(null),key:''}}
+  _load(){var c=this._saved&&this._saved[this._k()];return c?JSON.parse(JSON.stringify(c)):{moves:Array(this._n()).fill(null),key:''}}
   _render(){var E=pwEsc,p=this._p,B=this.querySelector('.pwcb-body');if(!B)return;
     if(!p){B.innerHTML='<pw-empty heading="Nenhum Pokémon invocado" description="Chame um Pokémon da sua equipe para montar o combo com as magias dele."></pw-empty>';return}
     var TL=t=>PW_TYPE_LABEL[t]||t,types=(p.types||[]).map(t=>'<pw-badge tone="neutral" size="sm" icon="'+E(t)+'">'+E(TL(t))+'</pw-badge>').join(''),eff=p.eff||{};
@@ -2269,13 +2271,13 @@ class PWWidgetCombo extends HTMLElement{
       '<section class="pwcb-sec"><h4>Combo<span class="pwcb-sum"></span></h4><pw-card variant="tertiary" tone="neutral" class="pwcb-box"><div class="pwcb-row pwcb-slots"></div><p class="pwcb-hint">Arraste para reordenar · clique numa magia do combo para remover.</p>'+
       '<div class="pwcb-foot"><pw-input class="pwcb-key" label="Atalho" placeholder="Clique e pressione a tecla" help="Esc cancela · Backspace limpa" value="'+E(this._combo.key||'')+'"></pw-input><div class="pwcb-acts"><pw-button variant="ghost" size="sm" fx="none" particles="0" data-c="clear">Limpar</pw-button><pw-button size="sm" fx="none" particles="0" data-c="save">Salvar combo</pw-button></div></div></pw-card></section>';
     this._wire();this._slots()}
-  _slots(){var E=pwEsc,S=this.querySelector('.pwcb-slots');if(!S)return;var c=this._combo.moves=this._combo.moves.filter(Boolean).concat(Array(8).fill(null)).slice(0,8);
+  _slots(){var E=pwEsc,S=this.querySelector('.pwcb-slots');if(!S)return;var c=this._combo.moves=this._combo.moves.filter(Boolean).concat(Array(this._n()).fill(null)).slice(0,this._n());
     S.innerHTML=c.map((id,i)=>{var m=id&&this._mv(id);return m?'<pw-card variant="tertiary" tone="brand" interactive state="idle" class="pwcb-mv pwcb-slot" data-s="'+i+'" role="button" tabindex="0" aria-label="'+(i+1)+': '+E(m.name)+'. Clique para remover" data-tip-title="'+E(m.name)+'" data-tip="Clique para remover"><img src="'+E(m.image)+'" alt="" draggable="false"><pw-badge class="num" tone="neutral" size="xs">'+(i+1)+'</pw-badge></pw-card>':'<pw-card variant="tertiary" tone="neutral" class="pwcb-mv pwcb-slot empty" data-s="'+i+'" aria-label="Espaço '+(i+1)+' vazio"><pw-badge class="num" tone="neutral" size="xs">'+(i+1)+'</pw-badge></pw-card>'}).join('');
-    var used=c.filter(Boolean),t=used.reduce((a,id)=>a+(+(this._mv(id)||{}).cast||1),0);this.querySelector('.pwcb-sum').textContent=used.length?used.length+' de 8 · ~'+t.toFixed(1).replace('.',',')+'s para executar':'0 de 8';
+    var used=c.filter(Boolean),t=used.reduce((a,id)=>a+(+(this._mv(id)||{}).cast||1),0);this.querySelector('.pwcb-sum').textContent=used.length?used.length+' de '+this._n()+' · ~'+t.toFixed(1).replace('.',',')+'s para executar':'0 de '+this._n();
     this.querySelectorAll('.pwcb-src .pwcb-mv').forEach(x=>x.classList.toggle('used',c.indexOf(x.dataset.m)>-1));
     this.querySelectorAll('[data-c="clear"]').forEach(b=>b.toggleAttribute('disabled',!used.length&&!this._combo.key));this.querySelectorAll('[data-c="save"]').forEach(b=>b.toggleAttribute('disabled',!used.length))}
   /* sem buracos: sempre vai para o próximo espaço livre; arrastar insere na posição (até o fim da fila) */
-  _add(id,at){var c=this._combo.moves.filter(Boolean);if(c.length>=8)return;at=at==null?c.length:Math.min(at,c.length);c.splice(at,0,id);this._combo.moves=c;this._slots();var s=this.querySelector('.pwcb-slot[data-s="'+at+'"]');if(s)s.classList.add('pop')}
+  _add(id,at){var c=this._combo.moves.filter(Boolean);if(c.length>=this._n())return;at=at==null?c.length:Math.min(at,c.length);c.splice(at,0,id);this._combo.moves=c;this._slots();var s=this.querySelector('.pwcb-slot[data-s="'+at+'"]');if(s)s.classList.add('pop')}
   _wire(){var R=this.querySelector('.pwcb-src'),S=this.querySelector('.pwcb-slots');if(!R)return;
     var drag=(e,id,from)=>{var x0=e.clientX,y0=e.clientY,gh=null,over=null;
       var mv=ev=>{if(!gh){if(Math.hypot(ev.clientX-x0,ev.clientY-y0)<5)return;gh=document.createElement('div');gh.className='pwcb-ghost';gh.innerHTML='<img src="'+pwEsc(this._mv(id).image)+'" alt="">';document.body.appendChild(gh);this._dr=true}
@@ -2300,5 +2302,5 @@ class PWWidgetCombo extends HTMLElement{
   get combo(){return this._saved[this._k()]||null}
 }
 customElements.define('pw-widget-combo',PWWidgetCombo);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.86.1"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.86.2"});
 })();

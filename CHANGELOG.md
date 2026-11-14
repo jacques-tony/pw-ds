@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.86.2
+- `pw-widget-combo`: quantidade de espaços do combo igual à quantidade de magias do Pokémon invocado (antes fixa em 8).
+
 ## 0.86.1
 - `pw-card-header` `no-lines`: remove só as linhas (as asas laterais ficam).
 - `pw-widget-combo`: banner com `animate`, tocando a animação de abertura sempre que o widget abre; lista todas as magias do Pokémon invocado (10 na demo).
