@@ -2095,7 +2095,8 @@ pw-widget-spells pw-card.pwsp-slot>.pwc-content{padding:0;height:100%;display:bl
 pw-widget-spells pw-card.pwsp-slot:active{--press:.92}
 pw-widget-spells .pwsp-slot>.pwc-content::after{content:"";position:absolute;inset:0;z-index:2;border-radius:8px;box-shadow:inset 0 0 0 1px var(--pw-ter-stroke-1),inset 0 0 0 2px color-mix(in srgb,var(--pw-ter-stroke-0) 70%,transparent);pointer-events:none}
 pw-widget-spells .pwsp-slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:8px;z-index:1;pointer-events:none}
-pw-widget-spells .pwsp-slot .num{position:absolute;left:calc(var(--pw-space-1) * -1);top:calc(var(--pw-space-1) * -1);z-index:4;pointer-events:none}
+/* badge xs padrão do DS (igual à da HUD), com largura mínima = altura para números de 1 dígito */
+pw-widget-spells .pwsp-slot .num{position:absolute;left:calc(var(--pw-space-1) * -1);top:calc(var(--pw-space-1) * -1);z-index:4;pointer-events:none;min-width:var(--bh);justify-content:center;box-sizing:border-box}
 /* recarga: varredura + segundos; usa a arte "off" quando houver, senão escurece */
 pw-widget-spells .pwsp-slot .cd{position:absolute;inset:0;z-index:3;border-radius:8px;display:none;place-items:center;pointer-events:none;
   background:conic-gradient(transparent calc(var(--cdp,0) * 360deg),color-mix(in srgb,var(--pw-black) 62%,transparent) 0);font:var(--pw-font-weight-bold) var(--pw-font-size-2xs)/1 var(--pw-font-body);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}

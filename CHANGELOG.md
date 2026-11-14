@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.82.3
+- `pw-widget-spells`: badge do atalho segue o `pw-badge` xs padrão, com largura mínima igual à altura (14×14) — antes ficava estreita (9px) em números de 1 dígito.
+
 ## 0.82.2
 - `pw-widget-spells`: raio do card da spell em 8px.
 
