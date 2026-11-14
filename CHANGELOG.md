@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.82.2
+- `pw-widget-spells`: raio do card da spell em 8px.
+
 ## 0.82.1
 - `pw-widget-spells`: card da spell com raio de 12px e 2px menor (30×30); a arte da spell mantém o tamanho (30×30) e a borda do tom fica por cima dela.
 - `pw-card` tertiary: raio da moldura configurável por `--ter-r` (padrão 8px).
