@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.89.1
+- `pw-widget-minimap`: botão direito em cima de uma marcação abre **Editar marcação** (mesmo diálogo, preenchido, botão Salvar) e **Excluir marcação** (confirmação em `pw-dialog`). Eventos `markedit` e `markdelete` (canceláveis).
+
 ## 0.89.0
 - `pw-widget-minimap`: botão direito no mapa abre um menu (`pw-control-group`) com **Criar marcação**, que abre o diálogo **Criar marca no mapa** (`pw-dialog`): posição do ponto clicado com botão copiar, grade de 28 ícones em `pw-card` tertiary (radio, navegável por setas), descrição (`pw-input`), Cancelar / Criar marca. A marca aparece no mapa no andar certo, com tooltip da descrição. Evento `mark` (cancelável); marcas ficam em `minimap.marks`.
 
