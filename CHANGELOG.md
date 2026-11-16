@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.88.0
+- `pw-hud`: hotkeys com recarga igual à barra de spells (varredura + segundos, ícone acinzentado, brilho ao ficar pronta). Campo `cd` (segundos) no atalho; usar durante a recarga é bloqueado; método `cooldown(slot, segundos)`.
+- Demo: Pó vermelho 3s, Garra do dragão 8s, Pedra azul 5s, Cristal verde 12s.
+
 ## 0.87.6
 - Widgets com `static` (ex.: bate-papo fixo no modo Clássico) ficam fora do magnetismo: outros widgets não grudam nem arrastam/empurram ele, e ele não move vizinhos.
 

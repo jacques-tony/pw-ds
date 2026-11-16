@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.87.6 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.88.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1221,6 +1221,9 @@ pw-hud .pwhd-slot .pwc-content>svg{width:60%;height:60%;color:var(--pw-text-acce
 pw-hud .pwhd-slot :is(.q,.kb){position:absolute;right:var(--pw-space-0-5);z-index:2;pointer-events:none;font:var(--pw-font-weight-bold) var(--pw-font-size-3xs)/1 var(--pw-font-body);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
 pw-hud .pwhd-slot .q{bottom:0}pw-hud .pwhd-slot .kb{top:var(--pw-space-0-5)}
 pw-hud .pwhd-slot .q.zero{color:var(--pw-status-error)}
+pw-hud .pwhd-slot .cd{position:absolute;inset:0;z-index:2;border-radius:inherit;display:none;place-items:center;pointer-events:none;background:conic-gradient(transparent calc(var(--cdp,0) * 360deg),color-mix(in srgb,var(--pw-black) 62%,transparent) 0);font:var(--pw-font-weight-bold) var(--pw-font-size-2xs)/1 var(--pw-font-body);color:var(--pw-text-primary);text-shadow:var(--pw-shadow-text-strong);font-variant-numeric:tabular-nums}
+pw-hud .pwhd-slot.cooling .cd{display:grid}pw-hud .pwhd-slot.cooling{cursor:not-allowed}pw-hud .pwhd-slot.cooling :is(.spr,img){filter:grayscale(.85) brightness(.75)}
+pw-hud .pwhd-slot.ready{animation:pwsp-ready .45s var(--card-ease)}
 pw-hud .pwhd-slot .pwc-content>img,pw-hud .pwhd-slot .pwc-content>svg{z-index:1;position:absolute;inset:0;margin:auto}
 pw-hud .pwhd-slot.empty{cursor:context-menu}
 /* ===================== COMPONENT: pw-kbd (tecla do teclado) ===================== */
