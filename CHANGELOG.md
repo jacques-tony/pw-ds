@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.4
+
+- `pw-widget-outfit`: divisor das abas até o fim do modal; 16px de padding e espaçamento nos cards internos (incluindo o checkbox).
+- Simulação: removido Deslocamento do menu do personagem.
+
 ## 0.90.3
 - `pw-widget-outfit`: painel mais baixo; 16px entre as abas e os cards; sem os quadradinhos de cor nos botões Cabeça/Corpo/Pernas/Pés.
 - Itens bloqueados (`locked: true` em roupas, títulos e efeitos): esmaecidos, com cadeado, tooltip “Bloqueado” e não selecionáveis. Checkbox **Mostrar apenas liberados** (`pw-checkbox`) nas abas Visual, Títulos e Efeitos.

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.90.3 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.90.4 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2229,12 +2229,12 @@ pw-widget-outfit .pwof-head{cursor:grab;user-select:none;touch-action:none}
 pw-widget-outfit pw-button.pwof-x{position:absolute;top:var(--pw-space-6);right:var(--pw-space-6);z-index:3}
 pw-widget-outfit .pwof-body{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) calc(var(--pw-space-32) + var(--pw-space-24));grid-template-rows:auto var(--pwof-h,calc(var(--pw-space-32) * 2 + var(--pw-space-8)));column-gap:var(--pw-space-4);row-gap:var(--pw-space-4);padding:calc(var(--pw-space-6) + var(--pw-space-8)) var(--pw-space-6) var(--pw-space-6)}
 pw-widget-outfit .pwof-main{display:contents}
-pw-widget-outfit .pwof-main>pw-tabs{grid-column:1;grid-row:1}pw-widget-outfit .pwof-main>.pwof-panel{grid-column:1;grid-row:2}
+pw-widget-outfit .pwof-main>pw-tabs{grid-column:1 / -1;grid-row:1}pw-widget-outfit .pwof-main>.pwof-panel{grid-column:1;grid-row:2}
 pw-widget-outfit pw-card.pwof-panel{height:100%}pw-widget-outfit pw-card.pwof-panel>.pwc-content{height:100%;box-sizing:border-box}
 pw-widget-outfit pw-card.pwof-box{width:auto;height:auto;--lift:0px}
 pw-widget-outfit pw-card.pwof-box>.pwc-content{padding:var(--pw-space-3);height:auto;gap:var(--pw-space-3);position:relative;z-index:1}
 pw-widget-outfit pw-scroll.pwof-scroll{flex:1;min-height:0;padding-right:var(--pw-space-2)}
-pw-widget-outfit pw-card.pwof-panel>.pwc-content{display:flex;flex-direction:column}
+pw-widget-outfit pw-card.pwof-panel>.pwc-content{display:flex;flex-direction:column;padding:var(--pw-space-4);gap:var(--pw-space-4)}
 pw-widget-outfit .pwof-only{flex:none;align-self:flex-end}
 pw-widget-outfit pw-card.pwof-it.locked{cursor:not-allowed}
 pw-widget-outfit pw-card.pwof-it.locked>.pwc-content>:not(.pwof-lk){opacity:.35;filter:grayscale(1)}
