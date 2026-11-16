@@ -29,6 +29,7 @@ Componentes de interface do OTServ **Poke World Universe**, feitos como Web Comp
 | Widget Barra de spells | `<pw-widget-spells>` |
 | Widget Opções | `<pw-widget-options>` |
 | Widget Assistente de combo | `<pw-widget-combo>` |
+| Widget Personalizar treinador | `<pw-widget-outfit>` |
 | Dock (painel fixo) | `<pw-dock>` |
 | Switch | `<pw-switch>` |
 | Slider | `<pw-slider>` |

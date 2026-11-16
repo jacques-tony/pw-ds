@@ -27,6 +27,15 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.0
+- Novo `<pw-widget-outfit>` (Personalizar treinador): janela `pw-card` tech + `pw-card-header` banner (animado, sem linhas/ícones), abas `pw-tabs` Visual / Títulos / Efeitos / Cores.
+  - Itens em `pw-card` tertiary (brand quando selecionado).
+  - Paleta de 133 cores por parte (cabeça, corpo, pernas, pés), navegável por setas.
+  - Prévia ao vivo com título, nome e efeito, botões girar e andar (sprite 4×3 quadros de 64px) e Confirmar.
+  - Evento `confirm` (cancelável) com `{ outfit, title, effect, colors }`.
+- Simulação: botão direito no personagem abre o menu (Examinar, Usar, Deslocamento, Escolher roupa, Copiar nome); **Escolher roupa** abre o widget.
+- Sprites de exemplo em `assets/outfits/`.
+
 ## 0.89.1
 - `pw-widget-minimap`: botão direito em cima de uma marcação abre **Editar marcação** (mesmo diálogo, preenchido, botão Salvar) e **Excluir marcação** (confirmação em `pw-dialog`). Eventos `markedit` e `markdelete` (canceláveis).
 

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.89.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.90.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2039,3 +2039,42 @@ pw-dialog.pwmm-mk pw-card.pwmk-i>.pwc-content{padding:0;height:100%;display:grid
 pw-dialog.pwmm-mk pw-card.pwmk-i .pwc-content :is(svg,img){width:var(--pw-space-4);height:var(--pw-space-4);color:var(--pw-text-muted)}
 pw-dialog.pwmm-mk pw-card.pwmk-i[selected] .pwc-content svg{color:var(--pw-text-accent)}
 pw-dialog.pwmm-mk .pwd-foot pw-button{flex:1}pw-dialog.pwmm-mk .pwd-foot pw-button>button{width:100%}
+/* ===================== COMPONENT: pw-widget-outfit (Personalizar treinador) ===================== */
+pw-widget-outfit{position:absolute;z-index:30;display:block;width:calc(var(--pw-space-32) * 6 + var(--pw-space-8));font-family:var(--pw-font-body)}
+pw-widget-outfit[hidden]{display:none}
+pw-widget-outfit .pwof-wrap{display:block;width:100%}
+pw-widget-outfit pw-card.pwof-card{width:100%;height:auto;--lift:0px}
+pw-widget-outfit pw-card.pwof-card>.pwc-content{padding:0;gap:0;height:auto}
+pw-widget-outfit .pwof-head{cursor:grab;user-select:none;touch-action:none}
+pw-widget-outfit pw-button.pwof-x{position:absolute;top:var(--pw-space-6);right:var(--pw-space-6);z-index:3}
+pw-widget-outfit .pwof-body{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) calc(var(--pw-space-32) + var(--pw-space-24));gap:var(--pw-space-4);padding:calc(var(--pw-space-6) + var(--pw-space-8)) var(--pw-space-6) var(--pw-space-6)}
+pw-widget-outfit .pwof-main{display:grid;gap:var(--pw-space-3);min-width:0;align-content:start}
+pw-widget-outfit pw-card.pwof-box{width:auto;height:auto;--lift:0px}
+pw-widget-outfit pw-card.pwof-box>.pwc-content{padding:var(--pw-space-3);height:auto;gap:var(--pw-space-3);position:relative;z-index:1}
+pw-widget-outfit pw-scroll.pwof-scroll{height:calc(var(--pw-space-32) + var(--pw-space-24) + var(--pw-space-4));padding-right:var(--pw-space-2)}
+pw-widget-outfit .pwof-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--pw-space-2)}
+pw-widget-outfit .pwof-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+pw-widget-outfit pw-card.pwof-it{width:auto;height:auto;aspect-ratio:1;cursor:pointer;--lift:0px}
+pw-widget-outfit .pwof-grid.two pw-card.pwof-it{aspect-ratio:auto;min-height:var(--pw-space-12)}
+pw-widget-outfit pw-card.pwof-it>.pwc-content{padding:var(--pw-space-1);height:100%;display:grid;place-items:center;position:relative;z-index:1;text-align:center;font-size:var(--pw-font-size-sm);font-weight:var(--pw-font-weight-semibold);color:var(--pw-text-primary)}
+pw-widget-outfit .pwof-spr{width:64px;height:64px;background-repeat:no-repeat;background-size:400% 300%;background-position:calc(var(--c,1) * 33.333%) calc(var(--r,0) * 50%);image-rendering:pixelated}
+pw-widget-outfit .pwof-sub{margin:0;text-align:center;font-size:var(--pw-font-size-sm);color:var(--pw-text-body)}
+pw-widget-outfit .pwof-parts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--pw-space-2)}
+pw-widget-outfit .pwof-parts pw-button{display:flex}pw-widget-outfit .pwof-parts pw-button>button{width:100%}
+pw-widget-outfit .pwof-parts i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-left:var(--pw-space-1);box-shadow:inset 0 0 0 1px var(--pw-black-a45)}
+pw-widget-outfit .pwof-pal{display:grid;grid-template-columns:repeat(19,1fr);gap:2px;max-width:calc(19 * 20px);margin:0 auto;width:100%}
+pw-widget-outfit .pwof-pal button{all:unset;aspect-ratio:1;border-radius:2px;cursor:pointer;box-shadow:inset 0 0 0 1px var(--pw-black-a45)}
+pw-widget-outfit .pwof-pal button:hover{transform:scale(1.2);position:relative;z-index:1}
+pw-widget-outfit .pwof-pal button[aria-checked="true"]{box-shadow:0 0 0 2px var(--pw-filament),0 0 6px var(--pw-glow);position:relative;z-index:2}
+pw-widget-outfit .pwof-pal button:focus-visible{outline:2px solid var(--pw-focus-ring)}
+pw-widget-outfit .pwof-side{display:grid;gap:var(--pw-space-3);align-content:start;justify-items:center}
+pw-widget-outfit .pwof-side>pw-card.pwof-box{width:100%}
+pw-widget-outfit .pwof-name{display:grid;gap:2px;text-align:center}
+pw-widget-outfit .pwof-name small{font-size:var(--pw-font-size-xs);font-weight:var(--pw-font-weight-bold)}
+pw-widget-outfit .pwof-name b{font-size:var(--pw-font-size-md);color:var(--pw-text-primary)}
+pw-widget-outfit .pwof-name em{font-style:normal;font-size:var(--pw-font-size-2xs);color:var(--pw-text-muted)}
+pw-widget-outfit pw-card.pwof-prev{width:calc(var(--pw-space-24) + var(--pw-space-4));height:calc(var(--pw-space-24) + var(--pw-space-4));--ter-r:56px;border-radius:50%;--lift:0px}
+pw-widget-outfit pw-card.pwof-prev>.pwc-content{padding:0;height:100%;display:grid;place-items:center;position:relative;z-index:1}
+pw-widget-outfit pw-card.pwof-prev .pwof-spr{transform:scale(1.4)}
+pw-widget-outfit .pwof-ctl{display:flex;gap:var(--pw-space-2)}
+pw-widget-outfit .pwof-side>pw-button.pwof-ok{display:flex;width:100%}pw-widget-outfit .pwof-side>pw-button.pwof-ok>button{width:100%}
