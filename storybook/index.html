@@ -2323,7 +2323,7 @@ pw-widget-outfit .pwof-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 pw-widget-outfit pw-card.pwof-it{width:auto;height:auto;aspect-ratio:1;cursor:pointer;--lift:0px}
 pw-widget-outfit .pwof-grid.two pw-card.pwof-it{aspect-ratio:auto;min-height:var(--pw-space-12)}
 pw-widget-outfit pw-card.pwof-it>.pwc-content{padding:var(--pw-space-1);height:100%;display:grid;place-items:center;position:relative;z-index:1;text-align:center;font-size:var(--pw-font-size-sm);font-weight:var(--pw-font-weight-semibold);color:var(--pw-text-primary)}
-pw-widget-outfit .pwof-spr{width:64px;height:64px;background-repeat:no-repeat;background-size:400% 300%;background-position:calc(var(--c,1) * 33.333%) calc(var(--r,0) * 50%);image-rendering:pixelated}
+pw-widget-outfit .pwof-spr{width:64px;height:64px;background-repeat:no-repeat;background-size:400% 300%;background-position:calc(var(--c,2) * 33.333%) calc(var(--r,0) * 50%);image-rendering:pixelated}
 pw-widget-outfit .pwof-sub{margin:0;text-align:center;font-size:var(--pw-font-size-sm);color:var(--pw-text-body)}
 pw-widget-outfit .pwof-parts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--pw-space-2)}
 pw-widget-outfit .pwof-parts pw-button{display:flex}pw-widget-outfit .pwof-parts pw-button>button{width:100%}
@@ -2335,7 +2335,7 @@ pw-widget-outfit .pwof-pal button[aria-checked="true"]{box-shadow:0 0 0 2px var(
 pw-widget-outfit .pwof-pal button:focus-visible{outline:2px solid var(--pw-focus-ring)}
 pw-widget-outfit .pwof-side{display:grid;gap:var(--pw-space-3);align-content:start;justify-items:center}
 pw-widget-outfit .pwof-side>pw-card.pwof-box{width:100%}
-pw-widget-outfit .pwof-name{display:grid;gap:2px;text-align:center}
+pw-widget-outfit .pwof-name{display:grid;grid-template-rows:auto auto auto;gap:2px;text-align:center;min-width:0}pw-widget-outfit .pwof-name>*{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
 pw-widget-outfit .pwof-name small{font-size:var(--pw-font-size-xs);font-weight:var(--pw-font-weight-bold)}
 pw-widget-outfit .pwof-name b{font-size:var(--pw-font-size-md);color:var(--pw-text-primary)}
 pw-widget-outfit .pwof-name em{font-style:normal;font-size:var(--pw-font-size-2xs);color:var(--pw-text-muted)}
@@ -6859,15 +6859,15 @@ class PWWidgetOutfit extends HTMLElement{
   get value(){return {outfit:this._d.outfit,title:this._d.title,effect:this._d.effect,colors:Object.assign({},this._d.colors)}}
   set data(v){this._d=Object.assign(this._d||{},v||{});if(this._init)this._render()}
   connectedCallback(){if(this._init)return;this._init=true;var json=this.querySelector('script[type="application/json"]'),d={};if(json){try{d=JSON.parse(json.textContent)}catch(e){}}
-    this._d=Object.assign({name:'',outfits:[],titles:[],effects:[],colors:{head:0,body:0,legs:0,feet:0}},d);this._tab='visual';this._part='head';this._dir=0;this._walk=false;var u=this._u='pwof'+(++uidN);this.setAttribute('role','dialog');this.setAttribute('aria-labelledby',u+'t');
+    this._d=Object.assign({name:'',outfits:[],titles:[],effects:[],colors:{head:0,body:0,legs:0,feet:0}},d);this._tab='visual';this._part='head';this._dir=2;this._walk=false;var u=this._u='pwof'+(++uidN);this.setAttribute('role','dialog');this.setAttribute('aria-labelledby',u+'t');
     this.innerHTML='<div class="pw-titled pwof-wrap"><pw-card-header variant="banner" animate no-lines no-icons class="pwof-head" id="'+u+'t">Personalizar treinador</pw-card-header><pw-card variant="tech" class="pwof-card"><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" aria-label="Fechar" data-tip="Fechar (Esc)" data-o="close" class="pwof-x"></pw-button><div class="pwof-body">'+
-      '<div class="pwof-main"><pw-tabs aria-label="Personalização"><pw-tab data-t="visual" icon="user" selected>Visual</pw-tab><pw-tab data-t="titulos" icon="crown">Títulos</pw-tab><pw-tab data-t="efeitos" icon="star">Efeitos</pw-tab><pw-tab data-t="cores" icon="flask">Cores</pw-tab></pw-tabs><pw-card variant="tertiary" tone="neutral" class="pwof-box pwof-panel"></pw-card></div>'+
+      '<div class="pwof-main"><pw-tabs variant="folder" size="xs" aria-label="Personalização"><pw-tab data-t="visual" icon="user" selected>Visual</pw-tab><pw-tab data-t="titulos" icon="crown">Títulos</pw-tab><pw-tab data-t="efeitos" icon="star">Efeitos</pw-tab><pw-tab data-t="cores" icon="flask">Cores</pw-tab></pw-tabs><pw-card variant="tertiary" tone="neutral" class="pwof-box pwof-panel"></pw-card></div>'+
       '<div class="pwof-side"><pw-card variant="tertiary" tone="neutral" class="pwof-box"><div class="pwof-name"></div></pw-card><pw-card variant="tertiary" tone="brand" class="pwof-prev" role="img"><div class="pwof-spr"></div></pw-card>'+
       '<div class="pwof-ctl"><pw-button appearance="outline" size="sm" fx="none" particles="0" icon="rotate-cw" data-o="rot" data-tip="Girar" aria-label="Girar"></pw-button><pw-button appearance="outline" size="sm" fx="none" particles="0" icon="play" data-o="walk" data-tip="Andar" aria-label="Ver andando" aria-pressed="false"></pw-button></div>'+
       '<pw-button class="pwof-ok" size="sm" fx="none" particles="0" icon="check" data-o="ok">Confirmar</pw-button></div></div></pw-card></div>';
     this.querySelector('pw-tabs').addEventListener('change',e=>{var t=e.detail&&e.detail.tab;if(t&&t.dataset.t){this._tab=t.dataset.t;this._panel()}});
     this.querySelector('pw-tabs').addEventListener('click',e=>{var t=e.target.closest('pw-tab[data-t]');if(t&&t.dataset.t!==this._tab){this._tab=t.dataset.t;this._panel()}});
-    this.addEventListener('click',e=>{var b=e.target.closest('[data-o]');if(b){var o=b.dataset.o;if(o==='close')this.close();else if(o==='rot'){this._dir=(this._dir+1)%3;this._prev()}else if(o==='walk'){this._walk=!this._walk;b.setAttribute('aria-pressed',this._walk);b.setAttribute('icon',this._walk?'pause':'play');this._anim()}else if(o==='ok')this.confirm();return}
+    this.addEventListener('click',e=>{var b=e.target.closest('[data-o]');if(b){var o=b.dataset.o;if(o==='close')this.close();else if(o==='rot'){this._dir=(this._dir+1)%4;this._prev()}else if(o==='walk'){this._walk=!this._walk;b.setAttribute('aria-pressed',this._walk);b.setAttribute('icon',this._walk?'pause':'play');this._anim()}else if(o==='ok')this.confirm();return}
       var it=e.target.closest('[data-pick]');if(it){var k=it.dataset.pick;this._d[k]=it.dataset.v;this._panel();this._prev();return}
       var pt=e.target.closest('[data-part]');if(pt){this._part=pt.dataset.part;this._panel();return}
       var sw=e.target.closest('[data-sw]');if(sw){this._d.colors[this._part]=+sw.dataset.sw;this._panel();this._prev()}});
@@ -6883,16 +6883,16 @@ class PWWidgetOutfit extends HTMLElement{
   _render(){this._panel();this._prev()}
   _o(){return this._d.outfits.find(o=>o.id===this._d.outfit)||this._d.outfits[0]||{}}
   _prev(){var E=pwEsc,o=this._o(),t=this._d.titles.find(x=>x.id===this._d.title),f=this._d.effects.find(x=>x.id===this._d.effect);
-    this.querySelector('.pwof-name').innerHTML=(t&&t.id?'<small style="color:'+E(t.color||'')+'">'+E(t.name)+'</small>':'')+'<b>'+E(this._d.name)+'</b>'+(f&&f.id?'<em>'+E(f.name)+'</em>':'');
-    var sp=this.querySelector('.pwof-prev .pwof-spr');sp.style.backgroundImage=o.sprite?'url("'+o.sprite+'")':'';sp.style.setProperty('--r',this._dir);if(!this._walk)sp.style.setProperty('--c',1);
+    this.querySelector('.pwof-name').innerHTML='<small'+(t&&t.id?' style="color:'+E(t.color||'')+'"':'')+'>'+(t&&t.id?E(t.name):'&nbsp;')+'</small><b>'+E(this._d.name)+'</b><em>'+(f&&f.id?E(f.name):'&nbsp;')+'</em>';
+    var sp=this.querySelector('.pwof-prev .pwof-spr');sp.style.backgroundImage=o.sprite?'url("'+o.sprite+'")':'';sp.style.setProperty('--c',this._dir);if(!this._walk)sp.style.setProperty('--r',0);
     this.querySelector('.pwof-prev').setAttribute('aria-label','Prévia: '+(o.name||''))}
-  _anim(){clearInterval(this._wt);var sp=this.querySelector('.pwof-prev .pwof-spr'),c=0;if(!this._walk||matchMedia('(prefers-reduced-motion: reduce)').matches){sp.style.setProperty('--c',1);return}this._wt=setInterval(()=>{c=(c+1)%4;sp.style.setProperty('--c',c)},160)}
+  _anim(){clearInterval(this._wt);var sp=this.querySelector('.pwof-prev .pwof-spr'),c=0;if(!this._walk||matchMedia('(prefers-reduced-motion: reduce)').matches){sp.style.setProperty('--r',0);return}this._wt=setInterval(()=>{c=(c+1)%3;sp.style.setProperty('--r',c)},180)}
   _item(k,v,inner,lab,extra){var on=String(this._d[k]||'')===String(v);return '<pw-card variant="tertiary" tone="'+(on?'brand':'neutral')+'" interactive state="idle" class="pwof-it" role="radio" tabindex="0" aria-checked="'+on+'"'+(on?' selected':'')+' data-pick="'+k+'" data-v="'+pwEsc(v)+'" aria-label="'+pwEsc(lab)+'"'+(extra||'')+'>'+inner+'</pw-card>'}
   _panel(){var E=pwEsc,d=this._d,P=this.querySelector('.pwof-panel>.pwc-content')||this.querySelector('.pwof-panel'),h='';
     if(this._tab==='visual')h='<pw-scroll class="pwof-scroll"><div class="pwof-grid" role="radiogroup" aria-label="Visual">'+d.outfits.map(o=>this._item('outfit',o.id,'<div class="pwof-spr" style="background-image:url(\''+E(o.sprite)+'\')"></div>',o.name,' data-tip="'+E(o.name)+'"')).join('')+'</div></pw-scroll>';
     else if(this._tab==='titulos')h='<pw-scroll class="pwof-scroll"><div class="pwof-grid two" role="radiogroup" aria-label="Títulos">'+d.titles.map(t=>this._item('title',t.id,'<span'+(t.color?' style="color:'+E(t.color)+'"':'')+'>'+E(t.name)+'</span>',t.name)).join('')+'</div></pw-scroll>';
     else if(this._tab==='efeitos')h='<pw-scroll class="pwof-scroll"><div class="pwof-grid two" role="radiogroup" aria-label="Efeitos">'+d.effects.map(f=>this._item('effect',f.id,E(f.name),f.name)).join('')+'</div></pw-scroll>';
-    else{var cur=d.colors[this._part]||0;h='<p class="pwof-sub">Escolha a parte e depois uma cor</p><div class="pwof-parts" role="radiogroup" aria-label="Parte">'+PW_OUTFIT_PARTS.map(p=>'<pw-button size="sm" fx="none" particles="0"'+(p[0]===this._part?'':' appearance="outline"')+' data-part="'+p[0]+'" aria-pressed="'+(p[0]===this._part)+'">'+p[1]+'<i style="background:'+PW_OUTFIT_PAL[d.colors[p[0]]||0]+'"></i></pw-button>').join('')+'</div>'+
+    else{var cur=d.colors[this._part]||0;h='<div class="pwof-parts" role="radiogroup" aria-label="Parte">'+PW_OUTFIT_PARTS.map(p=>'<pw-button size="sm" fx="none" particles="0"'+(p[0]===this._part?'':' appearance="outline"')+' data-part="'+p[0]+'" aria-pressed="'+(p[0]===this._part)+'">'+p[1]+'<i style="background:'+PW_OUTFIT_PAL[d.colors[p[0]]||0]+'"></i></pw-button>').join('')+'</div>'+
       '<div class="pwof-pal" role="radiogroup" aria-label="Cor">'+PW_OUTFIT_PAL.map((c,i)=>'<button type="button" role="radio" data-sw="'+i+'" aria-checked="'+(i===cur)+'" tabindex="'+(i===cur?0:-1)+'" aria-label="Cor '+(i+1)+'" style="background:'+c+'"></button>').join('')+'</div>'}
     P.innerHTML=h}
 }

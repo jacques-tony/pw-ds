@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.1
+- `pw-widget-outfit`: sprites olhando para frente (coluna 3); girar percorre as 4 direções (colunas) e andar anima os 3 quadros (linhas); abas `pw-tabs` folder `xs`; card de nome com altura fixa (linha do título e do efeito sempre reservadas); removido o texto “Escolha a parte e depois uma cor”.
+
 ## 0.90.0
 - Novo `<pw-widget-outfit>` (Personalizar treinador): janela `pw-card` tech + `pw-card-header` banner (animado, sem linhas/ícones), abas `pw-tabs` Visual / Títulos / Efeitos / Cores.
   - Itens em `pw-card` tertiary (brand quando selecionado).
