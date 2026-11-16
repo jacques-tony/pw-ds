@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.88.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.89.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2026,3 +2026,16 @@ pw-widget-chat[static] :is(.pwmm-resize,[data-a="collapse"],[data-a="lock"]){dis
 .pwdk-rz::after{content:"";width:var(--pw-space-10);height:var(--pw-space-1);border-radius:var(--pw-radius-full);background:var(--pw-filament);opacity:0;box-shadow:0 0 8px var(--pw-glow);transition:opacity var(--card-dur)}
 .pwdk-rz:not([hidden]){display:grid}.pwdk-rz[hidden]{display:none}.pwdk-rz:hover::after,pw-dock.resizing .pwdk-rz::after,.pwdk-rz:focus-visible::after{opacity:1}
 .pwdk-flash{position:absolute;z-index:9999;pointer-events:none;box-sizing:border-box;border:2px solid var(--pw-filament);box-shadow:0 0 14px var(--pw-glow),inset 0 0 14px var(--pw-glow)}
+pw-widget-minimap .pwmm-mark{position:absolute;width:var(--pw-space-4);height:var(--pw-space-4);transform:translate(-50%,-50%) scale(calc(1 / var(--z)));display:grid;place-items:center;border-radius:var(--pw-radius-xs);background:var(--pw-bg-solid);border:1px solid var(--pw-filament);color:var(--pw-text-accent);box-shadow:0 0 6px var(--pw-glow);cursor:help}
+pw-widget-minimap .pwmm-mark svg,pw-widget-minimap .pwmm-mark img{width:75%;height:75%}
+pw-dialog.pwmm-mk{--dlg-w:340px}
+pw-dialog.pwmm-mk .pwd-body{display:grid;gap:var(--pw-space-3);overflow:visible}
+pw-dialog.pwmm-mk .pwmk-pos{display:flex;align-items:center;gap:var(--pw-space-2);font-size:var(--pw-font-size-sm);color:var(--pw-text-muted)}
+pw-dialog.pwmm-mk .pwmk-pos b{color:var(--pw-text-primary);font-variant-numeric:tabular-nums}
+pw-dialog.pwmm-mk .pwmk-lab{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase;color:var(--pw-text-accent-soft)}
+pw-dialog.pwmm-mk .pwmk-grid{display:grid;grid-template-columns:repeat(7,var(--pw-space-8));gap:var(--pw-space-1-5,6px);justify-content:space-between}
+pw-dialog.pwmm-mk pw-card.pwmk-i{width:var(--pw-space-8);height:var(--pw-space-8);border-radius:var(--pw-radius-sm);cursor:pointer;--lift:0px}
+pw-dialog.pwmm-mk pw-card.pwmk-i>.pwc-content{padding:0;height:100%;display:grid;place-items:center;position:relative;z-index:1}
+pw-dialog.pwmm-mk pw-card.pwmk-i .pwc-content :is(svg,img){width:var(--pw-space-4);height:var(--pw-space-4);color:var(--pw-text-muted)}
+pw-dialog.pwmm-mk pw-card.pwmk-i[selected] .pwc-content svg{color:var(--pw-text-accent)}
+pw-dialog.pwmm-mk .pwd-foot pw-button{flex:1}pw-dialog.pwmm-mk .pwd-foot pw-button>button{width:100%}

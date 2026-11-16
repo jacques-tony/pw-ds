@@ -2292,6 +2292,19 @@ pw-widget-chat[static] :is(.pwmm-resize,[data-a="collapse"],[data-a="lock"]){dis
 .pwdk-rz::after{content:"";width:var(--pw-space-10);height:var(--pw-space-1);border-radius:var(--pw-radius-full);background:var(--pw-filament);opacity:0;box-shadow:0 0 8px var(--pw-glow);transition:opacity var(--card-dur)}
 .pwdk-rz:not([hidden]){display:grid}.pwdk-rz[hidden]{display:none}.pwdk-rz:hover::after,pw-dock.resizing .pwdk-rz::after,.pwdk-rz:focus-visible::after{opacity:1}
 .pwdk-flash{position:absolute;z-index:9999;pointer-events:none;box-sizing:border-box;border:2px solid var(--pw-filament);box-shadow:0 0 14px var(--pw-glow),inset 0 0 14px var(--pw-glow)}
+pw-widget-minimap .pwmm-mark{position:absolute;width:var(--pw-space-4);height:var(--pw-space-4);transform:translate(-50%,-50%) scale(calc(1 / var(--z)));display:grid;place-items:center;border-radius:var(--pw-radius-xs);background:var(--pw-bg-solid);border:1px solid var(--pw-filament);color:var(--pw-text-accent);box-shadow:0 0 6px var(--pw-glow);cursor:help}
+pw-widget-minimap .pwmm-mark svg,pw-widget-minimap .pwmm-mark img{width:75%;height:75%}
+pw-dialog.pwmm-mk{--dlg-w:340px}
+pw-dialog.pwmm-mk .pwd-body{display:grid;gap:var(--pw-space-3);overflow:visible}
+pw-dialog.pwmm-mk .pwmk-pos{display:flex;align-items:center;gap:var(--pw-space-2);font-size:var(--pw-font-size-sm);color:var(--pw-text-muted)}
+pw-dialog.pwmm-mk .pwmk-pos b{color:var(--pw-text-primary);font-variant-numeric:tabular-nums}
+pw-dialog.pwmm-mk .pwmk-lab{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase;color:var(--pw-text-accent-soft)}
+pw-dialog.pwmm-mk .pwmk-grid{display:grid;grid-template-columns:repeat(7,var(--pw-space-8));gap:var(--pw-space-1-5,6px);justify-content:space-between}
+pw-dialog.pwmm-mk pw-card.pwmk-i{width:var(--pw-space-8);height:var(--pw-space-8);border-radius:var(--pw-radius-sm);cursor:pointer;--lift:0px}
+pw-dialog.pwmm-mk pw-card.pwmk-i>.pwc-content{padding:0;height:100%;display:grid;place-items:center;position:relative;z-index:1}
+pw-dialog.pwmm-mk pw-card.pwmk-i .pwc-content :is(svg,img){width:var(--pw-space-4);height:var(--pw-space-4);color:var(--pw-text-muted)}
+pw-dialog.pwmm-mk pw-card.pwmk-i[selected] .pwc-content svg{color:var(--pw-text-accent)}
+pw-dialog.pwmm-mk .pwd-foot pw-button{flex:1}pw-dialog.pwmm-mk .pwd-foot pw-button>button{width:100%}
 /* @pwds-css-end */
 /* demo content inside cards */
 .k-eyebrow{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--card-filament)}
@@ -6159,6 +6172,7 @@ customElements.define('pw-widget-pokemon',PWWidgetPokemon);
 
 /* ---------- pw-widget-minimap: minimapa (andares, zoom, centralizar, maximizar, coordenadas, horário e filtro de locais de caça) ---------- */
 var PW_HUNT_KINDS=[['common','Comum','var(--pw-tone-error-base)'],['wildscape','Wildscape','var(--pw-tone-success-base)'],['primal','Primal','var(--pw-tone-info-base)']];
+var PW_MARK_ICONS=[['check','Confirmado'],['help','Dúvida'],['warning-circle','Atenção'],['star','Favorito'],['arrow-up','Seta para cima'],['arrow-right','Seta para direita'],['chevron-up','Subir'],['close','Proibido'],['heart','Coração'],['map-pin','Ponto'],['lock','Trancado'],['arrow-down','Seta para baixo'],['arrow-left','Seta para esquerda'],['chevron-down','Descer'],['bag','Loja'],['coins','Dinheiro'],['home','Casa'],['egg','Ovo'],['warning','Perigo'],['skull','Caveira'],['zap','Energia'],['target','Alvo'],['clock','Tempo'],['gem','Gema'],['ball','Pokébola'],['map','Mapa'],['crown','Coroa'],['flask','Poção']];
 class PWWidgetMinimap extends PWWidgetBag{
   get map(){return this._m}
   set map(v){this._m=Object.assign(this._m||{},v||{});if(this._init){this._draw();this._info()}}
@@ -6190,7 +6204,7 @@ class PWWidgetMinimap extends PWWidgetBag{
     this._panInit();this._resize2();
     this.addEventListener('pointerdown',()=>{PWWidgetBag._z=(PWWidgetBag._z||10)+1;this.style.zIndex=PWWidgetBag._z},true);
     this._more=()=>{};this._dragInit();this._sync();this._draw();this._info();
-    new ResizeObserver(()=>this._place(false)).observe(this.querySelector('.pwmm-vp'));requestAnimationFrame(()=>this._mark())}
+    new ResizeObserver(()=>this._place(false)).observe(this.querySelector('.pwmm-vp'));this._markInit();requestAnimationFrame(()=>this._mark())}
   fitAll(){}
   _limits(){return {row:1,base:this.offsetHeight,min:this.offsetHeight,max:this.offsetHeight}}
   _floors(){return Object.keys(this._m.floors).map(Number).sort((a,b)=>a-b)}
@@ -6211,7 +6225,27 @@ class PWWidgetMinimap extends PWWidgetBag{
     el.style.backgroundImage=src?'url("'+src+'")':'none';var set=(w,hh)=>{el.style.width=w+'px';el.style.height=hh+'px';this._place(false)};
     if(f&&f.w&&f.h)set(f.w,f.h);else if(src){var im=new Image();im.onload=()=>set(im.naturalWidth,im.naturalHeight);im.src=src};this._pins();this._place(false)}
   _pins(){var z=this._zoom,o=this._m.origin,E=pwEsc;this.querySelector('.pwmm-pins').innerHTML=(this._m.hunts||[]).filter(hh=>hh.z===this._z&&this._m.filters[hh.kind]!==false).map(hh=>{var k=PW_HUNT_KINDS.find(x=>x[0]===hh.kind)||PW_HUNT_KINDS[0];
-      return '<span class="pwmm-pin" style="left:'+(hh.x-o.x)+'px;top:'+(hh.y-o.y)+'px;--z:'+z+';color:'+k[2]+'" data-tip-title="'+E(hh.label||k[1])+'" data-tip="'+k[1]+'">'+pwIcon('map-pin')+'</span>'}).join('')}
+      return '<span class="pwmm-pin" style="left:'+(hh.x-o.x)+'px;top:'+(hh.y-o.y)+'px;--z:'+z+';color:'+k[2]+'" data-tip-title="'+E(hh.label||k[1])+'" data-tip="'+k[1]+'">'+pwIcon('map-pin')+'</span>'}).join('')+(this._m.marks||[]).filter(m=>m.z===this._z).map(m=>'<span class="pwmm-mark" style="left:'+(m.x-o.x)+'px;top:'+(m.y-o.y)+'px;--z:'+z+'"'+(m.desc?' data-tip="'+E(m.desc)+'"':'')+'>'+pwIcon(m.icon)+'</span>').join('')}
+  /* botão direito no mapa: menu "Criar marcação" → diálogo com ícone e descrição */
+  _markInit(){var vp=this.querySelector('.pwmm-vp'),u=this._u||('pwmm'+(++uidN));
+    var cg=document.createElement('pw-control-group');cg.setAttribute('size','sm');cg.setAttribute('label','Mapa');cg.className='pwmm-ctx';cg.innerHTML='<pw-control-group-item value="mark" icon="map-pin">Criar marcação</pw-control-group-item>';cg.hidden=true;document.body.appendChild(cg);this._ctx=cg;
+    var close=()=>{cg.hidden=true;document.removeEventListener('pointerdown',out,true)},out=e=>{if(!cg.contains(e.target))close()};
+    vp.addEventListener('contextmenu',e=>{e.preventDefault();var L=this.querySelector('.pwmm-layer').getBoundingClientRect(),S=(vp.getBoundingClientRect().width/vp.offsetWidth)||1,z=this._zoom,o=this._m.origin;
+      this._at={x:Math.floor((e.clientX-L.left)/(z*S)+o.x),y:Math.floor((e.clientY-L.top)/(z*S)+o.y),z:this._z};cg.hidden=false;cg.style.position='fixed';cg.style.zIndex=2100;cg.style.left=e.clientX+'px';cg.style.top=e.clientY+'px';cg.style.minWidth='180px';setTimeout(()=>document.addEventListener('pointerdown',out,true),0)});
+    cg.addEventListener('select',e=>{e.preventDefault();close();if(e.detail.value==='mark')this._markDlg(this._at)});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!cg.hidden)close()})}
+  _markDlg(at){var E=pwEsc,d=document.createElement('pw-dialog'),sel=PW_MARK_ICONS[0];d.className='pwmm-mk';d.setAttribute('heading','Criar marca no mapa');d.setAttribute('size','sm');
+    d.innerHTML='<div class="pwmk-pos"><span>Posição</span><b>'+at.x+', '+at.y+', '+at.z+'</b><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="copy" data-tip="Copiar posição" aria-label="Copiar posição" data-mk="copy"></pw-button></div>'+
+      '<div class="pwmk-lab">Marcação</div><div class="pwmk-grid" role="radiogroup" aria-label="Marcação">'+PW_MARK_ICONS.map((ic,i)=>'<pw-card variant="tertiary" tone="neutral" interactive class="pwmk-i" role="radio" tabindex="'+(i?-1:0)+'" aria-checked="'+(!i)+'"'+(i?'':' selected')+' data-ic="'+ic[0]+'" aria-label="'+E(ic[1])+'" data-tip="'+E(ic[1])+'">'+pwIcon(ic[0])+'</pw-card>').join('')+'</div>'+
+      '<pw-input class="pwmk-desc" placeholder="Descrição..." aria-label="Descrição" maxlength="60" block></pw-input>'+
+      '<pw-button slot="footer" variant="ghost" fx="none" particles="0" data-close="no">Cancelar</pw-button><pw-button slot="footer" fx="none" particles="0" icon="check" data-close="yes">Criar marca</pw-button>';
+    document.body.appendChild(d);var G=d.querySelector('.pwmk-grid'),pick=c=>{G.querySelectorAll('.pwmk-i').forEach(x=>{var on=x===c;x.toggleAttribute('selected',on);x.setAttribute('aria-checked',on);x.tabIndex=on?0:-1});sel=PW_MARK_ICONS.find(x=>x[0]===c.dataset.ic)};
+    G.addEventListener('click',e=>{var c=e.target.closest('.pwmk-i');if(c)pick(c)});
+    G.addEventListener('keydown',e=>{var all=[...G.querySelectorAll('.pwmk-i')],i=all.indexOf(document.activeElement),n={ArrowRight:1,ArrowLeft:-1,ArrowDown:7,ArrowUp:-7}[e.key];if(n==null||i<0)return;e.preventDefault();var t=all[Math.max(0,Math.min(all.length-1,i+n))];t.focus();pick(t)});
+    d.addEventListener('click',e=>{if(e.target.closest('[data-mk="copy"]')){try{navigator.clipboard.writeText(at.x+', '+at.y+', '+at.z)}catch(x){}if(window.pwToast)pwToast('Posição copiada',{tone:'success'})}});
+    d.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.closest('.pwmk-desc')){e.preventDefault();d.close('yes')}});
+    d.addEventListener('close',e=>{if(e.detail.value==='yes'){var m={x:at.x,y:at.y,z:at.z,icon:sel[0],desc:(d.querySelector('.pwmk-desc').value||'').trim()};var ev=new CustomEvent('mark',{bubbles:true,cancelable:true,detail:{mark:m}});this.dispatchEvent(ev);if(!ev.defaultPrevented){(this._m.marks=this._m.marks||[]).push(m);this._pins()}}d.remove()});
+    requestAnimationFrame(()=>d.show())}
   /* posiciona o mapa: jogador no centro + deslocamento do arraste */
   _place(anim){var vp=this.querySelector('.pwmm-vp'),L=this.querySelector('.pwmm-layer'),p=this._m.player,o=this._m.origin,z=this._zoom;
     var sp=this.querySelector('.pwmm-space'),vr=vp.getBoundingClientRect(),sr=sp.getBoundingClientRect(),S=(vr.width/vp.offsetWidth)||1,cx=vp.clientWidth/2,cy=sr.height?(sr.top-vr.top)/S+sr.height/S/2:vp.clientHeight/2;
