@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.90.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.90.2 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2220,18 +2220,20 @@ pw-dialog.pwmm-mk pw-card.pwmk-i .pwc-content :is(svg,img){width:var(--pw-space-
 pw-dialog.pwmm-mk pw-card.pwmk-i[selected] .pwc-content svg{color:var(--pw-text-accent)}
 pw-dialog.pwmm-mk .pwd-foot pw-button{flex:1}pw-dialog.pwmm-mk .pwd-foot pw-button>button{width:100%}
 /* ===================== COMPONENT: pw-widget-outfit (Personalizar treinador) ===================== */
-pw-widget-outfit{position:absolute;z-index:30;display:block;width:calc(var(--pw-space-32) * 6 + var(--pw-space-8));font-family:var(--pw-font-body)}
+pw-widget-outfit{position:absolute;z-index:30;display:block;width:calc(var(--pw-space-32) * 6 + var(--pw-space-16));font-family:var(--pw-font-body)}
 pw-widget-outfit[hidden]{display:none}
 pw-widget-outfit .pwof-wrap{display:block;width:100%}
 pw-widget-outfit pw-card.pwof-card{width:100%;height:auto;--lift:0px}
 pw-widget-outfit pw-card.pwof-card>.pwc-content{padding:0;gap:0;height:auto}
 pw-widget-outfit .pwof-head{cursor:grab;user-select:none;touch-action:none}
 pw-widget-outfit pw-button.pwof-x{position:absolute;top:var(--pw-space-6);right:var(--pw-space-6);z-index:3}
-pw-widget-outfit .pwof-body{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) calc(var(--pw-space-32) + var(--pw-space-24));gap:var(--pw-space-4);padding:calc(var(--pw-space-6) + var(--pw-space-8)) var(--pw-space-6) var(--pw-space-6)}
-pw-widget-outfit .pwof-main{display:grid;gap:var(--pw-space-3);min-width:0;align-content:start}
+pw-widget-outfit .pwof-body{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) calc(var(--pw-space-32) + var(--pw-space-24));grid-template-rows:auto var(--pwof-h,calc(var(--pw-space-32) * 2 + var(--pw-space-24)));column-gap:var(--pw-space-4);row-gap:0;padding:calc(var(--pw-space-6) + var(--pw-space-8)) var(--pw-space-6) var(--pw-space-6)}
+pw-widget-outfit .pwof-main{display:contents}
+pw-widget-outfit .pwof-main>pw-tabs{grid-column:1;grid-row:1}pw-widget-outfit .pwof-main>.pwof-panel{grid-column:1;grid-row:2}
+pw-widget-outfit pw-card.pwof-panel{height:100%}pw-widget-outfit pw-card.pwof-panel>.pwc-content{height:100%;box-sizing:border-box}
 pw-widget-outfit pw-card.pwof-box{width:auto;height:auto;--lift:0px}
 pw-widget-outfit pw-card.pwof-box>.pwc-content{padding:var(--pw-space-3);height:auto;gap:var(--pw-space-3);position:relative;z-index:1}
-pw-widget-outfit pw-scroll.pwof-scroll{height:calc(var(--pw-space-32) + var(--pw-space-24) + var(--pw-space-4));padding-right:var(--pw-space-2)}
+pw-widget-outfit pw-scroll.pwof-scroll{height:100%;padding-right:var(--pw-space-2)}
 pw-widget-outfit .pwof-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--pw-space-2)}
 pw-widget-outfit .pwof-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 pw-widget-outfit pw-card.pwof-it{width:auto;height:auto;aspect-ratio:1;cursor:pointer;--lift:0px}
@@ -2247,14 +2249,14 @@ pw-widget-outfit .pwof-pal button{all:unset;aspect-ratio:1;border-radius:2px;cur
 pw-widget-outfit .pwof-pal button:hover{transform:scale(1.2);position:relative;z-index:1}
 pw-widget-outfit .pwof-pal button[aria-checked="true"]{box-shadow:0 0 0 2px var(--pw-filament),0 0 6px var(--pw-glow);position:relative;z-index:2}
 pw-widget-outfit .pwof-pal button:focus-visible{outline:2px solid var(--pw-focus-ring)}
-pw-widget-outfit .pwof-side{display:grid;gap:var(--pw-space-3);align-content:start;justify-items:center}
+pw-widget-outfit .pwof-side{grid-column:2;grid-row:2;display:flex;flex-direction:column;gap:var(--pw-space-3);align-items:center;min-height:0}
 pw-widget-outfit .pwof-side>pw-card.pwof-box{width:100%}
 pw-widget-outfit .pwof-name{display:grid;grid-template-rows:auto auto auto;gap:2px;text-align:center;min-width:0}pw-widget-outfit .pwof-name>*{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3}
 pw-widget-outfit .pwof-name small{font-size:var(--pw-font-size-xs);font-weight:var(--pw-font-weight-bold)}
 pw-widget-outfit .pwof-name b{font-size:var(--pw-font-size-md);color:var(--pw-text-primary)}
 pw-widget-outfit .pwof-name em{font-style:normal;font-size:var(--pw-font-size-2xs);color:var(--pw-text-muted)}
-pw-widget-outfit pw-card.pwof-prev{width:calc(var(--pw-space-24) + var(--pw-space-4));height:calc(var(--pw-space-24) + var(--pw-space-4));--ter-r:56px;border-radius:50%;--lift:0px}
+pw-widget-outfit pw-card.pwof-prev{width:100%;height:auto;flex:1;min-height:calc(var(--pw-space-24) + var(--pw-space-4));--lift:0px}
 pw-widget-outfit pw-card.pwof-prev>.pwc-content{padding:0;height:100%;display:grid;place-items:center;position:relative;z-index:1}
-pw-widget-outfit pw-card.pwof-prev .pwof-spr{transform:scale(1.4)}
+pw-widget-outfit pw-card.pwof-prev .pwof-spr{transform:scale(1.6)}
 pw-widget-outfit .pwof-ctl{display:flex;gap:var(--pw-space-2)}
-pw-widget-outfit .pwof-side>pw-button.pwof-ok{display:flex;width:100%}pw-widget-outfit .pwof-side>pw-button.pwof-ok>button{width:100%}
+pw-widget-outfit .pwof-side>pw-button.pwof-ok{display:flex;width:100%;margin-top:auto}pw-widget-outfit .pwof-side>pw-button.pwof-ok>button{width:100%}

@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.2
+- `pw-widget-outfit`: sprites centralizados pelo conteúdo real do quadro (campos `ox`/`oy`); painel com a mesma altura em todas as abas; card de nome alinhado ao topo do painel da esquerda; prévia em card tertiary retangular, centralizada; Confirmar alinhado embaixo; modal um pouco mais largo.
+
 ## 0.90.1
 - `pw-widget-outfit`: sprites olhando para frente (coluna 3); girar percorre as 4 direções (colunas) e andar anima os 3 quadros (linhas); abas `pw-tabs` folder `xs`; card de nome com altura fixa (linha do título e do efeito sempre reservadas); removido o texto “Escolha a parte e depois uma cor”.
 
