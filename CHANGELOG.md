@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.3
+- `pw-widget-outfit`: painel mais baixo; 16px entre as abas e os cards; sem os quadradinhos de cor nos botões Cabeça/Corpo/Pernas/Pés.
+- Itens bloqueados (`locked: true` em roupas, títulos e efeitos): esmaecidos, com cadeado, tooltip “Bloqueado” e não selecionáveis. Checkbox **Mostrar apenas liberados** (`pw-checkbox`) nas abas Visual, Títulos e Efeitos.
+
 ## 0.90.2
 - `pw-widget-outfit`: sprites centralizados pelo conteúdo real do quadro (campos `ox`/`oy`); painel com a mesma altura em todas as abas; card de nome alinhado ao topo do painel da esquerda; prévia em card tertiary retangular, centralizada; Confirmar alinhado embaixo; modal um pouco mais largo.
 
