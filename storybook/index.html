@@ -2308,9 +2308,13 @@ pw-widget-combo pw-card-header.pwcb-head{cursor:grab}
 pw-dock{position:absolute;display:block;box-sizing:border-box;z-index:5}
 pw-dock>pw-card.pwdk-bg{position:absolute;inset:0;width:auto;height:auto;--lift:0px;pointer-events:none}
 pw-dock[drop-target]>pw-card.pwdk-bg{filter:brightness(1.25)}
-/* modo clássico: painéis sem moldura dourada (só o fundo) */
-pw-dock>pw-card.pwdk-bg svg :is([stroke],[fill*="metal"]):not(.l-bg){stroke:none!important}
-pw-dock>pw-card.pwdk-bg svg [fill*="metal"]{fill:none!important}
+/* modo clássico: painéis sem moldura — fundo sólido até as bordas, chanfro por clip-path */
+pw-dock{background:var(--pw-bg-solid)}
+pw-dock>pw-card.pwdk-bg{display:none}
+pw-dock[drop-target]{filter:brightness(1.25)}
+/* widgets encaixados (inclui o bate-papo): sem moldura dourada, encostam nas bordas da tela e entre si */
+[docked]>pw-card.pwbg-card svg [stroke]{stroke:none!important}
+[docked]>pw-card.pwbg-card svg [fill*="metal"]{fill:none!important}
 [docked]{transition:left .2s var(--card-ease),top .2s var(--card-ease),width .2s var(--card-ease)}
 [docked].dragging{transition:none}
 [docked] .pwmm-rl,[docked] .pwmm-rr{display:none!important}
@@ -6904,7 +6908,7 @@ class PWDock extends HTMLElement{
   /* chanfros: cantos inferiores retos (encontram a borda da tela ou o bate-papo); superiores retos só quando tocam a borda da tela */
   _chamf(){var p=this.offsetParent;if(!p)return;var PW=p.clientWidth,PH=p.clientHeight,e=2,
     k=(l,t,r)=>[l<=e?0:1,r>=PW-e?0:1,0,0].join(' ');
-    var bg=this.querySelector(':scope>.pwdk-bg'),L=this.offsetLeft,T=this.offsetTop,Rr=L+this.offsetWidth;if(bg){var v=k(L,T,Rr);if(bg.getAttribute('chamfer')!==v)bg.setAttribute('chamfer',v)}
+    var bg=this.querySelector(':scope>.pwdk-bg'),L=this.offsetLeft,T=this.offsetTop,Rr=L+this.offsetWidth,v=k(L,T,Rr);if(bg&&bg.getAttribute('chamfer')!==v)bg.setAttribute('chamfer',v);var f=v.split(' ').map(Number),c=9,tl=f[0]?c:0,tr=f[1]?c:0;this.style.clipPath='polygon('+tl+'px 0,calc(100% - '+tr+'px) 0,100% '+tr+'px,100% 100%,0 100%,0 '+tl+'px)'
     var ws=this.widgets;ws.forEach(w=>{var wl=w.offsetLeft,wt=w.offsetTop,wr=wl+w.offsetWidth,wb=wt+w.offsetHeight,top=[wl<=e?0:1,wr>=PW-e?0:1],bot=wb>=PH-e||wb>=T+this.offsetHeight-e?[0,0]:[1,1];
       w._chamf=top.concat(bot.reverse()).join(' ');var c=w.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==w._chamf)c.setAttribute('chamfer',w._chamf)})}
   /* efeito de magnetismo em volta de todo o widget ao fixar */
