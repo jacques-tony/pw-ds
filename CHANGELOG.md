@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.17
+
+- `pw-widget-combo`: removido o quadro de efetividade; magias e combo ficam ao lado da imagem do Pokémon; largura do widget passa para 768px para as magias caberem em uma linha.
+
 ## 0.90.16
 
 - `pw-widget-options`: o banner do cabeçalho anima ao abrir o painel.

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.90.16 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.90.17 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1974,7 +1974,7 @@ pw-dialog.pwbg-qty .pwbq-range pw-slider{flex:1;min-width:0}pw-dialog.pwbg-qty .
 pw-dialog.pwbg-qty .pwbq-lim{display:flex;justify-content:space-between;padding:0 var(--pw-space-8);margin-top:calc(var(--pw-space-2) * -1);font-size:var(--pw-font-size-2xs);color:var(--pw-text-muted);font-variant-numeric:tabular-nums}
 pw-dialog.pwbg-qty [slot="footer"],pw-dialog.pwbg-qty .pwd-foot pw-button{flex:1}pw-dialog.pwbg-qty .pwd-foot pw-button>button{width:100%}
 /* ===================== COMPONENT: pw-widget-combo (Assistente de combo) ===================== */
-pw-widget-combo{position:absolute;z-index:30;display:block;width:calc(var(--pw-space-32) * 5);font-family:var(--pw-font-body)}
+pw-widget-combo{position:absolute;z-index:30;display:block;width:calc(var(--pw-space-32) * 6);font-family:var(--pw-font-body)}
 pw-widget-combo[hidden]{display:none}
 pw-widget-combo .pwcb-wrap{display:block;width:100%}
 pw-widget-combo pw-card.pwcb-card{width:100%;height:auto;--lift:0px}
