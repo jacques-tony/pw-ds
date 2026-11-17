@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.92.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.92.1 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1334,7 +1334,7 @@ pw-party[locked] .pwpt-move{display:none}pw-party[locked] .pwpt-lock{display:fle
 pw-party .pwpt-move:focus-visible{outline:2px solid var(--pw-focus-ring)}
 /* editando a ordem pelo perfil reduzido: o ✓ fica no lugar da alça, junto dos cards (a barra de salvar da HUD some) */
 pw-party pw-button.pwpt-done{position:absolute;top:calc(var(--pt-hd) * -1);right:calc(var(--pt-w) * -.25);display:none;z-index:3}pw-party pw-button.pwpt-done>button{height:var(--pw-space-6);min-height:0}
-pw-party[editing] pw-button.pwpt-done{display:inline-flex;animation:pwsp-pop .28s var(--card-ease)}
+pw-party:is([editing],[placing]) pw-button.pwpt-done{display:inline-flex;animation:pwsp-pop .28s var(--card-ease)}
 pw-party[editing] .pwpt-move{opacity:1}
 pw-party[editing] pw-card.pwpt-bg{opacity:1}
 pw-hud[editing-party] pw-card.pwhd-done-bar{display:none}
@@ -1344,7 +1344,10 @@ pw-party:is(:hover,:focus-within,.menu-open) pw-button.pwpt-opts{opacity:1}
 pw-party:is(.menu-open) :is(pw-card.pwpt-bg,.pwpt-move){opacity:1}
 /* opções pelo botão direito: sem fundo, alça e botão no hover */
 pw-party .pwpt-move,pw-party pw-button.pwpt-opts,pw-party pw-control-group.pwpt-cg{display:none!important}
-pw-party:not([editing]) pw-card.pwpt-bg{opacity:0!important}
+pw-party:not([editing]):not([placing]) pw-card.pwpt-bg{opacity:0!important}
+pw-party[placing] pw-card.pwpt-bg{opacity:1}
+pw-party[placing]{cursor:grab}pw-party[placing] .pwpt{pointer-events:none}
+pw-party[placing] pw-button.pwpt-done{pointer-events:auto}
 pw-party.moving{cursor:grabbing}
 pw-party.moving .pwpt{pointer-events:none}
 pw-party[editing] pw-button.pwpt-opts{display:none}

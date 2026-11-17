@@ -1600,7 +1600,7 @@ pw-party[locked] .pwpt-move{display:none}pw-party[locked] .pwpt-lock{display:fle
 pw-party .pwpt-move:focus-visible{outline:2px solid var(--pw-focus-ring)}
 /* editando a ordem pelo perfil reduzido: o ✓ fica no lugar da alça, junto dos cards (a barra de salvar da HUD some) */
 pw-party pw-button.pwpt-done{position:absolute;top:calc(var(--pt-hd) * -1);right:calc(var(--pt-w) * -.25);display:none;z-index:3}pw-party pw-button.pwpt-done>button{height:var(--pw-space-6);min-height:0}
-pw-party[editing] pw-button.pwpt-done{display:inline-flex;animation:pwsp-pop .28s var(--card-ease)}
+pw-party:is([editing],[placing]) pw-button.pwpt-done{display:inline-flex;animation:pwsp-pop .28s var(--card-ease)}
 pw-party[editing] .pwpt-move{opacity:1}
 pw-party[editing] pw-card.pwpt-bg{opacity:1}
 pw-hud[editing-party] pw-card.pwhd-done-bar{display:none}
@@ -1610,7 +1610,10 @@ pw-party:is(:hover,:focus-within,.menu-open) pw-button.pwpt-opts{opacity:1}
 pw-party:is(.menu-open) :is(pw-card.pwpt-bg,.pwpt-move){opacity:1}
 /* opções pelo botão direito: sem fundo, alça e botão no hover */
 pw-party .pwpt-move,pw-party pw-button.pwpt-opts,pw-party pw-control-group.pwpt-cg{display:none!important}
-pw-party:not([editing]) pw-card.pwpt-bg{opacity:0!important}
+pw-party:not([editing]):not([placing]) pw-card.pwpt-bg{opacity:0!important}
+pw-party[placing] pw-card.pwpt-bg{opacity:1}
+pw-party[placing]{cursor:grab}pw-party[placing] .pwpt{pointer-events:none}
+pw-party[placing] pw-button.pwpt-done{pointer-events:auto}
 pw-party.moving{cursor:grabbing}
 pw-party.moving .pwpt{pointer-events:none}
 pw-party[editing] pw-button.pwpt-opts{display:none}
@@ -5918,7 +5921,7 @@ class PWParty extends HTMLElement{
     /* botão direito: menu contextual com Mover, modo minimalista/completo e Editar ordem (substitui o fundo, a alça e o botão do hover) */
     var cg=document.createElement('pw-control-group');cg.setAttribute('size','sm');cg.setAttribute('label','Opções da equipe');cg.className='pwpt-ctx';cg.hidden=true;document.body.appendChild(cg);this._ctx=cg;
     var close=()=>{cg.hidden=true;document.removeEventListener('pointerdown',out,true)},out=e=>{if(!cg.contains(e.target))close()};
-    this.addEventListener('contextmenu',e=>{e.preventDefault();if(this.hasAttribute('editing'))return;var mn=this.hasAttribute('minimal');
+    this.addEventListener('contextmenu',e=>{e.preventDefault();if(this.hasAttribute('editing')||this.hasAttribute('placing'))return;var mn=this.hasAttribute('minimal');
       cg.innerHTML=(this.hasAttribute('locked')?'':'<pw-control-group-item value="move" icon="grip">Mover</pw-control-group-item>')+'<pw-control-group-item value="minimal" icon="'+(mn?'grid':'minus')+'">'+(mn?'Modo completo':'Modo minimalista')+'</pw-control-group-item><pw-control-group-item value="edit" icon="sort">Editar ordem</pw-control-group-item>';
       cg.hidden=false;cg.style.position='fixed';cg.style.zIndex=2100;cg.style.left=e.clientX+'px';cg.style.top=e.clientY+'px';cg.style.minWidth='180px';setTimeout(()=>document.addEventListener('pointerdown',out,true),0)});
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!cg.hidden)close()});
@@ -5929,7 +5932,7 @@ class PWParty extends HTMLElement{
     /* menu do conjunto (botão ghost no canto direito, aparece no hover) */
     this.addEventListener('select',e=>{var g=e.target.closest&&e.target.closest('pw-control-group.pwpt-cg');if(!g)return;var hud=document.getElementById(this.getAttribute('for')),v=e.detail.value;
       if(v==='minimal'){this.toggleAttribute('minimal');if(hud)this._from(hud);this.dispatchEvent(new CustomEvent('minimal',{bubbles:true,detail:{minimal:this.hasAttribute('minimal')}}))}else if(v==='edit'&&hud)setTimeout(()=>hud.editOrder(this),0)});
-    this.addEventListener('click',e=>{if(e.target.closest('.pwpt-done')){var hd=document.getElementById(this.getAttribute('for'));if(hd)hd.doneOrder();return}var b=e.target.closest('.pwpt[data-team]');var hud=document.getElementById(this.getAttribute('for'));if(b&&hud&&!hud._editing)hud._pick(+b.dataset.team)})}
+    this.addEventListener('click',e=>{if(this.hasAttribute('placing')){if(e.target.closest('.pwpt-done'))this._placeEnd(true);e.stopPropagation();return}if(e.target.closest('.pwpt-done')){var hd=document.getElementById(this.getAttribute('for'));if(hd)hd.doneOrder();return}var b=e.target.closest('.pwpt[data-team]');var hud=document.getElementById(this.getAttribute('for'));if(b&&hud&&!hud._editing)hud._pick(+b.dataset.team)})}
   _from(hud){var show=this.hasAttribute('always')||hud.profile==='compact',was=!this.hidden;this.hidden=!show;if(!show)return;var E=pwEsc;
     var key=(t,i)=>'<pw-badge class="key" tone="neutral" size="xs">'+E((t&&t.hotkey)||'Ctrl+'+(i+1))+'</pw-badge>';
     var old={};this.querySelectorAll('.pwpt[data-team]').forEach(x=>{old[x.dataset.team]={t:x.offsetTop,hl:x.hasAttribute('highlight')}});
@@ -5947,12 +5950,15 @@ class PWParty extends HTMLElement{
       x.style.transition='none';var dy=o.t-x.offsetTop,s0=o.hl?1.25:1,s1=hl?1.25:1;if(!dy&&s0===s1){x.style.transition='';return}
       x.animate([{transform:'translateY('+dy+'px) scale('+s0+')',marginBlock:o.hl?'calc(var(--pt-h) * .125)':'0px'},{transform:'scale('+s1+')',marginBlock:hl?'calc(var(--pt-h) * .125)':'0px'}],{duration:520,easing:'cubic-bezier(.45,.05,.25,1)'}).finished.then(()=>x.style.transition='',()=>x.style.transition='')})}
     if(!was&&!matchMedia('(prefers-reduced-motion: reduce)').matches)[].slice.call(this.querySelectorAll('.pwpt')).forEach((c,i)=>c.animate([{opacity:0,transform:'translateX(-24px)'},{opacity:1,transform:'none'}],{duration:260,delay:i*45,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}))}
-  /* "Mover" do menu: a equipe segue o ponteiro até o próximo clique (Esc cancela) */
-  _moveFollow(){if(!this._setPos)return;var S=(this.getBoundingClientRect().width/this.offsetWidth)||1,l0=this.offsetLeft,t0=this.offsetTop,x0=null,y0=null;this.classList.add('moving');
-    var mv=ev=>{if(x0==null){x0=ev.clientX;y0=ev.clientY}this._setPos(l0+(ev.clientX-x0)/S,t0+(ev.clientY-y0)/S)},
-      end=(ok)=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerdown',dn,true);document.removeEventListener('keydown',kd,true);this.classList.remove('moving');if(ok)this._setPos(this.offsetLeft,this.offsetTop,true);else this._setPos(l0,t0)},
-      dn=ev=>{ev.preventDefault();ev.stopPropagation();end(true)},kd=ev=>{if(ev.key==='Escape'){ev.preventDefault();end(false)}else if(ev.key==='Enter'){ev.preventDefault();end(true)}};
-    document.addEventListener('pointermove',mv);setTimeout(()=>{document.addEventListener('pointerdown',dn,true);document.addEventListener('keydown',kd,true)},0)}
+  /* "Mover" do menu: modo de posicionamento igual ao Editar ordem — fundo, alça e botão de concluir; arraste a equipe; Enter/✓ salva, Esc volta */
+  _moveFollow(){if(!this._setPos)return;var l0=this.offsetLeft,t0=this.offsetTop;this.setAttribute('placing','');var d=this.querySelector('.pwpt-done');if(d){d.setAttribute('data-tip-title','Salvar posição');d.setAttribute('data-tip','Arraste a equipe · Enter salva · Esc cancela');d.setAttribute('aria-label','Salvar posição')}
+    var dn=e=>{if(e.button!==0||e.target.closest('.pwpt-done'))return;e.preventDefault();var S=(this.getBoundingClientRect().width/this.offsetWidth)||1,x0=e.clientX,y0=e.clientY,a=this.offsetLeft,b=this.offsetTop;this.classList.add('moving');
+        var mv=ev=>this._setPos(a+(ev.clientX-x0)/S,b+(ev.clientY-y0)/S),up=()=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);this.classList.remove('moving')};document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)},
+      kd=e=>{var m={ArrowUp:[0,-16],ArrowDown:[0,16],ArrowLeft:[-16,0],ArrowRight:[16,0]}[e.key];if(m){e.preventDefault();this._setPos(this.offsetLeft+m[0],this.offsetTop+m[1])}else if(e.key==='Enter'){e.preventDefault();this._placeEnd(true)}else if(e.key==='Escape'){e.preventDefault();this._placeEnd(false)}};
+    this.addEventListener('pointerdown',dn,true);document.addEventListener('keydown',kd,true);this._placeOff=()=>{this.removeEventListener('pointerdown',dn,true);document.removeEventListener('keydown',kd,true)};this._place0=[l0,t0];
+    requestAnimationFrame(()=>{if(d)d.focus()})}
+  _placeEnd(ok){if(!this.hasAttribute('placing'))return;this._placeOff&&this._placeOff();this.removeAttribute('placing');var d=this.querySelector('.pwpt-done');if(d){d.setAttribute('data-tip-title','Salvar ordem');d.setAttribute('data-tip','Arraste os Pokémon para mudar a ordem · Enter salva');d.setAttribute('aria-label','Salvar ordem')}
+    if(ok)this._setPos(this.offsetLeft,this.offsetTop,true);else this._setPos(this._place0[0],this._place0[1])}
   /* mover o conjunto: arrastar a barra "Mover" (ou setas com foco nela); fica dentro do contêiner */
   _moveInit(){var g=this.querySelector('.pwpt-move');if(!g)return;var P=()=>this.offsetParent||document.body,clamp=(x,y)=>{var p=P(),m=8;return [Math.max(m,Math.min(p.clientWidth-this.offsetWidth-m,x)),Math.max(32,Math.min(p.clientHeight-this.offsetHeight-m,y))]},
       set=(x,y,ev)=>{var c=clamp(x,y),cs=getComputedStyle(this),ml=parseFloat(cs.marginLeft)||0,mt=parseFloat(cs.marginTop)||0;this.style.left=(c[0]-ml)+'px';this.style.top=(c[1]-mt)+'px';this.style.right='auto';this.style.bottom='auto';if(ev)this.dispatchEvent(new CustomEvent('move',{bubbles:true,detail:{left:c[0],top:c[1]}}))};this._setPos=set;
