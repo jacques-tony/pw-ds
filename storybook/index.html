@@ -2316,10 +2316,11 @@ pw-widget-outfit pw-button.pwof-x{position:absolute;top:var(--pw-space-6);right:
 pw-widget-outfit .pwof-body{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) calc(var(--pw-space-32) + var(--pw-space-24));grid-template-rows:auto var(--pwof-h,calc(var(--pw-space-32) * 2 + var(--pw-space-8)));column-gap:var(--pw-space-4);row-gap:var(--pw-space-4);padding:calc(var(--pw-space-6) + var(--pw-space-8)) var(--pw-space-6) var(--pw-space-6)}
 pw-widget-outfit .pwof-main{display:contents}
 pw-widget-outfit .pwof-main>pw-tabs{grid-column:1 / -1;grid-row:1}pw-widget-outfit .pwof-main>.pwof-panel{grid-column:1;grid-row:2}
-pw-widget-outfit pw-card.pwof-panel{height:100%}pw-widget-outfit pw-card.pwof-panel>.pwc-content{height:100%;box-sizing:border-box}
+pw-widget-outfit pw-card.pwof-panel{height:100%;min-height:0;overflow:hidden;display:flex;flex-direction:column}
+pw-widget-outfit pw-card.pwof-panel>.pwc-content{flex:1 1 0;min-height:0}pw-widget-outfit pw-card.pwof-panel>.pwc-content{height:100%;box-sizing:border-box}
 pw-widget-outfit pw-card.pwof-box{width:auto;height:auto;--lift:0px}
 pw-widget-outfit pw-card.pwof-box>.pwc-content{padding:var(--pw-space-3);height:auto;gap:var(--pw-space-3);position:relative;z-index:1}
-pw-widget-outfit pw-scroll.pwof-scroll{flex:1;min-height:0;padding-right:var(--pw-space-2)}
+pw-widget-outfit pw-scroll.pwof-scroll{flex:1 1 0;min-height:0;overflow-y:auto;padding-right:var(--pw-space-2)}
 pw-widget-outfit pw-card.pwof-panel>.pwc-content{display:flex;flex-direction:column;padding:var(--pw-space-4);gap:var(--pw-space-4)}
 pw-widget-outfit .pwof-only{flex:none;align-self:flex-end}
 pw-widget-outfit pw-card.pwof-it.locked{cursor:not-allowed}
@@ -2336,7 +2337,8 @@ pw-widget-outfit .pwof-sub{margin:0;text-align:center;font-size:var(--pw-font-si
 pw-widget-outfit .pwof-parts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--pw-space-2)}
 pw-widget-outfit .pwof-parts pw-button{display:flex}pw-widget-outfit .pwof-parts pw-button>button{width:100%}
 pw-widget-outfit .pwof-parts i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-left:var(--pw-space-1);box-shadow:inset 0 0 0 1px var(--pw-black-a45)}
-pw-widget-outfit .pwof-pal{display:grid;grid-template-columns:repeat(19,1fr);gap:2px;max-width:calc(19 * 20px);margin:0 auto;width:100%}
+pw-widget-outfit .pwof-pal{display:grid;grid-template-columns:repeat(19,minmax(0,1fr));grid-auto-rows:minmax(0,1fr);gap:var(--pw-space-1);flex:1 1 0;min-height:0;width:100%}
+pw-widget-outfit .pwof-pal>button[data-sw]{width:100%;height:100%;min-height:0;aspect-ratio:auto}
 pw-widget-outfit .pwof-pal button{all:unset;aspect-ratio:1;border-radius:2px;cursor:pointer;box-shadow:inset 0 0 0 1px var(--pw-black-a45)}
 pw-widget-outfit .pwof-pal button:hover{transform:scale(1.2);position:relative;z-index:1}
 pw-widget-outfit .pwof-pal button[aria-checked="true"]{box-shadow:0 0 0 2px var(--pw-filament),0 0 6px var(--pw-glow);position:relative;z-index:2}

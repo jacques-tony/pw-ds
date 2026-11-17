@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.5
+
+- `pw-widget-outfit`: rolagem nas abas Títulos e Efeitos quando a lista excede o card; paleta de Cores ocupa todo o espaço disponível do card.
+
 ## 0.90.4
 
 - `pw-widget-outfit`: divisor das abas até o fim do modal; 16px de padding e espaçamento nos cards internos (incluindo o checkbox).
