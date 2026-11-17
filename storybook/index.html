@@ -2237,7 +2237,7 @@ pw-widget-exit .pwex-acts pw-button{width:100%}
 .pwbg-ghost .spr{position:absolute;inset:0;overflow:hidden}.pwbg-ghost .spr img{display:block;width:100%;height:calc(var(--n) * 100%);image-rendering:pixelated;animation:pwbg-spr calc(var(--n) * 110ms) steps(var(--n)) infinite}
 :is(pw-widget-bag,pw-widget-loot) .pwbg-slot.dragging-src{opacity:.35}
 :is(pw-widget-bag,pw-widget-loot) .pwbg-slot.drop-over{box-shadow:0 0 0 2px var(--pw-filament),0 0 10px var(--pw-glow)}
-pw-dialog.pwbg-qty{--dlg-w:320px;pointer-events:none}pw-dialog.pwbg-qty>pw-card{pointer-events:auto}pw-dialog.pwbg-qty .pwd-backdrop{display:none}
+pw-dialog.pwbg-qty{--dlg-w:320px;pointer-events:none}pw-dialog.pwbg-qty>pw-card{pointer-events:auto}pw-dialog:is(.pwbg-qty,.pwmm-mk) .pwd-backdrop{display:none}
 pw-dialog.pwbg-qty .pwd-body{display:grid;gap:var(--pw-space-3);overflow:visible}
 pw-dialog.pwbg-qty .pwbq-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:var(--pw-space-3)}
 pw-dialog.pwbg-qty pw-card.pwbq-pic{width:var(--pw-space-10);height:var(--pw-space-10);--lift:0px}

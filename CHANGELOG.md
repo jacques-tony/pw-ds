@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.91.6
+
+- `pw-widget-minimap`: diálogo de marcação em tela cheia sem overlay escurecendo a página.
+
 ## 0.91.5
 
 - `pw-widget-minimap`: criar/editar marcação abre num painel lateral integrado ao widget (à direita, ou à esquerda se faltar espaço). Com o minimapa maximizado, segue o diálogo, agora com card primary sem glow na borda.
