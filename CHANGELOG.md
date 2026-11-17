@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.15
+
+- `pw-widget-options`: botões do rodapé com 24px de respiro; "Concluir" virou "Salvar"; removido o texto "As alterações são aplicadas na hora." (o status segue anunciado só para leitores de tela).
+
 ## 0.90.14
 
 - `pw-widget-options`: card tech com `fill="solid"`; overlay em degradê no topo e na base das áreas roláveis (categorias e conteúdo) para o conteúdo não parecer cortado.

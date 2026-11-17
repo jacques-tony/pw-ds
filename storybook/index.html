@@ -2213,6 +2213,7 @@ pw-widget-options .pwop-hk button.key:focus-visible{outline:2px solid var(--pw-f
 pw-widget-options .pwop-hk button.key.empty{color:var(--pw-text-muted);font-size:var(--pw-font-size-xs)}
 pw-widget-options .pwop-hk button.key.rec{color:var(--pw-text-accent);animation:pwop-blink 1s steps(2) infinite}
 @keyframes pwop-blink{50%{opacity:.4}}
+pw-widget-options .pwop-st{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 pw-widget-options .pwop-foot{display:flex;align-items:center;gap:var(--pw-space-2);padding:var(--pw-space-6) 0 0}
 pw-widget-options .pwop-foot .grow{flex:1}
 pw-widget-options .pwop-foot small{color:var(--pw-text-muted);font-size:var(--pw-font-size-xs)}
@@ -6683,7 +6684,7 @@ class PWWidgetOptions extends HTMLElement{
     this.innerHTML='<div class="pw-titled pwop-wrap"><pw-card-header variant="banner" animate no-lines no-icons class="pwop-ttl" id="'+u+'t">Opções</pw-card-header><pw-card variant="tech" fill="solid" class="pwop-card"><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" data-tip="Fechar (Esc)" aria-label="Fechar" data-o="close" class="pwop-x"></pw-button><div class="pwop-head"></div>'+
       '<div class="pwop-main"><nav class="pwop-nav" aria-label="Categorias"><pw-scroll axis="y" class="pwop-navs"><pw-list select="single" aria-label="Categorias">'+PW_OPT_TREE.map(c=>'<pw-list-item icon="'+c.icon+'" data-cat="'+c.id+'">'+c.label+'</pw-list-item><div class="pwop-sub" data-for="'+c.id+'" hidden></div>').join('')+'</pw-list></pw-scroll></nav>'+
       '<pw-scroll class="pwop-body"></pw-scroll></div>'+
-      '<div class="pwop-foot"><small class="pwop-st" aria-live="polite">As alterações são aplicadas na hora.</small><span class="grow"></span><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="refresh" data-o="reset">Restaurar padrões da categoria</pw-button><pw-button size="sm" fx="none" particles="0" data-o="close">Concluir</pw-button></div></pw-card></div>';
+      '<div class="pwop-foot"><small class="pwop-st" aria-live="polite"></small><span class="grow"></span><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="refresh" data-o="reset">Restaurar padrões da categoria</pw-button><pw-button size="sm" fx="none" particles="0" data-o="close">Salvar</pw-button></div></pw-card></div>';
     var B=this.querySelector('.pwop-body');
     this.querySelector('pw-list').addEventListener('click',e=>{var it=e.target.closest('pw-list-item[data-cat]');if(it)this.open(it.dataset.cat)});
     this.querySelector('pw-list').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.dataset&&e.target.dataset.cat){e.preventDefault();this.open(e.target.dataset.cat)}});
