@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.12
+
+- `pw-widget-options`: padding de 24px no conteúdo do card.
+
 ## 0.90.11
 
 - `pw-widget-options`: removida a busca de configuração e os divisores entre topo, navegação, conteúdo e rodapé.
