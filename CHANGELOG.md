@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.9
+
+- `pw-widget-options`: cabeçalho banner do HUD (arrastável) e card tech, no padrão do assistente de combo e do Personalizar treinador; busca passa para a barra interna do card.
+
 ## 0.90.8
 
 - Modo clássico: o canto superior interno dos painéis laterais e dos widgets encaixados volta a ter chanfro; só os cantos na borda lateral da tela e os inferiores ficam retos.

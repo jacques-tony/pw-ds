@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.90.8 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.90.9 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1888,9 +1888,12 @@ pw-slider[disabled]{opacity:.45}pw-slider[disabled] input{cursor:not-allowed}
 /* ===================== COMPONENT: pw-widget-options (janela de Opções) ===================== */
 pw-widget-options{position:absolute;z-index:30;display:block;width:min(calc(var(--pw-space-32) * 6 + var(--pw-space-16)),calc(100% - var(--pw-space-8)));height:min(calc(var(--pw-space-32) * 4 + var(--pw-space-24)),calc(100% - var(--pw-space-8)));font-family:var(--pw-font-body)}
 pw-widget-options[hidden]{display:none}
-pw-widget-options>pw-card.pwop-card{width:100%;height:100%;--lift:0px}
-pw-widget-options>pw-card.pwop-card>.pwc-content{height:100%;padding:0;gap:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;box-sizing:border-box}
-pw-widget-options .pwop-head{display:flex;align-items:center;gap:var(--pw-space-3);padding:var(--pw-space-3) var(--pw-space-3) var(--pw-space-3) var(--pw-space-5);border-bottom:1px solid var(--pw-border-subtle);cursor:grab;user-select:none}
+pw-widget-options .pwop-wrap{display:flex;flex-direction:column;width:100%;height:100%}
+pw-widget-options .pwop-ttl{cursor:grab;user-select:none;touch-action:none}
+pw-widget-options pw-button.pwop-x{position:absolute;top:var(--pw-space-6);right:var(--pw-space-6);z-index:3}
+pw-widget-options pw-card.pwop-card{width:100%;flex:1 1 0;min-height:0;height:auto;--lift:0px}
+pw-widget-options pw-card.pwop-card>.pwc-content{height:100%;padding:0;gap:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;box-sizing:border-box}
+pw-widget-options .pwop-head{display:flex;align-items:center;justify-content:flex-start;gap:var(--pw-space-3);padding:calc(var(--pw-space-6) + var(--pw-space-8)) calc(var(--pw-space-6) + var(--pw-space-10)) var(--pw-space-3) var(--pw-space-6);border-bottom:1px solid var(--pw-border-subtle)}
 pw-widget-options .pwop-head img{width:var(--pw-space-6);height:var(--pw-space-6)}
 pw-widget-options .pwop-head h2{margin:0;flex:1;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.02em;color:var(--pw-text-title)}
 pw-widget-options pw-search:is(.pwop-q,.pwop-hkq) .pws-pop{display:none!important}

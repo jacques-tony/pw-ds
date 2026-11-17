@@ -2154,9 +2154,12 @@ pw-slider[disabled]{opacity:.45}pw-slider[disabled] input{cursor:not-allowed}
 /* ===================== COMPONENT: pw-widget-options (janela de Opções) ===================== */
 pw-widget-options{position:absolute;z-index:30;display:block;width:min(calc(var(--pw-space-32) * 6 + var(--pw-space-16)),calc(100% - var(--pw-space-8)));height:min(calc(var(--pw-space-32) * 4 + var(--pw-space-24)),calc(100% - var(--pw-space-8)));font-family:var(--pw-font-body)}
 pw-widget-options[hidden]{display:none}
-pw-widget-options>pw-card.pwop-card{width:100%;height:100%;--lift:0px}
-pw-widget-options>pw-card.pwop-card>.pwc-content{height:100%;padding:0;gap:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;box-sizing:border-box}
-pw-widget-options .pwop-head{display:flex;align-items:center;gap:var(--pw-space-3);padding:var(--pw-space-3) var(--pw-space-3) var(--pw-space-3) var(--pw-space-5);border-bottom:1px solid var(--pw-border-subtle);cursor:grab;user-select:none}
+pw-widget-options .pwop-wrap{display:flex;flex-direction:column;width:100%;height:100%}
+pw-widget-options .pwop-ttl{cursor:grab;user-select:none;touch-action:none}
+pw-widget-options pw-button.pwop-x{position:absolute;top:var(--pw-space-6);right:var(--pw-space-6);z-index:3}
+pw-widget-options pw-card.pwop-card{width:100%;flex:1 1 0;min-height:0;height:auto;--lift:0px}
+pw-widget-options pw-card.pwop-card>.pwc-content{height:100%;padding:0;gap:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;box-sizing:border-box}
+pw-widget-options .pwop-head{display:flex;align-items:center;justify-content:flex-start;gap:var(--pw-space-3);padding:calc(var(--pw-space-6) + var(--pw-space-8)) calc(var(--pw-space-6) + var(--pw-space-10)) var(--pw-space-3) var(--pw-space-6);border-bottom:1px solid var(--pw-border-subtle)}
 pw-widget-options .pwop-head img{width:var(--pw-space-6);height:var(--pw-space-6)}
 pw-widget-options .pwop-head h2{margin:0;flex:1;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.02em;color:var(--pw-text-title)}
 pw-widget-options pw-search:is(.pwop-q,.pwop-hkq) .pws-pop{display:none!important}
@@ -6673,11 +6676,11 @@ class PWWidgetOptions extends HTMLElement{
   connectedCallback(){if(this._init)return;this._init=true;var u=this._u='pwop'+(++uidN);this.setAttribute('role','dialog');this.setAttribute('aria-labelledby',u+'t');
     this._def={};PW_OPT_TREE.forEach(c=>(c.secs||[]).forEach(sc=>sc.rows.forEach(r=>{if(r[0]!=='info'&&r[0]!=='button')this._def[r[1]]=r[3]})));this._v=Object.assign({},this._def);
     this._prof=['Default','PvP'];this._p='Default';this._hk={};this._cat=this.getAttribute('section')||'geral';
-    this.innerHTML='<pw-card variant="primary" fill="solid" glow="false" class="pwop-card"><div class="pwop-head"><img alt="" src="'+pwNavIcon('settings',24)+'"><h2 id="'+u+'t">Opções</h2>'+
-      '<pw-search class="pwop-q" placeholder="Buscar configuração…" label="Buscar configuração"></pw-search><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" data-tip="Fechar (Esc)" aria-label="Fechar" data-o="close"></pw-button></div>'+
+    this.innerHTML='<div class="pw-titled pwop-wrap"><pw-card-header variant="banner" animate no-lines no-icons class="pwop-ttl" id="'+u+'t">Opções</pw-card-header><pw-card variant="tech" class="pwop-card"><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" data-tip="Fechar (Esc)" aria-label="Fechar" data-o="close" class="pwop-x"></pw-button><div class="pwop-head">'+
+      '<pw-search class="pwop-q" placeholder="Buscar configuração…" label="Buscar configuração"></pw-search></div>'+
       '<div class="pwop-main"><nav class="pwop-nav" aria-label="Categorias"><pw-list select="single" aria-label="Categorias">'+PW_OPT_TREE.map(c=>'<pw-list-item icon="'+c.icon+'" data-cat="'+c.id+'">'+c.label+'</pw-list-item><div class="pwop-sub" data-for="'+c.id+'" hidden></div>').join('')+'</pw-list></nav>'+
       '<pw-scroll class="pwop-body"></pw-scroll></div>'+
-      '<div class="pwop-foot"><small class="pwop-st" aria-live="polite">As alterações são aplicadas na hora.</small><span class="grow"></span><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="refresh" data-o="reset">Restaurar padrões da categoria</pw-button><pw-button size="sm" fx="none" particles="0" data-o="close">Concluir</pw-button></div></pw-card>';
+      '<div class="pwop-foot"><small class="pwop-st" aria-live="polite">As alterações são aplicadas na hora.</small><span class="grow"></span><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="refresh" data-o="reset">Restaurar padrões da categoria</pw-button><pw-button size="sm" fx="none" particles="0" data-o="close">Concluir</pw-button></div></pw-card></div>';
     var B=this.querySelector('.pwop-body');
     this.querySelector('pw-list').addEventListener('click',e=>{var it=e.target.closest('pw-list-item[data-cat]');if(it)this.open(it.dataset.cat)});
     this.querySelector('pw-list').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.dataset&&e.target.dataset.cat){e.preventDefault();this.open(e.target.dataset.cat)}});
@@ -6688,7 +6691,7 @@ class PWWidgetOptions extends HTMLElement{
     B.addEventListener('change',e=>{var c=e.target.closest('[data-k]');if(!c)return;this._set(c.dataset.k,c.tagName==='PW-SWITCH'?(c.checked?1:0):c.tagName==='PW-SLIDER'?c.value:c.getAttribute('data-v'))});
     B.addEventListener('input',e=>{var c=e.target.closest('pw-slider[data-k]');if(c)this._v[c.dataset.k]=c.value});
     B.addEventListener('scroll',()=>this._spy(),{passive:true});
-    var hd=this.querySelector('.pwop-head');hd.addEventListener('pointerdown',e=>{if(e.button!==0||e.target.closest('pw-button,pw-search'))return;e.preventDefault();var S=(this.getBoundingClientRect().width/this.offsetWidth)||1,x0=e.clientX,y0=e.clientY,l0=this.offsetLeft,t0=this.offsetTop,p=this.offsetParent||document.body;
+    var hd=this.querySelector('.pwop-ttl');hd.addEventListener('pointerdown',e=>{if(e.button!==0||e.target.closest('pw-button,pw-search'))return;e.preventDefault();var S=(this.getBoundingClientRect().width/this.offsetWidth)||1,x0=e.clientX,y0=e.clientY,l0=this.offsetLeft,t0=this.offsetTop,p=this.offsetParent||document.body;
       var mv=ev=>{this.style.left=Math.max(0,Math.min(p.clientWidth-this.offsetWidth,l0+(ev.clientX-x0)/S))+'px';this.style.top=Math.max(0,Math.min(p.clientHeight-this.offsetHeight,t0+(ev.clientY-y0)/S))+'px';this.style.transform='none'},up=()=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up)};document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)});
     this.open(this._cat)}
   show(){this.hidden=false;this.dispatchEvent(new CustomEvent('open',{bubbles:true}))}
