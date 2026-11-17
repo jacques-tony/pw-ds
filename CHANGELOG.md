@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.91.0
+
+- Novo `pw-widget-exit` (Sair do jogo): banner do HUD arrastável + card tech sólido, texto explicativo e ações Forçar saída / Sair do jogo / Cancelar; evento `exit` cancelável com `detail.force`. Na simulação abre pelo ícone de saída da barra superior.
+
 ## 0.90.17
 
 - `pw-widget-combo`: removido o quadro de efetividade; magias e combo ficam ao lado da imagem do Pokémon; largura do widget passa para 768px para as magias caberem em uma linha.

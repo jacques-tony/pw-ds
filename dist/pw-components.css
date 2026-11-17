@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.90.17 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.91.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1951,6 +1951,20 @@ pw-widget-options .pwop-st{position:absolute;width:1px;height:1px;overflow:hidde
 pw-widget-options .pwop-foot{display:flex;align-items:center;gap:var(--pw-space-2);padding:var(--pw-space-6) 0 0}
 pw-widget-options .pwop-foot .grow{flex:1}
 pw-widget-options .pwop-foot small{color:var(--pw-text-muted);font-size:var(--pw-font-size-xs)}
+/* ===== COMPONENT: pw-widget-exit ===== */
+pw-widget-exit{position:absolute;z-index:40;display:block;width:min(calc(var(--pw-space-32) * 5),calc(100% - var(--pw-space-8)));font-family:var(--pw-font-body)}
+pw-widget-exit[hidden]{display:none}
+pw-widget-exit .pwex-wrap{display:block;width:100%}
+pw-widget-exit .pwex-head{cursor:grab;user-select:none;touch-action:none}
+pw-widget-exit pw-card.pwex-card{width:100%;height:auto;--lift:0px}
+pw-widget-exit pw-card.pwex-card>.pwc-content{padding:0;gap:0;height:auto}
+pw-widget-exit pw-button.pwex-x{position:absolute;top:var(--pw-space-6);right:var(--pw-space-6);z-index:3}
+pw-widget-exit .pwex-body{display:grid;gap:var(--pw-space-6);padding:calc(var(--pw-space-6) + var(--pw-space-8)) var(--pw-space-6) var(--pw-space-6);position:relative;z-index:1}
+pw-widget-exit .pwex-txt p{margin:0;text-align:center;font-size:var(--pw-font-size-sm);color:var(--pw-text-body)}
+pw-widget-exit .pwex-txt p+p{margin-top:var(--pw-space-1)}
+pw-widget-exit .pwex-txt b{color:var(--pw-text-primary)}
+pw-widget-exit .pwex-acts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--pw-space-3)}
+pw-widget-exit .pwex-acts pw-button{width:100%}
 /* arrastar item da mochila + diálogo "Mover itens" */
 .pwbg-ghost{position:fixed;z-index:2000;width:var(--pw-space-8);height:var(--pw-space-8);transform:translate(-50%,-50%) scale(1.1);pointer-events:none;filter:drop-shadow(0 6px 10px var(--pw-black-a55))}
 .pwbg-ghost>img,.pwbg-ghost>svg{width:100%;height:100%;object-fit:contain}
