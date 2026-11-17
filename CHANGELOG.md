@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.91.7
+
+- Modo clássico: `pw-dock` (painéis laterais e inferior) sem a moldura dourada; fica só o fundo. Os widgets encaixados mantêm a própria borda.
+
 ## 0.91.6
 
 - `pw-widget-minimap`: diálogo de marcação em tela cheia sem overlay escurecendo a página.

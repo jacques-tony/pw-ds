@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.91.6 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.91.7 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2042,6 +2042,9 @@ pw-widget-combo pw-card-header.pwcb-head{cursor:grab}
 pw-dock{position:absolute;display:block;box-sizing:border-box;z-index:5}
 pw-dock>pw-card.pwdk-bg{position:absolute;inset:0;width:auto;height:auto;--lift:0px;pointer-events:none}
 pw-dock[drop-target]>pw-card.pwdk-bg{filter:brightness(1.25)}
+/* modo clássico: painéis sem moldura dourada (só o fundo) */
+pw-dock>pw-card.pwdk-bg svg :is([stroke],[fill*="metal"]):not(.l-bg){stroke:none!important}
+pw-dock>pw-card.pwdk-bg svg [fill*="metal"]{fill:none!important}
 [docked]{transition:left .2s var(--card-ease),top .2s var(--card-ease),width .2s var(--card-ease)}
 [docked].dragging{transition:none}
 [docked] .pwmm-rl,[docked] .pwmm-rr{display:none!important}
