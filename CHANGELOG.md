@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.91.4
+
+- `pw-card-header variant="banner"`: removido o halo de brilho que vazava abaixo do header.
+
 ## 0.91.3
 
 - Simulação: corrigido erro (`PW_POKE_SPR is not defined`) que impedia o Assistente de combo de mostrar o Pokémon ao clicar na equipe da HUD.

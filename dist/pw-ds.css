@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.91.3 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.91.4 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -330,7 +330,7 @@ pw-card-header[variant="banner"][no-lines] :is(.bn-line,.bn-glint){display:none}
 pw-card-header[no-icons] .pwh-label::before,pw-card-header[no-icons] .pwh-label::after{content:none!important;display:none!important}
 pw-card-header[variant="banner"] .bn-line.l{transform-origin:right center}pw-card-header[variant="banner"] .bn-line.r{transform-origin:left center}
 pw-card-header[variant="banner"] .bn-glint{opacity:0}
-pw-card-header[variant="banner"] .bn-halo{opacity:.7}
+pw-card-header[variant="banner"] .bn-halo{display:none}
 /* abertura: linhas saem do centro, asas deslizam para fora, faixa abre e o texto entra */
 pw-card-header[variant="banner"][data-opening] .pwh-frame{animation:none}
 pw-card-header[variant="banner"][data-opening] .bn-band{animation:pwbn-band calc(var(--hdr-intro) * 1.2) cubic-bezier(.22,.61,.36,1) both;transform-origin:center}

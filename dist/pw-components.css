@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.91.3 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.91.4 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -150,7 +150,7 @@ pw-card-header[variant="banner"][no-lines] :is(.bn-line,.bn-glint){display:none}
 pw-card-header[no-icons] .pwh-label::before,pw-card-header[no-icons] .pwh-label::after{content:none!important;display:none!important}
 pw-card-header[variant="banner"] .bn-line.l{transform-origin:right center}pw-card-header[variant="banner"] .bn-line.r{transform-origin:left center}
 pw-card-header[variant="banner"] .bn-glint{opacity:0}
-pw-card-header[variant="banner"] .bn-halo{opacity:.7}
+pw-card-header[variant="banner"] .bn-halo{display:none}
 /* abertura: linhas saem do centro, asas deslizam para fora, faixa abre e o texto entra */
 pw-card-header[variant="banner"][data-opening] .pwh-frame{animation:none}
 pw-card-header[variant="banner"][data-opening] .bn-band{animation:pwbn-band calc(var(--hdr-intro) * 1.2) cubic-bezier(.22,.61,.36,1) both;transform-origin:center}
