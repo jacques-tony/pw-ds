@@ -6113,7 +6113,7 @@ class PWWidgetBag extends HTMLElement{
     all.forEach((b,i)=>{b.toggleAttribute('grouped',b.group().length>1);var a=bx[i],top=false,bot=false;
       bx.forEach((o,j)=>{if(i===j)return;var ho=Math.min(a.x+a.w,o.x+o.w)-Math.max(a.x,o.x)>O;if(!ho)return;if(N(o.y+o.h,a.y))top=true;if(N(a.y+a.h,o.y))bot=true});
       /* empilhadas: os cantos da junção ficam com metade do chanfro; lado a lado mantém o chanfro */
-      var k=b.hasAttribute('docked')?'0 0 0 0':'1 1 1 1',c=b.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==k)c.setAttribute('chamfer',k)})}
+      var k='1 1 1 1',c=b.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==k)c.setAttribute('chamfer',k)})}
   /* efeito de conexão: um filete de luz percorre a junção e as mochilas pulsam */
   _flash(a,o){var p=this.offsetParent;if(!p||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var O=PWWidgetBag.O,N=PWWidgetBag._near,f=document.createElement('span');f.className='pwbg-flash';var x,y,w,hh,vert=false;
     if(N(a.y+a.h,o.y)||N(o.y+o.h,a.y)){var yy=N(a.y+a.h,o.y)?a.y+a.h-O/2:o.y+o.h-O/2;var ins=PWWidgetBag.C+2;x=Math.max(a.x,o.x)+ins;w=Math.min(a.x+a.w,o.x+o.w)-ins-x;y=yy-3;hh=6}
@@ -6830,7 +6830,7 @@ customElements.define('pw-widget-combo',PWWidgetCombo);
 
 /* ---------- pw-dock: painel onde os widgets ficam fixos (modo clássico). orientation="vertical" empilha; "horizontal" preenche ---------- */
 class PWDock extends HTMLElement{
-  connectedCallback(){if(this._init)return;this._init=true;this.insertAdjacentHTML('afterbegin','<pw-card variant="primary" fill="solid" glow="false" chamfer="0 0 0 0" class="pwdk-bg" aria-hidden="true"></pw-card>');this._rzInit();this.setAttribute('role','region');if(!this.getAttribute('aria-label'))this.setAttribute('aria-label','Painel');this._ro=new ResizeObserver(()=>this.layout());}
+  connectedCallback(){if(this._init)return;this._init=true;this.insertAdjacentHTML('afterbegin','<pw-card variant="primary" fill="solid" glow="false" class="pwdk-bg" aria-hidden="true"></pw-card>');this._rzInit();this.setAttribute('role','region');if(!this.getAttribute('aria-label'))this.setAttribute('aria-label','Painel');this._ro=new ResizeObserver(()=>this.layout());}
   /* resizable (horizontal): arrastar a borda de cima muda a altura do painel */
   _rzInit(){if(!this.hasAttribute('resizable'))return;var g=document.createElement('div');g.className='pwdk-rz';g.setAttribute('role','separator');g.setAttribute('aria-orientation','horizontal');g.tabIndex=0;g.setAttribute('aria-label','Redimensionar painel (setas ↑ ↓)');g.setAttribute('data-tip','Arraste para redimensionar');this._rz=g;requestAnimationFrame(()=>{this.parentNode.appendChild(g);this.layout()});
     var mn=()=>+this.getAttribute('min')||96,mx=()=>+this.getAttribute('max')||480,set=h=>{h=Math.round(Math.max(mn(),Math.min(mx(),h)));this.style.height=h+'px';this.layout();this.dispatchEvent(new CustomEvent('resize',{bubbles:true,detail:{height:h}}))};

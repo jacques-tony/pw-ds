@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.6
+
+- Modo clássico: `pw-dock` e widgets encaixados mantêm os chanfros padrão (antes ficavam com cantos retos).
+
 ## 0.90.5
 
 - `pw-widget-outfit`: rolagem nas abas Títulos e Efeitos quando a lista excede o card; paleta de Cores ocupa todo o espaço disponível do card.
