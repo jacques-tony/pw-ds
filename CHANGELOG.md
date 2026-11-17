@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.10
+
+- `pw-widget-options`: navegação de categorias usa `pw-scroll` do DS; a subseção clicada fica marcada na hora e, no fim da rolagem, a última seção (ex.: Opacidade) é destacada.
+
 ## 0.90.9
 
 - `pw-widget-options`: cabeçalho banner do HUD (arrastável) e card tech, no padrão do assistente de combo e do Personalizar treinador; busca passa para a barra interna do card.

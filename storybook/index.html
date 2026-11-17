@@ -2165,7 +2165,8 @@ pw-widget-options .pwop-head h2{margin:0;flex:1;font:var(--pw-text-title-sm-weig
 pw-widget-options pw-search:is(.pwop-q,.pwop-hkq) .pws-pop{display:none!important}
 pw-widget-options .pwop-head pw-search{width:calc(var(--pw-space-32) + var(--pw-space-24))}
 pw-widget-options .pwop-main{display:grid;grid-template-columns:calc(var(--pw-space-32) + var(--pw-space-24)) minmax(0,1fr);min-height:0}
-pw-widget-options .pwop-nav{border-right:1px solid var(--pw-border-subtle);padding:var(--pw-space-3);overflow:auto;min-height:0}
+pw-widget-options .pwop-nav{border-right:1px solid var(--pw-border-subtle);display:flex;flex-direction:column;overflow:hidden;min-height:0}
+pw-widget-options pw-scroll.pwop-navs{flex:1 1 0;min-height:0;padding:var(--pw-space-3)}
 pw-widget-options .pwop-nav pw-list-item{min-height:36px}
 pw-widget-options .pwop-sub{display:grid;margin:var(--pw-space-0-5) 0 var(--pw-space-2) var(--pw-space-8);gap:1px}
 pw-widget-options .pwop-sub button{all:unset;cursor:pointer;padding:var(--pw-space-1) var(--pw-space-2);border-radius:var(--pw-radius-xs);font-size:var(--pw-font-size-xs);color:var(--pw-text-muted)}
@@ -6678,13 +6679,13 @@ class PWWidgetOptions extends HTMLElement{
     this._prof=['Default','PvP'];this._p='Default';this._hk={};this._cat=this.getAttribute('section')||'geral';
     this.innerHTML='<div class="pw-titled pwop-wrap"><pw-card-header variant="banner" animate no-lines no-icons class="pwop-ttl" id="'+u+'t">Opções</pw-card-header><pw-card variant="tech" class="pwop-card"><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" data-tip="Fechar (Esc)" aria-label="Fechar" data-o="close" class="pwop-x"></pw-button><div class="pwop-head">'+
       '<pw-search class="pwop-q" placeholder="Buscar configuração…" label="Buscar configuração"></pw-search></div>'+
-      '<div class="pwop-main"><nav class="pwop-nav" aria-label="Categorias"><pw-list select="single" aria-label="Categorias">'+PW_OPT_TREE.map(c=>'<pw-list-item icon="'+c.icon+'" data-cat="'+c.id+'">'+c.label+'</pw-list-item><div class="pwop-sub" data-for="'+c.id+'" hidden></div>').join('')+'</pw-list></nav>'+
+      '<div class="pwop-main"><nav class="pwop-nav" aria-label="Categorias"><pw-scroll axis="y" class="pwop-navs"><pw-list select="single" aria-label="Categorias">'+PW_OPT_TREE.map(c=>'<pw-list-item icon="'+c.icon+'" data-cat="'+c.id+'">'+c.label+'</pw-list-item><div class="pwop-sub" data-for="'+c.id+'" hidden></div>').join('')+'</pw-list></pw-scroll></nav>'+
       '<pw-scroll class="pwop-body"></pw-scroll></div>'+
       '<div class="pwop-foot"><small class="pwop-st" aria-live="polite">As alterações são aplicadas na hora.</small><span class="grow"></span><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="refresh" data-o="reset">Restaurar padrões da categoria</pw-button><pw-button size="sm" fx="none" particles="0" data-o="close">Concluir</pw-button></div></pw-card></div>';
     var B=this.querySelector('.pwop-body');
     this.querySelector('pw-list').addEventListener('click',e=>{var it=e.target.closest('pw-list-item[data-cat]');if(it)this.open(it.dataset.cat)});
     this.querySelector('pw-list').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.dataset&&e.target.dataset.cat){e.preventDefault();this.open(e.target.dataset.cat)}});
-    this.querySelector('.pwop-nav').addEventListener('click',e=>{var b=e.target.closest('.pwop-sub button');if(!b)return;var t=this.querySelector('#'+b.dataset.sec);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})});
+    this.querySelector('.pwop-nav').addEventListener('click',e=>{var b=e.target.closest('.pwop-sub button');if(!b)return;var t=this.querySelector('#'+b.dataset.sec);if(t){this._pin=Date.now();this.querySelectorAll('.pwop-sub button').forEach(x=>x.setAttribute('aria-current',x===b?'true':'false'));t.scrollIntoView({behavior:'smooth',block:'start'})}});
     this.addEventListener('click',e=>{var b=e.target.closest('[data-o]');if(!b)return;var o=b.dataset.o;if(o==='close')this.close();else if(o==='reset')this.reset(this._cat)});
     this.addEventListener('keydown',e=>{if(e.key==='Escape'&&!this._rec&&!document.querySelector('pw-dialog[open],pw-control-group[open]')){e.preventDefault();this.close()}});
     this.querySelector('.pwop-q').addEventListener('input',e=>this._search(e.target.value||''));this.querySelector('.pwop-q').addEventListener('search',e=>this._search((e.detail&&e.detail.query)||''));
@@ -6718,7 +6719,7 @@ class PWWidgetOptions extends HTMLElement{
     this._hkWire(B);this._bkWire(B)}
   /* dependências: some/desativa linhas cujo controle pai está desligado */
   _deps(){this.querySelectorAll('.pwop-row[data-dep]').forEach(r=>{var d=r.dataset.dep,neg=d[0]==='!',k=neg?d.slice(1):d,on=!!+this._v[k];if(neg)on=!on;r.classList.toggle('off',!on);r.querySelectorAll('pw-switch,pw-slider,pw-button').forEach(c=>c.toggleAttribute('disabled',!on))})}
-  _spy(){var B=this.querySelector('.pwop-body'),secs=[...B.querySelectorAll('.pwop-sec')],cur=secs[0];secs.forEach(s=>{if(s.offsetTop-B.offsetTop<=B.scrollTop+24)cur=s});this.querySelectorAll('.pwop-sub button').forEach(b=>b.setAttribute('aria-current',cur&&b.dataset.sec===cur.id?'true':'false'))}
+  _spy(){if(this._pin&&Date.now()-this._pin<900)return;var B=this.querySelector('.pwop-body'),secs=[...B.querySelectorAll('.pwop-sec')],cur=secs[0];secs.forEach(s=>{if(s.offsetTop-B.offsetTop<=B.scrollTop+24)cur=s});if(B.scrollTop>0&&B.scrollTop+B.clientHeight>=B.scrollHeight-2)cur=secs[secs.length-1];this.querySelectorAll('.pwop-sub button').forEach(b=>b.setAttribute('aria-current',cur&&b.dataset.sec===cur.id?'true':'false'))}
   reset(cat){var c=PW_OPT_TREE.find(x=>x.id===cat);if(!c||!c.secs)return;c.secs.forEach(sc=>sc.rows.forEach(r=>{if(r[1]in this._def)this._v[r[1]]=this._def[r[1]]}));this.open(cat);this.dispatchEvent(new CustomEvent('reset',{bubbles:true,detail:{category:cat}}))}
   /* busca em todas as categorias */
   _search(q){q=q.trim().toLowerCase();var B=this.querySelector('.pwop-body');if(!q){this.open(this._cat);return}var E=pwEsc,h='<h3 class="pwop-page-t">Resultados para “'+E(q)+'”</h3><p class="pwop-page-d">Em todas as categorias.</p>',n=0;
