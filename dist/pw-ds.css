@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.91.4 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.91.5 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2233,15 +2233,24 @@ pw-widget-chat[static] :is(.pwmm-resize,[data-a="collapse"],[data-a="lock"]){dis
 pw-widget-minimap .pwmm-mark{position:absolute;width:var(--pw-space-4);height:var(--pw-space-4);transform:translate(-50%,-50%) scale(calc(1 / var(--z)));display:grid;place-items:center;border-radius:var(--pw-radius-xs);background:var(--pw-bg-solid);border:1px solid var(--pw-filament);color:var(--pw-text-accent);box-shadow:0 0 6px var(--pw-glow);cursor:help}
 pw-widget-minimap .pwmm-mark svg,pw-widget-minimap .pwmm-mark img{width:75%;height:75%}
 pw-dialog.pwmm-mk{--dlg-w:340px}
+.pwmm-side{position:absolute;top:0;width:340px;z-index:5;font-family:var(--pw-font-body)}
+.pwmm-side.r{left:calc(100% + var(--pw-space-2))}.pwmm-side.l{right:calc(100% + var(--pw-space-2))}
+.pwmm-side pw-card.pwmk-card{width:100%;height:auto;--lift:0px}
+.pwmm-side pw-card.pwmk-card>.pwc-content{padding:var(--pw-space-4);gap:var(--pw-space-3);height:auto;position:relative;z-index:1}
+.pwmm-side .pwmk-hd{display:flex;align-items:center;gap:var(--pw-space-2)}
+.pwmm-side .pwmk-hd h3{margin:0;flex:1;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.02em;color:var(--pw-text-title)}
+.pwmm-side .pwd-body{display:grid;gap:var(--pw-space-3)}
+.pwmm-side .pwd-foot{display:flex;gap:var(--pw-space-2)}.pwmm-side .pwd-foot pw-button{flex:1}
+:is(pw-dialog.pwmm-mk,.pwmm-side) .pwmk-pos{display:flex;align-items:center;gap:var(--pw-space-2);font-size:var(--pw-font-size-sm);color:var(--pw-text-muted)}
 pw-dialog.pwmm-mk .pwd-body{display:grid;gap:var(--pw-space-3);overflow:visible}
 pw-dialog.pwmm-mk .pwmk-pos{display:flex;align-items:center;gap:var(--pw-space-2);font-size:var(--pw-font-size-sm);color:var(--pw-text-muted)}
-pw-dialog.pwmm-mk .pwmk-pos b{color:var(--pw-text-primary);font-variant-numeric:tabular-nums}
-pw-dialog.pwmm-mk .pwmk-lab{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase;color:var(--pw-text-accent-soft)}
-pw-dialog.pwmm-mk .pwmk-grid{display:grid;grid-template-columns:repeat(7,var(--pw-space-8));gap:var(--pw-space-1-5,6px);justify-content:space-between}
-pw-dialog.pwmm-mk pw-card.pwmk-i{width:var(--pw-space-8);height:var(--pw-space-8);border-radius:var(--pw-radius-sm);cursor:pointer;--lift:0px}
-pw-dialog.pwmm-mk pw-card.pwmk-i>.pwc-content{padding:0;height:100%;display:grid;place-items:center;position:relative;z-index:1}
-pw-dialog.pwmm-mk pw-card.pwmk-i .pwc-content :is(svg,img){width:var(--pw-space-4);height:var(--pw-space-4);color:var(--pw-text-muted)}
-pw-dialog.pwmm-mk pw-card.pwmk-i[selected] .pwc-content svg{color:var(--pw-text-accent)}
+.pwmm-mk .pwmk-pos b{color:var(--pw-text-primary);font-variant-numeric:tabular-nums}
+.pwmm-mk .pwmk-lab{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase;color:var(--pw-text-accent-soft)}
+.pwmm-mk .pwmk-grid{display:grid;grid-template-columns:repeat(7,var(--pw-space-8));gap:var(--pw-space-1-5,6px);justify-content:space-between}
+.pwmm-mk pw-card.pwmk-i{width:var(--pw-space-8);height:var(--pw-space-8);border-radius:var(--pw-radius-sm);cursor:pointer;--lift:0px}
+.pwmm-mk pw-card.pwmk-i>.pwc-content{padding:0;height:100%;display:grid;place-items:center;position:relative;z-index:1}
+.pwmm-mk pw-card.pwmk-i .pwc-content :is(svg,img){width:var(--pw-space-4);height:var(--pw-space-4);color:var(--pw-text-muted)}
+.pwmm-mk pw-card.pwmk-i[selected] .pwc-content svg{color:var(--pw-text-accent)}
 pw-dialog.pwmm-mk .pwd-foot pw-button{flex:1}pw-dialog.pwmm-mk .pwd-foot pw-button>button{width:100%}
 /* ===================== COMPONENT: pw-widget-outfit (Personalizar treinador) ===================== */
 pw-widget-outfit{position:absolute;z-index:30;display:block;width:calc(var(--pw-space-32) * 6 + var(--pw-space-16));font-family:var(--pw-font-body)}

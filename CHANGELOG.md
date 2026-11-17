@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.91.5
+
+- `pw-widget-minimap`: criar/editar marcação abre num painel lateral integrado ao widget (à direita, ou à esquerda se faltar espaço). Com o minimapa maximizado, segue o diálogo, agora com card primary sem glow na borda.
+
 ## 0.91.4
 
 - `pw-card-header variant="banner"`: removido o halo de brilho que vazava abaixo do header.

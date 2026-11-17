@@ -2319,15 +2319,24 @@ pw-widget-chat[static] :is(.pwmm-resize,[data-a="collapse"],[data-a="lock"]){dis
 pw-widget-minimap .pwmm-mark{position:absolute;width:var(--pw-space-4);height:var(--pw-space-4);transform:translate(-50%,-50%) scale(calc(1 / var(--z)));display:grid;place-items:center;border-radius:var(--pw-radius-xs);background:var(--pw-bg-solid);border:1px solid var(--pw-filament);color:var(--pw-text-accent);box-shadow:0 0 6px var(--pw-glow);cursor:help}
 pw-widget-minimap .pwmm-mark svg,pw-widget-minimap .pwmm-mark img{width:75%;height:75%}
 pw-dialog.pwmm-mk{--dlg-w:340px}
+.pwmm-side{position:absolute;top:0;width:340px;z-index:5;font-family:var(--pw-font-body)}
+.pwmm-side.r{left:calc(100% + var(--pw-space-2))}.pwmm-side.l{right:calc(100% + var(--pw-space-2))}
+.pwmm-side pw-card.pwmk-card{width:100%;height:auto;--lift:0px}
+.pwmm-side pw-card.pwmk-card>.pwc-content{padding:var(--pw-space-4);gap:var(--pw-space-3);height:auto;position:relative;z-index:1}
+.pwmm-side .pwmk-hd{display:flex;align-items:center;gap:var(--pw-space-2)}
+.pwmm-side .pwmk-hd h3{margin:0;flex:1;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.02em;color:var(--pw-text-title)}
+.pwmm-side .pwd-body{display:grid;gap:var(--pw-space-3)}
+.pwmm-side .pwd-foot{display:flex;gap:var(--pw-space-2)}.pwmm-side .pwd-foot pw-button{flex:1}
+:is(pw-dialog.pwmm-mk,.pwmm-side) .pwmk-pos{display:flex;align-items:center;gap:var(--pw-space-2);font-size:var(--pw-font-size-sm);color:var(--pw-text-muted)}
 pw-dialog.pwmm-mk .pwd-body{display:grid;gap:var(--pw-space-3);overflow:visible}
 pw-dialog.pwmm-mk .pwmk-pos{display:flex;align-items:center;gap:var(--pw-space-2);font-size:var(--pw-font-size-sm);color:var(--pw-text-muted)}
-pw-dialog.pwmm-mk .pwmk-pos b{color:var(--pw-text-primary);font-variant-numeric:tabular-nums}
-pw-dialog.pwmm-mk .pwmk-lab{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase;color:var(--pw-text-accent-soft)}
-pw-dialog.pwmm-mk .pwmk-grid{display:grid;grid-template-columns:repeat(7,var(--pw-space-8));gap:var(--pw-space-1-5,6px);justify-content:space-between}
-pw-dialog.pwmm-mk pw-card.pwmk-i{width:var(--pw-space-8);height:var(--pw-space-8);border-radius:var(--pw-radius-sm);cursor:pointer;--lift:0px}
-pw-dialog.pwmm-mk pw-card.pwmk-i>.pwc-content{padding:0;height:100%;display:grid;place-items:center;position:relative;z-index:1}
-pw-dialog.pwmm-mk pw-card.pwmk-i .pwc-content :is(svg,img){width:var(--pw-space-4);height:var(--pw-space-4);color:var(--pw-text-muted)}
-pw-dialog.pwmm-mk pw-card.pwmk-i[selected] .pwc-content svg{color:var(--pw-text-accent)}
+.pwmm-mk .pwmk-pos b{color:var(--pw-text-primary);font-variant-numeric:tabular-nums}
+.pwmm-mk .pwmk-lab{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase;color:var(--pw-text-accent-soft)}
+.pwmm-mk .pwmk-grid{display:grid;grid-template-columns:repeat(7,var(--pw-space-8));gap:var(--pw-space-1-5,6px);justify-content:space-between}
+.pwmm-mk pw-card.pwmk-i{width:var(--pw-space-8);height:var(--pw-space-8);border-radius:var(--pw-radius-sm);cursor:pointer;--lift:0px}
+.pwmm-mk pw-card.pwmk-i>.pwc-content{padding:0;height:100%;display:grid;place-items:center;position:relative;z-index:1}
+.pwmm-mk pw-card.pwmk-i .pwc-content :is(svg,img){width:var(--pw-space-4);height:var(--pw-space-4);color:var(--pw-text-muted)}
+.pwmm-mk pw-card.pwmk-i[selected] .pwc-content svg{color:var(--pw-text-accent)}
 pw-dialog.pwmm-mk .pwd-foot pw-button{flex:1}pw-dialog.pwmm-mk .pwd-foot pw-button>button{width:100%}
 /* ===================== COMPONENT: pw-widget-outfit (Personalizar treinador) ===================== */
 pw-widget-outfit{position:absolute;z-index:30;display:block;width:calc(var(--pw-space-32) * 6 + var(--pw-space-16));font-family:var(--pw-font-body)}
@@ -6325,18 +6334,28 @@ class PWWidgetMinimap extends PWWidgetBag{
   _markDel(i){var m=(this._m.marks||[])[i];if(!m)return;var d=document.createElement('pw-dialog');d.setAttribute('heading','Excluir esta marcação?');d.setAttribute('size','sm');
     d.innerHTML='<p style="margin:0">'+(m.desc?'“'+pwEsc(m.desc)+'” ':'A marcação ')+'em '+m.x+', '+m.y+', '+m.z+' será removida do mapa.</p><pw-button slot="footer" variant="ghost" fx="none" particles="0" data-close="no">Cancelar</pw-button><pw-button slot="footer" variant="danger" fx="none" particles="0" data-close="yes">Excluir</pw-button>';
     document.body.appendChild(d);d.addEventListener('close',e=>{if(e.detail.value==='yes'){var ev=new CustomEvent('markdelete',{bubbles:true,cancelable:true,detail:{index:i,mark:m}});this.dispatchEvent(ev);if(!ev.defaultPrevented){this._m.marks.splice(i,1);this._pins()}}d.remove()});requestAnimationFrame(()=>d.show())}
-  _markDlg(at,ei){var E=pwEsc,d=document.createElement('pw-dialog'),em=ei!=null?this._m.marks[ei]:null;if(em)at={x:em.x,y:em.y,z:em.z};var sel=em&&PW_MARK_ICONS.find(x=>x[0]===em.icon)||PW_MARK_ICONS[0];d.className='pwmm-mk';d.setAttribute('heading',em?'Editar marca no mapa':'Criar marca no mapa');d.setAttribute('size','sm');
-    d.innerHTML='<div class="pwmk-pos"><span>Posição</span><b>'+at.x+', '+at.y+', '+at.z+'</b><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="copy" data-tip="Copiar posição" aria-label="Copiar posição" data-mk="copy"></pw-button></div>'+
+  /* fora da tela cheia: painel lateral integrado ao widget (à direita ou à esquerda); maximizado: diálogo com card primary sem glow */
+  _markDlg(at,ei){var E=pwEsc,full=this.hasAttribute('maximized'),em=ei!=null?this._m.marks[ei]:null;if(em)at={x:em.x,y:em.y,z:em.z};var sel=em&&PW_MARK_ICONS.find(x=>x[0]===em.icon)||PW_MARK_ICONS[0],ttl=em?'Editar marca no mapa':'Criar marca no mapa';
+    var old=this.querySelector(':scope>.pwmm-side');if(old)old.remove();
+    var d=full?document.createElement('pw-dialog'):document.createElement('div');d.className='pwmm-mk';if(full){d.setAttribute('heading',ttl);d.setAttribute('size','sm')}
+    var bodyH='<div class="pwmk-pos"><span>Posição</span><b>'+at.x+', '+at.y+', '+at.z+'</b><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="copy" data-tip="Copiar posição" aria-label="Copiar posição" data-mk="copy"></pw-button></div>'+
       '<div class="pwmk-lab">Marcação</div><div class="pwmk-grid" role="radiogroup" aria-label="Marcação">'+PW_MARK_ICONS.map((ic,i)=>{var on=ic===sel;return '<pw-card variant="tertiary" tone="neutral" interactive class="pwmk-i" role="radio" tabindex="'+(on?0:-1)+'" aria-checked="'+on+'"'+(on?' selected':'')+' data-ic="'+ic[0]+'" aria-label="'+E(ic[1])+'" data-tip="'+E(ic[1])+'">'+pwIcon(ic[0])+'</pw-card>'}).join('')+'</div>'+
       '<pw-input class="pwmk-desc" placeholder="Descrição..." aria-label="Descrição" maxlength="60" block value="'+E(em&&em.desc||'')+'"></pw-input>'+
-      '<pw-button slot="footer" variant="ghost" fx="none" particles="0" data-close="no">Cancelar</pw-button><pw-button slot="footer" fx="none" particles="0" icon="check" data-close="yes">'+(em?'Salvar':'Criar marca')+'</pw-button>';
-    document.body.appendChild(d);var G=d.querySelector('.pwmk-grid'),pick=c=>{G.querySelectorAll('.pwmk-i').forEach(x=>{var on=x===c;x.toggleAttribute('selected',on);x.setAttribute('aria-checked',on);x.tabIndex=on?0:-1});sel=PW_MARK_ICONS.find(x=>x[0]===c.dataset.ic)};
+      '',btnH='<pw-button slot="footer" variant="ghost" fx="none" particles="0" data-close="no">Cancelar</pw-button><pw-button slot="footer" fx="none" particles="0" icon="check" data-close="yes">'+(em?'Salvar':'Criar marca')+'</pw-button>';
+    var fin=v=>{if(d._done)return;d._done=1;if(full)d.close(v);else{d.dispatchEvent(new CustomEvent('close',{detail:{value:v}}))}};
+    if(full){d.innerHTML=bodyH+btnH;document.body.appendChild(d)}
+    else{d.className='pwmm-mk pwmm-side';d.setAttribute('role','dialog');d.setAttribute('aria-label',ttl);
+      d.innerHTML='<pw-card variant="primary" fill="solid" glow="false" class="pwmk-card"><div class="pwmk-hd"><h3>'+ttl+'</h3><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" aria-label="Fechar" data-close="no"></pw-button></div><div class="pwd-body">'+bodyH+'</div><div class="pwd-foot">'+btnH.replace(/ slot="footer"/g,'')+'</div></pw-card>';
+      var p=this.offsetParent,room=p?p.clientWidth-(this.offsetLeft+this.offsetWidth):9999;d.classList.add(room>=356?'r':'l');this.appendChild(d);
+      d.addEventListener('click',e=>{var b=e.target.closest('[data-close]');if(b)fin(b.dataset.close)});d.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();fin('no')}});
+      d.addEventListener('pointerdown',e=>e.stopPropagation())}var G=d.querySelector('.pwmk-grid'),pick=c=>{G.querySelectorAll('.pwmk-i').forEach(x=>{var on=x===c;x.toggleAttribute('selected',on);x.setAttribute('aria-checked',on);x.tabIndex=on?0:-1});sel=PW_MARK_ICONS.find(x=>x[0]===c.dataset.ic)};
     G.addEventListener('click',e=>{var c=e.target.closest('.pwmk-i');if(c)pick(c)});
     G.addEventListener('keydown',e=>{var all=[...G.querySelectorAll('.pwmk-i')],i=all.indexOf(document.activeElement),n={ArrowRight:1,ArrowLeft:-1,ArrowDown:7,ArrowUp:-7}[e.key];if(n==null||i<0)return;e.preventDefault();var t=all[Math.max(0,Math.min(all.length-1,i+n))];t.focus();pick(t)});
     d.addEventListener('click',e=>{if(e.target.closest('[data-mk="copy"]')){try{navigator.clipboard.writeText(at.x+', '+at.y+', '+at.z)}catch(x){}if(window.pwToast)pwToast('Posição copiada',{tone:'success'})}});
-    d.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.closest('.pwmk-desc')){e.preventDefault();d.close('yes')}});
+    d.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.closest('.pwmk-desc')){e.preventDefault();fin('yes')}});
     d.addEventListener('close',e=>{if(e.detail.value==='yes'){var m={x:at.x,y:at.y,z:at.z,icon:sel[0],desc:(d.querySelector('.pwmk-desc').value||'').trim()};var ev=new CustomEvent(em?'markedit':'mark',{bubbles:true,cancelable:true,detail:em?{index:ei,mark:m}:{mark:m}});this.dispatchEvent(ev);if(!ev.defaultPrevented){if(em)this._m.marks[ei]=m;else(this._m.marks=this._m.marks||[]).push(m);this._pins()}}d.remove()});
-    requestAnimationFrame(()=>d.show())}
+    if(full)requestAnimationFrame(()=>{var pc=d.querySelector(':scope>pw-card');if(pc){pc.setAttribute('variant','primary');pc.setAttribute('glow','false')}var x=d.querySelector('.pwd-x');if(x){x.setAttribute('fx','none');x.setAttribute('particles','0')}d.show()});
+    else requestAnimationFrame(()=>{var i=d.querySelector('.pwmk-i[selected]');if(i)i.focus()})}
   /* posiciona o mapa: jogador no centro + deslocamento do arraste */
   _place(anim){var vp=this.querySelector('.pwmm-vp'),L=this.querySelector('.pwmm-layer'),p=this._m.player,o=this._m.origin,z=this._zoom;
     var sp=this.querySelector('.pwmm-space'),vr=vp.getBoundingClientRect(),sr=sp.getBoundingClientRect(),S=(vr.width/vp.offsetWidth)||1,cx=vp.clientWidth/2,cy=sr.height?(sr.top-vr.top)/S+sr.height/S/2:vp.clientHeight/2;
