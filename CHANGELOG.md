@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.91.3
+
+- Simulação: corrigido erro (`PW_POKE_SPR is not defined`) que impedia o Assistente de combo de mostrar o Pokémon ao clicar na equipe da HUD.
+
 ## 0.91.2
 
 - `pw-widget-combo`: imagem do Pokémon passa a ser o sprite do jogo (`pokemon.sprite`, com fallback para `image`) em um card pequeno à esquerda; nome, tipos e detalhes ficam à direita; magias e combo ocupam a largura toda. Largura volta para 640px. Simulação: sprites de Charizard, Blastoise, Gengar, Caterpie e Metapod.
