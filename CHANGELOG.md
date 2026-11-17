@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.16
+
+- `pw-widget-options`: o banner do cabeçalho anima ao abrir o painel.
+
 ## 0.90.15
 
 - `pw-widget-options`: botões do rodapé com 24px de respiro; "Concluir" virou "Salvar"; removido o texto "As alterações são aplicadas na hora." (o status segue anunciado só para leitores de tela).

@@ -6698,7 +6698,7 @@ class PWWidgetOptions extends HTMLElement{
     var hd=this.querySelector('.pwop-ttl');hd.addEventListener('pointerdown',e=>{if(e.button!==0||e.target.closest('pw-button,pw-search'))return;e.preventDefault();var S=(this.getBoundingClientRect().width/this.offsetWidth)||1,x0=e.clientX,y0=e.clientY,l0=this.offsetLeft,t0=this.offsetTop,p=this.offsetParent||document.body;
       var mv=ev=>{this.style.left=Math.max(0,Math.min(p.clientWidth-this.offsetWidth,l0+(ev.clientX-x0)/S))+'px';this.style.top=Math.max(0,Math.min(p.clientHeight-this.offsetHeight,t0+(ev.clientY-y0)/S))+'px';this.style.transform='none'},up=()=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up)};document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)});
     this.open(this._cat)}
-  show(){this.hidden=false;this.dispatchEvent(new CustomEvent('open',{bubbles:true}))}
+  show(){this.hidden=false;var h=this.querySelector('.pwop-ttl');if(h&&h.play)requestAnimationFrame(()=>h.play());this.dispatchEvent(new CustomEvent('open',{bubbles:true}))}
   close(){this.hidden=true;this.dispatchEvent(new CustomEvent('close',{bubbles:true}))}
   toggle(){this.hidden?this.show():this.close()}
   _set(k,v){this._v[k]=v;this._deps();this.dispatchEvent(new CustomEvent('change',{bubbles:true,detail:{key:k,value:v,values:this.values}}));var st=this.querySelector('.pwop-st');var lb=null;PW_OPT_TREE.forEach(c=>(c.secs||[]).forEach(sc=>sc.rows.forEach(r=>{if(r[1]===k)lb=r[2]})));st.textContent='Salvo · '+(lb||k);clearTimeout(this._stT);this._stT=setTimeout(()=>st.textContent='As alterações são aplicadas na hora.',1600)}
