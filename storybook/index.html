@@ -2173,7 +2173,9 @@ pw-widget-options .pwop-sub{display:grid;margin:var(--pw-space-0-5) 0 var(--pw-s
 pw-widget-options .pwop-sub button{all:unset;cursor:pointer;padding:var(--pw-space-1) var(--pw-space-2);border-radius:var(--pw-radius-xs);font-size:var(--pw-font-size-xs);color:var(--pw-text-muted)}
 pw-widget-options .pwop-sub button:hover{color:var(--pw-text-primary)}pw-widget-options .pwop-sub button[aria-current="true"]{color:var(--pw-text-accent);background:color-mix(in srgb,var(--pw-filament) 10%,transparent)}
 pw-widget-options .pwop-sub button:focus-visible{outline:2px solid var(--pw-focus-ring)}
-pw-widget-options pw-scroll.pwop-body{min-height:0;padding:0 var(--pw-space-2) 0 var(--pw-space-6)}
+pw-widget-options :is(pw-scroll.pwop-body,pw-scroll.pwop-navs){-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 var(--pw-space-6),#000 calc(100% - var(--pw-space-6)),transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 var(--pw-space-6),#000 calc(100% - var(--pw-space-6)),transparent 100%)}
+pw-widget-options :is(pw-scroll.pwop-body,pw-scroll.pwop-navs)>:first-child{margin-top:var(--pw-space-4)}
+pw-widget-options pw-scroll.pwop-body{padding-bottom:var(--pw-space-6)!important;min-height:0;padding:0 var(--pw-space-2) 0 var(--pw-space-6)}
 pw-widget-options .pwop-page-t{margin:0 0 var(--pw-space-1);font:var(--pw-text-title-md);color:var(--pw-text-title)}
 pw-widget-options .pwop-page-d{margin:0 0 var(--pw-space-4);font-size:var(--pw-font-size-sm);color:var(--pw-text-muted)}
 pw-widget-options .pwop-sec{margin-bottom:var(--pw-space-5);scroll-margin-top:var(--pw-space-2)}
@@ -6678,7 +6680,7 @@ class PWWidgetOptions extends HTMLElement{
   connectedCallback(){if(this._init)return;this._init=true;var u=this._u='pwop'+(++uidN);this.setAttribute('role','dialog');this.setAttribute('aria-labelledby',u+'t');
     this._def={};PW_OPT_TREE.forEach(c=>(c.secs||[]).forEach(sc=>sc.rows.forEach(r=>{if(r[0]!=='info'&&r[0]!=='button')this._def[r[1]]=r[3]})));this._v=Object.assign({},this._def);
     this._prof=['Default','PvP'];this._p='Default';this._hk={};this._cat=this.getAttribute('section')||'geral';
-    this.innerHTML='<div class="pw-titled pwop-wrap"><pw-card-header variant="banner" animate no-lines no-icons class="pwop-ttl" id="'+u+'t">Opções</pw-card-header><pw-card variant="tech" class="pwop-card"><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" data-tip="Fechar (Esc)" aria-label="Fechar" data-o="close" class="pwop-x"></pw-button><div class="pwop-head"></div>'+
+    this.innerHTML='<div class="pw-titled pwop-wrap"><pw-card-header variant="banner" animate no-lines no-icons class="pwop-ttl" id="'+u+'t">Opções</pw-card-header><pw-card variant="tech" fill="solid" class="pwop-card"><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" data-tip="Fechar (Esc)" aria-label="Fechar" data-o="close" class="pwop-x"></pw-button><div class="pwop-head"></div>'+
       '<div class="pwop-main"><nav class="pwop-nav" aria-label="Categorias"><pw-scroll axis="y" class="pwop-navs"><pw-list select="single" aria-label="Categorias">'+PW_OPT_TREE.map(c=>'<pw-list-item icon="'+c.icon+'" data-cat="'+c.id+'">'+c.label+'</pw-list-item><div class="pwop-sub" data-for="'+c.id+'" hidden></div>').join('')+'</pw-list></pw-scroll></nav>'+
       '<pw-scroll class="pwop-body"></pw-scroll></div>'+
       '<div class="pwop-foot"><small class="pwop-st" aria-live="polite">As alterações são aplicadas na hora.</small><span class="grow"></span><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="refresh" data-o="reset">Restaurar padrões da categoria</pw-button><pw-button size="sm" fx="none" particles="0" data-o="close">Concluir</pw-button></div></pw-card></div>';
