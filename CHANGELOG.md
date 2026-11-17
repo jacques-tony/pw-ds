@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.91.1
+
+- `pw-widget-exit`: texto centralizado na largura toda do card (removido o limite de largura dos parágrafos).
+
 ## 0.91.0
 
 - Novo `pw-widget-exit` (Sair do jogo): banner do HUD arrastável + card tech sólido, texto explicativo e ações Forçar saída / Sair do jogo / Cancelar; evento `exit` cancelável com `detail.force`. Na simulação abre pelo ícone de saída da barra superior.
