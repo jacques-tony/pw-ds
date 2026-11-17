@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.92.4
+
+- Modo clássico: widgets encaixados mantêm sempre o chanfro padrão do card em todos os cantos.
+
 ## 0.92.3
 
 - `pw-party`: no modo Mover, dá para arrastar segurando em qualquer parte do card de fundo, não só nos cards dos Pokémon.

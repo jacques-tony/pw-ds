@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.92.3 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.92.4 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -2387,7 +2387,7 @@ class PWDock extends HTMLElement{
     k=(l,t,r)=>[l<=e?0:1,r>=PW-e?0:1,0,0].join(' ');
     var bg=this.querySelector(':scope>.pwdk-bg'),L=this.offsetLeft,T=this.offsetTop,Rr=L+this.offsetWidth,v=k(L,T,Rr);if(bg&&bg.getAttribute('chamfer')!==v)bg.setAttribute('chamfer',v);var f=v.split(' ').map(Number),c=9,tl=f[0]?c:0,tr=f[1]?c:0;this.style.clipPath='polygon('+tl+'px 0,calc(100% - '+tr+'px) 0,100% '+tr+'px,100% 100%,0 100%,0 '+tl+'px)'
     var ws=this.widgets;ws.forEach(w=>{var wl=w.offsetLeft,wt=w.offsetTop,wr=wl+w.offsetWidth,wb=wt+w.offsetHeight,B=wb>=PH-e;
-      w._chamf=[wl<=e?0:1,wr>=PW-e?0:1,wr>=PW-e||B?0:1,wl<=e||B?0:1].join(' ');var c=w.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==w._chamf)c.setAttribute('chamfer',w._chamf)})}
+      w._chamf='1 1 1 1';var c=w.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==w._chamf)c.setAttribute('chamfer',w._chamf)})}
   /* efeito de magnetismo em volta de todo o widget ao fixar */
   _flash(w){var p=w.offsetParent;if(!p||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var f=document.createElement('span');f.className='pwdk-flash';f.style.cssText='left:'+w.offsetLeft+'px;top:'+w.offsetTop+'px;width:'+w.offsetWidth+'px;height:'+w.offsetHeight+'px';p.appendChild(f);
     f.animate([{opacity:0,transform:'scale(1.03)'},{opacity:1,transform:'none',offset:.35},{opacity:1,offset:.55},{opacity:0}],{duration:560,easing:'ease-out'}).finished.then(()=>f.remove(),()=>f.remove())}
@@ -2465,5 +2465,5 @@ class PWWidgetOutfit extends HTMLElement{
     P.innerHTML=h;var c=P.querySelector('.pwof-only');if(c)c.addEventListener('change',()=>{this._only=c.checked!==undefined?c.checked:c.hasAttribute('checked');this._panel()})}
 }
 customElements.define('pw-widget-outfit',PWWidgetOutfit);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.92.3"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.92.4"});
 })();
