@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.91.9
+
+- Modo clássico: widgets encaixados voltam a ter a moldura dourada; só o bate-papo fica sem borda.
+
 ## 0.91.8
 
 - Modo clássico: `pw-dock` passa a pintar o fundo sólido direto até as bordas (sem o filete do card de fundo), com chanfro só nos cantos superiores internos via clip-path. Widgets encaixados, incluindo o bate-papo, ficam sem moldura dourada e encostam nas bordas da tela e nos painéis laterais.

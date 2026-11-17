@@ -2312,9 +2312,9 @@ pw-dock[drop-target]>pw-card.pwdk-bg{filter:brightness(1.25)}
 pw-dock{background:var(--pw-bg-solid)}
 pw-dock>pw-card.pwdk-bg{display:none}
 pw-dock[drop-target]{filter:brightness(1.25)}
-/* widgets encaixados (inclui o bate-papo): sem moldura dourada, encostam nas bordas da tela e entre si */
-[docked]>pw-card.pwbg-card svg [stroke]{stroke:none!important}
-[docked]>pw-card.pwbg-card svg [fill*="metal"]{fill:none!important}
+/* bate-papo encaixado: sem moldura dourada */
+pw-widget-chat[docked]>pw-card.pwbg-card svg [stroke]{stroke:none!important}
+pw-widget-chat[docked]>pw-card.pwbg-card svg [fill*="metal"]{fill:none!important}
 [docked]{transition:left .2s var(--card-ease),top .2s var(--card-ease),width .2s var(--card-ease)}
 [docked].dragging{transition:none}
 [docked] .pwmm-rl,[docked] .pwmm-rr{display:none!important}
