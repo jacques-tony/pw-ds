@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.7
+
+- Modo clássico: `pw-dock` e widgets encaixados ficam sem chanfro nos cantos que tocam a borda da tela e nos cantos inferiores (junção com o bate-papo e os painéis); cantos superiores internos mantêm o chanfro.
+
 ## 0.90.6
 
 - Modo clássico: `pw-dock` e widgets encaixados mantêm os chanfros padrão (antes ficavam com cantos retos).

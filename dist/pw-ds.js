@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.90.6 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.90.7 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1618,7 +1618,7 @@ class PWWidgetBag extends HTMLElement{
     all.forEach((b,i)=>{b.toggleAttribute('grouped',b.group().length>1);var a=bx[i],top=false,bot=false;
       bx.forEach((o,j)=>{if(i===j)return;var ho=Math.min(a.x+a.w,o.x+o.w)-Math.max(a.x,o.x)>O;if(!ho)return;if(N(o.y+o.h,a.y))top=true;if(N(a.y+a.h,o.y))bot=true});
       /* empilhadas: os cantos da junção ficam com metade do chanfro; lado a lado mantém o chanfro */
-      var k='1 1 1 1',c=b.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==k)c.setAttribute('chamfer',k)})}
+      var k=b._chamf||'1 1 1 1',c=b.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==k)c.setAttribute('chamfer',k)})}
   /* efeito de conexão: um filete de luz percorre a junção e as mochilas pulsam */
   _flash(a,o){var p=this.offsetParent;if(!p||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var O=PWWidgetBag.O,N=PWWidgetBag._near,f=document.createElement('span');f.className='pwbg-flash';var x,y,w,hh,vert=false;
     if(N(a.y+a.h,o.y)||N(o.y+o.h,a.y)){var yy=N(a.y+a.h,o.y)?a.y+a.h-O/2:o.y+o.h-O/2;var ins=PWWidgetBag.C+2;x=Math.max(a.x,o.x)+ins;w=Math.min(a.x+a.w,o.x+o.w)-ins-x;y=yy-3;hh=6}
@@ -2349,11 +2349,17 @@ class PWDock extends HTMLElement{
     w._undock={left:w.style.left,top:w.style.top,width:w.style.width,height:w.style.height,right:w.style.right,bottom:w.style.bottom};w._dock=this;w.setAttribute('docked','');
     var cs=this.widgets.filter(o=>o!==w).sort((a,b)=>(a._dockOrder||0)-(b._dockOrder||0)),at=this._vert()?cs.filter(o=>o.offsetTop+o.offsetHeight/2<w.offsetTop+20).length:cs.length;cs.splice(at,0,w);cs.forEach((o,k)=>o._dockOrder=k);this._ro.observe(w);this.layout();if(w._mark)w._mark();setTimeout(()=>this._flash(w),220);
     this.dispatchEvent(new CustomEvent('dock',{bubbles:true,detail:{widget:w}}))}
-  undock(w,silent){if(w._dock!==this)return;this._ro.unobserve(w);w._dock=null;w.removeAttribute('docked');var u=w._undock||{};w.style.width=u.width||'';if(!this._vert())w.style.height=u.height||'';if(silent!=='keep'){}
+  undock(w,silent){if(w._dock!==this)return;this._ro.unobserve(w);w._dock=null;w.removeAttribute('docked');w._chamf=null;var u=w._undock||{};w.style.width=u.width||'';if(!this._vert())w.style.height=u.height||'';if(silent!=='keep'){}
     this.layout();if(w._mark)w._mark();if(silent!==true)this.dispatchEvent(new CustomEvent('undock',{bubbles:true,detail:{widget:w}}))}
   layout(){if(this._lay)return;this._lay=1;requestAnimationFrame(()=>{this._lay=0;if(this._rz){var g=this._rz;g.hidden=this.hidden;g.style.left=(this.offsetLeft+64)+'px';g.style.width=Math.max(0,this.offsetWidth-128)+'px';g.style.top=(this.offsetTop-4)+'px'}var x=this.offsetLeft,y=this.offsetTop,W=this.clientWidth,H=this.clientHeight,ws=this.widgets.sort((a,b)=>(a._dockOrder||0)-(b._dockOrder||0));
     if(this._vert()){var t=y;ws.forEach(w=>{if(w.classList.contains('dragging'))return;w.style.left=x+'px';w.style.right='auto';w.style.bottom='auto';w.style.top=t+'px';w.style.width=W+'px';t+=w.offsetHeight-2})}
-    else ws.forEach(w=>{if(w.classList.contains('dragging'))return;var ov=+(this.getAttribute('overlap')||0);w.style.left=(x-ov)+'px';w.style.top=y+'px';w.style.right='auto';w.style.bottom='auto';w.style.width=(W+ov*2)+'px';w.style.height=H+'px'})})}
+    else ws.forEach(w=>{if(w.classList.contains('dragging'))return;var ov=+(this.getAttribute('overlap')||0);w.style.left=(x-ov)+'px';w.style.top=y+'px';w.style.right='auto';w.style.bottom='auto';w.style.width=(W+ov*2)+'px';w.style.height=H+'px'});this._chamf()})}
+  /* chanfros: cantos inferiores retos (encontram a borda da tela ou o bate-papo); superiores retos só quando tocam a borda da tela */
+  _chamf(){var p=this.offsetParent;if(!p)return;var PW=p.clientWidth,PH=p.clientHeight,e=2,
+    k=(l,t,r)=>[t<=e||l<=e?0:1,t<=e||r>=PW-e?0:1,0,0].join(' ');
+    var bg=this.querySelector(':scope>.pwdk-bg'),L=this.offsetLeft,T=this.offsetTop,Rr=L+this.offsetWidth;if(bg){var v=k(L,T,Rr);if(bg.getAttribute('chamfer')!==v)bg.setAttribute('chamfer',v)}
+    var ws=this.widgets;ws.forEach(w=>{var wl=w.offsetLeft,wt=w.offsetTop,wr=wl+w.offsetWidth,wb=wt+w.offsetHeight,top=[wt<=e||wl<=e?0:1,wt<=e||wr>=PW-e?0:1],bot=wb>=PH-e||wb>=T+this.offsetHeight-e?[0,0]:[1,1];
+      w._chamf=top.concat(bot.reverse()).join(' ');var c=w.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==w._chamf)c.setAttribute('chamfer',w._chamf)})}
   /* efeito de magnetismo em volta de todo o widget ao fixar */
   _flash(w){var p=w.offsetParent;if(!p||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var f=document.createElement('span');f.className='pwdk-flash';f.style.cssText='left:'+w.offsetLeft+'px;top:'+w.offsetTop+'px;width:'+w.offsetWidth+'px;height:'+w.offsetHeight+'px';p.appendChild(f);
     f.animate([{opacity:0,transform:'scale(1.03)'},{opacity:1,transform:'none',offset:.35},{opacity:1,offset:.55},{opacity:0}],{duration:560,easing:'ease-out'}).finished.then(()=>f.remove(),()=>f.remove())}
@@ -2414,5 +2420,5 @@ class PWWidgetOutfit extends HTMLElement{
     P.innerHTML=h;var c=P.querySelector('.pwof-only');if(c)c.addEventListener('change',()=>{this._only=c.checked!==undefined?c.checked:c.hasAttribute('checked');this._panel()})}
 }
 customElements.define('pw-widget-outfit',PWWidgetOutfit);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.90.6"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.90.7"});
 })();
