@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.13
+
+- `pw-widget-options`: removido o check da categoria selecionada no menu.
+
 ## 0.90.12
 
 - `pw-widget-options`: padding de 24px no conteúdo do card.
