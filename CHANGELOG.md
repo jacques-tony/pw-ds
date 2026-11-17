@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.92.0
+
+- Modo clássico: bate-papo encaixado só com a borda superior (divisão com a HUD). Widgets encaixados ficam com canto reto só nos cantos que tocam a borda da tela; entre widgets mantêm o chanfro.
+- `pw-party` (perfil reduzido flutuante): sem fundo, alça e botão no hover; Mover, Modo minimalista/completo e Editar ordem ficam num menu contextual pelo botão direito. Mover faz a equipe seguir o ponteiro até o próximo clique (Esc cancela).
+
 ## 0.91.9
 
 - Modo clássico: widgets encaixados voltam a ter a moldura dourada; só o bate-papo fica sem borda.

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.91.9 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.92.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1522,6 +1522,11 @@ pw-party pw-button.pwpt-opts{position:absolute;top:calc(var(--pt-hd) * -1);right
 pw-party pw-button.pwpt-opts>button{height:var(--pw-space-6);min-height:0}
 pw-party:is(:hover,:focus-within,.menu-open) pw-button.pwpt-opts{opacity:1}
 pw-party:is(.menu-open) :is(pw-card.pwpt-bg,.pwpt-move){opacity:1}
+/* opções pelo botão direito: sem fundo, alça e botão no hover */
+pw-party .pwpt-move,pw-party pw-button.pwpt-opts,pw-party pw-control-group.pwpt-cg{display:none!important}
+pw-party:not([editing]) pw-card.pwpt-bg{opacity:0!important}
+pw-party.moving{cursor:grabbing}
+pw-party.moving .pwpt{pointer-events:none}
 pw-party[editing] pw-button.pwpt-opts{display:none}
 /* modo minimalista: só a arte e a vida, cards menores */
 pw-party[minimal]{--pt-w:var(--pw-space-32);--pt-h:var(--pw-space-7);gap:var(--pw-space-1)}
@@ -2229,6 +2234,7 @@ pw-dock[drop-target]{filter:brightness(1.25)}
 /* bate-papo encaixado: sem moldura dourada */
 pw-widget-chat[docked]>pw-card.pwbg-card svg [stroke]{stroke:none!important}
 pw-widget-chat[docked]>pw-card.pwbg-card svg [fill*="metal"]{fill:none!important}
+pw-widget-chat[docked]::before{content:'';position:absolute;left:0;right:0;top:0;height:2px;background:var(--pw-filament);z-index:3;pointer-events:none}
 [docked]{transition:left .2s var(--card-ease),top .2s var(--card-ease),width .2s var(--card-ease)}
 [docked].dragging{transition:none}
 [docked] .pwmm-rl,[docked] .pwmm-rr{display:none!important}
