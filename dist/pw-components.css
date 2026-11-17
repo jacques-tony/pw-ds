@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.92.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.92.2 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2055,9 +2055,7 @@ pw-dock{background:var(--pw-bg-solid)}
 pw-dock>pw-card.pwdk-bg{display:none}
 pw-dock[drop-target]{filter:brightness(1.25)}
 /* bate-papo encaixado: sem moldura dourada */
-pw-widget-chat[docked]>pw-card.pwbg-card svg [stroke]{stroke:none!important}
-pw-widget-chat[docked]>pw-card.pwbg-card svg [fill*="metal"]{fill:none!important}
-pw-widget-chat[docked]::before{content:'';position:absolute;left:0;right:0;top:0;height:2px;background:var(--pw-filament);z-index:3;pointer-events:none}
+pw-widget-chat[docked]>pw-card.pwbg-card>svg.pwc-frame{-webkit-mask-image:linear-gradient(to bottom,#000 0 15px,transparent 15px);mask-image:linear-gradient(to bottom,#000 0 15px,transparent 15px)}
 [docked]{transition:left .2s var(--card-ease),top .2s var(--card-ease),width .2s var(--card-ease)}
 [docked].dragging{transition:none}
 [docked] .pwmm-rl,[docked] .pwmm-rr{display:none!important}

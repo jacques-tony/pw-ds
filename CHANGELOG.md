@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.92.2
+
+- Modo clássico: a borda superior do bate-papo encaixado acompanha o chanfro dos cantos (usa a própria moldura do card, mascarada abaixo do topo).
+
 ## 0.92.1
 
 - `pw-party`: "Mover" do menu contextual vira um modo igual ao Editar ordem — fundo do card e botão ✓ aparecem; arraste a equipe (ou setas); ✓/Enter salva, Esc volta à posição anterior.
