@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.92.3
+
+- `pw-party`: no modo Mover, dá para arrastar segurando em qualquer parte do card de fundo, não só nos cards dos Pokémon.
+
 ## 0.92.2
 
 - Modo clássico: a borda superior do bate-papo encaixado acompanha o chanfro dos cantos (usa a própria moldura do card, mascarada abaixo do topo).

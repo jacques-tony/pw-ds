@@ -1611,7 +1611,8 @@ pw-party:is(.menu-open) :is(pw-card.pwpt-bg,.pwpt-move){opacity:1}
 /* opções pelo botão direito: sem fundo, alça e botão no hover */
 pw-party .pwpt-move,pw-party pw-button.pwpt-opts,pw-party pw-control-group.pwpt-cg{display:none!important}
 pw-party:not([editing]):not([placing]) pw-card.pwpt-bg{opacity:0!important}
-pw-party[placing] pw-card.pwpt-bg{opacity:1}
+pw-party[placing] pw-card.pwpt-bg{opacity:1;pointer-events:auto;cursor:grab}
+pw-party.moving pw-card.pwpt-bg{cursor:grabbing}
 pw-party[placing]{cursor:grab}pw-party[placing] .pwpt{pointer-events:none}
 pw-party[placing] pw-button.pwpt-done{pointer-events:auto}
 pw-party.moving{cursor:grabbing}
