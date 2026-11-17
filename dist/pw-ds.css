@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.90.10 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.90.11 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2073,13 +2073,13 @@ pw-widget-options .pwop-ttl{cursor:grab;user-select:none;touch-action:none}
 pw-widget-options pw-button.pwop-x{position:absolute;top:var(--pw-space-6);right:var(--pw-space-6);z-index:3}
 pw-widget-options pw-card.pwop-card{width:100%;flex:1 1 0;min-height:0;height:auto;--lift:0px}
 pw-widget-options pw-card.pwop-card>.pwc-content{height:100%;padding:0;gap:0;display:grid;grid-template-rows:auto minmax(0,1fr) auto;box-sizing:border-box}
-pw-widget-options .pwop-head{display:flex;align-items:center;justify-content:flex-start;gap:var(--pw-space-3);padding:calc(var(--pw-space-6) + var(--pw-space-8)) calc(var(--pw-space-6) + var(--pw-space-10)) var(--pw-space-3) var(--pw-space-6);border-bottom:1px solid var(--pw-border-subtle)}
+pw-widget-options .pwop-head{display:flex;align-items:center;justify-content:flex-start;gap:var(--pw-space-3);padding:calc(var(--pw-space-6) + var(--pw-space-8)) 0 0}
 pw-widget-options .pwop-head img{width:var(--pw-space-6);height:var(--pw-space-6)}
 pw-widget-options .pwop-head h2{margin:0;flex:1;font:var(--pw-text-title-sm-weight) var(--pw-font-size-md)/1.1 var(--pw-font-title);text-transform:uppercase;letter-spacing:.02em;color:var(--pw-text-title)}
 pw-widget-options pw-search:is(.pwop-q,.pwop-hkq) .pws-pop{display:none!important}
 pw-widget-options .pwop-head pw-search{width:calc(var(--pw-space-32) + var(--pw-space-24))}
 pw-widget-options .pwop-main{display:grid;grid-template-columns:calc(var(--pw-space-32) + var(--pw-space-24)) minmax(0,1fr);min-height:0}
-pw-widget-options .pwop-nav{border-right:1px solid var(--pw-border-subtle);display:flex;flex-direction:column;overflow:hidden;min-height:0}
+pw-widget-options .pwop-nav{display:flex;flex-direction:column;overflow:hidden;min-height:0}
 pw-widget-options pw-scroll.pwop-navs{flex:1 1 0;min-height:0;padding:var(--pw-space-3)}
 pw-widget-options .pwop-nav pw-list-item{min-height:36px}
 pw-widget-options .pwop-sub{display:grid;margin:var(--pw-space-0-5) 0 var(--pw-space-2) var(--pw-space-8);gap:1px}
@@ -2124,7 +2124,7 @@ pw-widget-options .pwop-hk button.key:focus-visible{outline:2px solid var(--pw-f
 pw-widget-options .pwop-hk button.key.empty{color:var(--pw-text-muted);font-size:var(--pw-font-size-xs)}
 pw-widget-options .pwop-hk button.key.rec{color:var(--pw-text-accent);animation:pwop-blink 1s steps(2) infinite}
 @keyframes pwop-blink{50%{opacity:.4}}
-pw-widget-options .pwop-foot{display:flex;align-items:center;gap:var(--pw-space-2);padding:var(--pw-space-3) var(--pw-space-5);border-top:1px solid var(--pw-border-subtle)}
+pw-widget-options .pwop-foot{display:flex;align-items:center;gap:var(--pw-space-2);padding:var(--pw-space-3) var(--pw-space-5)}
 pw-widget-options .pwop-foot .grow{flex:1}
 pw-widget-options .pwop-foot small{color:var(--pw-text-muted);font-size:var(--pw-font-size-xs)}
 /* arrastar item da mochila + diálogo "Mover itens" */

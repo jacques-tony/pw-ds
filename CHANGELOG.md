@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.90.11
+
+- `pw-widget-options`: removida a busca de configuração e os divisores entre topo, navegação, conteúdo e rodapé.
+
 ## 0.90.10
 
 - `pw-widget-options`: navegação de categorias usa `pw-scroll` do DS; a subseção clicada fica marcada na hora e, no fim da rolagem, a última seção (ex.: Opacidade) é destacada.
