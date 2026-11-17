@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.90.7 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.90.8 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -2356,9 +2356,9 @@ class PWDock extends HTMLElement{
     else ws.forEach(w=>{if(w.classList.contains('dragging'))return;var ov=+(this.getAttribute('overlap')||0);w.style.left=(x-ov)+'px';w.style.top=y+'px';w.style.right='auto';w.style.bottom='auto';w.style.width=(W+ov*2)+'px';w.style.height=H+'px'});this._chamf()})}
   /* chanfros: cantos inferiores retos (encontram a borda da tela ou o bate-papo); superiores retos só quando tocam a borda da tela */
   _chamf(){var p=this.offsetParent;if(!p)return;var PW=p.clientWidth,PH=p.clientHeight,e=2,
-    k=(l,t,r)=>[t<=e||l<=e?0:1,t<=e||r>=PW-e?0:1,0,0].join(' ');
+    k=(l,t,r)=>[l<=e?0:1,r>=PW-e?0:1,0,0].join(' ');
     var bg=this.querySelector(':scope>.pwdk-bg'),L=this.offsetLeft,T=this.offsetTop,Rr=L+this.offsetWidth;if(bg){var v=k(L,T,Rr);if(bg.getAttribute('chamfer')!==v)bg.setAttribute('chamfer',v)}
-    var ws=this.widgets;ws.forEach(w=>{var wl=w.offsetLeft,wt=w.offsetTop,wr=wl+w.offsetWidth,wb=wt+w.offsetHeight,top=[wt<=e||wl<=e?0:1,wt<=e||wr>=PW-e?0:1],bot=wb>=PH-e||wb>=T+this.offsetHeight-e?[0,0]:[1,1];
+    var ws=this.widgets;ws.forEach(w=>{var wl=w.offsetLeft,wt=w.offsetTop,wr=wl+w.offsetWidth,wb=wt+w.offsetHeight,top=[wl<=e?0:1,wr>=PW-e?0:1],bot=wb>=PH-e||wb>=T+this.offsetHeight-e?[0,0]:[1,1];
       w._chamf=top.concat(bot.reverse()).join(' ');var c=w.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==w._chamf)c.setAttribute('chamfer',w._chamf)})}
   /* efeito de magnetismo em volta de todo o widget ao fixar */
   _flash(w){var p=w.offsetParent;if(!p||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var f=document.createElement('span');f.className='pwdk-flash';f.style.cssText='left:'+w.offsetLeft+'px;top:'+w.offsetTop+'px;width:'+w.offsetWidth+'px;height:'+w.offsetHeight+'px';p.appendChild(f);
@@ -2420,5 +2420,5 @@ class PWWidgetOutfit extends HTMLElement{
     P.innerHTML=h;var c=P.querySelector('.pwof-only');if(c)c.addEventListener('change',()=>{this._only=c.checked!==undefined?c.checked:c.hasAttribute('checked');this._panel()})}
 }
 customElements.define('pw-widget-outfit',PWWidgetOutfit);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.90.7"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.90.8"});
 })();
