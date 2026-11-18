@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.92.5
+
+- Barra superior: removidos os ícones Habilidades e Atalhos (simulação e exemplo do `pw-navbar`).
+
 ## 0.92.4
 
 - Modo clássico: widgets encaixados mantêm sempre o chanfro padrão do card em todos os cantos.
