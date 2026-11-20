@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.96.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.97.0 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -8,11 +8,6 @@ if(!document.getElementById('pw-ds-css')&&!document.querySelector('link[href*="p
 }
 /* ---------- geometria dos cantos (SVGs exportados, caixa 30x30, linha 3px) ---------- */
 // cada canto: caminho principal do lado esquerdo até o topo (TL); os demais são espelhos x→W-x / y→H-y
-var CORNERS={
-  secondary:{ // Rarity=Common (SVG exportado, ~23,5px de diagonal, pontas curvas ~4px)
-    main:[['M',[1.5,29.5]],['L',[1.5,24.9853]],['C',[1.5,23.394],[2.13214,21.8679],[3.25736,20.7426]],['L',[8.5,15.5]],['L',[15.5,8.5]],['L',[20.7426,3.25736]],['C',[21.8679,2.13214],[23.394,1.5],[24.9853,1.5]],['L',[29.5,1.5]]]
-  }
-};
 /* canto gerado por código: diagonal reta de S px (token --pw-chamfer-sm/md) com as duas pontas curvas (--pw-chamfer-curve no md; proporcional no sm, como o SVG original).
    As curvas reproduzem a do SVG Common (raio ~4px), sem depender do tamanho do chanfro. */
 function cornerTok(S,q){q=q||4;var k=q/4.2426,a=1.5,b=1.5+S;
@@ -36,20 +31,13 @@ function outlineTok(W,H,S,q,off,ks){ // canto por token: cada canto com S*k px
   var fX=function(p){return t([w-p[0],p[1]])},fY=function(p){return t([p[0],h-p[1]])},fXY=function(p){return t([w-p[0],h-p[1]])};
   return d(map(cs[0],t))+' '+d(map(reverse(cs[1]),fX),true)+' '+d(map(cs[2],fXY),true)+' '+d(map(reverse(cs[3]),fY),true)+' Z';
 }
-function outline(W,H,c,off,ks){ // contorno fechado; off desloca para fora (anel); ks = escala do chanfro por canto [tl,tr,br,bl]
-  off=off||0;var w=W+2*off,h=H+2*off;ks=ks||[1,1,1,1];
-  var sc=function(k){return k===1?c.main:map(c.main,function(p){return [1.5+(p[0]-1.5)*k,1.5+(p[1]-1.5)*k]})};
-  var t=function(p){return [p[0]-off,p[1]-off]};
-  var fX=function(p){return t([w-p[0],p[1]])},fY=function(p){return t([p[0],h-p[1]])},fXY=function(p){return t([w-p[0],h-p[1]])};
-  return d(map(sc(ks[0]),t))+' '+d(map(reverse(sc(ks[1])),fX),true)+' '+d(map(sc(ks[2]),fXY),true)+' '+d(map(reverse(sc(ks[3])),fY),true)+' Z';
-}
 function chamfer(W,H,i,c){
   return 'M'+(i+c)+' '+i+' L'+(W-i-c)+' '+i+' L'+(W-i)+' '+(i+c)+' L'+(W-i)+' '+(H-i-c)+' L'+(W-i-c)+' '+(H-i)+' L'+(i+c)+' '+(H-i)+' L'+i+' '+(H-i-c)+' L'+i+' '+(i+c)+' Z';
 }
 var uidN=0;
 
 class PWCard extends HTMLElement{
-  static get observedAttributes(){return ['variant','interactive','disabled','selected','frame','fill','chamfer','corners','border','bg-image','bg','bg-opacity','bg-position','bg-fit']}
+  static get observedAttributes(){return ['variant','interactive','disabled','selected','frame','fill','chamfer','bg-image','bg','bg-opacity','bg-position','bg-fit']}
   connectedCallback(){
     if(!this._init){
       this._init=true;this._uid='pwc'+(++uidN);
@@ -94,23 +82,21 @@ class PWCard extends HTMLElement{
     bg.style.opacity=this.getAttribute('bg')==='both'?'':'0'}
   _frameRender(){
     var W=Math.round(this.offsetWidth),H=Math.round(this.offsetHeight);
-    if(!W||!H||(W===this._w&&H===this._h&&this.getAttribute('variant')===this._v&&this.getAttribute('frame')===this._fr&&this.getAttribute('fill')===this._fl&&this.getAttribute('chamfer')===this._ch&&this.getAttribute('corners')===this._co&&this.getAttribute('border')===this._bo))return;this._co=this.getAttribute('corners');this._bo=this.getAttribute('border');this._fr=this.getAttribute('frame');this._fl=this.getAttribute('fill');this._ch=this.getAttribute('chamfer');
+    if(!W||!H||(W===this._w&&H===this._h&&this.getAttribute('variant')===this._v&&this.getAttribute('frame')===this._fr&&this.getAttribute('fill')===this._fl&&this.getAttribute('chamfer')===this._ch))return;this._fr=this.getAttribute('frame');this._fl=this.getAttribute('fill');this._ch=this.getAttribute('chamfer');
     this._w=W;this._h=H;this._v=this.getAttribute('variant');
-    var v=this._v==='secondary'?'secondary':'primary',c=CORNERS.secondary,u=this._uid; /* primary e secondary compartilham a mesma borda e efeitos; muda só o fundo */
+    var v=this._v==='secondary'?'secondary':'primary',u=this._uid; /* primary e secondary compartilham a mesma borda e efeitos; muda só o fundo */
     /* chamfer="tl tr br bl" escala o chanfro de cada canto (ex.: 1 1 .5 .5) */
     /* primary: chanfro com 50% do tamanho base; chamfer="tl tr br bl" multiplica por canto */
     var pri0=v==='primary',kb=pri0?.5:1,ks=(this.getAttribute('chamfer')||'1 1 1 1').split(/\s+/).map(Number).map(x=>(isNaN(x)?1:x)*kb);
-    var shape,ring;if(this.getAttribute('corners')==='token'){var cs=getComputedStyle(this),S=parseFloat(cs.getPropertyValue(pri0?'--pw-chamfer-sm':'--pw-chamfer-md'))||(pri0?12:24),q=parseFloat(cs.getPropertyValue('--pw-chamfer-curve'))||4,kt=ks.map(x=>x/kb);
-      shape=outlineTok(W,H,S,q,0,kt);ring=outlineTok(W,H,S,q,4,kt)}else{shape=outline(W,H,c,0,ks);ring=outline(W,H,c,4,ks)}var all=shape;
+    /* canto por token: --pw-chamfer-sm (primary) / --pw-chamfer-md (secondary) com pontas curvas --pw-chamfer-curve */
+    var cs=getComputedStyle(this),S=parseFloat(cs.getPropertyValue(pri0?'--pw-chamfer-sm':'--pw-chamfer-md'))||(pri0?12:24),q=parseFloat(cs.getPropertyValue('--pw-chamfer-curve'))||4,kt=ks.map(x=>x/kb);
+    var shape=outlineTok(W,H,S,q,0,kt),ring=outlineTok(W,H,S,q,4,kt),all=shape;
     /* fill: gradient (padrão do primary) · solid (cor única, bom para widgets) */
     var bgFill=v==='primary'&&this.getAttribute('fill')!=='solid'?'url(#'+u+'-bg)':'var(--card-bg-solid)';
     var pri=v==='primary';/* primary: borda de 2px no total e sem a linha interna */
-    var stw=pri?2:4,stm=pri?1.3:2;
-    /* border="metal" (teste): um único traço em degradê metal-0..3 a 135°, largura inteira (2px; 1px em cards pequenos), sem filamento nem vidro */
-    var bm=this.getAttribute('border')==='metal',bmw=Math.min(W,H)<80?1:2;
-    var border=bm?'<path d="'+all+'" fill="none" stroke="url(#'+u+'-mtl)" stroke-width="'+bmw+'"/>':
-               '<path d="'+all+'" fill="none" stroke="var(--card-filament)" stroke-width="'+stw+'"/>'+
-               '<path d="'+all+'" fill="none" stroke="url(#'+u+'-metal)" stroke-width="'+stm+'"/>';
+    /* borda metal: um único traço em degradê metal-0..3 a 135° (tom claro realçado), largura inteira — 2px; 1px em cards pequenos */
+    var bm=true,bmw=Math.min(W,H)<80?1:2;
+    var border='<path d="'+all+'" fill="none" stroke="url(#'+u+'-mtl)" stroke-width="'+bmw+'"/>';
     this._svg.setAttribute('width',W);this._svg.setAttribute('height',H);this._svg.setAttribute('viewBox','0 0 '+W+' '+H);
     if(this._v==='tech'||((this._v==='primary'||!this._v)&&this._fr==='tech')){
       /* moldura "tech" (Máquina do Mewtwo): cantos chanfrados, linha dupla, faixas nos cantos, gemas e filetes de luz; cores dos tokens */
@@ -183,8 +169,7 @@ class PWCard extends HTMLElement{
       '<linearGradient id="'+u+'-mtl" x1="0" y1="0" x2="1" y2="1">'+
         '<stop offset="0" style="stop-color:color-mix(in srgb,var(--card-metal-0) 45%,var(--pw-white))"/><stop offset=".4" style="stop-color:color-mix(in srgb,var(--card-metal-1) 75%,var(--pw-white))"/>'+
         '<stop offset=".8" style="stop-color:color-mix(in srgb,var(--card-metal-2) 88%,var(--pw-white))"/><stop offset="1" style="stop-color:var(--card-metal-3)"/></linearGradient>'+
-      '<linearGradient id="'+u+'-glass" x1="0" y1="0" x2="1" y2="1">'+
-        '<stop offset="0" style="stop-color:var(--pw-white)" stop-opacity=".8"/><stop offset=".45" style="stop-color:var(--card-glass)"/><stop offset="1" style="stop-color:var(--card-glass)" stop-opacity=".55"/></linearGradient>'+
+
       '<radialGradient id="'+u+'-bg" cx=".5" cy=".5" r=".62"><stop offset="0" style="stop-color:var(--card-bg-center)"/><stop offset="1" style="stop-color:var(--card-bg-edge)"/></radialGradient>'+
       '<filter id="'+u+'-tex" x="-10%" y="-10%" width="120%" height="120%">'+
         '<feTurbulence type="fractalNoise" baseFrequency="'+(1/16.5).toFixed(4)+'" numOctaves="1" seed="7" result="n"/>'+
@@ -197,7 +182,7 @@ class PWCard extends HTMLElement{
       (pri?'':'<path d="'+chamfer(W,H,7.5,17.485)+'" fill="none" stroke="var(--card-filament)" stroke-width="1"/>')+
       '<g class="l-glow" filter="url(#'+u+'-tex)">'+border+'</g>'+
       border+
-      (bm?'':'<path class="l-glass" d="'+all+'" fill="none" stroke="url(#'+u+'-glass)" stroke-width="'+(pri?1.3:3)+'"/>')+
+
       '<g class="l-dots" filter="url(#'+u+'-dot)">'+
         [[7,7],[W-7,7],[W-7,H-7],[7,H-7]].map(p=>'<circle cx="'+p[0]+'" cy="'+p[1]+'" r="7" fill="var(--card-glow)"/>').join('')+'</g>'+
      '</g>'+
@@ -2522,5 +2507,5 @@ class PWWidgetOutfit extends HTMLElement{
     P.innerHTML=h;var c=P.querySelector('.pwof-only');if(c)c.addEventListener('change',()=>{this._only=c.checked!==undefined?c.checked:c.hasAttribute('checked');this._panel()})}
 }
 customElements.define('pw-widget-outfit',PWWidgetOutfit);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.96.1"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.97.0"});
 })();

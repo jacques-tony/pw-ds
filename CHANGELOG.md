@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.97.0
+
+- Oficial: cantos dos cards por token (`--pw-chamfer-sm` 12px no primary, `--pw-chamfer-md` 24px no secondary, pontas `--pw-chamfer-curve`) e borda metal em um único traço (degradê `metal-0..3` a 135° com tom claro realçado; 2px, 1px em cards pequenos). Tertiary com 4 paradas da paleta própria; quaternary com as 3.
+- Removidos: canto exportado em SVG (`CORNERS`, `outline`), traço de filamento duplo e camada "vidro" (soft-light) dos cards, e os atributos de teste `corners` e `border`.
+- Storybook: as duas seções de teste viram a seção "Chanfro e borda (tokens)".
+
 ## 0.96.1
 
 - `pw-card border="metal"` (teste): tom claro do metal realçado no degradê (metal-0 com 55% de branco, metal-1 com 25%, metal-2 com 12%) para recuperar o brilho que vinha do vidro.
