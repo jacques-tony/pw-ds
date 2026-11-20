@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.94.1
+
+- `pw-widget-combo`: sprites com a mesma altura (96px, largura proporcional, como o Caterpie) e 24px mais para a esquerda; nome em `title-lg` com as tags de tipo logo abaixo.
+
 ## 0.94.0
 
 - `pw-widget-combo`: ambientação por Pokémon (`pokemon.ambient`) atrás do cabeçalho, esmaecendo com máscara para a esquerda e para baixo sobre as magias; sprite do Pokémon fora do card, só com sombra leve. Simulação: ambientes em SVG (código, sem PNG) para Charizard (brasas), Blastoise (água), Gengar (névoa), Caterpie e Metapod (folhas).

@@ -2284,13 +2284,13 @@ pw-widget-combo .pwcb-poke{display:flex;align-items:flex-start;gap:var(--pw-spac
 /* ambientação: arte do tipo atrás do cabeçalho, esmaecendo para a esquerda e para baixo (sobre as magias) */
 pw-widget-combo .pwcb-amb{position:absolute;top:0;right:0;width:78%;height:calc(var(--pw-space-32) * 2);z-index:-1;pointer-events:none;background:center right/cover no-repeat;
   -webkit-mask-image:linear-gradient(to left,#000 35%,transparent),linear-gradient(to bottom,#000 45%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(to left,#000 35%,transparent),linear-gradient(to bottom,#000 45%,transparent);mask-composite:intersect}
-pw-widget-combo img.pwcb-spr{flex:none;order:2;margin-left:auto;margin-right:var(--pw-space-8);width:var(--pw-space-24);height:var(--pw-space-24);object-fit:contain;image-rendering:pixelated;filter:drop-shadow(0 6px 6px rgba(0,0,0,.55))}
+pw-widget-combo img.pwcb-spr{flex:none;order:2;margin-left:auto;margin-right:var(--pw-space-14,56px);width:auto;max-width:calc(var(--pw-space-32) + var(--pw-space-4));height:var(--pw-space-24);object-fit:contain;image-rendering:pixelated;filter:drop-shadow(0 6px 6px rgba(0,0,0,.55))}
 pw-widget-combo pw-card.pwcb-art{flex:none;order:2;margin-left:auto;margin-right:var(--pw-space-8);width:var(--pw-space-24);height:var(--pw-space-24);--lift:0px}
 pw-widget-combo pw-card.pwcb-art>.pwc-content{padding:var(--pw-space-3);box-sizing:border-box;height:100%;display:grid;place-items:center;position:relative;z-index:1}
 pw-widget-combo pw-card.pwcb-art img{width:100%;height:100%;object-fit:contain;image-rendering:pixelated}
 pw-widget-combo .pwcb-info{display:grid;gap:var(--pw-space-3);align-content:start;min-width:0}
 pw-widget-combo .pwcb-id{display:flex;flex-wrap:wrap;align-items:center;column-gap:var(--pw-space-2);row-gap:var(--pw-space-0-5)}
-pw-widget-combo .pwcb-id b{font:var(--pw-text-title-md);color:var(--pw-text-title)}
+pw-widget-combo .pwcb-id b{width:100%;font:var(--pw-text-title-lg);color:var(--pw-text-title)}
 pw-widget-combo .pwcb-id small{width:100%;color:var(--pw-text-muted);font-size:var(--pw-font-size-xs)}
 pw-widget-combo .pwcb-eff{display:grid}
 pw-widget-combo pw-card.pwcb-effc>.pwc-content{padding:var(--pw-space-1) var(--pw-space-3)}
