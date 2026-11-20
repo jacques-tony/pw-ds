@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.94.4
+
+- Modo clássico: corrigido o cálculo que escondia a borda interna dos painéis laterais (um painel só esconde a borda do lado que outro painel cobre por inteiro). Borda dourada volta no lado do jogo dos painéis laterais, de cima até o bate-papo, e no topo do bate-papo.
+
 ## 0.94.3
 
 - Modo clássico: `pw-dock` mostra a borda dourada só nos lados que encostam no jogo; some nas bordas da tela e onde um painel encosta no outro (fim da borda dupla entre bate-papo e painéis laterais). Fundo sólido do painel preenche as bordas escondidas.

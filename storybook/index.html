@@ -6986,7 +6986,7 @@ class PWDock extends HTMLElement{
     var bg=this.querySelector(':scope>.pwdk-bg'),L=this.offsetLeft,T=this.offsetTop,Rr=L+this.offsetWidth,Bt=T+this.offsetHeight,v=k(L,T,Rr);if(bg&&bg.getAttribute('chamfer')!==v)bg.setAttribute('chamfer',v);
     /* borda só nos lados que encostam no jogo: some na borda da tela e onde encosta em outro painel */
     var ds=[].slice.call(p.querySelectorAll(':scope>pw-dock:not([hidden])')).filter(d=>d!==this).map(d=>({l:d.offsetLeft,t:d.offsetTop,r:d.offsetLeft+d.offsetWidth,b:d.offsetTop+d.offsetHeight})),
-      near=(a,b)=>Math.abs(a-b)<=e+2,cov=side=>ds.some(o=>side==='l'?near(o.r,L)&&o.t<Bt&&o.b>T:side==='r'?near(o.l,Rr)&&o.t<Bt&&o.b>T:side==='t'?near(o.b,T)&&o.l<Rr&&o.r>L:near(o.t,Bt)&&o.l<Rr&&o.r>L),
+      near=(a,b)=>Math.abs(a-b)<=e+2,ov=(a0,a1,b0,b1)=>Math.max(0,Math.min(a1,b1)-Math.max(a0,b0))/Math.max(1,a1-a0)>.9,cov=side=>ds.some(o=>side==='l'?near(o.r,L)&&ov(T,Bt,o.t,o.b):side==='r'?near(o.l,Rr)&&ov(T,Bt,o.t,o.b):side==='t'?near(o.b,T)&&ov(L,Rr,o.l,o.r):near(o.t,Bt)&&ov(L,Rr,o.l,o.r)),
       hid={t:T<=e||cov('t'),r:Rr>=PW-e||cov('r'),b:Bt>=PH-e||cov('b'),l:L<=e||cov('l')};
     ['t','r','b','l'].forEach(sd=>this.style.setProperty('--dk-'+sd,hid[sd]?'4px':'0px'));
     var f=v.split(' ').map(Number),c=9,tl=f[0]?c:0,tr=f[1]?c:0;this.style.clipPath='polygon('+tl+'px 0,calc(100% - '+tr+'px) 0,100% '+tr+'px,100% 100%,0 100%,0 '+tl+'px)'
