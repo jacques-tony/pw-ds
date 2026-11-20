@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.96.0
+
+- `pw-card`: teste `border="metal"` — borda em um único traço (degradê `metal-0..3` a 135°, 2px nas cascas e 1px em cards pequenos), sem filamento nem vidro. Tertiary cai para 4 paradas da própria paleta; quaternary mantém as 3. Comparação lado a lado na seção "Borda metálica: atual × uma linha".
+
 ## 0.95.1
 
 - `pw-card corners="token"`: nitidez em 100% — a curva das pontas fica proporcional ao chanfro (4px no md, 2px no sm, como o SVG original) e a diagonal é alinhada à grade de pixels (x+y = n+0,5), eliminando o serrilhado.

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.95.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.96.0 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -49,7 +49,7 @@ function chamfer(W,H,i,c){
 var uidN=0;
 
 class PWCard extends HTMLElement{
-  static get observedAttributes(){return ['variant','interactive','disabled','selected','frame','fill','chamfer','corners','bg-image','bg','bg-opacity','bg-position','bg-fit']}
+  static get observedAttributes(){return ['variant','interactive','disabled','selected','frame','fill','chamfer','corners','border','bg-image','bg','bg-opacity','bg-position','bg-fit']}
   connectedCallback(){
     if(!this._init){
       this._init=true;this._uid='pwc'+(++uidN);
@@ -94,7 +94,7 @@ class PWCard extends HTMLElement{
     bg.style.opacity=this.getAttribute('bg')==='both'?'':'0'}
   _frameRender(){
     var W=Math.round(this.offsetWidth),H=Math.round(this.offsetHeight);
-    if(!W||!H||(W===this._w&&H===this._h&&this.getAttribute('variant')===this._v&&this.getAttribute('frame')===this._fr&&this.getAttribute('fill')===this._fl&&this.getAttribute('chamfer')===this._ch&&this.getAttribute('corners')===this._co))return;this._co=this.getAttribute('corners');this._fr=this.getAttribute('frame');this._fl=this.getAttribute('fill');this._ch=this.getAttribute('chamfer');
+    if(!W||!H||(W===this._w&&H===this._h&&this.getAttribute('variant')===this._v&&this.getAttribute('frame')===this._fr&&this.getAttribute('fill')===this._fl&&this.getAttribute('chamfer')===this._ch&&this.getAttribute('corners')===this._co&&this.getAttribute('border')===this._bo))return;this._co=this.getAttribute('corners');this._bo=this.getAttribute('border');this._fr=this.getAttribute('frame');this._fl=this.getAttribute('fill');this._ch=this.getAttribute('chamfer');
     this._w=W;this._h=H;this._v=this.getAttribute('variant');
     var v=this._v==='secondary'?'secondary':'primary',c=CORNERS.secondary,u=this._uid; /* primary e secondary compartilham a mesma borda e efeitos; muda só o fundo */
     /* chamfer="tl tr br bl" escala o chanfro de cada canto (ex.: 1 1 .5 .5) */
@@ -106,7 +106,10 @@ class PWCard extends HTMLElement{
     var bgFill=v==='primary'&&this.getAttribute('fill')!=='solid'?'url(#'+u+'-bg)':'var(--card-bg-solid)';
     var pri=v==='primary';/* primary: borda de 2px no total e sem a linha interna */
     var stw=pri?2:4,stm=pri?1.3:2;
-    var border='<path d="'+all+'" fill="none" stroke="var(--card-filament)" stroke-width="'+stw+'"/>'+
+    /* border="metal" (teste): um único traço em degradê metal-0..3 a 135°, largura inteira (2px; 1px em cards pequenos), sem filamento nem vidro */
+    var bm=this.getAttribute('border')==='metal',bmw=Math.min(W,H)<80?1:2;
+    var border=bm?'<path d="'+all+'" fill="none" stroke="url(#'+u+'-metal)" stroke-width="'+bmw+'"/>':
+               '<path d="'+all+'" fill="none" stroke="var(--card-filament)" stroke-width="'+stw+'"/>'+
                '<path d="'+all+'" fill="none" stroke="url(#'+u+'-metal)" stroke-width="'+stm+'"/>';
     this._svg.setAttribute('width',W);this._svg.setAttribute('height',H);this._svg.setAttribute('viewBox','0 0 '+W+' '+H);
     if(this._v==='tech'||((this._v==='primary'||!this._v)&&this._fr==='tech')){
@@ -152,10 +155,10 @@ class PWCard extends HTMLElement{
       this._svg.innerHTML='<defs>'+
         '<radialGradient id="'+u+'-qbg" cx=".5" cy=".35" r=".85"><stop offset="0" style="stop-color:var(--pw-qua-bg-center)"/><stop offset="1" style="stop-color:var(--pw-qua-bg-edge)"/></radialGradient>'+
         '<linearGradient id="'+u+'-qst" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pw-qua-stroke-top)"/><stop offset=".35" style="stop-color:var(--pw-qua-stroke-mid)"/><stop offset="1" style="stop-color:var(--pw-qua-stroke-bottom)"/></linearGradient>'+
-        '<linearGradient id="'+u+'-qin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--pw-black)" stop-opacity=".55"/><stop offset=".22" style="stop-color:var(--pw-black)" stop-opacity="0"/></linearGradient></defs>'+
+        '<linearGradient id="'+u+'-metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pw-metal-0)"/><stop offset=".4" style="stop-color:var(--pw-metal-1)"/><stop offset=".8" style="stop-color:var(--pw-metal-2)"/><stop offset="1" style="stop-color:var(--pw-metal-3)"/></linearGradient>'+'<linearGradient id="'+u+'-qin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--pw-black)" stop-opacity=".55"/><stop offset=".22" style="stop-color:var(--pw-black)" stop-opacity="0"/></linearGradient></defs>'+
         '<g class="l-art">'+qr(0,6)+' class="l-bg" fill="url(#'+u+'-qbg)" style="fill-opacity:var(--pw-qua-bg-op)"/>'+
         qr(0,6)+' fill="url(#'+u+'-qin)"/>'+
-        qr(0,6)+' class="l-tstroke" fill="none" stroke="url(#'+u+'-qst)" stroke-width="1"/></g>'+
+        (bm?qr(0,6)+' class="l-tstroke" fill="none" stroke="url(#'+u+'-qst)" stroke-width="1"/></g>':qr(0,6)+' class="l-tstroke" fill="none" stroke="url(#'+u+'-qst)" stroke-width="1"/></g>')+
         qr(3,6)+' class="l-ring" fill="none" stroke="var(--pw-qua-stroke-top)" stroke-width="1.5"/>';
       return;
     }
@@ -165,9 +168,9 @@ class PWCard extends HTMLElement{
       var rr=function(o){return '<rect x="'+(0.5-o)+'" y="'+(0.5-o)+'" width="'+(W-1+2*o)+'" height="'+(H-1+2*o)+'" rx="'+Math.max(0,TR+o)+'"'};
       this._svg.innerHTML='<defs>'+
         '<radialGradient id="'+u+'-tbg" cx=".5" cy=".5" r=".7"><stop offset="0" style="stop-color:var(--pw-ter-bg-center)"/><stop offset="1" style="stop-color:var(--pw-ter-bg-edge)"/></radialGradient>'+
-        '<linearGradient id="'+u+'-tst" x1="0" y1="0" x2="1" y2="1">'+[0,.21,.43,.61,.82,1].map((o,i)=>'<stop offset="'+o+'" style="stop-color:var(--pw-ter-stroke-'+i+')"/>').join('')+'</linearGradient></defs>'+
+        '<linearGradient id="'+u+'-tst" x1="0" y1="0" x2="1" y2="1">'+[0,.21,.43,.61,.82,1].map((o,i)=>'<stop offset="'+o+'" style="stop-color:var(--pw-ter-stroke-'+i+')"/>').join('')+'</linearGradient><linearGradient id="'+u+'-tm" x1="0" y1="0" x2="1" y2="1">'+[[0,0],[.4,2],[.8,3],[1,5]].map(a=>'<stop offset="'+a[0]+'" style="stop-color:var(--pw-ter-stroke-'+a[1]+')"/>').join('')+'</linearGradient>'+'<linearGradient id="'+u+'-metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--pw-metal-0)"/><stop offset=".4" style="stop-color:var(--pw-metal-1)"/><stop offset=".8" style="stop-color:var(--pw-metal-2)"/><stop offset="1" style="stop-color:var(--pw-metal-3)"/></linearGradient>'+'</defs>'+
         '<g class="l-art">'+rr(0)+' class="l-bg" fill="url(#'+u+'-tbg)" style="fill-opacity:var(--pw-ter-bg-op)"/>'+
-        rr(0)+' class="l-tstroke" fill="none" stroke="url(#'+u+'-tst)" stroke-width="1"/></g>'+
+        rr(0)+' class="l-tstroke" fill="none" stroke="url(#'+u+(bm?'-tm':'-tst')+')" stroke-width="1"/></g>'+
         rr(4)+' class="l-ring" fill="none" stroke="var(--pw-ter-stroke-3)" stroke-width="1.5"/>';
       return;
     }
@@ -190,7 +193,7 @@ class PWCard extends HTMLElement{
       (pri?'':'<path d="'+chamfer(W,H,7.5,17.485)+'" fill="none" stroke="var(--card-filament)" stroke-width="1"/>')+
       '<g class="l-glow" filter="url(#'+u+'-tex)">'+border+'</g>'+
       border+
-      '<path class="l-glass" d="'+all+'" fill="none" stroke="url(#'+u+'-glass)" stroke-width="'+(pri?1.3:3)+'"/>'+
+      (bm?'':'<path class="l-glass" d="'+all+'" fill="none" stroke="url(#'+u+'-glass)" stroke-width="'+(pri?1.3:3)+'"/>')+
       '<g class="l-dots" filter="url(#'+u+'-dot)">'+
         [[7,7],[W-7,7],[W-7,H-7],[7,H-7]].map(p=>'<circle cx="'+p[0]+'" cy="'+p[1]+'" r="7" fill="var(--card-glow)"/>').join('')+'</g>'+
      '</g>'+
@@ -2515,5 +2518,5 @@ class PWWidgetOutfit extends HTMLElement{
     P.innerHTML=h;var c=P.querySelector('.pwof-only');if(c)c.addEventListener('change',()=>{this._only=c.checked!==undefined?c.checked:c.hasAttribute('checked');this._panel()})}
 }
 customElements.define('pw-widget-outfit',PWWidgetOutfit);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.95.1"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.96.0"});
 })();
