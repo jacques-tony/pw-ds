@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.94.5
+
+- Modo clássico: recorte do fundo dos painéis laterais acompanha o chanfro do card (14px), corrigindo o canto superior interno com borda quebrada.
+
 ## 0.94.4
 
 - Modo clássico: corrigido o cálculo que escondia a borda interna dos painéis laterais (um painel só esconde a borda do lado que outro painel cobre por inteiro). Borda dourada volta no lado do jogo dos painéis laterais, de cima até o bate-papo, e no topo do bate-papo.

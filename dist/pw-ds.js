@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.94.4 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.94.5 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -2432,7 +2432,7 @@ class PWDock extends HTMLElement{
       near=(a,b)=>Math.abs(a-b)<=e+2,ov=(a0,a1,b0,b1)=>Math.max(0,Math.min(a1,b1)-Math.max(a0,b0))/Math.max(1,a1-a0)>.9,cov=side=>ds.some(o=>side==='l'?near(o.r,L)&&ov(T,Bt,o.t,o.b):side==='r'?near(o.l,Rr)&&ov(T,Bt,o.t,o.b):side==='t'?near(o.b,T)&&ov(L,Rr,o.l,o.r):near(o.t,Bt)&&ov(L,Rr,o.l,o.r)),
       hid={t:T<=e||cov('t'),r:Rr>=PW-e||cov('r'),b:Bt>=PH-e||cov('b'),l:L<=e||cov('l')};
     ['t','r','b','l'].forEach(sd=>this.style.setProperty('--dk-'+sd,hid[sd]?'4px':'0px'));
-    var f=v.split(' ').map(Number),c=9,tl=f[0]?c:0,tr=f[1]?c:0;this.style.clipPath='polygon('+tl+'px 0,calc(100% - '+tr+'px) 0,100% '+tr+'px,100% 100%,0 100%,0 '+tl+'px)'
+    var f=v.split(' ').map(Number),c=14,tl=f[0]?c:0,tr=f[1]?c:0;this.style.clipPath='polygon('+tl+'px 0,calc(100% - '+tr+'px) 0,100% '+tr+'px,100% 100%,0 100%,0 '+tl+'px)'
     var ws=this.widgets;ws.forEach(w=>{var wl=w.offsetLeft,wt=w.offsetTop,wr=wl+w.offsetWidth,wb=wt+w.offsetHeight,B=wb>=PH-e;
       w._chamf='1 1 1 1';var c=w.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==w._chamf)c.setAttribute('chamfer',w._chamf)})}
   /* efeito de magnetismo em volta de todo o widget ao fixar */
@@ -2513,5 +2513,5 @@ class PWWidgetOutfit extends HTMLElement{
     P.innerHTML=h;var c=P.querySelector('.pwof-only');if(c)c.addEventListener('change',()=>{this._only=c.checked!==undefined?c.checked:c.hasAttribute('checked');this._panel()})}
 }
 customElements.define('pw-widget-outfit',PWWidgetOutfit);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.94.4"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.94.5"});
 })();
