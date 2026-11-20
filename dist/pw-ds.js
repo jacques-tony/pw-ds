@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.95.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.95.1 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -13,9 +13,11 @@ var CORNERS={
     main:[['M',[1.5,29.5]],['L',[1.5,24.9853]],['C',[1.5,23.394],[2.13214,21.8679],[3.25736,20.7426]],['L',[8.5,15.5]],['L',[15.5,8.5]],['L',[20.7426,3.25736]],['C',[21.8679,2.13214],[23.394,1.5],[24.9853,1.5]],['L',[29.5,1.5]]]
   }
 };
-/* canto gerado por código: diagonal reta de S px (token --pw-chamfer-sm/md) com as duas pontas curvas (--pw-chamfer-curve).
+/* canto gerado por código: diagonal reta de S px (token --pw-chamfer-sm/md) com as duas pontas curvas (--pw-chamfer-curve no md; proporcional no sm, como o SVG original).
    As curvas reproduzem a do SVG Common (raio ~4px), sem depender do tamanho do chanfro. */
 function cornerTok(S,q){q=q||4;var k=q/4.2426,a=1.5,b=1.5+S;
+  /* nitidez em 100%: a diagonal passa em x+y = n+0,5 (mesmo alinhamento do SVG original), então ajusta a curva em frações de px */
+  var sum=a+b-2.486*k,want=Math.round(sum-.5)+.5;k=Math.max(.2,(a+b-want)/2.486);
   return [['M',[a,b+4]],['L',[a,b]],['C',[a,b-1.591*k],[a+.632*k,b-3.117*k],[a+1.757*k,b-4.243*k]],
           ['L',[b-4.243*k,a+1.757*k]],['C',[b-3.117*k,a+.632*k],[b-1.591*k,a],[b,a]],['L',[b+4,a]]]}
 function endOf(s){return s[s.length-1]}
@@ -30,7 +32,7 @@ function r(n){return Math.round(n*1000)/1000}
 function d(segs,cont){return segs.map(function(s,i){var t=(i===0&&cont)?'L':s[0];return t+s.slice(1).map(function(p){return r(p[0])+' '+r(p[1])}).join(' ')}).join(' ')}
 function outlineTok(W,H,S,q,off,ks){ // canto por token: cada canto com S*k px
   off=off||0;var w=W+2*off,h=H+2*off;ks=ks||[1,1,1,1];var t=function(p){return [p[0]-off,p[1]-off]};
-  var cs=ks.map(function(k){return k>0?cornerTok(S*k,Math.min(q,S*k/2)):[['M',[1.5,5.5]],['L',[1.5,1.5]],['L',[5.5,1.5]]]});
+  var cs=ks.map(function(k){return k>0?cornerTok(S*k,q*Math.min(1,S*k/24)):[['M',[1.5,5.5]],['L',[1.5,1.5]],['L',[5.5,1.5]]]});
   var fX=function(p){return t([w-p[0],p[1]])},fY=function(p){return t([p[0],h-p[1]])},fXY=function(p){return t([w-p[0],h-p[1]])};
   return d(map(cs[0],t))+' '+d(map(reverse(cs[1]),fX),true)+' '+d(map(cs[2],fXY),true)+' '+d(map(reverse(cs[3]),fY),true)+' Z';
 }
@@ -2513,5 +2515,5 @@ class PWWidgetOutfit extends HTMLElement{
     P.innerHTML=h;var c=P.querySelector('.pwof-only');if(c)c.addEventListener('change',()=>{this._only=c.checked!==undefined?c.checked:c.hasAttribute('checked');this._panel()})}
 }
 customElements.define('pw-widget-outfit',PWWidgetOutfit);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.95.0"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.95.1"});
 })();

@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.95.1
+
+- `pw-card corners="token"`: nitidez em 100% — a curva das pontas fica proporcional ao chanfro (4px no md, 2px no sm, como o SVG original) e a diagonal é alinhada à grade de pixels (x+y = n+0,5), eliminando o serrilhado.
+
 ## 0.95.0
 
 - Tokens novos: `--pw-chamfer-sm` (12px, primary), `--pw-chamfer-md` (24px, secondary) e `--pw-chamfer-curve` (4px).
