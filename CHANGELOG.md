@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.93.1
+
+- `pw-widget-stats`: "Loot em R$" vira "Loot". O menu (⋮) ganha checkboxes por seção da versão completa (Experiência, Saque, Suprimentos, Inimigos derrotados, Dano causado, Dano recebido) para o jogador escolher o que aparece; propriedade `hiddenSections` e evento `sectionschange`. O menu fica aberto enquanto marca as seções.
+
 ## 0.93.0
 
 - `pw-widget-stats`: modo de exibição com menu (⋮) no canto direito da seção Sessão — Versão minimalista (padrão) ou Versão completa. A minimalista mostra só XP total, Loot em R$, Gasto em $, Saldo em $ e Dano, vindos de `stats.minimal`. Atributo/propriedade `view="minimal|full"` e evento `viewchange`.

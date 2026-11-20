@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.93.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.93.1 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1929,7 +1929,9 @@ class PWWidgetStats extends PWWidgetBag{
     this.setAttribute('aria-labelledby',u+'t');if(!this.getAttribute('heading'))this.setAttribute('heading','Estatísticas');
     this.querySelector('.pwbg-acts').addEventListener('click',e=>{var b=e.target.closest('pw-button[data-a]');if(!b)return;var a=b.dataset.a;if(a==='collapse')this.toggle();else if(a==='lock')this.toggleAttribute('locked');else this.close()});
     var W=this.querySelector('.pwst-wrap');
-    W.addEventListener('select',e=>{var g=e.target.closest&&e.target.closest('pw-control-group.pwst-vmg');if(!g)return;e.preventDefault&&e.preventDefault();var v=e.detail.value;if(v!==this._view()){this.view=v;this.dispatchEvent(new CustomEvent('viewchange',{bubbles:true,detail:{view:v}}))}});
+    W.addEventListener('select',e=>{var g=e.target.closest&&e.target.closest('pw-control-group.pwst-vmg');if(!g)return;var v=String(e.detail.value);
+      if(v.indexOf('v:')===0){e.preventDefault();v=v.slice(2);if(v!==this._view()){this.view=v;this.dispatchEvent(new CustomEvent('viewchange',{bubbles:true,detail:{view:v}}))}return}
+      var id=v.slice(2);setTimeout(()=>{var on=e.detail.item.hasAttribute('selected');this._hid=(this._hid||[]).filter(x=>x!==id);if(!on)this._hid.push(id);this._secs();this.dispatchEvent(new CustomEvent('sectionschange',{bubbles:true,detail:{hidden:this.hiddenSections}}))},0)});
     W.addEventListener('click',e=>{var h=e.target.closest('.pwst-sh,.pwst-subh');if(h){var on=h.getAttribute('aria-expanded')!=='true';h.setAttribute('aria-expanded',on);h.nextElementSibling.classList.toggle('off',!on);h.nextElementSibling.toggleAttribute('inert',!on);
         var k=h.dataset.k;(this._open=this._open||{})[k]=on;setTimeout(()=>this._more(),300);return}
       var b=e.target.closest('pw-button[data-s]');if(!b)return;var a=b.dataset.s;
@@ -1955,15 +1957,18 @@ class PWWidgetStats extends PWWidgetBag{
   _chart(c){var E=pwEsc,mx=Math.max.apply(null,(c.bars||[]).map(b=>+b.value||0).concat([1]));return '<div class="pwst-chart" role="img" aria-label="'+E(c.title)+': '+(c.bars||[]).map(b=>E(b.label)+' '+E(b.display||b.value)).join(', ')+'"><div class="pwst-bars">'+(c.bars||[]).map(b=>'<span class="pwst-bar" style="--h:'+Math.round((+b.value||0)/mx*100)+'" data-tip="'+E(b.label)+': '+E(b.display||b.value)+'"></span>').join('')+'</div><div class="pwst-ticks">'+(c.ticks||[]).map(t=>'<span>'+E(t)+'</span>').join('')+'</div><div class="pwst-xl">'+(c.bars||[]).map(b=>'<span>'+E(b.label)+'</span>').join('')+'</div></div>'}
   _render(){var d=this._d,E=pwEsc,W=this.querySelector('.pwst-wrap'),st=this.querySelector('.pwst-scroll').scrollTop;
     var mini=this._view()==='minimal',mid=this._u+'vm';
-    W.innerHTML='<div class="pwst-ses"><span class="pwst-ses-l">'+pwIcon('clock')+'Sessão<span class="grow"></span><pw-button id="'+mid+'" class="pwst-vm" variant="ghost" size="sm" fx="none" particles="0" icon="more-vertical" data-tip="Modo de exibição" aria-label="Modo de exibição" aria-haspopup="menu"></pw-button><pw-control-group class="pwst-vmg" for="'+mid+'" size="sm" label="Modo de exibição"><pw-control-group-item value="minimal" icon="minus"'+(mini?' selected':'')+'>Versão minimalista</pw-control-group-item><pw-control-group-item value="full" icon="grid"'+(mini?'':' selected')+'>Versão completa</pw-control-group-item></pw-control-group></span><div class="pwst-timer-row"><time class="pwst-timer" role="timer" aria-live="off"></time>'+
+    W.innerHTML='<div class="pwst-ses"><span class="pwst-ses-l">'+pwIcon('clock')+'Sessão<span class="grow"></span><pw-button id="'+mid+'" class="pwst-vm" variant="ghost" size="sm" fx="none" particles="0" icon="more-vertical" data-tip="Modo de exibição" aria-label="Modo de exibição" aria-haspopup="menu"></pw-button><pw-control-group class="pwst-vmg" for="'+mid+'" type="multi" size="sm" label="Modo de exibição"><pw-control-group-item section="Versão" value="v:minimal"'+(mini?' selected':'')+'>Minimalista</pw-control-group-item><pw-control-group-item value="v:full"'+(mini?'':' selected')+'>Completa</pw-control-group-item>'+(d.sections||[]).map((x,i)=>'<pw-control-group-item'+(i?'':' section="Seções da versão completa"')+' value="s:'+E(x.id)+'"'+(this._off(x.id)?'':' selected')+'>'+E(x.title)+'</pw-control-group-item>').join('')+'</pw-control-group></span><div class="pwst-timer-row"><time class="pwst-timer" role="timer" aria-live="off"></time>'+
       '<pw-button variant="ghost" size="sm" fx="none" particles="0" data-s="play"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="refresh" data-s="reset" data-tip="Zerar sessão" aria-label="Zerar sessão"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="copy" data-s="copy" data-tip="Copiar estatísticas" aria-label="Copiar estatísticas"></pw-button></div>'+(mini?this._dl(this._mini()):this._dl(d.summary))+'</div>'+
-      (mini?[]:d.sections||[]).map(x=>{var inner=this._dl(x.rows);if(x.chart)inner+=this._col(x.id+':c',x.chart.title,this._chart(x.chart),true);if(x.list)inner+=this._col(x.id+':l',x.list.title,this._list(x.list.items),true);return '<section class="pwst-sec" aria-label="'+E(x.title)+'">'+this._col(x.id,x.title,inner)+'</section>'}).join('');
-    this.querySelector('.pwst-scroll').scrollTop=st;this._clock();requestAnimationFrame(()=>this._more())}
+      '<div class="pwst-secs"></div>';this._secs();this.querySelector('.pwst-scroll').scrollTop=st;this._clock();requestAnimationFrame(()=>this._more())}
+  _off(id){return (this._hid||[]).indexOf(id)>-1}
+  get hiddenSections(){return (this._hid||[]).slice()}
+  set hiddenSections(v){this._hid=(v||[]).slice();if(this._init){this._secs();this.querySelectorAll('.pwst-vmg pw-control-group-item[value^="s:"]').forEach(i=>{i.toggleAttribute('selected',!this._off(i.getAttribute('value').slice(2)));i.update&&i.update()})}}
+  _secs(){var d=this._d,E=pwEsc,box=this.querySelector('.pwst-secs');if(!box)return;box.innerHTML=(this._view()==='minimal'?[]:(d.sections||[]).filter(x=>!this._off(x.id))).map(x=>{var inner=this._dl(x.rows);if(x.chart)inner+=this._col(x.id+':c',x.chart.title,this._chart(x.chart),true);if(x.list)inner+=this._col(x.id+':l',x.list.title,this._list(x.list.items),true);return '<section class="pwst-sec" aria-label="'+E(x.title)+'">'+this._col(x.id,x.title,inner)+'</section>'}).join('');requestAnimationFrame(()=>this._more())}
   /* modo de exibição: view="minimal" (padrão) ou "full" */
   _view(){return this.getAttribute('view')==='full'?'full':'minimal'}
   get view(){return this._view()}
   set view(v){this.setAttribute('view',v==='full'?'full':'minimal');if(this._init){this._render();this.style.height='';requestAnimationFrame(()=>{this.fitAll();this._more()})}}
-  _mini(){var d=this._d;return d.minimal||[{label:'XP total',value:'—',id:'xp-total-m'},{label:'Loot em R$',value:'—'},{label:'Gasto em $',value:'—'},{label:'Saldo em $',value:'—'},{label:'Dano',value:'—'}]}
+  _mini(){var d=this._d;return d.minimal||[{label:'XP total',value:'—',id:'xp-total-m'},{label:'Loot',value:'—'},{label:'Gasto em $',value:'—'},{label:'Saldo em $',value:'—'},{label:'Dano',value:'—'}]}
   /* texto simples para copiar/compartilhar */
   toText(){var d=this._d,L=['Sessão '+this._fmt(this.elapsed)],r=x=>(x||[]).forEach(a=>L.push(a.label+': '+a.value));r(d.summary);(d.sections||[]).forEach(x=>{L.push('','# '+x.title);r(x.rows);if(x.list)(x.list.items||[]).forEach(i=>L.push('- '+i.name+(i.qty!=null?' ×'+i.qty:'')+(i.value!=null?' '+i.value:'')))});return L.join('\n')}
   /* atualiza um valor sem recriar: update('xp-total','12.500') */
@@ -2472,5 +2477,5 @@ class PWWidgetOutfit extends HTMLElement{
     P.innerHTML=h;var c=P.querySelector('.pwof-only');if(c)c.addEventListener('change',()=>{this._only=c.checked!==undefined?c.checked:c.hasAttribute('checked');this._panel()})}
 }
 customElements.define('pw-widget-outfit',PWWidgetOutfit);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.93.0"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.93.1"});
 })();
