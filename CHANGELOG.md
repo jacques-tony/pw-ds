@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.94.2
+
+- Modo clássico: `pw-dock` volta a usar o card de fundo com borda dourada e chanfros (cantos retos só nas bordas da tela e embaixo), como antes da 0.91.7.
+
 ## 0.94.1
 
 - `pw-widget-combo`: sprites com a mesma altura (96px, largura proporcional, como o Caterpie) e 24px mais para a esquerda; nome em `title-lg` com as tags de tipo logo abaixo.
