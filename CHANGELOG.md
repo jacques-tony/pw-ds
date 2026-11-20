@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.94.0
+
+- `pw-widget-combo`: ambientação por Pokémon (`pokemon.ambient`) atrás do cabeçalho, esmaecendo com máscara para a esquerda e para baixo sobre as magias; sprite do Pokémon fora do card, só com sombra leve. Simulação: ambientes em SVG (código, sem PNG) para Charizard (brasas), Blastoise (água), Gengar (névoa), Caterpie e Metapod (folhas).
+
 ## 0.93.5
 
 - `pw-widget-stats`: itens e seções do menu (⋮) podem ser arrastados (alça ⠿) para reordenar; o widget segue a mesma ordem, guardada por versão (propriedade `order`, evento `orderchange`). O menu fecha ao rolar o widget, em vez de ficar solto longe do botão.
