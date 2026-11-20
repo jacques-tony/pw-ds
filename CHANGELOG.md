@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.93.2
+
+- `pw-widget-stats`: na versão minimalista o menu (⋮) traz checkboxes para cada item (XP total, Loot, Gasto em $, Saldo em $, Dano); na completa, para cada seção. Propriedade `hiddenMinimal` e evento `minimalchange`.
+
 ## 0.93.1
 
 - `pw-widget-stats`: "Loot em R$" vira "Loot". O menu (⋮) ganha checkboxes por seção da versão completa (Experiência, Saque, Suprimentos, Inimigos derrotados, Dano causado, Dano recebido) para o jogador escolher o que aparece; propriedade `hiddenSections` e evento `sectionschange`. O menu fica aberto enquanto marca as seções.
