@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.92.5 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.92.6 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2190,9 +2190,9 @@ pw-widget-combo .pwcb-sec h4 span{margin-left:auto;text-transform:none;letter-sp
 pw-widget-combo pw-card.pwcb-box{width:auto;height:auto;--lift:0px}
 pw-widget-combo pw-card.pwcb-box>.pwc-content{padding:var(--pw-space-3);gap:var(--pw-space-3);height:auto;position:relative;z-index:1}
 pw-widget-combo .pwcb-poke{display:flex;align-items:center;gap:var(--pw-space-4)}
-pw-widget-combo pw-card.pwcb-art{flex:none;width:var(--pw-space-20);height:var(--pw-space-20);--lift:0px}
-pw-widget-combo pw-card.pwcb-art>.pwc-content{padding:0;height:100%;display:grid;place-items:center;position:relative;z-index:1}
-pw-widget-combo pw-card.pwcb-art img{max-width:100%;max-height:100%;image-rendering:pixelated}
+pw-widget-combo pw-card.pwcb-art{flex:none;order:2;margin-left:auto;width:calc(var(--pw-space-24) + var(--pw-space-8));height:calc(var(--pw-space-24) + var(--pw-space-8));--lift:0px}
+pw-widget-combo pw-card.pwcb-art>.pwc-content{padding:var(--pw-space-4);box-sizing:border-box;height:100%;display:grid;place-items:center;position:relative;z-index:1}
+pw-widget-combo pw-card.pwcb-art img{width:100%;height:100%;object-fit:contain;image-rendering:pixelated}
 pw-widget-combo .pwcb-info{display:grid;gap:var(--pw-space-3);align-content:start;min-width:0}
 pw-widget-combo .pwcb-id{display:flex;flex-wrap:wrap;align-items:center;column-gap:var(--pw-space-2);row-gap:var(--pw-space-0-5)}
 pw-widget-combo .pwcb-id b{font:var(--pw-text-title-md);color:var(--pw-text-title)}

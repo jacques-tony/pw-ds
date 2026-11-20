@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.92.6
+
+- `pw-widget-combo`: card do Pokémon vai para a direita do cabeçalho, 20% maior (sprite em 96px) com 16px de padding interno.
+
 ## 0.92.5
 
 - Barra superior: removidos os ícones Habilidades e Atalhos (simulação e exemplo do `pw-navbar`).
