@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.92.7
+
+- `pw-widget-combo`: nome e detalhes alinhados ao topo do card do Pokémon; card do Pokémon 25% menor (96px, padding 12px, sprite 72px).
+
 ## 0.92.6
 
 - `pw-widget-combo`: card do Pokémon vai para a direita do cabeçalho, 20% maior (sprite em 96px) com 16px de padding interno.
