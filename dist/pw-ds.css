@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.94.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.94.3 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2240,6 +2240,8 @@ pw-widget-combo pw-card-header.pwcb-head{cursor:grab}
 pw-dock{position:absolute;display:block;box-sizing:border-box;z-index:5}
 pw-dock>pw-card.pwdk-bg{position:absolute;inset:0;width:auto;height:auto;--lift:0px;pointer-events:none}
 pw-dock[drop-target]>pw-card.pwdk-bg{filter:brightness(1.25)}
+pw-dock{background:var(--pw-bg-solid)}
+pw-dock>pw-card.pwdk-bg>svg.pwc-frame{-webkit-mask-image:linear-gradient(to bottom,transparent var(--dk-t,0px),#000 var(--dk-t,0px),#000 calc(100% - var(--dk-b,0px)),transparent calc(100% - var(--dk-b,0px))),linear-gradient(to right,transparent var(--dk-l,0px),#000 var(--dk-l,0px),#000 calc(100% - var(--dk-r,0px)),transparent calc(100% - var(--dk-r,0px)));-webkit-mask-composite:source-in;mask-image:linear-gradient(to bottom,transparent var(--dk-t,0px),#000 var(--dk-t,0px),#000 calc(100% - var(--dk-b,0px)),transparent calc(100% - var(--dk-b,0px))),linear-gradient(to right,transparent var(--dk-l,0px),#000 var(--dk-l,0px),#000 calc(100% - var(--dk-r,0px)),transparent calc(100% - var(--dk-r,0px)));mask-composite:intersect}
 /* bate-papo encaixado: sem moldura dourada */
 pw-widget-chat[docked]>pw-card.pwbg-card>svg.pwc-frame{-webkit-mask-image:linear-gradient(to bottom,#000 0 15px,transparent 15px);mask-image:linear-gradient(to bottom,#000 0 15px,transparent 15px)}
 [docked]{transition:left .2s var(--card-ease),top .2s var(--card-ease),width .2s var(--card-ease)}

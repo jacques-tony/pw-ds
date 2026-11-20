@@ -2326,6 +2326,8 @@ pw-widget-combo pw-card-header.pwcb-head{cursor:grab}
 pw-dock{position:absolute;display:block;box-sizing:border-box;z-index:5}
 pw-dock>pw-card.pwdk-bg{position:absolute;inset:0;width:auto;height:auto;--lift:0px;pointer-events:none}
 pw-dock[drop-target]>pw-card.pwdk-bg{filter:brightness(1.25)}
+pw-dock{background:var(--pw-bg-solid)}
+pw-dock>pw-card.pwdk-bg>svg.pwc-frame{-webkit-mask-image:linear-gradient(to bottom,transparent var(--dk-t,0px),#000 var(--dk-t,0px),#000 calc(100% - var(--dk-b,0px)),transparent calc(100% - var(--dk-b,0px))),linear-gradient(to right,transparent var(--dk-l,0px),#000 var(--dk-l,0px),#000 calc(100% - var(--dk-r,0px)),transparent calc(100% - var(--dk-r,0px)));-webkit-mask-composite:source-in;mask-image:linear-gradient(to bottom,transparent var(--dk-t,0px),#000 var(--dk-t,0px),#000 calc(100% - var(--dk-b,0px)),transparent calc(100% - var(--dk-b,0px))),linear-gradient(to right,transparent var(--dk-l,0px),#000 var(--dk-l,0px),#000 calc(100% - var(--dk-r,0px)),transparent calc(100% - var(--dk-r,0px)));mask-composite:intersect}
 /* bate-papo encaixado: sem moldura dourada */
 pw-widget-chat[docked]>pw-card.pwbg-card>svg.pwc-frame{-webkit-mask-image:linear-gradient(to bottom,#000 0 15px,transparent 15px);mask-image:linear-gradient(to bottom,#000 0 15px,transparent 15px)}
 [docked]{transition:left .2s var(--card-ease),top .2s var(--card-ease),width .2s var(--card-ease)}
@@ -6981,7 +6983,13 @@ class PWDock extends HTMLElement{
   /* chanfros: cantos inferiores retos (encontram a borda da tela ou o bate-papo); superiores retos só quando tocam a borda da tela */
   _chamf(){var p=this.offsetParent;if(!p)return;var PW=p.clientWidth,PH=p.clientHeight,e=2,
     k=(l,t,r)=>[l<=e?0:1,r>=PW-e?0:1,0,0].join(' ');
-    var bg=this.querySelector(':scope>.pwdk-bg'),L=this.offsetLeft,T=this.offsetTop,Rr=L+this.offsetWidth,v=k(L,T,Rr);if(bg&&bg.getAttribute('chamfer')!==v)bg.setAttribute('chamfer',v)
+    var bg=this.querySelector(':scope>.pwdk-bg'),L=this.offsetLeft,T=this.offsetTop,Rr=L+this.offsetWidth,Bt=T+this.offsetHeight,v=k(L,T,Rr);if(bg&&bg.getAttribute('chamfer')!==v)bg.setAttribute('chamfer',v);
+    /* borda só nos lados que encostam no jogo: some na borda da tela e onde encosta em outro painel */
+    var ds=[].slice.call(p.querySelectorAll(':scope>pw-dock:not([hidden])')).filter(d=>d!==this).map(d=>({l:d.offsetLeft,t:d.offsetTop,r:d.offsetLeft+d.offsetWidth,b:d.offsetTop+d.offsetHeight})),
+      near=(a,b)=>Math.abs(a-b)<=e+2,cov=side=>ds.some(o=>side==='l'?near(o.r,L)&&o.t<Bt&&o.b>T:side==='r'?near(o.l,Rr)&&o.t<Bt&&o.b>T:side==='t'?near(o.b,T)&&o.l<Rr&&o.r>L:near(o.t,Bt)&&o.l<Rr&&o.r>L),
+      hid={t:T<=e||cov('t'),r:Rr>=PW-e||cov('r'),b:Bt>=PH-e||cov('b'),l:L<=e||cov('l')};
+    ['t','r','b','l'].forEach(sd=>this.style.setProperty('--dk-'+sd,hid[sd]?'4px':'0px'));
+    var f=v.split(' ').map(Number),c=9,tl=f[0]?c:0,tr=f[1]?c:0;this.style.clipPath='polygon('+tl+'px 0,calc(100% - '+tr+'px) 0,100% '+tr+'px,100% 100%,0 100%,0 '+tl+'px)'
     var ws=this.widgets;ws.forEach(w=>{var wl=w.offsetLeft,wt=w.offsetTop,wr=wl+w.offsetWidth,wb=wt+w.offsetHeight,B=wb>=PH-e;
       w._chamf='1 1 1 1';var c=w.querySelector('.pwbg-card');if(c&&c.getAttribute('chamfer')!==w._chamf)c.setAttribute('chamfer',w._chamf)})}
   /* efeito de magnetismo em volta de todo o widget ao fixar */
@@ -7516,7 +7524,7 @@ d.innerHTML='<div style="display:flex;align-items:flex-end;gap:8px;height:40px">
 <script>(function(){var g=document.getElementById('gsim'),o=document.getElementById('gsimOptions');if(!g||!o)return;var L=document.getElementById('gsimDockL'),Rr=document.getElementById('gsimDockR'),B=document.getElementById('gsimDockB'),$=id=>document.getElementById(id);
   /* simulação: Opções > Interface > Modo de visualização alterna Estendido / Clássico */
   function set(classic){var sp=$('gsimSpells');if(sp&&classic&&!g.classList.contains('classic'))sp._top0=sp.style.top;if(sp&&!classic&&sp._top0!=null){sp.style.top=sp._top0;sp._top0=null}if(classic)setTimeout(()=>push(),320);g.classList.toggle('classic',classic);[L,Rr,B].forEach(d=>{d.hidden=!classic;d.layout()});
-    if(classic){requestAnimationFrame(()=>{['gsimPoke','gsimBag'].forEach(id=>{var w=$(id);if(w&&!w.hidden)Rr.dock(w)});var c=$('gsimChat');if(c){B.dock(c);c.setAttribute('static','')}var m=$('gsimMap');if(m&&!m.hidden)L.dock(m)})}
+    if(classic){requestAnimationFrame(()=>{var G=g.clientWidth;[].slice.call(g.querySelectorAll(':scope>:is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-minimap,pw-widget-battle,pw-widget-stats)')).filter(w=>!w.hidden&&!w._dock).sort((a,b)=>a.offsetTop-b.offsetTop).forEach(w=>{(w.offsetLeft+w.offsetWidth/2<G/2?L:Rr).dock(w)});var c=$('gsimChat');if(c){B.dock(c);c.setAttribute('static','')}var m=$('gsimMap');if(m&&!m.hidden)L.dock(m)})}
     else{var c2=$('gsimChat');if(c2)c2.removeAttribute('static')}if(!classic)[L,Rr,B].forEach(d=>d.widgets.slice().forEach(w=>{var u=w._undock||{};d.undock(w);Object.assign(w.style,{left:u.left,top:u.top,right:u.right,bottom:u.bottom,height:u.height||w.style.height})}))}
   /* barra de spells só se move quando a HUD (empurrada pelo painel inferior) encosta nela */
   var push=h=>{var sp=$('gsimSpells'),hud=$('gsimHud');if(!sp||!hud)return;h=h||B.offsetHeight;var lim=g.offsetHeight-h-hud.offsetHeight-8,b=sp.offsetTop+sp.offsetHeight;if(b>lim)sp.style.top=(sp.offsetTop-(b-lim))+'px'};

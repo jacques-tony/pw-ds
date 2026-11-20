@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.94.3
+
+- Modo clássico: `pw-dock` mostra a borda dourada só nos lados que encostam no jogo; some nas bordas da tela e onde um painel encosta no outro (fim da borda dupla entre bate-papo e painéis laterais). Fundo sólido do painel preenche as bordas escondidas.
+- Simulação: ao entrar no modo clássico, todos os widgets visíveis (Minimapa, Batalha, Estatísticas, Mochila, Pokémon, Loot) encaixam automaticamente no painel do lado em que estão.
+
 ## 0.94.2
 
 - Modo clássico: `pw-dock` volta a usar o card de fundo com borda dourada e chanfros (cantos retos só nas bordas da tela e embaixo), como antes da 0.91.7.

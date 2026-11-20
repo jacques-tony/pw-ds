@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.94.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.94.3 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2060,6 +2060,8 @@ pw-widget-combo pw-card-header.pwcb-head{cursor:grab}
 pw-dock{position:absolute;display:block;box-sizing:border-box;z-index:5}
 pw-dock>pw-card.pwdk-bg{position:absolute;inset:0;width:auto;height:auto;--lift:0px;pointer-events:none}
 pw-dock[drop-target]>pw-card.pwdk-bg{filter:brightness(1.25)}
+pw-dock{background:var(--pw-bg-solid)}
+pw-dock>pw-card.pwdk-bg>svg.pwc-frame{-webkit-mask-image:linear-gradient(to bottom,transparent var(--dk-t,0px),#000 var(--dk-t,0px),#000 calc(100% - var(--dk-b,0px)),transparent calc(100% - var(--dk-b,0px))),linear-gradient(to right,transparent var(--dk-l,0px),#000 var(--dk-l,0px),#000 calc(100% - var(--dk-r,0px)),transparent calc(100% - var(--dk-r,0px)));-webkit-mask-composite:source-in;mask-image:linear-gradient(to bottom,transparent var(--dk-t,0px),#000 var(--dk-t,0px),#000 calc(100% - var(--dk-b,0px)),transparent calc(100% - var(--dk-b,0px))),linear-gradient(to right,transparent var(--dk-l,0px),#000 var(--dk-l,0px),#000 calc(100% - var(--dk-r,0px)),transparent calc(100% - var(--dk-r,0px)));mask-composite:intersect}
 /* bate-papo encaixado: sem moldura dourada */
 pw-widget-chat[docked]>pw-card.pwbg-card>svg.pwc-frame{-webkit-mask-image:linear-gradient(to bottom,#000 0 15px,transparent 15px);mask-image:linear-gradient(to bottom,#000 0 15px,transparent 15px)}
 [docked]{transition:left .2s var(--card-ease),top .2s var(--card-ease),width .2s var(--card-ease)}
