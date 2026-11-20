@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.95.0
+
+- Tokens novos: `--pw-chamfer-sm` (12px, primary), `--pw-chamfer-md` (24px, secondary) e `--pw-chamfer-curve` (4px).
+- `pw-card`: teste `corners="token"` — canto gerado por código (diagonal reta do token + pontas curvas), comparado lado a lado com o canto atual na seção "Chanfro: atual × por token".
+- Limpeza: removidos o canto "Épico" (`CORNERS.primary`) e `curls`, que não eram usados.
+
 ## 0.94.5
 
 - Modo clássico: recorte do fundo dos painéis laterais acompanha o chanfro do card (14px), corrigindo o canto superior interno com borda quebrada.

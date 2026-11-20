@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.94.5 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.95.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -49,6 +49,7 @@
   --pw-inset-xs:var(--pw-space-1); --pw-inset-sm:var(--pw-space-2); --pw-inset-md:var(--pw-space-3); --pw-inset-lg:var(--pw-space-4); --pw-inset-xl:var(--pw-space-6); --pw-inset-2xl:var(--pw-space-8);
   --pw-stack-xs:var(--pw-space-2); --pw-stack-sm:var(--pw-space-4); --pw-stack-md:var(--pw-space-6); --pw-stack-lg:var(--pw-space-8); --pw-stack-xl:var(--pw-space-12);
   /* raios */
+  --pw-chamfer-sm:12px; --pw-chamfer-md:24px; --pw-chamfer-curve:4px;
   --pw-radius-none:0px; --pw-radius-xs:4px; --pw-radius-sm:6px; --pw-radius-md:8px; --pw-radius-lg:12px; --pw-radius-xl:16px; --pw-radius-full:999px;
 
   /* ===== CORES · 1. PRIMITIVAS (paleta crua; não use direto nos componentes, use os semânticos) ===== */

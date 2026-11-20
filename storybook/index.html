@@ -60,6 +60,7 @@
   --pw-inset-xs:var(--pw-space-1); --pw-inset-sm:var(--pw-space-2); --pw-inset-md:var(--pw-space-3); --pw-inset-lg:var(--pw-space-4); --pw-inset-xl:var(--pw-space-6); --pw-inset-2xl:var(--pw-space-8);
   --pw-stack-xs:var(--pw-space-2); --pw-stack-sm:var(--pw-space-4); --pw-stack-md:var(--pw-space-6); --pw-stack-lg:var(--pw-space-8); --pw-stack-xl:var(--pw-space-12);
   /* raios */
+  --pw-chamfer-sm:12px; --pw-chamfer-md:24px; --pw-chamfer-curve:4px;
   --pw-radius-none:0px; --pw-radius-xs:4px; --pw-radius-sm:6px; --pw-radius-md:8px; --pw-radius-lg:12px; --pw-radius-xl:16px; --pw-radius-full:999px;
 
   /* ===== CORES · 1. PRIMITIVAS (paleta crua; não use direto nos componentes, use os semânticos) ===== */
@@ -2945,6 +2946,16 @@ w.addEventListener('hotkey' | 'reset' | 'backup-save' | 'backup-load' | 'manage-
     <div data-pw-theme="mewtwo" style="display:grid;gap:6px;justify-items:center"><pw-card fill="solid" style="width:300px;height:180px"></pw-card><span class="cap" style="margin:0">solid · tema Mewtwo</span></div>
   </div>
 </section>
+<section class="story" id="card-chanfro">
+  <h2>Chanfro: atual × por token (teste)</h2>
+  <p class="lede">À esquerda, o canto atual (SVG exportado "Common", reduzido pela metade no primary). À direita, o canto gerado por código com <code>corners="token"</code>: diagonal reta de <code>--pw-chamfer-sm</code> (12px, primary) ou <code>--pw-chamfer-md</code> (24px, secondary) e pontas curvas de <code>--pw-chamfer-curve</code> (4px). O canto "Épico" sem uso foi removido do código.</p>
+  <div class="canvas" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;justify-items:center">
+    <span class="cap" style="margin:0">Atual</span><span class="cap" style="margin:0">Por token</span>
+    <pw-card style="width:300px;height:180px"></pw-card><pw-card corners="token" style="width:300px;height:180px"></pw-card>
+    <pw-card variant="secondary" style="width:300px;height:180px"></pw-card><pw-card variant="secondary" corners="token" style="width:300px;height:180px"></pw-card>
+    <pw-card fill="solid" style="width:220px;height:120px"></pw-card><pw-card fill="solid" corners="token" style="width:220px;height:120px"></pw-card>
+  </div>
+</section>
 <section class="story" id="card-imagem">
   <h2>Fundo com imagem</h2>
   <p class="lede">Todos os cards aceitam uma imagem no fundo. A imagem é recortada no formato do fundo de cada variante, então bordas, brilho, anel de foco e destaques continuam iguais; muda só o preenchimento.</p>
@@ -4566,17 +4577,15 @@ PWDS.toast('Sem conexão', { tone: 'error', duration: 0 });   // 0 = fica até f
 /* ---------- geometria dos cantos (SVGs exportados, caixa 30x30, linha 3px) ---------- */
 // cada canto: caminho principal do lado esquerdo até o topo (TL); os demais são espelhos x→W-x / y→H-y
 var CORNERS={
-  primary:{ // Rarity=Epic
-    main:[['M',[1.5,29.5]],['L',[1.5,24.9853]],['C',[1.5,23.394],[2.13214,21.8679],[3.25736,20.7426]],['L',[5,19]],['L',[8.5,15.5]],
-      ['C',[5.73512,11.8135],[3.83092,7.55459],[2.92718,3.03594]],['L',[2.9,2.9]],['L',[3.02607,2.92516]],
-      ['C',[7.54851,3.82762],[11.811,5.73262],[15.5,8.5]],['L',[19,5]],['L',[20.7426,3.25736]],['C',[21.8679,2.13214],[23.394,1.5],[24.9853,1.5]],['L',[29.5,1.5]]],
-    curl:[['M',[5,19]],['C',[6.933,20.933],[10.067,20.933],[12,19]],['L',[19,12]],['C',[20.933,10.067],[20.933,6.933],[19,5]]]
-  },
-  secondary:{ // Rarity=Common
-    main:[['M',[1.5,29.5]],['L',[1.5,24.9853]],['C',[1.5,23.394],[2.13214,21.8679],[3.25736,20.7426]],['L',[8.5,15.5]],['L',[15.5,8.5]],['L',[20.7426,3.25736]],['C',[21.8679,2.13214],[23.394,1.5],[24.9853,1.5]],['L',[29.5,1.5]]],
-    curl:null
+  secondary:{ // Rarity=Common (SVG exportado, ~23,5px de diagonal, pontas curvas ~4px)
+    main:[['M',[1.5,29.5]],['L',[1.5,24.9853]],['C',[1.5,23.394],[2.13214,21.8679],[3.25736,20.7426]],['L',[8.5,15.5]],['L',[15.5,8.5]],['L',[20.7426,3.25736]],['C',[21.8679,2.13214],[23.394,1.5],[24.9853,1.5]],['L',[29.5,1.5]]]
   }
 };
+/* canto gerado por código: diagonal reta de S px (token --pw-chamfer-sm/md) com as duas pontas curvas (--pw-chamfer-curve).
+   As curvas reproduzem a do SVG Common (raio ~4px), sem depender do tamanho do chanfro. */
+function cornerTok(S,q){q=q||4;var k=q/4.2426,a=1.5,b=1.5+S;
+  return [['M',[a,b+4]],['L',[a,b]],['C',[a,b-1.591*k],[a+.632*k,b-3.117*k],[a+1.757*k,b-4.243*k]],
+          ['L',[b-4.243*k,a+1.757*k]],['C',[b-3.117*k,a+.632*k],[b-1.591*k,a],[b,a]],['L',[b+4,a]]]}
 function endOf(s){return s[s.length-1]}
 function reverse(segs){
   var out=[['M',endOf(segs[segs.length-1])]];
@@ -4587,6 +4596,12 @@ function reverse(segs){
 function map(segs,f){return segs.map(function(s){return [s[0]].concat(s.slice(1).map(f))})}
 function r(n){return Math.round(n*1000)/1000}
 function d(segs,cont){return segs.map(function(s,i){var t=(i===0&&cont)?'L':s[0];return t+s.slice(1).map(function(p){return r(p[0])+' '+r(p[1])}).join(' ')}).join(' ')}
+function outlineTok(W,H,S,q,off,ks){ // canto por token: cada canto com S*k px
+  off=off||0;var w=W+2*off,h=H+2*off;ks=ks||[1,1,1,1];var t=function(p){return [p[0]-off,p[1]-off]};
+  var cs=ks.map(function(k){return k>0?cornerTok(S*k,Math.min(q,S*k/2)):[['M',[1.5,5.5]],['L',[1.5,1.5]],['L',[5.5,1.5]]]});
+  var fX=function(p){return t([w-p[0],p[1]])},fY=function(p){return t([p[0],h-p[1]])},fXY=function(p){return t([w-p[0],h-p[1]])};
+  return d(map(cs[0],t))+' '+d(map(reverse(cs[1]),fX),true)+' '+d(map(cs[2],fXY),true)+' '+d(map(reverse(cs[3]),fY),true)+' Z';
+}
 function outline(W,H,c,off,ks){ // contorno fechado; off desloca para fora (anel); ks = escala do chanfro por canto [tl,tr,br,bl]
   off=off||0;var w=W+2*off,h=H+2*off;ks=ks||[1,1,1,1];
   var sc=function(k){return k===1?c.main:map(c.main,function(p){return [1.5+(p[0]-1.5)*k,1.5+(p[1]-1.5)*k]})};
@@ -4594,18 +4609,13 @@ function outline(W,H,c,off,ks){ // contorno fechado; off desloca para fora (anel
   var fX=function(p){return t([w-p[0],p[1]])},fY=function(p){return t([p[0],h-p[1]])},fXY=function(p){return t([w-p[0],h-p[1]])};
   return d(map(sc(ks[0]),t))+' '+d(map(reverse(sc(ks[1])),fX),true)+' '+d(map(sc(ks[2]),fXY),true)+' '+d(map(reverse(sc(ks[3])),fY),true)+' Z';
 }
-function curls(W,H,c){
-  if(!c.curl)return '';
-  var fs=[function(p){return p},function(p){return [W-p[0],p[1]]},function(p){return [W-p[0],H-p[1]]},function(p){return [p[0],H-p[1]]}];
-  return fs.map(function(f){return d(map(c.curl,f))}).join(' ');
-}
 function chamfer(W,H,i,c){
   return 'M'+(i+c)+' '+i+' L'+(W-i-c)+' '+i+' L'+(W-i)+' '+(i+c)+' L'+(W-i)+' '+(H-i-c)+' L'+(W-i-c)+' '+(H-i)+' L'+(i+c)+' '+(H-i)+' L'+i+' '+(H-i-c)+' L'+i+' '+(i+c)+' Z';
 }
 var uidN=0;
 
 class PWCard extends HTMLElement{
-  static get observedAttributes(){return ['variant','interactive','disabled','selected','frame','fill','chamfer','bg-image','bg','bg-opacity','bg-position','bg-fit']}
+  static get observedAttributes(){return ['variant','interactive','disabled','selected','frame','fill','chamfer','corners','bg-image','bg','bg-opacity','bg-position','bg-fit']}
   connectedCallback(){
     if(!this._init){
       this._init=true;this._uid='pwc'+(++uidN);
@@ -4650,13 +4660,14 @@ class PWCard extends HTMLElement{
     bg.style.opacity=this.getAttribute('bg')==='both'?'':'0'}
   _frameRender(){
     var W=Math.round(this.offsetWidth),H=Math.round(this.offsetHeight);
-    if(!W||!H||(W===this._w&&H===this._h&&this.getAttribute('variant')===this._v&&this.getAttribute('frame')===this._fr&&this.getAttribute('fill')===this._fl&&this.getAttribute('chamfer')===this._ch))return;this._fr=this.getAttribute('frame');this._fl=this.getAttribute('fill');this._ch=this.getAttribute('chamfer');
+    if(!W||!H||(W===this._w&&H===this._h&&this.getAttribute('variant')===this._v&&this.getAttribute('frame')===this._fr&&this.getAttribute('fill')===this._fl&&this.getAttribute('chamfer')===this._ch&&this.getAttribute('corners')===this._co))return;this._co=this.getAttribute('corners');this._fr=this.getAttribute('frame');this._fl=this.getAttribute('fill');this._ch=this.getAttribute('chamfer');
     this._w=W;this._h=H;this._v=this.getAttribute('variant');
     var v=this._v==='secondary'?'secondary':'primary',c=CORNERS.secondary,u=this._uid; /* primary e secondary compartilham a mesma borda e efeitos; muda só o fundo */
     /* chamfer="tl tr br bl" escala o chanfro de cada canto (ex.: 1 1 .5 .5) */
     /* primary: chanfro com 50% do tamanho base; chamfer="tl tr br bl" multiplica por canto */
-    var kb=v==='primary'?.5:1,ks=(this.getAttribute('chamfer')||'1 1 1 1').split(/\s+/).map(Number).map(x=>(isNaN(x)?1:x)*kb);
-    var shape=outline(W,H,c,0,ks),all=shape+' '+curls(W,H,c),ring=outline(W,H,c,4,ks);
+    var pri0=v==='primary',kb=pri0?.5:1,ks=(this.getAttribute('chamfer')||'1 1 1 1').split(/\s+/).map(Number).map(x=>(isNaN(x)?1:x)*kb);
+    var shape,ring;if(this.getAttribute('corners')==='token'){var cs=getComputedStyle(this),S=parseFloat(cs.getPropertyValue(pri0?'--pw-chamfer-sm':'--pw-chamfer-md'))||(pri0?12:24),q=parseFloat(cs.getPropertyValue('--pw-chamfer-curve'))||4,kt=ks.map(x=>x/kb);
+      shape=outlineTok(W,H,S,q,0,kt);ring=outlineTok(W,H,S,q,4,kt)}else{shape=outline(W,H,c,0,ks);ring=outline(W,H,c,4,ks)}var all=shape;
     /* fill: gradient (padrão do primary) · solid (cor única, bom para widgets) */
     var bgFill=v==='primary'&&this.getAttribute('fill')!=='solid'?'url(#'+u+'-bg)':'var(--card-bg-solid)';
     var pri=v==='primary';/* primary: borda de 2px no total e sem a linha interna */
