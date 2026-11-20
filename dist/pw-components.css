@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.92.8 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.93.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1708,7 +1708,9 @@ pw-widget-stats .pwst-body{gap:0}
 pw-widget-stats .pwst-scroll{font:var(--pw-text-body-sm);color:var(--pw-text-muted);font-variant-numeric:tabular-nums}
 pw-widget-stats .pwst-ses{display:grid;gap:var(--pw-space-1);padding-bottom:var(--pw-space-2)}
 pw-widget-stats .pwst-ses-l{display:flex;align-items:center;gap:var(--pw-space-1);color:var(--pw-text-primary);font:var(--pw-text-label-md)}
-pw-widget-stats .pwst-ses-l svg{width:var(--pw-space-4);height:var(--pw-space-4);color:var(--pw-text-muted)}
+pw-widget-stats .pwst-ses-l .grow{flex:1}
+pw-widget-stats .pwst-ses-l pw-button.pwst-vm{margin-right:calc(var(--pw-space-1) * -1)}
+pw-widget-stats .pwst-ses-l>svg{width:var(--pw-space-4);height:var(--pw-space-4);color:var(--pw-text-muted)}
 pw-widget-stats .pwst-timer-row{display:flex;align-items:center;gap:var(--pw-space-1)}
 pw-widget-stats .pwst-timer{flex:1;font:var(--pw-font-weight-bold) var(--pw-font-size-xl)/1.1 var(--pw-font-body);letter-spacing:.02em;color:var(--pw-tone-info-text);transition:color var(--card-dur)}
 pw-widget-stats[paused] .pwst-timer{color:var(--pw-tone-error-text)}
