@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.93.5
+
+- `pw-widget-stats`: itens e seções do menu (⋮) podem ser arrastados (alça ⠿) para reordenar; o widget segue a mesma ordem, guardada por versão (propriedade `order`, evento `orderchange`). O menu fecha ao rolar o widget, em vez de ficar solto longe do botão.
+
 ## 0.93.4
 
 - `pw-widget-stats`: as duas versões são personalizáveis pelo menu (⋮). Minimalista: itens (marcados) + outras seções (desmarcadas). Completa: itens do resumo e seções, todos marcados por padrão. Escolhas guardadas por versão: `hiddenMinimal`, `minimalSections`, `fullHiddenRows`, `fullHidden`; eventos `rowschange` e `sectionschange`.

@@ -1973,6 +1973,9 @@ pw-widget-stats .pwst-body{gap:0}
 
 pw-widget-stats .pwst-scroll{font:var(--pw-text-body-sm);color:var(--pw-text-muted);font-variant-numeric:tabular-nums}
 pw-widget-stats .pwst-ses{display:grid;gap:var(--pw-space-1);padding-bottom:var(--pw-space-2)}
+pw-control-group.pwst-vmg pw-control-group-item:is([value^="m:"],[value^="s:"]){cursor:grab;touch-action:none}
+pw-control-group.pwst-vmg pw-control-group-item:is([value^="m:"],[value^="s:"])::after{content:'';grid-column:-1;width:10px;height:14px;justify-self:end;opacity:.45;background:radial-gradient(circle,currentColor 1.2px,transparent 1.6px) 0 0/5px 5px}
+pw-control-group.pwst-vmg.dragging{cursor:grabbing}pw-control-group.pwst-vmg pw-control-group-item.pwst-drag{opacity:.7;outline:1px dashed var(--pw-filament);outline-offset:-2px}
 pw-widget-stats .pwst-ses-l{display:flex;align-items:center;gap:var(--pw-space-1);color:var(--pw-text-primary);font:var(--pw-text-label-md)}
 pw-widget-stats .pwst-ses-l .grow{flex:1}
 pw-widget-stats .pwst-ses-l pw-button.pwst-vm{margin-right:calc(var(--pw-space-1) * -1)}
@@ -6510,15 +6513,31 @@ class PWWidgetStats extends PWWidgetBag{
   _chart(c){var E=pwEsc,mx=Math.max.apply(null,(c.bars||[]).map(b=>+b.value||0).concat([1]));return '<div class="pwst-chart" role="img" aria-label="'+E(c.title)+': '+(c.bars||[]).map(b=>E(b.label)+' '+E(b.display||b.value)).join(', ')+'"><div class="pwst-bars">'+(c.bars||[]).map(b=>'<span class="pwst-bar" style="--h:'+Math.round((+b.value||0)/mx*100)+'" data-tip="'+E(b.label)+': '+E(b.display||b.value)+'"></span>').join('')+'</div><div class="pwst-ticks">'+(c.ticks||[]).map(t=>'<span>'+E(t)+'</span>').join('')+'</div><div class="pwst-xl">'+(c.bars||[]).map(b=>'<span>'+E(b.label)+'</span>').join('')+'</div></div>'}
   _render(){var d=this._d,E=pwEsc,W=this.querySelector('.pwst-wrap'),st=this.querySelector('.pwst-scroll').scrollTop;
     var mini=this._view()==='minimal',mid=this._u+'vm';
-    W.innerHTML='<div class="pwst-ses"><span class="pwst-ses-l">'+pwIcon('clock')+'Sessão<span class="grow"></span><pw-button id="'+mid+'" class="pwst-vm" variant="ghost" size="sm" fx="none" particles="0" icon="more-vertical" data-tip="Modo de exibição" aria-label="Modo de exibição" aria-haspopup="menu"></pw-button><pw-control-group class="pwst-vmg" for="'+mid+'" type="multi" size="sm" label="Modo de exibição"><pw-control-group-item section="Versão" value="v:minimal"'+(mini?' selected':'')+'>Minimalista</pw-control-group-item><pw-control-group-item value="v:full"'+(mini?'':' selected')+'>Completa</pw-control-group-item>'+this._rows().map((r,i)=>'<pw-control-group-item'+(i?'':' section="'+(mini?'Itens':'Resumo')+'"')+' value="m:'+E(this._mk(r))+'"'+(this._offM(this._mk(r))?'':' selected')+'>'+E(r.label)+'</pw-control-group-item>').join('')+(d.sections||[]).map((x,i)=>'<pw-control-group-item'+(i?'':' section="'+(mini?'Outras seções':'Seções')+'"')+' value="s:'+E(x.id)+'"'+(this._on(x.id)?' selected':'')+'>'+E(x.title)+'</pw-control-group-item>').join('')+'</pw-control-group></span><div class="pwst-timer-row"><time class="pwst-timer" role="timer" aria-live="off"></time>'+
+    W.innerHTML='<div class="pwst-ses"><span class="pwst-ses-l">'+pwIcon('clock')+'Sessão<span class="grow"></span><pw-button id="'+mid+'" class="pwst-vm" variant="ghost" size="sm" fx="none" particles="0" icon="more-vertical" data-tip="Modo de exibição" aria-label="Modo de exibição" aria-haspopup="menu"></pw-button><pw-control-group class="pwst-vmg" for="'+mid+'" type="multi" size="sm" label="Modo de exibição"><pw-control-group-item section="Versão" value="v:minimal"'+(mini?' selected':'')+'>Minimalista</pw-control-group-item><pw-control-group-item value="v:full"'+(mini?'':' selected')+'>Completa</pw-control-group-item>'+this._rows().map((r,i)=>'<pw-control-group-item'+(i?'':' section="'+(mini?'Itens':'Resumo')+'"')+' value="m:'+E(this._mk(r))+'"'+(this._offM(this._mk(r))?'':' selected')+'>'+E(r.label)+'</pw-control-group-item>').join('')+this._sects().map((x,i)=>'<pw-control-group-item'+(i?'':' section="'+(mini?'Outras seções':'Seções')+'"')+' value="s:'+E(x.id)+'"'+(this._on(x.id)?' selected':'')+'>'+E(x.title)+'</pw-control-group-item>').join('')+'</pw-control-group></span><div class="pwst-timer-row"><time class="pwst-timer" role="timer" aria-live="off"></time>'+
       '<pw-button variant="ghost" size="sm" fx="none" particles="0" data-s="play"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="refresh" data-s="reset" data-tip="Zerar sessão" aria-label="Zerar sessão"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="copy" data-s="copy" data-tip="Copiar estatísticas" aria-label="Copiar estatísticas"></pw-button></div>'+'<div class="pwst-minidl">'+this._dl(this._rows().filter(r=>!this._offM(this._mk(r))))+'</div></div>'+
-      '<div class="pwst-secs"></div>';this._secs();this.querySelector('.pwst-scroll').scrollTop=st;this._clock();requestAnimationFrame(()=>this._more())}
+      '<div class="pwst-secs"></div>';this._secs();var vg=this.querySelector('.pwst-vmg');if(vg)this._dragMenu(vg);this.querySelector('.pwst-scroll').scrollTop=st;this._clock();requestAnimationFrame(()=>this._more())}
   /* seções extras mostradas na versão minimalista (a completa mostra todas) */
   _on(id){return this._view()==='minimal'?(this._ms||[]).indexOf(id)>-1:(this._fh||[]).indexOf(id)<0}
   get fullHidden(){return (this._fh||[]).slice()}
   set fullHidden(v){this._fh=(v||[]).slice();if(this._init)this._render()}
   _mk(r){return r.id||r.label}
-  _rows(){return this._view()==='minimal'?this._mini():(this._d.summary||[])}
+  _rows(){return this._sortBy(this._view()==='minimal'?this._mini():(this._d.summary||[]),'r',r=>this._mk(r))}
+  _sects(){return this._sortBy(this._d.sections||[],'s',x=>x.id)}
+  /* ordem escolhida pelo jogador no menu (por versão): arrastar os itens do menu reordena o widget */
+  _sortBy(a,t,k){var o=((this._ord||{})[this._view()]||{})[t];if(!o)return a.slice();return a.slice().sort((x,y)=>{var i=o.indexOf(k(x)),j=o.indexOf(k(y));return (i<0?1e3:i)-(j<0?1e3:j)})}
+  get order(){return JSON.parse(JSON.stringify(this._ord||{}))}
+  set order(v){this._ord=v||{};if(this._init)this._render()}
+  _dragMenu(g){var pre=null,it=null,y0=0,moved=false;
+    if(!this._scHook){this._scHook=1;this.querySelector('.pwst-scroll').addEventListener('scroll',()=>{var m=this.querySelector('.pwst-vmg');if(m&&m.hasAttribute('open')&&m.hide)m.hide(false)},{passive:true})}
+    g.addEventListener('pointerdown',e=>{var t=e.target.closest('pw-control-group-item');if(!t||e.button!==0)return;var v=t.getAttribute('value')||'';if(!/^[ms]:/.test(v))return;it=t;pre=v.slice(0,2);y0=e.clientY;moved=false;
+      var mv=ev=>{if(!moved&&Math.abs(ev.clientY-y0)<5)return;if(!moved){moved=true;it.classList.add('pwst-drag');g.classList.add('dragging')}ev.preventDefault();
+          var sib=[].slice.call(g.querySelectorAll('pw-control-group-item[value^="'+pre+'"]')).filter(x=>x!==it);var tgt=sib.find(x=>{var r=x.getBoundingClientRect();return ev.clientY<r.top+r.height/2});
+          if(tgt)tgt.before(it);else{var last=sib[sib.length-1];if(last)last.after(it)}},
+        up=()=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);if(!moved)return;it.classList.remove('pwst-drag');g.classList.remove('dragging');
+          var keys=[].slice.call(g.querySelectorAll('pw-control-group-item[value^="'+pre+'"]')).map(x=>x.getAttribute('value').slice(2)),V=this._view();this._ord=this._ord||{};this._ord[V]=this._ord[V]||{};this._ord[V][pre==='m:'?'r':'s']=keys;
+          if(pre==='m:')this._miniDl();else this._secs();this.style.height='';this.fitAll();this.dispatchEvent(new CustomEvent('orderchange',{bubbles:true,detail:{view:V,order:this.order}}));
+          var kill=ce=>{ce.stopPropagation();ce.preventDefault()};g.addEventListener('click',kill,true);setTimeout(()=>g.removeEventListener('click',kill,true),0)};
+      document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)},true)}
   _hk(){return this._view()==='minimal'?'_hidM':'_hidS'}
   _offM(k){return (this[this._hk()]||[]).indexOf(k)>-1}
   get fullHiddenRows(){return (this._hidS||[]).slice()}
@@ -6528,7 +6547,7 @@ class PWWidgetStats extends PWWidgetBag{
   _miniDl(){var b=this.querySelector('.pwst-minidl');if(b)b.innerHTML=this._dl(this._rows().filter(r=>!this._offM(this._mk(r))));requestAnimationFrame(()=>this._more())}
   get minimalSections(){return (this._ms||[]).slice()}
   set minimalSections(v){this._ms=(v||[]).slice();if(this._init)this._render()}
-  _secs(){var d=this._d,E=pwEsc,box=this.querySelector('.pwst-secs');if(!box)return;box.innerHTML=(d.sections||[]).filter(x=>this._on(x.id)).map(x=>{var inner=this._dl(x.rows);if(x.chart)inner+=this._col(x.id+':c',x.chart.title,this._chart(x.chart),true);if(x.list)inner+=this._col(x.id+':l',x.list.title,this._list(x.list.items),true);return '<section class="pwst-sec" aria-label="'+E(x.title)+'">'+this._col(x.id,x.title,inner)+'</section>'}).join('');requestAnimationFrame(()=>this._more())}
+  _secs(){var d=this._d,E=pwEsc,box=this.querySelector('.pwst-secs');if(!box)return;box.innerHTML=this._sects().filter(x=>this._on(x.id)).map(x=>{var inner=this._dl(x.rows);if(x.chart)inner+=this._col(x.id+':c',x.chart.title,this._chart(x.chart),true);if(x.list)inner+=this._col(x.id+':l',x.list.title,this._list(x.list.items),true);return '<section class="pwst-sec" aria-label="'+E(x.title)+'">'+this._col(x.id,x.title,inner)+'</section>'}).join('');requestAnimationFrame(()=>this._more())}
   /* modo de exibição: view="minimal" (padrão) ou "full" */
   _view(){return this.getAttribute('view')==='full'?'full':'minimal'}
   get view(){return this._view()}

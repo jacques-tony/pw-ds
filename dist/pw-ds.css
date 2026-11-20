@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.93.4 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.93.5 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -1887,6 +1887,9 @@ pw-widget-stats .pwst-body{gap:0}
 
 pw-widget-stats .pwst-scroll{font:var(--pw-text-body-sm);color:var(--pw-text-muted);font-variant-numeric:tabular-nums}
 pw-widget-stats .pwst-ses{display:grid;gap:var(--pw-space-1);padding-bottom:var(--pw-space-2)}
+pw-control-group.pwst-vmg pw-control-group-item:is([value^="m:"],[value^="s:"]){cursor:grab;touch-action:none}
+pw-control-group.pwst-vmg pw-control-group-item:is([value^="m:"],[value^="s:"])::after{content:'';grid-column:-1;width:10px;height:14px;justify-self:end;opacity:.45;background:radial-gradient(circle,currentColor 1.2px,transparent 1.6px) 0 0/5px 5px}
+pw-control-group.pwst-vmg.dragging{cursor:grabbing}pw-control-group.pwst-vmg pw-control-group-item.pwst-drag{opacity:.7;outline:1px dashed var(--pw-filament);outline-offset:-2px}
 pw-widget-stats .pwst-ses-l{display:flex;align-items:center;gap:var(--pw-space-1);color:var(--pw-text-primary);font:var(--pw-text-label-md)}
 pw-widget-stats .pwst-ses-l .grow{flex:1}
 pw-widget-stats .pwst-ses-l pw-button.pwst-vm{margin-right:calc(var(--pw-space-1) * -1)}
