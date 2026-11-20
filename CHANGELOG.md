@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.96.1
+
+- `pw-card border="metal"` (teste): tom claro do metal realçado no degradê (metal-0 com 55% de branco, metal-1 com 25%, metal-2 com 12%) para recuperar o brilho que vinha do vidro.
+- Storybook: `<meta charset="utf-8">` no topo para o navegador nunca errar a codificação.
+
 ## 0.96.0
 
 - `pw-card`: teste `border="metal"` — borda em um único traço (degradê `metal-0..3` a 135°, 2px nas cascas e 1px em cards pequenos), sem filamento nem vidro. Tertiary cai para 4 paradas da própria paleta; quaternary mantém as 3. Comparação lado a lado na seção "Borda metálica: atual × uma linha".
