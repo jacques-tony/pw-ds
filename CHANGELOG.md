@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.93.3
+
+- `pw-widget-stats`: a versão completa sempre mostra todas as seções (menu só com a troca de versão). Na minimalista, o menu traz os itens (XP total, Loot, Gasto, Saldo, Dano) e as outras seções (desmarcadas por padrão) para adicionar abaixo. `hiddenSections` foi substituída por `minimalSections`; `sectionschange` envia `detail.sections`.
+
 ## 0.93.2
 
 - `pw-widget-stats`: na versão minimalista o menu (⋮) traz checkboxes para cada item (XP total, Loot, Gasto em $, Saldo em $, Dano); na completa, para cada seção. Propriedade `hiddenMinimal` e evento `minimalchange`.
