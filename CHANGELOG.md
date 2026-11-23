@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.99.3
+
+- Alças de redimensionar (Mochila, Loot, Pokémon, Batalha, Estatísticas, Minimapa, Bate-papo) passam para fora do widget, com folga da borda, nas duas versões.
+
 ## 0.99.2
 
 - v2 · widget recolhido: o cabeçalho fica com os cantos de baixo arredondados (10px) e sem a divisória inferior.
