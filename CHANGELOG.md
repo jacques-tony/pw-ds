@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.98.6
+
+- v2 · bate-papo: abas no menor tamanho (pílula de 24px, texto 12px), inativas em azul cheio e ativa em amarelo; 8px de respiro entre o cabeçalho e as abas.
+- v2 · sinal de marca desenhado em SVG (polígonos) em vez de degradê, sem serrilhado na diagonal.
+
 ## 0.98.5
 
 - v2: o sinal de marca (faixa diagonal azul + amarela) passa para o canto superior esquerdo do cabeçalho dos widgets e janelas, colado na borda e acompanhando o arredondado; sai das barrinhas depois do título.
