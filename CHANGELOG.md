@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.99.6
+
+- v2 · teste de sinal de marca no cabeçalho (seção "Teste: sinal de marca no cabeçalho"): `brand="corner"` (faixas diagonais azul e amarela no canto superior esquerdo, ícone por cima com sombra leve) e `brand="strip"` (faixa de 4px no topo, azul com final amarelo em diagonal), lado a lado no bate-papo.
+
 ## 0.99.5
 
 - `pw-widget-chat`: lista do painel de canais usa `pw-scroll` do DS.

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.99.5 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.99.6 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2094,6 +2094,12 @@ html[data-ds="v2"] :is(pw-button:not([disabled])>button:hover,pw-button[state="h
 :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-battle,pw-widget-stats) .pwbg-resize,:is(pw-widget-minimap,pw-widget-chat) .pwmm-rb{bottom:calc(var(--pw-space-3) * -1 - 2px)!important}
 :is(pw-widget-minimap,pw-widget-chat) .pwmm-rr{right:calc(var(--pw-space-3) * -1 - 2px)!important}
 :is(pw-widget-minimap,pw-widget-chat) .pwmm-rl{left:calc(var(--pw-space-3) * -1 - 2px)!important}
+/* teste de sinal de marca (v2): brand="corner" e brand="strip" */
+html[data-ds="v2"] [brand="corner"] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{width:64px!important;bottom:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 34' preserveAspectRatio='none'%3E%3Cpolygon points='0,30 26,0 38,0 6,34 0,34' fill='%231D7AEE'/%3E%3Cpolygon points='14,34 44,0 56,0 26,34' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat!important;-webkit-mask:linear-gradient(90deg,#000 60%,transparent)!important;mask:linear-gradient(90deg,#000 60%,transparent)!important}
+html[data-ds="v2"] [brand="corner"] .pwbg-head .pwbg-ic:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:relative;z-index:3;filter:drop-shadow(0 2px 3px rgba(0,0,0,.55))}
+html[data-ds="v2"] [brand="strip"] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{right:0;bottom:auto!important;width:auto!important;height:4px;border-top-left-radius:10px;border-top-right-radius:10px;
+  background:linear-gradient(115deg,var(--v2-blue) 0 calc(100% - 58px),transparent calc(100% - 58px) calc(100% - 52px),var(--v2-volt) calc(100% - 52px))!important}
+html[data-ds="v2"] [brand="strip"] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding-top:4px}
 /* arrastar item da mochila + diálogo "Mover itens" */
 .pwbg-ghost{position:fixed;z-index:2000;width:var(--pw-space-8);height:var(--pw-space-8);transform:translate(-50%,-50%) scale(1.1);pointer-events:none;filter:drop-shadow(0 6px 10px var(--pw-black-a55))}
 .pwbg-ghost>img,.pwbg-ghost>svg{width:100%;height:100%;object-fit:contain}
