@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.99.15
+
+- v2 · `brand="under-full"`: a divisória vai de borda a borda do widget.
+
 ## 0.99.14
 
 - v2 · teste de sinal de marca: opção `brand="under-full"`, divisória inteira de 2px no fim do cabeçalho (amarela, com o trecho final azul após um corte diagonal).
