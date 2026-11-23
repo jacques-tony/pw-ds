@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.99.7
+
+- v2 · teste de sinal de marca: os três lado a lado (atual, `corner`, `strip`); `corner` some suave para baixo; `strip` passa a 5px.
+- v2 · rodapé do bate-papo espelha a faixa do cabeçalho (mesmo fundo e linha divisória), fechando a moldura.
+
 ## 0.99.6
 
 - v2 · teste de sinal de marca no cabeçalho (seção "Teste: sinal de marca no cabeçalho"): `brand="corner"` (faixas diagonais azul e amarela no canto superior esquerdo, ícone por cima com sombra leve) e `brand="strip"` (faixa de 4px no topo, azul com final amarelo em diagonal), lado a lado no bate-papo.
