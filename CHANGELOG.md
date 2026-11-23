@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.99.5
+
+- `pw-widget-chat`: lista do painel de canais usa `pw-scroll` do DS.
+
 ## 0.99.4
 
 - `pw-widget-chat`: "Canais" abre num painel contextual colado ao widget (direita, esquerda ou acima, conforme o espaço; alinhado embaixo quando o bate-papo está no fim da tela), no mesmo padrão da marcação do minimapa, em vez do diálogo central. Fecha com Cancelar, X, Esc ou clique fora.

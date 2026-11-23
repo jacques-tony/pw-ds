@@ -2463,7 +2463,7 @@ pw-dialog.pwmm-mk{--dlg-w:340px}
 .pwmm-side{position:absolute;top:0;width:340px;z-index:5;font-family:var(--pw-font-body)}
 .pwmm-side.r{left:calc(100% + var(--pw-space-2))}.pwmm-side.l{right:calc(100% + var(--pw-space-2))}
 .pwmm-side.t{top:auto;bottom:calc(100% + var(--pw-space-2));left:var(--pw-space-4)}.pwmm-side[hidden]{display:none}.pwmm-side.b{top:auto;bottom:0}
-.pwct-side pw-list{max-height:240px;overflow:auto}
+.pwct-side pw-scroll.pwct-chs{max-height:240px;padding-right:var(--pw-space-2)}
 .pwmm-side pw-card.pwmk-card{width:100%;height:auto;--lift:0px}
 .pwmm-side pw-card.pwmk-card>.pwc-content{padding:var(--pw-space-4);gap:var(--pw-space-3);height:auto;position:relative;z-index:1}
 .pwmm-side .pwmk-hd{display:flex;align-items:center;gap:var(--pw-space-2)}
@@ -6727,7 +6727,7 @@ class PWWidgetChat extends PWWidgetBag{
     this.setAttribute('aria-labelledby',u+'t');if(!this.getAttribute('heading'))this.setAttribute('heading','Bate-papo');
     /* canais: painel contextual colado ao widget (como a marcação do minimapa) — à direita, à esquerda ou acima, conforme o espaço */
     var dlg=this._dlg=document.createElement('div');dlg.className='pwmm-side pwct-side';dlg.setAttribute('role','dialog');dlg.setAttribute('aria-label','Canais');dlg.hidden=true;
-    var BODY='<pw-list select="single" aria-label="Canais disponíveis">'+PW_CHAT_CHANNELS.map(c=>'<pw-list-item icon="'+c[1]+'" data-ch="'+c[0]+'">'+c[2]+'</pw-list-item>').join('')+'</pw-list><pw-input class="pwct-new" placeholder="Abrir novo canal" aria-label="Nome do novo canal" maxlength="24" block></pw-input>';
+    var BODY='<pw-scroll axis="y" class="pwct-chs"><pw-list select="single" aria-label="Canais disponíveis">'+PW_CHAT_CHANNELS.map(c=>'<pw-list-item icon="'+c[1]+'" data-ch="'+c[0]+'">'+c[2]+'</pw-list-item>').join('')+'</pw-list></pw-scroll><pw-input class="pwct-new" placeholder="Abrir novo canal" aria-label="Nome do novo canal" maxlength="24" block></pw-input>';
     dlg.innerHTML='<pw-card variant="primary" fill="solid" glow="false" class="pwmk-card"><div class="pwmk-hd"><h3>Canais</h3><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" aria-label="Fechar" data-close="cancel"></pw-button></div><div class="pwd-body">'+BODY+'</div><div class="pwd-foot"><pw-button variant="ghost" fx="none" particles="0" data-close="cancel">Cancelar</pw-button><pw-button fx="none" particles="0" data-close="open">Abrir</pw-button></div></pw-card>';
     this.appendChild(dlg);
     dlg.close=v=>{if(dlg.hidden)return;dlg.hidden=true;document.removeEventListener('pointerdown',dlg._out,true);dlg.dispatchEvent(new CustomEvent('close',{detail:{value:v||'cancel'}}))};
