@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.99.18
+
+- v2 · teste de sinal de marca: opção `brand="under-full-15"`, a divisória inteira com 1,5px.
+
 ## 0.99.17
 
 - v2 · `brand="under-full"`: divisória passa a 1px.
