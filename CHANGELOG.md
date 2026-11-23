@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.99.11
+
+- v2 · teste de sinal de marca: nova opção `brand="br-sm"`, canto inferior direito com as barras menores (24px em vez de 40px).
+
 ## 0.99.10
 
 - v2 · teste de sinal de marca ganha mais duas opções: `brand="tl"` (triângulo azul + faixa amarela recortados no canto superior esquerdo) e `brand="br"` (o mesmo no canto inferior direito), presas ao arredondado do widget.
