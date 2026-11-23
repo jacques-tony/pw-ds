@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.99.10
+
+- v2 · teste de sinal de marca ganha mais duas opções: `brand="tl"` (triângulo azul + faixa amarela recortados no canto superior esquerdo) e `brand="br"` (o mesmo no canto inferior direito), presas ao arredondado do widget.
+
 ## 0.99.9
 
 - v2 · `brand="strip"`: a faixa acompanha o arredondado dos cantos do widget (inclusive recolhido), sem sobrar fora do contorno.
