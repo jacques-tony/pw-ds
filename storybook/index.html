@@ -2462,6 +2462,8 @@ pw-widget-minimap .pwmm-mark svg,pw-widget-minimap .pwmm-mark img{width:75%;heig
 pw-dialog.pwmm-mk{--dlg-w:340px}
 .pwmm-side{position:absolute;top:0;width:340px;z-index:5;font-family:var(--pw-font-body)}
 .pwmm-side.r{left:calc(100% + var(--pw-space-2))}.pwmm-side.l{right:calc(100% + var(--pw-space-2))}
+.pwmm-side.t{top:auto;bottom:calc(100% + var(--pw-space-2));left:var(--pw-space-4)}.pwmm-side[hidden]{display:none}.pwmm-side.b{top:auto;bottom:0}
+.pwct-side pw-list{max-height:240px;overflow:auto}
 .pwmm-side pw-card.pwmk-card{width:100%;height:auto;--lift:0px}
 .pwmm-side pw-card.pwmk-card>.pwc-content{padding:var(--pw-space-4);gap:var(--pw-space-3);height:auto;position:relative;z-index:1}
 .pwmm-side .pwmk-hd{display:flex;align-items:center;gap:var(--pw-space-2)}
@@ -6723,8 +6725,17 @@ class PWWidgetChat extends PWWidgetBag{
       '<pw-button variant="ghost" size="sm" fx="none" particles="0" icon="chat" data-c="channels" data-tip="Canais" aria-label="Abrir canais" aria-haspopup="dialog"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="trash" data-c="clear" data-tip="Limpar canal" aria-label="Limpar canal"></pw-button></div></div></pw-card>'+
       '<div class="pwmm-resize pwmm-rb" data-ax="y" role="separator" aria-orientation="horizontal" tabindex="0" aria-label="Redimensionar altura do bate-papo" data-tip="Arraste para redimensionar" data-tip-pos="bottom"></div><div class="pwmm-resize pwmm-rl" data-ax="xl" role="separator" aria-orientation="vertical" tabindex="0" aria-label="Redimensionar largura do bate-papo pela esquerda" data-tip="Arraste para redimensionar" data-tip-pos="left"></div><div class="pwmm-resize pwmm-rr" data-ax="x" role="separator" aria-orientation="vertical" tabindex="0" aria-label="Redimensionar largura do bate-papo" data-tip="Arraste para redimensionar" data-tip-pos="right"></div>';
     this.setAttribute('aria-labelledby',u+'t');if(!this.getAttribute('heading'))this.setAttribute('heading','Bate-papo');
-    var dlg=this._dlg=document.createElement('pw-dialog');dlg.className='pwct-dlg';dlg.setAttribute('heading','Canais');dlg.setAttribute('size','sm');dlg.innerHTML='<pw-list select="single" aria-label="Canais disponíveis">'+PW_CHAT_CHANNELS.map(c=>'<pw-list-item icon="'+c[1]+'" data-ch="'+c[0]+'">'+c[2]+'</pw-list-item>').join('')+'</pw-list><pw-input class="pwct-new" placeholder="Abrir novo canal" aria-label="Nome do novo canal" maxlength="24" block></pw-input>'+
-      '<pw-button slot="footer" variant="ghost" icon="close" data-close="cancel">Cancelar</pw-button><pw-button slot="footer" data-close="open">Abrir</pw-button>';document.body.appendChild(dlg);
+    /* canais: painel contextual colado ao widget (como a marcação do minimapa) — à direita, à esquerda ou acima, conforme o espaço */
+    var dlg=this._dlg=document.createElement('div');dlg.className='pwmm-side pwct-side';dlg.setAttribute('role','dialog');dlg.setAttribute('aria-label','Canais');dlg.hidden=true;
+    var BODY='<pw-list select="single" aria-label="Canais disponíveis">'+PW_CHAT_CHANNELS.map(c=>'<pw-list-item icon="'+c[1]+'" data-ch="'+c[0]+'">'+c[2]+'</pw-list-item>').join('')+'</pw-list><pw-input class="pwct-new" placeholder="Abrir novo canal" aria-label="Nome do novo canal" maxlength="24" block></pw-input>';
+    dlg.innerHTML='<pw-card variant="primary" fill="solid" glow="false" class="pwmk-card"><div class="pwmk-hd"><h3>Canais</h3><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" aria-label="Fechar" data-close="cancel"></pw-button></div><div class="pwd-body">'+BODY+'</div><div class="pwd-foot"><pw-button variant="ghost" fx="none" particles="0" data-close="cancel">Cancelar</pw-button><pw-button fx="none" particles="0" data-close="open">Abrir</pw-button></div></pw-card>';
+    this.appendChild(dlg);
+    dlg.close=v=>{if(dlg.hidden)return;dlg.hidden=true;document.removeEventListener('pointerdown',dlg._out,true);dlg.dispatchEvent(new CustomEvent('close',{detail:{value:v||'cancel'}}))};
+    dlg._out=e=>{if(!dlg.contains(e.target)&&!e.target.closest('[data-c="channels"]'))dlg.close('cancel')};
+    dlg.show=()=>{var P=this.offsetParent,pw=P?P.clientWidth:innerWidth,r=pw-(this.offsetLeft+this.offsetWidth),l=this.offsetLeft;dlg.classList.remove('r','l','t','b');dlg.classList.add(r>=356?'r':l>=356?'l':'t');dlg.hidden=false;var ph=P?P.clientHeight:innerHeight;if(!dlg.classList.contains('t')&&this.offsetTop+dlg.offsetHeight>ph-8)dlg.classList.add('b');setTimeout(()=>document.addEventListener('pointerdown',dlg._out,true),0);requestAnimationFrame(()=>{var i=dlg.querySelector('pw-list-item');if(i)i.focus()})};
+    dlg.addEventListener('click',e=>{var b=e.target.closest('[data-close]');if(b)dlg.close(b.dataset.close)});
+    dlg.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();e.stopPropagation();dlg.close('cancel')}});
+    dlg.addEventListener('pointerdown',e=>e.stopPropagation());
     this.querySelector('.pwbg-acts').addEventListener('click',e=>{var b=e.target.closest('pw-button[data-a]');if(!b)return;var a=b.dataset.a;if(a==='collapse')this.toggle();else if(a==='lock')this.toggleAttribute('locked')});
     this.querySelector('.pwct-body').addEventListener('click',e=>{var t=e.target.closest('[data-tab]');if(t){this.select(t.dataset.tab);return}
       var au=e.target.closest('.pwct-a');if(au){var inp=this._in();inp.value='/w '+au.textContent.replace(/:$/,'')+' ';inp.focus();return}
@@ -6745,7 +6756,7 @@ class PWWidgetChat extends PWWidgetBag{
     var sc=this.querySelector('.pwct-scroll');sc.addEventListener('scroll',()=>this._more(),{passive:true});new ResizeObserver(()=>{this._more();this._tov()}).observe(sc);var TB=this.querySelector('.pwct-tabs');TB.addEventListener('scroll',()=>this._tov(),{passive:true});
     this.addEventListener('pointerdown',()=>{PWWidgetBag._z=(PWWidgetBag._z||10)+1;this.style.zIndex=PWWidgetBag._z},true);
     this._dragInit();PWWidgetMinimap.prototype._resize2.call(this);this._sync();this._tabs();this._log(true);requestAnimationFrame(()=>{this._mark();this._bottom();this._minSize();this._tov()})}
-  disconnectedCallback(){if(this._dlg&&!this.isConnected)this._dlg.remove()}
+  disconnectedCallback(){}
   fitAll(){}
   _limits(){return {row:1,base:this.offsetHeight,min:this.offsetHeight,max:this.offsetHeight}}
   /* o bate-papo não pode ser fechado */

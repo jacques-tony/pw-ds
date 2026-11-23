@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.99.3 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.99.4 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2192,6 +2192,8 @@ pw-widget-minimap .pwmm-mark svg,pw-widget-minimap .pwmm-mark img{width:75%;heig
 pw-dialog.pwmm-mk{--dlg-w:340px}
 .pwmm-side{position:absolute;top:0;width:340px;z-index:5;font-family:var(--pw-font-body)}
 .pwmm-side.r{left:calc(100% + var(--pw-space-2))}.pwmm-side.l{right:calc(100% + var(--pw-space-2))}
+.pwmm-side.t{top:auto;bottom:calc(100% + var(--pw-space-2));left:var(--pw-space-4)}.pwmm-side[hidden]{display:none}.pwmm-side.b{top:auto;bottom:0}
+.pwct-side pw-list{max-height:240px;overflow:auto}
 .pwmm-side pw-card.pwmk-card{width:100%;height:auto;--lift:0px}
 .pwmm-side pw-card.pwmk-card>.pwc-content{padding:var(--pw-space-4);gap:var(--pw-space-3);height:auto;position:relative;z-index:1}
 .pwmm-side .pwmk-hd{display:flex;align-items:center;gap:var(--pw-space-2)}
