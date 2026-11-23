@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.98.4
+
+- Simulação (Global Navigation): começa só com a HUD inferior, a barra de magias e o bate-papo. Minimapa, Batalha, Estatísticas, Mochila e Pokémon começam fechados e abrem pela barra superior.
+
 ## 0.98.3
 
 - v2 · botões crescem 4% no hover com transição suave (180ms) e voltam a 98% ao pressionar; desligado com "Reduzir movimento".
