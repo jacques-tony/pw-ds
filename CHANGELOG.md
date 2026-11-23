@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.99.14
+
+- v2 · teste de sinal de marca: opção `brand="under-full"`, divisória inteira de 2px no fim do cabeçalho (amarela, com o trecho final azul após um corte diagonal).
+
 ## 0.99.13
 
 - v2 · teste de sinal de marca: opção `brand="under"`, sublinhado de 3px sob o título (barra amarela + barra azul curta, pontas inclinadas) sobre a divisória do cabeçalho.
