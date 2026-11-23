@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.98.0
+
+- **Versão 2 (prévia)** ao lado da v1, sem alterar a v1: ativada por `<html data-ds="v2">` e pelo seletor de versão no topo da navegação do Storybook (lembrado no navegador).
+- v2 segue o tema azul do site: painel `#0A2352` em degradê, borda 1px `#2C5AB0`, linha interna `rgba(157,240,255,.16)`, fonte Archivo, títulos em faixa simples com as duas barrinhas inclinadas (azul `#1D7AEE` + amarelo `#FFE14D`), amarelo volt só no ativo (aba, item de menu, botão principal, chave), botões em 3 pesos, abas em pílula, cards arredondados sem chanfro, brilho ou vidro. Vale para todos os componentes e widgets da v1.
+
 ## 0.97.0
 
 - Oficial: cantos dos cards por token (`--pw-chamfer-sm` 12px no primary, `--pw-chamfer-md` 24px no secondary, pontas `--pw-chamfer-curve`) e borda metal em um único traço (degradê `metal-0..3` a 135° com tom claro realçado; 2px, 1px em cards pequenos). Tertiary com 4 paradas da paleta própria; quaternary com as 3.
