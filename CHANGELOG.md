@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.98.3
+
+- v2 · botões crescem 4% no hover com transição suave (180ms) e voltam a 98% ao pressionar; desligado com "Reduzir movimento".
+
 ## 0.98.2
 
 - v2 · botões reestruturados no padrão filled / outline / ghost por variante (primary, secondary, danger, success): outline com fundo transparente e borda e texto na cor da variante; ghost só texto. Hover simples: só a cor de fundo muda (token `--b-h` por variante), sem brilho, escala, deslocamento ou partículas; foco com anel amarelo de 2px; desativado a 45%.
