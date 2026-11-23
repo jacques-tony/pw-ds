@@ -164,3 +164,7 @@ Depois, crie a release `v0.3.0` no GitHub (Releases → Draft a new release).
 | `dist/pw-ds.js` | Web Components |
 | `icons/*.svg` | Ícones originais |
 | `examples/index.html` | Página de exemplo |
+
+## Créditos
+
+Ícones de ação da versão 2: [Line Icon Pack](https://lineiconpack.com) (licença Line Icon Pack 1.0 — uso livre com crédito; não redistribuir como pacote de ícones).
