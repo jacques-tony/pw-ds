@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.99.9
+
+- v2 · `brand="strip"`: a faixa acompanha o arredondado dos cantos do widget (inclusive recolhido), sem sobrar fora do contorno.
+
 ## 0.99.8
 
 - v2 · contorno de 1px (`#2C5AB0`) em volta do widget inteiro, desenhado por cima do cabeçalho e do rodapé, que antes cobriam a borda.
