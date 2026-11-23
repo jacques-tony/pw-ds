@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.99.16
+
+- v2 · `brand="under-full"`: barras amarela e azul ligadas direto por um corte diagonal, sem o vão entre elas.
+
 ## 0.99.15
 
 - v2 · `brand="under-full"`: a divisória vai de borda a borda do widget.
