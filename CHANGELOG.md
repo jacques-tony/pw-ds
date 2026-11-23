@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.98.1
+
+- v2: tokens de verde e vermelho do site (`#3DDC84`, `#FF5A5A`) em todos os tons success/error (sólido, borda, texto, tint, status, barras), sem halo nem brilho. Botão success em verde chapado com texto escuro; outlines de success e danger em linha fina da cor.
+- v1: botão success mais contido (sem halo externo, sem sombra no texto, brilho de topo reduzido).
+
 ## 0.98.0
 
 - **Versão 2 (prévia)** ao lado da v1, sem alterar a v1: ativada por `<html data-ds="v2">` e pelo seletor de versão no topo da navegação do Storybook (lembrado no navegador).

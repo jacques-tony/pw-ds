@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.98.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.98.1 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -598,8 +598,8 @@ pw-button[variant="ghost"]{--b-bg:transparent;--b-fg:var(--pw-filament);--b-bd:t
 pw-button[variant="danger"]{--b-bg:linear-gradient(180deg,var(--pw-tone-error-solid-top),var(--pw-tone-error-solid-bottom));--b-fg:var(--pw-text-primary);--b-bd:var(--pw-tone-error-border-soft);--b-gloss:.3;--b-ts:var(--pw-shadow-text);
   --b-sh:0 0 10px -2px var(--pw-tone-error-halo),inset 0 -2px 0 var(--pw-black-a20)}
 /* ---- success ---- */
-pw-button[variant="success"]{--b-bg:linear-gradient(180deg,var(--pw-tone-success-solid-top),var(--pw-tone-success-solid-bottom));--b-fg:var(--pw-text-primary);--b-bd:var(--pw-tone-success-border-soft);--b-gloss:.3;--b-ts:var(--pw-shadow-text);
-  --b-sh:0 0 10px -2px var(--pw-tone-success-halo),inset 0 -2px 0 var(--pw-black-a20)}
+pw-button[variant="success"]{--b-bg:linear-gradient(180deg,var(--pw-tone-success-solid-top),var(--pw-tone-success-solid-bottom));--b-fg:var(--pw-text-primary);--b-bd:var(--pw-tone-success-border-soft);--b-gloss:.12;--b-ts:none;
+  --b-sh:inset 0 -1px 0 var(--pw-black-a20)}
 /* ---- outline (primary / danger / success) ---- */
 pw-button[appearance="outline"]{--b-bg:color-mix(in srgb,var(--pw-metal-1) 10%,transparent);--b-fg:var(--pw-metal-0);--b-bd:var(--pw-metal-1);--b-gloss:0;--b-sh:none;--b-ts:none}
 pw-button[variant="danger"][appearance="outline"]{--b-bg:var(--pw-tone-error-tint);--b-fg:var(--pw-tone-error-border-soft);--b-bd:var(--pw-tone-error-border)}
@@ -2184,7 +2184,12 @@ html[data-ds="v2"]{
   --pw-border-subtle:var(--v2-line);--pw-border-default:var(--v2-line);--pw-border-emphasis:var(--v2-border);--pw-border-strong:var(--v2-border);
   --pw-shadow-text:none;--pw-shadow-text-strong:none;--pw-shadow-inset-bevel:none;
   --pw-tab-fill-bottom:var(--v2-volt);--pw-tab-fill-top:var(--v2-volt);--pw-tab-stroke-a:var(--v2-volt);--pw-tab-stroke-b:var(--v2-volt);--pw-tab-drop:transparent;--pw-tab-inner:transparent;--pw-tab-text:var(--v2-on-volt);--pw-tab-text-idle:var(--v2-paper);
-  --pw-tone-success-text:var(--v2-green);--pw-tone-error-text:var(--v2-red);--pw-tone-info-text:var(--v2-xp);
+  --pw-green-300:#3DDC84;--pw-green-400:#3DDC84;--pw-green-500:#2FBF70;--pw-red-300:#FF5A5A;--pw-red-400:#FF5A5A;--pw-red-500:#E64545;
+  --pw-tone-success-text:var(--v2-green);--pw-tone-success-light:var(--v2-green);--pw-tone-success-base:var(--v2-green);--pw-tone-success-filament:var(--v2-green);--pw-tone-success-glow:transparent;
+  --pw-tone-success-solid-top:var(--v2-green);--pw-tone-success-solid-bottom:var(--v2-green);--pw-tone-success-border:var(--v2-green);--pw-tone-success-border-soft:var(--v2-green);--pw-tone-success-particle:var(--v2-green);--pw-tone-success-halo:transparent;--pw-tone-success-tint:rgba(61,220,132,.12);
+  --pw-tone-error-text:var(--v2-red);--pw-tone-error-light:var(--v2-red);--pw-tone-error-base:var(--v2-red);--pw-tone-error-filament:var(--v2-red);--pw-tone-error-glow:transparent;
+  --pw-tone-error-solid-top:var(--v2-red);--pw-tone-error-solid-bottom:var(--v2-red);--pw-tone-error-border:var(--v2-red);--pw-tone-error-border-soft:var(--v2-red);--pw-tone-error-particle:var(--v2-red);--pw-tone-error-halo:transparent;--pw-tone-error-tint:rgba(255,90,90,.12);
+  --pw-status-success:var(--v2-green);--pw-status-error:var(--v2-red);--pw-tone-info-text:var(--v2-xp);
   --pw-radius-xs:7px;--pw-radius-sm:8px;--pw-radius-md:10px;--pw-radius-lg:12px;
 }
 html[data-ds="v2"] :is(.pwbg-title,.pwop-head h2,.pwmm-side .pwmk-hd h3){font-family:"Archivo",system-ui,sans-serif!important;font-weight:700!important;text-transform:none!important;letter-spacing:0!important;font-size:15px!important;color:var(--v2-paper)!important}
@@ -2206,7 +2211,11 @@ html[data-ds="v2"] .pwop-head{padding-top:0!important}
 html[data-ds="v2"] pw-button:is(:not([variant]),[variant="primary"]){--b-bg:var(--v2-volt);--b-fg:var(--v2-on-volt);--b-bd:var(--v2-volt);--b-gloss:0;--b-sh:none;--b-ts:none}
 html[data-ds="v2"] pw-button:is([variant="secondary"],[appearance="outline"]){--b-bg:var(--v2-tab);--b-fg:var(--v2-paper);--b-bd:var(--v2-border);--b-gloss:0;--b-sh:none;--b-ts:none}
 html[data-ds="v2"] pw-button[variant="ghost"]{--b-bg:transparent;--b-fg:var(--v2-muted);--b-bd:transparent;--b-gloss:0}
-html[data-ds="v2"] pw-button[variant="danger"]{--b-bg:transparent;--b-fg:var(--v2-red);--b-bd:transparent;--b-gloss:0;--b-sh:none}
+html[data-ds="v2"] pw-button[variant="danger"]{--b-bg:transparent;--b-fg:var(--v2-red);--b-bd:transparent;--b-gloss:0;--b-sh:none;--b-ts:none}
+html[data-ds="v2"] pw-button[variant="success"]{--b-bg:var(--v2-green);--b-fg:var(--v2-on-volt);--b-bd:var(--v2-green);--b-gloss:0;--b-sh:none;--b-ts:none}
+html[data-ds="v2"] pw-button:is([variant="success"],[variant="danger"])[appearance="outline"]{--b-bg:transparent;--b-gloss:0;--b-sh:none}
+html[data-ds="v2"] pw-button[variant="success"][appearance="outline"]{--b-fg:var(--v2-green);--b-bd:var(--v2-green)}
+html[data-ds="v2"] pw-button[variant="danger"][appearance="outline"]{--b-fg:var(--v2-red);--b-bd:var(--v2-red)}
 html[data-ds="v2"] pw-button>button{font-family:"Archivo",system-ui,sans-serif;font-weight:700;letter-spacing:0;filter:none!important}
 html[data-ds="v2"] pw-button>button::before,html[data-ds="v2"] pw-button .pwbt-fx{display:none!important}
 html[data-ds="v2"] pw-button>button:hover{filter:brightness(1.08)!important}
