@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.99.2
+
+- v2 · widget recolhido: o cabeçalho fica com os cantos de baixo arredondados (10px) e sem a divisória inferior.
+
 ## 0.99.1
 
 - v2 · botões um tamanho acima: sm 32px com ícone de 18px, md 40px/20px, lg 48px/22px, xl 56px/24px.

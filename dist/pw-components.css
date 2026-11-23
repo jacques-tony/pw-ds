@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.99.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.99.2 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2021,6 +2021,9 @@ html[data-ds="v2"] pw-button:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) 
 html[data-ds="v2"] pw-button[size="sm"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--bh:32px;--bic:18px;--bpx:var(--pw-space-3)}
 html[data-ds="v2"] pw-button[size="lg"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--bh:48px;--bic:22px}
 html[data-ds="v2"] pw-button[size="xl"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--bh:56px;--bic:24px}
+/* widget recolhido: o cabeçalho é o widget inteiro, então arredonda embaixo e some a divisória */
+html[data-ds="v2"] [collapsed] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){border-radius:10px!important;border-bottom-color:transparent!important}
+html[data-ds="v2"] [collapsed] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{border-bottom-left-radius:10px}
 /* sinal de marca: faixa diagonal azul + amarela colada no canto superior esquerdo do cabeçalho */
 html[data-ds="v2"] :is(.pwbg-head,pw-card-header[variant="banner"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:relative}
 html[data-ds="v2"] :is(.pwbg-head,pw-card-header[variant="banner"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:""!important;display:block!important;position:absolute;left:0;top:0;bottom:0;width:10px;z-index:2;pointer-events:none;opacity:1!important;border-top-left-radius:inherit;inset-inline-start:0;
