@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.98.2
+
+- v2 · botões reestruturados no padrão filled / outline / ghost por variante (primary, secondary, danger, success): outline com fundo transparente e borda e texto na cor da variante; ghost só texto. Hover simples: só a cor de fundo muda (token `--b-h` por variante), sem brilho, escala, deslocamento ou partículas; foco com anel amarelo de 2px; desativado a 45%.
+- v2 · hovers simplificados em cards interativos (sem elevação/brilho), itens de lista e abas.
+- v2 · tema Mewtwo continua na versão 1 (cards, botões, abas e tokens) mesmo com a v2 ativa.
+
 ## 0.98.1
 
 - v2: tokens de verde e vermelho do site (`#3DDC84`, `#FF5A5A`) em todos os tons success/error (sólido, borda, texto, tint, status, barras), sem halo nem brilho. Botão success em verde chapado com texto escuro; outlines de success e danger em linha fina da cor.
