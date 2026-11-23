@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.99.1
+
+- v2 · botões um tamanho acima: sm 32px com ícone de 18px, md 40px/20px, lg 48px/22px, xl 56px/24px.
+- v2 · ícones do Line Icon Pack fora de botão limitados a 1,5em (corrige o relógio gigante nas Estatísticas); títulos dos widgets voltam a cortar com reticências.
+
 ## 0.99.0
 
 - v2 · ícones de ação padronizados com o [Line Icon Pack](https://lineiconpack.com) (preset Original no estado normal, Fill no hover, aba/item selecionado e botão pressionado): expandir/recolher (chevrons), bloquear/desbloquear, fechar, enviar, mensagem/chat, lixeira, mais, configurações, atualizar, play, busca, +/−, setas, tela cheia, check, editar, pin, ver, menu, relógio, sair e copiar. A v1 e o tema Mewtwo continuam com os ícones atuais.
