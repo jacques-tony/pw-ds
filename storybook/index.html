@@ -2282,8 +2282,11 @@ html[data-ds="v2"]{
   --pw-radius-xs:7px;--pw-radius-sm:8px;--pw-radius-md:10px;--pw-radius-lg:12px;
 }
 html[data-ds="v2"] :is(.pwbg-title,.pwop-head h2,.pwmm-side .pwmk-hd h3):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){font-family:"Archivo",system-ui,sans-serif!important;font-weight:700!important;text-transform:none!important;letter-spacing:0!important;font-size:15px!important;color:var(--v2-paper)!important}
-html[data-ds="v2"] :is(.pwbg-title,pw-card-header[variant="banner"] .pwh-label):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{content:""!important;display:inline-block!important;opacity:1!important;position:static!important;vertical-align:-1px;width:14px;height:13px;margin-left:8px;flex:none;
-  background:linear-gradient(var(--v2-blue),var(--v2-blue)) 1px 0/5px 100% no-repeat,linear-gradient(var(--v2-volt),var(--v2-volt)) 8px 0/5px 100% no-repeat;transform:skewX(-22deg);border-radius:1px}
+/* sinal de marca: faixa diagonal azul + amarela colada no canto superior esquerdo do cabeçalho */
+html[data-ds="v2"] :is(.pwbg-head,pw-card-header[variant="banner"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:relative}
+html[data-ds="v2"] :is(.pwbg-head,pw-card-header[variant="banner"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:""!important;display:block!important;position:absolute;left:0;top:0;bottom:0;width:10px;z-index:2;pointer-events:none;opacity:1!important;border-top-left-radius:inherit;inset-inline-start:0;
+  background:linear-gradient(160deg,var(--v2-blue) 0 46%,transparent 46% 54%,var(--v2-volt) 54% 80%,transparent 80%)!important;transform:none!important;filter:none!important;animation:none!important;-webkit-mask:none!important;mask:none!important;clip-path:none!important}
+html[data-ds="v2"] pw-card-header[variant="banner"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding-left:24px!important}
 html[data-ds="v2"] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:var(--v2-strip);border-bottom:1px solid var(--v2-line);margin-inline:calc(var(--wb-pad,12px) * -1);padding-inline:var(--wb-pad,12px);border-radius:10px 10px 0 0}
 html[data-ds="v2"] .pwbg-title:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){overflow:visible!important}
 html[data-ds="v2"] .pw-titled:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding-top:0!important;display:flex!important;flex-direction:column}

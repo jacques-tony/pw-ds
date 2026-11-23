@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.98.5
+
+- v2: o sinal de marca (faixa diagonal azul + amarela) passa para o canto superior esquerdo do cabeçalho dos widgets e janelas, colado na borda e acompanhando o arredondado; sai das barrinhas depois do título.
+
 ## 0.98.4
 
 - Simulação (Global Navigation): começa só com a HUD inferior, a barra de magias e o bate-papo. Minimapa, Batalha, Estatísticas, Mochila e Pokémon começam fechados e abrem pela barra superior.
