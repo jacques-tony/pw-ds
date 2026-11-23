@@ -2372,6 +2372,8 @@ html[data-ds="v2"] [brand="strip"] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[
 html[data-ds="v2"] [brand="strip"] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding-top:5px}
 /* rodapé do bate-papo espelha a faixa do cabeçalho: mesmo fundo e mesma linha, fechando a moldura */
 html[data-ds="v2"] pw-widget-chat .pwct-foot:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:var(--v2-strip);border-top:1px solid var(--v2-line);margin:0 calc(var(--wb-pad,12px) * -1) calc(var(--pw-space-1) * -1);padding:var(--pw-space-2) var(--wb-pad,12px);border-radius:0 0 10px 10px}
+/* v2: contorno de 1px por cima de tudo no widget (cabeçalho e rodapé não cobrem a borda) */
+html[data-ds="v2"] pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{content:"";position:absolute;inset:0;border:1px solid var(--v2-border);border-radius:10px;pointer-events:none;z-index:6}
 /* arrastar item da mochila + diálogo "Mover itens" */
 .pwbg-ghost{position:fixed;z-index:2000;width:var(--pw-space-8);height:var(--pw-space-8);transform:translate(-50%,-50%) scale(1.1);pointer-events:none;filter:drop-shadow(0 6px 10px var(--pw-black-a55))}
 .pwbg-ghost>img,.pwbg-ghost>svg{width:100%;height:100%;object-fit:contain}

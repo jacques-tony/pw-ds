@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.99.8
+
+- v2 · contorno de 1px (`#2C5AB0`) em volta do widget inteiro, desenhado por cima do cabeçalho e do rodapé, que antes cobriam a borda.
+
 ## 0.99.7
 
 - v2 · teste de sinal de marca: os três lado a lado (atual, `corner`, `strip`); `corner` some suave para baixo; `strip` passa a 5px.
