@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.12
+
+- v2 · Batalha: respiro superior igual ao inferior; filtros (Jogadores, NPCs, Pokémon selvagens, Pokémon de jogadores, Grupo) como botão primary — contorno amarelo quando desligado, amarelo cheio quando ligado, hover com leve aumento; alvo selecionado visível com borda amarela de 2px (antes o estado não aparecia na v2); ícones de jogador e grupo do Line Icon Pack.
+
 ## 0.100.11
 
 - v2 · Estatísticas: respiro um token menor (12px em cima, 8px embaixo).
