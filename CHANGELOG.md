@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.8
+
+- v2 · minimapa: ações da barra inferior como botão primary outline, sm, só ícone (borda e ícone amarelos, raio 8px); a barra usa raio 12px (raio do botão + recuo de 4px) para encaixar nos botões.
+- v2 · ícones de marcação do mapa passam para o Line Icon Pack (estrela, coração, pin, setas, sacola, dinheiro, casa, perigo, atenção, energia, coroa, poção, ajuda, mapa, gema, além dos que já estavam). Caveira, ovo, pokébola e alvo seguem com o desenho atual por não existirem no pacote.
+
 ## 0.100.7
 
 - v2 · minimapa: barra de coordenadas/horário e barra de controles com a mesma altura (36px) e o mesmo recuo lateral (16px); a barra de coordenadas desce 8px da divisória; botões de controle voltam a 28px (a escala geral dos botões da v2 quebrava a barra).
