@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.14
+
+- Batalha: rótulo discreto "Filtros ˄/˅" acima da lista mostra/oculta os filtros e a ordenação (atributo `opts-hidden`, evento `optionstoggle`).
+- v2 · Batalha: alvo selecionado ganha fundo vermelho leve além da borda vermelha.
+
 ## 0.100.13
 
 - v2 · Batalha: alvo selecionado com borda vermelha de 2px; ícone de Grupo troca para "usuários com mais" do Line Icon Pack; respiro de 16px em todos os lados (topo, base e laterais iguais).

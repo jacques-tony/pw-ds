@@ -1933,6 +1933,12 @@ pw-widget-battle pw-card.pwbw-f{width:var(--wb-slot);height:var(--wb-slot);borde
 pw-widget-battle pw-card.pwbw-f>.pwc-content{padding:0;height:100%;display:grid;place-items:center;position:relative;z-index:1}
 pw-widget-battle pw-card.pwbw-f .pwc-content svg{width:var(--pw-space-4);height:var(--pw-space-4);color:var(--pw-text-muted);transition:color var(--card-dur)}
 pw-widget-battle pw-card.pwbw-f[selected] .pwc-content svg{color:var(--pw-text-primary)}
+pw-widget-battle .pwbw-optt{all:unset;cursor:pointer;align-self:flex-end;display:inline-flex;align-items:center;gap:2px;margin:-4px 0 -6px;font-size:11px;color:var(--pw-text-muted);opacity:.7;transition:opacity .15s}
+pw-widget-battle .pwbw-optt:hover,pw-widget-battle .pwbw-optt:focus-visible{opacity:1;color:var(--pw-text-primary)}
+pw-widget-battle .pwbw-optt svg{width:12px;height:12px;transition:transform .2s}
+pw-widget-battle[opts-hidden] .pwbw-optt svg{transform:rotate(180deg)}
+pw-widget-battle .pwbw-opts{display:grid;gap:var(--pw-space-3);overflow:hidden;transition:grid-template-rows .2s}
+pw-widget-battle[opts-hidden] .pwbw-opts{display:none}
 pw-widget-battle .pwbw-sorts{display:grid;grid-template-columns:1fr 1fr;gap:var(--wb-gap)}
 pw-widget-battle .pwbw-field{display:grid;gap:var(--pw-space-1);min-width:0}
 pw-widget-battle .pwbw-lab{font:var(--pw-text-overline);letter-spacing:var(--pw-text-overline-tracking);text-transform:uppercase;color:var(--pw-text-accent-soft)}
@@ -2452,7 +2458,7 @@ html[data-ds="v2"] pw-widget-battle pw-card.pwbw-f:hover:not(:is([data-pw-theme=
 html[data-ds="v2"] pw-widget-battle pw-card.pwbw-f[selected]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:var(--v2-volt)}
 html[data-ds="v2"] pw-widget-battle pw-card.pwbw-f[selected]:hover:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:#FFEA80}
 html[data-ds="v2"] pw-widget-battle pw-card.pwbw-f[selected] .pwc-content svg:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){color:var(--v2-on-volt)!important}
-html[data-ds="v2"] pw-widget-battle pw-card.pwbw-row[state="selected"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){box-shadow:inset 0 0 0 2px var(--v2-red);border-radius:10px}
+html[data-ds="v2"] pw-widget-battle pw-card.pwbw-row[state="selected"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){box-shadow:inset 0 0 0 2px var(--v2-red);border-radius:10px;background:rgba(255,90,90,.14)}
 html[data-ds="v2"] pw-widget-battle pw-card.pwbw-row:not([state="selected"]):hover:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){box-shadow:inset 0 0 0 1px var(--v2-border);border-radius:10px}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
@@ -6700,12 +6706,14 @@ class PWWidgetBattle extends PWWidgetBag{
       '<pw-control-group for="'+u+k+'" type="single" size="sm" value="'+cur+'" label="'+lab+'" data-k="'+k+'">'+opts.map(o=>'<pw-control-group-item value="'+o[0]+'">'+o[1]+'</pw-control-group-item>').join('')+'</pw-control-group></div>';
     this.innerHTML='<pw-card variant="primary" fill="solid" glow="false" class="pwbg-card"><div class="pwbg-head"><img class="pwbg-ic" alt="" draggable="false" src="'+pwNavIcon(this.getAttribute('icon')||'trade',24)+'"><span class="pwbg-ic2" hidden><img alt=""></span><div class="pwbg-tt"><h2 class="pwbg-title" id="'+u+'t"></h2><button type="button" class="pwbg-back" hidden>Voltar</button></div><div class="pwbg-acts">'+
       '<pw-button variant="ghost" size="sm" fx="none" particles="0" data-a="collapse"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" data-a="lock"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="close" data-a="close"></pw-button></div></div>'+
-      '<div class="pwbg-body pwbw-body" id="'+u+'b"><div class="pwbw-filters" role="group" aria-label="Mostrar na lista">'+PW_BATTLE_FILTERS.map(f=>'<pw-card variant="quaternary" interactive class="pwbg-slot pwbw-f" data-f="'+f[0]+'" role="button" tabindex="0" aria-pressed="'+!!this._b.filters[f[0]]+'" aria-label="'+f[2]+'" data-tip="'+f[2]+'"'+(this._b.filters[f[0]]?' selected':'')+'>'+pwIcon(f[1])+'</pw-card>').join('')+'</div>'+
-        '<div class="pwbw-sorts">'+sel('sort','Ordenar',[['distance','Distância'],['hp','Vida'],['name','Nome']],this._b.sort)+sel('order','Prioridade',[['asc','Ascendente'],['desc','Descendente']],this._b.order)+'</div>'+
+      '<div class="pwbg-body pwbw-body" id="'+u+'b"><button type="button" class="pwbw-optt" aria-expanded="true" aria-controls="'+u+'opts" data-tip="Ocultar filtros e ordenação"><span>Filtros</span>'+pwIcon('chevron-up')+'</button><div class="pwbw-opts" id="'+u+'opts"><div class="pwbw-filters" role="group" aria-label="Mostrar na lista">'+PW_BATTLE_FILTERS.map(f=>'<pw-card variant="quaternary" interactive class="pwbg-slot pwbw-f" data-f="'+f[0]+'" role="button" tabindex="0" aria-pressed="'+!!this._b.filters[f[0]]+'" aria-label="'+f[2]+'" data-tip="'+f[2]+'"'+(this._b.filters[f[0]]?' selected':'')+'>'+pwIcon(f[1])+'</pw-card>').join('')+'</div>'+
+        '<div class="pwbw-sorts">'+sel('sort','Ordenar',[['distance','Distância'],['hp','Vida'],['name','Nome']],this._b.sort)+sel('order','Prioridade',[['asc','Ascendente'],['desc','Descendente']],this._b.order)+'</div></div>'+
         '<pw-scroll class="pwbw-scroll"><div class="pwbw-list" role="listbox" aria-label="Alvos"></div></pw-scroll></div></pw-card>'+
       '<div class="pwbg-resize" role="separator" aria-orientation="horizontal" tabindex="0" aria-label="Redimensionar batalha (setas ↑ ↓)" data-tip="Arraste para redimensionar" data-tip-pos="bottom"></div>';
     this.setAttribute('aria-labelledby',u+'t');if(!this.getAttribute('heading'))this.setAttribute('heading','Batalha');
     this.querySelector('.pwbg-acts').addEventListener('click',e=>{var b=e.target.closest('pw-button[data-a]');if(!b)return;var a=b.dataset.a;if(a==='collapse')this.toggle();else if(a==='lock')this.toggleAttribute('locked');else this.close()});
+    /* mostrar/ocultar filtros e ordenação (sutil: um rótulo pequeno com seta acima da lista) */
+    this.querySelector('.pwbw-optt').addEventListener('click',()=>{var o=this.toggleAttribute('opts-hidden'),t=this.querySelector('.pwbw-optt');t.setAttribute('aria-expanded',!o);t.setAttribute('data-tip',o?'Mostrar filtros e ordenação':'Ocultar filtros e ordenação');this.dispatchEvent(new CustomEvent('optionstoggle',{bubbles:true,detail:{hidden:o}}));requestAnimationFrame(()=>this._more&&this._more())});
     this.querySelector('.pwbw-filters').addEventListener('click',e=>{var f=e.target.closest('[data-f]');if(!f)return;var on=!this._b.filters[f.dataset.f];this._b.filters[f.dataset.f]=on;f.toggleAttribute('selected',on);f.setAttribute('aria-pressed',on);this._list();
       this.dispatchEvent(new CustomEvent('filter',{bubbles:true,detail:{filters:Object.assign({},this._b.filters)}}))});
     this.querySelectorAll('pw-control-group[data-k]').forEach(g=>g.addEventListener('change',e=>{this._b[g.dataset.k]=e.detail.value;this._list();this.dispatchEvent(new CustomEvent('sort',{bubbles:true,detail:{sort:this._b.sort,order:this._b.order}}))}));
