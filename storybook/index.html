@@ -2391,7 +2391,12 @@ html[data-ds="v2"] [brand="under-full"] .pwbg-head:not(:is([data-pw-theme="mewtw
 html[data-ds="v2"] [brand="under-full-15"] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{left:0!important;right:0!important;top:auto!important;bottom:-1px!important;width:auto!important;height:1.5px!important;border-radius:0!important;
   background:linear-gradient(135deg,var(--v2-volt) 0 calc(100% - 48px),var(--v2-blue) calc(100% - 48px))!important}
 /* v2 · mochila: mesmo respiro acima e abaixo dos slots; hover nos itens (borda amarela + leve clareada) */
-html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) pw-scroll.pwbg-scroll:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding-top:calc(var(--pw-space-6) - var(--pw-space-1))!important}
+html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) pw-scroll.pwbg-scroll:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-top:0!important;padding-top:var(--pw-space-4)!important}
+/* barra de rolagem começa na altura dos slots (não sobe até o cabeçalho) */
+html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) pw-scroll.pwbg-scroll:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::-webkit-scrollbar-track{margin-block:var(--pw-space-4) calc(var(--pw-space-6) - var(--pw-space-1))!important}
+/* o degradê de "há mais acima" fica abaixo da divisória da marca, e o cabeçalho sempre por cima dos slots */
+html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) .pwbg-body:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{top:0!important;height:var(--pw-space-5)!important}
+html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){z-index:6}
 html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) pw-card.pwbg-slot:not(.empty):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){transition:filter .12s,box-shadow .12s}
 html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) pw-card.pwbg-slot:not(.empty):hover:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){filter:brightness(1.18)!important;box-shadow:inset 0 0 0 1px var(--v2-volt);border-radius:7px}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */

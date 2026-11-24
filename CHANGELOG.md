@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.4
+
+- v2 · Mochila/Loot/Pokémon: a área de rolagem começa abaixo do cabeçalho (sem margem negativa), então os slots não passam por baixo da divisória da marca; a barra de rolagem começa na altura dos slots; o degradê de "há mais acima" fica abaixo da divisória.
+
 ## 0.100.3
 
 - v2 · Mochila/Loot/Pokémon: mesmo respiro acima e abaixo dos slots; hover nos itens volta (borda amarela de 1px + leve clareada).
