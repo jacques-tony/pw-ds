@@ -2399,6 +2399,15 @@ html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) .pwbg-bod
 html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){z-index:6}
 html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) pw-card.pwbg-slot:not(.empty):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){transition:filter .12s,box-shadow .12s}
 html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) pw-card.pwbg-slot:not(.empty):hover:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){filter:brightness(1.18)!important;box-shadow:inset 0 0 0 1px var(--v2-volt);border-radius:7px}
+/* v2 · hover nos slots com item: o item cresce levemente */
+html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) .pwbg-slot:not(.empty) .pwc-content>:is(img,svg,.spr):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){transition:transform .16s cubic-bezier(.2,.7,.3,1)}
+html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) .pwbg-slot:not(.empty):hover .pwc-content>:is(img,svg,.spr):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){transform:scale(1.12)}
+@media (prefers-reduced-motion:reduce){html[data-ds="v2"] .pwbg-slot:hover .pwc-content>*{transform:none!important}}
+/* v2 · sem "flick" ao recolher/abrir: o fundo e a borda do widget vêm do CSS (acompanham a altura na hora) em vez da moldura SVG, que era redesenhada um quadro depois */
+html[data-ds="v2"] pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:linear-gradient(180deg,var(--v2-panel-top),var(--v2-panel-bot));border-radius:10px}
+html[data-ds="v2"] pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>svg.pwc-frame{display:none}
+html[data-ds="v2"] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){transition:border-radius .3s cubic-bezier(.4,0,.2,1),border-color .3s}
+html[data-ds="v2"] .collapsing .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] .expanding .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){border-radius:10px!important;border-bottom-color:transparent!important}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
@@ -6370,9 +6379,9 @@ class PWWidgetBag extends HTMLElement{
     var h0=this.offsetHeight;if(this._anim)this._anim.cancel();this.toggleAttribute('collapsed',want);var h1=this.offsetHeight;
     if(matchMedia('(prefers-reduced-motion: reduce)').matches||h0===h1)return;var bd=this.querySelector('.pwbg-body');
     if(want)this.removeAttribute('collapsed');
-    this.style.minHeight='0';/* durante a animação, a moldura (redesenhada um quadro depois) não pode "arrastar" para fora do widget */this.style.clipPath='inset(-6px -6px -6px -6px)';this.classList.add('toggling');this.classList.toggle('collapsing',want);this._anim=this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:300,easing:'cubic-bezier(.4,0,.2,1)'});
+    this.style.minHeight='0';/* durante a animação, a moldura (redesenhada um quadro depois) não pode "arrastar" para fora do widget */this.style.clipPath='inset(-6px -6px -6px -6px)';this.classList.add('toggling');this.classList.toggle('collapsing',want);this.classList.toggle('expanding',!want);this._anim=this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:300,easing:'cubic-bezier(.4,0,.2,1)'});
     bd.animate(want?[{opacity:1},{opacity:0}]:[{opacity:0},{opacity:1}],{duration:want?180:300,easing:'ease-out',fill:want?'forwards':'none'});
-    var clr=()=>{this.style.clipPath='';this.classList.remove('toggling','collapsing')};this._anim.finished.then(clr,clr);this._anim.finished.then(()=>{this.style.minHeight='';if(want)this.setAttribute('collapsed','');bd.getAnimations().forEach(a=>a.cancel());this._more&&this._more()},()=>{this.style.overflow=''})}
+    var clr=()=>{this.style.clipPath='';this.classList.remove('toggling','collapsing','expanding')};this._anim.finished.then(clr,clr);this._anim.finished.then(()=>{this.style.minHeight='';if(want)this.setAttribute('collapsed','');bd.getAnimations().forEach(a=>a.cancel());this._more&&this._more()},()=>{this.style.overflow=''})}
   close(){var ev=new CustomEvent('close',{bubbles:true,cancelable:true});this.dispatchEvent(ev);if(!ev.defaultPrevented)this.hidden=true}
   show(){this.hidden=false}
   /* arrastar pelo cabeçalho, dentro do elemento pai */

@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.5
+
+- v2 · hover em slot com item: o item cresce 12% com transição suave.
+- v2 · fim do "flick" ao recolher/abrir widgets: fundo e borda passam a ser do próprio card em CSS (acompanham a altura em tempo real) no lugar da moldura SVG redesenhada um quadro depois; o cabeçalho arredonda embaixo durante a animação (classes `collapsing`/`expanding`).
+
 ## 0.100.4
 
 - v2 · Mochila/Loot/Pokémon: a área de rolagem começa abaixo do cabeçalho (sem margem negativa), então os slots não passam por baixo da divisória da marca; a barra de rolagem começa na altura dos slots; o degradê de "há mais acima" fica abaixo da divisória.

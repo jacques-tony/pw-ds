@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.100.4 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.100.5 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2129,6 +2129,15 @@ html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) .pwbg-bod
 html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){z-index:6}
 html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) pw-card.pwbg-slot:not(.empty):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){transition:filter .12s,box-shadow .12s}
 html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) pw-card.pwbg-slot:not(.empty):hover:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){filter:brightness(1.18)!important;box-shadow:inset 0 0 0 1px var(--v2-volt);border-radius:7px}
+/* v2 · hover nos slots com item: o item cresce levemente */
+html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) .pwbg-slot:not(.empty) .pwc-content>:is(img,svg,.spr):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){transition:transform .16s cubic-bezier(.2,.7,.3,1)}
+html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) .pwbg-slot:not(.empty):hover .pwc-content>:is(img,svg,.spr):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){transform:scale(1.12)}
+@media (prefers-reduced-motion:reduce){html[data-ds="v2"] .pwbg-slot:hover .pwc-content>*{transform:none!important}}
+/* v2 · sem "flick" ao recolher/abrir: o fundo e a borda do widget vêm do CSS (acompanham a altura na hora) em vez da moldura SVG, que era redesenhada um quadro depois */
+html[data-ds="v2"] pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:linear-gradient(180deg,var(--v2-panel-top),var(--v2-panel-bot));border-radius:10px}
+html[data-ds="v2"] pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>svg.pwc-frame{display:none}
+html[data-ds="v2"] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){transition:border-radius .3s cubic-bezier(.4,0,.2,1),border-color .3s}
+html[data-ds="v2"] .collapsing .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] .expanding .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){border-radius:10px!important;border-bottom-color:transparent!important}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
