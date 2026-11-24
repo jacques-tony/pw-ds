@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.6
+
+- v2 · widget Pokémon: 16px de respiro acima do conteúdo, igual ao de baixo.
+
 ## 0.100.5
 
 - v2 · hover em slot com item: o item cresce 12% com transição suave.
