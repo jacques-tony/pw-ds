@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.11
+
+- v2 · Estatísticas: respiro um token menor (12px em cima, 8px embaixo).
+- v2 · menus suspensos: a barra de rolagem começa e termina 8px para dentro, alinhada ao título da primeira seção ("Versão"), sem passar das bordas.
+- v2 · menu de exibição das Estatísticas: 240px de largura mínima e 8px de respiro entre o conteúdo e a barra de rolagem.
+
 ## 0.100.10
 
 - v2 · Estatísticas: 16px de respiro acima e abaixo do conteúdo (como Mochila e Pokémon); rolagem começa abaixo do cabeçalho.
