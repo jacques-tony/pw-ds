@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.100.14 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.100.15 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2190,6 +2190,14 @@ html[data-ds="v2"] pw-widget-battle pw-card.pwbw-f[selected]:hover:not(:is([data
 html[data-ds="v2"] pw-widget-battle pw-card.pwbw-f[selected] .pwc-content svg:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){color:var(--v2-on-volt)!important}
 html[data-ds="v2"] pw-widget-battle pw-card.pwbw-row[state="selected"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){box-shadow:inset 0 0 0 2px var(--v2-red);border-radius:10px;background:rgba(255,90,90,.14)}
 html[data-ds="v2"] pw-widget-battle pw-card.pwbw-row:not([state="selected"]):hover:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){box-shadow:inset 0 0 0 1px var(--v2-border);border-radius:10px}
+/* v2 · assistente de combo: cabeçalho no padrão dos widgets (faixa compacta + divisória da marca de 1px) e magias alinhadas aos slots do combo */
+html[data-ds="v2"] pw-widget-combo pw-card-header[variant="banner"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){height:34px!important;border-radius:10px 10px 0 0!important;font-size:15px}
+html[data-ds="v2"] pw-widget-combo pw-card-header[variant="banner"] .pwh-label:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){font-size:15px!important}
+html[data-ds="v2"] pw-widget-combo pw-card-header[variant="banner"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{left:0!important;right:0!important;top:auto!important;bottom:-1px!important;width:auto!important;height:1px!important;border-radius:0!important;background:linear-gradient(135deg,var(--v2-volt) 0 calc(100% - 48px),var(--v2-blue) calc(100% - 48px))!important}
+html[data-ds="v2"] :is(pw-widget-combo .pwcb-x,pw-widget-outfit .pwof-x,pw-widget-exit .pwex-x,pw-widget-options .pwop-x):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){top:-30px!important;right:12px!important;z-index:8!important}
+html[data-ds="v2"] :is(pw-widget-combo,pw-widget-outfit,pw-widget-exit,pw-widget-options) .pw-titled>pw-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] :is(pw-widget-combo,pw-widget-outfit,pw-widget-exit,pw-widget-options) .pw-titled>pw-card>.pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){z-index:auto!important;isolation:auto!important;transform:none!important}
+html[data-ds="v2"] :is(pw-widget-combo,pw-widget-outfit,pw-widget-exit,pw-widget-options) .pw-titled>pw-card-header:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){z-index:5!important}
+html[data-ds="v2"] pw-widget-combo .pwcb-src:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding:0 var(--pw-space-3)}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
@@ -2261,7 +2269,8 @@ pw-widget-combo .pwcb-slot.empty{cursor:default}
 pw-widget-combo .pwcb-slot.empty>.pwc-content{display:grid;place-items:center;color:var(--pw-text-muted);font-size:var(--pw-font-size-xs)}
 pw-widget-combo .pwcb-slot .num{position:absolute;left:calc(var(--pw-space-1) * -1);top:calc(var(--pw-space-1) * -1);z-index:4;pointer-events:none;min-width:var(--bh);justify-content:center;box-sizing:border-box}
 pw-widget-combo .pwcb-slot.over{box-shadow:0 0 0 2px var(--pw-filament),0 0 10px var(--pw-glow)}
-pw-widget-combo .pwcb-slot.pop{animation:pwsp-ready .4s var(--card-ease)}
+pw-widget-combo .pwcb-slot.pop>.pwc-content>img{animation:pwsp-ready .4s var(--card-ease)}
+pw-widget-combo .pwcb-src .pwcb-mv.used{opacity:.4;cursor:default;pointer-events:none}
 pw-widget-combo .pwcb-hint{margin:0;font-size:var(--pw-font-size-xs);color:var(--pw-text-muted)}
 pw-widget-combo .pwcb-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:var(--pw-space-3)}
 pw-widget-combo .pwcb-acts{display:flex;gap:var(--pw-space-2)}

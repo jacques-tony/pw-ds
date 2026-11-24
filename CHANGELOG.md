@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.15
+
+- v2 · Assistente de combo: cabeçalho no padrão dos widgets (faixa compacta de 34px com a divisória da marca de 1px) e botão fechar visível no cabeçalho (vale também para Opções, Personalizar treinador e Sair); magias alinhadas aos slots do combo.
+- Assistente de combo: cada magia só pode entrar uma vez no combo (cliques repetidos não duplicam; a magia usada fica esmaecida); a animação ao adicionar fica só na imagem, sem mexer a etiqueta do número.
+
 ## 0.100.14
 
 - Batalha: rótulo discreto "Filtros ˄/˅" acima da lista mostra/oculta os filtros e a ordenação (atributo `opts-hidden`, evento `optionstoggle`).
