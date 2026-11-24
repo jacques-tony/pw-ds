@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.3
+
+- v2 · Mochila/Loot/Pokémon: mesmo respiro acima e abaixo dos slots; hover nos itens volta (borda amarela de 1px + leve clareada).
+- Mochila: ao abrir uma mochila com menos slots, o widget reduz a altura para não sobrar espaço vazio (mesmo depois de redimensionado à mão).
+- Mochila: duplo clique na alça de redimensionar mostra todos os slots.
+
 ## 0.100.2
 
 - v2 · a animação das barras da marca agora acontece junto com o recolher (classe `collapsing` durante a animação de altura); antes o atributo `collapsed` só entrava no fim e as barras sumiam sem transição.

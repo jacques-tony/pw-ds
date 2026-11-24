@@ -2390,6 +2390,10 @@ html[data-ds="v2"] [brand="under-full"] .pwbg-head:not(:is([data-pw-theme="mewtw
   background:linear-gradient(135deg,var(--v2-volt) 0 calc(100% - 48px),var(--v2-blue) calc(100% - 48px))!important}
 html[data-ds="v2"] [brand="under-full-15"] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{left:0!important;right:0!important;top:auto!important;bottom:-1px!important;width:auto!important;height:1.5px!important;border-radius:0!important;
   background:linear-gradient(135deg,var(--v2-volt) 0 calc(100% - 48px),var(--v2-blue) calc(100% - 48px))!important}
+/* v2 · mochila: mesmo respiro acima e abaixo dos slots; hover nos itens (borda amarela + leve clareada) */
+html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) pw-scroll.pwbg-scroll:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding-top:calc(var(--pw-space-6) - var(--pw-space-1))!important}
+html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) pw-card.pwbg-slot:not(.empty):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){transition:filter .12s,box-shadow .12s}
+html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) pw-card.pwbg-slot:not(.empty):hover:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){filter:brightness(1.18)!important;box-shadow:inset 0 0 0 1px var(--v2-volt);border-radius:7px}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
@@ -6348,7 +6352,7 @@ class PWWidgetBag extends HTMLElement{
     if(!matchMedia('(prefers-reduced-motion: reduce)').matches)nb.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'none'}],{duration:180,easing:'ease-out'});
     nb.addEventListener('close',()=>setTimeout(()=>nb.remove(),0));return nb}
   back(){if(!this._stack.length)return;var t=this._stack.pop();this._items=t.items;this._swap(-1,t.scroll);this.dispatchEvent(new CustomEvent('bagback',{bubbles:true,detail:{depth:this._stack.length}}));var b=this.querySelector('.pwbg-back');(b.hidden?this._btn('collapse').querySelector('button'):b).focus()}
-  _swap(dir,scroll){var g=this.querySelector('.pwbg-grid'),sc=this.querySelector('.pwbg-scroll'),go=()=>{this._grid();this._sync();if(!this._userH)this.fitAll();sc.scrollTop=scroll||0;this._more&&this._more()};
+  _swap(dir,scroll){var g=this.querySelector('.pwbg-grid'),sc=this.querySelector('.pwbg-scroll'),go=()=>{this._grid();this._sync();if(!this._userH)this.fitAll();else{var L0=this._limits();if(this.offsetHeight>L0.max)this.style.height=L0.max+'px'}sc.scrollTop=scroll||0;this._more&&this._more()};
     if(matchMedia('(prefers-reduced-motion: reduce)').matches){go();return}
     g.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateX('+(-dir*12)+'px)'}],{duration:120,easing:'ease-in'}).finished.then(()=>{go();g.animate([{opacity:0,transform:'translateX('+(dir*12)+'px)'},{opacity:1,transform:'none'}],{duration:180,easing:'ease-out'})})}
   _grid(){var top=this._stack.length?this._stack[this._stack.length-1].bag:null,n=Math.max(top?(+top.slots||20):(+this.getAttribute('slots')||35),this._items.length),E=pwEsc,h='';
@@ -6445,6 +6449,8 @@ class PWWidgetBag extends HTMLElement{
     var sc=this.querySelector('.pwbg-scroll');return {row:row,base:chrome+4,min:chrome+row+4,max:Math.max(chrome+row+4,this.offsetHeight+sc.scrollHeight-sc.clientHeight)}}
   _setH(h,snap){var L=this._limits();if(snap&&h<L.max-1){var sn=L.base+Math.round((h-L.base)/L.row)*L.row;h=sn>=L.max-L.row/2?L.max:sn}h=Math.max(L.min,Math.min(L.max,h));this.style.height=h+'px';var g=this.querySelector('.pwbg-resize');g.setAttribute('aria-valuenow',Math.round((h-L.base)/L.row));g.setAttribute('aria-valuemin',1);g.setAttribute('aria-valuemax',Math.round((L.max-L.base)/L.row));return h}
   _resizeInit(){var g=this.querySelector('.pwbg-resize');
+    /* duplo clique na alça: mostra todos os slots da mochila */
+    g.addEventListener('dblclick',e=>{if(this.hasAttribute('locked'))return;e.preventDefault();this._userH=false;var h=this._setH(this._limits().max,false);this.dispatchEvent(new CustomEvent('resize',{bubbles:true,detail:{height:h}}))});
     g.addEventListener('pointerdown',e=>{if(e.button!==0||this.hasAttribute('locked'))return;e.preventDefault();var y0=e.clientY,h0=this.offsetHeight;this.classList.add('resizing');document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape'}));
       var S=(this.getBoundingClientRect().height/this.offsetHeight)||1;var mv=ev=>this._setH(h0+(ev.clientY-y0)/S,false);
       var up=()=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);this.classList.remove('resizing');this._userH=true;var h=this._setH(this.offsetHeight,true);
