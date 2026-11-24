@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.100.8 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.100.9 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2143,13 +2143,17 @@ html[data-ds="v2"] pw-widget-pokemon .pwpk-body:not(:is([data-pw-theme="mewtwo"]
 /* barra de controles: botões primary outline, sm, só ícone; a barra segue o raio dos botões (raio + recuo) para encaixar */
 html[data-ds="v2"] pw-widget-minimap .pwmm-ctrl pw-button:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--bh:28px!important;--bic:16px!important;--bpx:0px;--brad:8px;--b-bg:transparent;--b-fg:var(--v2-volt);--b-bd:var(--v2-volt);--b-h:rgba(255,225,77,.12)}
 html[data-ds="v2"] pw-widget-minimap .pwmm-ctrl pw-button>button:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){border-radius:8px!important}
-html[data-ds="v2"] pw-widget-minimap pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){border-radius:12px!important}
-html[data-ds="v2"] pw-widget-minimap pw-card.pwmm-ctrlc>.pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding:0 4px!important;gap:4px}
-html[data-ds="v2"] pw-widget-minimap pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-top:var(--pw-space-2);height:36px}
-html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:relative!important;left:auto!important;top:auto!important;transform:none!important;align-self:stretch;width:auto!important;margin:0!important}
-html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc>.pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){height:36px;padding:0 var(--pw-space-2);justify-content:center}
+html[data-ds="v2"] pw-widget-minimap pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){border-radius:12px!important;background:var(--v2-card)!important;box-shadow:inset 0 0 0 1px var(--v2-line)}
+html[data-ds="v2"] pw-widget-minimap pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>svg.pwc-frame{display:none}
+
+html[data-ds="v2"] pw-widget-minimap pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-top:var(--pw-space-2);height:44px;border-radius:12px!important;background:var(--v2-card)!important;box-shadow:inset 0 0 0 1px var(--v2-line)}
+html[data-ds="v2"] pw-widget-minimap pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>svg.pwc-frame{display:none}
+html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:relative!important;left:auto!important;top:auto!important;transform:none!important;align-self:center;width:max-content!important;margin:0!important;flex:none}
+html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc>.pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){height:auto;padding:8px!important;justify-content:center}
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) .pwmm-body:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding-bottom:var(--pw-space-2)}
 html[data-ds="v2"] pw-widget-minimap pw-card.pwmm-info>.pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding:0 var(--pw-space-3)}
+/* largura mínima do minimapa = barra de controles (fixa) + recuo lateral de 16px de cada lado */
+html[data-ds="v2"] pw-widget-minimap:not([maximized]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){min-width:256px}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}

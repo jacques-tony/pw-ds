@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.9
+
+- v2 · minimapa: barra de controles com padding fixo de 8px e tamanho fixo (centralizada, não cresce ao redimensionar o widget); barra de coordenadas/horário com o mesmo raio (12px), fundo e contorno da barra de controles; largura mínima do widget = barra de controles + 16px de recuo de cada lado (256px).
+- Minimapa: excluir marcação abre num painel contextual ao lado do widget, como criar marcação (diálogo só com o minimapa maximizado).
+
 ## 0.100.8
 
 - v2 · minimapa: ações da barra inferior como botão primary outline, sm, só ícone (borda e ícone amarelos, raio 8px); a barra usa raio 12px (raio do botão + recuo de 4px) para encaixar nos botões.
