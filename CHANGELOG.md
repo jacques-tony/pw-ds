@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.2
+
+- v2 · a animação das barras da marca agora acontece junto com o recolher (classe `collapsing` durante a animação de altura); antes o atributo `collapsed` só entrava no fim e as barras sumiam sem transição.
+
 ## 0.100.1
 
 - v2 · ao recolher o widget, as barras da marca encolhem até zero (do centro, 320ms) e voltam ao expandir; os cantos de teste encolhem para a própria ponta. Sem animação com "Reduzir movimento".

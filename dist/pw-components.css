@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.100.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.100.2 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2017,8 +2017,8 @@ html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-
   background:linear-gradient(135deg,var(--v2-volt) 0 calc(100% - 48px),var(--v2-blue) calc(100% - 48px))!important}
 /* widget recolhido: o traçado da marca some por completo */
 html[data-ds="v2"] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before,html[data-ds="v2"] pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s cubic-bezier(.4,0,.2,1)!important}
-html[data-ds="v2"] [collapsed][collapsed] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{transform:scaleX(0)!important;opacity:0!important}
-html[data-ds="v2"] [collapsed][collapsed]>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{transform:scale(0)!important;opacity:0!important}
+html[data-ds="v2"] [collapsed][collapsed] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before,html[data-ds="v2"] .collapsing.collapsing .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{transform:scaleX(0)!important;opacity:0!important}
+html[data-ds="v2"] [collapsed][collapsed]>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before,html[data-ds="v2"] .collapsing.collapsing>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{transform:scale(0)!important;opacity:0!important}
 html[data-ds="v2"] [brand="tl"]>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{transform-origin:0 0}html[data-ds="v2"] :is([brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{transform-origin:100% 100%}
 @media (prefers-reduced-motion:reduce){html[data-ds="v2"] :is(.pwbg-head,pw-card.pwbg-card)::before{transition:none!important}}
 /* bate-papo v2: abas no menor tamanho (pílula 24px), inativas em azul cheio, com respiro abaixo do cabeçalho */

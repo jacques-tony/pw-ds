@@ -2287,8 +2287,8 @@ html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-
   background:linear-gradient(135deg,var(--v2-volt) 0 calc(100% - 48px),var(--v2-blue) calc(100% - 48px))!important}
 /* widget recolhido: o traçado da marca some por completo */
 html[data-ds="v2"] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before,html[data-ds="v2"] pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .32s cubic-bezier(.4,0,.2,1)!important}
-html[data-ds="v2"] [collapsed][collapsed] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{transform:scaleX(0)!important;opacity:0!important}
-html[data-ds="v2"] [collapsed][collapsed]>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{transform:scale(0)!important;opacity:0!important}
+html[data-ds="v2"] [collapsed][collapsed] .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before,html[data-ds="v2"] .collapsing.collapsing .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{transform:scaleX(0)!important;opacity:0!important}
+html[data-ds="v2"] [collapsed][collapsed]>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before,html[data-ds="v2"] .collapsing.collapsing>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{transform:scale(0)!important;opacity:0!important}
 html[data-ds="v2"] [brand="tl"]>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{transform-origin:0 0}html[data-ds="v2"] :is([brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{transform-origin:100% 100%}
 @media (prefers-reduced-motion:reduce){html[data-ds="v2"] :is(.pwbg-head,pw-card.pwbg-card)::before{transition:none!important}}
 /* bate-papo v2: abas no menor tamanho (pílula 24px), inativas em azul cheio, com respiro abaixo do cabeçalho */
@@ -6361,9 +6361,9 @@ class PWWidgetBag extends HTMLElement{
     var h0=this.offsetHeight;if(this._anim)this._anim.cancel();this.toggleAttribute('collapsed',want);var h1=this.offsetHeight;
     if(matchMedia('(prefers-reduced-motion: reduce)').matches||h0===h1)return;var bd=this.querySelector('.pwbg-body');
     if(want)this.removeAttribute('collapsed');
-    this.style.minHeight='0';/* durante a animação, a moldura (redesenhada um quadro depois) não pode "arrastar" para fora do widget */this.style.clipPath='inset(-6px -6px -6px -6px)';this.classList.add('toggling');this._anim=this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:300,easing:'cubic-bezier(.4,0,.2,1)'});
+    this.style.minHeight='0';/* durante a animação, a moldura (redesenhada um quadro depois) não pode "arrastar" para fora do widget */this.style.clipPath='inset(-6px -6px -6px -6px)';this.classList.add('toggling');this.classList.toggle('collapsing',want);this._anim=this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:300,easing:'cubic-bezier(.4,0,.2,1)'});
     bd.animate(want?[{opacity:1},{opacity:0}]:[{opacity:0},{opacity:1}],{duration:want?180:300,easing:'ease-out',fill:want?'forwards':'none'});
-    var clr=()=>{this.style.clipPath='';this.classList.remove('toggling')};this._anim.finished.then(clr,clr);this._anim.finished.then(()=>{this.style.minHeight='';if(want)this.setAttribute('collapsed','');bd.getAnimations().forEach(a=>a.cancel());this._more&&this._more()},()=>{this.style.overflow=''})}
+    var clr=()=>{this.style.clipPath='';this.classList.remove('toggling','collapsing')};this._anim.finished.then(clr,clr);this._anim.finished.then(()=>{this.style.minHeight='';if(want)this.setAttribute('collapsed','');bd.getAnimations().forEach(a=>a.cancel());this._more&&this._more()},()=>{this.style.overflow=''})}
   close(){var ev=new CustomEvent('close',{bubbles:true,cancelable:true});this.dispatchEvent(ev);if(!ev.defaultPrevented)this.hidden=true}
   show(){this.hidden=false}
   /* arrastar pelo cabeçalho, dentro do elemento pai */
