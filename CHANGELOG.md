@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.16
+
+- v2 · Assistente de combo: cabeçalho com a mesma altura e recuo dos widgets (56px, 16px) e o ícone do assistente de combo (o mesmo da barra superior) antes do título.
+
 ## 0.100.15
 
 - v2 · Assistente de combo: cabeçalho no padrão dos widgets (faixa compacta de 34px com a divisória da marca de 1px) e botão fechar visível no cabeçalho (vale também para Opções, Personalizar treinador e Sair); magias alinhadas aos slots do combo.

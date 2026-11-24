@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.100.15 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.100.16 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2191,10 +2191,12 @@ html[data-ds="v2"] pw-widget-battle pw-card.pwbw-f[selected] .pwc-content svg:no
 html[data-ds="v2"] pw-widget-battle pw-card.pwbw-row[state="selected"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){box-shadow:inset 0 0 0 2px var(--v2-red);border-radius:10px;background:rgba(255,90,90,.14)}
 html[data-ds="v2"] pw-widget-battle pw-card.pwbw-row:not([state="selected"]):hover:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){box-shadow:inset 0 0 0 1px var(--v2-border);border-radius:10px}
 /* v2 · assistente de combo: cabeçalho no padrão dos widgets (faixa compacta + divisória da marca de 1px) e magias alinhadas aos slots do combo */
-html[data-ds="v2"] pw-widget-combo pw-card-header[variant="banner"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){height:34px!important;border-radius:10px 10px 0 0!important;font-size:15px}
+html[data-ds="v2"] pw-widget-combo pw-card-header[variant="banner"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){height:56px!important;padding-left:16px!important;border-radius:10px 10px 0 0!important;font-size:15px}
+html[data-ds="v2"] pw-widget-combo pw-card-header[variant="banner"] .pwh-label:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:""!important;display:inline-block!important;width:24px;height:24px;margin-right:-8px;background:var(--pwcb-ic) center/contain no-repeat;flex:none}
 html[data-ds="v2"] pw-widget-combo pw-card-header[variant="banner"] .pwh-label:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){font-size:15px!important}
 html[data-ds="v2"] pw-widget-combo pw-card-header[variant="banner"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{left:0!important;right:0!important;top:auto!important;bottom:-1px!important;width:auto!important;height:1px!important;border-radius:0!important;background:linear-gradient(135deg,var(--v2-volt) 0 calc(100% - 48px),var(--v2-blue) calc(100% - 48px))!important}
-html[data-ds="v2"] :is(pw-widget-combo .pwcb-x,pw-widget-outfit .pwof-x,pw-widget-exit .pwex-x,pw-widget-options .pwop-x):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){top:-30px!important;right:12px!important;z-index:8!important}
+html[data-ds="v2"] pw-widget-combo .pwcb-x:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){top:-44px!important}
+html[data-ds="v2"] :is(pw-widget-combo .pwcb-x,pw-widget-outfit .pwof-x,pw-widget-exit .pwex-x,pw-widget-options .pwop-x):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){top:-30px;right:12px!important;z-index:8!important}
 html[data-ds="v2"] :is(pw-widget-combo,pw-widget-outfit,pw-widget-exit,pw-widget-options) .pw-titled>pw-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] :is(pw-widget-combo,pw-widget-outfit,pw-widget-exit,pw-widget-options) .pw-titled>pw-card>.pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){z-index:auto!important;isolation:auto!important;transform:none!important}
 html[data-ds="v2"] :is(pw-widget-combo,pw-widget-outfit,pw-widget-exit,pw-widget-options) .pw-titled>pw-card-header:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){z-index:5!important}
 html[data-ds="v2"] pw-widget-combo .pwcb-src:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding:0 var(--pw-space-3)}
