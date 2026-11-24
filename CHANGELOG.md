@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.7
+
+- v2 · minimapa: barra de coordenadas/horário e barra de controles com a mesma altura (36px) e o mesmo recuo lateral (16px); a barra de coordenadas desce 8px da divisória; botões de controle voltam a 28px (a escala geral dos botões da v2 quebrava a barra).
+- v2 · ícone de maximizar troca para "abrir em janela maior" (caixa com seta para fora) do Line Icon Pack.
+
 ## 0.100.6
 
 - v2 · widget Pokémon: 16px de respiro acima do conteúdo, igual ao de baixo.
