@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.10
+
+- v2 · Estatísticas: 16px de respiro acima e abaixo do conteúdo (como Mochila e Pokémon); rolagem começa abaixo do cabeçalho.
+- v2 · menus suspensos (`pw-control-group`) com fundo sólido e barra de rolagem minimalista do DS.
+- Estatísticas: reordenar itens do menu de exibição agora "pega" o item — ele vira um cartão que segue o cursor (levemente inclinado, com sombra), o lugar de destino fica marcado com um encaixe tracejado, a lista rola nas bordas e o cartão volta suave para o encaixe ao soltar.
+
 ## 0.100.9
 
 - v2 · minimapa: barra de controles com padding fixo de 8px e tamanho fixo (centralizada, não cresce ao redimensionar o widget); barra de coordenadas/horário com o mesmo raio (12px), fundo e contorno da barra de controles; largura mínima do widget = barra de controles + 16px de recuo de cada lado (256px).

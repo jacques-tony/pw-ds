@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.100.9 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.100.10 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2335,6 +2335,20 @@ html[data-ds="v2"] pw-widget-minimap:not([maximized]) .pwmm-body:not(:is([data-p
 html[data-ds="v2"] pw-widget-minimap pw-card.pwmm-info>.pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding:0 var(--pw-space-3)}
 /* largura mínima do minimapa = barra de controles (fixa) + recuo lateral de 16px de cada lado */
 html[data-ds="v2"] pw-widget-minimap:not([maximized]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){min-width:256px}
+/* v2 · estatísticas: respiro de 16px acima e abaixo do conteúdo, como Mochila e Pokémon; rolagem começa abaixo do cabeçalho */
+html[data-ds="v2"] pw-widget-stats pw-scroll.pwst-scroll:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-top:0!important;padding-top:var(--pw-space-4)!important;padding-bottom:var(--pw-space-3)!important}
+html[data-ds="v2"] pw-widget-stats .pwst-body:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{top:0!important}
+/* v2 · menus suspensos com fundo sólido e barra de rolagem minimalista do DS */
+html[data-ds="v2"] pw-control-group:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:var(--v2-panel)!important;border-color:var(--v2-border)!important;box-shadow:0 12px 32px rgba(0,0,0,.45)!important;opacity:1;backdrop-filter:none}
+html[data-ds="v2"] pw-control-group .pwcl-list:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){scrollbar-width:auto;scrollbar-color:auto}
+html[data-ds="v2"] pw-control-group .pwcl-list:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::-webkit-scrollbar{width:var(--pw-scroll-size)}
+html[data-ds="v2"] pw-control-group .pwcl-list:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::-webkit-scrollbar-track{background:var(--pw-scroll-track,transparent)}
+html[data-ds="v2"] pw-control-group .pwcl-list:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::-webkit-scrollbar-thumb{background:var(--pw-scroll-thumb);border-radius:var(--pw-scroll-radius)}
+/* arrastar item do menu: o item "sai" do menu e segue o cursor como um cartão; no lugar fica um encaixe tracejado */
+.pwst-dragcard{position:fixed;z-index:3000;pointer-events:none;box-sizing:border-box;display:flex;align-items:center;gap:8px;border-radius:8px;padding:0 10px;font:600 13px/1 var(--pw-font-body);color:var(--pw-text-primary);
+  background:var(--pw-surface-raised-top,#12306A);border:1px solid var(--pw-filament);box-shadow:0 10px 24px rgba(0,0,0,.5);transform:rotate(-2deg) scale(1.04);transition:transform .12s}
+pw-control-group.pwst-vmg pw-control-group-item.pwst-ph{opacity:1!important;background:transparent!important;outline:1px dashed var(--pw-filament);outline-offset:-2px;border-radius:8px}
+pw-control-group.pwst-vmg pw-control-group-item.pwst-ph>*{visibility:hidden}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
