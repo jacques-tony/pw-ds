@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.13
+
+- v2 · Batalha: alvo selecionado com borda vermelha de 2px; ícone de Grupo troca para "usuários com mais" do Line Icon Pack; respiro de 16px em todos os lados (topo, base e laterais iguais).
+
 ## 0.100.12
 
 - v2 · Batalha: respiro superior igual ao inferior; filtros (Jogadores, NPCs, Pokémon selvagens, Pokémon de jogadores, Grupo) como botão primary — contorno amarelo quando desligado, amarelo cheio quando ligado, hover com leve aumento; alvo selecionado visível com borda amarela de 2px (antes o estado não aparecia na v2); ícones de jogador e grupo do Line Icon Pack.
