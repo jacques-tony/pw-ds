@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.0
+
+- v2 · sinal de marca oficial dos widgets: divisória de 1px de ponta a ponta no fim do cabeçalho (amarela, com o final azul em corte diagonal), em todos os widgets sem `brand`. Os testes continuam disponíveis via atributo `brand`.
+- v2 · widget recolhido: o traçado da marca some por completo (inclusive os cantos de teste).
+
 ## 0.99.18
 
 - v2 · teste de sinal de marca: opção `brand="under-full-15"`, a divisória inteira com 1,5px.
