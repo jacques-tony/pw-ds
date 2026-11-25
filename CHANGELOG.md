@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.17
+
+- Janelas arrastáveis pelo cabeçalho (Assistente de combo, Personalizar treinador, Sair, Opções): quando abertas centralizadas, não pulam mais para o canto ao começar a arrastar — a posição centralizada é convertida em posição real antes do arraste.
+- Assistente de combo: "Salvar combo" só fica habilitado com pelo menos uma magia e o atalho preenchido; a dica explica o que falta.
+
 ## 0.100.16
 
 - v2 · Assistente de combo: cabeçalho com a mesma altura e recuo dos widgets (56px, 16px) e o ícone do assistente de combo (o mesmo da barra superior) antes do título.
