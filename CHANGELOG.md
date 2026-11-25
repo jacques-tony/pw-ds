@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.11
+- Cards/widgets v2: borda de 2px e mais clara (--v2-border #3D72CF).
+- Divisor do header: 1px na mesma cor da borda (substitui o amarelo/azul).
+- Header dos widgets mais baixo: --wb-head 56px → 44px; o hover dos ícones de fechar/bloquear/expandir mantém folga.
+
 ## 0.101.10
 - HUD v2, perfil reduzido: nome sai da linha e vai para o tooltip do avatar; avatar, vida, Lv. e XP alinhados na horizontal.
 
