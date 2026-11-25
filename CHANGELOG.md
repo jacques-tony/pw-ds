@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.18
+
+- v2 · Opções: cabeçalho no padrão dos widgets (56px, ícone de configurações, divisória da marca de 1px); menu lateral numa seção com fundo mais escuro, contorno fino e raio 10px, itens de 40px com espaçamento igual; menu sem overlay de rolagem (mantém a barra minimalista); conteúdo da direita mantém o overlay ao rolar; rodapé com Restaurar/Salvar volta a caber.
+
 ## 0.100.17
 
 - Janelas arrastáveis pelo cabeçalho (Assistente de combo, Personalizar treinador, Sair, Opções): quando abertas centralizadas, não pulam mais para o canto ao começar a arrastar — a posição centralizada é convertida em posição real antes do arraste.
