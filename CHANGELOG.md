@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.10
+- Novo ícone `position` (Line Icon Pack): três posições com seta de troca; usado em "Ordenar Pokémon".
+- HUD v2: botões de perfil reduzido e esconder atalhos em secondary outline (xs, mesmos ícones), ícone na cor padrão.
+- pw-progress (v2, no componente): borda do trilho em azul (--v2-border) no lugar do amarelo.
+
 ## 0.102.9
 - HUD v2: botão de esconder atalhos usa olho riscado (atalhos visíveis) e olho aberto (atalhos escondidos); novo ícone `eye-off` no Line Icon Pack.
 - Os botões de ação (coleta até pesca) entram e saem com a mesma animação das hotkeys, em sequência logo após elas.
