@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.100.20 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.100.21 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2390,11 +2390,11 @@ html[data-ds="v2"] pw-widget-options .pwop-x:not(:is([data-pw-theme="mewtwo"],[t
 html[data-ds="v2"] pw-widget-options .pwop-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none}
 html[data-ds="v2"] pw-widget-options pw-card.pwop-card>.pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-template-rows:minmax(0,1fr) auto!important}
 /* coluna do menu inteira mais escura, colada nas bordas do card (até a divisória do cabeçalho e o fundo), separada do conteúdo por uma linha */
-html[data-ds="v2"] pw-widget-options .pwop-nav:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:var(--v2-field);border-right:1px solid var(--v2-line);border-radius:0 0 0 9px;padding:var(--pw-space-4) var(--pw-space-3);margin:calc(var(--pw-space-6) * -1) 0 calc((var(--pw-space-6) * 2 + 36px) * -1 + 1px) calc(var(--pw-space-6) * -1 + 1px);position:relative;z-index:1}
+html[data-ds="v2"] pw-widget-options .pwop-nav:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:var(--v2-field);border-right:1px solid var(--v2-line);border-radius:0 0 0 9px;padding:var(--pw-space-4) var(--pw-space-3);margin:calc(var(--pw-space-6) * -1) 0 calc((var(--pw-space-6) * 2 + 36px) * -1 + 3px) calc(var(--pw-space-6) * -1 + 1px);position:relative;z-index:1}
 html[data-ds="v2"] pw-widget-options .pwop-foot:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-left:calc(var(--pw-space-32) + var(--pw-space-24))}
 html[data-ds="v2"] pw-widget-options pw-scroll.pwop-navs:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){-webkit-mask-image:none!important;mask-image:none!important;padding:0 var(--pw-space-3) 0 0!important}
-/* conteúdo: rola por baixo do cabeçalho, sem overlay em cima (só embaixo) */
-html[data-ds="v2"] pw-widget-options pw-scroll.pwop-body:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-top:calc(var(--pw-space-6) * -1);padding-top:var(--pw-space-6)!important;-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - var(--pw-space-6)),transparent 100%)!important;mask-image:linear-gradient(to bottom,#000 calc(100% - var(--pw-space-6)),transparent 100%)!important}
+/* conteúdo: a rolagem começa na altura do título (Geral, Interface…), sem overlay em cima (só embaixo) */
+html[data-ds="v2"] pw-widget-options pw-scroll.pwop-body:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-top:0;padding-top:0!important;-webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - var(--pw-space-6)),transparent 100%)!important;mask-image:linear-gradient(to bottom,#000 calc(100% - var(--pw-space-6)),transparent 100%)!important}
 html[data-ds="v2"] pw-widget-options pw-scroll.pwop-body>:first-child:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-top:0!important}
 html[data-ds="v2"] pw-widget-options pw-scroll.pwop-navs>:first-child:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-top:0!important}
 html[data-ds="v2"] pw-widget-options .pwop-nav pw-list:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:grid;gap:var(--pw-space-1)}

@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.21
+
+- v2 · Opções: a coluna do menu termina antes da borda azul inferior do painel; a rolagem do conteúdo começa na altura do título da categoria (Geral, Interface…), não sobe até o cabeçalho.
+
 ## 0.100.20
 
 - v2 · Opções: coluna do menu 1px para dentro, deixando a borda azul do painel aparecer à esquerda e embaixo; 12px entre o item selecionado e a barra de rolagem; conteúdo rola por baixo do cabeçalho, sem overlay no topo (o de baixo continua).
