@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.100.22 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.101.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2224,6 +2224,57 @@ html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-c
 html[data-ds="v2"] [brand="tl"]>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{left:0;top:0;border-top-left-radius:10px}
 html[data-ds="v2"] [brand="br"]>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{right:0;bottom:0;border-bottom-right-radius:10px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='30,30 15,30 30,15' fill='%231D7AEE'/%3E%3Cpolygon points='11,30 3,30 30,3 30,11' fill='%23FFE14D'/%3E%3C/svg%3E")}
 html[data-ds="v2"] [brand="br-sm"]>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{right:0;bottom:0;width:24px;height:24px;border-bottom-right-radius:10px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='30,30 15,30 30,15' fill='%231D7AEE'/%3E%3Cpolygon points='11,30 3,30 30,3 30,11' fill='%23FFE14D'/%3E%3C/svg%3E")}
+/* HUD: elementos só da v2 ficam ocultos na v1 */
+pw-hud .pwhd-actions.v2,pw-hud .pwhd-cdov{display:none}
+html:not([data-ds="v2"]) pw-hud .pwhd-toggle .pwbt-icon{display:none}
+/* ===== v2 · HUD inferior compacta (2 linhas): perfil + equipe + alternadores / atalhos + ações ===== */
+html[data-ds="v2"] pw-hud:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--hd-card-w:64px;--hd-card-h:64px;--hd-slot:40px}
+html[data-ds="v2"] pw-hud .pwhd-body:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"top top foot" "hot acts acts";gap:var(--pw-space-2) var(--pw-space-3);align-items:center}
+html[data-ds="v2"] pw-hud .pwhd-top:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:top;align-items:center;gap:var(--pw-space-2)}
+html[data-ds="v2"] pw-hud .pwhd-hotbar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:hot;gap:var(--pw-space-1);margin:0!important}
+html[data-ds="v2"] pw-hud .pwhd-actions.v2:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:acts;display:flex;gap:var(--pw-space-2);padding-left:var(--pw-space-3);border-left:1px solid var(--v2-line)}
+html[data-ds="v2"] pw-hud[hotkeys="hidden"] .pwhd-actions.v2:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none}
+html[data-ds="v2"] pw-hud .pwhd-actions:is(.in,.out):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none!important}
+html[data-ds="v2"] pw-hud .pwhd-foot:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:foot;flex-direction:column;gap:var(--pw-space-1);margin:0!important}
+html[data-ds="v2"] pw-hud .pwhd-toggle:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--bh:28px;--bpx:0px}
+html[data-ds="v2"] pw-hud .pwhd-toggle>button:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:28px;border:1px solid var(--v2-line)!important;border-radius:6px;background:var(--v2-field)!important;color:var(--v2-volt)!important}
+html[data-ds="v2"] pw-hud .pwhd-toggle .pwbt-label:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none}
+/* perfil: avatar 64px, nome + nível, barras de 12px com o valor dentro */
+html[data-ds="v2"] pw-hud pw-card.pwhd-profile:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:auto!important;flex:1 1 300px;min-width:300px;height:auto!important;align-self:center;background:none!important}
+html[data-ds="v2"] pw-hud pw-card.pwhd-profile:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>svg.pwc-frame{display:none}
+html[data-ds="v2"] pw-hud pw-card.pwhd-profile>.pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding:0!important;gap:var(--pw-space-3)!important;align-items:center!important;grid-template-columns:64px minmax(0,1fr)!important}
+html[data-ds="v2"] pw-hud .pwhd-avatar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:64px!important;height:64px!important;border-radius:8px;overflow:hidden;border:1px solid var(--v2-line)}
+html[data-ds="v2"] pw-hud .pwhd-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:grid;gap:4px;min-width:0}
+html[data-ds="v2"] pw-hud .pwhd-name:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+html[data-ds="v2"] pw-hud .pwhd-name b:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){font:700 16px/1.1 "Archivo",system-ui,sans-serif;color:var(--v2-paper);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+html[data-ds="v2"] pw-hud .pwhd-name span:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){font:500 13px/1 "Archivo",system-ui,sans-serif;color:var(--v2-muted);white-space:nowrap}
+html[data-ds="v2"] pw-hud .pwhd-stat:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--pr-h:12px}
+html[data-ds="v2"] pw-hud .pwhd-stat:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-template-columns:1fr!important}
+html[data-ds="v2"] pw-hud .pwhd-stat .pwp-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:contents}
+html[data-ds="v2"] pw-hud .pwhd-stat .pwp-label:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none!important}
+html[data-ds="v2"] pw-hud .pwhd-stat .pwp-value:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:1/1;z-index:2;align-self:center;justify-self:center;font:700 10px/12px "Archivo",system-ui,sans-serif!important;color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.6)}
+html[data-ds="v2"] pw-hud .pwhd-stat .pwp-track:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:1/1}
+html[data-ds="v2"] pw-hud .pwhd-stat .pwp-track:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:var(--v2-track)!important;border-radius:999px!important;height:12px!important}
+html[data-ds="v2"] pw-hud .pwhd-stat .pwp-val:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){font:700 10px/12px "Archivo",system-ui,sans-serif!important}
+/* equipe: cards quadrados de 64px, só a barra de vida e o recarregamento cobrindo o card */
+html[data-ds="v2"] pw-hud pw-card.pwhd-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:64px!important;height:64px!important;border-radius:8px}
+html[data-ds="v2"] pw-hud pw-card.pwhd-card[highlight]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){box-shadow:0 0 0 2px var(--v2-volt)!important}
+html[data-ds="v2"] pw-hud .pwhd-card :is(.typ,.stars,.bar.cd,.bar>span):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none!important}
+html[data-ds="v2"] pw-hud .pwhd-card .bars:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:absolute;left:4px;right:4px;bottom:4px;padding:0;margin:0}
+html[data-ds="v2"] pw-hud .pwhd-card .bar pw-progress:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--pr-h:5px}
+html[data-ds="v2"] pw-hud .pwhd-card .key:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){left:3px;right:auto;top:3px;font-size:9px}
+html[data-ds="v2"] pw-hud .pwhd-card.empty:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:transparent!important;border:1px dashed var(--v2-border);border-radius:8px}
+html[data-ds="v2"] pw-hud .pwhd-card.empty:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>svg.pwc-frame{display:none}
+html[data-ds="v2"] pw-hud .pwhd-card.empty .pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{content:"+";position:absolute;inset:0;display:grid;place-items:center;font:500 22px/1 "Archivo",sans-serif;color:var(--v2-muted)}
+html[data-ds="v2"] pw-hud .pwhd-card.empty .pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:none!important}
+html[data-ds="v2"] pw-hud .pwhd-card.empty:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--card-bg-image:none}
+html[data-ds="v2"] pw-hud .pwhd-cdov:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:grid;place-items:center;position:absolute;inset:0;z-index:4;border-radius:8px;pointer-events:none;font:800 15px/1 "Archivo",sans-serif;color:var(--v2-paper);text-shadow:0 1px 2px rgba(0,0,0,.7);
+  background:linear-gradient(to top,rgba(4,18,46,.72) calc(var(--cd) * 100%),rgba(4,18,46,.25) calc(var(--cd) * 100%));transition:background .9s linear}
+html[data-ds="v2"] pw-hud .pwhd-cdov[hidden]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none}
+/* atalhos: slots de 40px */
+html[data-ds="v2"] pw-hud pw-card.pwhd-slot:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:40px!important;height:40px!important}
+html[data-ds="v2"] pw-hud .pwhd-actions.v2 pw-button.pwhd-act:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--bh:36px;--bic:16px;--bpx:0px}
+html[data-ds="v2"] pw-hud .pwhd-actions.v2 pw-button.pwhd-act>button:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:44px}
 /* arrastar item da mochila + diálogo "Mover itens" */
 .pwbg-ghost{position:fixed;z-index:2000;width:var(--pw-space-8);height:var(--pw-space-8);transform:translate(-50%,-50%) scale(1.1);pointer-events:none;filter:drop-shadow(0 6px 10px var(--pw-black-a55))}
 .pwbg-ghost>img,.pwbg-ghost>svg{width:100%;height:100%;object-fit:contain}

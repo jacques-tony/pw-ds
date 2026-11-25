@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.0
+
+- v2 · HUD inferior compacta em duas linhas: (1) avatar 64px, nome + nível, barras de vida (verde) e XP (amarela, padrão do DS) de 12px com o valor dentro, 6 cards de Pokémon quadrados de 64px (atalho Ctrl+N, só barra de vida e recarregamento cobrindo o card com os segundos), vaga vazia tracejada com "+", e os alternadores Perfil/Hotkeys como botões pequenos empilhados; (2) atalhos de 1 a F12 com setas de navegação e, ao lado, separados por uma linha, os botões de ação do jogador. A v1 não muda.
+
 ## 0.100.22
 
 - v2 · Opções: a coluna do menu termina 1px antes da borda inferior do painel (antes passava 3px), com canto arredondado de 11px acompanhando a borda.
