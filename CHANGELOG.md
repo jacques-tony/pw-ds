@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.3
+- HUD v2: ações agora são Coleta automática, Com mira, Pokédex, Ordenar Pokémon e Pescar (Shift+F).
+- Todas as ações aceitam atalho próprio: botão direito → pressione a combinação (Esc cancela, Backspace remove); o atalho aparece num selo no botão.
+- Novos ícones Line Icon Pack: fishing, pokedex, reorder.
+
 ## 0.101.2
 - HUD v2: deixa de colar na borda inferior; vira card com todos os cantos arredondados, com a mesma distância da borda que a navbar tem do topo.
 
