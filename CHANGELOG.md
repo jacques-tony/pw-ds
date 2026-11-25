@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.1
+- v2: degradê das bordas do mapa 50% menor e igual nos quatro lados; sombras de rolagem de mochila, loot e Pokémon 50% menores (topo 10px, base 24px).
+
 ## 0.102.0
 - pw-button: novo tamanho `size="xs"` (24px, ícone 14px, raio 5px). Na v2, ghost xs = fundo field, borda line, ícone amarelo.
 - HUD v2: botões de perfil e atalhos usam `size="xs"` (remove override local).
