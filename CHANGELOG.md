@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.22
+
+- v2 · Opções: a coluna do menu termina 1px antes da borda inferior do painel (antes passava 3px), com canto arredondado de 11px acompanhando a borda.
+
 ## 0.100.21
 
 - v2 · Opções: a coluna do menu termina antes da borda azul inferior do painel; a rolagem do conteúdo começa na altura do título da categoria (Geral, Interface…), não sobe até o cabeçalho.
