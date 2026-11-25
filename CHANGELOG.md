@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.18
+- Magnetismo v2: espaço entre widgets conectados passa a 2px; widgets param a 2px das bordas da tela (topo, base e laterais).
+
 ## 0.101.17
 - HUD v2: primeiro atalho alinhado com o avatar e com o padding de 16px da HUD, nos perfis completo e reduzido.
 
