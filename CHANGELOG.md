@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.5
+- Tokens v2 mais claros: panel #102C63, degradê panel-top #16367A → panel-bot #0B2456, strip #173C7C, tab #1A4185, slot #0A2452, field #091F4A, track #061838.
+
 ## 0.101.4
 - HUD v2: o atalho de cada ação agora é um pw-button primary outline sobre o botão; clique nele (ou botão direito na ação) para definir a combinação.
 

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.101.4 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.101.5 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -1993,8 +1993,8 @@ pw-widget-exit .pwex-acts pw-button{width:100%}
 .dsver select:focus-visible{outline:2px solid #FFE14D;outline-offset:2px}.dsver option{color:#111}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 html[data-ds="v2"]{
-  --v2-panel:#0A2352;--v2-panel-top:#0C2859;--v2-panel-bot:#081E48;--v2-strip:#0E2C66;--v2-border:#2C5AB0;--v2-line:rgba(157,240,255,.16);
-  --v2-card:rgba(4,18,46,.55);--v2-slot:#061A3E;--v2-field:#051634;--v2-track:#04122E;--v2-tab:#12306A;
+  --v2-panel:#102C63;--v2-panel-top:#16367A;--v2-panel-bot:#0B2456;--v2-strip:#173C7C;--v2-border:#2C5AB0;--v2-line:rgba(157,240,255,.16);
+  --v2-card:rgba(4,18,46,.55);--v2-slot:#0A2452;--v2-field:#091F4A;--v2-track:#061838;--v2-tab:#1A4185;
   --v2-paper:#F2F0EA;--v2-muted:#A6B1CE;--v2-volt:#FFE14D;--v2-on-volt:#041330;--v2-blue:#1D7AEE;--v2-green:#3DDC84;--v2-xp:#4888F8;--v2-red:#FF5A5A;--v2-amber:#F0A35A;
   --pw-font-title:"Archivo",system-ui,sans-serif;--pw-font-body:"Archivo",system-ui,sans-serif;--f-tab:"Archivo",system-ui,sans-serif;
   --pw-metal-0:var(--v2-volt);--pw-metal-1:var(--v2-volt);--pw-metal-2:var(--v2-volt);--pw-metal-3:var(--v2-volt);
