@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.14
+- HUD: corrige a animação entre perfis — as posições antigas eram lidas depois da troca (o CSS já tinha mudado) e um `transform:none!important` no avatar anulava o movimento. Agora avatar, barras, cards e altura animam nos dois sentidos.
+
 ## 0.102.13
 - HUD: troca entre perfil completo e compacto animada (FLIP suave, 460ms): avatar, barras, Lv., cards dos Pokémon e botões deslizam para a nova posição; o que aparece entra com fade e o painel lateral dos Pokémon desliza.
 - pw-progress v2 (componente): valor dentro da barra em duas cores — escuro sobre o preenchimento e claro sobre o trilho, sem sombra.

@@ -2509,11 +2509,11 @@ html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-profile .pwhd-name>b:not(:is(
 html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-profile .pwhd-name>span:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-column:3;grid-row:1;white-space:nowrap}
 html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-profile .pwhd-stat.hp:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-column:2!important;grid-row:1}
 html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-profile .pwhd-stat:not(.hp):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-column:4!important;grid-row:1}
-html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-profile .pwhd-avatar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){top:50%!important;transform:translateY(-50%)}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-profile .pwhd-avatar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){top:auto!important}
 /* v2: perfil reduzido sem nome (fica no tooltip do avatar), tudo na mesma linha */
 html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-profile .pwhd-name>b:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none!important}
 html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-profile>.pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:var(--pw-space-3)}
-html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-profile .pwhd-avatar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:static!important;transform:none!important;flex:none}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-profile .pwhd-avatar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:static!important;flex:none}
 html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-profile .pwhd-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)!important;flex:1 1 auto!important;width:auto!important;grid-template-rows:auto!important;grid-auto-rows:0;row-gap:0!important;align-self:center!important;align-content:center!important}
 html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-profile .pwhd-stat.hp:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-column:1!important}
 html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-profile .pwhd-name>span:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-column:2}
@@ -6206,12 +6206,12 @@ class PWHud extends HTMLElement{
     if(this.getAttribute('shortcuts')!=='false')document.addEventListener('keydown',this._key);
     this.render();this._emitTeam()}
   disconnectedCallback(){document.removeEventListener('keydown',this._hk,true);document.removeEventListener('pointerdown',this._doc);document.removeEventListener('keydown',this._key)}
-  attributeChangedCallback(n,o,v){if(!this._init||o===v)return;this._morph(()=>this._sync());if(n==='profile')this._emitTeam()}
+  attributeChangedCallback(n,o,v){if(!this._init||o===v||this._mute)return;this._morph(()=>this._sync(),n,o,v);if(n==='profile')this._emitTeam()}
   _emitTeam(){this.dispatchEvent(new CustomEvent('profilechange',{bubbles:true,detail:{profile:this.profile,team:this._data.team||[]}}));document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>{if(p._from)p._from(this)})}
   /* troca de modo com transição suave da altura (FLIP) */
-  _morph(fn){var red=matchMedia('(prefers-reduced-motion: reduce)').matches,h0=this.offsetHeight,SEL='.pwhd-avatar,.pwhd-stat,.pwhd-name>b,.pwhd-name>span,.pwhd-foot,.pwhd-card,.pwhd-hot,.pwhd-actions.v2',B=new Map();
+  _morph(fn,an,ao,av){var red=matchMedia('(prefers-reduced-motion: reduce)').matches;if(an&&!red){this._mute=1;if(ao==null)this.removeAttribute(an);else this.setAttribute(an,ao);this._mute=0}var h0=this.offsetHeight,SEL='.pwhd-avatar,.pwhd-stat,.pwhd-name>b,.pwhd-name>span,.pwhd-foot,.pwhd-card,.pwhd-hot,.pwhd-actions.v2',B=new Map();
     if(!red)this.querySelectorAll(SEL).forEach(e=>{var r=e.getBoundingClientRect();if(r.width)B.set(e,r)});
-    fn();var h1=this.offsetHeight;if(red)return;var D=460,EZ='cubic-bezier(.33,1,.68,1)';
+    if(an&&!red){this._mute=1;if(av==null)this.removeAttribute(an);else this.setAttribute(an,av);this._mute=0}fn();var h1=this.offsetHeight;if(red)return;var D=460,EZ='cubic-bezier(.33,1,.68,1)';
     if(h0!==h1)this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:D,easing:EZ});
     var S=(this.getBoundingClientRect().width/(this.offsetWidth||1))||1;
     this.querySelectorAll(SEL).forEach(e=>{var a=e.getBoundingClientRect();if(!a.width)return;var b=B.get(e);
