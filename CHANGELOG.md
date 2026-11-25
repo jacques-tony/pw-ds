@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.4
+- HUD v2: o atalho de cada ação agora é um pw-button primary outline sobre o botão; clique nele (ou botão direito na ação) para definir a combinação.
+
 ## 0.101.3
 - HUD v2: ações agora são Coleta automática, Com mira, Pokédex, Ordenar Pokémon e Pescar (Shift+F).
 - Todas as ações aceitam atalho próprio: botão direito → pressione a combinação (Esc cancela, Backspace remove); o atalho aparece num selo no botão.
