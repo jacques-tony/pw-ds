@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.13
+- HUD: troca entre perfil completo e compacto animada (FLIP suave, 460ms): avatar, barras, Lv., cards dos Pokémon e botões deslizam para a nova posição; o que aparece entra com fade e o painel lateral dos Pokémon desliza.
+- pw-progress v2 (componente): valor dentro da barra em duas cores — escuro sobre o preenchimento e claro sobre o trilho, sem sombra.
+
 ## 0.102.12
 - pw-progress v2: borda do trilho mais suave (azul da borda a 45%).
 - HUD v2: espaço entre barras e cards dos Pokémon reduzido para --pw-space-3 (12px).

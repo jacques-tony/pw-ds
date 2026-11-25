@@ -2605,6 +2605,10 @@ html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-foot:not(:is([data-pw-t
 html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-team:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-left:var(--pw-space-3)!important}
 html[data-ds="v2"] pw-hud[hotkeys="hidden"] .pwhd-body:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){row-gap:0!important;gap:0 var(--pw-space-3)!important}
 html[data-ds="v2"] pw-hud[hotkeys="hidden"]:not(.pwhd-anim) .pwhd-body>:is(.pwhd-hot,.pwhd-slots,.pwhd-bar):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){height:0;overflow:hidden}
+/* v2 (componente): valor dentro da barra com duas cores — escuro sobre o preenchimento, claro sobre o trilho */
+html[data-ds="v2"] pw-progress[value-inside] .pwp-value:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){justify-self:stretch!important;background:linear-gradient(90deg,var(--v2-on-volt) calc(var(--pr-v,0) * 100%),var(--v2-paper) 0);-webkit-background-clip:text;background-clip:text;color:transparent!important;-webkit-text-fill-color:transparent;text-shadow:none!important;margin-right:0!important;padding-inline:8px}
+html[data-ds="v2"] pw-progress[value-inside]:not([layout="inline"]) .pwp-value:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] pw-hud .pwhd-stat .pwp-value:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){text-align:center;padding-inline:0}
+html[data-ds="v2"] pw-progress[layout="inline"][value-inside]:not(.pwhd-stat) .pwp-value:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){text-align:right}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
@@ -6205,9 +6209,17 @@ class PWHud extends HTMLElement{
   attributeChangedCallback(n,o,v){if(!this._init||o===v)return;this._morph(()=>this._sync());if(n==='profile')this._emitTeam()}
   _emitTeam(){this.dispatchEvent(new CustomEvent('profilechange',{bubbles:true,detail:{profile:this.profile,team:this._data.team||[]}}));document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>{if(p._from)p._from(this)})}
   /* troca de modo com transição suave da altura (FLIP) */
-  _morph(fn){var h0=this.offsetHeight;fn();var h1=this.offsetHeight;if(matchMedia('(prefers-reduced-motion: reduce)').matches||h0===h1)return;
-    this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:300,easing:'cubic-bezier(.2,.8,.2,1)'});
-    this._body.animate([{opacity:.25,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:280,easing:'ease-out'})}
+  _morph(fn){var red=matchMedia('(prefers-reduced-motion: reduce)').matches,h0=this.offsetHeight,SEL='.pwhd-avatar,.pwhd-stat,.pwhd-name>b,.pwhd-name>span,.pwhd-foot,.pwhd-card,.pwhd-hot,.pwhd-actions.v2',B=new Map();
+    if(!red)this.querySelectorAll(SEL).forEach(e=>{var r=e.getBoundingClientRect();if(r.width)B.set(e,r)});
+    fn();var h1=this.offsetHeight;if(red)return;var D=460,EZ='cubic-bezier(.33,1,.68,1)';
+    if(h0!==h1)this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:D,easing:EZ});
+    var S=(this.getBoundingClientRect().width/(this.offsetWidth||1))||1;
+    this.querySelectorAll(SEL).forEach(e=>{var a=e.getBoundingClientRect();if(!a.width)return;var b=B.get(e);
+      if(!b){e.animate([{opacity:0,transform:'translateY(6px) scale(.96)'},{opacity:1,transform:'none'}],{duration:D,delay:120,easing:EZ,fill:'backwards'});return}
+      var dx=(b.left-a.left)/S,dy=(b.top-a.top)/S;if(Math.abs(dx)<.5&&Math.abs(dy)<.5&&Math.abs(b.width-a.width)<.5&&Math.abs(b.height-a.height)<.5)return;
+      if(e.classList.contains('pwhd-stat')){e.animate([{transform:'translate('+dx+'px,'+dy+'px)',width:b.width/S+'px'},{transform:'none',width:a.width/S+'px'}],{duration:D,easing:EZ})}
+      else e.animate([{transformOrigin:'0 0',transform:'translate('+dx+'px,'+dy+'px) scale('+(b.width/a.width)+','+(b.height/a.height)+')'},{transformOrigin:'0 0',transform:'none'}],{duration:D,easing:EZ})});
+    document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>{if(p.offsetWidth)p.animate([{opacity:0,transform:'translateX(-8px)'},{opacity:1,transform:'none'}],{duration:D,delay:100,easing:EZ,fill:'backwards'})})}
   _sync(){var c=this.profile==='compact',hid=this.getAttribute('hotkeys')==='hidden';
     var a=this.querySelector('[data-hd="profile"]'),bs=this.querySelectorAll('[data-hd="hotkeys"]');
     var L=(x,t)=>{var l=x.querySelector('.pwbt-label');if(l)l.textContent=t};if(a){L(a,c?'Perfil completo':'Perfil reduzido');a.setAttribute('data-tip',c?'Voltar ao perfil completo com os cards dos Pokémon':'Usar perfil horizontal reduzido e cards dos Pokémon na lateral');a.setAttribute('aria-pressed',c?'true':'false')}
