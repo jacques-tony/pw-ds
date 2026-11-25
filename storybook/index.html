@@ -2498,7 +2498,9 @@ html[data-ds="v2"] [brand="br-sm"]>pw-card.pwbg-card:not(:is([data-pw-theme="mew
 pw-hud .pwhd-actions.v2,pw-hud .pwhd-cdov{display:none}
 html:not([data-ds="v2"]) pw-hud .pwhd-toggle .pwbt-icon{display:none}
 /* ===== v2 · HUD inferior compacta (2 linhas): perfil + equipe + alternadores / atalhos + ações ===== */
-html[data-ds="v2"] pw-hud:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--hd-card-w:64px;--hd-card-h:64px;--hd-slot:40px}
+html[data-ds="v2"] pw-hud:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--hd-card-w:64px;--hd-card-h:64px;--hd-slot:40px;width:910px!important;max-width:calc(100% - 16px)}
+html[data-ds="v2"] pw-hud .pwhd-slots:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){gap:4px!important}
+html[data-ds="v2"] pw-hud .pwhd-card.ready:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){animation:pwsp-ready .45s var(--card-ease)}
 html[data-ds="v2"] pw-hud .pwhd-body:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"top top foot" "hot acts acts";gap:var(--pw-space-2) var(--pw-space-3);align-items:center}
 html[data-ds="v2"] pw-hud .pwhd-top:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:top;align-items:center;gap:var(--pw-space-2)}
 html[data-ds="v2"] pw-hud .pwhd-hotbar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:hot;gap:var(--pw-space-1);margin:0!important}
@@ -2538,8 +2540,7 @@ html[data-ds="v2"] pw-hud .pwhd-card.empty:not(:is([data-pw-theme="mewtwo"],[the
 html[data-ds="v2"] pw-hud .pwhd-card.empty .pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{content:"+";position:absolute;inset:0;display:grid;place-items:center;font:500 22px/1 "Archivo",sans-serif;color:var(--v2-muted)}
 html[data-ds="v2"] pw-hud .pwhd-card.empty .pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:none!important}
 html[data-ds="v2"] pw-hud .pwhd-card.empty:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--card-bg-image:none}
-html[data-ds="v2"] pw-hud .pwhd-cdov:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:grid;place-items:center;position:absolute;inset:0;z-index:4;border-radius:8px;pointer-events:none;font:800 15px/1 "Archivo",sans-serif;color:var(--v2-paper);text-shadow:0 1px 2px rgba(0,0,0,.7);
-  background:linear-gradient(to top,rgba(4,18,46,.72) calc(var(--cd) * 100%),rgba(4,18,46,.25) calc(var(--cd) * 100%));transition:background .9s linear}
+html[data-ds="v2"] pw-hud .pwhd-cdov:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:grid;place-items:center;position:absolute;inset:0;z-index:4;border-radius:8px;pointer-events:none;font:800 16px/1 "Archivo",sans-serif;color:var(--v2-paper);text-shadow:0 1px 2px rgba(0,0,0,.8);font-variant-numeric:tabular-nums;background:conic-gradient(transparent calc(var(--cdp,0) * 360deg),rgba(4,18,46,.68) 0)}
 html[data-ds="v2"] pw-hud .pwhd-cdov[hidden]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none}
 /* atalhos: slots de 40px */
 html[data-ds="v2"] pw-hud pw-card.pwhd-slot:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:40px!important;height:40px!important}
@@ -6037,7 +6038,7 @@ customElements.define('pw-navbar',PWNavbar);
 /* ---------- pw-hud: HUD inferior (perfil, equipe, atalhos) + pw-party (equipe na lateral) ---------- */
 var PW_HUD_MENU=['Usar em si','Usar no alvo','Usar no pokémon','Com mira','Equipar','-','Definir atalho','Limpar'];
 /* teclas padrão dos atalhos: 1…9, 0 e depois F1…F12 */
-var PW_HUD_KEYS=['1','2','3','4','5','6','7','8','9','0','F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12'];
+var PW_HUD_KEYS=['F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','F11','F12','1','2','3','4','5','6','7','8','9','0'];
 function pwHudKeys(list){(list||[]).forEach((x,i)=>{if(i>=PW_HUD_KEYS.length)return;if(!x)list[i]={key:PW_HUD_KEYS[i]};else if(!('key' in x))x.key=PW_HUD_KEYS[i]});return list}
 function pwHkEmpty(h){return !h||!(h.image||h.icon||h.label)}
 /* nome legível de uma tecla a partir do KeyboardEvent; null para tecla só modificadora */
@@ -6101,7 +6102,7 @@ class PWHud extends HTMLElement{
       var v=Math.max(0,Math.min(100,t.hp==null?100:t.hp))/100,cd=t.cd?Math.max(0,Math.min(1,(t.cdLeft||0)/t.cd)):0;
       return '<pw-card variant="tertiary" tone="neutral" appearance="filled" interactive class="pwhd-card" data-team="'+i+'"'+((t.card||t.image)?' bg-image="'+E(t.card||t.image)+'" bg-position="top"':'')+''+(t.active?' selected highlight':'')+' aria-label="'+E(t.name)+', HP '+Math.round(v*100)+'%, atalho '+E(t.hotkey||'Ctrl+'+(i+1))+'" data-tip-title="'+E(t.name)+'" data-tip="'+E((t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v*100)+'%')+'">'+
         '<pw-badge class="key" tone="neutral" size="xs">'+E(t.hotkey||'Ctrl+'+(i+1))+'</pw-badge>'+((t.types||t.type)?'<span class="typ">'+(t.types||[t.type]).filter(Boolean).slice(0,2).map(y=>'<pw-icon type="'+E(y)+'" size="2xs"></pw-icon>').join('')+'</span>':'')+pwHudStars(t.stars)+
-        '<span class="bars"><span class="bar"><pw-progress variant="hp" value="'+Math.round(v*100)+'"></pw-progress><span>'+Math.round(v*100)+'%</span></span><span class="bar cd"><pw-progress tone="info" value="'+Math.round(cd*100)+'"></pw-progress><span>'+(t.cdLeft?'CD '+t.cdLeft+'s':'Sem CD')+'</span></span></span><span class="pwhd-cdov" style="--cd:'+cd+'"'+(t.cdLeft?'':' hidden')+'>'+(t.cdLeft||'')+'s</span></pw-card>'}).join('');
+        '<span class="bars"><span class="bar"><pw-progress variant="hp" value="'+Math.round(v*100)+'"></pw-progress><span>'+Math.round(v*100)+'%</span></span><span class="bar cd"><pw-progress tone="info" value="'+Math.round(cd*100)+'"></pw-progress><span>'+(t.cdLeft?'CD '+t.cdLeft+'s':'Sem CD')+'</span></span></span><span class="pwhd-cdov" hidden></span></pw-card>'}).join('');
     pwHudKeys(d.hotkeys);var slots=(d.hotkeys||[]).map((h,i)=>{var kb=h&&h.key?'<span class="kb" aria-hidden="true">'+E(h.key)+'</span>':'';
       if(pwHkEmpty(h))return '<pw-card variant="tertiary" tone="neutral" interactive state="idle" class="pwhd-slot empty" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="Atalho vazio '+(i+1)+(h&&h.key?', tecla '+E(h.key):'')+'. Botão direito para opções" data-tip="'+(h&&h.key?'Tecla '+E(h.key)+' · ':'')+'Botão direito para definir atalho">'+pwIcon('poke')+kb+'</pw-card>';
       return '<pw-card variant="tertiary" tone="neutral" interactive state="idle" class="pwhd-slot" data-slot="'+i+'" aria-haspopup="menu" aria-expanded="false" aria-label="'+E(h.label||'Atalho '+(i+1))+(h.count!=null?', '+h.count+' unidades':'')+(h.key?', tecla '+E(h.key):'')+'" data-tip-title="'+E(h.label||'')+'" data-tip="'+(h.key?'Tecla '+E(h.key)+' · ':'')+'Clique para usar · botão direito para opções">'+
@@ -6115,7 +6116,7 @@ class PWHud extends HTMLElement{
       '<div class="pwhd-team" role="group" aria-label="Equipe">'+team+'</div></div>'+
       '<div class="pwhd-hotbar"><pw-button class="pwhd-arrow" variant="ghost" size="sm" fx="none" particles="0" icon="chevron-left" data-dir="-1" data-label="Atalhos anteriores"></pw-button><div class="pwhd-slots" role="toolbar" aria-label="Atalhos">'+slots+'</div><pw-button class="pwhd-arrow" variant="ghost" size="sm" fx="none" particles="0" icon="chevron-right" data-dir="1" data-label="Próximos atalhos"></pw-button></div>'+
       '<div class="pwhd-actions v2">'+acts+'</div>'+
-      '<div class="pwhd-foot"><pw-button class="pwhd-toggle" variant="ghost" size="sm" fx="none" particles="0" icon="chevron-up" data-hd="profile" data-tip-pos="top">Perfil</pw-button><pw-button class="pwhd-toggle" variant="ghost" size="sm" fx="none" particles="0" icon="minus" data-hd="hotkeys">Hotkeys</pw-button></div>';
+      '<div class="pwhd-foot"><pw-button class="pwhd-toggle" variant="ghost" size="sm" fx="none" particles="0" icon="chevron-up" data-hd="profile" data-tip="Perfil reduzido" data-tip-pos="top">Perfil</pw-button><pw-button class="pwhd-toggle" variant="ghost" size="sm" fx="none" particles="0" icon="minus" data-hd="hotkeys" data-tip="Esconder atalhos" data-tip-pos="top">Hotkeys</pw-button></div>';
     this.querySelectorAll('pw-button[data-label]').forEach(b=>{var i=b.querySelector('button');if(i)i.setAttribute('aria-label',b.dataset.label)});this._acts();
     var sl=this.querySelector('.pwhd-slots');sl.addEventListener('scroll',()=>this._arrows(),{passive:true});if(this._sro)this._sro.disconnect();this._sro=new ResizeObserver(()=>this._arrows());this._sro.observe(sl);this._sync();requestAnimationFrame(()=>this._arrows())}
   /* hotkeys entram/saem como cartas de um baralho: balanço sutil em cascata */
@@ -6206,10 +6207,18 @@ class PWHud extends HTMLElement{
     if(action==='Limpar'){this._data.hotkeys[i]={key:h?h.key:null};var sc=this.querySelector('.pwhd-slots').scrollLeft;this.render();this.querySelector('.pwhd-slots').scrollLeft=sc}}
 }
 /* atualiza vida/recarga de um Pokémon sem recriar a HUD (para dados ao vivo) */
+/* recarregamento após uma ação: varredura circular + contador no centro do card (como nas magias) */
+PWHud.prototype.cooldown=function(i,sec){var t=(this._data.team||[])[i];if(!t||!t.name)return;this._cds=this._cds||{};var end=performance.now()+sec*1000,self=this;t.cd=sec;
+  if(this._cds[i])cancelAnimationFrame(this._cds[i]);
+  var step=()=>{var c=self.querySelector('.pwhd-card[data-team="'+i+'"]'),ov=c&&c.querySelector('.pwhd-cdov'),left=Math.max(0,end-performance.now());
+    if(ov){ov.hidden=!left;ov.style.setProperty('--cdp',(1-left/(sec*1000)).toFixed(4));var tx=left>=1000?Math.ceil(left/1000)+'s':(left/1000).toFixed(1)+'s';if(ov.textContent!==tx)ov.textContent=tx}
+    var sl=Math.ceil(left/1000);if(sl!==t.cdLeft)self.updatePokemon(i,{cdLeft:sl});
+    if(left>0)self._cds[i]=requestAnimationFrame(step);else{delete self._cds[i];if(c){c.classList.add('ready');setTimeout(()=>c.classList.remove('ready'),450)}}};
+  step()};
 PWHud.prototype.updatePokemon=function(i,patch){var t=(this._data.team||[])[i];if(!t||!t.name)return;Object.assign(t,patch||{});
   var v=Math.max(0,Math.min(100,t.hp==null?100:t.hp)),cd=t.cd?Math.max(0,Math.min(1,(t.cdLeft||0)/t.cd)):0,c=this.querySelector('.pwhd-card[data-team="'+i+'"]');
   if(c){var b=c.querySelectorAll('.bar');if(b[0]){b[0].querySelector('pw-progress').setAttribute('value',Math.round(v));b[0].querySelector('span').textContent=Math.round(v)+'%'}
-    if(b[1]){var pp=b[1].querySelector('pw-progress'),nv=Math.round(cd*100);if(nv>(+pp.getAttribute('value')||0)){b[1].classList.add('cd-jump');requestAnimationFrame(()=>requestAnimationFrame(()=>b[1].classList.remove('cd-jump')))}pp.setAttribute('value',nv);b[1].querySelector('span').textContent=t.cdLeft?'CD '+t.cdLeft+'s':'Sem CD'}var ov=c.querySelector('.pwhd-cdov');if(ov){ov.hidden=!t.cdLeft;ov.textContent=(t.cdLeft||'')+'s';ov.style.setProperty('--cd',cd)}
+    if(b[1]){var pp=b[1].querySelector('pw-progress'),nv=Math.round(cd*100);if(nv>(+pp.getAttribute('value')||0)){b[1].classList.add('cd-jump');requestAnimationFrame(()=>requestAnimationFrame(()=>b[1].classList.remove('cd-jump')))}pp.setAttribute('value',nv);b[1].querySelector('span').textContent=t.cdLeft?'CD '+t.cdLeft+'s':'Sem CD'}
     c.setAttribute('aria-label',t.name+', HP '+Math.round(v)+'%, atalho '+(t.hotkey||'Ctrl+'+(i+1)));if(c.hasAttribute('data-tip'))c.setAttribute('data-tip',(t.level?'Nv. '+t.level+' · ':'')+'HP '+Math.round(v)+'%')}
   document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>{var pp=p.querySelector('.pwpt[data-team="'+i+'"] pw-progress');if(pp)pp.setAttribute('value',Math.round(v))})};
 PWHud.prototype._rerender=function(){var s=this.querySelector('.pwhd-slots'),sc=s?s.scrollLeft:0;this.render();var n=this.querySelector('.pwhd-slots');if(n)n.scrollLeft=sc};
@@ -7913,3 +7922,6 @@ d.innerHTML='<div style="display:flex;align-items:flex-end;gap:8px;height:40px">
 <script>(function(){setInterval(()=>{document.querySelectorAll('pw-widget-minimap').forEach(m=>{if(!m.time)return;var t=m.time.split(':').map(Number),mm=t[0]*60+t[1]+1;m.time=String(Math.floor(mm/60)%24).padStart(2,'0')+':'+String(mm%60).padStart(2,'0')})},5000)})();</script>
 <script>/* simulação: começa só com a HUD inferior e o bate-papo; os demais widgets montam invisíveis (para medir) e então fecham — abrem pela barra superior */
 window.addEventListener('load',()=>setTimeout(()=>{document.querySelectorAll('[data-boot-hide]').forEach(w=>{w.hidden=true;w.removeAttribute('data-boot-hide')})},120));</script>
+<script>/* simulação: o recarregamento do Pokémon só começa depois de uma ação (chamar o Pokémon na HUD) */
+window.addEventListener('load',()=>setTimeout(()=>{var h=document.getElementById('gsimHud');if(!h||!h.updatePokemon)return;(h.data.team||[]).forEach((t,i)=>{if(t&&t.name)h.updatePokemon(i,{cdLeft:0})});
+  h.addEventListener('teamselect',e=>{var i=e.detail.index,t=(h.data.team||[])[i];if(t&&!t.cdLeft)h.cooldown(i,12)})},200));</script>

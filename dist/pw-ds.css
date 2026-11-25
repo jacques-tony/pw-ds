@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.101.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.101.1 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2409,7 +2409,9 @@ html[data-ds="v2"] [brand="br-sm"]>pw-card.pwbg-card:not(:is([data-pw-theme="mew
 pw-hud .pwhd-actions.v2,pw-hud .pwhd-cdov{display:none}
 html:not([data-ds="v2"]) pw-hud .pwhd-toggle .pwbt-icon{display:none}
 /* ===== v2 · HUD inferior compacta (2 linhas): perfil + equipe + alternadores / atalhos + ações ===== */
-html[data-ds="v2"] pw-hud:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--hd-card-w:64px;--hd-card-h:64px;--hd-slot:40px}
+html[data-ds="v2"] pw-hud:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--hd-card-w:64px;--hd-card-h:64px;--hd-slot:40px;width:910px!important;max-width:calc(100% - 16px)}
+html[data-ds="v2"] pw-hud .pwhd-slots:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){gap:4px!important}
+html[data-ds="v2"] pw-hud .pwhd-card.ready:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){animation:pwsp-ready .45s var(--card-ease)}
 html[data-ds="v2"] pw-hud .pwhd-body:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"top top foot" "hot acts acts";gap:var(--pw-space-2) var(--pw-space-3);align-items:center}
 html[data-ds="v2"] pw-hud .pwhd-top:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:top;align-items:center;gap:var(--pw-space-2)}
 html[data-ds="v2"] pw-hud .pwhd-hotbar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:hot;gap:var(--pw-space-1);margin:0!important}
@@ -2449,8 +2451,7 @@ html[data-ds="v2"] pw-hud .pwhd-card.empty:not(:is([data-pw-theme="mewtwo"],[the
 html[data-ds="v2"] pw-hud .pwhd-card.empty .pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{content:"+";position:absolute;inset:0;display:grid;place-items:center;font:500 22px/1 "Archivo",sans-serif;color:var(--v2-muted)}
 html[data-ds="v2"] pw-hud .pwhd-card.empty .pwc-content:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:none!important}
 html[data-ds="v2"] pw-hud .pwhd-card.empty:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--card-bg-image:none}
-html[data-ds="v2"] pw-hud .pwhd-cdov:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:grid;place-items:center;position:absolute;inset:0;z-index:4;border-radius:8px;pointer-events:none;font:800 15px/1 "Archivo",sans-serif;color:var(--v2-paper);text-shadow:0 1px 2px rgba(0,0,0,.7);
-  background:linear-gradient(to top,rgba(4,18,46,.72) calc(var(--cd) * 100%),rgba(4,18,46,.25) calc(var(--cd) * 100%));transition:background .9s linear}
+html[data-ds="v2"] pw-hud .pwhd-cdov:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:grid;place-items:center;position:absolute;inset:0;z-index:4;border-radius:8px;pointer-events:none;font:800 16px/1 "Archivo",sans-serif;color:var(--v2-paper);text-shadow:0 1px 2px rgba(0,0,0,.8);font-variant-numeric:tabular-nums;background:conic-gradient(transparent calc(var(--cdp,0) * 360deg),rgba(4,18,46,.68) 0)}
 html[data-ds="v2"] pw-hud .pwhd-cdov[hidden]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none}
 /* atalhos: slots de 40px */
 html[data-ds="v2"] pw-hud pw-card.pwhd-slot:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:40px!important;height:40px!important}

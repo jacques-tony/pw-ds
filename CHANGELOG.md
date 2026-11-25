@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.1
+- HUD v2: recarga do Pokémon só começa após uma ação, com varredura circular e contador no centro do card.
+- Tooltips nos botões de recolher (Perfil reduzido / Esconder atalhos).
+- Atalhos F1–F12 priorizados antes de 1–0; HUD mais larga e slots mais compactos.
+
 ## 0.101.0
 
 - v2 · HUD inferior compacta em duas linhas: (1) avatar 64px, nome + nível, barras de vida (verde) e XP (amarela, padrão do DS) de 12px com o valor dentro, 6 cards de Pokémon quadrados de 64px (atalho Ctrl+N, só barra de vida e recarregamento cobrindo o card com os segundos), vaga vazia tracejada com "+", e os alternadores Perfil/Hotkeys como botões pequenos empilhados; (2) atalhos de 1 a F12 com setas de navegação e, ao lado, separados por uma linha, os botões de ação do jogador. A v1 não muda.
