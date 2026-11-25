@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.20
+
+- v2 · Opções: coluna do menu 1px para dentro, deixando a borda azul do painel aparecer à esquerda e embaixo; 12px entre o item selecionado e a barra de rolagem; conteúdo rola por baixo do cabeçalho, sem overlay no topo (o de baixo continua).
+
 ## 0.100.19
 
 - v2 · Opções: a coluna do menu lateral inteira fica mais escura, colada nas bordas do painel (da divisória do cabeçalho até o fundo), separada do conteúdo por uma linha vertical; sai o card interno; o rodapé fica só sob o conteúdo.
