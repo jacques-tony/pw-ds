@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.16
+- v2: bordas de cards, widgets, HUD e barra de navegação em 2px; divisor entre header e conteúdo também em 2px, na cor da borda.
+
 ## 0.101.15
 - HUD v2: as setas de rolagem dos atalhos só aparecem quando há slots escondidos daquele lado; no início, o espaço da seta esquerda vira um slot.
 
