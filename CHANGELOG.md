@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.15
+- HUD v2: as setas de rolagem dos atalhos só aparecem quando há slots escondidos daquele lado; no início, o espaço da seta esquerda vira um slot.
+
 ## 0.101.14
 - Magnetismo v2: widgets conectados ficam com 4px de espaço entre si (também em relação à barra superior e à HUD); puxar um widget já o desconecta, sem precisar de Alt. v1 mantém o comportamento anterior.
 
