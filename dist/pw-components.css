@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.101.6 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.101.7 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2243,7 +2243,12 @@ html[data-ds="v2"] pw-hud .pwhd-body:not(:is([data-pw-theme="mewtwo"],[theme="me
 html[data-ds="v2"] pw-hud .pwhd-top:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:top;align-items:center;gap:var(--pw-space-2)}
 html[data-ds="v2"] pw-hud .pwhd-hotbar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:hot;gap:var(--pw-space-1);margin:0!important}
 html[data-ds="v2"] pw-hud .pwhd-actions.v2:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:acts;display:flex;gap:var(--pw-space-2);padding-left:var(--pw-space-3);border-left:1px solid var(--v2-line)}
-html[data-ds="v2"] pw-hud[hotkeys="hidden"] .pwhd-actions.v2:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none}
+html[data-ds="v2"] pw-hud[hotkeys="hidden"] .pwhd-actions.v2 .pwhd-actw:not(.pwhd-hkw):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none}
+html[data-ds="v2"] pw-hud[hotkeys="hidden"] .pwhd-actions.v2:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){border-left:0}
+html[data-ds="v2"] pw-hud .pwhd-toggle[data-hd="hotkeys"]:not(.pwhd-hk6):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none!important}
+html[data-ds="v2"] pw-hud .pwhd-actions.v2 pw-button.pwhd-hk6:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--bh:36px;--bic:16px;--bpx:0px}
+pw-hud .pwhd-hk6 .pwbt-label{display:none!important}
+html[data-ds="v2"] pw-hud .pwhd-actions.v2 pw-button.pwhd-act>button:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:40px!important}
 html[data-ds="v2"] pw-hud .pwhd-actions:is(.in,.out):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none!important}
 html[data-ds="v2"] pw-hud .pwhd-foot:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:foot;flex-direction:column;gap:var(--pw-space-1);margin:0!important}
 html[data-ds="v2"] pw-hud .pwhd-toggle:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--bh:28px;--bpx:0px}

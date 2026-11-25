@@ -2513,7 +2513,12 @@ html[data-ds="v2"] pw-hud .pwhd-body:not(:is([data-pw-theme="mewtwo"],[theme="me
 html[data-ds="v2"] pw-hud .pwhd-top:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:top;align-items:center;gap:var(--pw-space-2)}
 html[data-ds="v2"] pw-hud .pwhd-hotbar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:hot;gap:var(--pw-space-1);margin:0!important}
 html[data-ds="v2"] pw-hud .pwhd-actions.v2:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:acts;display:flex;gap:var(--pw-space-2);padding-left:var(--pw-space-3);border-left:1px solid var(--v2-line)}
-html[data-ds="v2"] pw-hud[hotkeys="hidden"] .pwhd-actions.v2:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none}
+html[data-ds="v2"] pw-hud[hotkeys="hidden"] .pwhd-actions.v2 .pwhd-actw:not(.pwhd-hkw):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none}
+html[data-ds="v2"] pw-hud[hotkeys="hidden"] .pwhd-actions.v2:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){border-left:0}
+html[data-ds="v2"] pw-hud .pwhd-toggle[data-hd="hotkeys"]:not(.pwhd-hk6):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none!important}
+html[data-ds="v2"] pw-hud .pwhd-actions.v2 pw-button.pwhd-hk6:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--bh:36px;--bic:16px;--bpx:0px}
+pw-hud .pwhd-hk6 .pwbt-label{display:none!important}
+html[data-ds="v2"] pw-hud .pwhd-actions.v2 pw-button.pwhd-act>button:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:40px!important}
 html[data-ds="v2"] pw-hud .pwhd-actions:is(.in,.out):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none!important}
 html[data-ds="v2"] pw-hud .pwhd-foot:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:foot;flex-direction:column;gap:var(--pw-space-1);margin:0!important}
 html[data-ds="v2"] pw-hud .pwhd-toggle:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--bh:28px;--bpx:0px}
@@ -6098,9 +6103,9 @@ class PWHud extends HTMLElement{
     this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:300,easing:'cubic-bezier(.2,.8,.2,1)'});
     this._body.animate([{opacity:.25,transform:'translateY(6px)'},{opacity:1,transform:'none'}],{duration:280,easing:'ease-out'})}
   _sync(){var c=this.profile==='compact',hid=this.getAttribute('hotkeys')==='hidden';
-    var a=this.querySelector('[data-hd="profile"]'),b=this.querySelector('[data-hd="hotkeys"]');
+    var a=this.querySelector('[data-hd="profile"]'),bs=this.querySelectorAll('[data-hd="hotkeys"]');
     var L=(x,t)=>{var l=x.querySelector('.pwbt-label');if(l)l.textContent=t};if(a){L(a,c?'Perfil completo':'Perfil reduzido');a.setAttribute('data-tip',c?'Voltar ao perfil completo com os cards dos Pokémon':'Usar perfil horizontal reduzido e cards dos Pokémon na lateral');a.setAttribute('aria-pressed',c?'true':'false')}
-    if(b){L(b,hid?'Mostrar hotkeys':'Esconder hotkeys');var bi=b.querySelector('button');if(bi)bi.setAttribute('aria-expanded',hid?'false':'true')}
+    bs.forEach(b=>{L(b,hid?'Mostrar hotkeys':'Esconder hotkeys');b.setAttribute('data-tip',hid?'Mostrar atalhos':'Esconder atalhos');if(b.classList.contains('pwhd-hk6'))b.setAttribute('icon',hid?'eye':'minus');var bi=b.querySelector('button');if(bi)bi.setAttribute('aria-expanded',hid?'false':'true')})
     this._arrows()}
   render(){var d=this._data,p=d.player||{},E=pwEsc;
     var hp=p.hpMax?Math.max(0,Math.min(1,(p.hp||0)/p.hpMax)):0,xp=Math.max(0,Math.min(100,p.xp||0))/100;
@@ -6123,7 +6128,7 @@ class PWHud extends HTMLElement{
       '<div class="pwhd-actions in">'+acts+'</div></div><div class="pwhd-actions out">'+acts+'</div></pw-card>'+
       '<div class="pwhd-team" role="group" aria-label="Equipe">'+team+'</div></div>'+
       '<div class="pwhd-hotbar"><pw-button class="pwhd-arrow" variant="ghost" size="sm" fx="none" particles="0" icon="chevron-left" data-dir="-1" data-label="Atalhos anteriores"></pw-button><div class="pwhd-slots" role="toolbar" aria-label="Atalhos">'+slots+'</div><pw-button class="pwhd-arrow" variant="ghost" size="sm" fx="none" particles="0" icon="chevron-right" data-dir="1" data-label="Próximos atalhos"></pw-button></div>'+
-      '<div class="pwhd-actions v2">'+(d.actions||[]).map((a,i)=>'<span class="pwhd-actw">'+acts.split('</pw-button>')[i]+'</pw-button><pw-button class="pwhd-akey" size="sm" appearance="outline" particles="0" fx="none" data-bind="'+i+'" aria-label="Definir atalho de '+E(a.label)+'">'+E(a.key||'—')+'</pw-button></span>').join('')+'</div>'+
+      '<div class="pwhd-actions v2">'+(d.actions||[]).map((a,i)=>'<span class="pwhd-actw">'+acts.split('</pw-button>')[i]+'</pw-button><pw-button class="pwhd-akey" size="sm" appearance="outline" particles="0" fx="none" data-bind="'+i+'" aria-label="Definir atalho de '+E(a.label)+'">'+E(a.key||'—')+'</pw-button></span>').join('')+'<span class="pwhd-actw pwhd-hkw"><pw-button class="pwhd-act pwhd-hk6" data-hd="hotkeys" size="sm" appearance="outline" particles="0" icon="minus" data-tip="Esconder atalhos" data-tip-pos="top"></pw-button></span></div>'+
       '<div class="pwhd-foot"><pw-button class="pwhd-toggle" variant="ghost" size="sm" fx="none" particles="0" icon="chevron-up" data-hd="profile" data-tip="Perfil reduzido" data-tip-pos="top">Perfil</pw-button><pw-button class="pwhd-toggle" variant="ghost" size="sm" fx="none" particles="0" icon="minus" data-hd="hotkeys" data-tip="Esconder atalhos" data-tip-pos="top">Hotkeys</pw-button></div>';
     this.querySelectorAll('pw-button[data-label]').forEach(b=>{var i=b.querySelector('button');if(i)i.setAttribute('aria-label',b.dataset.label)});this._acts();
     var sl=this.querySelector('.pwhd-slots');sl.addEventListener('scroll',()=>this._arrows(),{passive:true});if(this._sro)this._sro.disconnect();this._sro=new ResizeObserver(()=>this._arrows());this._sro.observe(sl);this._sync();requestAnimationFrame(()=>this._arrows())}
@@ -7941,3 +7946,5 @@ function PWbind(b){var h=b.closest('pw-hud'),i=+b.querySelector('.pwhd-act').dat
   var on=ev=>{if(['Shift','Control','Alt','Meta'].includes(ev.key))return;ev.preventDefault();ev.stopPropagation();document.removeEventListener('keydown',on,true);b.classList.remove('binding');
     if(ev.key==='Escape'){}else if(ev.key==='Backspace'||ev.key==='Delete'){delete a.key}else{var n=ev.key.length===1?ev.key.toUpperCase():ev.key;a.key=(ev.ctrlKey?'Ctrl+':'')+(ev.altKey?'Alt+':'')+(ev.shiftKey?'Shift+':'')+n}
     h.render?h.render():h.data=h.data};document.addEventListener('keydown',on,true)}</script>
+<script>/* HUD v2: sexto botão de ação esconde/mostra os atalhos */
+document.addEventListener('click',e=>{var b=e.target.closest&&e.target.closest('pw-hud .pwhd-hk6');if(!b)return;var h=b.closest('pw-hud');if(h&&h._deck)h._deck(h.getAttribute('hotkeys')==='hidden')});</script>

@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.7
+- HUD v2: esconder/mostrar atalhos vira o sexto botão de ação (outline, ícone menos/olho); continua visível com os atalhos escondidos. Botões de ação com 40px.
+
 ## 0.101.6
 - Cards v2: borda passa de 1px para 1,5px (traço alinhado por dentro, sem cortes).
 
