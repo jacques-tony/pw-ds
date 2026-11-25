@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.5
+- Bate-papo v2: diálogo "Canais" compacto — 232px de largura, padding 12px, itens de 30px, campo e botões de 32px, título 14px.
+
 ## 0.102.4
 - Bate-papo v2: abas e setas alinhadas no mesmo eixo do título e dos botões do header; área das abas com respiro vertical para o hover não ser cortado.
 
