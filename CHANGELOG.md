@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.10
+- HUD v2, perfil reduzido: nome sai da linha e vai para o tooltip do avatar; avatar, vida, Lv. e XP alinhados na horizontal.
+
 ## 0.101.9
 - HUD v2, perfil reduzido em uma linha: avatar, nome, vida, Lv. e XP, com o botão de alternar perfil alinhado.
 
