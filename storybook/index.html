@@ -2560,6 +2560,10 @@ html[data-ds="v2"] pw-widget-minimap .pwmm-vp:not(:is([data-pw-theme="mewtwo"],[
     linear-gradient(0deg,var(--pw-bg-solid),color-mix(in srgb,var(--pw-bg-solid) 78%,transparent) 6px,color-mix(in srgb,var(--pw-bg-solid) 45%,transparent) 12px,color-mix(in srgb,var(--pw-bg-solid) 18%,transparent) 16px,transparent 24px)!important}
 html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) .pwbg-body:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{height:24px!important}
 html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) .pwbg-body:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{height:10px!important}
+/* v2: abas do bate-papo no header, na linha do título */
+html[data-ds="v2"] pw-widget-chat .pwbg-head>.pwct-bar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){flex:1 1 auto;min-width:0;margin-left:var(--pw-space-4);margin-right:var(--pw-space-2);cursor:default}
+html[data-ds="v2"] pw-widget-chat .pwbg-head:has(>.pwct-bar)>.pwbg-tt:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){flex:none}
+html[data-ds="v2"] pw-widget-chat .pwct-bar>pw-button.pwct-off:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none!important}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
@@ -8020,3 +8024,17 @@ document.addEventListener('click',e=>{var b=e.target.closest&&e.target.closest('
  function boot(){document.querySelectorAll('pw-widget-minimap').forEach(w=>{var sp=w.querySelector('.pwmm-space');if(sp&&ro&&!sp._ro){ro.observe(sp);ro.observe(w);sp._ro=1}});all()}
  window.addEventListener('load',()=>setTimeout(boot,150));new MutationObserver(()=>{boot()}).observe(document.documentElement,{attributes:true,attributeFilter:['data-ds']});
  document.addEventListener('pointerup',()=>setTimeout(all,50));setInterval(boot,1500)})();</script>
+<script>/* v2: abas do bate-papo vão para o header; as setas só aparecem quando há canal para aquele lado */
+(function(){var V=()=>document.documentElement.getAttribute('data-ds')==='v2';
+ function fix(w){var bar=w.querySelector('.pwct-bar'),hd=w.querySelector('.pwbg-head'),body=w.querySelector('.pwct-body'),acts=hd&&hd.querySelector('.pwbg-acts');if(!bar||!hd||!body)return;
+  var mt=w.closest('[data-pw-theme="mewtwo"],[theme="mewtwo"]')||w.getAttribute('theme')==='mewtwo';
+  if(V()&&!mt){if(bar.parentNode!==hd){hd.insertBefore(bar,acts);if(!bar._pd){bar._pd=1;bar.addEventListener('pointerdown',e=>e.stopPropagation());bar.addEventListener('click',e=>{if(bar.parentNode===body)return;var d=w._d;if(!d||!w.select)return;var ids=d.channels.map(x=>x.id),k=ids.indexOf(d.active);
+    var pb=e.target.closest('pw-button[data-c]');if(pb&&(pb.dataset.c==='prev'||pb.dataset.c==='next')){var n=k+(pb.dataset.c==='next'?1:-1);if(n>=0&&n<ids.length)w.select(ids[n]);setTimeout(all,30);return}
+    var t=e.target.closest('.pwct-tab');if(t&&!e.target.closest('pw-button')){var i=[...bar.querySelectorAll('.pwct-tab')].indexOf(t);if(i>=0&&ids[i]!=null)w.select(ids[i]);t.scrollIntoView({block:'nearest',inline:'nearest'});setTimeout(all,30)}})}}}
+  else if(bar.parentNode!==body){body.insertBefore(bar,body.firstChild)}
+  var d=w._d||{channels:[]},ids=(d.channels||[]).map(x=>x.id),ai=ids.indexOf(d.active),tabs=ids;
+  var pv=bar.querySelector('[data-c="prev"]'),nx=bar.querySelector('[data-c="next"]');
+  if(pv)pv.classList.toggle('pwct-off',V()&&ai<=0);if(nx)nx.classList.toggle('pwct-off',V()&&ai>=tabs.length-1)}
+ function all(){document.querySelectorAll('pw-widget-chat').forEach(fix)}
+ window.addEventListener('load',()=>setTimeout(all,150));document.addEventListener('click',()=>setTimeout(all,30));document.addEventListener('keyup',()=>setTimeout(all,30));
+ new MutationObserver(all).observe(document.documentElement,{attributes:true,attributeFilter:['data-ds']});setInterval(all,1500)})();</script>

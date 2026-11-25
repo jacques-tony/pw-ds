@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.2
+- Bate-papo v2: abas de canal e setas sobem para o header, na linha do título (respiro de 16px); a seta esquerda só aparece quando há canal anterior e a direita some no último canal.
+
 ## 0.102.1
 - v2: degradê das bordas do mapa 50% menor e igual nos quatro lados; sombras de rolagem de mochila, loot e Pokémon 50% menores (topo 10px, base 24px).
 

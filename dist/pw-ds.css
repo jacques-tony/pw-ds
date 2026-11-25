@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.102.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.102.2 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2471,6 +2471,10 @@ html[data-ds="v2"] pw-widget-minimap .pwmm-vp:not(:is([data-pw-theme="mewtwo"],[
     linear-gradient(0deg,var(--pw-bg-solid),color-mix(in srgb,var(--pw-bg-solid) 78%,transparent) 6px,color-mix(in srgb,var(--pw-bg-solid) 45%,transparent) 12px,color-mix(in srgb,var(--pw-bg-solid) 18%,transparent) 16px,transparent 24px)!important}
 html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) .pwbg-body:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{height:24px!important}
 html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon) .pwbg-body:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{height:10px!important}
+/* v2: abas do bate-papo no header, na linha do título */
+html[data-ds="v2"] pw-widget-chat .pwbg-head>.pwct-bar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){flex:1 1 auto;min-width:0;margin-left:var(--pw-space-4);margin-right:var(--pw-space-2);cursor:default}
+html[data-ds="v2"] pw-widget-chat .pwbg-head:has(>.pwct-bar)>.pwbg-tt:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){flex:none}
+html[data-ds="v2"] pw-widget-chat .pwct-bar>pw-button.pwct-off:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none!important}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
