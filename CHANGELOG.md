@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.7
+- HUD v2: botões de ação (coleta, mira, Pokédex, ordenar, pesca) em `variant="secondary" appearance="outline"`, mantendo o tamanho atual.
+
 ## 0.102.6
 - Bate-papo (storybook): canal "Registro do servidor" com 2 mensagens não lidas (badge).
 

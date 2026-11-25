@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.102.6 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.102.7 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1213,7 +1213,7 @@ class PWHud extends HTMLElement{
     this._arrows()}
   render(){var d=this._data,p=d.player||{},E=pwEsc;
     var hp=p.hpMax?Math.max(0,Math.min(1,(p.hp||0)/p.hpMax)):0,xp=Math.max(0,Math.min(100,p.xp||0))/100;
-    var acts=(d.actions||[]).map((a,i)=>'<pw-button class="pwhd-act" size="sm" appearance="outline" particles="0" icon="'+E(a.icon||'grid')+'" data-act="'+i+'" data-label="'+E(a.label)+'" data-tip-title="'+E(a.label)+'" data-tip="'+E((a.hint?a.hint+' · ':'')+(a.key?'Atalho: '+a.key:'Sem atalho')+' · Botão direito para definir')+'"'+(a.pressed!==undefined?' aria-pressed="'+(a.pressed?'true':'false')+'"':'')+'></pw-button>').join('');
+    var acts=(d.actions||[]).map((a,i)=>'<pw-button class="pwhd-act" size="sm" variant="secondary" appearance="outline" particles="0" icon="'+E(a.icon||'grid')+'" data-act="'+i+'" data-label="'+E(a.label)+'" data-tip-title="'+E(a.label)+'" data-tip="'+E((a.hint?a.hint+' · ':'')+(a.key?'Atalho: '+a.key:'Sem atalho')+' · Botão direito para definir')+'"'+(a.pressed!==undefined?' aria-pressed="'+(a.pressed?'true':'false')+'"':'')+'></pw-button>').join('');
     var tm=(d.team||[]).slice(0,6);while(tm.length<6)tm.push(null);
     var team=tm.map((t,i)=>{if(!t||!t.name)return '<pw-card variant="tertiary" tone="neutral" appearance="filled" class="pwhd-card empty" bg-image="'+E(pwHudEmpty())+'" bg-position="top" role="img" aria-label="Espaço vazio '+(i+1)+'"><pw-badge class="key" tone="neutral" size="xs">'+E((t&&t.hotkey)||'Ctrl+'+(i+1))+'</pw-badge></pw-card>';
       var v=Math.max(0,Math.min(100,t.hp==null?100:t.hp))/100,cd=t.cd?Math.max(0,Math.min(1,(t.cdLeft||0)/t.cd)):0;
@@ -2563,5 +2563,5 @@ class PWWidgetOutfit extends HTMLElement{
     P.innerHTML=h;var c=P.querySelector('.pwof-only');if(c)c.addEventListener('change',()=>{this._only=c.checked!==undefined?c.checked:c.hasAttribute('checked');this._panel()})}
 }
 customElements.define('pw-widget-outfit',PWWidgetOutfit);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.102.6"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.102.7"});
 })();
