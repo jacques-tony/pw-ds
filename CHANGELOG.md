@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.15
+- HUD, troca de perfil: barras, nome e Lv. só fazem fade out/in (sem deslizar); cards dos Pokémon saem e entram no estilo baralho, igual às hotkeys; avatar mantém a transição de tamanho; altura acompanha.
+
 ## 0.102.14
 - HUD: corrige a animação entre perfis — as posições antigas eram lidas depois da troca (o CSS já tinha mudado) e um `transform:none!important` no avatar anulava o movimento. Agora avatar, barras, cards e altura animam nos dois sentidos.
 

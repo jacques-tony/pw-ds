@@ -6209,17 +6209,24 @@ class PWHud extends HTMLElement{
   attributeChangedCallback(n,o,v){if(!this._init||o===v||this._mute)return;this._morph(()=>this._sync(),n,o,v);if(n==='profile')this._emitTeam()}
   _emitTeam(){this.dispatchEvent(new CustomEvent('profilechange',{bubbles:true,detail:{profile:this.profile,team:this._data.team||[]}}));document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>{if(p._from)p._from(this)})}
   /* troca de modo com transição suave da altura (FLIP) */
-  _morph(fn,an,ao,av){var red=matchMedia('(prefers-reduced-motion: reduce)').matches;if(an&&!red){this._mute=1;if(ao==null)this.removeAttribute(an);else this.setAttribute(an,ao);this._mute=0}var h0=this.offsetHeight,SEL='.pwhd-avatar,.pwhd-stat,.pwhd-name>b,.pwhd-name>span,.pwhd-foot,.pwhd-card,.pwhd-hot,.pwhd-actions.v2',B=new Map();
-    if(!red)this.querySelectorAll(SEL).forEach(e=>{var r=e.getBoundingClientRect();if(r.width)B.set(e,r)});
-    if(an&&!red){this._mute=1;if(av==null)this.removeAttribute(an);else this.setAttribute(an,av);this._mute=0}fn();var h1=this.offsetHeight;if(red)return;var D=460,EZ='cubic-bezier(.33,1,.68,1)';
-    if(h0!==h1)this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:D,easing:EZ});
-    var S=(this.getBoundingClientRect().width/(this.offsetWidth||1))||1;
-    this.querySelectorAll(SEL).forEach(e=>{var a=e.getBoundingClientRect();if(!a.width)return;var b=B.get(e);
-      if(!b){e.animate([{opacity:0,transform:'translateY(6px) scale(.96)'},{opacity:1,transform:'none'}],{duration:D,delay:120,easing:EZ,fill:'backwards'});return}
-      var dx=(b.left-a.left)/S,dy=(b.top-a.top)/S;if(Math.abs(dx)<.5&&Math.abs(dy)<.5&&Math.abs(b.width-a.width)<.5&&Math.abs(b.height-a.height)<.5)return;
-      if(e.classList.contains('pwhd-stat')){e.animate([{transform:'translate('+dx+'px,'+dy+'px)',width:b.width/S+'px'},{transform:'none',width:a.width/S+'px'}],{duration:D,easing:EZ})}
-      else e.animate([{transformOrigin:'0 0',transform:'translate('+dx+'px,'+dy+'px) scale('+(b.width/a.width)+','+(b.height/a.height)+')'},{transformOrigin:'0 0',transform:'none'}],{duration:D,easing:EZ})});
-    document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>{if(p.offsetWidth)p.animate([{opacity:0,transform:'translateX(-8px)'},{opacity:1,transform:'none'}],{duration:D,delay:100,easing:EZ,fill:'backwards'})})}
+  _morph(fn,an,ao,av){var red=matchMedia('(prefers-reduced-motion: reduce)').matches,self=this,set=v=>{this._mute=1;if(v==null)this.removeAttribute(an);else this.setAttribute(an,v);this._mute=0};
+    if(an!=='profile'||red){var h0=this.offsetHeight;fn();var h1=this.offsetHeight;if(!red&&h0!==h1)this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:300,easing:'cubic-bezier(.2,.8,.2,1)'});return}
+    set(ao);if(this._mph)this._mph.forEach(a=>a.cancel());
+    var EZ='cubic-bezier(.33,1,.68,1)',FADE='.pwhd-stat,.pwhd-name>b,.pwhd-name>span',parties=[].slice.call(document.querySelectorAll('pw-party[for="'+this.id+'"]')).filter(p=>p.offsetWidth),
+      cards=()=>[].slice.call(this.querySelectorAll('.pwhd-card')).filter(c=>c.offsetWidth).concat([].slice.call(document.querySelectorAll('pw-party[for="'+this.id+'"] .pwpt[data-team]')).filter(c=>c.offsetWidth)),
+      outs=[];
+    this.querySelectorAll(FADE).forEach(e=>{if(e.offsetWidth)outs.push(e.animate([{opacity:1},{opacity:0}],{duration:160,easing:'ease-in',fill:'forwards'}))});
+    cards().forEach((c,k)=>outs.push(c.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(12px) rotate(8deg) scale(.9)'}],{duration:200,delay:k*22,easing:'cubic-bezier(.4,0,1,1)',fill:'forwards'})));
+    this._mph=outs;
+    Promise.all(outs.map(a=>a.finished)).then(()=>{
+      var av0=this.querySelector('.pwhd-avatar'),b=av0&&av0.getBoundingClientRect(),h0=this.offsetHeight;
+      set(av);fn();outs.forEach(a=>a.cancel());this._mph=null;var h1=this.offsetHeight,D=420;
+      if(h0!==h1)this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:D,easing:EZ});
+      var a=av0&&av0.getBoundingClientRect(),S=(this.getBoundingClientRect().width/(this.offsetWidth||1))||1;
+      if(a&&a.width&&b&&b.width){var dx=(b.left-a.left)/S,dy=(b.top-a.top)/S;av0.animate([{transformOrigin:'0 0',transform:'translate('+dx+'px,'+dy+'px) scale('+(b.width/a.width)+')'},{transformOrigin:'0 0',transform:'none'}],{duration:D,easing:EZ})}
+      this.querySelectorAll(FADE).forEach(e=>{if(e.offsetWidth)e.animate([{opacity:0},{opacity:1}],{duration:260,delay:160,easing:'ease-out',fill:'backwards'})});
+      cards().forEach((c,k)=>c.animate([{opacity:0,transform:'translateY(14px) rotate(-10deg) scale(.88)'},{opacity:1,transform:'translateY(-3px) rotate(3deg) scale(1.02)',offset:.65},{opacity:1,transform:'none'}],{duration:420,delay:140+k*40,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}))},()=>{})}
+
   _sync(){var c=this.profile==='compact',hid=this.getAttribute('hotkeys')==='hidden';
     var a=this.querySelector('[data-hd="profile"]'),bs=this.querySelectorAll('[data-hd="hotkeys"]');
     var L=(x,t)=>{var l=x.querySelector('.pwbt-label');if(l)l.textContent=t};if(a){L(a,c?'Perfil completo':'Perfil reduzido');a.setAttribute('data-tip',c?'Voltar ao perfil completo com os cards dos Pokémon':'Usar perfil horizontal reduzido e cards dos Pokémon na lateral');a.setAttribute('aria-pressed',c?'true':'false')}
