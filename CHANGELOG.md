@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.11
+- HUD v2, perfil completo: botões de perfil/atalhos alinhados ao topo dos cards dos Pokémon; +24px entre as barras de vida/XP e os cards.
+
 ## 0.102.10
 - Novo ícone `position` (Line Icon Pack): três posições com seta de troca; usado em "Ordenar Pokémon".
 - HUD v2: botões de perfil reduzido e esconder atalhos em secondary outline (xs, mesmos ícones), ícone na cor padrão.
