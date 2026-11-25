@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.0
+- pw-button: novo tamanho `size="xs"` (24px, ícone 14px, raio 5px). Na v2, ghost xs = fundo field, borda line, ícone amarelo.
+- HUD v2: botões de perfil e atalhos usam `size="xs"` (remove override local).
+- Minimapa v2: largura igual à da mochila (224px); coordenadas e hora sem card; mapa dentro de um card interno com borda de 2px; controles inferiores em botões xs distribuídos na largura.
+
 ## 0.101.18
 - Magnetismo v2: espaço entre widgets conectados passa a 2px; widgets param a 2px das bordas da tela (topo, base e laterais).
 
