@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.4
+- Bate-papo v2: abas e setas alinhadas no mesmo eixo do título e dos botões do header; área das abas com respiro vertical para o hover não ser cortado.
+
 ## 0.102.3
 - Bate-papo v2: abas e setas do header em botão xs (24px), centralizadas na linha do título; fade das bordas por máscara (sem sombra), à esquerda só quando há canal anterior; o canal ativo rola para ficar inteiro visível.
 
