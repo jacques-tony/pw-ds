@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.13
+- v2: borda padronizada em 2,5px em cards, widgets, headers banner, HUD inferior e barra de navegação.
+
 ## 0.101.12
 - HUD v2: botões de mudar perfil e esconder atalhos lado a lado, ambos com 24px; o esconder atalhos sai da fileira de ações.
 
