@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.14
+- Magnetismo v2: widgets conectados ficam com 4px de espaço entre si (também em relação à barra superior e à HUD); puxar um widget já o desconecta, sem precisar de Alt. v1 mantém o comportamento anterior.
+
 ## 0.101.13
 - v2: borda padronizada em 2,5px em cards, widgets, headers banner, HUD inferior e barra de navegação.
 
