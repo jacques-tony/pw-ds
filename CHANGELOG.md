@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.12
+- pw-progress v2: borda do trilho mais suave (azul da borda a 45%).
+- HUD v2: espaço entre barras e cards dos Pokémon reduzido para --pw-space-3 (12px).
+- HUD v2 com atalhos escondidos: a linha vazia não ocupa mais espaço; padding superior e inferior iguais (16px) nos perfis completo e compacto.
+
 ## 0.102.11
 - HUD v2, perfil completo: botões de perfil/atalhos alinhados ao topo dos cards dos Pokémon; +24px entre as barras de vida/XP e os cards.
 
