@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.2
+- HUD v2: deixa de colar na borda inferior; vira card com todos os cantos arredondados, com a mesma distância da borda que a navbar tem do topo.
+
 ## 0.101.1
 - HUD v2: recarga do Pokémon só começa após uma ação, com varredura circular e contador no centro do card.
 - Tooltips nos botões de recolher (Perfil reduzido / Esconder atalhos).
