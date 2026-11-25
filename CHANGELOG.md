@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.3
+- Bate-papo v2: abas e setas do header em botão xs (24px), centralizadas na linha do título; fade das bordas por máscara (sem sombra), à esquerda só quando há canal anterior; o canal ativo rola para ficar inteiro visível.
+
 ## 0.102.2
 - Bate-papo v2: abas de canal e setas sobem para o header, na linha do título (respiro de 16px); a seta esquerda só aparece quando há canal anterior e a direita some no último canal.
 
