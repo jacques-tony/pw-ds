@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.8
+- HUD v2, ações: ícone na cor padrão de label (--v2-paper); tecla discreta no canto superior, como nas hotkeys (sai o selo amarelo).
+- Definir atalho das ações igual ao das hotkeys: botão direito → menu "Definir atalho"/"Remover tecla" → modal pw-dialog com pw-kbd. `bindKey(i, list)` aceita a lista (`hotkeys` ou `actions`).
+
 ## 0.102.7
 - HUD v2: botões de ação (coleta, mira, Pokédex, ordenar, pesca) em `variant="secondary" appearance="outline"`, mantendo o tamanho atual.
 
