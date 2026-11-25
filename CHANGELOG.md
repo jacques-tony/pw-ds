@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.16
+- HUD, indo para o perfil compacto: avatar encolhe mais rápido (260ms) e as barras aparecem junto com ele (fade de 200ms quase sem atraso). A volta para o completo continua igual.
+
 ## 0.102.15
 - HUD, troca de perfil: barras, nome e Lv. só fazem fade out/in (sem deslizar); cards dos Pokémon saem e entram no estilo baralho, igual às hotkeys; avatar mantém a transição de tamanho; altura acompanha.
 
