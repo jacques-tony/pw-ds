@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.100.19
+
+- v2 · Opções: a coluna do menu lateral inteira fica mais escura, colada nas bordas do painel (da divisória do cabeçalho até o fundo), separada do conteúdo por uma linha vertical; sai o card interno; o rodapé fica só sob o conteúdo.
+
 ## 0.100.18
 
 - v2 · Opções: cabeçalho no padrão dos widgets (56px, ícone de configurações, divisória da marca de 1px); menu lateral numa seção com fundo mais escuro, contorno fino e raio 10px, itens de 40px com espaçamento igual; menu sem overlay de rolagem (mantém a barra minimalista); conteúdo da direita mantém o overlay ao rolar; rodapé com Restaurar/Salvar volta a caber.
