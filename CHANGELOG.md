@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.17
+- HUD v2: primeiro atalho alinhado com o avatar e com o padding de 16px da HUD, nos perfis completo e reduzido.
+
 ## 0.101.16
 - v2: bordas de cards, widgets, HUD e barra de navegação em 2px; divisor entre header e conteúdo também em 2px, na cor da borda.
 
