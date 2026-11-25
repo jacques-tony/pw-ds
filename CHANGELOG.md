@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.102.6
+- Bate-papo (storybook): canal "Registro do servidor" com 2 mensagens não lidas (badge).
+
 ## 0.102.5
 - Bate-papo v2: diálogo "Canais" compacto — 232px de largura, padding 12px, itens de 30px, campo e botões de 32px, título 14px.
 
