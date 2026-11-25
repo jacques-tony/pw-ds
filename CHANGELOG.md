@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.101.8
+- HUD v2, perfil reduzido: avatar pequeno (24px) à esquerda do nome; barras de vida e XP dividem o espaço por igual.
+
 ## 0.101.7
 - HUD v2: esconder/mostrar atalhos vira o sexto botão de ação (outline, ícone menos/olho); continua visível com os atalhos escondidos. Botões de ação com 40px.
 
