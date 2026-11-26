@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.103.0
+- HUD v2, perfil compacto: avatar à esquerda ocupando a altura das barras + atalhos; barras e hotkeys à direita dele (mais hotkeys visíveis).
+- Ações (coleta até pesca) viram botões xs de 24px, como os de perfil/atalhos, e não se escondem mais; com atalhos escondidos, tudo fica numa linha (avatar 32px, barras, ações e botões).
+
 ## 0.102.16
 - HUD, indo para o perfil compacto: avatar encolhe mais rápido (260ms) e as barras aparecem junto com ele (fade de 200ms quase sem atraso). A volta para o completo continua igual.
 
