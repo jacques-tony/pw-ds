@@ -2630,6 +2630,7 @@ html[data-ds="v2"] pw-hud[profile="compact"][hotkeys="hidden"] .pwhd-hotbar:not(
 html[data-ds="v2"] pw-hud[profile="compact"][hotkeys="hidden"] .pwhd-profile .pwhd-avatar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){height:32px!important;width:32px!important;align-self:center!important}
 html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-actions.v2:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){border-left:0!important;padding-left:0!important;align-self:center!important}
 html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-column:2!important}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-actions.v2:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding-right:var(--pw-space-2)!important;margin-right:calc(var(--pw-space-1) * -1);border-right:1px solid var(--v2-line)!important}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
@@ -6250,7 +6251,7 @@ class PWHud extends HTMLElement{
 
   _sync(){var c=this.profile==='compact',hid=this.getAttribute('hotkeys')==='hidden';
     var a=this.querySelector('[data-hd="profile"]'),bs=this.querySelectorAll('[data-hd="hotkeys"]');
-    var L=(x,t)=>{var l=x.querySelector('.pwbt-label');if(l)l.textContent=t};if(a){L(a,c?'Perfil completo':'Perfil reduzido');a.setAttribute('data-tip',c?'Voltar ao perfil completo com os cards dos Pokémon':'Usar perfil horizontal reduzido e cards dos Pokémon na lateral');a.setAttribute('aria-pressed',c?'true':'false')}
+    var L=(x,t)=>{var l=x.querySelector('.pwbt-label');if(l)l.textContent=t};if(a){L(a,c?'Perfil completo':'Perfil minimalista');a.setAttribute('data-tip',c?'Perfil completo':'Perfil minimalista');a.setAttribute('aria-pressed',c?'true':'false')}
     bs.forEach(b=>{L(b,hid?'Mostrar hotkeys':'Esconder hotkeys');b.setAttribute('data-tip',hid?'Mostrar atalhos':'Esconder atalhos');b.setAttribute('icon',hid?'eye':'eye-off');var bi=b.querySelector('button');if(bi)bi.setAttribute('aria-expanded',hid?'false':'true')})
     this._arrows()}
   render(){var d=this._data,p=d.player||{},E=pwEsc;
@@ -6275,7 +6276,7 @@ class PWHud extends HTMLElement{
       '<div class="pwhd-team" role="group" aria-label="Equipe">'+team+'</div></div>'+
       '<div class="pwhd-hotbar"><pw-button class="pwhd-arrow" variant="ghost" size="sm" fx="none" particles="0" icon="chevron-left" data-dir="-1" data-label="Atalhos anteriores"></pw-button><div class="pwhd-slots" role="toolbar" aria-label="Atalhos">'+slots+'</div><pw-button class="pwhd-arrow" variant="ghost" size="sm" fx="none" particles="0" icon="chevron-right" data-dir="1" data-label="Próximos atalhos"></pw-button></div>'+
       '<div class="pwhd-actions v2">'+(d.actions||[]).map((a,i)=>'<span class="pwhd-actw">'+acts.split('</pw-button>')[i]+'</pw-button>'+(a.key?'<span class="kb pwhd-akb" aria-hidden="true">'+E(a.key)+'</span>':'')+'</span>').join('')+'</div>'+
-      '<div class="pwhd-foot"><pw-button class="pwhd-toggle" variant="secondary" appearance="outline" size="xs" fx="none" particles="0" icon="chevron-up" data-hd="profile" data-tip="Perfil reduzido" data-tip-pos="top">Perfil</pw-button><pw-button class="pwhd-toggle" variant="secondary" appearance="outline" size="xs" fx="none" particles="0" icon="eye-off" data-hd="hotkeys" data-tip="Esconder atalhos" data-tip-pos="top">Hotkeys</pw-button></div>';
+      '<div class="pwhd-foot"><pw-button class="pwhd-toggle" variant="secondary" appearance="outline" size="xs" fx="none" particles="0" icon="chevron-up" data-hd="profile" data-tip="Perfil minimalista" data-tip-pos="top">Perfil</pw-button><pw-button class="pwhd-toggle" variant="secondary" appearance="outline" size="xs" fx="none" particles="0" icon="eye-off" data-hd="hotkeys" data-tip="Esconder atalhos" data-tip-pos="top">Hotkeys</pw-button></div>';
     this.querySelectorAll('pw-button[data-label]').forEach(b=>{var i=b.querySelector('button');if(i)i.setAttribute('aria-label',b.dataset.label)});this._acts();
     var sl=this.querySelector('.pwhd-slots');sl.addEventListener('scroll',()=>this._arrows(),{passive:true});if(this._sro)this._sro.disconnect();this._sro=new ResizeObserver(()=>this._arrows());this._sro.observe(sl);this._sync();requestAnimationFrame(()=>this._arrows())}
   /* hotkeys entram/saem como cartas de um baralho: balanço sutil em cascata */

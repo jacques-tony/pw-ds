@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.103.2
+- HUD v2 compacto: divisor entre as ações e os botões de perfil/atalhos.
+- Tooltip do botão de perfil: "Perfil minimalista" (no completo) e "Perfil completo" (no minimalista).
+
 ## 0.103.1
 - HUD v2 compacto: ações (coleta até pesca) na linha de cima, ao lado dos botões de perfil/atalhos; hotkeys ocupam a largura toda da linha de baixo. Esconder atalhos só esconde as hotkeys.
 
