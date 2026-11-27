@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.110.8
+- Assistente de combo: sai a contagem de magias (x/8) do cabeçalho.
+
 ## 0.110.7
 - Barra de spells v2: no hover, o fundo é o card oficial (painel sólido + borda de 2px), sem transparência; botão ⚡ sem nenhum contorno azul.
 - Assistente de combo: sai o tempo estimado (fica só a contagem); abre a 2px da barra.
