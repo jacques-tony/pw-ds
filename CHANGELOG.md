@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.103.3
+- Minimapa v2: botões inferiores no mesmo padrão dos botões de perfil/atalhos da HUD (xs 24px, secondary outline, ícone na cor padrão), agrupados e centralizados com gap de 4px em qualquer largura.
+
 ## 0.103.2
 - HUD v2 compacto: divisor entre as ações e os botões de perfil/atalhos.
 - Tooltip do botão de perfil: "Perfil minimalista" (no completo) e "Perfil completo" (no minimalista).
