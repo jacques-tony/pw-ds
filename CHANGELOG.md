@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.106.7
+- Personalizar treinador: abas alinhadas à esquerda do card de conteúdo (remove o recuo de 8px).
+
 ## 0.106.6
 - Line Icon Pack: novos `sparkles` (brilho de 4 pontas + estrelinhas) e `palette` (paleta de artista).
 - Personalizar treinador: aba Efeitos usa `sparkles` e aba Cores usa `palette`.
