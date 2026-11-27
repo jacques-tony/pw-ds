@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.108.4
+- HUD v2 completo: foto do perfil com o raio externo do anel de XP, passando por baixo dele.
+
 ## 0.108.3
 - HUD v2 completo: disco do avatar na mesma cor do topo da HUD (--v2-panel-top) e centralizado com os anéis; foto menor, por dentro do anel de XP (o anel não fica mais coberto).
 
