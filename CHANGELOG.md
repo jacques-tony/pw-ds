@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.14
+- HUD v2 minimalista: sem espaço vazio nas extremidades — só a seta disponível ocupa lugar (direita na 1ª página, esquerda na 2ª); HUD com 706px e barras de HP/XP mais curtas.
+
 ## 0.107.13
 - HUD v2 minimalista: limite de 24 hotkeys (2 páginas de 12); a seta direita só avança uma vez e a esquerda volta. Setas reservam espaço (a fileira não pula). HUD mais estreita (742px), encurtando as barras de HP/XP, sem espaço vazio à direita.
 
