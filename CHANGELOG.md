@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.110.1
+- Assistente de combo: sempre abre para baixo; usa a própria barra de spells para montar o combo (clique na magia adiciona/remove, com o número da ordem e a magia esmaecida) — sai a lista duplicada de magias do painel.
+
 ## 0.110.0
 - Assistente de combo integrado à barra de spells (v2): o slot ⚡ abre um painel ligado à barra — sequência de 10 espaços no topo (numerados, próximo em destaque, clique para tirar), botão de editar com o atalho salvo, título "Magias de …" com contagem e tempo estimado, dica em uma linha, magias para clicar/arrastar com a ordem marcada, atalho no canto inferior esquerdo e Cancelar/Limpar/Salvar combo. Sem imagem do Pokémon nem a faixa de marca. Abre para cima ou para baixo conforme o espaço.
 - Barra de spells v2: bordas azuis do DS no lugar do dourado (amarelo só no hover e no ⚡ ativo).
