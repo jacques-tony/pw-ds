@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.104.1
+- pw-checkbox / pw-radio v2: sem o contorno azul; checkbox com cantos de 4px; ícones do Line Icon Pack (check e minus para indeterminado); radio com ponto central.
+- Estatísticas v2: contador branco rodando e vermelho quando pausado.
+
 ## 0.104.0
 - Estatísticas v2: contador em branco (--v2-paper) e um token maior (--pw-font-size-2xl, 20px), sem estourar a largura.
 - pw-control-group-item: novo atributo `indicator="radio"|"checkbox"` que usa o pw-radio / pw-checkbox do DS como marcador.
