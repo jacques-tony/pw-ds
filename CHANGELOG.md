@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.110.5
+- Assistente de combo: botão de fechar padrão dos widgets (ghost sm); sai "Cancelar".
+- Barra de spells v2: hover das magias sem opacidade (card normal); botão ⚡ do combo como primário (amarelo); botão de menu em primary outline.
+
 ## 0.110.4
 - Assistente de combo: ao gravar o atalho, o tooltip some e não cobre os slots; selo do atalho no ⚡ com espaço próprio (não encosta no da magia ao lado); botão de fechar no canto superior direito, respeitando o padding.
 
