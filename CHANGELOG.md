@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.112.0
+- Tag de atalho (pw-badge) centralizada no topo, dentro do card, com texto maior — nos cards dos Pokémon da HUD e nas spells.
+- Barra de spells v2: card de fundo sempre visível (sem depender do hover); divisor entre as spells e os botões; opções antes e assistente de combo no final, ambos com o tamanho dos slots (30px).
+- Assistente de combo na barra vertical: abre ao lado da barra (em L), alinhado ao topo, com largura do conteúdo.
+
 ## 0.111.2
 - pw-progress ring: canvas na resolução real da tela (o supersampling 4× serrilhava ao ser reduzido); o trilho escuro só é desenhado na parte vazia e o preenchimento fica levemente mais largo, sem franja escura aparecendo na borda.
 

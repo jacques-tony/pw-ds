@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.111.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.112.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2688,6 +2688,25 @@ html[data-ds="v2"] body pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avat
 html[data-ds="v2"] body pw-hud:not([profile="compact"]) .pwhd-rinfo:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-top:-8px!important;row-gap:2px!important}
 html[data-ds="v2"] pw-hud .pwhd-avatar{filter:drop-shadow(0 0 .6px rgba(4,18,46,.9))}
 html[data-ds="v2"] pw-hud .pwhd-avatar>img{clip-path:circle(50%);border-radius:0!important}
+/* v2: tag de atalho centralizada no topo, dentro do card (Pokémon e spells) */
+html[data-ds="v2"] body pw-hud .pwhd-card .key:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){left:50%!important;right:auto!important;top:2px!important;bottom:auto!important;transform:translateX(-50%)!important;font-size:8.5px!important;line-height:1!important;min-width:0!important;height:auto!important;padding:1px 3px!important}
+html[data-ds="v2"] body pw-widget-spells .pwsp-slot .num:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] body pw-widget-spells .pwsp-combo .num:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:absolute!important;left:50%!important;right:auto!important;top:2px!important;bottom:auto!important;transform:translateX(-50%)!important;font-size:8.5px!important;line-height:1!important;min-width:0!important;height:auto!important;padding:1px 3px!important;z-index:4}
+/* barra de spells: card sempre visível, divisor, opções antes do combo, mesmo tamanho */
+html[data-ds="v2"] body pw-widget-spells .pwsp-bg:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] body pw-widget-spells .pwsp-grip:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] body pw-widget-spells .pwsp-menu:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){opacity:1!important}
+html[data-ds="v2"] body pw-widget-spells .pwsp-list:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){order:1}
+html[data-ds="v2"] body pw-widget-spells .pwsp-menu:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){order:3;margin-left:0!important}
+html[data-ds="v2"] body pw-widget-spells .pwsp-combo:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){order:4;margin-left:0!important}
+html[data-ds="v2"] body pw-widget-spells .pwsp-done:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){order:5}
+html[data-ds="v2"] body pw-widget-spells .pwsp-bar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{content:"";order:2;align-self:stretch;width:2px;margin:4px 2px;background:var(--v2-border);border-radius:1px}
+html[data-ds="v2"] body pw-widget-spells[orientation="vertical"] .pwsp-bar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{width:auto;height:2px;margin:2px 4px}
+html[data-ds="v2"] body pw-widget-spells .pwsp-menu:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--bh:30px!important;--bic:16px!important;--bpx:0px}
+html[data-ds="v2"] body pw-widget-spells .pwsp-menu:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>button{width:30px!important;height:30px!important;min-height:0!important;padding:0!important;border-radius:8px!important}
+html[data-ds="v2"] body pw-widget-spells[orientation="vertical"] .pwsc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){top:0!important;bottom:auto!important;left:calc(100% + 2px)!important}
+html[data-ds="v2"] body pw-widget-spells pw-card.pwsp-combo:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>svg.pwc-frame path{stroke:transparent!important}
+html[data-ds="v2"] body pw-widget-spells pw-card.pwsp-combo:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content::after{box-shadow:none!important}
+html[data-ds="v2"] body pw-widget-spells[orientation="vertical"] .pwsc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:max-content!important}
+html[data-ds="v2"] body pw-widget-spells pw-card.pwsp-combo:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):hover>svg.pwc-frame path,html[data-ds="v2"] body pw-widget-spells pw-card.pwsp-combo.on:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>svg.pwc-frame path{stroke:transparent!important}
+html[data-ds="v2"] body pw-widget-spells pw-card.pwsp-combo:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):hover>.pwc-content::after,html[data-ds="v2"] body pw-widget-spells pw-card.pwsp-combo.on:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content::after{box-shadow:none!important}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
