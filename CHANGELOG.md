@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.110.2
+- Assistente de combo: limite de 8 magias; painel encolhe para esse tamanho; sai o botão "combo salvo F1"; espaços do combo com borda sólida do DS (sem tracejado), próximo em amarelo.
+- Barra de spells v2: borda dos slots fina e azul; o botão ⚡ mostra o atalho personalizado do combo num selo, como as demais magias (`combo-key`, atualizado ao salvar).
+
 ## 0.110.1
 - Assistente de combo: sempre abre para baixo; usa a própria barra de spells para montar o combo (clique na magia adiciona/remove, com o número da ordem e a magia esmaecida) — sai a lista duplicada de magias do painel.
 

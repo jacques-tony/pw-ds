@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.110.1 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.110.2 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2623,6 +2623,13 @@ pw-widget-spells.sc-cfg .pwsp-slot[data-i]{cursor:copy}
 pw-widget-spells.sc-cfg .pwsp-slot[data-i] .num{display:none}
 pw-widget-spells.sc-cfg .pwsp-slot.sc-used img{opacity:.45}
 pw-widget-spells.sc-cfg .pwsp-slot[data-co]::after{content:attr(data-co);position:absolute;right:-6px;top:-6px;z-index:5;min-width:16px;height:16px;border-radius:8px;background:var(--v2-paper);color:var(--v2-on-volt);font:800 10px/16px "Archivo",sans-serif;text-align:center;pointer-events:none}
+.pwsc{width:auto!important;min-width:0}
+.pwsc-s{border:2px solid var(--v2-line)!important;background:var(--v2-slot)}
+.pwsc-s.f{border-color:var(--v2-border)!important}
+.pwsc-s.nx{border-color:var(--v2-volt)!important}
+html[data-ds="v2"] pw-widget-spells pw-card.pwsp-slot:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content::after{box-shadow:inset 0 0 0 1px var(--v2-border)!important}
+html[data-ds="v2"] pw-widget-spells pw-card.pwsp-slot:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):hover>.pwc-content::after,html[data-ds="v2"] pw-widget-spells pw-card.pwsp-combo.on:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content::after{box-shadow:inset 0 0 0 1px #6C98E4!important}
+html[data-ds="v2"] pw-widget-spells .pwsp-menu:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>button{border-color:var(--v2-border)!important;color:var(--v2-paper)!important}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
