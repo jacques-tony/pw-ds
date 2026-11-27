@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.112.4
+- Assistente de combo: dica "Clique nas magias da barra para montar ou tirar."
+
 ## 0.112.3
 - Barra de spells v2: 4px entre as spells; 8px entre o grupo de spells, o divisor e os botões.
 - Assistente de combo: padding de 12px nas bordas; os 8 espaços com 4px entre si, alinhados à esquerda.

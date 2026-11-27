@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.112.3 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.112.4 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -2596,5 +2596,5 @@ class PWWidgetOutfit extends HTMLElement{
     P.innerHTML=h;var c=P.querySelector('.pwof-only');if(c)c.addEventListener('change',()=>{this._only=c.checked!==undefined?c.checked:c.hasAttribute('checked');this._panel()})}
 }
 customElements.define('pw-widget-outfit',PWWidgetOutfit);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.112.3"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.112.4"});
 })();
