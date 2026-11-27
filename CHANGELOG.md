@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.117.2
+- "Base dos widgets" também afeta bordas e botões (fundo e borda).
+- Ao chegar perto de um widget (24px), ele aparece com 100% em tudo — opacidade geral, individual e base —, com hover dos botões preservado.
+
 ## 0.117.1
 - Opacidade: os sliders existentes HUD inferior, Chat, Minimapa e Painéis laterais agora funcionam (multiplicam com "Todas as interfaces"; hover volta a 100%).
 - A barra de Pokémon flutuante não é afetada pela opacidade.
