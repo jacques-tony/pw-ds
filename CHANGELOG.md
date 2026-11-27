@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.11
+- HUD: atalhos padrão F1–F10 e 1–4; os demais slots ficam sem atalho definido.
+- HUD v2: divisor volta ao estilo anterior (linha fina entre F10 e 1, com respiro), mantendo slots sempre inteiros.
+
 ## 0.107.10
 - HUD v2: a fileira de hotkeys tem largura múltipla do slot — nunca mostra slot cortado; as setas avançam um slot inteiro. Divisor entre F10 e 1 passa a ficar dentro do espaçamento (2px, cor da borda).
 

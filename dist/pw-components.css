@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.107.10 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.107.11 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2472,12 +2472,10 @@ html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-top:8px!important}
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-bottom:-16px!important}
 /* v2 HUD: hotkeys F1–F10 | 1–4 | restante; sem overlay nas bordas; setas movem um slot por vez com encaixe */
-html[data-ds="v2"] pw-hud .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){order:2;scroll-snap-align:start}
-html[data-ds="v2"] pw-hud .pwhd-slot[data-slot]:is([data-slot="0"],[data-slot="1"],[data-slot="2"],[data-slot="3"],[data-slot="4"],[data-slot="5"],[data-slot="6"],[data-slot="7"],[data-slot="8"],[data-slot="9"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){order:0}
-html[data-ds="v2"] pw-hud .pwhd-slot[data-slot]:is([data-slot="12"],[data-slot="13"],[data-slot="14"],[data-slot="15"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){order:1}
-html[data-ds="v2"] pw-hud .pwhd-slot[data-slot="12"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-left:0!important;position:relative;overflow:visible}
-html[data-ds="v2"] pw-hud .pwhd-slot[data-slot="12"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{content:"";position:absolute;left:calc(var(--hd-gap,4px) / -2 - 1px);top:6px;bottom:6px;width:2px;background:var(--v2-border);pointer-events:none}
 html[data-ds="v2"] pw-hud .pwhd-slots:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){-webkit-mask-image:none!important;mask-image:none!important;scroll-snap-type:x mandatory;scroll-padding-inline:4px}
+html[data-ds="v2"] pw-hud .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){scroll-snap-align:start}
+html[data-ds="v2"] pw-hud .pwhd-slot[data-slot="10"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-left:13px!important;position:relative;overflow:visible}
+html[data-ds="v2"] pw-hud .pwhd-slot[data-slot="10"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{content:"";position:absolute;left:-9px;top:6px;bottom:6px;width:1px;background:var(--v2-line);pointer-events:none}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
