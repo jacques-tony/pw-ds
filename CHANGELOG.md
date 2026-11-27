@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.105.1
+- pw-control-group v2: check do item selecionado na mesma cor do texto (--v2-paper).
+
 ## 0.105.0
 - pw-control-group: com type="single" e gatilho pw-button, o gatilho vira seletor (.pwcl-trigger) — na v2, 28px, texto 12px e, em variant="secondary", texto branco. `trigger="none"` desativa.
 - pw-control-group v2: check do item selecionado em amarelo, bem visível.
