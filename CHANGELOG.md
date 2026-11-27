@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.17
+- HUD v2: a largura da fileira de hotkeys é recalculada sempre que uma seta aparece ou some — nenhum slot cortado com uma ou duas setas.
+
 ## 0.107.16
 - HUD v2: "Definir atalho" vira contextual — abre logo acima da HUD inferior, centralizado no slot/ação, sem escurecer a tela; versão compacta (240px, padding 12px, teclas menores, botões de 28px, sem o texto introdutório).
 
