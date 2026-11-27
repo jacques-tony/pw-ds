@@ -2746,6 +2746,13 @@ html[data-ds="v2"] pw-hud .pwhd-slots:not(:is([data-pw-theme="mewtwo"],[theme="m
 html[data-ds="v2"] pw-hud .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){scroll-snap-align:start}
 html[data-ds="v2"] pw-hud .pwhd-slot[data-slot="10"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-left:13px!important;position:relative;overflow:visible}
 html[data-ds="v2"] pw-hud .pwhd-slot[data-slot="10"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{content:"";position:absolute;left:-9px;top:6px;bottom:6px;width:1px;background:var(--v2-line);pointer-events:none}
+/* v2 HUD minimalista: páginas de 12 (8 | 4); setas trocam de página com transição suave */
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot="10"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-left:0!important}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot="10"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{display:none}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){scroll-snap-align:none}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):nth-child(12n+1){scroll-snap-align:start}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):nth-child(12n+9){margin-left:13px!important;position:relative;overflow:visible}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):nth-child(12n+9)::after{content:"";position:absolute;left:-9px;top:6px;bottom:6px;width:1px;background:var(--v2-line);pointer-events:none}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
@@ -6298,7 +6305,7 @@ customElements.define('pw-navbar',PWNavbar);
 /* ---------- pw-hud: HUD inferior (perfil, equipe, atalhos) + pw-party (equipe na lateral) ---------- */
 var PW_HUD_MENU=['Usar em si','Usar no alvo','Usar no pokémon','Com mira','Equipar','-','Definir atalho','Limpar'];
 /* teclas padrão dos atalhos: 1…9, 0 e depois F1…F12 */
-var PW_HUD_KEYS=['F1','F2','F3','F4','F5','F6','F7','F8','F9','F10','1','2','3','4'];
+var PW_HUD_KEYS=[];
 function pwHudKeys(list){(list||[]).forEach((x,i)=>{if(i>=PW_HUD_KEYS.length)return;if(!x)list[i]={key:PW_HUD_KEYS[i]};else if(!('key' in x))x.key=PW_HUD_KEYS[i]});return list}
 function pwHkEmpty(h){return !h||!(h.image||h.icon||h.label)}
 /* nome legível de uma tecla a partir do KeyboardEvent; null para tecla só modificadora */
@@ -6408,7 +6415,7 @@ class PWHud extends HTMLElement{
     document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>{if(p._from)p._from(this)});this.dispatchEvent(new CustomEvent('pokemon',{bubbles:true,detail:{index:i,pokemon:t}}))}
   _click(e){var t=e.target;if(t.closest('.pwhd-menu'))return;
     var x=t.closest('.pwhd-toggle');if(x){if(x.dataset.hd==='profile')this.setAttribute('profile',this.profile==='compact'?'full':'compact');else this._deck(this.getAttribute('hotkeys')==='hidden');return}
-    var ar=t.closest('.pwhd-arrow');if(ar){var s=this.querySelector('.pwhd-slots'),st=(this.querySelector('.pwhd-slot')||{offsetWidth:40}).offsetWidth+(parseFloat(getComputedStyle(s).columnGap)||12);if(!ar.hasAttribute('disabled'))s.scrollBy({left:+ar.dataset.dir*st});return}
+    var ar=t.closest('.pwhd-arrow');if(ar){var s=this.querySelector('.pwhd-slots'),st=(this.querySelector('.pwhd-slot')||{offsetWidth:40}).offsetWidth+(parseFloat(getComputedStyle(s).columnGap)||12);if(!ar.hasAttribute('disabled')){if(this.profile==='compact'&&document.documentElement.getAttribute('data-ds')==='v2'){var cs2=getComputedStyle(s),pg=s.clientWidth-(parseFloat(cs2.paddingLeft)||0)-(parseFloat(cs2.paddingRight)||0)+(parseFloat(cs2.columnGap)||0),from=s.scrollLeft,to=Math.max(0,Math.min(s.scrollWidth-s.clientWidth,from+(+ar.dataset.dir)*pg)),t0=performance.now(),D=matchMedia('(prefers-reduced-motion: reduce)').matches?0:460,ez=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;cancelAnimationFrame(s._pg);s.style.scrollSnapType='none';var stp=()=>{var k=D?Math.min(1,(performance.now()-t0)/D):1;s.scrollLeft=from+(to-from)*ez(k);if(k<1)s._pg=requestAnimationFrame(stp);else{s.style.scrollSnapType='';this._arrows()}};stp()}else s.scrollBy({left:+ar.dataset.dir*st})}return}
     var dn=t.closest('.pwhd-done');if(dn){this.doneOrder();return}
     var c=t.closest('.pwhd-card[data-team]');if(c){if(!this._editing)this._pick(+c.dataset.team);return}
     var a=t.closest('.pwhd-act');if(a){var act=this._data.actions[+a.dataset.act];if(act&&act.pressed!==undefined){act.pressed=!act.pressed;a.setAttribute('aria-pressed',act.pressed?'true':'false');this._acts()}
@@ -8245,7 +8252,7 @@ document.addEventListener('click',e=>{var b=e.target.closest&&e.target.closest('
   if(document.documentElement.getAttribute('data-ds')!=='v2')return;var sl=[...s.querySelectorAll('.pwhd-slot')].filter(x=>x.offsetWidth);if(sl.length<2)return;
   var cs=getComputedStyle(s),gap=parseFloat(cs.columnGap)||0,w=sl[0].offsetWidth,step=w+gap,pad=(parseFloat(cs.paddingLeft)||0)+(parseFloat(cs.paddingRight)||0),div=13;
   var ar=[...bar.querySelectorAll('.pwhd-arrow')].reduce((a,x)=>a+(getComputedStyle(x).display!=='none'?x.offsetWidth+(parseFloat(getComputedStyle(bar).columnGap)||0):0),0);
-  var avail=bar.clientWidth-ar-pad-div,n=Math.max(1,Math.floor((avail+gap)/step));var W=n*step-gap+div+(cs.boxSizing==='border-box'?pad:0);s.style.flex='none';s.style.width=W+'px';s.style.maxWidth=W+'px';if(h._arrows)h._arrows()}
+  var cp=h.getAttribute('profile')==='compact';if(cp)div=13;var avail=bar.clientWidth-ar-pad-div,n=cp?12:Math.max(1,Math.floor((avail+gap)/step));var W=n*step-gap+div+(cs.boxSizing==='border-box'?pad:0);s.style.flex='none';s.style.width=W+'px';s.style.maxWidth=W+'px';if(h._arrows)h._arrows()}
  function all(){document.querySelectorAll('pw-hud').forEach(fit)}
  window.addEventListener('load',()=>{setTimeout(all,300);if(window.ResizeObserver){var ro=new ResizeObserver(()=>requestAnimationFrame(all));document.querySelectorAll('pw-hud').forEach(h=>ro.observe(h))}});
  new MutationObserver(m=>{if(m.some(x=>x.target.tagName==='PW-HUD'||x.target===document.documentElement))setTimeout(all,600)}).observe(document.documentElement,{attributes:true,subtree:true,attributeFilter:['profile','hotkeys','data-ds']})})();</script>

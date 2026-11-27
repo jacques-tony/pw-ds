@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.107.11 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.107.12 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2657,6 +2657,13 @@ html[data-ds="v2"] pw-hud .pwhd-slots:not(:is([data-pw-theme="mewtwo"],[theme="m
 html[data-ds="v2"] pw-hud .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){scroll-snap-align:start}
 html[data-ds="v2"] pw-hud .pwhd-slot[data-slot="10"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-left:13px!important;position:relative;overflow:visible}
 html[data-ds="v2"] pw-hud .pwhd-slot[data-slot="10"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{content:"";position:absolute;left:-9px;top:6px;bottom:6px;width:1px;background:var(--v2-line);pointer-events:none}
+/* v2 HUD minimalista: páginas de 12 (8 | 4); setas trocam de página com transição suave */
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot="10"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-left:0!important}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot="10"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{display:none}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){scroll-snap-align:none}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):nth-child(12n+1){scroll-snap-align:start}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):nth-child(12n+9){margin-left:13px!important;position:relative;overflow:visible}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):nth-child(12n+9)::after{content:"";position:absolute;left:-9px;top:6px;bottom:6px;width:1px;background:var(--v2-line);pointer-events:none}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}

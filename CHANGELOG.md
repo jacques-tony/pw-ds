@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.12
+- HUD: nenhum atalho pré-definido nas hotkeys; o jogador define cada um.
+- HUD v2 minimalista: páginas de 12 slots (8 | divisor | 4); as setas trocam de página inteira com transição suave (460ms, ease-in-out).
+
 ## 0.107.11
 - HUD: atalhos padrão F1–F10 e 1–4; os demais slots ficam sem atalho definido.
 - HUD v2: divisor volta ao estilo anterior (linha fina entre F10 e 1, com respiro), mantendo slots sempre inteiros.
