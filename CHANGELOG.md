@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.9
+- HUD v2: hotkeys em F1–F10 | 1–4 | restantes (vazios) nos dois perfis; sem overlay (fade) nas bordas da fileira; setas movem um slot por vez com encaixe (scroll-snap).
+
 ## 0.107.8
 - Minimapa v2: cards de coordenadas e controles a 8px do topo e da base do mapa.
 
