@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.15
+- HUD v2 minimalista: troca de página com rolagem suave nativa do navegador (sem travadas); ao terminar, a fileira desliza suavemente para a posição da nova seta e a seta aparece com fade.
+
 ## 0.107.14
 - HUD v2 minimalista: sem espaço vazio nas extremidades — só a seta disponível ocupa lugar (direita na 1ª página, esquerda na 2ª); HUD com 706px e barras de HP/XP mais curtas.
 

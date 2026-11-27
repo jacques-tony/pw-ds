@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.107.14 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.107.15 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -1265,7 +1265,8 @@ class PWHud extends HTMLElement{
     document.querySelectorAll('pw-party[for="'+this.id+'"]').forEach(p=>{if(p._from)p._from(this)});this.dispatchEvent(new CustomEvent('pokemon',{bubbles:true,detail:{index:i,pokemon:t}}))}
   _click(e){var t=e.target;if(t.closest('.pwhd-menu'))return;
     var x=t.closest('.pwhd-toggle');if(x){if(x.dataset.hd==='profile')this.setAttribute('profile',this.profile==='compact'?'full':'compact');else this._deck(this.getAttribute('hotkeys')==='hidden');return}
-    var ar=t.closest('.pwhd-arrow');if(ar){var s=this.querySelector('.pwhd-slots'),st=(this.querySelector('.pwhd-slot')||{offsetWidth:40}).offsetWidth+(parseFloat(getComputedStyle(s).columnGap)||12);if(!ar.hasAttribute('disabled')){if(this.profile==='compact'&&document.documentElement.getAttribute('data-ds')==='v2'){var cs2=getComputedStyle(s),pg=s.clientWidth-(parseFloat(cs2.paddingLeft)||0)-(parseFloat(cs2.paddingRight)||0)+(parseFloat(cs2.columnGap)||0),from=s.scrollLeft,to=Math.max(0,Math.min(s.scrollWidth-s.clientWidth,from+(+ar.dataset.dir)*pg)),t0=performance.now(),D=matchMedia('(prefers-reduced-motion: reduce)').matches?0:460,ez=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;cancelAnimationFrame(s._pg);s.style.scrollSnapType='none';var stp=()=>{var k=D?Math.min(1,(performance.now()-t0)/D):1;s.scrollLeft=from+(to-from)*ez(k);if(k<1)s._pg=requestAnimationFrame(stp);else{s.style.scrollSnapType='';this._arrows()}};stp()}else s.scrollBy({left:+ar.dataset.dir*st})}return}
+    var ar=t.closest('.pwhd-arrow');if(ar){var s=this.querySelector('.pwhd-slots'),st=(this.querySelector('.pwhd-slot')||{offsetWidth:40}).offsetWidth+(parseFloat(getComputedStyle(s).columnGap)||12);if(!ar.hasAttribute('disabled')){if(this.profile==='compact'&&document.documentElement.getAttribute('data-ds')==='v2'){var cs2=getComputedStyle(s),pg=s.clientWidth-(parseFloat(cs2.paddingLeft)||0)-(parseFloat(cs2.paddingRight)||0)+(parseFloat(cs2.columnGap)||0),to=Math.max(0,Math.min(s.scrollWidth-s.clientWidth,s.scrollLeft+(+ar.dataset.dir)*pg)),self=this,red=matchMedia('(prefers-reduced-motion: reduce)').matches;
+      s.style.scrollSnapType='none';s.scrollTo({left:to,behavior:red?'auto':'smooth'});clearTimeout(s._pt);var done=()=>{if(Math.abs(s.scrollLeft-to)>1&&!s._dn){s._pt=setTimeout(done,40);return}s.style.scrollSnapType='';var x0=s.getBoundingClientRect().left;self._arrows();var x1=s.getBoundingClientRect().left;if(!red&&Math.abs(x0-x1)>.5){var S=(s.getBoundingClientRect().width/s.offsetWidth)||1,ab=[].slice.call(self.querySelectorAll('.pwhd-arrow')).filter(a=>a.offsetWidth);s.animate([{transform:'translateX('+(x0-x1)/S+'px)'},{transform:'none'}],{duration:260,easing:'cubic-bezier(.33,1,.68,1)'});ab.forEach(a=>a.animate([{opacity:0},{opacity:1}],{duration:200,delay:80,fill:'backwards'}))}};s._pt=setTimeout(done,60)}else s.scrollBy({left:+ar.dataset.dir*st})}return}
     var dn=t.closest('.pwhd-done');if(dn){this.doneOrder();return}
     var c=t.closest('.pwhd-card[data-team]');if(c){if(!this._editing)this._pick(+c.dataset.team);return}
     var a=t.closest('.pwhd-act');if(a){var act=this._data.actions[+a.dataset.act];if(act&&act.pressed!==undefined){act.pressed=!act.pressed;a.setAttribute('aria-pressed',act.pressed?'true':'false');this._acts()}
@@ -2588,5 +2589,5 @@ class PWWidgetOutfit extends HTMLElement{
     P.innerHTML=h;var c=P.querySelector('.pwof-only');if(c)c.addEventListener('change',()=>{this._only=c.checked!==undefined?c.checked:c.hasAttribute('checked');this._panel()})}
 }
 customElements.define('pw-widget-outfit',PWWidgetOutfit);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.107.14"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.107.15"});
 })();
