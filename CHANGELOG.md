@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.1
+- Minimapa v2: volta a ter o mapa ocupando todo o conteúdo (do divisor do header até a base), sem o card interno; coordenadas/hora e controles flutuam sobre o mapa em cards; controles xs com 4px entre si.
+
 ## 0.107.0
 - pw-control-group: `placement="side"` abre o menu ao lado do widget/card que contém o gatilho, no lado com mais espaço (alinhado ao topo). `side-of` aceita um seletor para o elemento âncora.
 - Estatísticas: menu de exibição usa placement="side" (abre no lado vazio, como o marcador do minimapa e o novo canal do bate-papo).

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.107.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.107.1 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2452,17 +2452,8 @@ html[data-ds="v2"] pw-hud .pwhd-toggle:not(:is([data-pw-theme="mewtwo"],[theme="
 /* v2: minimapa com a largura da mochila e o mapa dentro de um card */
 html[data-ds="v2"] pw-button[size="xs"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--bh:24px!important;--bic:14px!important;--brad:5px}
 html[data-ds="v2"] pw-widget-minimap:not([maximized]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:224px;min-width:200px!important}
-html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content{border:0!important;box-shadow:none!important}
-html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){height:auto!important;background:transparent!important;border:0!important;box-shadow:none!important;outline:0!important}
-html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before,html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{display:none!important}
-html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>:is(svg.pwc-frame,.pwe-bg){display:none!important}
-html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content{padding:0!important;height:auto!important}
-html[data-ds="v2"] pw-widget-minimap:not([maximized]) .pwmm-space:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){border:2px solid var(--v2-border);border-radius:8px;pointer-events:none!important}
-html[data-ds="v2"] pw-widget-minimap:not([maximized]) .pwmm-vp:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){border-radius:6px;overflow:hidden}
-html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:transparent!important;box-shadow:none!important;width:100%!important}
-html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>:is(svg.pwc-frame,.pwe-bg){display:none!important}
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content{padding:0!important;justify-content:center!important}
-html[data-ds="v2"] pw-widget-minimap:not([maximized]) .pwmm-ctrl:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:100%;max-width:192px;margin-inline:auto;justify-content:space-between!important;gap:0!important}
+html[data-ds="v2"] pw-widget-minimap:not([maximized]) .pwmm-ctrl:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:auto;margin-inline:auto;justify-content:center!important;gap:4px!important}
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) .pwmm-sep:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none}
 /* v2: degradês 50% menores — bordas do mapa e sombras de rolagem dos widgets */
 html[data-ds="v2"] pw-widget-minimap .pwmm-vp:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{background:linear-gradient(90deg,var(--pw-bg-solid),color-mix(in srgb,var(--pw-bg-solid) 78%,transparent) 6px,color-mix(in srgb,var(--pw-bg-solid) 45%,transparent) 12px,color-mix(in srgb,var(--pw-bg-solid) 18%,transparent) 16px,transparent 24px),
@@ -2639,6 +2630,10 @@ html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-
 html[data-ds="v2"] :is(pw-widget-minimap,pw-widget-chat) .pwmm-rl:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){left:-5px!important;width:12px!important}
 html[data-ds="v2"] :is(pw-widget-minimap,pw-widget-chat) .pwmm-rr:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){right:-5px!important;width:12px!important}
 html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-battle,pw-widget-stats) .pwbg-resize:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after,html[data-ds="v2"] :is(pw-widget-minimap,pw-widget-chat) .pwmm-resize:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{background:var(--v2-volt)!important;box-shadow:none!important}
+/* v2: mapa ocupa todo o conteúdo do minimapa, do divisor do header até a base; coordenadas e controles por cima */
+html[data-ds="v2"] pw-widget-minimap:not([maximized]) .pwmm-vp:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){inset:auto!important;left:0!important;right:0!important;bottom:0!important;top:var(--wb-head,44px)!important;width:auto!important;height:auto!important;border-radius:0 0 10px 10px;overflow:hidden}
+html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:auto!important;align-self:center}
+html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content{padding:6px 8px!important}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
