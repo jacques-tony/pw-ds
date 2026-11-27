@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.0
+- pw-control-group: `placement="side"` abre o menu ao lado do widget/card que contém o gatilho, no lado com mais espaço (alinhado ao topo). `side-of` aceita um seletor para o elemento âncora.
+- Estatísticas: menu de exibição usa placement="side" (abre no lado vazio, como o marcador do minimapa e o novo canal do bate-papo).
+- v2: alças de redimensionar centradas sobre a borda (metade dentro, metade fora) e em amarelo.
+- Novo ícone `chat-plus` (balão com +) no botão de canais do bate-papo.
+
 ## 0.106.7
 - Personalizar treinador: abas alinhadas à esquerda do card de conteúdo (remove o recuo de 8px).
 
