@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.106.6
+- Line Icon Pack: novos `sparkles` (brilho de 4 pontas + estrelinhas) e `palette` (paleta de artista).
+- Personalizar treinador: aba Efeitos usa `sparkles` e aba Cores usa `palette`.
+
 ## 0.106.5
 - Line Icon Pack: novos `part-head` (cabeça), `part-body` (camiseta), `part-legs` (calça) e `part-feet` (bota).
 - Personalizar treinador, aba Cores: cada parte com seu ícone.
