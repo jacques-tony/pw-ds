@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.105.3
+- v2: divisor entre header e conteúdo estava duplicado (borda inferior de 2px + linha do ::before); fica só a borda.
+- pw-empty: ícone centralizado na marca.
+
 ## 0.105.2
 - pw-empty: ícone passa a usar pwIcon (v1 ou Line Icon Pack na v2), em vez do conjunto antigo do pw-icon.
 - Line Icon Pack: novos `ball` (Pokébola) e `people` (= party).
