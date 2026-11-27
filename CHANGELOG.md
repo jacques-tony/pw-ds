@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.3
+- Minimapa v2: sem degradê nas bordas do mapa.
+
 ## 0.107.2
 - v2: alças de redimensionar a 75% com o mouse no widget e 100% sobre a alça; 20px mais longas (10px de cada lado).
 - Minimapa v2: cards de coordenadas/hora e de controles a 75% de opacidade (100% no hover); coordenadas com padding de 4px.
