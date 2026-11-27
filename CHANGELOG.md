@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.106.5
+- Line Icon Pack: novos `part-head` (cabeça), `part-body` (camiseta), `part-legs` (calça) e `part-feet` (bota).
+- Personalizar treinador, aba Cores: cada parte com seu ícone.
+
 ## 0.106.4
 - Personalizar treinador, aba Cores: botões Cabeça/Corpo/Pernas/Pés em pw-button variant="secondary" (selecionado preenchido, demais outline), azul no lugar do amarelo.
 
