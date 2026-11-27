@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.115.1
+- HUD v2 (perfil completo): as hotkeys deslizam suavemente ao paginar, como no perfil reduzido.
+
 ## 0.115.0
 - Slider de hotkeys: mínimo 12.
 - HUD v2: setas sempre visíveis dos dois lados (desabilitadas quando não há mais hotkeys), ocupando o lugar de uma hotkey; avançam de 3 em 3. O perfil reduzido usa as mesmas setas xs do completo. Largura estável ao paginar.

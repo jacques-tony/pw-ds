@@ -8608,3 +8608,12 @@ document.addEventListener('click',e=>{var b=e.target.closest&&e.target.closest('
  document.addEventListener('click',e=>{var a=e.target.closest&&e.target.closest('pw-hud[profile="compact"] .pwhd-arrow');if(!a||!V())return;e.stopPropagation();e.preventDefault();if(a.hasAttribute('disabled'))return;var h=a.closest('pw-hud'),s=h.querySelector('.pwhd-slots'),sl=s.querySelector('.pwhd-slot');if(!sl)return;var st=sl.offsetWidth+(parseFloat(getComputedStyle(s).columnGap)||0),cur=Math.round(s.scrollLeft/st),to=Math.max(0,Math.min(s.scrollWidth-s.clientWidth,(cur+3*(+a.dataset.dir))*st));s.style.scrollSnapType='none';s.scrollTo({left:to,behavior:'smooth'});clearTimeout(s._p3);var t0=Date.now(),done=()=>{if(Math.abs(s.scrollLeft-to)>1&&Date.now()-t0<800){s._p3=setTimeout(done,40);return}s.style.scrollSnapType='';h._arrows&&h._arrows()};done()},true);
  new MutationObserver(m=>m.forEach(x=>{if(x.target.tagName==='PW-HUD')sty(x.target)})).observe(document.documentElement,{subtree:true,attributes:true,attributeFilter:['profile']});
  document.querySelectorAll('pw-hud').forEach(sty)})();</script>
+<script>/* v2 HUD completa: animação suave ao paginar as hotkeys (igual ao perfil reduzido) */
+(function(){var P=customElements.get('pw-hud');if(!P||P.prototype._flipW)return;P.prototype._flipW=1;var o=P.prototype._sides;
+ window.addEventListener('click',e=>{var b=e.target.closest&&e.target.closest('pw-hud .pwhd-pg');if(b&&!b.hasAttribute('disabled'))b.closest('pw-hud')._flipDir=+b.dataset.d},true);
+ P.prototype._sides=function(){var d=this._flipDir;this._flipDir=0;if(!d||matchMedia('(prefers-reduced-motion: reduce)').matches)return o.apply(this,arguments);
+  var S=(this.getBoundingClientRect().width/this.offsetWidth)||1,before={};this.querySelectorAll('.pwhd-slot').forEach(x=>{if(x.offsetWidth)before[x.dataset.slot]=x.getBoundingClientRect().left});
+  var r=o.apply(this,arguments),E='cubic-bezier(.33,1,.68,1)';
+  this.querySelectorAll('.pwhd-slot').forEach(x=>{if(!x.offsetWidth)return;var l=x.getBoundingClientRect().left,b=before[x.dataset.slot];
+   if(b!=null){if(Math.abs(b-l)>.5)x.animate([{transform:'translateX('+(b-l)/S+'px)'},{transform:'none'}],{duration:260,easing:E})}
+   else x.animate([{transform:'translateX('+(d*44)+'px)',opacity:0},{transform:'none',opacity:1}],{duration:260,easing:E})});return r}})();</script>
