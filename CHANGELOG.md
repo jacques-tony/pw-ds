@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.105.2
+- pw-empty: ícone passa a usar pwIcon (v1 ou Line Icon Pack na v2), em vez do conjunto antigo do pw-icon.
+- Line Icon Pack: novos `ball` (Pokébola) e `people` (= party).
+- Empty states sem ícone ganharam um: "Nenhum Pokémon invocado" (combo) usa `ball`; "Nada encontrado" (busca das opções) usa `search`.
+
 ## 0.105.1
 - pw-control-group v2: check do item selecionado na mesma cor do texto (--v2-paper).
 
