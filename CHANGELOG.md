@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.114.1
+- Opções › Barra de ações: o slider "Hotkeys na barra inferior" agora vai até 100.
+
 ## 0.114.0
 - HUD v2: os dois perfis crescem na horizontal até a borda da tela, com a mesma margem da parte de baixo (13px) nas laterais.
 - Perfil reduzido: cabem quantas hotkeys a largura permitir (fim do limite de 12 e de 24), com setas só quando passar disso. As barras de HP e XP esticam junto com a HUD. O divisor 8 | 4 só aparece quando a página tem 12 slots.
