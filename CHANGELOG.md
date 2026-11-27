@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.110.3
+- Assistente de combo: título "Combo do Charizard" e dica acima dos slots; sem divisor; botão de fechar alinhado ao topo dos slots, na cor do texto.
+
 ## 0.110.2
 - Assistente de combo: limite de 8 magias; painel encolhe para esse tamanho; sai o botão "combo salvo F1"; espaços do combo com borda sólida do DS (sem tracejado), próximo em amarelo.
 - Barra de spells v2: borda dos slots fina e azul; o botão ⚡ mostra o atalho personalizado do combo num selo, como as demais magias (`combo-key`, atualizado ao salvar).
