@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.108.3
+- HUD v2 completo: disco do avatar na mesma cor do topo da HUD (--v2-panel-top) e centralizado com os anéis; foto menor, por dentro do anel de XP (o anel não fica mais coberto).
+
 ## 0.108.2
 - HUD v2 completo: mais espaço entre os anéis de HP e XP (XP não fica mais cortado pela foto); disco de fundo sem borda atrás do avatar e anéis; largura igual à do minimalista (706px) com cards dos Pokémon menores (42×52); Lv., HP e XP% em duas linhas sob o avatar.
 - Ações e alternadores do topo ficam flutuantes, só os botões (sem a aba de base), com fundo próprio.
