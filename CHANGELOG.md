@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.117.0
+- HUD v2: mostrar/esconder atalhos volta a usar a animação antiga (cartas). A HUD mantém a mesma largura com e sem atalhos nos dois perfis. A troca de perfil segue com fade.
+- pw-party é independente da HUD: fica sempre visível e não participa das transições dela.
+- Opções › Interface › Opacidade: novos sliders "Todas as interfaces" (0–100%, vale para HUD, barra superior, party, docks e todos os widgets; ao passar o mouse o widget volta a 100%) e "Base dos widgets" (só o fundo).
+
 ## 0.116.0
 - HUD v2: troca de perfil e mostrar/esconder atalhos agora usam um fade simples e padronizado (some 140ms, troca, aparece 200ms), sem animar tamanho nem mover cartas/slots. A barra de Pokémon ligada acompanha o fade.
 
