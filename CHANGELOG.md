@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.13
+- HUD v2 minimalista: limite de 24 hotkeys (2 páginas de 12); a seta direita só avança uma vez e a esquerda volta. Setas reservam espaço (a fileira não pula). HUD mais estreita (742px), encurtando as barras de HP/XP, sem espaço vazio à direita.
+
 ## 0.107.12
 - HUD: nenhum atalho pré-definido nas hotkeys; o jogador define cada um.
 - HUD v2 minimalista: páginas de 12 slots (8 | divisor | 4); as setas trocam de página inteira com transição suave (460ms, ease-in-out).

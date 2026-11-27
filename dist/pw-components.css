@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.107.12 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.107.13 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2463,7 +2463,7 @@ html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-info:not(:is(
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content{padding:4px 8px!important;height:auto!important}
 /* v2 HUD: barras de HP/XP 25% menores — a HUD fica mais estreita */
 html[data-ds="v2"] pw-hud.gsim-hud:not([profile="compact"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] .gsim pw-hud:not([profile="compact"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:836px!important}
-html[data-ds="v2"] pw-hud.gsim-hud[profile="compact"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] .gsim pw-hud[profile="compact"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:786px!important}
+html[data-ds="v2"] pw-hud.gsim-hud[profile="compact"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] .gsim pw-hud[profile="compact"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:742px!important}
 html[data-ds="v2"] pw-widget-minimap .pwmm-vp:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{display:none!important}
 /* v2 minimapa: só o fundo dos cards sobre o mapa a 75%; conteúdo a 100%; mesmo padding nos dois */
 html[data-ds="v2"] pw-widget-minimap :is(pw-card.pwmm-info,pw-card.pwmm-ctrlc):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>:is(svg.pwc-frame,.pwe-bg){opacity:.75}
@@ -2483,6 +2483,9 @@ html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot]:not(:is([data
 html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):nth-child(12n+1){scroll-snap-align:start}
 html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):nth-child(12n+9){margin-left:13px!important;position:relative;overflow:visible}
 html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):nth-child(12n+9)::after{content:"";position:absolute;left:-9px;top:6px;bottom:6px;width:1px;background:var(--v2-line);pointer-events:none}
+/* v2 HUD minimalista: no máximo 24 hotkeys (2 páginas); setas reservam espaço para a fileira não pular */
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):nth-child(n+25){display:none!important}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-arrow[disabled]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:inline-flex!important;visibility:hidden}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
