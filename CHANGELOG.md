@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.110.6
+- Barra de spells v2: botão ⚡ sem a borda azul (só o botão amarelo); hover das magias sem a camada de fundo que esmaecia a imagem (apenas a borda clareia).
+- Assistente de combo: mesma largura da barra de spells, slots distribuídos na largura.
+
 ## 0.110.5
 - Assistente de combo: botão de fechar padrão dos widgets (ghost sm); sai "Cancelar".
 - Barra de spells v2: hover das magias sem opacidade (card normal); botão ⚡ do combo como primário (amarelo); botão de menu em primary outline.
