@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.107.17 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.107.18 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2500,6 +2500,8 @@ pw-dialog.pwhd-bind.ctx .pwd-foot{gap:6px!important;padding:0!important;margin:0
 pw-dialog.pwhd-bind.ctx .pwd-foot pw-button{--bh:28px!important;--bfs:12px!important;--bic:14px!important}
 pw-dialog.pwhd-bind.ctx .pwd-foot pw-button>button{height:28px!important;min-height:0!important}
 @keyframes pwkb-ctx{from{opacity:0;translate:0 6px}}
+pw-dialog.pwhd-bind.ctx .pwkb-zone:not(:focus) .pwkb-hint::after{content:none!important}
+pw-dialog.pwhd-bind.ctx .pwkb-hint{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}

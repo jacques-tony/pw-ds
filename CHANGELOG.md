@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.18
+- Definir atalho contextual: ancorado pela base (cresce para cima, nunca sobre a HUD) e dica em uma linha, sem o "(clique aqui)".
+
 ## 0.107.17
 - HUD v2: a largura da fileira de hotkeys é recalculada sempre que uma seta aparece ou some — nenhum slot cortado com uma ou duas setas.
 
