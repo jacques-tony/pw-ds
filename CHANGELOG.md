@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.104.2
+- Batalha v2: filtros (jogadores, NPCs, selvagens, Pokémon, grupo) no estilo secondary outline azul, mesmo tamanho; selecionado com fundo azul suave e ícone branco; hover não é mais cortado.
+- Seletores Ordenar/Prioridade: pw-button variant="secondary" appearance="outline" com 28px de altura, texto 12px branco (no lugar do amarelo).
+
 ## 0.104.1
 - pw-checkbox / pw-radio v2: sem o contorno azul; checkbox com cantos de 4px; ícones do Line Icon Pack (check e minus para indeterminado); radio com ponto central.
 - Estatísticas v2: contador branco rodando e vermelho quando pausado.
