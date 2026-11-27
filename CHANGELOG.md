@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.19
+- HUD v2: padding interno de 12px em todos os lados (era 16px).
+
 ## 0.107.18
 - Definir atalho contextual: ancorado pela base (cresce para cima, nunca sobre a HUD) e dica em uma linha, sem o "(clique aqui)".
 
