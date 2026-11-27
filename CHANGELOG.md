@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.110.7
+- Barra de spells v2: no hover, o fundo é o card oficial (painel sólido + borda de 2px), sem transparência; botão ⚡ sem nenhum contorno azul.
+- Assistente de combo: sai o tempo estimado (fica só a contagem); abre a 2px da barra.
+
 ## 0.110.6
 - Barra de spells v2: botão ⚡ sem a borda azul (só o botão amarelo); hover das magias sem a camada de fundo que esmaecia a imagem (apenas a borda clareia).
 - Assistente de combo: mesma largura da barra de spells, slots distribuídos na largura.
