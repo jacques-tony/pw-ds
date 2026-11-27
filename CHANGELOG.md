@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.106.3
+- Personalizar treinador: item escolhido em Visual, Títulos e Efeitos fica com borda amarela de 2px, fundo levemente amarelado e selo de check (Line Icon Pack) no canto.
+
 ## 0.106.2
 - Personalizar treinador: botões de zoom (− / +) no canto da prévia, de 0,6× a 2,2× com transição suave; visuais em 4 colunas e maiores (sprites ~1,9×), quebrando para a linha de baixo.
 - Abas: transição um pouco mais lenta (300ms).
