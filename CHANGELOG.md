@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.109.1
+- HUD v2 completo: borda do card emenda na base do avatar sem degrau; anéis com renderização suave (sem herdar pixelated do mapa).
+- Hotkeys: com as duas setas, a seta de voltar ocupa o lugar de uma hotkey (5 visíveis), sem ficar sob o avatar; avanço e volta lembram a página exata.
+
 ## 0.109.0
 - pw-progress: novo `shape="ring"` (anel SVG vetorial, `thickness`, tamanho pelo CSS; variant hp = verde, xp = amarelo).
 - HUD v2 completo: anéis de HP e XP agora são pw-progress shape="ring" (sem SVG próprio, traço nítido); a borda azul do card continua em volta da parte do avatar que sai da HUD.

@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.109.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.109.1 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2571,9 +2571,11 @@ html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar pw
 html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar pw-progress.pwhd-ring.rxp:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){left:10px!important;top:10px!important;width:76px!important;height:76px!important}
 html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>img{left:10px!important;top:10px!important;width:76px!important;height:76px!important}
 /* base do avatar: continua a borda do card em volta da parte que sai da HUD */
-html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar .pwhd-bump:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--v2-border);clip-path:inset(0 0 calc(100% - 56px) 0)}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar .pwhd-bump:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--v2-border);clip-path:inset(0 0 calc(100% - 59px) 0)}
 html[data-ds="v2"] pw-hud .pwhd-avatar :is(.pwhd-rinfo,.pwhd-bump,.pwhd-ring){pointer-events:none}
 html[data-ds="v2"] pw-hud .pwhd-arrow{position:relative;z-index:5}
+html[data-ds="v2"] pw-hud .pwhd-avatar :is(pw-progress,svg,img){image-rendering:auto!important}
+pw-progress[shape="ring"] svg{overflow:visible}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
