@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.115.2
+- HUD v2 completa sem atalhos: sem os Pokémon, só avatar com anéis de HP/XP, Lv. e percentuais (420px).
+- HUD v2 reduzida sem atalhos: mantém a mesma largura de quando mostra as hotkeys; as barras de HP e XP esticam junto.
+
 ## 0.115.1
 - HUD v2 (perfil completo): as hotkeys deslizam suavemente ao paginar, como no perfil reduzido.
 
