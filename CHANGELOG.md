@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.4
+- v2: alça de redimensionar a 60% com o mouse no widget (100% sobre a alça).
+
 ## 0.107.3
 - Minimapa v2: sem degradê nas bordas do mapa.
 
