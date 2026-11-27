@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.111.2
+- pw-progress ring: canvas na resolução real da tela (o supersampling 4× serrilhava ao ser reduzido); o trilho escuro só é desenhado na parte vazia e o preenchimento fica levemente mais largo, sem franja escura aparecendo na borda.
+
 ## 0.111.1
 - pw-progress shape="ring": desenhado em canvas com supersampling (4× a resolução da tela), redesenha ao redimensionar — bordas suaves mesmo com a tela do jogo reduzida. SVG continua para acessibilidade.
 - HUD: foto do avatar recortada por clip-path e leve contorno de 0,6px para suavizar a borda.
