@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.112.1
+- Spells: badges de atalho com a mesma aparência das tags dos Pokémon da HUD (fundo azul translúcido, borda clara), centralizadas no topo.
+- Botão do assistente de combo não muda de tamanho no hover (sem contorno nem brilho; só clareia o amarelo).
+- HUD v2 completo: ações e botões de perfil/atalhos alinhados às bordas do card.
+- Barra vertical: o configurador de combo abre ao lado, alinhado à base da barra.
+
 ## 0.112.0
 - Tag de atalho (pw-badge) centralizada no topo, dentro do card, com texto maior — nos cards dos Pokémon da HUD e nas spells.
 - Barra de spells v2: card de fundo sempre visível (sem depender do hover); divisor entre as spells e os botões; opções antes e assistente de combo no final, ambos com o tamanho dos slots (30px).
