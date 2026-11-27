@@ -8624,3 +8624,14 @@ document.addEventListener('click',e=>{var b=e.target.closest&&e.target.closest('
    else x.animate([{transform:'translateX('+(d*44)+'px)',opacity:0},{transform:'none',opacity:1}],{duration:260,easing:E})});return r}})();</script>
 <script>/* v2 HUD reduzida: ao esconder os atalhos mantém a largura que tinha com eles */
 (function(){new MutationObserver(m=>m.forEach(x=>{var h=x.target;if(h.tagName!=='PW-HUD')return;if(h.getAttribute('profile')==='compact'&&h.getAttribute('hotkeys')==='hidden'&&h._cw)h.style.setProperty('width',h._cw+'px','important');else h.style.removeProperty('width')})).observe(document.documentElement,{subtree:true,attributes:true,attributeFilter:['profile','hotkeys']})})();</script>
+<script>/* v2 HUD: troca de perfil e mostrar/esconder atalhos com fade simples (sem animar tamanho nem mover elementos) */
+(function(){var P=customElements.get('pw-hud');if(!P||P.prototype._xfW)return;P.prototype._xfW=1;var V=()=>document.documentElement.getAttribute('data-ds')==='v2',om=P.prototype._morph,od=P.prototype._deck;
+ function xf(h,swap){var red=matchMedia('(prefers-reduced-motion: reduce)').matches,els=[h].concat([].slice.call(document.querySelectorAll('pw-party[for="'+h.id+'"]')).filter(p=>p.offsetWidth));
+  if(h._xf)h._xf.forEach(a=>a.cancel());if(red){swap();return}
+  var outs=els.map(e=>e.animate([{opacity:1},{opacity:0}],{duration:140,easing:'ease-in',fill:'forwards'}));h._xf=outs;
+  Promise.all(outs.map(a=>a.finished)).then(()=>{swap();var els2=[h].concat([].slice.call(document.querySelectorAll('pw-party[for="'+h.id+'"]')));
+   var ins=els2.map(e=>e.animate([{opacity:0},{opacity:1}],{duration:200,delay:60,easing:'ease-out',fill:'backwards'}));outs.forEach(a=>a.cancel());h._xf=ins}).catch(()=>{})}
+ P.prototype._morph=function(fn,an,ao,av){if(!V())return om.apply(this,arguments);var set=v=>{this._mute=1;if(v==null)this.removeAttribute(an);else this.setAttribute(an,v);this._mute=0};
+  set(ao);xf(this,()=>{set(av);fn();if(an==='profile')this._emitTeam&&this._emitTeam();try{this._sides&&this._sides()}catch(e){}})};
+ P.prototype._deck=function(show){if(!V())return od.apply(this,arguments);this.setAttribute('hotkeys',show?'shown':'hidden')};
+})();</script>

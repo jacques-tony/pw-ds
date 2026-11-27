@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.116.0
+- HUD v2: troca de perfil e mostrar/esconder atalhos agora usam um fade simples e padronizado (some 140ms, troca, aparece 200ms), sem animar tamanho nem mover cartas/slots. A barra de Pokémon ligada acompanha o fade.
+
 ## 0.115.3
 - HUD v2 reduzida: o avatar preenche o quadro inteiro, sem a borda redonda da arte aparecendo nos cantos.
 
