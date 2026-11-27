@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.111.0
+- HUD v2 completo: anéis de HP e XP com pontas retas, espessura média e colados um no outro; sem a base atrás do avatar; HP e XP% lado a lado com divisor centralizado sob o Lv.; cards dos Pokémon do tamanho dos slots (40px); padding de 12px.
+- Com atalhos escondidos: Pokémon divididos 3 de cada lado do avatar e a HUD encolhe na horizontal.
+
 ## 0.110.9
 - Barra de spells: o botão ⚡ não vem com atalho; aparece só depois que o jogador define e salva (usa o mesmo pw-badge das magias, via `combo-key`, sem selo duplicado sobreposto).
 
