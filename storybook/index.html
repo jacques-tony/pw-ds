@@ -2723,6 +2723,19 @@ html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) .pwmm-vp:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){inset:auto!important;left:0!important;right:0!important;bottom:0!important;top:var(--wb-head,44px)!important;width:auto!important;height:auto!important;border-radius:0 0 10px 10px;overflow:hidden}
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:auto!important;align-self:center}
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content{padding:6px 8px!important}
+/* v2: alças de redimensionar — 75% com o mouse no widget, 100% sobre a alça; 20px mais longas */
+html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-battle,pw-widget-stats):hover .pwbg-resize:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after,html[data-ds="v2"] :is(pw-widget-minimap,pw-widget-chat):hover .pwmm-resize:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{opacity:.75!important}
+html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-battle,pw-widget-stats) .pwbg-resize:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):hover::after,html[data-ds="v2"] :is(pw-widget-minimap,pw-widget-chat) .pwmm-resize:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):hover::after,html[data-ds="v2"] .resizing :is(.pwbg-resize,.pwmm-resize):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{opacity:1!important}
+html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-battle,pw-widget-stats) .pwbg-resize:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after,html[data-ds="v2"] :is(pw-widget-minimap,pw-widget-chat) .pwmm-rb:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{width:calc(var(--pw-space-10) + 20px)!important}
+html[data-ds="v2"] :is(pw-widget-minimap,pw-widget-chat) :is(.pwmm-rl,.pwmm-rr):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{height:calc(var(--pw-space-10) + 20px)!important}
+/* v2 minimapa: cards sobre o mapa a 75% e coordenadas com padding de 4px */
+html[data-ds="v2"] pw-widget-minimap :is(pw-card.pwmm-info,pw-card.pwmm-ctrlc):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){opacity:.75}
+html[data-ds="v2"] pw-widget-minimap :is(pw-card.pwmm-info,pw-card.pwmm-ctrlc):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):hover{opacity:1}
+html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){height:auto!important}
+html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content{padding:4px 8px!important;height:auto!important}
+/* v2 HUD: barras de HP/XP 25% menores — a HUD fica mais estreita */
+html[data-ds="v2"] pw-hud.gsim-hud:not([profile="compact"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] .gsim pw-hud:not([profile="compact"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:836px!important}
+html[data-ds="v2"] pw-hud.gsim-hud[profile="compact"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] .gsim pw-hud[profile="compact"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:786px!important}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
@@ -6333,9 +6346,9 @@ class PWHud extends HTMLElement{
     cards().forEach((c,k)=>outs.push(c.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(12px) rotate(8deg) scale(.9)'}],{duration:200,delay:k*22,easing:'cubic-bezier(.4,0,1,1)',fill:'forwards'})));
     this._mph=outs;
     Promise.all(outs.map(a=>a.finished)).then(()=>{
-      var av0=this.querySelector('.pwhd-avatar'),b=av0&&av0.getBoundingClientRect(),h0=this.offsetHeight;
+      var av0=this.querySelector('.pwhd-avatar'),b=av0&&av0.getBoundingClientRect(),h0=this.offsetHeight,w0=this.offsetWidth;
       set(av);fn();outs.forEach(a=>a.cancel());this._mph=null;var h1=this.offsetHeight,cp=av==='compact',D=cp?260:420;
-      if(h0!==h1)this.animate([{height:h0+'px'},{height:h1+'px'}],{duration:D,easing:EZ});
+      var w1=this.offsetWidth;if(h0!==h1||w0!==w1)this.animate([{height:h0+'px',width:w0+'px'},{height:h1+'px',width:w1+'px'}],{duration:D,easing:EZ});
       var a=av0&&av0.getBoundingClientRect(),S=(this.getBoundingClientRect().width/(this.offsetWidth||1))||1;
       if(a&&a.width&&b&&b.width){var dx=(b.left-a.left)/S,dy=(b.top-a.top)/S;av0.animate([{transformOrigin:'0 0',transform:'translate('+dx+'px,'+dy+'px) scale('+(b.width/a.width)+')'},{transformOrigin:'0 0',transform:'none'}],{duration:D,easing:EZ})}
       this.querySelectorAll(FADE).forEach(e=>{if(e.offsetWidth)e.animate([{opacity:0},{opacity:1}],{duration:cp?200:260,delay:cp?40:160,easing:'ease-out',fill:'backwards'})});

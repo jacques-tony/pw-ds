@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.2
+- v2: alças de redimensionar a 75% com o mouse no widget e 100% sobre a alça; 20px mais longas (10px de cada lado).
+- Minimapa v2: cards de coordenadas/hora e de controles a 75% de opacidade (100% no hover); coordenadas com padding de 4px.
+- HUD v2: barras de HP/XP 25% menores; HUD mais estreita (836px no perfil completo, 786px no minimalista), com transição de largura ao trocar de perfil.
+
 ## 0.107.1
 - Minimapa v2: volta a ter o mapa ocupando todo o conteúdo (do divisor do header até a base), sem o card interno; coordenadas/hora e controles flutuam sobre o mapa em cards; controles xs com 4px entre si.
 
