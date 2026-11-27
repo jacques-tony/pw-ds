@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.111.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.111.1 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2559,7 +2559,7 @@ html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar:no
 html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar .pwhd-ring:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){z-index:2!important}
 /* pw-progress shape="ring" */
 pw-progress[shape="ring"]{display:block;width:48px;height:48px}
-pw-progress[shape="ring"] .pwp-ring{display:block;width:100%;height:100%;transform:rotate(-90deg);shape-rendering:geometricPrecision}
+pw-progress[shape="ring"] .pwp-ring{display:block;width:100%;height:100%;shape-rendering:geometricPrecision}
 pw-progress[shape="ring"] circle{fill:none;stroke-linecap:round}
 pw-progress[shape="ring"] .pwp-rt{stroke:var(--v2-track,var(--pw-surface-field))}
 pw-progress[shape="ring"] .pwp-rf{stroke:var(--pr-a,var(--pw-filament));transition:stroke-dashoffset .45s var(--card-ease)}
@@ -2686,6 +2686,8 @@ html[data-ds="v2"] pw-hud:not([profile="compact"])[hotkeys="hidden"] .pwhd-hotba
 html[data-ds="v2"] body pw-hud:not([profile="compact"]) pw-card.pwhd-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:40px!important;height:40px!important}
 html[data-ds="v2"] body pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-top:-74px!important}
 html[data-ds="v2"] body pw-hud:not([profile="compact"]) .pwhd-rinfo:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-top:-8px!important;row-gap:2px!important}
+html[data-ds="v2"] pw-hud .pwhd-avatar{filter:drop-shadow(0 0 .6px rgba(4,18,46,.9))}
+html[data-ds="v2"] pw-hud .pwhd-avatar>img{clip-path:circle(50%);border-radius:0!important}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}

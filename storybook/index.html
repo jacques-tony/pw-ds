@@ -2829,7 +2829,7 @@ html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar:no
 html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar .pwhd-ring:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){z-index:2!important}
 /* pw-progress shape="ring" */
 pw-progress[shape="ring"]{display:block;width:48px;height:48px}
-pw-progress[shape="ring"] .pwp-ring{display:block;width:100%;height:100%;transform:rotate(-90deg);shape-rendering:geometricPrecision}
+pw-progress[shape="ring"] .pwp-ring{display:block;width:100%;height:100%;shape-rendering:geometricPrecision}
 pw-progress[shape="ring"] circle{fill:none;stroke-linecap:round}
 pw-progress[shape="ring"] .pwp-rt{stroke:var(--v2-track,var(--pw-surface-field))}
 pw-progress[shape="ring"] .pwp-rf{stroke:var(--pr-a,var(--pw-filament));transition:stroke-dashoffset .45s var(--card-ease)}
@@ -2956,6 +2956,8 @@ html[data-ds="v2"] pw-hud:not([profile="compact"])[hotkeys="hidden"] .pwhd-hotba
 html[data-ds="v2"] body pw-hud:not([profile="compact"]) pw-card.pwhd-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:40px!important;height:40px!important}
 html[data-ds="v2"] body pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-top:-74px!important}
 html[data-ds="v2"] body pw-hud:not([profile="compact"]) .pwhd-rinfo:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-top:-8px!important;row-gap:2px!important}
+html[data-ds="v2"] pw-hud .pwhd-avatar{filter:drop-shadow(0 0 .6px rgba(4,18,46,.9))}
+html[data-ds="v2"] pw-hud .pwhd-avatar>img{clip-path:circle(50%);border-radius:0!important}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
@@ -5964,7 +5966,7 @@ class PWProgress extends HTMLElement{
   update(){
     /* shape="ring": anel circular (SVG vetorial); tamanho pelo CSS (width/height), espessura por thickness */
     if(this.getAttribute('shape')==='ring'){var mx=pwNum(this,'max',100),vv=Math.max(0,Math.min(mx,this.value)),rr=mx?vv/mx:0,th=pwNum(this,'thickness',6),R0=50-th/2,C=2*Math.PI*R0;
-      if(!this._ring){this.innerHTML='<svg class="pwp-ring" viewBox="0 0 100 100" aria-hidden="true"><circle class="pwp-rt" cx="50" cy="50"/><circle class="pwp-rf" cx="50" cy="50"/></svg>';this._ring=this.querySelector('.pwp-rf');this._head=document.createElement('div')}
+      if(!this._ring){this.innerHTML='<svg class="pwp-ring" viewBox="0 0 100 100" aria-hidden="true"><g transform="rotate(-90 50 50)"><circle class="pwp-rt" cx="50" cy="50"/><circle class="pwp-rf" cx="50" cy="50"/></g></svg>';this._ring=this.querySelector('.pwp-rf');this._head=document.createElement('div')}
       var t=this.querySelector('.pwp-rt');[t,this._ring].forEach(c=>{c.setAttribute('r',R0);c.setAttribute('stroke-width',th)});this._ring.style.strokeDasharray=C;this._ring.style.strokeDashoffset=C*(1-rr);
       this.style.setProperty('--pr-v',rr.toFixed(4));this.setAttribute('aria-valuemin','0');this.setAttribute('aria-valuemax',mx);this.setAttribute('aria-valuenow',vv);return}
     var max=pwNum(this,'max',100),v=Math.max(0,Math.min(max,this.value)),r=max?v/max:0,hp=this.getAttribute('variant')==='hp';
@@ -8498,3 +8500,10 @@ document.addEventListener('click',e=>{var b=e.target.closest&&e.target.closest('
  document.addEventListener('click',e=>{if(!V())return;var c=e.target.closest&&e.target.closest('pw-widget-spells .pwsp-combo');if(!c)return;var w=c.closest('pw-widget-spells');if(w.closest('[data-pw-theme="mewtwo"],[theme="mewtwo"]'))return;e.stopImmediatePropagation();e.preventDefault();open(w)},true);
  document.addEventListener('click',e=>{var sl=e.target.closest&&e.target.closest('pw-widget-spells.sc-cfg .pwsp-slot[data-i]');if(!sl)return;var w=sl.closest('pw-widget-spells'),o=(w.spells||[])[+sl.dataset.i];e.stopImmediatePropagation();e.preventDefault();if(!o)return;var st=w._scs,k=st.seq.indexOf(o.id);if(k>-1)st.seq.splice(k,1);else if(st.seq.length<8)st.seq.push(o.id);draw(w)},true);
  window.PWSpellCombo={open:open,close:close}})();</script>
+<script>/* pw-progress shape="ring": desenho em canvas supersampled (bordas suaves mesmo com a tela reduzida) */
+(function(){var C=customElements.get('pw-progress');if(!C||C.prototype._rcv)return;C.prototype._rcv=1;var up=C.prototype.update;
+ function paint(el){var cv=el._cv;if(!cv)return;var w=el.offsetWidth||48,k=4*(window.devicePixelRatio||1);cv.width=cv.height=Math.round(w*k);var g=cv.getContext('2d'),cs=getComputedStyle(el),th=parseFloat(el.getAttribute('thickness'))||6,R=cv.width/2,lw=th/100*cv.width,r=R-lw/2,v=parseFloat(cs.getPropertyValue('--pr-v'))||0;
+  var sq=el.hasAttribute('square')||!!el.closest('pw-hud'),tc=getComputedStyle(el.querySelector('.pwp-rt')||el).stroke,fc=getComputedStyle(el.querySelector('.pwp-rf')||el).stroke;g.clearRect(0,0,cv.width,cv.height);g.lineWidth=lw;g.lineCap=sq?'butt':'round';
+  g.strokeStyle=tc&&tc!=='none'?tc:'#061838';g.beginPath();g.arc(R,R,r,0,Math.PI*2);g.stroke();if(v>0){g.strokeStyle=fc&&fc!=='none'?fc:'#3DDC84';g.beginPath();g.arc(R,R,r,-Math.PI/2,-Math.PI/2+Math.PI*2*v);g.stroke()}}
+ C.prototype.update=function(){var r=up.apply(this,arguments);if(this.getAttribute('shape')==='ring'){var svg=this.querySelector('.pwp-ring');if(svg){svg.style.opacity='0';svg.style.position='absolute';svg.style.inset='0'}if(!this._cv){this._cv=document.createElement('canvas');this._cv.className='pwp-rcv';this._cv.setAttribute('aria-hidden','true');this._cv.style.cssText='position:absolute;inset:0;width:100%;height:100%';this.style.position=this.style.position||'';this.appendChild(this._cv);if(window.ResizeObserver)new ResizeObserver(()=>paint(this)).observe(this)}requestAnimationFrame(()=>paint(this))}return r};
+ document.querySelectorAll('pw-progress[shape="ring"]').forEach(e=>e.update&&e.update())})();</script>

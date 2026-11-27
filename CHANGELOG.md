@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.111.1
+- pw-progress shape="ring": desenhado em canvas com supersampling (4× a resolução da tela), redesenha ao redimensionar — bordas suaves mesmo com a tela do jogo reduzida. SVG continua para acessibilidade.
+- HUD: foto do avatar recortada por clip-path e leve contorno de 0,6px para suavizar a borda.
+
 ## 0.111.0
 - HUD v2 completo: anéis de HP e XP com pontas retas, espessura média e colados um no outro; sem a base atrás do avatar; HP e XP% lado a lado com divisor centralizado sob o Lv.; cards dos Pokémon do tamanho dos slots (40px); padding de 12px.
 - Com atalhos escondidos: Pokémon divididos 3 de cada lado do avatar e a HUD encolhe na horizontal.
