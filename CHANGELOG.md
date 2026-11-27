@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.109.2
+- HUD v2 completo: ações (coleta até pesca) com o mesmo tamanho dos botões de perfil/atalhos (24px), gap de 4px; tecla só no tooltip.
+
 ## 0.109.1
 - HUD v2 completo: borda do card emenda na base do avatar sem degrau; anéis com renderização suave (sem herdar pixelated do mapa).
 - Hotkeys: com as duas setas, a seta de voltar ocupa o lugar de uma hotkey (5 visíveis), sem ficar sob o avatar; avanço e volta lembram a página exata.
