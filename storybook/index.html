@@ -2632,6 +2632,15 @@ html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-actions.v2:not(:is([data-pw-t
 html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-column:2!important}
 html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-actions.v2:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding-right:var(--pw-space-2)!important;margin-right:calc(var(--pw-space-1) * -1);border-right:1px solid var(--v2-line)!important}
 html[data-ds="v2"] pw-widget-minimap .pwmm-ctrl pw-button:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>button{color:var(--v2-paper)!important;border-radius:5px!important;min-height:0!important;width:24px!important;padding:0!important}
+/* item de menu com marcador do DS (pw-radio / pw-checkbox) */
+pw-control-group-item .pwci-check.pwci-ds{pointer-events:none;display:inline-flex!important;align-items:center;justify-content:center;background:none!important;border:0!important;box-shadow:none!important;width:auto!important;height:auto!important;opacity:1!important;visibility:visible!important}
+pw-control-group-item .pwci-check.pwci-ds::before,pw-control-group-item .pwci-check.pwci-ds::after{display:none!important}
+pw-control-group pw-control-group-item .pwci-check.pwci-ds .pwc-box svg{width:78%!important;height:78%!important;visibility:visible!important;opacity:0!important;transform:scale(.5)!important}
+pw-control-group pw-control-group-item .pwci-check.pwci-ds [checked] .pwc-box svg{opacity:1!important;transform:none!important}
+pw-control-group pw-control-group-item .pwci-check.pwci-ds .pwc-text{display:none}
+/* v2: contador do widget Estatísticas em branco e um token maior */
+html[data-ds="v2"] pw-widget-stats .pwst-timer:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){color:var(--v2-paper)!important;font-size:var(--pw-font-size-2xl)!important;min-width:0;white-space:nowrap;letter-spacing:0!important}
+html[data-ds="v2"] pw-widget-stats .pwst-timer-row:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){gap:0!important;min-width:0}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
@@ -6491,7 +6500,7 @@ window.PWDS=Object.assign(window.PWDS||{},{navIcon:pwNavIcon,navIconNames:PW_NAV
 /* ---------- pw-control-group + pw-control-group-item: lista suspensa (menu, dropdown, seleção única/múltipla) ---------- */
 /* padrão WAI-ARIA: type="menu" → role=menu/menuitem · "single" → listbox/option · "multi" → listbox multiselecionável. Foco fica no grupo (aria-activedescendant). */
 class PWControlGroupItem extends HTMLElement{
-  static get observedAttributes(){return ['label','icon','type','src','description','shortcut','meta','selected','disabled','tone']}
+  static get observedAttributes(){return ['label','icon','type','src','description','shortcut','meta','selected','disabled','tone','indicator']}
   connectedCallback(){if(!this._init){this._init=true;if(!this.id)this.id='pwci'+(++uidN);var txt=this.getAttribute('label');if(txt===null)txt=this.textContent.trim();this._label=txt;
       this.innerHTML='<span class="pwci-check" aria-hidden="true">'+pwIcon('check')+'</span><span class="pwci-lead" aria-hidden="true"></span><span class="pwci-txt"><span class="pwci-label"></span><span class="pwci-desc"></span></span><span class="pwci-end"></span>';
       this.addEventListener('pointermove',()=>{var g=this._group();if(g&&!this.hasAttribute('disabled')&&!this.hasAttribute('data-active'))g._activate(this,false)});
@@ -6502,6 +6511,8 @@ class PWControlGroupItem extends HTMLElement{
   get value(){return this.getAttribute('value')!==null?this.getAttribute('value'):this._label}
   get label(){return this._label}
   update(){var g=this._group(),t=g?g.kind:'menu',ic=this.getAttribute('icon'),ty=this.getAttribute('type'),src=this.getAttribute('src');
+    /* indicator="radio"|"checkbox": usa o pw-radio / pw-checkbox do DS como marcador */
+    var ind=this.getAttribute('indicator'),ck=this.querySelector('.pwci-check');if(ck){if(ind==='radio'||ind==='checkbox'){var tag='pw-'+ind,el=ck.querySelector(tag);if(!el){ck.innerHTML='<'+tag+' size="sm" aria-hidden="true"></'+tag+'>';ck.classList.add('pwci-ds');el=ck.firstChild;setTimeout(()=>el.querySelectorAll('input,[tabindex]').forEach(x=>x.setAttribute('tabindex','-1')),0)}el.toggleAttribute('checked',this.hasAttribute('selected'));if(el.checked!==undefined)try{el.checked=this.hasAttribute('selected')}catch(e){}}else if(ck.classList.contains('pwci-ds')){ck.classList.remove('pwci-ds');ck.innerHTML=pwIcon('check')}}
     this.querySelector('.pwci-lead').innerHTML=src?'<img src="'+pwEsc(src)+'" alt="">':ty?'<pw-icon type="'+pwEsc(ty)+'"></pw-icon>':ic?pwIcon(ic):'';
     this.querySelector('.pwci-label').textContent=this._label;this.querySelector('.pwci-desc').textContent=this.getAttribute('description')||'';
     var sc=this.getAttribute('shortcut'),mt=this.getAttribute('meta');this.querySelector('.pwci-end').innerHTML=(mt?'<span>'+pwEsc(mt)+'</span>':'')+(sc?'<pw-kbd size="sm" keys="'+pwEsc(sc)+'"></pw-kbd>':'');
@@ -7041,7 +7052,7 @@ class PWWidgetStats extends PWWidgetBag{
     var mini=this._view()==='minimal',mid=this._u+'vm';
     W.innerHTML='<div class="pwst-ses"><span class="pwst-ses-l">'+pwIcon('clock')+'Sessão<span class="grow"></span><pw-button id="'+mid+'" class="pwst-vm" variant="ghost" size="sm" fx="none" particles="0" icon="more-vertical" data-tip="Modo de exibição" aria-label="Modo de exibição" aria-haspopup="menu"></pw-button><pw-control-group class="pwst-vmg" for="'+mid+'" type="multi" size="sm" label="Modo de exibição"><pw-control-group-item section="Versão" value="v:minimal"'+(mini?' selected':'')+'>Minimalista</pw-control-group-item><pw-control-group-item value="v:full"'+(mini?'':' selected')+'>Completa</pw-control-group-item>'+this._rows().map((r,i)=>'<pw-control-group-item'+(i?'':' section="'+(mini?'Itens':'Resumo')+'"')+' value="m:'+E(this._mk(r))+'"'+(this._offM(this._mk(r))?'':' selected')+'>'+E(r.label)+'</pw-control-group-item>').join('')+this._sects().map((x,i)=>'<pw-control-group-item'+(i?'':' section="'+(mini?'Outras seções':'Seções')+'"')+' value="s:'+E(x.id)+'"'+(this._on(x.id)?' selected':'')+'>'+E(x.title)+'</pw-control-group-item>').join('')+'</pw-control-group></span><div class="pwst-timer-row"><time class="pwst-timer" role="timer" aria-live="off"></time>'+
       '<pw-button variant="ghost" size="sm" fx="none" particles="0" data-s="play"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="refresh" data-s="reset" data-tip="Zerar sessão" aria-label="Zerar sessão"></pw-button><pw-button variant="ghost" size="sm" fx="none" particles="0" icon="copy" data-s="copy" data-tip="Copiar estatísticas" aria-label="Copiar estatísticas"></pw-button></div>'+'<div class="pwst-minidl">'+this._dl(this._rows().filter(r=>!this._offM(this._mk(r))))+'</div></div>'+
-      '<div class="pwst-secs"></div>';this._secs();var vg=this.querySelector('.pwst-vmg');if(vg)this._dragMenu(vg);this.querySelector('.pwst-scroll').scrollTop=st;this._clock();requestAnimationFrame(()=>this._more())}
+      '<div class="pwst-secs"></div>';this._secs();var vg=this.querySelector('.pwst-vmg');if(vg){vg.querySelectorAll('pw-control-group-item').forEach(x=>x.setAttribute('indicator',/^v:/.test(x.getAttribute('value')||'')?'radio':'checkbox'));this._dragMenu(vg)}this.querySelector('.pwst-scroll').scrollTop=st;this._clock();requestAnimationFrame(()=>this._more())}
   /* seções extras mostradas na versão minimalista (a completa mostra todas) */
   _on(id){return this._view()==='minimal'?(this._ms||[]).indexOf(id)>-1:(this._fh||[]).indexOf(id)<0}
   get fullHidden(){return (this._fh||[]).slice()}

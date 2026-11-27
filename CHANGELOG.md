@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.104.0
+- Estatísticas v2: contador em branco (--v2-paper) e um token maior (--pw-font-size-2xl, 20px), sem estourar a largura.
+- pw-control-group-item: novo atributo `indicator="radio"|"checkbox"` que usa o pw-radio / pw-checkbox do DS como marcador.
+- Menu do widget Estatísticas: "Versão" usa pw-radio; itens e seções usam pw-checkbox.
+
 ## 0.103.4
 - Minimapa v2: botões inferiores distribuídos por igual na largura padrão (192px úteis); ao expandir, o grupo mantém essa largura máxima e fica centralizado.
 
