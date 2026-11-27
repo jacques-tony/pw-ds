@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.113.0 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.113.1 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -2295,7 +2295,7 @@ var PW_OPT_TREE=[
  {id:'interface',label:'Interface',icon:'grid',desc:'Layout da tela, HUD, barras, minimapa e transparência.',secs:[
    {t:'Layout e janelas',rows:[['select','panels','Painéis esquerdos','1','panels'],['select','bagpanel','Painel das mochilas','4º painel esquerdo','bagpanel'],['select','viewmode','Modo de visualização','Estendido','viewmode'],['select','vision','Modo de visão','Pequeno','vision'],['switch','fixsize','Manter o tamanho da tela do jogo fixo',1],['switch','winanim','Animações de janela',1],['switch','blur','Desfocar tela do jogo quando uma janela estiver ativa',1]]},
    {t:'HUD e Pokémon',rows:[['switch','pkbar','Mostrar barra de Pokémon',1],['switch','compact','Usar perfil reduzido no HUD',0],['switch','callkeys','Mostrar atalhos para chamar',1],['switch','hppct','Mostrar vida em porcentagem',1],['switch','lockcall','Bloquear chamadas com o botão esquerdo do mouse',0],['switch','shiftdrag','Exigir Shift para arrastar a barra de Pokémon',0]]},
-   {t:'Barra de ações',rows:[['switch','actbar','Mostrar barra de atalhos',1],['switch','actqty','Mostrar quantidade de itens',1,{dep:'actbar'}],['switch','actcd','Mostrar tempo de recarga',1,{dep:'actbar'}]]},
+   {t:'Barra de ações',rows:[['switch','actbar','Mostrar barra de atalhos',1],['slider','hkcount','Hotkeys na barra inferior',12,{min:2,max:68,step:2}],['switch','actqty','Mostrar quantidade de itens',1,{dep:'actbar'}],['switch','actcd','Mostrar tempo de recarga',1,{dep:'actbar'}]]},
    {t:'Minimapa',rows:[['switch','mmright','Minimapa no lado direito',1],['switch','mmflags','Mostrar bandeiras e marcações',1],['switch','mmcoords','Mostrar coordenadas',1],['switch','mmtime','Mostrar horário',1],['switch','mmbtns','Sempre mostrar os botões',0]]},
    {t:'Opacidade',rows:[['slider','opfx','Efeitos e mísseis',100,{min:0,max:100,suf:'%'}],['slider','opnum','Números flutuantes',100,{min:0,max:100,suf:'%'}],['slider','optxt','Textos flutuantes',100,{min:0,max:100,suf:'%'}],['slider','opside','Painéis laterais',100,{min:0,max:100,suf:'%'}],['slider','opmm','Minimapa',100,{min:0,max:100,suf:'%'}],['slider','opchat','Chat',100,{min:0,max:100,suf:'%'}],['slider','ophud','HUD inferior',100,{min:0,max:100,suf:'%'}]]}]},
  {id:'mundo',label:'Mapa e combate',icon:'map',desc:'O que aparece sobre o mapa, criaturas e golpes.',secs:[
@@ -2596,5 +2596,5 @@ class PWWidgetOutfit extends HTMLElement{
     P.innerHTML=h;var c=P.querySelector('.pwof-only');if(c)c.addEventListener('change',()=>{this._only=c.checked!==undefined?c.checked:c.hasAttribute('checked');this._panel()})}
 }
 customElements.define('pw-widget-outfit',PWWidgetOutfit);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.113.0"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.113.1"});
 })();

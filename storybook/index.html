@@ -7715,7 +7715,7 @@ var PW_OPT_TREE=[
  {id:'interface',label:'Interface',icon:'grid',desc:'Layout da tela, HUD, barras, minimapa e transparência.',secs:[
    {t:'Layout e janelas',rows:[['select','panels','Painéis esquerdos','1','panels'],['select','bagpanel','Painel das mochilas','4º painel esquerdo','bagpanel'],['select','viewmode','Modo de visualização','Estendido','viewmode'],['select','vision','Modo de visão','Pequeno','vision'],['switch','fixsize','Manter o tamanho da tela do jogo fixo',1],['switch','winanim','Animações de janela',1],['switch','blur','Desfocar tela do jogo quando uma janela estiver ativa',1]]},
    {t:'HUD e Pokémon',rows:[['switch','pkbar','Mostrar barra de Pokémon',1],['switch','compact','Usar perfil reduzido no HUD',0],['switch','callkeys','Mostrar atalhos para chamar',1],['switch','hppct','Mostrar vida em porcentagem',1],['switch','lockcall','Bloquear chamadas com o botão esquerdo do mouse',0],['switch','shiftdrag','Exigir Shift para arrastar a barra de Pokémon',0]]},
-   {t:'Barra de ações',rows:[['switch','actbar','Mostrar barra de atalhos',1],['switch','actqty','Mostrar quantidade de itens',1,{dep:'actbar'}],['switch','actcd','Mostrar tempo de recarga',1,{dep:'actbar'}]]},
+   {t:'Barra de ações',rows:[['switch','actbar','Mostrar barra de atalhos',1],['slider','hkcount','Hotkeys na barra inferior',12,{min:2,max:68,step:2}],['switch','actqty','Mostrar quantidade de itens',1,{dep:'actbar'}],['switch','actcd','Mostrar tempo de recarga',1,{dep:'actbar'}]]},
    {t:'Minimapa',rows:[['switch','mmright','Minimapa no lado direito',1],['switch','mmflags','Mostrar bandeiras e marcações',1],['switch','mmcoords','Mostrar coordenadas',1],['switch','mmtime','Mostrar horário',1],['switch','mmbtns','Sempre mostrar os botões',0]]},
    {t:'Opacidade',rows:[['slider','opfx','Efeitos e mísseis',100,{min:0,max:100,suf:'%'}],['slider','opnum','Números flutuantes',100,{min:0,max:100,suf:'%'}],['slider','optxt','Textos flutuantes',100,{min:0,max:100,suf:'%'}],['slider','opside','Painéis laterais',100,{min:0,max:100,suf:'%'}],['slider','opmm','Minimapa',100,{min:0,max:100,suf:'%'}],['slider','opchat','Chat',100,{min:0,max:100,suf:'%'}],['slider','ophud','HUD inferior',100,{min:0,max:100,suf:'%'}]]}]},
  {id:'mundo',label:'Mapa e combate',icon:'map',desc:'O que aparece sobre o mapa, criaturas e golpes.',secs:[
@@ -8580,17 +8580,21 @@ document.addEventListener('click',e=>{var b=e.target.closest&&e.target.closest('
   var sl=[].slice.call(this.querySelectorAll('.pwhd-slot'));var L=bar.querySelector('.pwhd-sideL'),R=bar.querySelector('.pwhd-sideR'),box=this.querySelector('.pwhd-slots');
   if(!full){if(L){[].slice.call(L.children).concat([].slice.call(R.children)).forEach(x=>{if(x.classList.contains('pwhd-slot'))box.appendChild(x)});L.remove();R.remove();sl.sort((a,b)=>a.dataset.slot-b.dataset.slot).forEach(x=>box.appendChild(x))}return}
   if(!L){L=document.createElement('div');L.className='pwhd-sideL';R=document.createElement('div');R.className='pwhd-sideR';bar.appendChild(L);bar.appendChild(R)}
-  var foot=this.querySelector('.pwhd-foot');if(foot&&!foot.querySelector('.pwhd-add')){foot.insertAdjacentHTML('afterbegin',btn('pwhd-add','plus','Adicionar hotkeys'));}
-  var tot=Math.min(24,sl.length);this._hn=this._hn||6;this._ho=this._ho||0;var n=this._hn;
-  var host=this.offsetParent||document.body,maxW=(host.clientWidth||innerWidth)-16,step=44,base=84+20+24+8,need=base+2*(n*step)+ (2*n<tot?2*(24+4):0);
+  
+  var tot=sl.length;this._hn=this._hn||6;this._ho=this._ho||0;var n=this._hn;
+  var host=this.offsetParent||document.body,maxW=(host.clientWidth||innerWidth)-16-24,step=44,base=84+20+24+8,need=base+2*(n*step)+ (2*n<tot?2*(24+4):0);
   while(need>maxW&&n>1){n--;need=base+2*(n*step)+2*28}this._hnv=n;
   this._ho=Math.max(0,Math.min(this._ho,tot-2*n));var o2=this._ho;
   L.innerHTML='';R.innerHTML='';var pv=document.createElement('span');pv.innerHTML=btn('pwhd-pg','chevron-left','Anteriores');pv=pv.firstChild;pv.dataset.d='-1';var nx=document.createElement('span');nx.innerHTML=btn('pwhd-pg','chevron-right','Próximas');nx=nx.firstChild;nx.dataset.d='1';
   pv.hidden=!(o2>0);nx.hidden=!(o2+2*n<tot);L.appendChild(pv);
   sl.sort((a,b)=>a.dataset.slot-b.dataset.slot).forEach((x,i)=>{if(i<o2||i>=o2+2*n||i>=tot){box.appendChild(x);x.style.display='none';return}x.style.display='';(i<o2+n?L:R).appendChild(x)});R.appendChild(nx);
-  var add=this.querySelector('.pwhd-add');if(add){var can=2*(n+1)<=tot&&base+2*((n+1)*step)+2*28<=maxW;add.toggleAttribute('disabled',!can);add.setAttribute('data-tip',can?'Adicionar hotkeys':'Limite da tela')}};
+  };
  P.prototype.render=function(){var r=o.apply(this,arguments);try{this._sides()}catch(e){}return r};
  document.addEventListener('click',e=>{var b=e.target.closest&&e.target.closest('pw-hud .pwhd-add, pw-hud .pwhd-pg');if(!b)return;var h=b.closest('pw-hud');e.stopPropagation();
   if(b.classList.contains('pwhd-add')){if(b.hasAttribute('disabled'))return;h._hn=(h._hnv||6)+1}else{h._ho=(h._ho||0)+2*(+b.dataset.d)}h._sides()},true);
  new MutationObserver(m=>m.forEach(x=>{if(x.target.tagName==='PW-HUD')setTimeout(()=>x.target._sides&&x.target._sides(),700)})).observe(document.documentElement,{subtree:true,attributes:true,attributeFilter:['profile','hotkeys']});
  document.querySelectorAll('pw-hud').forEach(h=>{try{h._sides()}catch(e){}})})();</script>
+<script>/* Opções › Interface › Barra de ações: slider "Hotkeys na barra inferior" (2–68) */
+(function(){function apply(v){v=Math.max(2,Math.min(68,Math.round(v/2)*2));document.querySelectorAll('pw-hud').forEach(h=>{var d=h._data||(h._data={});d.hotkeys=d.hotkeys||[];while(d.hotkeys.length<v)d.hotkeys.push({});if(d.hotkeys.length>v){var extra=d.hotkeys.slice(v);if(extra.every(x=>!x||(!x.label&&!x.image&&!x.icon&&!x.sprite)))d.hotkeys.length=v}h._hn=v/2;h._ho=0;h.render?h.render():h._sides&&h._sides()})}
+ var ev=e=>{var t=e.target&&e.target.closest&&e.target.closest('pw-slider[data-k="hkcount"]');if(t)apply(+(t.value!=null?t.value:t.getAttribute('value')))};document.addEventListener('input',ev,true);document.addEventListener('change',ev,true);
+ window.addEventListener('load',()=>setTimeout(()=>apply(12),400))})();</script>

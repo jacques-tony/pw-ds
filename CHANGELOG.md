@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.113.1
+- Opções › Interface › Barra de ações: novo slider "Hotkeys na barra inferior" (2 a 68, de 2 em 2). Sai o botão + da HUD.
+- HUD v2 completo: sem limite fixo de hotkeys; a HUD cresce até a largura da tela (com o padding padrão) e, a partir daí, aparecem as setas, que andam de 2 em 2.
+
 ## 0.113.0
 - HUD: os Pokémon saem da HUD inferior e ficam sempre flutuantes, no modo minimalista.
 - HUD v2 completo: avatar 20% menor (77px); 6 hotkeys de cada lado do avatar (também com atalhos escondidos); novo botão + nos ajustes do topo adiciona 2 hotkeys (uma de cada lado) até o limite da tela ou de 24; depois disso as setas aparecem e andam de 2 em 2. A HUD acompanha a largura do conteúdo.
