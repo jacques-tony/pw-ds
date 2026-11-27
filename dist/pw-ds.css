@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.104.2 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.105.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2570,8 +2570,13 @@ html[data-ds="v2"] pw-widget-battle pw-card.pwbw-f[selected]:not(:is([data-pw-th
 html[data-ds="v2"] pw-widget-battle pw-card.pwbw-f[selected]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]) .pwc-content svg{color:var(--v2-paper)!important}
 html[data-ds="v2"] pw-widget-battle .pwbw-filters:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){padding:4px!important;margin:-4px!important;overflow:visible!important}
 html[data-ds="v2"] pw-widget-battle .pwbw-opts:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){overflow:visible!important}
-html[data-ds="v2"] pw-widget-battle pw-button.pwbw-sel:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--bh:28px!important;--bfs:12px!important;--bic:14px!important}
-html[data-ds="v2"] pw-widget-battle pw-button.pwbw-sel:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>button{color:var(--v2-paper)!important;min-height:0!important;height:28px!important}
+/* v2: gatilho de seletor do control group (.pwcl-trigger) compacto, texto claro */
+html[data-ds="v2"] pw-button.pwcl-trigger:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--bh:28px!important;--bfs:12px!important;--bic:14px!important}
+html[data-ds="v2"] pw-button.pwcl-trigger:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>button{min-height:0!important;height:28px!important}
+html[data-ds="v2"] pw-button.pwcl-trigger[variant="secondary"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>button{color:var(--v2-paper)!important}
+/* v2: check do item selecionado no control group visível */
+html[data-ds="v2"] pw-control-group-item[selected] .pwci-check:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):not(.pwci-ds){color:var(--v2-volt)!important;opacity:1!important}
+html[data-ds="v2"] pw-control-group-item[selected] .pwci-check:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):not(.pwci-ds) svg{opacity:1!important;visibility:visible!important}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
