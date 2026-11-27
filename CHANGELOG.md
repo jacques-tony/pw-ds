@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.109.0
+- pw-progress: novo `shape="ring"` (anel SVG vetorial, `thickness`, tamanho pelo CSS; variant hp = verde, xp = amarelo).
+- HUD v2 completo: anéis de HP e XP agora são pw-progress shape="ring" (sem SVG próprio, traço nítido); a borda azul do card continua em volta da parte do avatar que sai da HUD.
+- Hotkeys: a seta de voltar funciona também nas páginas do meio (o bloco de Lv./HP/XP do avatar cobria a seta e bloqueava o clique).
+
 ## 0.108.4
 - HUD v2 completo: foto do perfil com o raio externo do anel de XP, passando por baixo dele.
 

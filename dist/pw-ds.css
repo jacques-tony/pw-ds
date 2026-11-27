@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.108.4 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.109.0 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2738,6 +2738,23 @@ html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar .p
 html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar .pwhd-ring:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:absolute!important;margin:0!important;inset:auto!important;left:0!important;top:0!important;width:96px!important;height:96px!important}
 html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>img{left:11.5px!important;top:11.5px!important;width:73px!important;height:73px!important;z-index:1!important}
 html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar .pwhd-ring:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){z-index:2!important}
+/* pw-progress shape="ring" */
+pw-progress[shape="ring"]{display:block;width:48px;height:48px}
+pw-progress[shape="ring"] .pwp-ring{display:block;width:100%;height:100%;transform:rotate(-90deg);shape-rendering:geometricPrecision}
+pw-progress[shape="ring"] circle{fill:none;stroke-linecap:round}
+pw-progress[shape="ring"] .pwp-rt{stroke:var(--v2-track,var(--pw-surface-field))}
+pw-progress[shape="ring"] .pwp-rf{stroke:var(--pr-a,var(--pw-filament));transition:stroke-dashoffset .45s var(--card-ease)}
+pw-progress[shape="ring"][variant="hp"] .pwp-rf{stroke:var(--v2-green,#3DDC84)}
+pw-progress[shape="ring"][variant="xp"] .pwp-rf{stroke:var(--v2-volt,#FFE14D)}
+/* HUD: anéis com pw-progress ring */
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar pw-progress.pwhd-ring:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:absolute!important;inset:auto!important;transform:none!important;z-index:2!important;margin:0!important;padding:0!important;min-width:0!important;max-width:none!important;flex:none!important;aspect-ratio:1}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar pw-progress.pwhd-ring.rhp:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){left:0!important;top:0!important;width:96px!important;height:96px!important}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar pw-progress.pwhd-ring.rxp:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){left:10px!important;top:10px!important;width:76px!important;height:76px!important}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>img{left:10px!important;top:10px!important;width:76px!important;height:76px!important}
+/* base do avatar: continua a borda do card em volta da parte que sai da HUD */
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar .pwhd-bump:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--v2-border);clip-path:inset(0 0 calc(100% - 56px) 0)}
+html[data-ds="v2"] pw-hud .pwhd-avatar :is(.pwhd-rinfo,.pwhd-bump,.pwhd-ring){pointer-events:none}
+html[data-ds="v2"] pw-hud .pwhd-arrow{position:relative;z-index:5}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
