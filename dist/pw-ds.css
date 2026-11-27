@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.107.4 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.107.5 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2635,19 +2635,26 @@ html[data-ds="v2"] pw-widget-minimap:not([maximized]) .pwmm-vp:not(:is([data-pw-
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:auto!important;align-self:center}
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content{padding:6px 8px!important}
 /* v2: alças de redimensionar — 75% com o mouse no widget, 100% sobre a alça; 20px mais longas */
-html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-battle,pw-widget-stats):hover .pwbg-resize:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after,html[data-ds="v2"] :is(pw-widget-minimap,pw-widget-chat):hover .pwmm-resize:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{opacity:.6!important}
+html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-battle,pw-widget-stats):hover .pwbg-resize:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after,html[data-ds="v2"] :is(pw-widget-minimap,pw-widget-chat):hover .pwmm-resize:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{opacity:.85!important}
 html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-battle,pw-widget-stats) .pwbg-resize:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):hover::after,html[data-ds="v2"] :is(pw-widget-minimap,pw-widget-chat) .pwmm-resize:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):hover::after,html[data-ds="v2"] .resizing :is(.pwbg-resize,.pwmm-resize):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{opacity:1!important}
 html[data-ds="v2"] :is(pw-widget-bag,pw-widget-loot,pw-widget-pokemon,pw-widget-battle,pw-widget-stats) .pwbg-resize:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after,html[data-ds="v2"] :is(pw-widget-minimap,pw-widget-chat) .pwmm-rb:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{width:calc(var(--pw-space-10) + 20px)!important}
 html[data-ds="v2"] :is(pw-widget-minimap,pw-widget-chat) :is(.pwmm-rl,.pwmm-rr):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{height:calc(var(--pw-space-10) + 20px)!important}
 /* v2 minimapa: cards sobre o mapa a 75% e coordenadas com padding de 4px */
-html[data-ds="v2"] pw-widget-minimap :is(pw-card.pwmm-info,pw-card.pwmm-ctrlc):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){opacity:.75}
-html[data-ds="v2"] pw-widget-minimap :is(pw-card.pwmm-info,pw-card.pwmm-ctrlc):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):hover{opacity:1}
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){height:auto!important}
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content{padding:4px 8px!important;height:auto!important}
 /* v2 HUD: barras de HP/XP 25% menores — a HUD fica mais estreita */
 html[data-ds="v2"] pw-hud.gsim-hud:not([profile="compact"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] .gsim pw-hud:not([profile="compact"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:836px!important}
 html[data-ds="v2"] pw-hud.gsim-hud[profile="compact"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] .gsim pw-hud[profile="compact"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:786px!important}
 html[data-ds="v2"] pw-widget-minimap .pwmm-vp:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{display:none!important}
+/* v2 minimapa: só o fundo dos cards sobre o mapa a 75%; conteúdo a 100%; mesmo padding nos dois */
+html[data-ds="v2"] pw-widget-minimap :is(pw-card.pwmm-info,pw-card.pwmm-ctrlc):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>:is(svg.pwc-frame,.pwe-bg){opacity:.75}
+html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content{padding:4px 8px!important}
+/* v2 HUD minimalista: hotkeys F1–F8, divisor, 1–4 (sem rolagem) */
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot]:is([data-slot="8"],[data-slot="9"],[data-slot="10"],[data-slot="11"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none!important}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):nth-child(n+17){display:none!important}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot="12"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-left:13px!important;position:relative;overflow:visible}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-slot[data-slot="12"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{content:"";position:absolute;left:-9px;top:6px;bottom:6px;width:1px;background:var(--v2-line);pointer-events:none}
+html[data-ds="v2"] pw-hud[profile="compact"] .pwhd-arrow:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none!important}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}

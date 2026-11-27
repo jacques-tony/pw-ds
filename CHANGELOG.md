@@ -27,6 +27,12 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.5
+- HUD: corrige inversão — perfil completo mostra só os cards na HUD; minimalista esconde os cards e mostra os Pokémon flutuantes. Flutuantes abrem no modo minimalista por padrão.
+- HUD v2 minimalista: hotkeys F1–F8, divisor e 1–4 (sem setas de rolagem).
+- Minimapa v2: só o fundo dos cards de coordenadas e controles a 75% (texto e botões a 100%, sem hover); controles com o mesmo padding das coordenadas (4px 8px).
+- v2: alça de redimensionar a 85% com o mouse no widget, 100% sobre a alça.
+
 ## 0.107.4
 - v2: alça de redimensionar a 60% com o mouse no widget (100% sobre a alça).
 
