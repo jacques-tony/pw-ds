@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.106.1
+- Personalizar treinador: prévia volta a ter a moldura do card do DS, com o piso como fundo interno; girar e andar ao lado de Confirmar (mais altura para a prévia).
+- Abas: tamanho sm (32px), gap de 8px, sem o brilho/rastro que passava por baixo; pill desliza em 240ms com ease-out (cubic-bezier(.16,1,.3,1)) e o conteúdo entra com fade + deslize de 12px na direção da aba (padrão "sliding pill + directional content"). Abre sempre em Visual.
+
 ## 0.106.0
 - Personalizar treinador: abas sem o divisor e sem o brilho; pill amarela que desliza entre as abas (340ms) e conteúdo do painel entra com fade + deslize na direção da aba.
 - Visual/Títulos/Efeitos mostram só o que está liberado (sai "Mostrar apenas liberados").
