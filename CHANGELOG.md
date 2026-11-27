@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.8
+- Minimapa v2: cards de coordenadas e controles a 8px do topo e da base do mapa.
+
 ## 0.107.7
 - HUD v2 minimalista: setas de navegação de volta; ordem F1–F8 | 1–4 e o restante (F9…) depois, acessível pela rolagem.
 
