@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.103.4
+- Minimapa v2: botões inferiores distribuídos por igual na largura padrão (192px úteis); ao expandir, o grupo mantém essa largura máxima e fica centralizado.
+
 ## 0.103.3
 - Minimapa v2: botões inferiores no mesmo padrão dos botões de perfil/atalhos da HUD (xs 24px, secondary outline, ícone na cor padrão), agrupados e centralizados com gap de 4px em qualquer largura.
 

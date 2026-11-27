@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.103.3 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.103.4 — https://github.com/jacques-tony/pw-ds */
 @import url("https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap");
 :root{
   --f-display:"Cinzel", "Trajan Pro", Georgia, serif;
@@ -2462,7 +2462,7 @@ html[data-ds="v2"] pw-widget-minimap:not([maximized]) .pwmm-vp:not(:is([data-pw-
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background:transparent!important;box-shadow:none!important;width:100%!important}
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>:is(svg.pwc-frame,.pwe-bg){display:none!important}
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-ctrlc:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content{padding:0!important;justify-content:center!important}
-html[data-ds="v2"] pw-widget-minimap:not([maximized]) .pwmm-ctrl:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:auto;justify-content:center!important;gap:var(--pw-space-1)!important}
+html[data-ds="v2"] pw-widget-minimap:not([maximized]) .pwmm-ctrl:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:100%;max-width:192px;margin-inline:auto;justify-content:space-between!important;gap:0!important}
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) .pwmm-sep:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none}
 /* v2: degradês 50% menores — bordas do mapa e sombras de rolagem dos widgets */
 html[data-ds="v2"] pw-widget-minimap .pwmm-vp:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{background:linear-gradient(90deg,var(--pw-bg-solid),color-mix(in srgb,var(--pw-bg-solid) 78%,transparent) 6px,color-mix(in srgb,var(--pw-bg-solid) 45%,transparent) 12px,color-mix(in srgb,var(--pw-bg-solid) 18%,transparent) 16px,transparent 24px),
