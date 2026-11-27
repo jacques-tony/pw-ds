@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.105.3 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.106.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2405,6 +2405,27 @@ html[data-ds="v2"] :is(.pwbg-head,pw-card-header[variant="banner"]):not(:is([dat
 /* pw-empty: ícone centralizado na marca */
 pw-empty .pwe-mark .pwi-dual{place-items:center}
 pw-empty .pwe-mark .pwi-dual svg{width:100%!important;height:100%!important}
+/* Personalizar treinador: abas sem divisor nem brilho; pill deslizante; prévia com nome e piso */
+pw-widget-outfit .pwof-main{position:relative}
+pw-widget-outfit pw-tabs.pwof-tabs::after{display:none!important}
+pw-widget-outfit pw-tabs.pwof-tabs .pwt-shine{display:none!important}
+pw-widget-outfit pw-tabs.pwof-tabs pw-tab::after,pw-widget-outfit pw-tabs.pwof-tabs pw-tab::before{opacity:0!important;transition:none!important}
+pw-widget-outfit pw-tabs.pwof-tabs pw-tab{position:relative;z-index:1;transition:color .25s!important;background:transparent!important;box-shadow:none!important}
+pw-widget-outfit .pwof-pill{position:absolute;left:0;top:0;z-index:0;pointer-events:none;border-radius:999px;background:var(--v2-volt,var(--pw-filament));will-change:transform,width}
+html:not([data-ds="v2"]) pw-widget-outfit .pwof-pill{display:none}
+html:not([data-ds="v2"]) pw-widget-outfit pw-tabs.pwof-tabs pw-tab::after{opacity:revert!important}
+pw-widget-outfit pw-card.pwof-prev>.pwc-content{padding:0!important;overflow:hidden;border-radius:inherit}
+pw-widget-outfit .pwof-stage{position:absolute;inset:0;display:grid;place-items:center;background:url("data:image/webp;base64,UklGRlAEAABXRUJQVlA4IEQEAACQJQCdASrCAJYAPmEskUWkJSGW6byYUAYEtLbS5EoJfoIAAB+fwCbMGjy7m67rUKSlpLG7gaLRQwA94nW1QzEasPkoI9K+7iV4vBjQ3TRC/SMsS+gWuRTvYl7j0JJYZjDs5guc3HWFSmJRG140duM1jRP9FsHPrHpOpANRcjmSRmMaycxPHWjRPGh4IQA1DxzAuNcEJlwPSFZskHnUfXDnFyZrpYIi+nwC+jnPRzMcfC8xuVQDW5w+DwSwJRFOuq1jxMGk9eDxXnFzDIXAzj64fg+OARrNs7hhccAo/ohM6O1oucnfpeGqx51jscXXE4H8r/Luyem6rusfAG19kN5/+ZeLP8Cnf3vkPCBDRGofk5DE887TKoP8+RZzhCcsZHOO5P4pce+jgvlhEGZXCembDtuBc3AA/th+m04p3YkdCQD5e68DV8xGmSWwu+R/JtAugOyPbkJfbpS2V1U1HM2Y1JaN+kkMe8p24qfv+kf1cXdhYehN7HHHAp8WDKuiw9CRpeZVzc6UNOahwYH78kPoCEHVmCGQf6oLtRfDdmSP52+un6GTGelAnzOcnVZpUs20nQOs64CMMrkaBOecUNA5eyBlQWqr7QXtG68k0tYU1nFHgCiSCrNqKYLpQtzHNDiXUyzDFFIIi/T1HTi96lT92YvlBmz62aqic2tz9OxErojkXA71F7uQ+tPQgyO8S1LOUJvY/MVvvBRAsyveBsx+WTvtpPvjUZ2R48UEKJLVZCy9Ko+iSdsW5YSSQhQmMQ75NxDL0kSv2PpmT9Yls89edEFAZQP5SxyN4GtfdKHtANarcQh55dNDw6e6Ktv2JNzaqcKrg8dru0Geo0g8ogxaD8j5vtMo6PctOCm4dL0T6yFVQNOgx2MYnCx+lGTgChcC2dvqeJsOx3fD2k7KAEB7qWiN0RrdPOXBrN35dPsltOFtrRTd7yTSv8He3rHzUnawyPGtEaBfa/1mDGRFDIXeveJZMYpNL5yg0PKhtD4YLKw+GBi0PA8hRddiLFl6EdhvRvI0CdOl2uAOFndoUQTmtmUynJKkZBsHb4aIPjpCwXSQCSaFFzu5OArYEm9iblSDGNy0goMSu8rHelEasJhgGGmUQ1/2QWditIFuIHTLMzMXQHZ3WkTwka6rotzEJQZvRRk5QVZbUbWrp6XhUy88lQmQf2LiHhgvk179TzsKNiBhE6ZPuhRCnAQcE8YXUytmTQCIyy8gzFGBhQpwZbEiDZeFGVD/TyHCCAbxikaxfKY828jx/vKnYCeuKzn8Z6IsMXmayU30HSiqwVdBj44qAYSNNDbZoLHvdhjH+K3xCbCHxqiNyAbAUI2J41yExYXHziFmONZPQwVBUp3lbSO+fPQ60IBzqOaHHT1WYY3jJI45OA6Kelc+k6Hw92C+JNSJ85iH1W8Apbsyh1QHCR82OUW70RMktjDkJnpxp8oGDo9uIAA=") center/194px 150px repeat;image-rendering:pixelated;border-radius:inherit}
+pw-widget-outfit .pwof-stage .pwof-spr{transform:scale(1.6)}
+pw-widget-outfit .pwof-stage .pwof-name{position:absolute;left:0;right:0;top:calc(50% - 74px);display:flex;flex-direction:column;align-items:center;gap:1px;z-index:2;pointer-events:none;font-family:Verdana,Tahoma,sans-serif}
+pw-widget-outfit .pwof-stage .pwof-name>*{font-style:normal;line-height:1.15;white-space:nowrap;text-shadow:1px 0 #000,-1px 0 #000,0 1px #000,0 -1px #000,1px 1px #000,-1px -1px #000,1px -1px #000,-1px 1px #000}
+pw-widget-outfit .pwof-stage .pwof-name small{font-size:11px;font-weight:700}
+pw-widget-outfit .pwof-stage .pwof-name b{font-size:12px;font-weight:700;color:#3DDC84}
+pw-widget-outfit .pwof-stage .pwof-hp{display:block;width:30px;height:4px;margin-top:2px;background:#3DDC84;box-shadow:0 0 0 1px #000}
+html[data-ds="v2"] pw-widget-outfit pw-tabs.pwof-tabs:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:relative}
+html[data-ds="v2"] pw-widget-outfit pw-tabs.pwof-tabs pw-tab:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background-color:transparent!important}
+html[data-ds="v2"] pw-widget-outfit pw-tabs.pwof-tabs pw-tab:not([selected]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background-color:var(--v2-field)!important}
+html[data-ds="v2"] pw-widget-outfit pw-tabs.pwof-tabs pw-tab[selected]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){background-color:transparent!important}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}

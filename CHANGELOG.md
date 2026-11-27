@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.106.0
+- Personalizar treinador: abas sem o divisor e sem o brilho; pill amarela que desliza entre as abas (340ms) e conteúdo do painel entra com fade + deslize na direção da aba.
+- Visual/Títulos/Efeitos mostram só o que está liberado (sai "Mostrar apenas liberados").
+- Prévia: título e nome no estilo do jogo sobre o personagem, com barra de vida, dentro da mesma caixa; fundo com piso do mapa; animação de andar ligada por padrão; efeito sai do bloco de nome.
+
 ## 0.105.3
 - v2: divisor entre header e conteúdo estava duplicado (borda inferior de 2px + linha do ::before); fica só a borda.
 - pw-empty: ícone centralizado na marca.
