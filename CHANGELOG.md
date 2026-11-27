@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.115.0
+- Slider de hotkeys: mínimo 12.
+- HUD v2: setas sempre visíveis dos dois lados (desabilitadas quando não há mais hotkeys), ocupando o lugar de uma hotkey; avançam de 3 em 3. O perfil reduzido usa as mesmas setas xs do completo. Largura estável ao paginar.
+- Protótipo: o cenário não rola mais sozinho (fim da tarja preta).
+
 ## 0.114.1
 - Opções › Barra de ações: o slider "Hotkeys na barra inferior" agora vai até 100.
 
