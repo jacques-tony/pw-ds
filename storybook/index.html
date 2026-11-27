@@ -8517,7 +8517,7 @@ document.addEventListener('click',e=>{var b=e.target.closest&&e.target.closest('
  P.prototype._ring=function(){var av=this.querySelector('.pwhd-avatar');if(!av)return;var p=(this._data||{}).player||{},hp=p.hpMax?Math.max(0,Math.min(1,(p.hp||0)/p.hpMax)):0,xp=Math.max(0,Math.min(100,p.xp||0))/100;
   if(!av.querySelector('.pwhd-ring')){av.insertAdjacentHTML('afterbegin','<span class="pwhd-bump" aria-hidden="true"></span><pw-progress class="pwhd-ring rhp" shape="ring" variant="hp" thickness="5.3" label="Vida"></pw-progress><pw-progress class="pwhd-ring rxp" shape="ring" variant="xp" thickness="5.9" label="Experiência"></pw-progress>');av.insertAdjacentHTML('beforeend','<span class="pwhd-rinfo"><span class="h"></span><span class="lv"></span><span class="x"></span></span>')}
   av.querySelector('.pwhd-ring.rhp').setAttribute('value',Math.round(hp*100));av.querySelector('.pwhd-ring.rxp').setAttribute('value',Math.round(xp*100));
-  var ri=av.querySelector('.pwhd-rinfo');ri.querySelector('.h').textContent=(p.hp||0)+'/'+(p.hpMax||0);ri.querySelector('.lv').textContent='Lv. '+(p.level||'');ri.querySelector('.x').textContent='XP '+Math.round(xp*100)+'%'};
+  var ri=av.querySelector('.pwhd-rinfo');ri.querySelector('.h').textContent='HP '+Math.round(hp*100)+'%';ri.querySelector('.lv').textContent='Lv. '+(p.level||'');ri.querySelector('.x').textContent='XP '+Math.round(xp*100)+'%'};
  P.prototype.render=function(){var r=o.apply(this,arguments);try{this._ring()}catch(e){}return r};
  document.querySelectorAll('pw-hud').forEach(h=>{try{h._ring()}catch(e){}})})();</script>
 <script>/* v2: assistente de combo dentro da barra de spells (slot ⚡) */

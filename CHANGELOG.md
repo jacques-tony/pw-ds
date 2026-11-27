@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.112.5
+- HUD v2 completo: HP sob o avatar em percentual ("HP 84%").
+
 ## 0.112.4
 - Assistente de combo: dica "Clique nas magias da barra para montar ou tirar."
 
