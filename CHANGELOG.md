@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.113.2
+- HUD v2 (perfil reduzido): o slider "Hotkeys na barra inferior" agora controla a quantidade de slots também no perfil reduzido (2–68), com páginas de até 12 e setas quando passa disso. Hotkeys removidas ao diminuir voltam ao aumentar.
+
 ## 0.113.1
 - Opções › Interface › Barra de ações: novo slider "Hotkeys na barra inferior" (2 a 68, de 2 em 2). Sai o botão + da HUD.
 - HUD v2 completo: sem limite fixo de hotkeys; a HUD cresce até a largura da tela (com o padding padrão) e, a partir daí, aparecem as setas, que andam de 2 em 2.
