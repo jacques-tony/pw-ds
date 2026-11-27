@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.112.2
+- Spells: badge de atalho alinhada à esquerda, no topo, dentro da spell.
+
 ## 0.112.1
 - Spells: badges de atalho com a mesma aparência das tags dos Pokémon da HUD (fundo azul translúcido, borda clara), centralizadas no topo.
 - Botão do assistente de combo não muda de tamanho no hover (sem contorno nem brilho; só clareia o amarelo).
