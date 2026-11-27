@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.108.0
+- HUD v2, perfil completo (nova composição): equipe à esquerda; avatar circular ao centro, saindo do topo da HUD, com anel externo de HP (verde) e interno de XP (amarelo), HP, Lv. e XP% abaixo; hotkeys em grade 6×2 à direita; ações (coleta…pesca) e alternadores de perfil/atalhos em abas presas ao topo da HUD. Usa pw-card, pw-button xs/secondary e tokens v2. Perfil minimalista inalterado.
+
 ## 0.107.19
 - HUD v2: padding interno de 12px em todos os lados (era 16px).
 

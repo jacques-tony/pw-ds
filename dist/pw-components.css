@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.107.19 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.108.0 — https://github.com/jacques-tony/pw-ds */
 
 .pw-c-highlight{color:var(--pw-color-highlight)}.pw-c-next{color:var(--pw-color-next)}.pw-c-aura{color:var(--pw-color-aura)}.pw-c-alert{color:var(--pw-color-alert)}
 .pw-c-success{color:var(--pw-status-success)}.pw-c-warning{color:var(--pw-status-warning)}.pw-c-error{color:var(--pw-status-error)}.pw-c-info{color:var(--pw-status-info)}
@@ -2462,7 +2462,7 @@ html[data-ds="v2"] :is(pw-widget-minimap,pw-widget-chat) :is(.pwmm-rl,.pwmm-rr):
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){height:auto!important}
 html[data-ds="v2"] pw-widget-minimap:not([maximized]) pw-card.pwmm-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content{padding:4px 8px!important;height:auto!important}
 /* v2 HUD: barras de HP/XP 25% menores — a HUD fica mais estreita */
-html[data-ds="v2"] pw-hud.gsim-hud:not([profile="compact"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] .gsim pw-hud:not([profile="compact"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:836px!important}
+html[data-ds="v2"] pw-hud.gsim-hud:not([profile="compact"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] .gsim pw-hud:not([profile="compact"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:930px!important}
 html[data-ds="v2"] pw-hud.gsim-hud[profile="compact"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] .gsim pw-hud[profile="compact"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:706px!important}
 html[data-ds="v2"] pw-widget-minimap .pwmm-vp:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{display:none!important}
 /* v2 minimapa: só o fundo dos cards sobre o mapa a 75%; conteúdo a 100%; mesmo padding nos dois */
@@ -2504,6 +2504,38 @@ pw-dialog.pwhd-bind.ctx .pwkb-zone:not(:focus) .pwkb-hint::after{content:none!im
 pw-dialog.pwhd-bind.ctx .pwkb-hint{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 html[data-ds="v2"] pw-hud:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--hd-pad:12px!important}
 html[data-ds="v2"] pw-hud pw-card.pwhd-shell:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content{padding:12px!important}
+/* v2 HUD completo: equipe à esquerda, avatar circular com anéis de HP/XP ao centro, hotkeys à direita; ações e alternadores em abas acima */
+html[data-ds="v2"] pw-hud:not([profile="compact"]):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){width:930px!important;margin-top:44px}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) pw-card.pwhd-shell:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]),html[data-ds="v2"] pw-hud:not([profile="compact"]) pw-card.pwhd-shell:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>.pwc-content{overflow:visible!important}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-body:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-template-columns:auto 150px minmax(0,1fr)!important;grid-template-areas:"team av hot"!important;align-items:center!important;column-gap:16px!important;row-gap:0!important;position:relative}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) :is(.pwhd-top,.pwhd-profile,.pwhd-profile>.pwc-content):not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:contents!important}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>:is(svg.pwc-frame,.pwe-bg){display:none!important}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-info:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none!important}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-team:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:team!important;margin:0!important}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-hotbar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:hot!important;min-width:0}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){grid-area:av!important;justify-self:center;align-self:start;position:relative;width:96px!important;height:96px!important;margin-top:-52px!important;border-radius:50%!important;overflow:visible!important;border:0!important;background:none!important;z-index:2}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-profile .pwhd-avatar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>img{position:absolute;inset:15px;width:66px!important;height:66px!important;border-radius:50%;object-fit:cover;object-position:top;z-index:2}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-bump:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:absolute;inset:-8px;border-radius:50%;background:linear-gradient(180deg,var(--v2-panel-top),var(--v2-panel-bot));border:2px solid var(--v2-border);clip-path:inset(0 0 46% 0);z-index:0}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-ring:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:absolute;inset:0;z-index:1;transform:rotate(-90deg)}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-ring circle{fill:none;stroke-linecap:round}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-ring .tk{stroke:var(--v2-track)}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-ring .hp{stroke:var(--v2-green);transition:stroke-dashoffset .45s}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-ring .xp{stroke:var(--v2-volt);transition:stroke-dashoffset .45s}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-rinfo:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:2px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;width:220px;font:700 12px/1 "Archivo",sans-serif;white-space:nowrap;z-index:3}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-rinfo .h{color:var(--v2-green);text-align:right}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-rinfo .x{color:var(--v2-volt)}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-rinfo .lv{padding:5px 10px;border-radius:999px;background:var(--v2-field);border:2px solid var(--v2-border);color:var(--v2-paper)}
+html:not([data-ds="v2"]) pw-hud :is(.pwhd-ring,.pwhd-rinfo,.pwhd-bump),pw-hud[profile="compact"] :is(.pwhd-ring,.pwhd-rinfo,.pwhd-bump){display:none!important}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-actions.v2:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:absolute;left:-2px;bottom:calc(100% + 8px);z-index:4;grid-area:auto!important;display:flex!important;gap:4px!important;padding:6px 8px 10px!important;border:2px solid var(--v2-border)!important;border-bottom:0!important;border-radius:10px 10px 0 0;background:var(--v2-panel-top)}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-foot:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){position:absolute;right:-2px;bottom:calc(100% + 8px);z-index:4;grid-area:auto!important;margin:0!important;padding:6px 8px 10px;border:2px solid var(--v2-border);border-bottom:0;border-radius:10px 10px 0 0;background:var(--v2-panel-top)}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-actions.v2 pw-button.pwhd-act:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){--bh:28px!important}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-actions.v2 pw-button.pwhd-act:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])>button{width:32px!important;height:28px!important;min-height:0!important}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-hotbar:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){justify-self:end}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-arrow:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:none!important}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-slots:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){display:grid!important;grid-template-columns:repeat(6,40px);grid-auto-rows:40px;gap:6px!important;overflow:visible!important;margin:0!important;padding:0!important;width:auto!important;max-width:none!important}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-slot[data-slot]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]):nth-child(n+13){display:none!important}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-slot[data-slot="10"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"]){margin-left:0!important}
+html[data-ds="v2"] pw-hud:not([profile="compact"]) .pwhd-slot[data-slot="10"]:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::after{display:none}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
