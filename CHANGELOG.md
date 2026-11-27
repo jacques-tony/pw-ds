@@ -27,6 +27,11 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.117.1
+- Opacidade: os sliders existentes HUD inferior, Chat, Minimapa e Painéis laterais agora funcionam (multiplicam com "Todas as interfaces"; hover volta a 100%).
+- A barra de Pokémon flutuante não é afetada pela opacidade.
+- "Base dos widgets" agora vale para todos os fundos: cartão, header, rodapé e menu lateral (mochila, bate-papo, opções etc.).
+
 ## 0.117.0
 - HUD v2: mostrar/esconder atalhos volta a usar a animação antiga (cartas). A HUD mantém a mesma largura com e sem atalhos nos dois perfis. A troca de perfil segue com fade.
 - pw-party é independente da HUD: fica sempre visível e não participa das transições dela.
