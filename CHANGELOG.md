@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.108.2
+- HUD v2 completo: mais espaço entre os anéis de HP e XP (XP não fica mais cortado pela foto); disco de fundo sem borda atrás do avatar e anéis; largura igual à do minimalista (706px) com cards dos Pokémon menores (42×52); Lv., HP e XP% em duas linhas sob o avatar.
+- Ações e alternadores do topo ficam flutuantes, só os botões (sem a aba de base), com fundo próprio.
+
 ## 0.108.1
 - HUD v2 completo: 6 hotkeys visíveis em linha, total de 24; as setas avançam de 6 em 6 com a mesma transição suave do minimalista.
 - Avatar central sem a base/bolha: os próprios anéis de HP e XP fazem a separação com a HUD.
