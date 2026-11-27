@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.110.9
+- Barra de spells: o botão ⚡ não vem com atalho; aparece só depois que o jogador define e salva (usa o mesmo pw-badge das magias, via `combo-key`, sem selo duplicado sobreposto).
+
 ## 0.110.8
 - Assistente de combo: sai a contagem de magias (x/8) do cabeçalho.
 
