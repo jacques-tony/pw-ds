@@ -1,4 +1,4 @@
-/*! Poke World Design System v0.106.3 — https://github.com/jacques-tony/pw-ds */
+/*! Poke World Design System v0.106.4 — https://github.com/jacques-tony/pw-ds */
 (function(){
 if(window.PWDS&&window.PWDS.version)return;
 /* estilos embutidos: basta este <script> (funciona também em páginas que não podem carregar CSS externo) */
@@ -2581,10 +2581,10 @@ class PWWidgetOutfit extends HTMLElement{
     if(this._tab==='visual')h=chk+'<pw-scroll class="pwof-scroll"><div class="pwof-grid" role="radiogroup" aria-label="Visual">'+fl(d.outfits).map(o=>this._item('outfit',o.id,'<div class="pwof-spr" style="background-image:url(\''+E(o.sprite)+'\');translate:'+(+o.ox||0)+'px '+(+o.oy||0)+'px"></div>',o.name,' data-tip="'+E(o.name)+'"',o.locked)).join('')+'</div></pw-scroll>';
     else if(this._tab==='titulos')h=chk+'<pw-scroll class="pwof-scroll"><div class="pwof-grid two" role="radiogroup" aria-label="Títulos">'+fl(d.titles).map(t=>this._item('title',t.id,'<span'+(t.color?' style="color:'+E(t.color)+'"':'')+'>'+E(t.name)+'</span>',t.name,'',t.locked)).join('')+'</div></pw-scroll>';
     else if(this._tab==='efeitos')h=chk+'<pw-scroll class="pwof-scroll"><div class="pwof-grid two" role="radiogroup" aria-label="Efeitos">'+fl(d.effects).map(f=>this._item('effect',f.id,E(f.name),f.name,'',f.locked)).join('')+'</div></pw-scroll>';
-    else{var cur=d.colors[this._part]||0;h='<div class="pwof-parts" role="radiogroup" aria-label="Parte">'+PW_OUTFIT_PARTS.map(p=>'<pw-button size="sm" fx="none" particles="0"'+(p[0]===this._part?'':' appearance="outline"')+' data-part="'+p[0]+'" aria-pressed="'+(p[0]===this._part)+'">'+p[1]+'</pw-button>').join('')+'</div>'+
+    else{var cur=d.colors[this._part]||0;h='<div class="pwof-parts" role="radiogroup" aria-label="Parte">'+PW_OUTFIT_PARTS.map(p=>'<pw-button variant="secondary" size="sm" fx="none" particles="0"'+(p[0]===this._part?'':' appearance="outline"')+' data-part="'+p[0]+'" aria-pressed="'+(p[0]===this._part)+'">'+p[1]+'</pw-button>').join('')+'</div>'+
       '<div class="pwof-pal" role="radiogroup" aria-label="Cor">'+PW_OUTFIT_PAL.map((c,i)=>'<button type="button" role="radio" data-sw="'+i+'" aria-checked="'+(i===cur)+'" tabindex="'+(i===cur?0:-1)+'" aria-label="Cor '+(i+1)+'" style="background:'+c+'"></button>').join('')+'</div>'}
     P.innerHTML=h;var c=P.querySelector('.pwof-only');if(c)c.addEventListener('change',()=>{this._only=c.checked!==undefined?c.checked:c.hasAttribute('checked');this._panel()})}
 }
 customElements.define('pw-widget-outfit',PWWidgetOutfit);
-window.PWDS=Object.assign(window.PWDS||{},{version:"0.106.3"});
+window.PWDS=Object.assign(window.PWDS||{},{version:"0.106.4"});
 })();

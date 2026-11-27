@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.106.4
+- Personalizar treinador, aba Cores: botões Cabeça/Corpo/Pernas/Pés em pw-button variant="secondary" (selecionado preenchido, demais outline), azul no lugar do amarelo.
+
 ## 0.106.3
 - Personalizar treinador: item escolhido em Visual, Títulos e Efeitos fica com borda amarela de 2px, fundo levemente amarelado e selo de check (Line Icon Pack) no canto.
 
