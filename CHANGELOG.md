@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.107.10
+- HUD v2: a fileira de hotkeys tem largura múltipla do slot — nunca mostra slot cortado; as setas avançam um slot inteiro. Divisor entre F10 e 1 passa a ficar dentro do espaçamento (2px, cor da borda).
+
 ## 0.107.9
 - HUD v2: hotkeys em F1–F10 | 1–4 | restantes (vazios) nos dois perfis; sem overlay (fade) nas bordas da fileira; setas movem um slot por vez com encaixe (scroll-snap).
 
