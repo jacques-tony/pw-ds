@@ -27,6 +27,10 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.108.1
+- HUD v2 completo: 6 hotkeys visíveis em linha, total de 24; as setas avançam de 6 em 6 com a mesma transição suave do minimalista.
+- Avatar central sem a base/bolha: os próprios anéis de HP e XP fazem a separação com a HUD.
+
 ## 0.108.0
 - HUD v2, perfil completo (nova composição): equipe à esquerda; avatar circular ao centro, saindo do topo da HUD, com anel externo de HP (verde) e interno de XP (amarelo), HP, Lv. e XP% abaixo; hotkeys em grade 6×2 à direita; ações (coleta…pesca) e alternadores de perfil/atalhos em abas presas ao topo da HUD. Usa pw-card, pw-button xs/secondary e tokens v2. Perfil minimalista inalterado.
 
