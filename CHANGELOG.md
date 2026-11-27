@@ -27,6 +27,9 @@ Todas as mudanças da biblioteca. Formato: [Keep a Changelog](https://keepachang
 
 
 
+## 0.112.6
+- Widgets recolhidos (bate-papo, minimapa): hastes laterais de redimensionar com 12px, centradas no cabeçalho.
+
 ## 0.112.5
 - HUD v2 completo: HP sob o avatar em percentual ("HP 84%").
 

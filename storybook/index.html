@@ -3000,6 +3000,9 @@ html[data-ds="v2"] body pw-widget-spells[orientation="vertical"] .pwsp-bar:not(:
 html[data-ds="v2"] body .pwsc{padding:12px!important}
 html[data-ds="v2"] body .pwsc .pwsc-seq{gap:4px!important;justify-content:flex-start!important}
 html[data-ds="v2"] body .pwsc>pw-button[data-sc="x"],html[data-ds="v2"] body .pwsc .pwsc-top pw-button[data-sc="x"]{top:12px!important;right:12px!important}
+/* widgets recolhidos: hastes laterais de redimensionar bem pequenas, centradas no cabeçalho */
+html[data-ds="v2"] :is(pw-widget-chat,pw-widget-minimap)[collapsed] :is(.pwmm-rl,.pwmm-rr){top:50%!important;bottom:auto!important;height:16px!important;transform:translateY(-50%)}
+html[data-ds="v2"] body :is(pw-widget-chat,pw-widget-minimap)[collapsed]:not(#a):not(#b) :is(.pwmm-rl,.pwmm-rr)::after{height:12px!important}
 /* teste: canto recortado (brand="tl" e brand="br") — desenhado no card, preso ao arredondado */
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"]) .pwbg-head:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{display:none!important}
 html[data-ds="v2"] :is([brand="tl"],[brand="br"],[brand="br-sm"])>pw-card.pwbg-card:not(:is([data-pw-theme="mewtwo"],[theme="mewtwo"]) *):not([theme="mewtwo"])::before{content:"";position:absolute;width:40px;height:40px;z-index:7;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpolygon points='0,0 15,0 0,15' fill='%231D7AEE'/%3E%3Cpolygon points='19,0 27,0 0,27 0,19' fill='%23FFE14D'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
